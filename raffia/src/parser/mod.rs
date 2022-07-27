@@ -7,6 +7,7 @@ use crate::{
 };
 
 mod less;
+mod sass;
 mod selector;
 mod value;
 

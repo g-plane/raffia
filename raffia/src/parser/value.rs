@@ -5,6 +5,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    Syntax,
 };
 
 impl<'a> Parser<'a> {
@@ -20,6 +21,9 @@ impl<'a> Parser<'a> {
             Token::Percentage(..) => self.parse_percentage().map(ComponentValue::Percentage),
             Token::Hash(..) => self.parse_hex_color().map(ComponentValue::HexColor),
             Token::Str(..) => self.parse_str().map(ComponentValue::Str),
+            Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+                self.parse_sass_variable().map(ComponentValue::SassVariable)
+            }
             _ => Err(panic!()),
         }
     }

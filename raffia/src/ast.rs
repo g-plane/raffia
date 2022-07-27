@@ -82,6 +82,7 @@ pub enum ComponentValue<'a> {
     Ident(Ident<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
+    SassVariable(SassVariable<'a>),
     Str(Str<'a>),
 }
 
@@ -248,6 +249,12 @@ pub struct QualifiedRule<'a> {
 pub struct Resolution<'a> {
     pub value: Number<'a>,
     pub unit: Ident<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SassVariable<'a> {
+    pub name: Ident<'a>,
     pub span: Span,
 }
 
