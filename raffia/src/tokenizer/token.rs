@@ -52,6 +52,12 @@ pub enum Token<'a> {
     BarBar(BarBar),
     Ampersand(Ampersand),
     Asterisk(Asterisk),
+    Equal(Equal),
+    TildeEqual(TildeEqual),
+    BarEqual(BarEqual),
+    CaretEqual(CaretEqual),
+    DollarEqual(DollarEqual),
+    AsteriskEqual(AsteriskEqual),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -225,5 +231,35 @@ pub struct Ampersand {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Asterisk {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Equal {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct TildeEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct BarEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct CaretEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct DollarEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct AsteriskEqual {
     pub span: Span,
 }

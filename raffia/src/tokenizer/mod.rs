@@ -641,6 +641,36 @@ impl<'a> Tokenizer<'a> {
                     end: i + 2,
                 },
             })),
+            Some((i, '~', '=')) => Some(Token::TildeEqual(TildeEqual {
+                span: Span {
+                    start: i,
+                    end: i + 2,
+                },
+            })),
+            Some((i, '|', '=')) => Some(Token::BarEqual(BarEqual {
+                span: Span {
+                    start: i,
+                    end: i + 2,
+                },
+            })),
+            Some((i, '^', '=')) => Some(Token::CaretEqual(CaretEqual {
+                span: Span {
+                    start: i,
+                    end: i + 2,
+                },
+            })),
+            Some((i, '$', '=')) => Some(Token::DollarEqual(DollarEqual {
+                span: Span {
+                    start: i,
+                    end: i + 2,
+                },
+            })),
+            Some((i, '*', '=')) => Some(Token::AsteriskEqual(AsteriskEqual {
+                span: Span {
+                    start: i,
+                    end: i + 2,
+                },
+            })),
             _ => match self.iter.next() {
                 Some((i, ':')) => Some(Token::Colon(Colon {
                     span: Span {
@@ -739,6 +769,12 @@ impl<'a> Tokenizer<'a> {
                     },
                 })),
                 Some((i, '|')) => Some(Token::Bar(Bar {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
+                Some((i, '=')) => Some(Token::Equal(Equal {
                     span: Span {
                         start: i,
                         end: i + 1,

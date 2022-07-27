@@ -25,6 +25,174 @@ impl<'a> Parser<'a> {
         }
     }
 
+    fn parse_attribute_selector(&mut self) -> PResult<AttributeSelector<'a>> {
+        let l_bracket = expect!(self, LBracket);
+
+        let name = match self.tokenizer.bump()? {
+            Token::Ident(ident) => {
+                if let Some(bar_token) = eat!(self, Bar) {
+                    self.assert_no_ws_or_comment(&ident.span, &bar_token.span)?;
+
+                    let name = expect!(self, Ident);
+                    self.assert_no_ws_or_comment(&bar_token.span, &name.span)?;
+
+                    let start = ident.span.start;
+                    let end = name.span.end;
+                    WqName {
+                        name: name.into(),
+                        prefix: Some(NsPrefix {
+                            kind: Some(NsPrefixKind::Ident(ident.into())),
+                            span: Span {
+                                start,
+                                end: bar_token.span.end,
+                            },
+                        }),
+                        span: Span { start, end },
+                    }
+                } else {
+                    let span = ident.span.clone();
+                    WqName {
+                        name: ident.into(),
+                        prefix: None,
+                        span,
+                    }
+                }
+            }
+            Token::Asterisk(asterisk) => {
+                let asterisk_span = asterisk.span.clone();
+                let bar_token = expect!(self, Bar);
+                let name = expect!(self, Ident);
+
+                let start = asterisk_span.start;
+                let end = name.span.end;
+                WqName {
+                    name: name.into(),
+                    prefix: Some(NsPrefix {
+                        kind: Some(NsPrefixKind::Universal(NsPrefixUniversal {
+                            span: asterisk_span,
+                        })),
+                        span: Span {
+                            start,
+                            end: bar_token.span.end,
+                        },
+                    }),
+                    span: Span { start, end },
+                }
+            }
+            Token::Bar(bar_token) => {
+                let name = expect!(self, Ident);
+
+                let start = bar_token.span.start;
+                let end = name.span.end;
+                WqName {
+                    name: name.into(),
+                    prefix: Some(NsPrefix {
+                        kind: None,
+                        span: Span {
+                            start,
+                            end: bar_token.span.end,
+                        },
+                    }),
+                    span: Span { start, end },
+                }
+            }
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::ExpectWqName,
+                    span: token.span().clone(),
+                });
+            }
+        };
+
+        let matcher = match self.tokenizer.peek() {
+            Token::RBracket(..) => None,
+            Token::Equal(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Equals,
+                    span: token.span,
+                })
+            }
+            Token::TildeEqual(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Tilde,
+                    span: token.span,
+                })
+            }
+            Token::BarEqual(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Bar,
+                    span: token.span,
+                })
+            }
+            Token::CaretEqual(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Caret,
+                    span: token.span,
+                })
+            }
+            Token::DollarEqual(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Dollar,
+                    span: token.span,
+                })
+            }
+            Token::AsteriskEqual(token) => {
+                let _ = self.tokenizer.bump();
+                Some(AttributeSelectorMatcher {
+                    kind: AttributeSelectorMatcherKind::Asterisk,
+                    span: token.span,
+                })
+            }
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::ExpectAttributeSelectorMatcher,
+                    span: token.span().clone(),
+                });
+            }
+        };
+
+        let value = match self.tokenizer.bump()? {
+            Token::Ident(ident) => Some(AttributeSelectorValue::Ident(ident.into())),
+            Token::Str(str) => Some(AttributeSelectorValue::Str(str.into())),
+            Token::RBracket(..) => None,
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::ExpectAttributeSelectorValue,
+                    span: token.span().clone(),
+                });
+            }
+        };
+
+        let modifier = if value.is_some() {
+            eat!(self, Ident).map(|ident| {
+                let span = ident.span.clone();
+                AttributeSelectorModifier {
+                    ident: ident.into(),
+                    span,
+                }
+            })
+        } else {
+            None
+        };
+
+        let r_bracket = expect!(self, RBracket);
+        Ok(AttributeSelector {
+            name,
+            matcher,
+            value,
+            modifier,
+            span: Span {
+                start: l_bracket.span.start,
+                end: r_bracket.span.end,
+            },
+        })
+    }
+
     fn parse_class_selector(&mut self) -> PResult<ClassSelector<'a>> {
         let dot = expect!(self, Dot);
         let ident = expect!(self, Ident);
@@ -196,7 +364,9 @@ impl<'a> Parser<'a> {
         match self.tokenizer.peek() {
             Token::Dot(..) => self.parse_class_selector().map(SimpleSelector::Class),
             Token::Hash(..) => self.parse_id_selector().map(SimpleSelector::Id),
-            Token::LBracket(..) => todo!(),
+            Token::LBracket(..) => self
+                .parse_attribute_selector()
+                .map(SimpleSelector::Attribute),
             Token::Colon(..) => todo!(),
             Token::ColonColon(..) => todo!(),
             Token::Ident(..) | Token::Asterisk(..) | Token::Bar(..) => {

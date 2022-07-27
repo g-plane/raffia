@@ -29,6 +29,9 @@ pub enum ErrorKind {
     ExpectSimpleSelector,
     InvalidIdSelectorName,
     ExpectTypeSelector,
+    ExpectWqName,
+    ExpectAttributeSelectorMatcher,
+    ExpectAttributeSelectorValue,
 }
 
 pub type PResult<T> = Result<T, Error>;

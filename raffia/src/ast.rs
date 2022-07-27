@@ -10,6 +10,43 @@ pub struct Angle<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct AttributeSelector<'a> {
+    pub name: WqName<'a>,
+    pub matcher: Option<AttributeSelectorMatcher>,
+    pub value: Option<AttributeSelectorValue<'a>>,
+    pub modifier: Option<AttributeSelectorModifier<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct AttributeSelectorMatcher {
+    pub kind: AttributeSelectorMatcherKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug)]
+pub enum AttributeSelectorMatcherKind {
+    Equals,
+    Tilde,
+    Bar,
+    Caret,
+    Dollar,
+    Asterisk,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct AttributeSelectorModifier<'a> {
+    pub ident: Ident<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum AttributeSelectorValue<'a> {
+    Ident(Ident<'a>),
+    Str(Str<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct ClassSelector<'a> {
     pub name: Ident<'a>,
     pub span: Span,
@@ -229,6 +266,7 @@ pub enum SimpleSelector<'a> {
     Class(ClassSelector<'a>),
     Id(IdSelector<'a>),
     Type(TypeSelector<'a>),
+    Attribute(AttributeSelector<'a>),
     Nesting(NestingSelector),
 }
 
