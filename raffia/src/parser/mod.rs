@@ -14,8 +14,8 @@ macro_rules! eat {
     ($parser:expr, $variant:ident) => {{
         use crate::tokenizer::Token;
         let tokenizer = &mut $parser.tokenizer;
-        if let Token::$variant(token) = tokenizer.peek() {
-            tokenizer.bump()?;
+        if let Token::$variant(token) = tokenizer.try_peek()? {
+            let _ = tokenizer.bump();
             Some(token)
         } else {
             None

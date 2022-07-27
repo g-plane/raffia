@@ -72,6 +72,13 @@ impl<'a> Tokenizer<'a> {
         token.unwrap_or(Token::Unknown)
     }
 
+    pub fn try_peek(&mut self) -> PResult<Token<'a>> {
+        let iter = self.iter.clone();
+        let token = self.bump();
+        self.iter = iter;
+        token
+    }
+
     pub fn current_offset(&self) -> usize {
         self.iter
             .clone()
