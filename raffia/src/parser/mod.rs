@@ -131,6 +131,7 @@ impl<'a> Parser<'a> {
 
         let mut elements = Vec::with_capacity(4);
         loop {
+            let mut is_block_element = false;
             match self.tokenizer.peek() {
                 Token::Ident(..) => {
                     if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
@@ -139,6 +140,7 @@ impl<'a> Parser<'a> {
                         self.try_parse(|parser| parser.parse_qualified_rule())
                     {
                         elements.push(SimpleBlockElement::QualifiedRule(qualified_rule));
+                        is_block_element = true;
                     }
                 }
                 Token::Dot(..)
@@ -152,6 +154,7 @@ impl<'a> Parser<'a> {
                     elements.push(SimpleBlockElement::QualifiedRule(
                         self.parse_qualified_rule()?,
                     ));
+                    is_block_element = true;
                 }
                 Token::AtKeyword(..) => {
                     if self.syntax == Syntax::Less {
@@ -174,6 +177,8 @@ impl<'a> Parser<'a> {
                         end: r_brace.span.end,
                     },
                 });
+            } else if is_block_element {
+                eat!(self, Semicolon);
             } else {
                 expect!(self, Semicolon);
             }
