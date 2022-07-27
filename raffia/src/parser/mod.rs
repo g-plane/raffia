@@ -57,6 +57,17 @@ impl<'a> Parser<'a> {
         }
     }
 
+    fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> Option<R> {
+        let tokenizer_state = self.tokenizer.clone_state();
+        match f(self) {
+            Ok(value) => Some(value),
+            Err(..) => {
+                self.tokenizer.replace_state(tokenizer_state);
+                None
+            }
+        }
+    }
+
     fn parse_component_values(&mut self) -> PResult<Vec<ComponentValue<'a>>> {
         let mut values = Vec::with_capacity(4);
         loop {

@@ -10,6 +10,10 @@ use token::*;
 mod convert;
 pub mod token;
 
+/// Newtype for wrapping tokenizer state to avoid exposing internal detail.
+#[derive(Clone)]
+pub(crate) struct TokenizerState<'a>(Peekable<CharIndices<'a>>);
+
 pub struct Tokenizer<'a> {
     source: &'a str,
     syntax: Syntax,
@@ -85,6 +89,14 @@ impl<'a> Tokenizer<'a> {
             .next()
             .map(|(i, _)| i)
             .unwrap_or_else(|| self.source.len())
+    }
+
+    pub(crate) fn clone_state(&self) -> TokenizerState<'a> {
+        TokenizerState(self.iter.clone())
+    }
+
+    pub(crate) fn replace_state(&mut self, state: TokenizerState<'a>) {
+        self.iter = state.0;
     }
 
     fn peek_one_char(&self) -> Option<(usize, char)> {
