@@ -132,7 +132,25 @@ impl<'a> Parser<'a> {
         loop {
             match self.tokenizer.peek() {
                 Token::Ident(..) => {
-                    elements.push(SimpleBlockElement::Declaration(self.parse_declaration()?))
+                    if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
+                        elements.push(SimpleBlockElement::Declaration(declaration));
+                    } else if let Some(qualified_rule) =
+                        self.try_parse(|parser| parser.parse_qualified_rule())
+                    {
+                        elements.push(SimpleBlockElement::QualifiedRule(qualified_rule));
+                    }
+                }
+                Token::Dot(..)
+                | Token::Hash(..)
+                | Token::Ampersand(..)
+                | Token::LBracket(..)
+                | Token::Colon(..)
+                | Token::ColonColon(..)
+                | Token::Asterisk(..)
+                | Token::Bar(..) => {
+                    elements.push(SimpleBlockElement::QualifiedRule(
+                        self.parse_qualified_rule()?,
+                    ));
                 }
                 _ => {}
             }

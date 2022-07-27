@@ -259,6 +259,7 @@ pub struct SimpleBlock<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum SimpleBlockElement<'a> {
     Declaration(Declaration<'a>),
+    QualifiedRule(QualifiedRule<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
