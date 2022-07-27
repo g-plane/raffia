@@ -1,0 +1,323 @@
+use super::Parser;
+use crate::{
+    ast::*,
+    eat,
+    error::{Error, ErrorKind, PResult},
+    expect,
+    pos::{Span, Spanned},
+    tokenizer::{token, Token},
+};
+use raffia_derive::Spanned;
+
+impl<'a> Parser<'a> {
+    fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
+        debug_assert!(left.end <= right.start);
+        if left.end == right.start {
+            Ok(())
+        } else {
+            Err(Error {
+                kind: ErrorKind::UnexpectedWhitespace,
+                span: Span {
+                    start: left.end,
+                    end: right.start,
+                },
+            })
+        }
+    }
+
+    fn parse_class_selector(&mut self) -> PResult<ClassSelector<'a>> {
+        let dot = expect!(self, Dot);
+        let ident = expect!(self, Ident);
+        self.assert_no_ws_or_comment(&dot.span, &ident.span)?;
+
+        let span = Span {
+            start: dot.span.start,
+            end: ident.span.end,
+        };
+        Ok(ClassSelector {
+            name: ident.into(),
+            span,
+        })
+    }
+
+    fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'a>> {
+        let mut children = Vec::with_capacity(1);
+        let first = self.parse_compound_selector()?;
+        let mut span = first.span.clone();
+
+        children.push(ComplexSelectorChild::CompoundSelector(first));
+        loop {
+            if let Some(combinator) = self.parse_combinator() {
+                children.push(ComplexSelectorChild::Combinator(combinator));
+                children.push(
+                    self.parse_compound_selector()
+                        .map(ComplexSelectorChild::CompoundSelector)?,
+                );
+            } else {
+                break;
+            }
+        }
+
+        if let Some(last) = children.last() {
+            span.end = last.span().end;
+        }
+        Ok(ComplexSelector { children, span })
+    }
+
+    fn parse_combinator(&mut self) -> Option<Combinator> {
+        let current_offset = self.tokenizer.current_offset();
+        match self.tokenizer.peek() {
+            token @ Token::Ident(..)
+            | token @ Token::Dot(..)
+            | token @ Token::Hash(..)
+            | token @ Token::Colon(..)
+            | token @ Token::ColonColon(..)
+            | token @ Token::Asterisk(..)
+            | token @ Token::Ampersand(..)
+            | token @ Token::Bar(..) // selector like `|type` (with <ns-prefix>)
+                if current_offset < token.span().start =>
+            {
+                Some(Combinator {
+                    kind: CombinatorKind::Descendant,
+                    span: Span {
+                        start: current_offset,
+                        end: token.span().start,
+                    },
+                })
+            }
+            Token::GreaterThan(token) => {
+                let _ = self.tokenizer.bump();
+                Some(Combinator {
+                    kind: CombinatorKind::Child,
+                    span: token.span,
+                })
+            }
+            Token::Plus(token) => {
+                let _ = self.tokenizer.bump();
+                Some(Combinator {
+                    kind: CombinatorKind::NextSibling,
+                    span: token.span,
+                })
+            }
+            Token::Tilde(token) => {
+                let _ = self.tokenizer.bump();
+                Some(Combinator {
+                    kind: CombinatorKind::LaterSibling,
+                    span: token.span,
+                })
+            }
+            Token::BarBar(token) => {
+                let _ = self.tokenizer.bump();
+                Some(Combinator {
+                    kind: CombinatorKind::Column,
+                    span: token.span,
+                })
+            }
+            _ => None,
+        }
+    }
+
+    fn parse_compound_selector(&mut self) -> PResult<CompoundSelector<'a>> {
+        let first = self.parse_simple_selector()?;
+        let mut span = first.span().clone();
+
+        let mut children = Vec::with_capacity(1);
+        children.push(first);
+        loop {
+            match self.tokenizer.peek() {
+                token @ Token::Dot(..)
+                | token @ Token::Hash(..)
+                | token @ Token::Colon(..)
+                | token @ Token::ColonColon(..)
+                | token @ Token::Ampersand(..)
+                    if self.tokenizer.current_offset() == token.span().start =>
+                {
+                    children.push(self.parse_simple_selector()?)
+                }
+                _ => break,
+            }
+        }
+
+        if let Some(last) = children.last() {
+            span.end = last.span().end;
+        }
+        Ok(CompoundSelector { children, span })
+    }
+
+    fn parse_id_selector(&mut self) -> PResult<IdSelector<'a>> {
+        let token = expect!(self, Hash);
+        let ident_span = Span {
+            start: token.span.start + 1,
+            end: token.span.end,
+        };
+        if token.value.starts_with(|c: char| c.is_ascii_digit()) {
+            Err(Error {
+                kind: ErrorKind::InvalidIdSelectorName,
+                span: ident_span.clone(),
+            })
+        } else {
+            Ok(IdSelector {
+                name: Ident {
+                    name: token.value,
+                    raw: token.raw.get(1..).ok_or_else(|| Error {
+                        kind: ErrorKind::InvalidHash,
+                        span: ident_span.clone(),
+                    })?,
+                    span: ident_span,
+                },
+                span: token.span,
+            })
+        }
+    }
+
+    fn parse_nesting_selector(&mut self) -> PResult<NestingSelector> {
+        let token = expect!(self, Ampersand);
+        Ok(NestingSelector { span: token.span })
+    }
+
+    pub(super) fn parse_selector_list(&mut self) -> PResult<SelectorList<'a>> {
+        let first = self.parse_complex_selector()?;
+        let mut span = first.span.clone();
+
+        let mut selectors = Vec::with_capacity(1);
+        selectors.push(first);
+        while eat!(self, Comma).is_some() {
+            selectors.push(self.parse_complex_selector()?);
+        }
+
+        if let Some(selector) = selectors.last() {
+            span.end = selector.span.end;
+        }
+        Ok(SelectorList { selectors, span })
+    }
+
+    // https://www.w3.org/TR/selectors-4/#ref-for-typedef-simple-selector
+    fn parse_simple_selector(&mut self) -> PResult<SimpleSelector<'a>> {
+        match self.tokenizer.peek() {
+            Token::Dot(..) => self.parse_class_selector().map(SimpleSelector::Class),
+            Token::Hash(..) => self.parse_id_selector().map(SimpleSelector::Id),
+            Token::LBracket(..) => todo!(),
+            Token::Colon(..) => todo!(),
+            Token::ColonColon(..) => todo!(),
+            Token::Ident(..) | Token::Asterisk(..) | Token::Bar(..) => {
+                self.parse_type_selector().map(SimpleSelector::Type)
+            }
+            Token::Ampersand(..) => self.parse_nesting_selector().map(SimpleSelector::Nesting),
+            token => Err(Error {
+                kind: ErrorKind::ExpectSimpleSelector,
+                span: token.span().clone(),
+            }),
+        }
+    }
+
+    fn parse_type_selector(&mut self) -> PResult<TypeSelector<'a>> {
+        #[derive(Spanned)]
+        enum IdentOrAsterisk<'a> {
+            Ident(Ident<'a>),
+            Asterisk(token::Asterisk),
+        }
+
+        let ident_or_asterisk = match self.tokenizer.peek() {
+            Token::Ident(..) => self.parse_ident().map(IdentOrAsterisk::Ident).map(Some)?,
+            Token::Asterisk(token) => {
+                self.tokenizer.bump()?;
+                Some(IdentOrAsterisk::Asterisk(token))
+            }
+            Token::Bar(..) => None,
+            _ => unreachable!(),
+        };
+
+        match self.tokenizer.peek() {
+            Token::Bar(bar_token)
+                if ident_or_asterisk
+                    .as_ref()
+                    .map(|t| t.span().end == bar_token.span.start)
+                    .unwrap_or(true) =>
+            {
+                let token = self.tokenizer.bump()?;
+                debug_assert!(matches!(&token, Token::Bar(..)));
+
+                let prefix = match ident_or_asterisk {
+                    Some(IdentOrAsterisk::Ident(ident)) => {
+                        let mut span = ident.span.clone();
+                        span.end = bar_token.span.end;
+                        NsPrefix {
+                            kind: Some(NsPrefixKind::Ident(ident)),
+                            span,
+                        }
+                    }
+                    Some(IdentOrAsterisk::Asterisk(asterisk)) => {
+                        let mut span = asterisk.span.clone();
+                        span.end = bar_token.span.end;
+                        NsPrefix {
+                            kind: Some(NsPrefixKind::Universal(NsPrefixUniversal {
+                                span: asterisk.span,
+                            })),
+                            span,
+                        }
+                    }
+                    None => NsPrefix {
+                        kind: None,
+                        span: bar_token.span,
+                    },
+                };
+
+                match self.tokenizer.peek() {
+                    Token::Ident(..) => {
+                        let name = self.parse_ident()?;
+                        self.assert_no_ws_or_comment(&prefix.span, &name.span)?;
+                        let span = Span {
+                            start: prefix.span.start,
+                            end: name.span.end,
+                        };
+                        Ok(TypeSelector::TagName(TagNameSelector {
+                            name: WqName {
+                                name,
+                                prefix: Some(prefix),
+                                span: span.clone(),
+                            },
+                            span,
+                        }))
+                    }
+                    Token::Asterisk(asterisk) => {
+                        self.tokenizer.bump()?;
+                        self.assert_no_ws_or_comment(&prefix.span, &asterisk.span)?;
+                        let span = Span {
+                            start: prefix.span.start,
+                            end: asterisk.span.end,
+                        };
+                        Ok(TypeSelector::Universal(UniversalSelector {
+                            prefix: Some(prefix),
+                            span,
+                        }))
+                    }
+                    token => Err(Error {
+                        kind: ErrorKind::ExpectTypeSelector,
+                        span: token.span().clone(),
+                    }),
+                }
+            }
+
+            _ => match ident_or_asterisk {
+                Some(IdentOrAsterisk::Ident(ident)) => {
+                    let span = ident.span.clone();
+                    Ok(TypeSelector::TagName(TagNameSelector {
+                        name: WqName {
+                            name: ident,
+                            prefix: None,
+                            span: span.clone(),
+                        },
+                        span,
+                    }))
+                }
+                Some(IdentOrAsterisk::Asterisk(asterisk)) => {
+                    Ok(TypeSelector::Universal(UniversalSelector {
+                        prefix: None,
+                        span: asterisk.span,
+                    }))
+                }
+                None => unreachable!(),
+            },
+        }
+    }
+}

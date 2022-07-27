@@ -1,0 +1,15 @@
+[package]
+name = "raffia_derive"
+version = "0.1.0"
+edition = "2021"
+authors = ["Pig Fang <g-plane@hotmail.com>"]
+description = "Derive macros for Raffia."
+repository = "https://github.com/g-plane/raffia"
+license = "MIT"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0"
+syn = "1.0"
