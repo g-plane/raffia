@@ -189,6 +189,13 @@ pub struct IdSelector<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct LessVariableDeclaration<'a> {
+    pub name: Ident<'a>,
+    pub value: DeclarationValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Length<'a> {
     pub value: Number<'a>,
     pub unit: Ident<'a>,
@@ -259,6 +266,7 @@ pub struct SimpleBlock<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum SimpleBlockElement<'a> {
     Declaration(Declaration<'a>),
+    LessVariableDeclaration(LessVariableDeclaration<'a>),
     QualifiedRule(QualifiedRule<'a>),
 }
 

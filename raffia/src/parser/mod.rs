@@ -6,6 +6,7 @@ use crate::{
     tokenizer::{Token, Tokenizer},
 };
 
+mod less;
 mod selector;
 mod value;
 
@@ -151,6 +152,17 @@ impl<'a> Parser<'a> {
                     elements.push(SimpleBlockElement::QualifiedRule(
                         self.parse_qualified_rule()?,
                     ));
+                }
+                Token::AtKeyword(..) => {
+                    if self.syntax == Syntax::Less {
+                        if let Some(less_variable_declaration) =
+                            self.try_parse(|parser| parser.parse_less_variable_declaration())
+                        {
+                            elements.push(SimpleBlockElement::LessVariableDeclaration(
+                                less_variable_declaration,
+                            ));
+                        }
+                    }
                 }
                 _ => {}
             }
