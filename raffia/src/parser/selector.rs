@@ -298,6 +298,9 @@ impl<'a> Parser<'a> {
                 | token @ Token::Colon(..)
                 | token @ Token::ColonColon(..)
                 | token @ Token::Ampersand(..)
+                | token @ Token::Ident(..)
+                | token @ Token::Asterisk(..)
+                | token @ Token::Bar(..)
                     if self.tokenizer.current_offset() == token.span().start =>
                 {
                     children.push(self.parse_simple_selector()?)
