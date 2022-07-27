@@ -63,6 +63,7 @@ impl<'a> Tokenizer<'a> {
                 }
                 Some((_, '#')) => self.scan_hash(),
                 Some((_, '@')) => self.scan_at_keyword(),
+                Some((_, '$')) => self.scan_dollar_var(),
                 Some(..) => Ok(self.scan_punc().unwrap_or(Token::Unknown)),
                 None => Ok(Token::Eof),
             },
@@ -619,6 +620,23 @@ impl<'a> Tokenizer<'a> {
             raw,
             span,
         }))
+    }
+
+    fn scan_dollar_var(&mut self) -> PResult<Token<'a>> {
+        let (start, c) = self.iter.next().ok_or_else(|| Error {
+            kind: ErrorKind::UnexpectedEof,
+            span: Span {
+                start: self.current_offset(),
+                end: self.current_offset(),
+            },
+        })?;
+        debug_assert_eq!(c, '$');
+        let ident = self.scan_ident_sequence()?;
+        let span = Span {
+            start,
+            end: ident.span.end,
+        };
+        Ok(Token::DollarVar(DollarVar { ident, span }))
     }
 
     fn scan_at_keyword(&mut self) -> PResult<Token<'a>> {
