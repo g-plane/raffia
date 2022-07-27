@@ -1,5 +1,6 @@
 #![allow(unused)]
 
+pub use config::Syntax;
 pub use parser::parse;
 pub use pos::{Span, Spanned};
 

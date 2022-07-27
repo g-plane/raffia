@@ -177,7 +177,7 @@ impl<'a> Parser<'a> {
     }
 }
 
-pub fn parse(source: &str) -> PResult<QualifiedRule> {
-    let mut parser = Parser::new(source, Syntax::Css);
+pub fn parse(source: &str, syntax: Syntax) -> PResult<QualifiedRule> {
+    let mut parser = Parser::new(source, syntax);
     parser.parse_stylesheet()
 }
