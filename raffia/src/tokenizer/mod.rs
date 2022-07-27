@@ -257,7 +257,6 @@ impl<'a> Tokenizer<'a> {
                 end = i + c.len_utf8()
             }
             _ => {
-                dbg!("xx");
                 return Err(Error {
                     kind: ErrorKind::UnexpectedEof,
                     span: Span {
