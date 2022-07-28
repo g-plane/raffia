@@ -658,48 +658,76 @@ impl<'a> Tokenizer<'a> {
 
     fn scan_punc(&mut self) -> Option<Token<'a>> {
         match self.peek_two_chars() {
-            Some((i, ':', ':')) => Some(Token::ColonColon(ColonColon {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '|', '|')) => Some(Token::BarBar(BarBar {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '~', '=')) => Some(Token::TildeEqual(TildeEqual {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '|', '=')) => Some(Token::BarEqual(BarEqual {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '^', '=')) => Some(Token::CaretEqual(CaretEqual {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '$', '=')) => Some(Token::DollarEqual(DollarEqual {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
-            Some((i, '*', '=')) => Some(Token::AsteriskEqual(AsteriskEqual {
-                span: Span {
-                    start: i,
-                    end: i + 2,
-                },
-            })),
+            Some((i, ':', ':')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::ColonColon(ColonColon {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '|', '|')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::BarBar(BarBar {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '~', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::TildeEqual(TildeEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '|', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::BarEqual(BarEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '^', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::CaretEqual(CaretEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '$', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::DollarEqual(DollarEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '*', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::AsteriskEqual(AsteriskEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
             _ => match self.iter.next() {
                 Some((i, ':')) => Some(Token::Colon(Colon {
                     span: Span {
