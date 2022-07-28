@@ -121,10 +121,6 @@ impl<'a> Parser<'a> {
         Ok(DeclarationValue { values, span })
     }
 
-    fn parse_ident(&mut self) -> PResult<Ident<'a>> {
-        Ok(expect!(self, Ident).into())
-    }
-
     fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'a>> {
         let selector_list = self.parse_selector_list()?;
         let block = self.parse_simple_block()?;

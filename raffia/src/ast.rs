@@ -79,6 +79,7 @@ pub enum ComponentValue<'a> {
     Function(Function<'a>),
     HexColor(HexColor<'a>),
     Ident(Ident<'a>),
+    InterpolableIdent(InterpolableIdent<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
     SassVariable(SassVariable<'a>),
@@ -183,6 +184,19 @@ pub struct Ident<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum InterpolableIdent<'a> {
+    Literal(Ident<'a>),
+    SassInterpolated(SassInterpolatedIdent<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct InterpolableIdentLiteralPart<'a> {
+    pub value: Cow<'a, str>,
+    pub raw: &'a str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct IdSelector<'a> {
     pub name: Ident<'a>,
     pub span: Span,
@@ -263,10 +277,23 @@ pub enum SassExpressionChild<'a> {
     Function(Function<'a>),
     HexColor(HexColor<'a>),
     Ident(Ident<'a>),
+    InterpolableIdent(InterpolableIdent<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
     SassVariable(SassVariable<'a>),
     Str(Str<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SassInterpolatedIdent<'a> {
+    pub elements: Vec<SassInterpolatedIdentElement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SassInterpolatedIdentElement<'a> {
+    Expression(SassExpression<'a>),
+    Literal(InterpolableIdentLiteralPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]

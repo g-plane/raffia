@@ -51,6 +51,15 @@ impl<'a> Tokenizer<'a> {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
+            Some((_, '#', c))
+                if c.is_ascii_alphanumeric()
+                    || c == '-'
+                    || c == '_'
+                    || !c.is_ascii()
+                    || c == '\\' =>
+            {
+                self.scan_hash()
+            }
             _ => match self.peek_one_char() {
                 Some((_, c)) if c.is_ascii_digit() => {
                     let number = self.scan_number()?;
@@ -61,7 +70,6 @@ impl<'a> Tokenizer<'a> {
                 {
                     self.scan_ident_or_function_or_url()
                 }
-                Some((_, '#')) => self.scan_hash(),
                 Some((_, '@')) => self.scan_at_keyword(),
                 Some((_, '$')) => self.scan_dollar_var(),
                 Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
@@ -722,6 +730,16 @@ impl<'a> Tokenizer<'a> {
                 self.iter.next();
                 self.iter.next();
                 Some(Token::AsteriskEqual(AsteriskEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '#', '{')) if matches!(self.syntax, Syntax::Scss) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::HashLBrace(HashLBrace {
                     span: Span {
                         start: i,
                         end: i + 2,

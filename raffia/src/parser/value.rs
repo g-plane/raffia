@@ -11,7 +11,9 @@ use crate::{
 impl<'a> Parser<'a> {
     pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'a>> {
         match self.tokenizer.peek()? {
-            Token::Ident(..) => self.parse_ident().map(ComponentValue::Ident),
+            Token::Ident(..) => self
+                .parse_interpolable_ident()
+                .map(ComponentValue::InterpolableIdent),
             Token::Function(..) => self.parse_function().map(ComponentValue::Function),
             Token::Solidus(..) | Token::Comma(..) | Token::Semicolon(..) => {
                 self.parse_delimiter().map(ComponentValue::Delimiter)
@@ -24,6 +26,9 @@ impl<'a> Parser<'a> {
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
                 self.parse_sass_variable().map(ComponentValue::SassVariable)
             }
+            Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss) => self
+                .parse_sass_interpolated_ident()
+                .map(ComponentValue::InterpolableIdent),
             _ => Err(panic!()),
         }
     }
@@ -166,6 +171,18 @@ impl<'a> Parser<'a> {
             raw: token.raw_without_hash,
             span: token.span,
         })
+    }
+
+    pub(super) fn parse_ident(&mut self) -> PResult<Ident<'a>> {
+        Ok(expect!(self, Ident).into())
+    }
+
+    pub(super) fn parse_interpolable_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
+        match self.syntax {
+            Syntax::Css => self.parse_ident().map(InterpolableIdent::Literal),
+            Syntax::Scss => self.parse_sass_interpolated_ident(),
+            Syntax::Less => todo!(),
+        }
     }
 
     pub(super) fn parse_number(&mut self) -> PResult<Number<'a>> {

@@ -58,6 +58,7 @@ pub enum Token<'a> {
     CaretEqual(CaretEqual),
     DollarEqual(DollarEqual),
     AsteriskEqual(AsteriskEqual),
+    HashLBrace(HashLBrace),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -270,5 +271,10 @@ pub struct DollarEqual {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct AsteriskEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct HashLBrace {
     pub span: Span,
 }
