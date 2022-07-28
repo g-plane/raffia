@@ -30,10 +30,7 @@ impl<'a> Parser<'a> {
                         break;
                     }
                 }
-                _ => match self.parse_sass_expression_element() {
-                    Ok(value) => elements.push(value),
-                    Err(error) => return Err(error),
-                },
+                _ => elements.push(self.parse_sass_expression_element()?),
             }
         }
 

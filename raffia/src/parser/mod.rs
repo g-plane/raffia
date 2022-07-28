@@ -70,19 +70,23 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_component_values(&mut self) -> PResult<Vec<ComponentValue<'a>>> {
+    fn parse_component_values(&mut self) -> PResult<(Vec<ComponentValue<'a>>, Span)> {
+        let first = self.parse_component_value()?;
+        let mut span = first.span().clone();
+
         let mut values = Vec::with_capacity(4);
+        values.push(first);
         loop {
             match self.tokenizer.peek() {
-                Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => {
-                    return Ok(values);
-                }
-                _ => match self.parse_component_value() {
-                    Ok(value) => values.push(value),
-                    Err(error) => return Err(error),
-                },
+                Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
+                _ => values.push(self.parse_component_value()?),
             }
         }
+
+        if let Some(last) = values.last() {
+            span.end = last.span().end;
+        }
+        Ok((values, span))
     }
 
     fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
@@ -97,15 +101,7 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_declaration_value(&mut self) -> PResult<DeclarationValue<'a>> {
-        let values = self.parse_component_values()?;
-        let span = values
-            .first()
-            .zip(values.last())
-            .map(|(first, last)| Span {
-                start: first.span().start,
-                end: last.span().end,
-            })
-            .ok_or_else(|| panic!())?;
+        let (values, span) = self.parse_component_values()?;
         Ok(DeclarationValue { values, span })
     }
 

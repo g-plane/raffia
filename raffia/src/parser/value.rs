@@ -147,7 +147,7 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_function(&mut self) -> PResult<Function<'a>> {
         let func = expect!(self, Function);
-        let args = self.parse_component_values()?;
+        let (args, _) = self.parse_component_values()?;
         let r_paren = expect!(self, RParen);
         Ok(Function {
             name: func.name.into(),
