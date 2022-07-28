@@ -157,6 +157,11 @@ impl<'a> Parser<'a> {
                     ));
                     is_block_element = true;
                 }
+                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+                    elements.push(SimpleBlockElement::SassVariableDeclaration(
+                        self.parse_sass_variable_declaration()?,
+                    ));
+                }
                 Token::AtKeyword(..) => {
                     if self.syntax == Syntax::Less {
                         if let Some(less_variable_declaration) =

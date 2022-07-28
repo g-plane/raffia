@@ -259,6 +259,13 @@ pub struct SassVariable<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassVariableDeclaration<'a> {
+    pub name: SassVariable<'a>,
+    pub value: DeclarationValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SelectorList<'a> {
     pub selectors: Vec<ComplexSelector<'a>>,
     pub span: Span,
@@ -275,6 +282,7 @@ pub enum SimpleBlockElement<'a> {
     Declaration(Declaration<'a>),
     LessVariableDeclaration(LessVariableDeclaration<'a>),
     QualifiedRule(QualifiedRule<'a>),
+    SassVariableDeclaration(SassVariableDeclaration<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
