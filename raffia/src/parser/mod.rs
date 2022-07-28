@@ -191,12 +191,64 @@ impl<'a> Parser<'a> {
         Ok(expect!(self, Str).into())
     }
 
-    fn parse_stylesheet(&mut self) -> PResult<QualifiedRule<'a>> {
-        self.parse_qualified_rule()
+    fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'a>> {
+        let mut statements = Vec::with_capacity(4);
+
+        loop {
+            let mut is_block_element = false;
+            match self.tokenizer.peek() {
+                Token::Ident(..)
+                | Token::Dot(..)
+                | Token::Hash(..)
+                | Token::Ampersand(..)
+                | Token::LBracket(..)
+                | Token::Colon(..)
+                | Token::ColonColon(..)
+                | Token::Asterisk(..)
+                | Token::Bar(..) => {
+                    statements.push(TopLevelStatement::QualifiedRule(
+                        self.parse_qualified_rule()?,
+                    ));
+                    is_block_element = true;
+                }
+                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+                    statements.push(TopLevelStatement::SassVariableDeclaration(
+                        self.parse_sass_variable_declaration()?,
+                    ));
+                }
+                Token::AtKeyword(..) => {
+                    if self.syntax == Syntax::Less {
+                        if let Some(less_variable_declaration) =
+                            self.try_parse(|parser| parser.parse_less_variable_declaration())
+                        {
+                            statements.push(TopLevelStatement::LessVariableDeclaration(
+                                less_variable_declaration,
+                            ));
+                        }
+                    }
+                }
+                _ => {}
+            }
+            if let Token::Eof = self.tokenizer.try_peek()? {
+                break;
+            } else if is_block_element {
+                eat!(self, Semicolon);
+            } else {
+                expect!(self, Semicolon);
+            }
+        }
+
+        Ok(Stylesheet {
+            statements,
+            span: Span {
+                start: 0,
+                end: self.source.len(),
+            },
+        })
     }
 }
 
-pub fn parse(source: &str, syntax: Syntax) -> PResult<QualifiedRule> {
+pub fn parse(source: &str, syntax: Syntax) -> PResult<Stylesheet> {
     let mut parser = Parser::new(source, syntax);
     parser.parse_stylesheet()
 }

@@ -319,9 +319,22 @@ pub struct Str<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct Stylesheet<'a> {
+    pub statements: Vec<TopLevelStatement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct TagNameSelector<'a> {
     pub name: WqName<'a>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum TopLevelStatement<'a> {
+    LessVariableDeclaration(LessVariableDeclaration<'a>),
+    QualifiedRule(QualifiedRule<'a>),
+    SassVariableDeclaration(SassVariableDeclaration<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
