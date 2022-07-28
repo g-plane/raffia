@@ -16,7 +16,7 @@ macro_rules! eat {
     ($parser:expr, $variant:ident) => {{
         use crate::tokenizer::Token;
         let tokenizer = &mut $parser.tokenizer;
-        if let Token::$variant(token) = tokenizer.try_peek()? {
+        if let Token::$variant(token) = tokenizer.peek()? {
             let _ = tokenizer.bump();
             Some(token)
         } else {
@@ -38,7 +38,7 @@ macro_rules! expect {
         } else {
             return Err(Error {
                 kind: ErrorKind::Unexpected,
-                span: tokenizer.peek().span().clone(),
+                span: tokenizer.peek()?.span().clone(),
             });
         }
     }};
@@ -77,7 +77,7 @@ impl<'a> Parser<'a> {
         let mut values = Vec::with_capacity(4);
         values.push(first);
         loop {
-            match self.tokenizer.peek() {
+            match self.tokenizer.peek()? {
                 Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
                 _ => values.push(self.parse_component_value()?),
             }
@@ -129,7 +129,7 @@ impl<'a> Parser<'a> {
         let mut elements = Vec::with_capacity(4);
         loop {
             let mut is_block_element = false;
-            match self.tokenizer.peek() {
+            match self.tokenizer.peek()? {
                 Token::Ident(..) => {
                     if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
                         elements.push(SimpleBlockElement::Declaration(declaration));
@@ -196,7 +196,7 @@ impl<'a> Parser<'a> {
 
         loop {
             let mut is_block_element = false;
-            match self.tokenizer.peek() {
+            match self.tokenizer.peek()? {
                 Token::Ident(..)
                 | Token::Dot(..)
                 | Token::Hash(..)
@@ -229,7 +229,7 @@ impl<'a> Parser<'a> {
                 }
                 _ => {}
             }
-            if let Token::Eof = self.tokenizer.try_peek()? {
+            if let Token::Eof = self.tokenizer.peek()? {
                 break;
             } else if is_block_element {
                 eat!(self, Semicolon);

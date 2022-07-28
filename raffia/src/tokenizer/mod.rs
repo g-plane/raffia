@@ -51,33 +51,32 @@ impl<'a> Tokenizer<'a> {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
-            _ => match self.iter.peek() {
+            _ => match self.peek_one_char() {
                 Some((_, c)) if c.is_ascii_digit() => {
                     let number = self.scan_number()?;
                     self.scan_dimension_or_percentage(number)
                 }
                 Some((_, c))
-                    if c.is_ascii_alphabetic() || *c == '_' || !c.is_ascii() || *c == '\\' =>
+                    if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() || c == '\\' =>
                 {
                     self.scan_ident_or_function_or_url()
                 }
                 Some((_, '#')) => self.scan_hash(),
                 Some((_, '@')) => self.scan_at_keyword(),
                 Some((_, '$')) => self.scan_dollar_var(),
-                Some(..) => Ok(self.scan_punc().unwrap_or(Token::Unknown)),
+                Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
+                    kind: ErrorKind::UnknownToken,
+                    span: Span {
+                        start: i,
+                        end: i + c.len_utf8(),
+                    },
+                }),
                 None => Ok(Token::Eof),
             },
         }
     }
 
-    pub fn peek(&mut self) -> Token<'a> {
-        let iter = self.iter.clone();
-        let token = self.bump();
-        self.iter = iter;
-        token.unwrap_or(Token::Unknown)
-    }
-
-    pub fn try_peek(&mut self) -> PResult<Token<'a>> {
+    pub fn peek(&mut self) -> PResult<Token<'a>> {
         let iter = self.iter.clone();
         let token = self.bump();
         self.iter = iter;

@@ -10,7 +10,7 @@ use crate::{
 
 impl<'a> Parser<'a> {
     pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'a>> {
-        match self.tokenizer.peek() {
+        match self.tokenizer.peek()? {
             Token::Ident(..) => self.parse_ident().map(ComponentValue::Ident),
             Token::Function(..) => self.parse_function().map(ComponentValue::Function),
             Token::Solidus(..) | Token::Comma(..) | Token::Semicolon(..) => {

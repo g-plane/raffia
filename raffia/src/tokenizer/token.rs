@@ -22,7 +22,6 @@ pub struct LineComment<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum Token<'a> {
-    Unknown,
     Eof,
     Ident(Ident<'a>),
     Number(Number<'a>),

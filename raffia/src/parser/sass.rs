@@ -21,7 +21,7 @@ impl<'a> Parser<'a> {
         let mut elements = Vec::with_capacity(4);
         elements.push(first);
         loop {
-            match self.tokenizer.peek() {
+            match self.tokenizer.peek()? {
                 Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
                 Token::Comma(..) => {
                     if allow_comma {
@@ -41,7 +41,7 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_sass_expression_element(&mut self) -> PResult<SassExpressionElement<'a>> {
-        match self.tokenizer.peek() {
+        match self.tokenizer.peek()? {
             Token::Ident(..) => self.parse_ident().map(SassExpressionElement::Ident),
             Token::Function(..) => self.parse_function().map(SassExpressionElement::Function),
             Token::Number(..) => self.parse_number().map(SassExpressionElement::Number),

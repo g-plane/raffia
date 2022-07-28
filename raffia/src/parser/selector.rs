@@ -104,7 +104,7 @@ impl<'a> Parser<'a> {
             }
         };
 
-        let matcher = match self.tokenizer.peek() {
+        let matcher = match self.tokenizer.peek()? {
             Token::RBracket(..) => None,
             Token::Equal(token) => {
                 let _ = self.tokenizer.bump();
@@ -215,7 +215,7 @@ impl<'a> Parser<'a> {
 
         children.push(ComplexSelectorChild::CompoundSelector(first));
         loop {
-            if let Some(combinator) = self.parse_combinator() {
+            if let Some(combinator) = self.parse_combinator()? {
                 children.push(ComplexSelectorChild::Combinator(combinator));
                 children.push(
                     self.parse_compound_selector()
@@ -232,9 +232,9 @@ impl<'a> Parser<'a> {
         Ok(ComplexSelector { children, span })
     }
 
-    fn parse_combinator(&mut self) -> Option<Combinator> {
+    fn parse_combinator(&mut self) -> PResult<Option<Combinator>> {
         let current_offset = self.tokenizer.current_offset();
-        match self.tokenizer.peek() {
+        match self.tokenizer.peek()? {
             token @ Token::Ident(..)
             | token @ Token::Dot(..)
             | token @ Token::Hash(..)
@@ -245,43 +245,43 @@ impl<'a> Parser<'a> {
             | token @ Token::Bar(..) // selector like `|type` (with <ns-prefix>)
                 if current_offset < token.span().start =>
             {
-                Some(Combinator {
+                Ok(Some(Combinator {
                     kind: CombinatorKind::Descendant,
                     span: Span {
                         start: current_offset,
                         end: token.span().start,
                     },
-                })
+                }))
             }
             Token::GreaterThan(token) => {
                 let _ = self.tokenizer.bump();
-                Some(Combinator {
+                Ok(Some(Combinator {
                     kind: CombinatorKind::Child,
                     span: token.span,
-                })
+                }))
             }
             Token::Plus(token) => {
                 let _ = self.tokenizer.bump();
-                Some(Combinator {
+                Ok(Some(Combinator {
                     kind: CombinatorKind::NextSibling,
                     span: token.span,
-                })
+                }))
             }
             Token::Tilde(token) => {
                 let _ = self.tokenizer.bump();
-                Some(Combinator {
+                Ok(Some(Combinator {
                     kind: CombinatorKind::LaterSibling,
                     span: token.span,
-                })
+                }))
             }
             Token::BarBar(token) => {
                 let _ = self.tokenizer.bump();
-                Some(Combinator {
+                Ok(Some(Combinator {
                     kind: CombinatorKind::Column,
                     span: token.span,
-                })
+                }))
             }
-            _ => None,
+            _ => Ok(None),
         }
     }
 
@@ -292,7 +292,7 @@ impl<'a> Parser<'a> {
         let mut children = Vec::with_capacity(1);
         children.push(first);
         loop {
-            match self.tokenizer.peek() {
+            match self.tokenizer.peek()? {
                 token @ Token::Dot(..)
                 | token @ Token::Hash(..)
                 | token @ Token::Colon(..)
@@ -361,7 +361,7 @@ impl<'a> Parser<'a> {
 
     // https://www.w3.org/TR/selectors-4/#ref-for-typedef-simple-selector
     fn parse_simple_selector(&mut self) -> PResult<SimpleSelector<'a>> {
-        match self.tokenizer.peek() {
+        match self.tokenizer.peek()? {
             Token::Dot(..) => self.parse_class_selector().map(SimpleSelector::Class),
             Token::Hash(..) => self.parse_id_selector().map(SimpleSelector::Id),
             Token::LBracket(..) => self
@@ -387,7 +387,7 @@ impl<'a> Parser<'a> {
             Asterisk(token::Asterisk),
         }
 
-        let ident_or_asterisk = match self.tokenizer.peek() {
+        let ident_or_asterisk = match self.tokenizer.peek()? {
             Token::Ident(..) => self.parse_ident().map(IdentOrAsterisk::Ident).map(Some)?,
             Token::Asterisk(token) => {
                 self.tokenizer.bump()?;
@@ -397,7 +397,7 @@ impl<'a> Parser<'a> {
             _ => unreachable!(),
         };
 
-        match self.tokenizer.peek() {
+        match self.tokenizer.peek()? {
             Token::Bar(bar_token)
                 if ident_or_asterisk
                     .as_ref()
@@ -432,7 +432,7 @@ impl<'a> Parser<'a> {
                     },
                 };
 
-                match self.tokenizer.peek() {
+                match self.tokenizer.peek()? {
                     Token::Ident(..) => {
                         let name = self.parse_ident()?;
                         self.assert_no_ws_or_comment(&prefix.span, &name.span)?;

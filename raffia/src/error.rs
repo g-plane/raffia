@@ -19,6 +19,7 @@ impl error::Error for Error {}
 pub enum ErrorKind {
     Unexpected,
 
+    UnknownToken,
     InvalidNumber,
     InvalidEscape,
     InvalidHash,
