@@ -106,11 +106,11 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
-        let name = self.parse_ident()?;
+        let name = self.parse_interpolable_ident()?;
         expect!(self, Colon);
         let value = self.parse_declaration_value()?;
         let span = Span {
-            start: name.span.start,
+            start: name.span().start,
             end: value.span.end,
         };
         Ok(Declaration { name, value, span })

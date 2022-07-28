@@ -42,7 +42,9 @@ impl<'a> Parser<'a> {
 
     fn parse_sass_expression_child(&mut self) -> PResult<SassExpressionChild<'a>> {
         match self.tokenizer.peek()? {
-            Token::Ident(..) => self.parse_ident().map(SassExpressionChild::Ident),
+            Token::Ident(..) | Token::HashLBrace(..) => self
+                .parse_sass_interpolated_ident()
+                .map(SassExpressionChild::InterpolableIdent),
             Token::Function(..) => self.parse_function().map(SassExpressionChild::Function),
             Token::Number(..) => self.parse_number().map(SassExpressionChild::Number),
             Token::Dimension(..) => self.parse_dimension().map(SassExpressionChild::Dimension),

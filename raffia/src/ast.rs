@@ -78,7 +78,6 @@ pub enum ComponentValue<'a> {
     Dimension(Dimension<'a>),
     Function(Function<'a>),
     HexColor(HexColor<'a>),
-    Ident(Ident<'a>),
     InterpolableIdent(InterpolableIdent<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
@@ -106,7 +105,7 @@ pub struct CompoundSelector<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Declaration<'a> {
-    pub name: Ident<'a>,
+    pub name: InterpolableIdent<'a>,
     pub value: DeclarationValue<'a>,
     pub span: Span,
 }
@@ -276,7 +275,6 @@ pub enum SassExpressionChild<'a> {
     Dimension(Dimension<'a>),
     Function(Function<'a>),
     HexColor(HexColor<'a>),
-    Ident(Ident<'a>),
     InterpolableIdent(InterpolableIdent<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
