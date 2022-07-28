@@ -68,7 +68,7 @@ impl<'a> Parser<'a> {
                     _ => return Ok(InterpolableIdent::Literal(ident.into())),
                 }
             }
-            Token::HashLBrace(hash_lbrace) => self.parse_sass_interpolated_ident_expr()?,
+            Token::HashLBrace(..) => self.parse_sass_interpolated_ident_expr()?,
             _ => unreachable!(),
         };
         let mut last_span_end = span.end;
@@ -91,6 +91,7 @@ impl<'a> Parser<'a> {
             }
         }
 
+        span.end = last_span_end;
         Ok(InterpolableIdent::SassInterpolated(SassInterpolatedIdent {
             elements,
             span,
