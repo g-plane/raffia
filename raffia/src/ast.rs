@@ -253,12 +253,12 @@ pub struct Resolution<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct SassExpression<'a> {
-    pub elements: Vec<SassExpressionElement<'a>>,
+    pub elements: Vec<SassExpressionChild<'a>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SassExpressionElement<'a> {
+pub enum SassExpressionChild<'a> {
     Dimension(Dimension<'a>),
     Function(Function<'a>),
     HexColor(HexColor<'a>),

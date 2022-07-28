@@ -15,7 +15,7 @@ impl<'a> Parser<'a> {
     ) -> PResult<SassExpression<'a>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
 
-        let first = self.parse_sass_expression_element()?;
+        let first = self.parse_sass_expression_child()?;
         let mut span = first.span().clone();
 
         let mut elements = Vec::with_capacity(4);
@@ -25,12 +25,12 @@ impl<'a> Parser<'a> {
                 Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
                 Token::Comma(..) => {
                     if allow_comma {
-                        elements.push(self.parse_sass_expression_element()?);
+                        elements.push(self.parse_sass_expression_child()?);
                     } else {
                         break;
                     }
                 }
-                _ => elements.push(self.parse_sass_expression_element()?),
+                _ => elements.push(self.parse_sass_expression_child()?),
             }
         }
 
@@ -40,20 +40,18 @@ impl<'a> Parser<'a> {
         Ok(SassExpression { elements, span })
     }
 
-    fn parse_sass_expression_element(&mut self) -> PResult<SassExpressionElement<'a>> {
+    fn parse_sass_expression_child(&mut self) -> PResult<SassExpressionChild<'a>> {
         match self.tokenizer.peek()? {
-            Token::Ident(..) => self.parse_ident().map(SassExpressionElement::Ident),
-            Token::Function(..) => self.parse_function().map(SassExpressionElement::Function),
-            Token::Number(..) => self.parse_number().map(SassExpressionElement::Number),
-            Token::Dimension(..) => self.parse_dimension().map(SassExpressionElement::Dimension),
-            Token::Percentage(..) => self
-                .parse_percentage()
-                .map(SassExpressionElement::Percentage),
-            Token::Hash(..) => self.parse_hex_color().map(SassExpressionElement::HexColor),
-            Token::Str(..) => self.parse_str().map(SassExpressionElement::Str),
+            Token::Ident(..) => self.parse_ident().map(SassExpressionChild::Ident),
+            Token::Function(..) => self.parse_function().map(SassExpressionChild::Function),
+            Token::Number(..) => self.parse_number().map(SassExpressionChild::Number),
+            Token::Dimension(..) => self.parse_dimension().map(SassExpressionChild::Dimension),
+            Token::Percentage(..) => self.parse_percentage().map(SassExpressionChild::Percentage),
+            Token::Hash(..) => self.parse_hex_color().map(SassExpressionChild::HexColor),
+            Token::Str(..) => self.parse_str().map(SassExpressionChild::Str),
             Token::DollarVar(..) => self
                 .parse_sass_variable()
-                .map(SassExpressionElement::SassVariable),
+                .map(SassExpressionChild::SassVariable),
             _ => Err(panic!()),
         }
     }
