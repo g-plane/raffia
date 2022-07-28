@@ -252,6 +252,24 @@ pub struct Resolution<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassExpression<'a> {
+    pub elements: Vec<SassExpressionElement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SassExpressionElement<'a> {
+    Dimension(Dimension<'a>),
+    Function(Function<'a>),
+    HexColor(HexColor<'a>),
+    Ident(Ident<'a>),
+    Number(Number<'a>),
+    Percentage(Percentage<'a>),
+    SassVariable(SassVariable<'a>),
+    Str(Str<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassVariable<'a> {
     pub name: Ident<'a>,
     pub span: Span,
@@ -260,7 +278,7 @@ pub struct SassVariable<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct SassVariableDeclaration<'a> {
     pub name: SassVariable<'a>,
-    pub value: DeclarationValue<'a>,
+    pub value: SassExpression<'a>,
     pub span: Span,
 }
 

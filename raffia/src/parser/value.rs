@@ -47,7 +47,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_dimension(&mut self) -> PResult<Dimension<'a>> {
+    pub(super) fn parse_dimension(&mut self) -> PResult<Dimension<'a>> {
         let dimension_token = expect!(self, Dimension);
         let unit_name = &dimension_token.unit.name;
         if unit_name.eq_ignore_ascii_case("px")
@@ -145,7 +145,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_function(&mut self) -> PResult<Function<'a>> {
+    pub(super) fn parse_function(&mut self) -> PResult<Function<'a>> {
         let func = expect!(self, Function);
         let args = self.parse_component_values()?;
         let r_paren = expect!(self, RParen);
@@ -159,7 +159,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_hex_color(&mut self) -> PResult<HexColor<'a>> {
+    pub(super) fn parse_hex_color(&mut self) -> PResult<HexColor<'a>> {
         let token = expect!(self, Hash);
         Ok(HexColor {
             value: token.value,
@@ -168,11 +168,11 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_number(&mut self) -> PResult<Number<'a>> {
+    pub(super) fn parse_number(&mut self) -> PResult<Number<'a>> {
         Ok(expect!(self, Number).into())
     }
 
-    fn parse_percentage(&mut self) -> PResult<Percentage<'a>> {
+    pub(super) fn parse_percentage(&mut self) -> PResult<Percentage<'a>> {
         let token = expect!(self, Percentage);
         Ok(Percentage {
             value: token.value.into(),
