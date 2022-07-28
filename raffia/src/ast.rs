@@ -74,7 +74,6 @@ pub enum CombinatorKind {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum ComponentValue<'a> {
-    Declaration(Declaration<'a>),
     Delimiter(Delimiter),
     Dimension(Dimension<'a>),
     Function(Function<'a>),
