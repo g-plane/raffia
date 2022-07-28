@@ -1,7 +1,7 @@
 use super::Parser;
 use crate::{
     ast::*,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
@@ -29,7 +29,10 @@ impl<'a> Parser<'a> {
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
-            _ => Err(panic!()),
+            token => Err(Error {
+                kind: ErrorKind::ExpectComponentValue,
+                span: token.span().clone(),
+            }),
         }
     }
 
@@ -48,7 +51,7 @@ impl<'a> Parser<'a> {
                 kind: DelimiterKind::Semicolon,
                 span,
             }),
-            _ => panic!(),
+            _ => unreachable!(),
         }
     }
 

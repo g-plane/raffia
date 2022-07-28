@@ -33,6 +33,8 @@ pub enum ErrorKind {
     ExpectWqName,
     ExpectAttributeSelectorMatcher,
     ExpectAttributeSelectorValue,
+    ExpectComponentValue,
+    ExpectSassExpression,
 }
 
 pub type PResult<T> = Result<T, Error>;

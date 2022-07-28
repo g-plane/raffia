@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     config::Syntax,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
@@ -52,7 +52,10 @@ impl<'a> Parser<'a> {
             Token::DollarVar(..) => self
                 .parse_sass_variable()
                 .map(SassExpressionChild::SassVariable),
-            _ => Err(panic!()),
+            token => Err(Error {
+                kind: ErrorKind::ExpectSassExpression,
+                span: token.span().clone(),
+            }),
         }
     }
 
