@@ -44,10 +44,14 @@ macro_rules! expect {
     }};
 }
 
+#[derive(Clone, Debug, Default)]
+struct ParserState {}
+
 struct Parser<'a> {
     source: &'a str,
     syntax: Syntax,
     tokenizer: Tokenizer<'a>,
+    state: ParserState,
 }
 
 impl<'a> Parser<'a> {
@@ -56,6 +60,7 @@ impl<'a> Parser<'a> {
             source,
             syntax: syntax.clone(),
             tokenizer: Tokenizer::new(source, syntax),
+            state: Default::default(),
         }
     }
 
@@ -68,6 +73,17 @@ impl<'a> Parser<'a> {
                 None
             }
         }
+    }
+
+    fn with_state<R, F: Fn(&mut Self) -> PResult<R>>(
+        &mut self,
+        state: ParserState,
+        f: F,
+    ) -> PResult<R> {
+        let original_state = self.state.clone();
+        let result = f(self);
+        self.state = original_state;
+        result
     }
 
     fn parse_component_values(&mut self) -> PResult<(Vec<ComponentValue<'a>>, Span)> {
