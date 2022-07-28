@@ -9,7 +9,10 @@ use crate::{
 };
 
 impl<'a> Parser<'a> {
-    pub(super) fn parse_sass_expression(&mut self) -> PResult<SassExpression<'a>> {
+    pub(super) fn parse_sass_expression(
+        &mut self,
+        allow_comma: bool,
+    ) -> PResult<SassExpression<'a>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
 
         let first = self.parse_sass_expression_element()?;
@@ -20,6 +23,13 @@ impl<'a> Parser<'a> {
         loop {
             match self.tokenizer.peek() {
                 Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
+                Token::Comma(..) => {
+                    if allow_comma {
+                        elements.push(self.parse_sass_expression_element()?);
+                    } else {
+                        break;
+                    }
+                }
                 _ => match self.parse_sass_expression_element() {
                     Ok(value) => elements.push(value),
                     Err(error) => return Err(error),
@@ -68,7 +78,7 @@ impl<'a> Parser<'a> {
 
         let name = self.parse_sass_variable()?;
         expect!(self, Colon);
-        let value = self.parse_sass_expression()?;
+        let value = self.parse_sass_expression(/* allow_comma */ true)?;
 
         let span = Span {
             start: name.span.start,
