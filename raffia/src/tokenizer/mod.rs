@@ -618,6 +618,7 @@ impl<'a> Tokenizer<'a> {
                 span: span.clone(),
             })?,
             raw,
+            raw_without_hash: value,
             span,
         }))
     }

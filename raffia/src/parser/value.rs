@@ -163,7 +163,7 @@ impl<'a> Parser<'a> {
         let token = expect!(self, Hash);
         Ok(HexColor {
             value: token.value,
-            raw: token.raw.get(1..).unwrap(), // <hash-token> always contains more than one char
+            raw: token.raw_without_hash,
             span: token.span,
         })
     }

@@ -130,7 +130,10 @@ pub struct Url<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct Hash<'a> {
     pub value: Cow<'a, str>,
+    /// raw string with beginning `#` char
     pub raw: &'a str,
+    /// raw string without beginning `#` char
+    pub raw_without_hash: &'a str,
     pub span: Span,
 }
 

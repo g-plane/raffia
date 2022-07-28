@@ -330,10 +330,7 @@ impl<'a> Parser<'a> {
             Ok(IdSelector {
                 name: Ident {
                     name: token.value,
-                    raw: token.raw.get(1..).ok_or_else(|| Error {
-                        kind: ErrorKind::InvalidHash,
-                        span: ident_span.clone(),
-                    })?,
+                    raw: token.raw_without_hash,
                     span: ident_span,
                 },
                 span: token.span,
