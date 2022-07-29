@@ -70,11 +70,12 @@ impl<'a> Tokenizer<'a> {
                 self.scan_at_keyword()
             }
             Some((_, '$', c))
-                if c.is_ascii_alphabetic()
-                    || c == '-'
-                    || c == '_'
-                    || !c.is_ascii()
-                    || c == '\\' =>
+                if matches!(self.syntax, Syntax::Scss)
+                    && (c.is_ascii_alphabetic()
+                        || c == '-'
+                        || c == '_'
+                        || !c.is_ascii()
+                        || c == '\\') =>
             {
                 self.scan_dollar_var()
             }
