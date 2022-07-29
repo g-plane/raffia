@@ -9,6 +9,50 @@ use crate::{
 };
 
 impl<'a> Parser<'a> {
+    pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
+        debug_assert_eq!(self.syntax, Syntax::Less);
+
+        let first = match self.tokenizer.peek()? {
+            Token::Ident(..) => {
+                let ident = expect!(self, Ident);
+                match self.tokenizer.peek()? {
+                    Token::AtLBraceVar(token) if ident.span.end == token.span.start => {
+                        LessInterpolatedIdentElement::Literal(ident.into())
+                    }
+                    _ => return Ok(InterpolableIdent::Literal(ident.into())),
+                }
+            }
+            Token::AtLBraceVar(..) => self
+                .parse_less_variable_interpolation()
+                .map(LessInterpolatedIdentElement::Variable)?,
+            _ => unreachable!(),
+        };
+        let mut span = first.span().clone();
+
+        let mut elements = Vec::with_capacity(4);
+        elements.push(first);
+        loop {
+            match self.tokenizer.peek()? {
+                Token::Ident(token) if span.end == token.span.start => {
+                    let ident = expect!(self, Ident);
+                    span.end = ident.span.end;
+                    elements.push(LessInterpolatedIdentElement::Literal(ident.into()));
+                }
+                Token::AtLBraceVar(token) if span.end == token.span.start => {
+                    let variable = self.parse_less_variable_interpolation()?;
+                    span.end = variable.span.end;
+                    elements.push(LessInterpolatedIdentElement::Variable(variable));
+                }
+                _ => break,
+            }
+        }
+
+        Ok(InterpolableIdent::LessInterpolated(LessInterpolatedIdent {
+            elements,
+            span,
+        }))
+    }
+
     pub(super) fn parse_less_property_merge(&mut self) -> PResult<Option<LessPropertyMerge>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
@@ -53,5 +97,13 @@ impl<'a> Parser<'a> {
             end: value.span.end,
         };
         Ok(LessVariableDeclaration { name, value, span })
+    }
+
+    fn parse_less_variable_interpolation(&mut self) -> PResult<LessVariableInterpolation<'a>> {
+        let at_lbrace_var = expect!(self, AtLBraceVar);
+        Ok(LessVariableInterpolation {
+            name: at_lbrace_var.ident.into(),
+            span: at_lbrace_var.span,
+        })
     }
 }

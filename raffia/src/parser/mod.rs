@@ -131,7 +131,7 @@ impl<'a> Parser<'a> {
         loop {
             let mut is_block_element = false;
             match self.tokenizer.peek()? {
-                Token::Ident(..) => {
+                Token::Ident(..) | Token::AtLBraceVar(..) => {
                     if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
                         elements.push(SimpleBlockElement::Declaration(declaration));
                     } else if let Some(qualified_rule) =

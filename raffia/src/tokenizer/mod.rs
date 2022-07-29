@@ -79,6 +79,7 @@ impl<'a> Tokenizer<'a> {
             {
                 self.scan_dollar_var()
             }
+            Some((_, '@', '{')) if self.syntax == Syntax::Less => self.scan_at_lbrace_var(),
             _ => match self.peek_one_char() {
                 Some((_, c)) if c.is_ascii_digit() => {
                     let number = self.scan_number()?;
@@ -662,6 +663,47 @@ impl<'a> Tokenizer<'a> {
             end: ident.span.end,
         };
         Ok(Token::DollarVar(DollarVar { ident, span }))
+    }
+
+    fn scan_at_lbrace_var(&mut self) -> PResult<Token<'a>> {
+        let (start, c) = self.iter.next().ok_or_else(|| Error {
+            kind: ErrorKind::UnexpectedEof,
+            span: Span {
+                start: self.current_offset(),
+                end: self.current_offset(),
+            },
+        })?;
+        debug_assert_eq!(c, '@');
+        let (_, c) = self.iter.next().ok_or_else(|| Error {
+            kind: ErrorKind::UnexpectedEof,
+            span: Span {
+                start: self.current_offset(),
+                end: self.current_offset(),
+            },
+        })?;
+        debug_assert_eq!(c, '{');
+
+        let ident = self.scan_ident_sequence()?;
+        match self.iter.next() {
+            Some((i, '}')) => Ok(Token::AtLBraceVar(AtLBraceVar {
+                ident,
+                span: Span { start, end: i + 1 },
+            })),
+            Some((i, c)) => Err(Error {
+                kind: ErrorKind::ExpectRightBraceForLessVar,
+                span: Span {
+                    start: i,
+                    end: i + c.len_utf8(),
+                },
+            }),
+            None => Err(Error {
+                kind: ErrorKind::UnexpectedEof,
+                span: Span {
+                    start: self.current_offset(),
+                    end: self.current_offset(),
+                },
+            }),
+        }
     }
 
     fn scan_at_keyword(&mut self) -> PResult<Token<'a>> {

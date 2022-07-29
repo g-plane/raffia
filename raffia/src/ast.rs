@@ -187,6 +187,7 @@ pub struct Ident<'a> {
 pub enum InterpolableIdent<'a> {
     Literal(Ident<'a>),
     SassInterpolated(SassInterpolatedIdent<'a>),
+    LessInterpolated(LessInterpolatedIdent<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -200,6 +201,18 @@ pub struct InterpolableIdentLiteralPart<'a> {
 pub struct IdSelector<'a> {
     pub name: Ident<'a>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessInterpolatedIdent<'a> {
+    pub elements: Vec<LessInterpolatedIdentElement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum LessInterpolatedIdentElement<'a> {
+    Variable(LessVariableInterpolation<'a>),
+    Literal(InterpolableIdentLiteralPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -224,6 +237,12 @@ pub struct LessVariable<'a> {
 pub struct LessVariableDeclaration<'a> {
     pub name: LessVariable<'a>,
     pub value: ComponentValues<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessVariableInterpolation<'a> {
+    pub name: Ident<'a>,
     pub span: Span,
 }
 

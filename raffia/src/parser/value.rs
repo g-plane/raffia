@@ -1,4 +1,4 @@
-use super::Parser;
+use super::{state::QualifiedRuleContext, Parser};
 use crate::{
     ast::*,
     error::{Error, ErrorKind, PResult},
@@ -213,7 +213,17 @@ impl<'a> Parser<'a> {
         match self.syntax {
             Syntax::Css => self.parse_ident().map(InterpolableIdent::Literal),
             Syntax::Scss => self.parse_sass_interpolated_ident(),
-            Syntax::Less => todo!(),
+            Syntax::Less => {
+                // Less variable interpolation is disallowed in declaration value
+                if matches!(
+                    self.state.qualified_rule_ctx,
+                    Some(QualifiedRuleContext::Selector | QualifiedRuleContext::DeclarationName)
+                ) {
+                    self.parse_less_interpolated_ident()
+                } else {
+                    self.parse_ident().map(InterpolableIdent::Literal)
+                }
+            }
         }
     }
 

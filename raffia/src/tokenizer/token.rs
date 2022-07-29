@@ -31,6 +31,7 @@ pub enum Token<'a> {
     Url(Url<'a>),
     Hash(Hash<'a>),
     DollarVar(DollarVar<'a>),
+    AtLBraceVar(AtLBraceVar<'a>),
     AtKeyword(AtKeyword<'a>),
     Function(Function<'a>),
     Colon(Colon),
@@ -140,6 +141,12 @@ pub struct Hash<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct DollarVar<'a> {
+    pub ident: Ident<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct AtLBraceVar<'a> {
     pub ident: Ident<'a>,
     pub span: Span,
 }
