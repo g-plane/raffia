@@ -29,6 +29,9 @@ impl<'a> Parser<'a> {
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
+            Token::AtKeyword(..) if self.syntax == Syntax::Less => {
+                self.parse_less_variable().map(ComponentValue::LessVariable)
+            }
             token => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
                 span: token.span().clone(),

@@ -91,6 +91,7 @@ pub enum ComponentValue<'a> {
     Function(Function<'a>),
     HexColor(HexColor<'a>),
     InterpolableIdent(InterpolableIdent<'a>),
+    LessVariable(LessVariable<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
     SassVariable(SassVariable<'a>),
