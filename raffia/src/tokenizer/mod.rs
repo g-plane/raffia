@@ -891,6 +891,11 @@ fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
                                 count += 1;
                                 chars.next();
                             } else {
+                                // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
+                                // consume a whitespace
+                                if c.is_ascii_whitespace() {
+                                    chars.next();
+                                }
                                 break;
                             }
                         }
