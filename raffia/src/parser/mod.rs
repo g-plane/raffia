@@ -86,25 +86,6 @@ impl<'a> Parser<'a> {
         result
     }
 
-    fn parse_component_values(&mut self) -> PResult<(Vec<ComponentValue<'a>>, Span)> {
-        let first = self.parse_component_value()?;
-        let mut span = first.span().clone();
-
-        let mut values = Vec::with_capacity(4);
-        values.push(first);
-        loop {
-            match self.tokenizer.peek()? {
-                Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
-                _ => values.push(self.parse_component_value()?),
-            }
-        }
-
-        if let Some(last) = values.last() {
-            span.end = last.span().end;
-        }
-        Ok((values, span))
-    }
-
     fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
         let name = self.parse_interpolable_ident()?;
         expect!(self, Colon);
@@ -197,10 +178,6 @@ impl<'a> Parser<'a> {
                 expect!(self, Semicolon);
             }
         }
-    }
-
-    fn parse_str(&mut self) -> PResult<Str<'a>> {
-        Ok(expect!(self, Str).into())
     }
 
     fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'a>> {
