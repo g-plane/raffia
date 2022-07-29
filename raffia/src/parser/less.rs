@@ -31,23 +31,27 @@ impl<'a> Parser<'a> {
         }
     }
 
+    pub(super) fn parse_less_variable(&mut self) -> PResult<LessVariable<'a>> {
+        let at_keyword = expect!(self, AtKeyword);
+        Ok(LessVariable {
+            name: at_keyword.ident.into(),
+            span: at_keyword.span,
+        })
+    }
+
     pub(super) fn parse_less_variable_declaration(
         &mut self,
     ) -> PResult<LessVariableDeclaration<'a>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        let at_keyword = expect!(self, AtKeyword);
+        let name = self.parse_less_variable()?;
         expect!(self, Colon);
         let value = self.parse_component_values(/* allow_comma */ true)?;
 
         let span = Span {
-            start: at_keyword.span.start,
+            start: name.span.start,
             end: value.span.end,
         };
-        Ok(LessVariableDeclaration {
-            name: at_keyword.ident.into(),
-            value,
-            span,
-        })
+        Ok(LessVariableDeclaration { name, value, span })
     }
 }

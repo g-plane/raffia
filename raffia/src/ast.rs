@@ -215,8 +215,14 @@ pub enum LessPropertyMergeKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessVariableDeclaration<'a> {
+pub struct LessVariable<'a> {
     pub name: Ident<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessVariableDeclaration<'a> {
+    pub name: LessVariable<'a>,
     pub value: ComponentValues<'a>,
     pub span: Span,
 }
