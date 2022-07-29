@@ -1,12 +1,12 @@
 use super::Parser;
 use std::ops::{Deref, DerefMut};
 
-#[derive(Clone, Default)]
+#[derive(Clone, Debug, Default)]
 pub(super) struct ParserState {
     pub(super) qualified_rule_ctx: Option<QualifiedRuleContext>,
 }
 
-#[derive(Clone)]
+#[derive(Clone, Debug)]
 pub(super) enum QualifiedRuleContext {
     Selector,
     DeclarationName,
