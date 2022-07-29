@@ -1,3 +1,4 @@
+use self::state::{ParserState, QualifiedRuleContext};
 use crate::{
     ast::*,
     config::Syntax,
@@ -9,6 +10,7 @@ use crate::{
 mod less;
 mod sass;
 mod selector;
+mod state;
 mod value;
 
 #[macro_export]
@@ -44,9 +46,6 @@ macro_rules! expect {
     }};
 }
 
-#[derive(Clone, Debug, Default)]
-struct ParserState {}
-
 struct Parser<'a> {
     source: &'a str,
     syntax: Syntax,
@@ -75,19 +74,12 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn with_state<R, F: Fn(&mut Self) -> PResult<R>>(
-        &mut self,
-        state: ParserState,
-        f: F,
-    ) -> PResult<R> {
-        let original_state = self.state.clone();
-        let result = f(self);
-        self.state = original_state;
-        result
-    }
-
     fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
-        let name = self.parse_interpolable_ident()?;
+        let name = self
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
+            })
+            .parse_interpolable_ident()?;
 
         let less_property_merge = if self.syntax == Syntax::Less {
             self.parse_less_property_merge()?
@@ -96,7 +88,11 @@ impl<'a> Parser<'a> {
         };
 
         expect!(self, Colon);
-        let value = self.parse_component_values(/* allow_comma */ true)?;
+        let value = self
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
+            })
+            .parse_component_values(/* allow_comma */ true)?;
 
         let span = Span {
             start: name.span().start,
@@ -111,7 +107,11 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'a>> {
-        let selector_list = self.parse_selector_list()?;
+        let selector_list = self
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
+            })
+            .parse_selector_list()?;
         let block = self.parse_simple_block()?;
         let span = Span {
             start: selector_list.span.start,
