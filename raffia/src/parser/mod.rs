@@ -16,7 +16,7 @@ mod value;
 #[macro_export]
 macro_rules! eat {
     ($parser:expr, $variant:ident) => {{
-        use crate::tokenizer::Token;
+        use $crate::tokenizer::Token;
         let tokenizer = &mut $parser.tokenizer;
         if let Token::$variant(token) = tokenizer.peek()? {
             let _ = tokenizer.bump();
@@ -30,7 +30,7 @@ macro_rules! eat {
 #[macro_export]
 macro_rules! expect {
     ($parser:expr, $variant:ident) => {{
-        use crate::{
+        use $crate::{
             error::{Error, ErrorKind},
             tokenizer::Token,
         };

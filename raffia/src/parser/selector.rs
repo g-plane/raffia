@@ -59,7 +59,7 @@ impl<'a> Parser<'a> {
                 }
             }
             Token::Asterisk(asterisk) => {
-                let asterisk_span = asterisk.span.clone();
+                let asterisk_span = asterisk.span;
                 let bar_token = expect!(self, Bar);
                 let name = expect!(self, Ident);
 
@@ -214,16 +214,12 @@ impl<'a> Parser<'a> {
         let mut span = first.span.clone();
 
         children.push(ComplexSelectorChild::CompoundSelector(first));
-        loop {
-            if let Some(combinator) = self.parse_combinator()? {
-                children.push(ComplexSelectorChild::Combinator(combinator));
-                children.push(
-                    self.parse_compound_selector()
-                        .map(ComplexSelectorChild::CompoundSelector)?,
-                );
-            } else {
-                break;
-            }
+        while let Some(combinator) = self.parse_combinator()? {
+            children.push(ComplexSelectorChild::Combinator(combinator));
+            children.push(
+                self.parse_compound_selector()
+                    .map(ComplexSelectorChild::CompoundSelector)?,
+            );
         }
 
         if let Some(last) = children.last() {
@@ -289,8 +285,7 @@ impl<'a> Parser<'a> {
         let first = self.parse_simple_selector()?;
         let mut span = first.span().clone();
 
-        let mut children = Vec::with_capacity(1);
-        children.push(first);
+        let mut children = vec![first];
         loop {
             match self.tokenizer.peek()? {
                 token @ Token::Dot(..)
@@ -324,7 +319,7 @@ impl<'a> Parser<'a> {
         if token.value.starts_with(|c: char| c.is_ascii_digit()) {
             Err(Error {
                 kind: ErrorKind::InvalidIdSelectorName,
-                span: ident_span.clone(),
+                span: ident_span,
             })
         } else {
             Ok(IdSelector {
@@ -347,8 +342,7 @@ impl<'a> Parser<'a> {
         let first = self.parse_complex_selector()?;
         let mut span = first.span.clone();
 
-        let mut selectors = Vec::with_capacity(1);
-        selectors.push(first);
+        let mut selectors = vec![first];
         while eat!(self, Comma).is_some() {
             selectors.push(self.parse_complex_selector()?);
         }

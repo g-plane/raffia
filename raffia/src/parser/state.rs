@@ -33,13 +33,13 @@ impl<'a, 'b> Deref for WithState<'a, 'b> {
     type Target = Parser<'a>;
 
     fn deref(&self) -> &Self::Target {
-        &self.parser
+        self.parser
     }
 }
 
 impl<'a, 'b> DerefMut for WithState<'a, 'b> {
     fn deref_mut(&mut self) -> &mut Self::Target {
-        &mut self.parser
+        self.parser
     }
 }
 
