@@ -36,7 +36,10 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_component_values(&mut self) -> PResult<(Vec<ComponentValue<'a>>, Span)> {
+    pub(super) fn parse_component_values(
+        &mut self,
+        allow_comma: bool,
+    ) -> PResult<ComponentValues<'a>> {
         let first = self.parse_component_value()?;
         let mut span = first.span().clone();
 
@@ -45,6 +48,13 @@ impl<'a> Parser<'a> {
         loop {
             match self.tokenizer.peek()? {
                 Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
+                Token::Comma(..) => {
+                    if allow_comma {
+                        values.push(self.parse_delimiter().map(ComponentValue::Delimiter)?);
+                    } else {
+                        break;
+                    }
+                }
                 _ => values.push(self.parse_component_value()?),
             }
         }
@@ -52,7 +62,7 @@ impl<'a> Parser<'a> {
         if let Some(last) = values.last() {
             span.end = last.span().end;
         }
-        Ok((values, span))
+        Ok(ComponentValues { values, span })
     }
 
     fn parse_delimiter(&mut self) -> PResult<Delimiter> {
@@ -174,11 +184,11 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_function(&mut self) -> PResult<Function<'a>> {
         let func = expect!(self, Function);
-        let (args, _) = self.parse_component_values()?;
+        let values = self.parse_component_values(/* allow_comma */ true)?;
         let r_paren = expect!(self, RParen);
         Ok(Function {
             name: func.name.into(),
-            args,
+            args: values.values,
             span: Span {
                 start: func.span.start,
                 end: r_paren.span.end,

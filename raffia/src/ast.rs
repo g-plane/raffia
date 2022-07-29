@@ -73,6 +73,18 @@ pub enum CombinatorKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct ComplexSelector<'a> {
+    pub children: Vec<ComplexSelectorChild<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ComplexSelectorChild<'a> {
+    CompoundSelector(CompoundSelector<'a>),
+    Combinator(Combinator),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub enum ComponentValue<'a> {
     Delimiter(Delimiter),
     Dimension(Dimension<'a>),
@@ -86,15 +98,9 @@ pub enum ComponentValue<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct ComplexSelector<'a> {
-    pub children: Vec<ComplexSelectorChild<'a>>,
+pub struct ComponentValues<'a> {
+    pub values: Vec<ComponentValue<'a>>,
     pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum ComplexSelectorChild<'a> {
-    CompoundSelector(CompoundSelector<'a>),
-    Combinator(Combinator),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -106,13 +112,7 @@ pub struct CompoundSelector<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct Declaration<'a> {
     pub name: InterpolableIdent<'a>,
-    pub value: DeclarationValue<'a>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub struct DeclarationValue<'a> {
-    pub values: Vec<ComponentValue<'a>>,
+    pub value: ComponentValues<'a>,
     pub span: Span,
 }
 
@@ -204,7 +204,7 @@ pub struct IdSelector<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct LessVariableDeclaration<'a> {
     pub name: Ident<'a>,
-    pub value: DeclarationValue<'a>,
+    pub value: ComponentValues<'a>,
     pub span: Span,
 }
 
@@ -265,24 +265,6 @@ pub struct Resolution<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassExpression<'a> {
-    pub elements: Vec<SassExpressionChild<'a>>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum SassExpressionChild<'a> {
-    Dimension(Dimension<'a>),
-    Function(Function<'a>),
-    HexColor(HexColor<'a>),
-    InterpolableIdent(InterpolableIdent<'a>),
-    Number(Number<'a>),
-    Percentage(Percentage<'a>),
-    SassVariable(SassVariable<'a>),
-    Str(Str<'a>),
-}
-
-#[derive(Clone, Debug, Spanned)]
 pub struct SassInterpolatedIdent<'a> {
     pub elements: Vec<SassInterpolatedIdentElement<'a>>,
     pub span: Span,
@@ -290,7 +272,7 @@ pub struct SassInterpolatedIdent<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum SassInterpolatedIdentElement<'a> {
-    Expression(SassExpression<'a>),
+    Expression(ComponentValues<'a>),
     Literal(InterpolableIdentLiteralPart<'a>),
 }
 
@@ -303,7 +285,7 @@ pub struct SassVariable<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct SassVariableDeclaration<'a> {
     pub name: SassVariable<'a>,
-    pub value: SassExpression<'a>,
+    pub value: ComponentValues<'a>,
     pub span: Span,
 }
 

@@ -15,7 +15,7 @@ impl<'a> Parser<'a> {
 
         let at_keyword = expect!(self, AtKeyword);
         expect!(self, Colon);
-        let value = self.parse_declaration_value()?;
+        let value = self.parse_component_values(/* allow_comma */ true)?;
 
         let span = Span {
             start: at_keyword.span.start,
