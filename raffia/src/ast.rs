@@ -113,6 +113,7 @@ pub struct CompoundSelector<'a> {
 pub struct Declaration<'a> {
     pub name: InterpolableIdent<'a>,
     pub value: ComponentValues<'a>,
+    pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
 }
 
@@ -199,6 +200,18 @@ pub struct InterpolableIdentLiteralPart<'a> {
 pub struct IdSelector<'a> {
     pub name: Ident<'a>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessPropertyMerge {
+    pub kind: LessPropertyMergeKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum LessPropertyMergeKind {
+    Comma,
+    Space,
 }
 
 #[derive(Clone, Debug, Spanned)]

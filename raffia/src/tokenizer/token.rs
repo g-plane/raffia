@@ -59,6 +59,7 @@ pub enum Token<'a> {
     DollarEqual(DollarEqual),
     AsteriskEqual(AsteriskEqual),
     HashLBrace(HashLBrace),
+    PlusUnderscore(PlusUnderscore),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -276,5 +277,10 @@ pub struct AsteriskEqual {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct HashLBrace {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct PlusUnderscore {
     pub span: Span,
 }

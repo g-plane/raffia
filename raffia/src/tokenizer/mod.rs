@@ -762,6 +762,16 @@ impl<'a> Tokenizer<'a> {
                     },
                 }))
             }
+            Some((i, '+', '_')) if self.syntax == Syntax::Less => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::PlusUnderscore(PlusUnderscore {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
             _ => match self.iter.next() {
                 Some((i, ':')) => Some(Token::Colon(Colon {
                     span: Span {

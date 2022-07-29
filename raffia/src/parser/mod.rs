@@ -88,13 +88,26 @@ impl<'a> Parser<'a> {
 
     fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
         let name = self.parse_interpolable_ident()?;
+
+        let less_property_merge = if self.syntax == Syntax::Less {
+            self.parse_less_property_merge()?
+        } else {
+            None
+        };
+
         expect!(self, Colon);
         let value = self.parse_component_values(/* allow_comma */ true)?;
+
         let span = Span {
             start: name.span().start,
             end: value.span.end,
         };
-        Ok(Declaration { name, value, span })
+        Ok(Declaration {
+            name,
+            value,
+            less_property_merge,
+            span,
+        })
     }
 
     fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'a>> {
