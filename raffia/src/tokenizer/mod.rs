@@ -136,6 +136,17 @@ impl<'a> Tokenizer<'a> {
             .map(|((start, first), (_, second))| (start, first, second))
     }
 
+    fn build_eof_error(&self) -> Error {
+        let offset = self.current_offset();
+        Error {
+            kind: ErrorKind::UnexpectedEof,
+            span: Span {
+                start: offset,
+                end: offset,
+            },
+        }
+    }
+
     fn skip_ws_or_comment(&mut self) {
         loop {
             match self.peek_two_chars() {
@@ -268,13 +279,7 @@ impl<'a> Tokenizer<'a> {
                     self.iter.next();
                     end = i + c.len_utf8();
                 } else {
-                    return Err(Error {
-                        kind: ErrorKind::UnexpectedEof,
-                        span: Span {
-                            start: self.current_offset(),
-                            end: self.current_offset(),
-                        },
-                    });
+                    return Err(self.build_eof_error());
                 }
             }
             Some((i, c)) if c.is_ascii_alphabetic() || c == '-' || !c.is_ascii() || c == '\\' => {
@@ -283,13 +288,7 @@ impl<'a> Tokenizer<'a> {
                 end = i + c.len_utf8()
             }
             _ => {
-                return Err(Error {
-                    kind: ErrorKind::UnexpectedEof,
-                    span: Span {
-                        start: self.current_offset(),
-                        end: self.current_offset(),
-                    },
-                });
+                return Err(self.build_eof_error());
             }
         }
 
@@ -344,13 +343,7 @@ impl<'a> Tokenizer<'a> {
                 });
             }
         } else {
-            return Err(Error {
-                kind: ErrorKind::UnexpectedEof,
-                span: Span {
-                    start: self.current_offset(),
-                    end: self.current_offset(),
-                },
-            });
+            return Err(self.build_eof_error());
         }
 
         if is_start_with_dot {
@@ -447,13 +440,7 @@ impl<'a> Tokenizer<'a> {
 
     fn scan_percentage(&mut self, value: Number<'a>) -> PResult<Token<'a>> {
         let start = value.span.start;
-        let (i, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '%');
         Ok(Token::Percentage(Percentage {
             value,
@@ -501,13 +488,7 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_function(&mut self, name: Ident<'a>) -> PResult<Function<'a>> {
-        let (i, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '(');
         let start = name.span.start;
         let end = i + 1;
@@ -518,13 +499,7 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_url(&mut self, start: usize) -> PResult<Url<'a>> {
-        let (_, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
@@ -542,13 +517,7 @@ impl<'a> Tokenizer<'a> {
                         end: i + c.len_utf8(),
                     },
                 }),
-                None => Err(Error {
-                    kind: ErrorKind::UnexpectedEof,
-                    span: Span {
-                        start: self.current_offset(),
-                        end: self.current_offset(),
-                    },
-                }),
+                None => Err(self.build_eof_error()),
             }
         } else {
             // ')' is consumed
@@ -585,13 +554,7 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_hash(&mut self) -> PResult<Token<'a>> {
-        let (start, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '#');
 
         let mut end;
@@ -612,16 +575,10 @@ impl<'a> Tokenizer<'a> {
                         start: i,
                         end: i + c.len_utf8(),
                     },
-                })
+                });
             }
             None => {
-                return Err(Error {
-                    kind: ErrorKind::UnexpectedEof,
-                    span: Span {
-                        start: self.current_offset(),
-                        end: self.current_offset(),
-                    },
-                })
+                return Err(self.build_eof_error());
             }
         }
         while let Some((i, c)) = self.peek_one_char() {
@@ -649,13 +606,7 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_dollar_var(&mut self) -> PResult<Token<'a>> {
-        let (start, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '$');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
@@ -666,21 +617,9 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_at_lbrace_var(&mut self) -> PResult<Token<'a>> {
-        let (start, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
-        let (_, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '{');
 
         let ident = self.scan_ident_sequence()?;
@@ -696,24 +635,12 @@ impl<'a> Tokenizer<'a> {
                     end: i + c.len_utf8(),
                 },
             }),
-            None => Err(Error {
-                kind: ErrorKind::UnexpectedEof,
-                span: Span {
-                    start: self.current_offset(),
-                    end: self.current_offset(),
-                },
-            }),
+            None => Err(self.build_eof_error()),
         }
     }
 
     fn scan_at_keyword(&mut self) -> PResult<Token<'a>> {
-        let (start, c) = self.iter.next().ok_or_else(|| Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: self.current_offset(),
-                end: self.current_offset(),
-            },
-        })?;
+        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
