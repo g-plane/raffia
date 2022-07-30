@@ -40,14 +40,21 @@ pub enum Token<'a> {
     DollarVar(DollarVar<'a>),
     Dot(Dot),
     Equal(Equal),
+    EqualEqual(EqualEqual),
+    ExclamationEqual(ExclamationEqual),
     Function(Function<'a>),
     GreaterThan(GreaterThan),
+    GreaterThanEqual(GreaterThanEqual),
     Hash(Hash<'a>),
     HashLBrace(HashLBrace),
     Ident(Ident<'a>),
     LBrace(LBrace),
     LBracket(LBracket),
+    LessThan(LessThan),
+    LessThanEqual(LessThanEqual),
     LParen(LParen),
+    Minus(Minus),
+    Modulo(Modulo),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
     Plus(Plus),
@@ -161,6 +168,16 @@ pub struct Equal {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct EqualEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ExclamationEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Function<'a> {
     pub name: Ident<'a>,
     pub span: Span,
@@ -168,6 +185,11 @@ pub struct Function<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct GreaterThan {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct GreaterThanEqual {
     pub span: Span,
 }
 
@@ -204,7 +226,27 @@ pub struct LBracket {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct LessThan {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessThanEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct LParen {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Minus {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Modulo {
     pub span: Span,
 }
 
