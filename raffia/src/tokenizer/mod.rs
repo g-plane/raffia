@@ -268,6 +268,7 @@ impl<'a> Tokenizer<'a> {
         match self.peek_one_char() {
             Some((i, '-')) => {
                 start = i;
+                self.iter.next();
                 if let Some((i, c)) = self.iter.next() {
                     debug_assert!(
                         c.is_ascii_alphabetic()
@@ -276,16 +277,19 @@ impl<'a> Tokenizer<'a> {
                             || !c.is_ascii()
                             || c == '\\'
                     );
-                    self.iter.next();
                     end = i + c.len_utf8();
                 } else {
                     return Err(self.build_eof_error());
                 }
             }
-            Some((i, c)) if c.is_ascii_alphabetic() || c == '-' || !c.is_ascii() || c == '\\' => {
+            Some((i, c)) if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() => {
                 start = i;
                 self.iter.next();
-                end = i + c.len_utf8()
+                end = i + c.len_utf8();
+            }
+            Some((i, '\\')) => {
+                start = i;
+                end = self.scan_escape()?;
             }
             _ => {
                 return Err(self.build_eof_error());
@@ -293,8 +297,10 @@ impl<'a> Tokenizer<'a> {
         }
 
         while let Some((i, c)) = self.peek_one_char() {
-            if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() || c == '\\' {
+            if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() {
                 self.iter.next();
+            } else if c == '\\' {
+                self.scan_escape()?;
             } else {
                 end = i;
                 break;
@@ -312,6 +318,35 @@ impl<'a> Tokenizer<'a> {
             raw,
             span,
         })
+    }
+
+    fn scan_escape(&mut self) -> PResult<usize> {
+        self.iter.next(); // consume `\\`
+        match self.iter.next() {
+            Some((i, c)) if c.is_ascii_hexdigit() => {
+                let mut count: usize = 1;
+                let end;
+                while let Some((i, c)) = self.peek_one_char() {
+                    if c.is_ascii_hexdigit() && count < 6 {
+                        count += 1;
+                        self.iter.next();
+                    } else {
+                        // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
+                        // consume a whitespace
+                        if c.is_ascii_whitespace() {
+                            self.iter.next();
+                            end = i + 1;
+                        } else {
+                            end = i;
+                        }
+                        break;
+                    }
+                }
+                Ok(i)
+            }
+            Some((i, c)) => Ok(i + c.len_utf8()),
+            None => Err(self.build_eof_error()),
+        }
     }
 
     fn scan_number(&mut self) -> PResult<Number<'a>> {
@@ -414,18 +449,25 @@ impl<'a> Tokenizer<'a> {
     }
 
     fn scan_dimension_or_percentage(&mut self, number: Number<'a>) -> PResult<Token<'a>> {
-        match self.iter.peek() {
-            Some((_, c))
+        match self.peek_two_chars() {
+            Some((_, '-', c))
                 if c.is_ascii_alphabetic()
-                    || *c == '-'
-                    || *c == '_'
-                    || *c == '\\'
+                    || c == '-'
+                    || c == '_'
+                    || c == '\\'
                     || !c.is_ascii() =>
             {
                 self.scan_dimension(number)
             }
-            Some((_, '%')) => self.scan_percentage(number),
-            _ => Ok(Token::Number(number)),
+            _ => match self.iter.peek() {
+                Some((_, c))
+                    if c.is_ascii_alphabetic() || *c == '_' || *c == '\\' || !c.is_ascii() =>
+                {
+                    self.scan_dimension(number)
+                }
+                Some((_, '%')) => self.scan_percentage(number),
+                _ => Ok(Token::Number(number)),
+            },
         }
     }
 
