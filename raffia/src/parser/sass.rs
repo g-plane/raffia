@@ -8,16 +8,17 @@ use crate::{
     tokenizer::Token,
 };
 
-const PRECEDENCE_MULTIPLY: u8 = 5;
-const PRECEDENCE_PLUS: u8 = 4;
-const PRECEDENCE_RELATIONAL: u8 = 3;
-const PRECEDENCE_EQUALITY: u8 = 2;
-const PRECEDENCE_LOGICAL: u8 = 1;
+const PRECEDENCE_MULTIPLY: u8 = 6;
+const PRECEDENCE_PLUS: u8 = 5;
+const PRECEDENCE_RELATIONAL: u8 = 4;
+const PRECEDENCE_EQUALITY: u8 = 3;
+const PRECEDENCE_AND: u8 = 2;
+const PRECEDENCE_OR: u8 = 1;
 
 impl<'a> Parser<'a> {
     pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'a>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
-        self.parse_sass_bin_expr_recursively(PRECEDENCE_LOGICAL)
+        self.parse_sass_bin_expr_recursively(0)
     }
 
     fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'a>> {
@@ -99,14 +100,14 @@ impl<'a> Parser<'a> {
                         span: token.span,
                     }
                 }
-                Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_LOGICAL => {
+                Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
                     self.tokenizer.bump()?;
                     BinaryOperator {
                         kind: BinaryOperatorKind::And,
                         span: token.span,
                     }
                 }
-                Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_LOGICAL => {
+                Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
                     self.tokenizer.bump()?;
                     BinaryOperator {
                         kind: BinaryOperatorKind::Or,
