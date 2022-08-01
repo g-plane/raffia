@@ -225,7 +225,7 @@ pub struct InterpolableIdentLiteralPart<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct IdSelector<'a> {
-    pub name: Ident<'a>,
+    pub name: InterpolableIdent<'a>,
     pub span: Span,
 }
 

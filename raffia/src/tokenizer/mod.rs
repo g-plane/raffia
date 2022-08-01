@@ -951,6 +951,12 @@ impl<'a> Tokenizer<'a> {
                         end: i + 1,
                     },
                 })),
+                Some((i, '#')) => Some(Token::NumberSign(NumberSign {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
                 _ => None,
             },
         }

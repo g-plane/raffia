@@ -203,6 +203,7 @@ impl<'a> Parser<'a> {
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
                 | Token::HashLBrace(..)
+                | Token::NumberSign(..)
                 | Token::Bar(..) => {
                     statements.push(TopLevelStatement::QualifiedRule(
                         self.parse_qualified_rule()?,

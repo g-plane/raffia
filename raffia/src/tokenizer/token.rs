@@ -55,6 +55,7 @@ pub enum Token<'a> {
     LParen(LParen),
     Minus(Minus),
     Number(Number<'a>),
+    NumberSign(NumberSign),
     Percent(Percent),
     Percentage(Percentage<'a>),
     Plus(Plus),
@@ -249,6 +250,12 @@ pub struct Minus {
 pub struct Number<'a> {
     pub value: f64,
     pub raw: &'a str,
+    pub span: Span,
+}
+
+/// U+0023 `#`
+#[derive(Clone, Debug, Spanned)]
+pub struct NumberSign {
     pub span: Span,
 }
 

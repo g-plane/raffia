@@ -301,6 +301,7 @@ impl<'a> Parser<'a> {
                 | token @ Token::Ident(..)
                 | token @ Token::Asterisk(..)
                 | token @ Token::HashLBrace(..)
+                | token @ Token::NumberSign(..)
                 | token @ Token::Bar(..)
                     if self.tokenizer.current_offset() == token.span().start =>
                 {
@@ -317,25 +318,65 @@ impl<'a> Parser<'a> {
     }
 
     fn parse_id_selector(&mut self) -> PResult<IdSelector<'a>> {
-        let token = expect!(self, Hash);
-        let ident_span = Span {
-            start: token.span.start + 1,
-            end: token.span.end,
-        };
-        if token.value.starts_with(|c: char| c.is_ascii_digit()) {
-            Err(Error {
-                kind: ErrorKind::InvalidIdSelectorName,
-                span: ident_span,
-            })
-        } else {
-            Ok(IdSelector {
-                name: Ident {
+        match self.tokenizer.bump()? {
+            Token::Hash(token) => {
+                let first_span = Span {
+                    start: token.span.start + 1,
+                    end: token.span.end,
+                };
+                if token.value.starts_with(|c: char| c.is_ascii_digit()) {
+                    return Err(Error {
+                        kind: ErrorKind::InvalidIdSelectorName,
+                        span: first_span,
+                    });
+                }
+                let first = Ident {
                     name: token.value,
                     raw: token.raw_without_hash,
-                    span: ident_span,
-                },
-                span: token.span,
-            })
+                    span: first_span,
+                };
+                let name = match self.tokenizer.peek()? {
+                    Token::HashLBrace(token)
+                        if matches!(self.syntax, Syntax::Scss)
+                            && first.span.end == token.span.start =>
+                    {
+                        match self.parse_interpolable_ident()? {
+                            InterpolableIdent::SassInterpolated(mut interpolation) => {
+                                interpolation.elements.insert(
+                                    0,
+                                    SassInterpolatedIdentElement::Literal(
+                                        InterpolableIdentLiteralPart {
+                                            value: first.name,
+                                            raw: first.raw,
+                                            span: first.span,
+                                        },
+                                    ),
+                                );
+                                InterpolableIdent::SassInterpolated(interpolation)
+                            }
+                            _ => unreachable!(),
+                        }
+                    }
+                    _ => InterpolableIdent::Literal(first),
+                };
+                let span = Span {
+                    start: token.span.start,
+                    end: name.span().end,
+                };
+                Ok(IdSelector { name, span })
+            }
+            Token::NumberSign(token) => {
+                let name = self.parse_interpolable_ident()?;
+                let span = Span {
+                    start: token.span.start,
+                    end: name.span().end,
+                };
+                Ok(IdSelector { name, span })
+            }
+            token => Err(Error {
+                kind: ErrorKind::ExpectIdSelector,
+                span: token.span().clone(),
+            }),
         }
     }
 
@@ -363,7 +404,9 @@ impl<'a> Parser<'a> {
     fn parse_simple_selector(&mut self) -> PResult<SimpleSelector<'a>> {
         match self.tokenizer.peek()? {
             Token::Dot(..) => self.parse_class_selector().map(SimpleSelector::Class),
-            Token::Hash(..) => self.parse_id_selector().map(SimpleSelector::Id),
+            Token::Hash(..) | Token::NumberSign(..) => {
+                self.parse_id_selector().map(SimpleSelector::Id)
+            }
             Token::LBracket(..) => self
                 .parse_attribute_selector()
                 .map(SimpleSelector::Attribute),

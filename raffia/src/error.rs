@@ -31,6 +31,7 @@ pub enum ErrorKind {
     ExpectSimpleSelector,
     InvalidIdSelectorName,
     ExpectTypeSelector,
+    ExpectIdSelector,
     ExpectWqName,
     ExpectAttributeSelectorMatcher,
     ExpectAttributeSelectorValue,
