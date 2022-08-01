@@ -344,8 +344,8 @@ impl<'a> Parser<'a> {
                             InterpolableIdent::SassInterpolated(mut interpolation) => {
                                 interpolation.elements.insert(
                                     0,
-                                    SassInterpolatedIdentElement::Literal(
-                                        InterpolableIdentLiteralPart {
+                                    SassInterpolatedIdentElement::Static(
+                                        InterpolableIdentStaticPart {
                                             value: first.name,
                                             raw: first.raw,
                                             span: first.span,

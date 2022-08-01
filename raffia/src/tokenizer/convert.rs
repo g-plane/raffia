@@ -1,5 +1,5 @@
 use super::token;
-use crate::ast::{Ident, InterpolableIdentLiteralPart, Number, Str};
+use crate::ast::{Ident, InterpolableIdentStaticPart, Number, Str};
 
 impl<'a> From<token::Str<'a>> for Str<'a> {
     fn from(str: token::Str<'a>) -> Self {
@@ -31,7 +31,7 @@ impl<'a> From<token::Ident<'a>> for Ident<'a> {
     }
 }
 
-impl<'a> From<token::Ident<'a>> for InterpolableIdentLiteralPart<'a> {
+impl<'a> From<token::Ident<'a>> for InterpolableIdentStaticPart<'a> {
     fn from(ident: token::Ident<'a>) -> Self {
         Self {
             value: ident.name,

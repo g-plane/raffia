@@ -217,7 +217,7 @@ pub enum InterpolableIdent<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct InterpolableIdentLiteralPart<'a> {
+pub struct InterpolableIdentStaticPart<'a> {
     pub value: Cow<'a, str>,
     pub raw: &'a str,
     pub span: Span,
@@ -238,7 +238,7 @@ pub struct LessInterpolatedIdent<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum LessInterpolatedIdentElement<'a> {
     Variable(LessVariableInterpolation<'a>),
-    Literal(InterpolableIdentLiteralPart<'a>),
+    Static(InterpolableIdentStaticPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -345,7 +345,7 @@ pub struct SassInterpolatedIdent<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum SassInterpolatedIdentElement<'a> {
     Expression(ComponentValues<'a>),
-    Literal(InterpolableIdentLiteralPart<'a>),
+    Static(InterpolableIdentStaticPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]

@@ -17,7 +17,7 @@ impl<'a> Parser<'a> {
                 let ident = expect!(self, Ident);
                 match self.tokenizer.peek()? {
                     Token::AtLBraceVar(token) if ident.span.end == token.span.start => {
-                        LessInterpolatedIdentElement::Literal(ident.into())
+                        LessInterpolatedIdentElement::Static(ident.into())
                     }
                     _ => return Ok(InterpolableIdent::Literal(ident.into())),
                 }
@@ -36,7 +36,7 @@ impl<'a> Parser<'a> {
                 Token::Ident(token) if span.end == token.span.start => {
                     let ident = expect!(self, Ident);
                     span.end = ident.span.end;
-                    elements.push(LessInterpolatedIdentElement::Literal(ident.into()));
+                    elements.push(LessInterpolatedIdentElement::Static(ident.into()));
                 }
                 Token::AtLBraceVar(token) if span.end == token.span.start => {
                     let variable = self.parse_less_variable_interpolation()?;

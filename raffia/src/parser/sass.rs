@@ -140,7 +140,7 @@ impl<'a> Parser<'a> {
                 let span = ident.span.clone();
                 match self.tokenizer.peek()? {
                     Token::HashLBrace(token) if ident.span.end == token.span.start => {
-                        (SassInterpolatedIdentElement::Literal(ident.into()), span)
+                        (SassInterpolatedIdentElement::Static(ident.into()), span)
                     }
                     _ => return Ok(InterpolableIdent::Literal(ident.into())),
                 }
@@ -157,7 +157,7 @@ impl<'a> Parser<'a> {
                 Token::Ident(token) if last_span_end == token.span.start => {
                     last_span_end = token.span.end;
                     self.tokenizer.bump()?;
-                    elements.push(SassInterpolatedIdentElement::Literal(token.into()));
+                    elements.push(SassInterpolatedIdentElement::Static(token.into()));
                 }
                 Token::HashLBrace(token) if last_span_end == token.span.start => {
                     let (element, span) = self.parse_sass_interpolated_ident_expr()?;
