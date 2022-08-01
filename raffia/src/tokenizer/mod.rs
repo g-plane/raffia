@@ -732,6 +732,46 @@ impl<'a> Tokenizer<'a> {
                     },
                 }))
             }
+            Some((i, '=', '=')) if matches!(self.syntax, Syntax::Scss) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::EqualEqual(EqualEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '!', '=')) if matches!(self.syntax, Syntax::Scss) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::ExclamationEqual(ExclamationEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '>', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::GreaterThanEqual(GreaterThanEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
+            Some((i, '<', '=')) => {
+                self.iter.next();
+                self.iter.next();
+                Some(Token::LessThanEqual(LessThanEqual {
+                    span: Span {
+                        start: i,
+                        end: i + 2,
+                    },
+                }))
+            }
             Some((i, '+', '_')) if self.syntax == Syntax::Less => {
                 self.iter.next();
                 self.iter.next();
@@ -815,7 +855,19 @@ impl<'a> Tokenizer<'a> {
                         end: i + 1,
                     },
                 })),
+                Some((i, '<')) => Some(Token::LessThan(LessThan {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
                 Some((i, '+')) => Some(Token::Plus(Plus {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
+                Some((i, '-')) => Some(Token::Minus(Minus {
                     span: Span {
                         start: i,
                         end: i + 1,
@@ -846,6 +898,12 @@ impl<'a> Tokenizer<'a> {
                     },
                 })),
                 Some((i, '=')) => Some(Token::Equal(Equal {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
+                Some((i, '%')) => Some(Token::Percent(Percent {
                     span: Span {
                         start: i,
                         end: i + 1,

@@ -8,7 +8,130 @@ use crate::{
     tokenizer::Token,
 };
 
+const PRECEDENCE_MULTIPLY: u8 = 5;
+const PRECEDENCE_PLUS: u8 = 4;
+const PRECEDENCE_RELATIONAL: u8 = 3;
+const PRECEDENCE_EQUALITY: u8 = 2;
+const PRECEDENCE_LOGICAL: u8 = 1;
+
 impl<'a> Parser<'a> {
+    pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'a>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss));
+        self.parse_sass_bin_expr_recursively(PRECEDENCE_LOGICAL)
+    }
+
+    fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'a>> {
+        let mut left = if precedence >= PRECEDENCE_MULTIPLY {
+            self.parse_component_value_internally()?
+        } else {
+            self.parse_sass_bin_expr_recursively(precedence + 1)?
+        };
+
+        loop {
+            let operator = match self.tokenizer.peek()? {
+                Token::Asterisk(token) if precedence == PRECEDENCE_MULTIPLY => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::Multiply,
+                        span: token.span,
+                    }
+                }
+                Token::Percent(token) if precedence == PRECEDENCE_MULTIPLY => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::Modulo,
+                        span: token.span,
+                    }
+                }
+                Token::Plus(token) if precedence == PRECEDENCE_PLUS => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::Plus,
+                        span: token.span,
+                    }
+                }
+                Token::Minus(token) if precedence == PRECEDENCE_PLUS => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::Minus,
+                        span: token.span,
+                    }
+                }
+                Token::GreaterThan(token) if precedence == PRECEDENCE_RELATIONAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::GreaterThan,
+                        span: token.span,
+                    }
+                }
+                Token::GreaterThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::GreaterThanEqual,
+                        span: token.span,
+                    }
+                }
+                Token::LessThan(token) if precedence == PRECEDENCE_RELATIONAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::LessThan,
+                        span: token.span,
+                    }
+                }
+                Token::LessThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::LessThanEqual,
+                        span: token.span,
+                    }
+                }
+                Token::EqualEqual(token) if precedence == PRECEDENCE_EQUALITY => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::EqualsEquals,
+                        span: token.span,
+                    }
+                }
+                Token::ExclamationEqual(token) if precedence == PRECEDENCE_EQUALITY => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::ExclamationEquals,
+                        span: token.span,
+                    }
+                }
+                Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_LOGICAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::And,
+                        span: token.span,
+                    }
+                }
+                Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_LOGICAL => {
+                    self.tokenizer.bump()?;
+                    BinaryOperator {
+                        kind: BinaryOperatorKind::Or,
+                        span: token.span,
+                    }
+                }
+                _ => break,
+            };
+
+            let right = self.parse_sass_bin_expr_recursively(precedence + 1)?;
+            let span = Span {
+                start: left.span().start,
+                end: right.span().end,
+            };
+            left = ComponentValue::SassBinaryExpression(SassBinaryExpression {
+                left: Box::new(left),
+                op: operator,
+                right: Box::new(right),
+                span,
+            });
+        }
+
+        Ok(left)
+    }
+
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
         let (first, mut span) = match self.tokenizer.peek()? {
             Token::Ident(ident) => {

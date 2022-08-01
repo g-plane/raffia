@@ -10,6 +10,14 @@ use crate::{
 
 impl<'a> Parser<'a> {
     pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'a>> {
+        if matches!(self.syntax, Syntax::Scss) {
+            self.parse_sass_bin_expr()
+        } else {
+            self.parse_component_value_internally()
+        }
+    }
+
+    pub(super) fn parse_component_value_internally(&mut self) -> PResult<ComponentValue<'a>> {
         match self.tokenizer.peek()? {
             Token::Ident(..) => self
                 .parse_interpolable_ident()

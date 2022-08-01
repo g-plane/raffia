@@ -54,8 +54,8 @@ pub enum Token<'a> {
     LessThanEqual(LessThanEqual),
     LParen(LParen),
     Minus(Minus),
-    Modulo(Modulo),
     Number(Number<'a>),
+    Percent(Percent),
     Percentage(Percentage<'a>),
     Plus(Plus),
     PlusUnderscore(PlusUnderscore),
@@ -246,14 +246,14 @@ pub struct Minus {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Modulo {
+pub struct Number<'a> {
+    pub value: f64,
+    pub raw: &'a str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Number<'a> {
-    pub value: f64,
-    pub raw: &'a str,
+pub struct Percent {
     pub span: Span,
 }
 

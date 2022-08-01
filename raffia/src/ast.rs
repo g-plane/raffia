@@ -47,6 +47,28 @@ pub enum AttributeSelectorValue<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct BinaryOperator {
+    pub kind: BinaryOperatorKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug)]
+pub enum BinaryOperatorKind {
+    Multiply,
+    Modulo,
+    Plus,
+    Minus,
+    GreaterThan,
+    GreaterThanEqual,
+    LessThan,
+    LessThanEqual,
+    EqualsEquals,
+    ExclamationEquals,
+    And,
+    Or,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct ClassSelector<'a> {
     pub name: Ident<'a>,
     pub span: Span,
@@ -94,6 +116,7 @@ pub enum ComponentValue<'a> {
     LessVariable(LessVariable<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
+    SassBinaryExpression(SassBinaryExpression<'a>),
     SassVariable(SassVariable<'a>),
     Str(Str<'a>),
 }
@@ -300,6 +323,14 @@ pub struct QualifiedRule<'a> {
 pub struct Resolution<'a> {
     pub value: Number<'a>,
     pub unit: Ident<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SassBinaryExpression<'a> {
+    pub left: Box<ComponentValue<'a>>,
+    pub op: BinaryOperator,
+    pub right: Box<ComponentValue<'a>>,
     pub span: Span,
 }
 
