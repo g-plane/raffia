@@ -23,7 +23,7 @@ impl<'a> Parser<'a> {
 
     fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'a>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
-            self.parse_component_value_internally()?
+            self.parse_sass_unary_expression()?
         } else {
             self.parse_sass_bin_expr_recursively(precedence + 1)?
         };
@@ -190,6 +190,44 @@ impl<'a> Parser<'a> {
                 end: r_brace.span.end,
             },
         ))
+    }
+
+    fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'a>> {
+        let op = match self.tokenizer.peek()? {
+            Token::Plus(token) => {
+                let _ = self.tokenizer.bump();
+                SassUnaryOperator {
+                    kind: SassUnaryOperatorKind::Plus,
+                    span: token.span,
+                }
+            }
+            Token::Minus(token) => {
+                let _ = self.tokenizer.bump();
+                SassUnaryOperator {
+                    kind: SassUnaryOperatorKind::Minus,
+                    span: token.span,
+                }
+            }
+            Token::Ident(token) if token.raw == "not" => {
+                let _ = self.tokenizer.bump();
+                SassUnaryOperator {
+                    kind: SassUnaryOperatorKind::Not,
+                    span: token.span,
+                }
+            }
+            _ => return self.parse_component_value_internally(),
+        };
+
+        let expr = self.parse_component_value_internally()?;
+        let span = Span {
+            start: op.span.start,
+            end: expr.span().end,
+        };
+        Ok(ComponentValue::SassUnaryExpression(SassUnaryExpression {
+            expr: Box::new(expr),
+            op,
+            span,
+        }))
     }
 
     pub(super) fn parse_sass_variable(&mut self) -> PResult<SassVariable<'a>> {
