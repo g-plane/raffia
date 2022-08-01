@@ -192,6 +192,21 @@ impl<'a> Parser<'a> {
         ))
     }
 
+    pub(super) fn parse_sass_parenthesized_expression(
+        &mut self,
+    ) -> PResult<SassParenthesizedExpression<'a>> {
+        let l_paren = expect!(self, LParen);
+        let expr = Box::new(self.parse_component_value()?);
+        let r_paren = expect!(self, RParen);
+        Ok(SassParenthesizedExpression {
+            expr,
+            span: Span {
+                start: l_paren.span.start,
+                end: r_paren.span.end,
+            },
+        })
+    }
+
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'a>> {
         let op = match self.tokenizer.peek()? {
             Token::Plus(token) => {

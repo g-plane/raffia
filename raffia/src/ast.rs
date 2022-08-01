@@ -117,6 +117,7 @@ pub enum ComponentValue<'a> {
     Number(Number<'a>),
     Percentage(Percentage<'a>),
     SassBinaryExpression(SassBinaryExpression<'a>),
+    SassParenthesizedExpression(SassParenthesizedExpression<'a>),
     SassUnaryExpression(SassUnaryExpression<'a>),
     SassVariable(SassVariable<'a>),
     Str(Str<'a>),
@@ -345,6 +346,12 @@ pub struct SassInterpolatedIdent<'a> {
 pub enum SassInterpolatedIdentElement<'a> {
     Expression(ComponentValues<'a>),
     Literal(InterpolableIdentLiteralPart<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SassParenthesizedExpression<'a> {
+    pub expr: Box<ComponentValue<'a>>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]

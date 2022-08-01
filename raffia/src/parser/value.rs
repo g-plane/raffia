@@ -34,6 +34,9 @@ impl<'a> Parser<'a> {
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
                 self.parse_sass_variable().map(ComponentValue::SassVariable)
             }
+            Token::LParen(..) if matches!(self.syntax, Syntax::Scss) => self
+                .parse_sass_parenthesized_expression()
+                .map(ComponentValue::SassParenthesizedExpression),
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
