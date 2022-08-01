@@ -131,7 +131,7 @@ impl<'a> Parser<'a> {
         loop {
             let mut is_block_element = false;
             match self.tokenizer.peek()? {
-                Token::Ident(..) | Token::AtLBraceVar(..) => {
+                Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
                         elements.push(SimpleBlockElement::Declaration(declaration));
                     } else if let Some(qualified_rule) =
@@ -202,6 +202,7 @@ impl<'a> Parser<'a> {
                 | Token::Colon(..)
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
+                | Token::HashLBrace(..)
                 | Token::Bar(..) => {
                     statements.push(TopLevelStatement::QualifiedRule(
                         self.parse_qualified_rule()?,

@@ -36,13 +36,13 @@ pub enum AttributeSelectorMatcherKind {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct AttributeSelectorModifier<'a> {
-    pub ident: Ident<'a>,
+    pub ident: InterpolableIdent<'a>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
 pub enum AttributeSelectorValue<'a> {
-    Ident(Ident<'a>),
+    Ident(InterpolableIdent<'a>),
     Str(Str<'a>),
 }
 
@@ -70,7 +70,7 @@ pub enum BinaryOperatorKind {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct ClassSelector<'a> {
-    pub name: Ident<'a>,
+    pub name: InterpolableIdent<'a>,
     pub span: Span,
 }
 
@@ -292,7 +292,7 @@ pub struct NsPrefix<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum NsPrefixKind<'a> {
-    Ident(Ident<'a>),
+    Ident(InterpolableIdent<'a>),
     Universal(NsPrefixUniversal),
 }
 
@@ -463,7 +463,7 @@ pub struct UnknownDimension<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct WqName<'a> {
-    pub name: Ident<'a>,
+    pub name: InterpolableIdent<'a>,
     pub prefix: Option<NsPrefix<'a>>,
     pub span: Span,
 }

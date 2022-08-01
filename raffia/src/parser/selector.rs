@@ -6,6 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
+    Syntax,
 };
 use raffia_derive::Spanned;
 
@@ -29,19 +30,22 @@ impl<'a> Parser<'a> {
         let l_bracket = expect!(self, LBracket);
 
         let name = match self.tokenizer.bump()? {
-            Token::Ident(ident) => {
+            Token::Ident(..) | Token::HashLBrace(..) => {
+                let ident = self.parse_interpolable_ident()?;
+                let ident_span = ident.span();
                 if let Some(bar_token) = eat!(self, Bar) {
-                    self.assert_no_ws_or_comment(&ident.span, &bar_token.span)?;
+                    self.assert_no_ws_or_comment(ident_span, &bar_token.span)?;
 
-                    let name = expect!(self, Ident);
-                    self.assert_no_ws_or_comment(&bar_token.span, &name.span)?;
+                    let name = self.parse_interpolable_ident()?;
+                    let name_span = name.span();
+                    self.assert_no_ws_or_comment(&bar_token.span, name_span)?;
 
-                    let start = ident.span.start;
-                    let end = name.span.end;
+                    let start = ident_span.start;
+                    let end = name_span.end;
                     WqName {
-                        name: name.into(),
+                        name,
                         prefix: Some(NsPrefix {
-                            kind: Some(NsPrefixKind::Ident(ident.into())),
+                            kind: Some(NsPrefixKind::Ident(ident)),
                             span: Span {
                                 start,
                                 end: bar_token.span.end,
@@ -50,9 +54,9 @@ impl<'a> Parser<'a> {
                         span: Span { start, end },
                     }
                 } else {
-                    let span = ident.span.clone();
+                    let span = ident_span.clone();
                     WqName {
-                        name: ident.into(),
+                        name: ident,
                         prefix: None,
                         span,
                     }
@@ -61,12 +65,12 @@ impl<'a> Parser<'a> {
             Token::Asterisk(asterisk) => {
                 let asterisk_span = asterisk.span;
                 let bar_token = expect!(self, Bar);
-                let name = expect!(self, Ident);
+                let name = self.parse_interpolable_ident()?;
 
                 let start = asterisk_span.start;
-                let end = name.span.end;
+                let end = name.span().end;
                 WqName {
-                    name: name.into(),
+                    name,
                     prefix: Some(NsPrefix {
                         kind: Some(NsPrefixKind::Universal(NsPrefixUniversal {
                             span: asterisk_span,
@@ -80,12 +84,12 @@ impl<'a> Parser<'a> {
                 }
             }
             Token::Bar(bar_token) => {
-                let name = expect!(self, Ident);
+                let name = self.parse_interpolable_ident()?;
 
                 let start = bar_token.span.start;
-                let end = name.span.end;
+                let end = name.span().end;
                 WqName {
-                    name: name.into(),
+                    name,
                     prefix: Some(NsPrefix {
                         kind: None,
                         span: Span {
@@ -157,7 +161,9 @@ impl<'a> Parser<'a> {
         };
 
         let value = match self.tokenizer.bump()? {
-            Token::Ident(ident) => Some(AttributeSelectorValue::Ident(ident.into())),
+            Token::Ident(..) | Token::HashLBrace(..) => Some(AttributeSelectorValue::Ident(
+                self.parse_interpolable_ident()?,
+            )),
             Token::Str(str) => Some(AttributeSelectorValue::Str(str.into())),
             Token::RBracket(..) => None,
             token => {
@@ -169,13 +175,14 @@ impl<'a> Parser<'a> {
         };
 
         let modifier = if value.is_some() {
-            eat!(self, Ident).map(|ident| {
-                let span = ident.span.clone();
-                AttributeSelectorModifier {
-                    ident: ident.into(),
-                    span,
+            match self.tokenizer.peek()? {
+                Token::Ident(..) | Token::HashLBrace(..) => {
+                    let ident = self.parse_interpolable_ident()?;
+                    let span = ident.span().clone();
+                    Some(AttributeSelectorModifier { ident, span })
                 }
-            })
+                _ => None,
+            }
         } else {
             None
         };
@@ -195,17 +202,15 @@ impl<'a> Parser<'a> {
 
     fn parse_class_selector(&mut self) -> PResult<ClassSelector<'a>> {
         let dot = expect!(self, Dot);
-        let ident = expect!(self, Ident);
-        self.assert_no_ws_or_comment(&dot.span, &ident.span)?;
+        let ident = self.parse_interpolable_ident()?;
+        let ident_span = ident.span();
+        self.assert_no_ws_or_comment(&dot.span, ident_span)?;
 
         let span = Span {
             start: dot.span.start,
-            end: ident.span.end,
+            end: ident_span.end,
         };
-        Ok(ClassSelector {
-            name: ident.into(),
-            span,
-        })
+        Ok(ClassSelector { name: ident, span })
     }
 
     fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'a>> {
@@ -295,6 +300,7 @@ impl<'a> Parser<'a> {
                 | token @ Token::Ampersand(..)
                 | token @ Token::Ident(..)
                 | token @ Token::Asterisk(..)
+                | token @ Token::HashLBrace(..)
                 | token @ Token::Bar(..)
                     if self.tokenizer.current_offset() == token.span().start =>
                 {
@@ -363,7 +369,7 @@ impl<'a> Parser<'a> {
                 .map(SimpleSelector::Attribute),
             Token::Colon(..) => todo!(),
             Token::ColonColon(..) => todo!(),
-            Token::Ident(..) | Token::Asterisk(..) | Token::Bar(..) => {
+            Token::Ident(..) | Token::Asterisk(..) | Token::HashLBrace(..) | Token::Bar(..) => {
                 self.parse_type_selector().map(SimpleSelector::Type)
             }
             Token::Ampersand(..) => self.parse_nesting_selector().map(SimpleSelector::Nesting),
@@ -377,12 +383,15 @@ impl<'a> Parser<'a> {
     fn parse_type_selector(&mut self) -> PResult<TypeSelector<'a>> {
         #[derive(Spanned)]
         enum IdentOrAsterisk<'a> {
-            Ident(Ident<'a>),
+            Ident(InterpolableIdent<'a>),
             Asterisk(token::Asterisk),
         }
 
         let ident_or_asterisk = match self.tokenizer.peek()? {
-            Token::Ident(..) => self.parse_ident().map(IdentOrAsterisk::Ident).map(Some)?,
+            Token::Ident(..) | Token::HashLBrace(..) => self
+                .parse_interpolable_ident()
+                .map(IdentOrAsterisk::Ident)
+                .map(Some)?,
             Token::Asterisk(token) => {
                 self.tokenizer.bump()?;
                 Some(IdentOrAsterisk::Asterisk(token))
@@ -403,7 +412,7 @@ impl<'a> Parser<'a> {
 
                 let prefix = match ident_or_asterisk {
                     Some(IdentOrAsterisk::Ident(ident)) => {
-                        let mut span = ident.span.clone();
+                        let mut span = ident.span().clone();
                         span.end = bar_token.span.end;
                         NsPrefix {
                             kind: Some(NsPrefixKind::Ident(ident)),
@@ -427,12 +436,13 @@ impl<'a> Parser<'a> {
                 };
 
                 match self.tokenizer.peek()? {
-                    Token::Ident(..) => {
-                        let name = self.parse_ident()?;
-                        self.assert_no_ws_or_comment(&prefix.span, &name.span)?;
+                    Token::Ident(..) | Token::HashLBrace(..) => {
+                        let name = self.parse_interpolable_ident()?;
+                        let name_span = name.span();
+                        self.assert_no_ws_or_comment(&prefix.span, name_span)?;
                         let span = Span {
                             start: prefix.span.start,
-                            end: name.span.end,
+                            end: name_span.end,
                         };
                         Ok(TypeSelector::TagName(TagNameSelector {
                             name: WqName {
@@ -464,7 +474,7 @@ impl<'a> Parser<'a> {
 
             _ => match ident_or_asterisk {
                 Some(IdentOrAsterisk::Ident(ident)) => {
-                    let span = ident.span.clone();
+                    let span = ident.span().clone();
                     Ok(TypeSelector::TagName(TagNameSelector {
                         name: WqName {
                             name: ident,
