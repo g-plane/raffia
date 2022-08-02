@@ -10,7 +10,7 @@ use crate::{
 };
 use raffia_derive::Spanned;
 
-impl<'a> Parser<'a> {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
         debug_assert!(left.end <= right.start);
         if left.end == right.start {
@@ -26,7 +26,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_attribute_selector(&mut self) -> PResult<AttributeSelector<'a>> {
+    fn parse_attribute_selector(&mut self) -> PResult<AttributeSelector<'s>> {
         let l_bracket = expect!(self, LBracket);
 
         let name = match self.tokenizer.bump()? {
@@ -200,7 +200,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_class_selector(&mut self) -> PResult<ClassSelector<'a>> {
+    fn parse_class_selector(&mut self) -> PResult<ClassSelector<'s>> {
         let dot = expect!(self, Dot);
         let ident = self.parse_interpolable_ident()?;
         let ident_span = ident.span();
@@ -213,7 +213,7 @@ impl<'a> Parser<'a> {
         Ok(ClassSelector { name: ident, span })
     }
 
-    fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'a>> {
+    fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'s>> {
         let mut children = Vec::with_capacity(1);
         let first = self.parse_compound_selector()?;
         let mut span = first.span.clone();
@@ -286,7 +286,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_compound_selector(&mut self) -> PResult<CompoundSelector<'a>> {
+    fn parse_compound_selector(&mut self) -> PResult<CompoundSelector<'s>> {
         let first = self.parse_simple_selector()?;
         let mut span = first.span().clone();
 
@@ -317,7 +317,7 @@ impl<'a> Parser<'a> {
         Ok(CompoundSelector { children, span })
     }
 
-    fn parse_id_selector(&mut self) -> PResult<IdSelector<'a>> {
+    fn parse_id_selector(&mut self) -> PResult<IdSelector<'s>> {
         match self.tokenizer.bump()? {
             Token::Hash(token) => {
                 let first_span = Span {
@@ -385,7 +385,7 @@ impl<'a> Parser<'a> {
         Ok(NestingSelector { span: token.span })
     }
 
-    pub(super) fn parse_selector_list(&mut self) -> PResult<SelectorList<'a>> {
+    pub(super) fn parse_selector_list(&mut self) -> PResult<SelectorList<'s>> {
         let first = self.parse_complex_selector()?;
         let mut span = first.span.clone();
 
@@ -401,7 +401,7 @@ impl<'a> Parser<'a> {
     }
 
     // https://www.w3.org/TR/selectors-4/#ref-for-typedef-simple-selector
-    fn parse_simple_selector(&mut self) -> PResult<SimpleSelector<'a>> {
+    fn parse_simple_selector(&mut self) -> PResult<SimpleSelector<'s>> {
         match self.tokenizer.peek()? {
             Token::Dot(..) => self.parse_class_selector().map(SimpleSelector::Class),
             Token::Hash(..) | Token::NumberSign(..) => {
@@ -423,10 +423,10 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_type_selector(&mut self) -> PResult<TypeSelector<'a>> {
+    fn parse_type_selector(&mut self) -> PResult<TypeSelector<'s>> {
         #[derive(Spanned)]
-        enum IdentOrAsterisk<'a> {
-            Ident(InterpolableIdent<'a>),
+        enum IdentOrAsterisk<'s> {
+            Ident(InterpolableIdent<'s>),
             Asterisk(token::Asterisk),
         }
 

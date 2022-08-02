@@ -8,8 +8,8 @@ use crate::{
     Syntax,
 };
 
-impl<'a> Parser<'a> {
-    pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'a>> {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'s>> {
         if matches!(self.syntax, Syntax::Scss) {
             self.parse_sass_bin_expr()
         } else {
@@ -17,7 +17,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_component_value_internally(&mut self) -> PResult<ComponentValue<'a>> {
+    pub(super) fn parse_component_value_internally(&mut self) -> PResult<ComponentValue<'s>> {
         match self.tokenizer.peek()? {
             Token::Ident(..) => self
                 .parse_interpolable_ident()
@@ -53,7 +53,7 @@ impl<'a> Parser<'a> {
     pub(super) fn parse_component_values(
         &mut self,
         allow_comma: bool,
-    ) -> PResult<ComponentValues<'a>> {
+    ) -> PResult<ComponentValues<'s>> {
         let first = self.parse_component_value()?;
         let mut span = first.span().clone();
 
@@ -98,7 +98,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_dimension(&mut self) -> PResult<Dimension<'a>> {
+    pub(super) fn parse_dimension(&mut self) -> PResult<Dimension<'s>> {
         let dimension_token = expect!(self, Dimension);
         let unit_name = &dimension_token.unit.name;
         if unit_name.eq_ignore_ascii_case("px")
@@ -196,7 +196,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_function(&mut self) -> PResult<Function<'a>> {
+    pub(super) fn parse_function(&mut self) -> PResult<Function<'s>> {
         let func = expect!(self, Function);
         let values = self.parse_component_values(/* allow_comma */ true)?;
         let r_paren = expect!(self, RParen);
@@ -210,7 +210,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    pub(super) fn parse_hex_color(&mut self) -> PResult<HexColor<'a>> {
+    pub(super) fn parse_hex_color(&mut self) -> PResult<HexColor<'s>> {
         let token = expect!(self, Hash);
         Ok(HexColor {
             value: token.value,
@@ -219,11 +219,11 @@ impl<'a> Parser<'a> {
         })
     }
 
-    pub(super) fn parse_ident(&mut self) -> PResult<Ident<'a>> {
+    pub(super) fn parse_ident(&mut self) -> PResult<Ident<'s>> {
         Ok(expect!(self, Ident).into())
     }
 
-    pub(super) fn parse_interpolable_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
+    pub(super) fn parse_interpolable_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         match self.syntax {
             Syntax::Css => self.parse_ident().map(InterpolableIdent::Literal),
             Syntax::Scss => self.parse_sass_interpolated_ident(),
@@ -241,11 +241,11 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_number(&mut self) -> PResult<Number<'a>> {
+    pub(super) fn parse_number(&mut self) -> PResult<Number<'s>> {
         Ok(expect!(self, Number).into())
     }
 
-    pub(super) fn parse_percentage(&mut self) -> PResult<Percentage<'a>> {
+    pub(super) fn parse_percentage(&mut self) -> PResult<Percentage<'s>> {
         let token = expect!(self, Percentage);
         Ok(Percentage {
             value: token.value.into(),
@@ -253,7 +253,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    pub(super) fn parse_str(&mut self) -> PResult<Str<'a>> {
+    pub(super) fn parse_str(&mut self) -> PResult<Str<'s>> {
         Ok(expect!(self, Str).into())
     }
 }

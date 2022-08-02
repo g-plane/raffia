@@ -4,7 +4,7 @@ use crate::{
     config::Syntax,
     error::PResult,
     pos::{Span, Spanned},
-    tokenizer::{Token, Tokenizer},
+    tokenizer::{token::Comment, Token, Tokenizer},
 };
 
 mod less;
@@ -46,35 +46,45 @@ macro_rules! expect {
     }};
 }
 
-struct Parser<'a> {
-    source: &'a str,
+struct Parser<'cmt, 's: 'cmt> {
+    source: &'s str,
     syntax: Syntax,
-    tokenizer: Tokenizer<'a>,
+    tokenizer: Tokenizer<'cmt, 's>,
     state: ParserState,
 }
 
-impl<'a> Parser<'a> {
-    fn new(source: &'a str, syntax: Syntax) -> Self {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    fn new(source: &'s str, syntax: Syntax, comments: Option<&'cmt mut Vec<Comment<'s>>>) -> Self {
         Parser {
             source,
             syntax: syntax.clone(),
-            tokenizer: Tokenizer::new(source, syntax),
+            tokenizer: Tokenizer::new(source, syntax, comments),
             state: Default::default(),
         }
     }
 
     fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> Option<R> {
         let tokenizer_state = self.tokenizer.clone_state();
+        let comments_count = self
+            .tokenizer
+            .comments
+            .as_ref()
+            .map(|comments| comments.len());
         match f(self) {
             Ok(value) => Some(value),
             Err(..) => {
                 self.tokenizer.replace_state(tokenizer_state);
+                if let Some((comments, count)) =
+                    self.tokenizer.comments.as_mut().zip(comments_count)
+                {
+                    comments.truncate(count);
+                }
                 None
             }
         }
     }
 
-    fn parse_declaration(&mut self) -> PResult<Declaration<'a>> {
+    fn parse_declaration(&mut self) -> PResult<Declaration<'s>> {
         let name = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
@@ -106,7 +116,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'a>> {
+    fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'s>> {
         let selector_list = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
@@ -124,7 +134,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_simple_block(&mut self) -> PResult<SimpleBlock<'a>> {
+    fn parse_simple_block(&mut self) -> PResult<SimpleBlock<'s>> {
         let l_brace = expect!(self, LBrace);
 
         let mut elements = Vec::with_capacity(4);
@@ -188,7 +198,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'a>> {
+    fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'s>> {
         let mut statements = Vec::with_capacity(4);
 
         loop {
@@ -248,6 +258,12 @@ impl<'a> Parser<'a> {
 }
 
 pub fn parse(source: &str, syntax: Syntax) -> PResult<Stylesheet> {
-    let mut parser = Parser::new(source, syntax);
+    let mut parser = Parser::new(source, syntax, None);
     parser.parse_stylesheet()
+}
+
+pub fn parse_with_comments(source: &str, syntax: Syntax) -> PResult<(Stylesheet, Vec<Comment>)> {
+    let mut comments = vec![];
+    let mut parser = Parser::new(source, syntax, Some(&mut comments));
+    parser.parse_stylesheet().map(|ast| (ast, comments))
 }

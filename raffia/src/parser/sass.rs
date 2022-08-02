@@ -15,13 +15,13 @@ const PRECEDENCE_EQUALITY: u8 = 3;
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
-impl<'a> Parser<'a> {
-    pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'a>> {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
         self.parse_sass_bin_expr_recursively(0)
     }
 
-    fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'a>> {
+    fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             self.parse_sass_unary_expression()?
         } else {
@@ -133,7 +133,7 @@ impl<'a> Parser<'a> {
         Ok(left)
     }
 
-    pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
+    pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         let (first, mut span) = match self.tokenizer.peek()? {
             Token::Ident(ident) => {
                 self.tokenizer.bump()?;
@@ -177,7 +177,7 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_sass_interpolated_ident_expr(
         &mut self,
-    ) -> PResult<(SassInterpolatedIdentElement<'a>, Span)> {
+    ) -> PResult<(SassInterpolatedIdentElement<'s>, Span)> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
 
         let hash_lbrace = expect!(self, HashLBrace);
@@ -194,7 +194,7 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_sass_parenthesized_expression(
         &mut self,
-    ) -> PResult<SassParenthesizedExpression<'a>> {
+    ) -> PResult<SassParenthesizedExpression<'s>> {
         let l_paren = expect!(self, LParen);
         let expr = Box::new(self.parse_component_value()?);
         let r_paren = expect!(self, RParen);
@@ -207,7 +207,7 @@ impl<'a> Parser<'a> {
         })
     }
 
-    fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'a>> {
+    fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match self.tokenizer.peek()? {
             Token::Plus(token) => {
                 let _ = self.tokenizer.bump();
@@ -245,7 +245,7 @@ impl<'a> Parser<'a> {
         }))
     }
 
-    pub(super) fn parse_sass_variable(&mut self) -> PResult<SassVariable<'a>> {
+    pub(super) fn parse_sass_variable(&mut self) -> PResult<SassVariable<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
 
         let dollar_var = expect!(self, DollarVar);
@@ -257,7 +257,7 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_sass_variable_declaration(
         &mut self,
-    ) -> PResult<SassVariableDeclaration<'a>> {
+    ) -> PResult<SassVariableDeclaration<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss));
 
         let name = self.parse_sass_variable()?;

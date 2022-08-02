@@ -8,8 +8,8 @@ use crate::{
     tokenizer::Token,
 };
 
-impl<'a> Parser<'a> {
-    pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'a>> {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
         let first = match self.tokenizer.peek()? {
@@ -75,7 +75,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    pub(super) fn parse_less_variable(&mut self) -> PResult<LessVariable<'a>> {
+    pub(super) fn parse_less_variable(&mut self) -> PResult<LessVariable<'s>> {
         let at_keyword = expect!(self, AtKeyword);
         Ok(LessVariable {
             name: at_keyword.ident.into(),
@@ -85,7 +85,7 @@ impl<'a> Parser<'a> {
 
     pub(super) fn parse_less_variable_declaration(
         &mut self,
-    ) -> PResult<LessVariableDeclaration<'a>> {
+    ) -> PResult<LessVariableDeclaration<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
         let name = self.parse_less_variable()?;
@@ -99,7 +99,7 @@ impl<'a> Parser<'a> {
         Ok(LessVariableDeclaration { name, value, span })
     }
 
-    fn parse_less_variable_interpolation(&mut self) -> PResult<LessVariableInterpolation<'a>> {
+    fn parse_less_variable_interpolation(&mut self) -> PResult<LessVariableInterpolation<'s>> {
         let at_lbrace_var = expect!(self, AtLBraceVar);
         Ok(LessVariableInterpolation {
             name: at_lbrace_var.ident.into(),

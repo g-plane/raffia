@@ -13,8 +13,8 @@ pub(super) enum QualifiedRuleContext {
     DeclarationValue,
 }
 
-impl<'a> Parser<'a> {
-    pub(super) fn with_state(&mut self, state: ParserState) -> WithState<'a, '_> {
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(super) fn with_state(&mut self, state: ParserState) -> WithState<'cmt, 's, '_> {
         let original_state = self.state.clone();
         self.state = state;
         WithState {
@@ -24,26 +24,26 @@ impl<'a> Parser<'a> {
     }
 }
 
-pub(super) struct WithState<'a, 'b> {
-    parser: &'b mut Parser<'a>,
+pub(super) struct WithState<'cmt, 's: 'cmt, 'p> {
+    parser: &'p mut Parser<'cmt, 's>,
     original_state: ParserState,
 }
 
-impl<'a, 'b> Deref for WithState<'a, 'b> {
-    type Target = Parser<'a>;
+impl<'cmt, 's: 'cmt, 'p> Deref for WithState<'cmt, 's, 'p> {
+    type Target = Parser<'cmt, 's>;
 
     fn deref(&self) -> &Self::Target {
         self.parser
     }
 }
 
-impl<'a, 'b> DerefMut for WithState<'a, 'b> {
+impl<'cmt, 's: 'cmt, 'p> DerefMut for WithState<'cmt, 's, 'p> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         self.parser
     }
 }
 
-impl<'a, 'b> Drop for WithState<'a, 'b> {
+impl<'cmt, 's: 'cmt, 'p> Drop for WithState<'cmt, 's, 'p> {
     fn drop(&mut self) {
         self.state = self.original_state.clone();
     }

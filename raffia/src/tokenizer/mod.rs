@@ -12,24 +12,30 @@ pub mod token;
 
 /// Newtype for wrapping tokenizer state to avoid exposing internal detail.
 #[derive(Clone)]
-pub(crate) struct TokenizerState<'a>(Peekable<CharIndices<'a>>);
+pub(crate) struct TokenizerState<'s>(Peekable<CharIndices<'s>>);
 
-pub struct Tokenizer<'a> {
-    source: &'a str,
+pub struct Tokenizer<'cmt, 's: 'cmt> {
+    source: &'s str,
     syntax: Syntax,
-    iter: Peekable<CharIndices<'a>>,
+    pub(crate) comments: Option<&'cmt mut Vec<Comment<'s>>>,
+    iter: Peekable<CharIndices<'s>>,
 }
 
-impl<'a> Tokenizer<'a> {
-    pub fn new(source: &'a str, syntax: Syntax) -> Self {
+impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
+    pub fn new(
+        source: &'s str,
+        syntax: Syntax,
+        comments: Option<&'cmt mut Vec<Comment<'s>>>,
+    ) -> Self {
         Self {
             source,
             syntax,
+            comments,
             iter: source.char_indices().peekable(),
         }
     }
 
-    pub fn bump(&mut self) -> PResult<Token<'a>> {
+    pub fn bump(&mut self) -> PResult<Token<'s>> {
         self.skip_ws_or_comment();
 
         match self.peek_two_chars() {
@@ -102,10 +108,13 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    pub fn peek(&mut self) -> PResult<Token<'a>> {
+    pub fn peek(&mut self) -> PResult<Token<'s>> {
         let iter = self.iter.clone();
+        let comments = self.comments.take();
+
         let token = self.bump();
         self.iter = iter;
+        self.comments = comments;
         token
     }
 
@@ -117,11 +126,11 @@ impl<'a> Tokenizer<'a> {
             .unwrap_or_else(|| self.source.len())
     }
 
-    pub(crate) fn clone_state(&self) -> TokenizerState<'a> {
+    pub(crate) fn clone_state(&self) -> TokenizerState<'s> {
         TokenizerState(self.iter.clone())
     }
 
-    pub(crate) fn replace_state(&mut self, state: TokenizerState<'a>) {
+    pub(crate) fn replace_state(&mut self, state: TokenizerState<'s>) {
         self.iter = state.0;
     }
 
@@ -203,11 +212,13 @@ impl<'a> Tokenizer<'a> {
             }
         }
 
-        let content = unsafe { self.source.get_unchecked(content_start..content_end) };
-        BlockComment {
-            content,
-            span: Span { start, end },
-        };
+        if let Some(comments) = &mut self.comments {
+            let content = unsafe { self.source.get_unchecked(content_start..content_end) };
+            comments.push(Comment::Block(BlockComment {
+                content,
+                span: Span { start, end },
+            }));
+        }
     }
 
     fn scan_line_comment(&mut self) {
@@ -255,14 +266,16 @@ impl<'a> Tokenizer<'a> {
             }
         }
 
-        let content = unsafe { self.source.get_unchecked(content_start..content_end) };
-        LineComment {
-            content,
-            span: Span { start, end },
-        };
+        if let Some(comments) = &mut self.comments {
+            let content = unsafe { self.source.get_unchecked(content_start..content_end) };
+            comments.push(Comment::Line(LineComment {
+                content,
+                span: Span { start, end },
+            }));
+        }
     }
 
-    fn scan_ident_sequence(&mut self) -> PResult<Ident<'a>> {
+    fn scan_ident_sequence(&mut self) -> PResult<Ident<'s>> {
         let start;
         let mut end;
         match self.peek_one_char() {
@@ -349,7 +362,7 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    fn scan_number(&mut self) -> PResult<Number<'a>> {
+    fn scan_number(&mut self) -> PResult<Number<'s>> {
         let start;
         let mut end = 0;
 
@@ -448,7 +461,7 @@ impl<'a> Tokenizer<'a> {
         })
     }
 
-    fn scan_dimension_or_percentage(&mut self, number: Number<'a>) -> PResult<Token<'a>> {
+    fn scan_dimension_or_percentage(&mut self, number: Number<'s>) -> PResult<Token<'s>> {
         match self.peek_two_chars() {
             Some((_, '-', c))
                 if c.is_ascii_alphabetic()
@@ -471,7 +484,7 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    fn scan_dimension(&mut self, value: Number<'a>) -> PResult<Token<'a>> {
+    fn scan_dimension(&mut self, value: Number<'s>) -> PResult<Token<'s>> {
         let unit = self.scan_ident_sequence()?;
         let span = Span {
             start: value.span.start,
@@ -480,7 +493,7 @@ impl<'a> Tokenizer<'a> {
         Ok(Token::Dimension(Dimension { value, unit, span }))
     }
 
-    fn scan_percentage(&mut self, value: Number<'a>) -> PResult<Token<'a>> {
+    fn scan_percentage(&mut self, value: Number<'s>) -> PResult<Token<'s>> {
         let start = value.span.start;
         let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '%');
@@ -490,7 +503,7 @@ impl<'a> Tokenizer<'a> {
         }))
     }
 
-    fn scan_string(&mut self) -> PResult<Str<'a>> {
+    fn scan_string(&mut self) -> PResult<Str<'s>> {
         // '\'' or '"' is checked (but not consumed) before
         let (start, quote) = self.iter.next().unwrap();
 
@@ -516,7 +529,7 @@ impl<'a> Tokenizer<'a> {
         })
     }
 
-    fn scan_ident_or_function_or_url(&mut self) -> PResult<Token<'a>> {
+    fn scan_ident_or_function_or_url(&mut self) -> PResult<Token<'s>> {
         let ident = self.scan_ident_sequence()?;
         if let Some((_, '(')) = self.iter.peek() {
             if ident.name.eq_ignore_ascii_case("url") {
@@ -529,7 +542,7 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    fn scan_function(&mut self, name: Ident<'a>) -> PResult<Function<'a>> {
+    fn scan_function(&mut self, name: Ident<'s>) -> PResult<Function<'s>> {
         let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '(');
         let start = name.span.start;
@@ -540,7 +553,7 @@ impl<'a> Tokenizer<'a> {
         })
     }
 
-    fn scan_url(&mut self, start: usize) -> PResult<Url<'a>> {
+    fn scan_url(&mut self, start: usize) -> PResult<Url<'s>> {
         let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '(');
 
@@ -574,7 +587,7 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    fn scan_url_raw(&mut self) -> PResult<UrlRaw<'a>> {
+    fn scan_url_raw(&mut self) -> PResult<UrlRaw<'s>> {
         let start = self.current_offset();
         let mut end = self.source.len();
         for (i, c) in self.iter.by_ref() {
@@ -595,7 +608,7 @@ impl<'a> Tokenizer<'a> {
         })
     }
 
-    fn scan_hash(&mut self) -> PResult<Token<'a>> {
+    fn scan_hash(&mut self) -> PResult<Token<'s>> {
         let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '#');
 
@@ -647,7 +660,7 @@ impl<'a> Tokenizer<'a> {
         }))
     }
 
-    fn scan_dollar_var(&mut self) -> PResult<Token<'a>> {
+    fn scan_dollar_var(&mut self) -> PResult<Token<'s>> {
         let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '$');
         let ident = self.scan_ident_sequence()?;
@@ -658,7 +671,7 @@ impl<'a> Tokenizer<'a> {
         Ok(Token::DollarVar(DollarVar { ident, span }))
     }
 
-    fn scan_at_lbrace_var(&mut self) -> PResult<Token<'a>> {
+    fn scan_at_lbrace_var(&mut self) -> PResult<Token<'s>> {
         let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
         let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
@@ -681,7 +694,7 @@ impl<'a> Tokenizer<'a> {
         }
     }
 
-    fn scan_at_keyword(&mut self) -> PResult<Token<'a>> {
+    fn scan_at_keyword(&mut self) -> PResult<Token<'s>> {
         let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
         let ident = self.scan_ident_sequence()?;
@@ -692,7 +705,7 @@ impl<'a> Tokenizer<'a> {
         Ok(Token::AtKeyword(AtKeyword { ident, span }))
     }
 
-    fn scan_punc(&mut self) -> Option<Token<'a>> {
+    fn scan_punc(&mut self) -> Option<Token<'s>> {
         match self.peek_two_chars() {
             Some((i, ':', ':')) => {
                 self.iter.next();
