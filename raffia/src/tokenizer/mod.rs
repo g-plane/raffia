@@ -338,7 +338,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         match self.iter.next() {
             Some((i, c)) if c.is_ascii_hexdigit() => {
                 let mut count: usize = 1;
-                let end;
+                let mut end = i + 1;
                 while let Some((i, c)) = self.peek_one_char() {
                     if c.is_ascii_hexdigit() && count < 6 {
                         count += 1;
@@ -355,7 +355,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         break;
                     }
                 }
-                Ok(i)
+                Ok(end)
             }
             Some((i, c)) => Ok(i + c.len_utf8()),
             None => Err(self.build_eof_error()),

@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 pub use config::Syntax;
 pub use parser::{parse, parse_with_comments};
 pub use pos::{Span, Spanned};
