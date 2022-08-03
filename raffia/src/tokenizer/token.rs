@@ -22,7 +22,7 @@ pub struct LineComment<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum Token<'a> {
-    Eof,
+    Eof(Eof),
     Ampersand(Ampersand),
     Asterisk(Asterisk),
     AsteriskEqual(AsteriskEqual),
@@ -35,6 +35,7 @@ pub enum Token<'a> {
     Colon(Colon),
     ColonColon(ColonColon),
     Comma(Comma),
+    Dedent(Dedent),
     Dimension(Dimension<'a>),
     DollarEqual(DollarEqual),
     DollarVar(DollarVar<'a>),
@@ -48,10 +49,12 @@ pub enum Token<'a> {
     Hash(Hash<'a>),
     HashLBrace(HashLBrace),
     Ident(Ident<'a>),
+    Indent(Indent),
     LBrace(LBrace),
     LBracket(LBracket),
     LessThan(LessThan),
     LessThanEqual(LessThanEqual),
+    Linebreak(Linebreak),
     LParen(LParen),
     Minus(Minus),
     Number(Number<'a>),
@@ -141,6 +144,11 @@ pub struct Comma {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct Dedent {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Dimension<'a> {
     pub value: Number<'a>,
     pub unit: Ident<'a>,
@@ -160,6 +168,11 @@ pub struct DollarVar<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Dot {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Eof {
     pub span: Span,
 }
 
@@ -217,6 +230,11 @@ pub struct Ident<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct Indent {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct LBrace {
     pub span: Span,
 }
@@ -233,6 +251,11 @@ pub struct LessThan {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct LessThanEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Linebreak {
     pub span: Span,
 }
 

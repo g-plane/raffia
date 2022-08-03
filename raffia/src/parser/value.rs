@@ -10,7 +10,7 @@ use crate::{
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'s>> {
-        if matches!(self.syntax, Syntax::Scss) {
+        if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
             self.parse_sass_bin_expr()
         } else {
             self.parse_component_value_internally()
@@ -31,13 +31,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Percentage(..) => self.parse_percentage().map(ComponentValue::Percentage),
             Token::Hash(..) => self.parse_hex_color().map(ComponentValue::HexColor),
             Token::Str(..) => self.parse_str().map(ComponentValue::Str),
-            Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+            Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse_sass_variable().map(ComponentValue::SassVariable)
             }
-            Token::LParen(..) if matches!(self.syntax, Syntax::Scss) => self
+            Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse_sass_parenthesized_expression()
                 .map(ComponentValue::SassParenthesizedExpression),
-            Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss) => self
+            Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
@@ -61,7 +61,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         values.push(first);
         loop {
             match self.tokenizer.peek()? {
-                Token::RBrace(..) | Token::RParen(..) | Token::Semicolon(..) | Token::Eof => break,
+                Token::RBrace(..)
+                | Token::RParen(..)
+                | Token::Semicolon(..)
+                | Token::Dedent(..)
+                | Token::Linebreak(..)
+                | Token::Eof(..) => break,
                 Token::Comma(..) => {
                     if allow_comma {
                         values.push(self.parse_delimiter().map(ComponentValue::Delimiter)?);
@@ -226,7 +231,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_interpolable_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         match self.syntax {
             Syntax::Css => self.parse_ident().map(InterpolableIdent::Literal),
-            Syntax::Scss => self.parse_sass_interpolated_ident(),
+            Syntax::Scss | Syntax::Sass => self.parse_sass_interpolated_ident(),
             Syntax::Less => {
                 // Less variable interpolation is disallowed in declaration value
                 if matches!(

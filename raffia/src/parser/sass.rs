@@ -17,7 +17,7 @@ const PRECEDENCE_OR: u8 = 1;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss));
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         self.parse_sass_bin_expr_recursively(0)
     }
 
@@ -178,7 +178,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_interpolated_ident_expr(
         &mut self,
     ) -> PResult<(SassInterpolatedIdentElement<'s>, Span)> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss));
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let hash_lbrace = expect!(self, HashLBrace);
         let expr = self.parse_component_values(/* allow_comma */ true)?;
@@ -246,7 +246,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_sass_variable(&mut self) -> PResult<SassVariable<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss));
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let dollar_var = expect!(self, DollarVar);
         Ok(SassVariable {
@@ -258,7 +258,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_variable_declaration(
         &mut self,
     ) -> PResult<SassVariableDeclaration<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss));
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let name = self.parse_sass_variable()?;
         expect!(self, Colon);

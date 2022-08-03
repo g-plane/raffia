@@ -12,13 +12,17 @@ pub mod token;
 
 /// Newtype for wrapping tokenizer state to avoid exposing internal detail.
 #[derive(Clone)]
-pub(crate) struct TokenizerState<'s>(Peekable<CharIndices<'s>>);
+pub(crate) struct TokenizerState<'s> {
+    iter: Peekable<CharIndices<'s>>,
+    indent_size: usize,
+}
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
     pub(crate) comments: Option<&'cmt mut Vec<Comment<'s>>>,
     iter: Peekable<CharIndices<'s>>,
+    indent_size: usize,
 }
 
 impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
@@ -32,11 +36,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             syntax,
             comments,
             iter: source.char_indices().peekable(),
+            indent_size: 0,
         }
     }
 
     pub fn bump(&mut self) -> PResult<Token<'s>> {
-        self.skip_ws_or_comment();
+        if let Some(indent) = self.skip_ws_or_comment() {
+            return Ok(indent);
+        }
 
         match self.peek_two_chars() {
             Some((_, '\'' | '"', _)) => self.scan_string().map(Token::Str),
@@ -76,7 +83,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.scan_at_keyword()
             }
             Some((_, '$', c))
-                if matches!(self.syntax, Syntax::Scss)
+                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
                     && (c.is_ascii_alphabetic()
                         || c == '-'
                         || c == '_'
@@ -103,17 +110,25 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         end: i + c.len_utf8(),
                     },
                 }),
-                None => Ok(Token::Eof),
+                None => {
+                    let offset = self.current_offset();
+                    Ok(Token::Eof(Eof {
+                        span: Span {
+                            start: offset,
+                            end: offset,
+                        },
+                    }))
+                }
             },
         }
     }
 
     pub fn peek(&mut self) -> PResult<Token<'s>> {
-        let iter = self.iter.clone();
+        let state = self.clone_state();
         let comments = self.comments.take();
 
         let token = self.bump();
-        self.iter = iter;
+        self.replace_state(state);
         self.comments = comments;
         token
     }
@@ -127,11 +142,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     pub(crate) fn clone_state(&self) -> TokenizerState<'s> {
-        TokenizerState(self.iter.clone())
+        TokenizerState {
+            iter: self.iter.clone(),
+            indent_size: self.indent_size,
+        }
     }
 
     pub(crate) fn replace_state(&mut self, state: TokenizerState<'s>) {
-        self.iter = state.0;
+        self.iter = state.iter;
+        self.indent_size = state.indent_size;
     }
 
     fn peek_one_char(&self) -> Option<(usize, char)> {
@@ -156,13 +175,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn skip_ws_or_comment(&mut self) {
+    fn skip_ws_or_comment(&mut self) -> Option<Token<'s>> {
+        let mut indent = None;
         loop {
             match self.peek_two_chars() {
                 Some((_, '/', '*')) => self.scan_block_comment(),
                 Some((_, '/', '/')) if self.syntax != Syntax::Css => self.scan_line_comment(),
-                Some((_, c, _)) if c.is_ascii_whitespace() => self.skip_ws(),
-                _ => return,
+                _ => match self.iter.peek() {
+                    Some((_, c)) if c.is_ascii_whitespace() => {
+                        if self.syntax == Syntax::Sass {
+                            indent = self.scan_indent();
+                        } else {
+                            self.skip_ws();
+                        }
+                    }
+                    _ => return indent,
+                },
             }
         }
     }
@@ -175,6 +203,42 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 break;
             }
         }
+    }
+
+    fn scan_indent(&mut self) -> Option<Token<'s>> {
+        debug_assert_eq!(self.syntax, Syntax::Sass);
+        let mut start = None;
+        while let Some((i, c)) = self.iter.peek() {
+            if c.is_ascii_whitespace() {
+                let (i, c) = self.iter.next()?;
+                if c == '\n' || c == '\r' && matches!(self.iter.peek(), Some((_, '\n'))) {
+                    start = Some(i + 1);
+                }
+            } else {
+                return start.map(|start| {
+                    let end = *i;
+                    let len = end - start;
+                    let span = Span { start, end };
+                    if len > self.indent_size {
+                        self.indent_size = len;
+                        Token::Indent(Indent { span })
+                    } else if len < self.indent_size {
+                        self.indent_size = len;
+                        Token::Dedent(Dedent { span })
+                    } else {
+                        Token::Linebreak(Linebreak { span })
+                    }
+                });
+            }
+        }
+
+        let offset = self.current_offset();
+        Some(Token::Eof(Eof {
+            span: Span {
+                start: offset,
+                end: offset,
+            },
+        }))
     }
 
     fn scan_block_comment(&mut self) {
@@ -777,7 +841,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 }))
             }
-            Some((i, '#', '{')) if matches!(self.syntax, Syntax::Scss) => {
+            Some((i, '#', '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.iter.next();
                 self.iter.next();
                 Some(Token::HashLBrace(HashLBrace {
@@ -787,7 +851,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 }))
             }
-            Some((i, '=', '=')) if matches!(self.syntax, Syntax::Scss) => {
+            Some((i, '=', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.iter.next();
                 self.iter.next();
                 Some(Token::EqualEqual(EqualEqual {
@@ -797,7 +861,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 }))
             }
-            Some((i, '!', '=')) if matches!(self.syntax, Syntax::Scss) => {
+            Some((i, '!', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.iter.next();
                 self.iter.next();
                 Some(Token::ExclamationEqual(ExclamationEqual {

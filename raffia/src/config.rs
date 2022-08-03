@@ -2,5 +2,6 @@
 pub enum Syntax {
     Css,
     Scss,
+    Sass,
     Less,
 }

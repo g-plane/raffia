@@ -337,7 +337,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 };
                 let name = match self.tokenizer.peek()? {
                     Token::HashLBrace(token)
-                        if matches!(self.syntax, Syntax::Scss)
+                        if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
                             && first.span.end == token.span.start =>
                     {
                         match self.parse_interpolable_ident()? {

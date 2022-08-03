@@ -135,7 +135,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_simple_block(&mut self) -> PResult<SimpleBlock<'s>> {
-        let l_brace = expect!(self, LBrace);
+        let start = if self.syntax == Syntax::Sass {
+            if let Some(token) = eat!(self, Indent) {
+                token.span.end
+            } else {
+                let offset = self.tokenizer.current_offset();
+                return Ok(SimpleBlock {
+                    elements: vec![],
+                    span: Span {
+                        start: offset,
+                        end: offset,
+                    },
+                });
+            }
+        } else {
+            expect!(self, LBrace).span.start
+        };
 
         let mut elements = Vec::with_capacity(4);
         loop {
@@ -164,7 +179,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     ));
                     is_block_element = true;
                 }
-                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     elements.push(SimpleBlockElement::SassVariableDeclaration(
                         self.parse_sass_variable_declaration()?,
                     ));
@@ -182,11 +197,27 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {}
             }
-            if let Some(r_brace) = eat!(self, RBrace) {
+            if self.syntax == Syntax::Sass {
+                match self.tokenizer.peek()? {
+                    token @ Token::Dedent(..) | token @ Token::Eof(..) => {
+                        self.tokenizer.bump()?;
+                        return Ok(SimpleBlock {
+                            elements,
+                            span: Span {
+                                start,
+                                end: token.span().start,
+                            },
+                        });
+                    }
+                    _ => {
+                        expect!(self, Linebreak);
+                    }
+                }
+            } else if let Some(r_brace) = eat!(self, RBrace) {
                 return Ok(SimpleBlock {
                     elements,
                     span: Span {
-                        start: l_brace.span.start,
+                        start,
                         end: r_brace.span.end,
                     },
                 });
@@ -199,6 +230,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'s>> {
+        if self.syntax == Syntax::Sass {
+            while let Some(..) = eat!(self, Linebreak) {}
+        }
+
         let mut statements = Vec::with_capacity(4);
 
         loop {
@@ -220,7 +255,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     ));
                     is_block_element = true;
                 }
-                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss) => {
+                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     statements.push(TopLevelStatement::SassVariableDeclaration(
                         self.parse_sass_variable_declaration()?,
                     ));
@@ -238,7 +273,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {}
             }
-            if let Token::Eof = self.tokenizer.peek()? {
+            if eat!(self, Eof).is_some() {
                 break;
             } else if is_block_element {
                 eat!(self, Semicolon);
