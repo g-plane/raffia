@@ -39,7 +39,7 @@ macro_rules! expect {
             token
         } else {
             return Err(Error {
-                kind: ErrorKind::Unexpected,
+                kind: ErrorKind::Unexpected(stringify!($variant)),
                 span: tokenizer.peek()?.span().clone(),
             });
         }
