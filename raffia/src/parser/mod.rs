@@ -238,7 +238,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'s>> {
         if self.syntax == Syntax::Sass {
-            while let Some(..) = eat!(self, Linebreak) {}
+            eat!(self, Linebreak);
         }
 
         let mut statements = Vec::with_capacity(4);
