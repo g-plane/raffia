@@ -4,7 +4,10 @@ use crate::{
     config::Syntax,
     error::PResult,
     pos::{Span, Spanned},
-    tokenizer::{token::Comment, Token, Tokenizer},
+    tokenizer::{
+        token::{self, Comment},
+        Token, Tokenizer,
+    },
 };
 
 mod less;
@@ -199,13 +202,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             if self.syntax == Syntax::Sass {
                 match self.tokenizer.peek()? {
-                    token @ Token::Dedent(..) | token @ Token::Eof(..) => {
+                    Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
                         self.tokenizer.bump()?;
                         return Ok(SimpleBlock {
                             elements,
                             span: Span {
                                 start,
-                                end: token.span().start,
+                                end: span.start,
                             },
                         });
                     }

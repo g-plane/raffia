@@ -236,21 +236,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_combinator(&mut self) -> PResult<Option<Combinator>> {
         let current_offset = self.tokenizer.current_offset();
         match self.tokenizer.peek()? {
-            token @ Token::Ident(..)
-            | token @ Token::Dot(..)
-            | token @ Token::Hash(..)
-            | token @ Token::Colon(..)
-            | token @ Token::ColonColon(..)
-            | token @ Token::Asterisk(..)
-            | token @ Token::Ampersand(..)
-            | token @ Token::Bar(..) // selector like `|type` (with <ns-prefix>)
-                if current_offset < token.span().start =>
+            Token::Ident(token::Ident { span, .. })
+            | Token::Dot(token::Dot { span })
+            | Token::Hash(token::Hash { span, .. })
+            | Token::Colon(token::Colon { span, .. })
+            | Token::ColonColon(token::ColonColon { span })
+            | Token::Asterisk(token::Asterisk { span })
+            | Token::Ampersand(token::Ampersand { span })
+            | Token::Bar(token::Bar { span }) // selector like `|type` (with <ns-prefix>)
+                if current_offset < span.start =>
             {
                 Ok(Some(Combinator {
                     kind: CombinatorKind::Descendant,
                     span: Span {
                         start: current_offset,
-                        end: token.span().start,
+                        end: span.start,
                     },
                 }))
             }
@@ -293,17 +293,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut children = vec![first];
         loop {
             match self.tokenizer.peek()? {
-                token @ Token::Dot(..)
-                | token @ Token::Hash(..)
-                | token @ Token::Colon(..)
-                | token @ Token::ColonColon(..)
-                | token @ Token::Ampersand(..)
-                | token @ Token::Ident(..)
-                | token @ Token::Asterisk(..)
-                | token @ Token::HashLBrace(..)
-                | token @ Token::NumberSign(..)
-                | token @ Token::Bar(..)
-                    if self.tokenizer.current_offset() == token.span().start =>
+                Token::Dot(token::Dot { span })
+                | Token::Hash(token::Hash { span, .. })
+                | Token::Colon(token::Colon { span })
+                | Token::ColonColon(token::ColonColon { span })
+                | Token::Ampersand(token::Ampersand { span })
+                | Token::Ident(token::Ident { span, .. })
+                | Token::Asterisk(token::Asterisk { span })
+                | Token::HashLBrace(token::HashLBrace { span })
+                | Token::NumberSign(token::NumberSign { span })
+                | Token::Bar(token::Bar { span })
+                    if self.tokenizer.current_offset() == span.start =>
                 {
                     children.push(self.parse_simple_selector()?)
                 }
