@@ -207,6 +207,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         })
     }
 
+    pub(super) fn parse_sass_placeholder_selector(
+        &mut self,
+    ) -> PResult<SassPlaceholderSelector<'s>> {
+        let percent = expect!(self, Percent);
+        let name = self.parse_interpolable_ident()?;
+        let span = Span {
+            start: percent.span.start,
+            end: name.span().end,
+        };
+        Ok(SassPlaceholderSelector { name, span })
+    }
+
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match self.tokenizer.peek()? {
             Token::Plus(token) => {

@@ -11,21 +11,6 @@ use crate::{
 use raffia_derive::Spanned;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
-        debug_assert!(left.end <= right.start);
-        if left.end == right.start {
-            Ok(())
-        } else {
-            Err(Error {
-                kind: ErrorKind::UnexpectedWhitespace,
-                span: Span {
-                    start: left.end,
-                    end: right.start,
-                },
-            })
-        }
-    }
-
     fn parse_attribute_selector(&mut self) -> PResult<AttributeSelector<'s>> {
         let l_bracket = expect!(self, LBracket);
 
@@ -416,6 +401,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse_type_selector().map(SimpleSelector::Type)
             }
             Token::Ampersand(..) => self.parse_nesting_selector().map(SimpleSelector::Nesting),
+            Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
+                .parse_sass_placeholder_selector()
+                .map(SimpleSelector::SassPlaceholder),
             token => Err(Error {
                 kind: ErrorKind::ExpectSimpleSelector,
                 span: token.span().clone(),

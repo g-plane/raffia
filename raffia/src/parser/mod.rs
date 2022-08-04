@@ -2,7 +2,7 @@ use self::state::{ParserState, QualifiedRuleContext};
 use crate::{
     ast::*,
     config::Syntax,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     pos::{Span, Spanned},
     tokenizer::{
         token::{self, Comment},
@@ -84,6 +84,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 None
             }
+        }
+    }
+
+    fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
+        debug_assert!(left.end <= right.start);
+        if left.end == right.start {
+            Ok(())
+        } else {
+            Err(Error {
+                kind: ErrorKind::UnexpectedWhitespace,
+                span: Span {
+                    start: left.end,
+                    end: right.start,
+                },
+            })
         }
     }
 
@@ -182,6 +197,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     ));
                     is_block_element = true;
                 }
+                Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    elements.push(SimpleBlockElement::QualifiedRule(
+                        self.parse_qualified_rule()?,
+                    ));
+                    is_block_element = true;
+                }
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     elements.push(SimpleBlockElement::SassVariableDeclaration(
                         self.parse_sass_variable_declaration()?,
@@ -254,9 +275,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::Colon(..)
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
-                | Token::HashLBrace(..)
                 | Token::NumberSign(..)
                 | Token::Bar(..) => {
+                    statements.push(TopLevelStatement::QualifiedRule(
+                        self.parse_qualified_rule()?,
+                    ));
+                    is_block_element = true;
+                }
+                Token::HashLBrace(..) | Token::Percent(..)
+                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
+                {
                     statements.push(TopLevelStatement::QualifiedRule(
                         self.parse_qualified_rule()?,
                     ));

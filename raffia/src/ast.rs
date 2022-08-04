@@ -355,6 +355,12 @@ pub struct SassParenthesizedExpression<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassPlaceholderSelector<'a> {
+    pub name: InterpolableIdent<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassUnaryExpression<'a> {
     pub op: SassUnaryOperator,
     pub expr: Box<ComponentValue<'a>>,
@@ -414,6 +420,7 @@ pub enum SimpleSelector<'a> {
     Type(TypeSelector<'a>),
     Attribute(AttributeSelector<'a>),
     Nesting(NestingSelector),
+    SassPlaceholder(SassPlaceholderSelector<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
