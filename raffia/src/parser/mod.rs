@@ -210,7 +210,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         });
                     }
                     _ => {
-                        expect!(self, Linebreak);
+                        if is_block_element {
+                            eat!(self, Linebreak);
+                        } else {
+                            expect!(self, Linebreak);
+                        }
                     }
                 }
             } else if let Some(r_brace) = eat!(self, RBrace) {
