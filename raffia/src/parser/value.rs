@@ -19,10 +19,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_component_value_internally(&mut self) -> PResult<ComponentValue<'s>> {
         match self.tokenizer.peek()? {
-            Token::Ident(..) => self
-                .parse_interpolable_ident()
-                .map(ComponentValue::InterpolableIdent),
-            Token::Function(..) => self.parse_function().map(ComponentValue::Function),
+            Token::Ident(..) => {
+                let ident = self.parse_interpolable_ident()?;
+                match self.tokenizer.peek()? {
+                    Token::LParen(token) if token.span.start == ident.span().end => {
+                        self.parse_function(ident).map(ComponentValue::Function)
+                    }
+                    _ => Ok(ComponentValue::InterpolableIdent(ident)),
+                }
+            }
             Token::Solidus(..) | Token::Comma(..) | Token::Semicolon(..) => {
                 self.parse_delimiter().map(ComponentValue::Delimiter)
             }
@@ -201,17 +206,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(super) fn parse_function(&mut self) -> PResult<Function<'s>> {
-        let func = expect!(self, Function);
+    pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
+        expect!(self, LParen);
         let values = self.parse_component_values(/* allow_comma */ true)?;
         let r_paren = expect!(self, RParen);
+        let span = Span {
+            start: name.span().start,
+            end: r_paren.span.end,
+        };
         Ok(Function {
-            name: func.name.into(),
+            name,
             args: values.values,
-            span: Span {
-                start: func.span.start,
-                end: r_paren.span.end,
-            },
+            span,
         })
     }
 

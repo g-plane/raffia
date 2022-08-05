@@ -183,7 +183,7 @@ pub struct Flex<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Function<'a> {
-    pub name: Ident<'a>,
+    pub name: InterpolableIdent<'a>,
     pub args: Vec<ComponentValue<'a>>,
     pub span: Span,
 }

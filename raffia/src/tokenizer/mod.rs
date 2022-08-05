@@ -595,26 +595,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_ident_or_function_or_url(&mut self) -> PResult<Token<'s>> {
         let ident = self.scan_ident_sequence()?;
-        if let Some((_, '(')) = self.iter.peek() {
-            if ident.name.eq_ignore_ascii_case("url") {
+        match self.iter.peek() {
+            Some((_, '(')) if ident.name.eq_ignore_ascii_case("url") => {
                 self.scan_url(ident.span.start).map(Token::Url)
-            } else {
-                self.scan_function(ident).map(Token::Function)
             }
-        } else {
-            Ok(Token::Ident(ident))
+            _ => Ok(Token::Ident(ident)),
         }
-    }
-
-    fn scan_function(&mut self, name: Ident<'s>) -> PResult<Function<'s>> {
-        let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
-        debug_assert_eq!(c, '(');
-        let start = name.span.start;
-        let end = i + 1;
-        Ok(Function {
-            name,
-            span: Span { start, end },
-        })
     }
 
     fn scan_url(&mut self, start: usize) -> PResult<Url<'s>> {

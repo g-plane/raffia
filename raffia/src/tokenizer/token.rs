@@ -43,7 +43,6 @@ pub enum Token<'a> {
     Equal(Equal),
     EqualEqual(EqualEqual),
     ExclamationEqual(ExclamationEqual),
-    Function(Function<'a>),
     GreaterThan(GreaterThan),
     GreaterThanEqual(GreaterThanEqual),
     Hash(Hash<'a>),
@@ -188,12 +187,6 @@ pub struct EqualEqual {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct ExclamationEqual {
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub struct Function<'a> {
-    pub name: Ident<'a>,
     pub span: Span,
 }
 
