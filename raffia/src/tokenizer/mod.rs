@@ -58,7 +58,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     || !c.is_ascii()
                     || c == '\\' =>
             {
-                self.scan_ident_or_function_or_url()
+                self.scan_ident_or_url()
             }
             Some((_, '.', c)) if c.is_ascii_digit() => {
                 let number = self.scan_number()?;
@@ -101,7 +101,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 Some((_, c))
                     if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() || c == '\\' =>
                 {
-                    self.scan_ident_or_function_or_url()
+                    self.scan_ident_or_url()
                 }
                 Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
                     kind: ErrorKind::UnknownToken,
@@ -593,7 +593,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         })
     }
 
-    fn scan_ident_or_function_or_url(&mut self) -> PResult<Token<'s>> {
+    fn scan_ident_or_url(&mut self) -> PResult<Token<'s>> {
         let ident = self.scan_ident_sequence()?;
         match self.iter.peek() {
             Some((_, '(')) if ident.name.eq_ignore_ascii_case("url") => {
