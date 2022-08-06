@@ -285,6 +285,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_sass_warn_at_rule(&mut self) -> PResult<SassWarnAtRule<'s>> {
         let token = expect!(self, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "warn");
         let expr = self.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start: token.span.start,
