@@ -239,8 +239,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         self.parse_sass_variable_declaration()?,
                     ));
                 }
-                Token::AtKeyword(..) => {
-                    if self.syntax == Syntax::Less {
+                Token::AtKeyword(at_keyword) => {
+                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
+                        match &*at_keyword.ident.name {
+                            "warn" => statements
+                                .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
+                            _ => {}
+                        }
+                    } else if self.syntax == Syntax::Less {
                         if let Some(less_variable_declaration) =
                             self.try_parse(|parser| parser.parse_less_variable_declaration())
                         {

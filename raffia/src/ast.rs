@@ -394,6 +394,12 @@ pub struct SassVariableDeclaration<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassWarnAtRule<'a> {
+    pub expr: ComponentValues<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SelectorList<'a> {
     pub selectors: Vec<ComplexSelector<'a>>,
     pub span: Span,
@@ -421,6 +427,7 @@ pub enum Statement<'a> {
     LessVariableDeclaration(LessVariableDeclaration<'a>),
     QualifiedRule(QualifiedRule<'a>),
     SassVariableDeclaration(SassVariableDeclaration<'a>),
+    SassWarnAtRule(SassWarnAtRule<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]

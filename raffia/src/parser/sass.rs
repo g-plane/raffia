@@ -282,4 +282,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(SassVariableDeclaration { name, value, span })
     }
+
+    pub(super) fn parse_sass_warn_at_rule(&mut self) -> PResult<SassWarnAtRule<'s>> {
+        let token = expect!(self, AtKeyword);
+        let expr = self.parse_component_values(/* allow_comma */ true)?;
+        let span = Span {
+            start: token.span.start,
+            end: expr.span.end,
+        };
+        Ok(SassWarnAtRule { expr, span })
+    }
 }
