@@ -159,7 +159,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             } else {
                 let offset = self.tokenizer.current_offset();
                 return Ok(SimpleBlock {
-                    elements: vec![],
+                    statements: vec![],
                     span: Span {
                         start: offset,
                         end: offset,
@@ -170,17 +170,52 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             expect!(self, LBrace).span.start
         };
 
-        let mut elements = Vec::with_capacity(4);
+        let statements = self.parse_statements(/* is_top_level */ false)?;
+        if self.syntax == Syntax::Sass {
+            match self.tokenizer.peek()? {
+                Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
+                    self.tokenizer.bump()?;
+                    Ok(SimpleBlock {
+                        statements,
+                        span: Span {
+                            start,
+                            end: span.start,
+                        },
+                    })
+                }
+                token => Err(Error {
+                    kind: ErrorKind::ExpectDedentOrEof,
+                    span: token.span().clone(),
+                }),
+            }
+        } else {
+            let r_brace = expect!(self, RBrace);
+            Ok(SimpleBlock {
+                statements,
+                span: Span {
+                    start,
+                    end: r_brace.span.end,
+                },
+            })
+        }
+    }
+
+    fn parse_statements(&mut self, is_top_level: bool) -> PResult<Vec<Statement<'s>>> {
+        let mut statements = Vec::with_capacity(1);
         loop {
             let mut is_block_element = false;
             match self.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
-                    if let Some(declaration) = self.try_parse(|parser| parser.parse_declaration()) {
-                        elements.push(SimpleBlockElement::Declaration(declaration));
+                    if !is_top_level {
+                        if let Some(declaration) =
+                            self.try_parse(|parser| parser.parse_declaration())
+                        {
+                            statements.push(Statement::Declaration(declaration));
+                        }
                     } else if let Some(qualified_rule) =
                         self.try_parse(|parser| parser.parse_qualified_rule())
                     {
-                        elements.push(SimpleBlockElement::QualifiedRule(qualified_rule));
+                        statements.push(Statement::QualifiedRule(qualified_rule));
                         is_block_element = true;
                     }
                 }
@@ -192,19 +227,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
                 | Token::Bar(..) => {
-                    elements.push(SimpleBlockElement::QualifiedRule(
-                        self.parse_qualified_rule()?,
-                    ));
+                    statements.push(Statement::QualifiedRule(self.parse_qualified_rule()?));
                     is_block_element = true;
                 }
                 Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    elements.push(SimpleBlockElement::QualifiedRule(
-                        self.parse_qualified_rule()?,
-                    ));
+                    statements.push(Statement::QualifiedRule(self.parse_qualified_rule()?));
                     is_block_element = true;
                 }
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    elements.push(SimpleBlockElement::SassVariableDeclaration(
+                    statements.push(Statement::SassVariableDeclaration(
                         self.parse_sass_variable_declaration()?,
                     ));
                 }
@@ -213,48 +244,34 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         if let Some(less_variable_declaration) =
                             self.try_parse(|parser| parser.parse_less_variable_declaration())
                         {
-                            elements.push(SimpleBlockElement::LessVariableDeclaration(
+                            statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));
                         }
                     }
                 }
                 _ => {}
-            }
-            if self.syntax == Syntax::Sass {
-                match self.tokenizer.peek()? {
-                    Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
-                        self.tokenizer.bump()?;
-                        return Ok(SimpleBlock {
-                            elements,
-                            span: Span {
-                                start,
-                                end: span.start,
-                            },
-                        });
-                    }
-                    _ => {
+            };
+            match self.tokenizer.peek()? {
+                Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
+                _ => {
+                    if self.syntax == Syntax::Sass {
                         if is_block_element {
                             eat!(self, Linebreak);
                         } else {
                             expect!(self, Linebreak);
                         }
+                    } else {
+                        if is_block_element {
+                            eat!(self, Semicolon);
+                        } else {
+                            expect!(self, Semicolon);
+                        }
                     }
                 }
-            } else if let Some(r_brace) = eat!(self, RBrace) {
-                return Ok(SimpleBlock {
-                    elements,
-                    span: Span {
-                        start,
-                        end: r_brace.span.end,
-                    },
-                });
-            } else if is_block_element {
-                eat!(self, Semicolon);
-            } else {
-                expect!(self, Semicolon);
             }
         }
+        Ok(statements)
     }
 
     fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'s>> {
@@ -262,61 +279,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             eat!(self, Linebreak);
         }
 
-        let mut statements = Vec::with_capacity(4);
-
-        loop {
-            let mut is_block_element = false;
-            match self.tokenizer.peek()? {
-                Token::Ident(..)
-                | Token::Dot(..)
-                | Token::Hash(..)
-                | Token::Ampersand(..)
-                | Token::LBracket(..)
-                | Token::Colon(..)
-                | Token::ColonColon(..)
-                | Token::Asterisk(..)
-                | Token::NumberSign(..)
-                | Token::Bar(..) => {
-                    statements.push(TopLevelStatement::QualifiedRule(
-                        self.parse_qualified_rule()?,
-                    ));
-                    is_block_element = true;
-                }
-                Token::HashLBrace(..) | Token::Percent(..)
-                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
-                {
-                    statements.push(TopLevelStatement::QualifiedRule(
-                        self.parse_qualified_rule()?,
-                    ));
-                    is_block_element = true;
-                }
-                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    statements.push(TopLevelStatement::SassVariableDeclaration(
-                        self.parse_sass_variable_declaration()?,
-                    ));
-                }
-                Token::AtKeyword(..) => {
-                    if self.syntax == Syntax::Less {
-                        if let Some(less_variable_declaration) =
-                            self.try_parse(|parser| parser.parse_less_variable_declaration())
-                        {
-                            statements.push(TopLevelStatement::LessVariableDeclaration(
-                                less_variable_declaration,
-                            ));
-                        }
-                    }
-                }
-                _ => {}
-            }
-            if eat!(self, Eof).is_some() {
-                break;
-            } else if is_block_element {
-                eat!(self, Semicolon);
-            } else {
-                expect!(self, Semicolon);
-            }
-        }
-
+        let statements = self.parse_statements(/* is_top_level */ true)?;
+        expect!(self, Eof);
         Ok(Stylesheet {
             statements,
             span: Span {

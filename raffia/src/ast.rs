@@ -401,16 +401,8 @@ pub struct SelectorList<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct SimpleBlock<'a> {
-    pub elements: Vec<SimpleBlockElement<'a>>,
+    pub statements: Vec<Statement<'a>>,
     pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum SimpleBlockElement<'a> {
-    Declaration(Declaration<'a>),
-    LessVariableDeclaration(LessVariableDeclaration<'a>),
-    QualifiedRule(QualifiedRule<'a>),
-    SassVariableDeclaration(SassVariableDeclaration<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -424,6 +416,14 @@ pub enum SimpleSelector<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum Statement<'a> {
+    Declaration(Declaration<'a>),
+    LessVariableDeclaration(LessVariableDeclaration<'a>),
+    QualifiedRule(QualifiedRule<'a>),
+    SassVariableDeclaration(SassVariableDeclaration<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Str<'a> {
     pub value: Cow<'a, str>,
     pub raw: &'a str,
@@ -432,7 +432,7 @@ pub struct Str<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Stylesheet<'a> {
-    pub statements: Vec<TopLevelStatement<'a>>,
+    pub statements: Vec<Statement<'a>>,
     pub span: Span,
 }
 
@@ -440,13 +440,6 @@ pub struct Stylesheet<'a> {
 pub struct TagNameSelector<'a> {
     pub name: WqName<'a>,
     pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum TopLevelStatement<'a> {
-    LessVariableDeclaration(LessVariableDeclaration<'a>),
-    QualifiedRule(QualifiedRule<'a>),
-    SassVariableDeclaration(SassVariableDeclaration<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
