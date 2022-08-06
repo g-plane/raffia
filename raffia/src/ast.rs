@@ -10,6 +10,13 @@ pub struct Angle<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct AtRule<'a> {
+    pub name: Ident<'a>,
+    pub block: Option<SimpleBlock<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct AttributeSelector<'a> {
     pub name: WqName<'a>,
     pub matcher: Option<AttributeSelectorMatcher>,
@@ -423,6 +430,7 @@ pub enum SimpleSelector<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum Statement<'a> {
+    AtRule(AtRule<'a>),
     Declaration(Declaration<'a>),
     LessVariableDeclaration(LessVariableDeclaration<'a>),
     QualifiedRule(QualifiedRule<'a>),

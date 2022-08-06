@@ -10,6 +10,7 @@ use crate::{
     },
 };
 
+mod at_rule;
 mod less;
 mod sass;
 mod selector;
@@ -252,7 +253,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             ));
                         }
                     }
-                    _ => {}
+                    _ => {
+                        let at_rule = self.parse_at_rule()?;
+                        is_block_element = at_rule.block.is_some();
+                        statements.push(Statement::AtRule(at_rule));
+                    }
                 },
                 _ => {}
             };
