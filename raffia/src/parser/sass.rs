@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     config::Syntax,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
@@ -190,6 +190,52 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 end: r_brace.span.end,
             },
         ))
+    }
+
+    pub(super) fn parse_sass_interpolated_str(&mut self) -> PResult<SassInterpolatedStr<'s>> {
+        let first = expect!(self, StrTemplate);
+        let mut span = first.span.clone();
+        let mut elements = vec![SassInterpolatedStrElement::Static(
+            InterpolableStrStaticPart {
+                value: first.value,
+                raw: first.raw,
+                span: first.span,
+            },
+        )];
+
+        loop {
+            match self.tokenizer.bump()? {
+                Token::StrTemplate(token) => {
+                    let end = token.span.end;
+                    elements.push(SassInterpolatedStrElement::Static(
+                        InterpolableStrStaticPart {
+                            value: token.value,
+                            raw: token.raw,
+                            span: token.span,
+                        },
+                    ));
+                    if token.tail {
+                        span.end = end;
+                        break;
+                    }
+                }
+                // '#' is consumed, so '{' left only
+                Token::LBrace(..) => {
+                    elements.push(SassInterpolatedStrElement::Expression(
+                        self.parse_component_values(/* allow_comma */ true)?,
+                    ));
+                    expect!(self, RBrace);
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected("StrTemplate or LBrace"),
+                        span: token.span().clone(),
+                    })
+                }
+            }
+        }
+
+        Ok(SassInterpolatedStr { elements, span })
     }
 
     pub(super) fn parse_sass_parenthesized_expression(

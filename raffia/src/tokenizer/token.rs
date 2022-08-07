@@ -68,6 +68,7 @@ pub enum Token<'a> {
     Semicolon(Semicolon),
     Solidus(Solidus),
     Str(Str<'a>),
+    StrTemplate(StrTemplate<'a>),
     Tilde(Tilde),
     TildeEqual(TildeEqual),
     Url(Url<'a>),
@@ -325,6 +326,14 @@ pub struct Solidus {
 pub struct Str<'a> {
     pub value: Cow<'a, str>,
     pub raw: &'a str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct StrTemplate<'a> {
+    pub value: Cow<'a, str>,
+    pub raw: &'a str,
+    pub tail: bool,
     pub span: Span,
 }
 

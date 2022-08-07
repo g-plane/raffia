@@ -10,11 +10,17 @@ use token::*;
 mod convert;
 pub mod token;
 
-/// Newtype for wrapping tokenizer state to avoid exposing internal detail.
 #[derive(Clone)]
 pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
     indent_size: usize,
+    template: Vec<(TemplateState, char)>,
+}
+
+#[derive(Clone)]
+enum TemplateState {
+    Interpolation,
+    Static,
 }
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
@@ -37,30 +43,27 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             state: TokenizerState {
                 chars: source.char_indices().peekable(),
                 indent_size: 0,
+                template: Vec::with_capacity(1),
             },
         }
     }
 
     pub fn bump(&mut self) -> PResult<Token<'s>> {
+        if let Some((TemplateState::Static, _)) = self.state.template.last() {
+            return self.scan_string_template();
+        }
+
         if let Some(indent) = self.skip_ws_or_comment() {
             return Ok(indent);
         }
 
         match self.peek_two_chars() {
-            Some((_, '\'' | '"', _)) => self.scan_string().map(Token::Str),
+            Some((_, '\'' | '"', _)) => self.scan_string_or_template(),
             Some((_, '-' | '+', c)) if c.is_ascii_digit() || c == '.' => {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
-            Some((_, '-', c))
-                if c.is_ascii_alphabetic()
-                    || c == '-'
-                    || c == '_'
-                    || !c.is_ascii()
-                    || c == '\\' =>
-            {
-                self.scan_ident_or_url()
-            }
+            Some((_, '-', c)) if is_start_of_ident(c) => self.scan_ident_or_url(),
             Some((_, '.', c)) if c.is_ascii_digit() => {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
@@ -74,22 +77,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_hash()
             }
-            Some((_, '@', c))
-                if c.is_ascii_alphabetic()
-                    || c == '-'
-                    || c == '_'
-                    || !c.is_ascii()
-                    || c == '\\' =>
-            {
-                self.scan_at_keyword()
-            }
+            Some((_, '@', c)) if is_start_of_ident(c) => self.scan_at_keyword(),
             Some((_, '$', c))
-                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
-                    && (c.is_ascii_alphabetic()
-                        || c == '-'
-                        || c == '_'
-                        || !c.is_ascii()
-                        || c == '\\') =>
+                if matches!(self.syntax, Syntax::Scss | Syntax::Sass) && is_start_of_ident(c) =>
             {
                 self.scan_dollar_var()
             }
@@ -99,11 +89,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let number = self.scan_number()?;
                     self.scan_dimension_or_percentage(number)
                 }
-                Some((_, c))
-                    if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() || c == '\\' =>
-                {
-                    self.scan_ident_or_url()
-                }
+                Some((_, c)) if is_start_of_ident(c) => self.scan_ident_or_url(),
                 Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
                     kind: ErrorKind::UnknownToken,
                     span: Span {
@@ -339,13 +325,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 start = i;
                 self.state.chars.next();
                 if let Some((i, c)) = self.state.chars.next() {
-                    debug_assert!(
-                        c.is_ascii_alphabetic()
-                            || c == '-'
-                            || c == '_'
-                            || !c.is_ascii()
-                            || c == '\\'
-                    );
+                    debug_assert!(is_start_of_ident(c));
                     end = i + c.len_utf8();
                 } else {
                     return Err(self.build_eof_error());
@@ -519,21 +499,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_dimension_or_percentage(&mut self, number: Number<'s>) -> PResult<Token<'s>> {
         match self.peek_two_chars() {
-            Some((_, '-', c))
-                if c.is_ascii_alphabetic()
-                    || c == '-'
-                    || c == '_'
-                    || c == '\\'
-                    || !c.is_ascii() =>
-            {
-                self.scan_dimension(number)
-            }
+            Some((_, '-', c)) if is_start_of_ident(c) => self.scan_dimension(number),
             _ => match self.state.chars.peek() {
-                Some((_, c))
-                    if c.is_ascii_alphabetic() || *c == '_' || *c == '\\' || !c.is_ascii() =>
-                {
-                    self.scan_dimension(number)
-                }
+                Some((_, c)) if is_start_of_ident(*c) => self.scan_dimension(number),
                 Some((_, '%')) => self.scan_percentage(number),
                 _ => Ok(Token::Number(number)),
             },
@@ -563,7 +531,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }))
     }
 
-    fn scan_string(&mut self) -> PResult<Str<'s>> {
+    fn scan_string_or_template(&mut self) -> PResult<Token<'s>> {
         // '\'' or '"' is checked (but not consumed) before
         let (start, quote) = self.state.chars.next().unwrap();
 
@@ -583,6 +551,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end = i + c.len_utf8();
                     break;
                 }
+                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_template() => {
+                    self.state
+                        .template
+                        .push((TemplateState::Interpolation, quote));
+                    let raw = unsafe { self.source.get_unchecked(start + 1..end) };
+                    let span = Span { start, end };
+                    return Ok(Token::StrTemplate(StrTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: false,
+                        span,
+                    }));
+                }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
             }
@@ -592,14 +576,78 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let value = unsafe { self.source.get_unchecked(start + 1..end - 1) };
         let span = Span { start, end };
-        Ok(Str {
+        Ok(Token::Str(Str {
             raw,
             value: handle_escape(value).map_err(|kind| Error {
                 kind,
                 span: span.clone(),
             })?,
             span,
-        })
+        }))
+    }
+
+    fn scan_string_template(&mut self) -> PResult<Token<'s>> {
+        let start = self.current_offset();
+        let end;
+        let (_, quote) = self.state.template.last().unwrap();
+        loop {
+            match self.state.chars.next() {
+                Some((i, '\n')) => {
+                    return Err(Error {
+                        kind: ErrorKind::UnexpectedLinebreak,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    })
+                }
+                Some((i, c)) if c == *quote => {
+                    end = i + c.len_utf8();
+                    debug_assert!(start < end);
+
+                    self.state.template.pop();
+                    let raw = unsafe { self.source.get_unchecked(start..end - 1) };
+                    let span = Span { start, end };
+                    return Ok(Token::StrTemplate(StrTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: true,
+                        span,
+                    }));
+                }
+                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_template() => {
+                    if let Some((state, _)) = self.state.template.last_mut() {
+                        *state = TemplateState::Interpolation;
+                    }
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    let span = Span { start, end };
+                    return Ok(Token::StrTemplate(StrTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: false,
+                        span,
+                    }));
+                }
+                Some(..) => {}
+                None => return Err(self.build_eof_error()),
+            }
+        }
+    }
+
+    fn is_start_of_interpolation_in_template(&self) -> bool {
+        match self.syntax {
+            Syntax::Css => false,
+            Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
+            Syntax::Less => {
+                matches!(self.peek_two_chars(), Some((_, '{', second)) if is_start_of_ident(second))
+            }
+        }
     }
 
     fn scan_ident_or_url(&mut self) -> PResult<Token<'s>> {
@@ -947,12 +995,17 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         end: i + 1,
                     },
                 })),
-                Some((i, '}')) => Some(Token::RBrace(RBrace {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
+                Some((i, '}')) => {
+                    if let Some(state) = self.state.template.last_mut() {
+                        (*state).0 = TemplateState::Static;
+                    }
+                    Some(Token::RBrace(RBrace {
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    }))
+                }
                 Some((i, '/')) => Some(Token::Solidus(Solidus {
                     span: Span {
                         start: i,
@@ -1089,4 +1142,8 @@ fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
     } else {
         Ok(s.into())
     }
+}
+
+fn is_start_of_ident(c: char) -> bool {
+    c.is_ascii_alphabetic() || c == '-' || c == '_' || !c.is_ascii() || c == '\\'
 }

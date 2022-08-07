@@ -38,6 +38,8 @@ pub enum ErrorKind {
     ExpectComponentValue,
     ExpectSassExpression,
     ExpectDedentOrEof,
+    ExpectString,
+    UnexpectedTemplateInCss,
 }
 
 pub type PResult<T> = Result<T, Error>;

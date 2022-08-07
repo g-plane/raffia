@@ -35,7 +35,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Dimension(..) => self.parse_dimension().map(ComponentValue::Dimension),
             Token::Percentage(..) => self.parse_percentage().map(ComponentValue::Percentage),
             Token::Hash(..) => self.parse_hex_color().map(ComponentValue::HexColor),
-            Token::Str(..) => self.parse_str().map(ComponentValue::Str),
+            Token::Str(..) => self
+                .parse_str()
+                .map(InterpolableStr::Literal)
+                .map(ComponentValue::InterpolableStr),
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse_sass_variable().map(ComponentValue::SassVariable)
             }
@@ -45,9 +48,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
+            Token::StrTemplate(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
+                .parse_sass_interpolated_str()
+                .map(InterpolableStr::SassInterpolated)
+                .map(ComponentValue::InterpolableStr),
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
                 self.parse_less_variable().map(ComponentValue::LessVariable)
             }
+            Token::StrTemplate(..) if self.syntax == Syntax::Less => self
+                .parse_less_interpolated_str()
+                .map(InterpolableStr::LessInterpolated)
+                .map(ComponentValue::InterpolableStr),
             token => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
                 span: token.span().clone(),
@@ -249,6 +260,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     self.parse_ident().map(InterpolableIdent::Literal)
                 }
             }
+        }
+    }
+
+    pub(super) fn parse_interpolable_str(&mut self) -> PResult<InterpolableStr<'s>> {
+        match self.tokenizer.peek()? {
+            Token::Str(..) => self.parse_str().map(InterpolableStr::Literal),
+            Token::StrTemplate(token) => match self.syntax {
+                Syntax::Scss | Syntax::Sass => self
+                    .parse_sass_interpolated_str()
+                    .map(InterpolableStr::SassInterpolated),
+                Syntax::Less => self
+                    .parse_less_interpolated_str()
+                    .map(InterpolableStr::LessInterpolated),
+                Syntax::Css => Err(Error {
+                    kind: ErrorKind::UnexpectedTemplateInCss,
+                    span: token.span,
+                }),
+            },
+            token => Err(Error {
+                kind: ErrorKind::ExpectString,
+                span: token.span().clone(),
+            }),
         }
     }
 

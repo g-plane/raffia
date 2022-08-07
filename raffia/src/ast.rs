@@ -120,6 +120,7 @@ pub enum ComponentValue<'a> {
     Function(Function<'a>),
     HexColor(HexColor<'a>),
     InterpolableIdent(InterpolableIdent<'a>),
+    InterpolableStr(InterpolableStr<'a>),
     LessVariable(LessVariable<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
@@ -127,7 +128,6 @@ pub enum ComponentValue<'a> {
     SassParenthesizedExpression(SassParenthesizedExpression<'a>),
     SassUnaryExpression(SassUnaryExpression<'a>),
     SassVariable(SassVariable<'a>),
-    Str(Str<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -231,6 +231,20 @@ pub struct InterpolableIdentStaticPart<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum InterpolableStr<'a> {
+    Literal(Str<'a>),
+    SassInterpolated(SassInterpolatedStr<'a>),
+    LessInterpolated(LessInterpolatedStr<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct InterpolableStrStaticPart<'a> {
+    pub value: Cow<'a, str>,
+    pub raw: &'a str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct IdSelector<'a> {
     pub name: InterpolableIdent<'a>,
     pub span: Span,
@@ -246,6 +260,18 @@ pub struct LessInterpolatedIdent<'a> {
 pub enum LessInterpolatedIdentElement<'a> {
     Variable(LessVariableInterpolation<'a>),
     Static(InterpolableIdentStaticPart<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LessInterpolatedStr<'a> {
+    pub elements: Vec<LessInterpolatedStrElement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum LessInterpolatedStrElement<'a> {
+    Variable(LessVariableInterpolation<'a>),
+    Static(InterpolableStrStaticPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -353,6 +379,18 @@ pub struct SassInterpolatedIdent<'a> {
 pub enum SassInterpolatedIdentElement<'a> {
     Expression(ComponentValues<'a>),
     Static(InterpolableIdentStaticPart<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SassInterpolatedStr<'a> {
+    pub elements: Vec<SassInterpolatedStrElement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SassInterpolatedStrElement<'a> {
+    Expression(ComponentValues<'a>),
+    Static(InterpolableStrStaticPart<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
