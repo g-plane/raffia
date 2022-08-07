@@ -68,7 +68,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> Option<R> {
-        let tokenizer_state = self.tokenizer.clone_state();
+        let tokenizer_state = self.tokenizer.state.clone();
         let comments_count = self
             .tokenizer
             .comments
@@ -77,7 +77,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         match f(self) {
             Ok(value) => Some(value),
             Err(..) => {
-                self.tokenizer.replace_state(tokenizer_state);
+                self.tokenizer.state = tokenizer_state;
                 if let Some((comments, count)) =
                     self.tokenizer.comments.as_mut().zip(comments_count)
                 {

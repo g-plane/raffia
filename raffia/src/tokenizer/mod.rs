@@ -13,7 +13,7 @@ pub mod token;
 /// Newtype for wrapping tokenizer state to avoid exposing internal detail.
 #[derive(Clone)]
 pub(crate) struct TokenizerState<'s> {
-    iter: Peekable<CharIndices<'s>>,
+    chars: Peekable<CharIndices<'s>>,
     indent_size: usize,
 }
 
@@ -21,8 +21,7 @@ pub struct Tokenizer<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
     pub(crate) comments: Option<&'cmt mut Vec<Comment<'s>>>,
-    iter: Peekable<CharIndices<'s>>,
-    indent_size: usize,
+    pub(crate) state: TokenizerState<'s>,
 }
 
 impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
@@ -35,8 +34,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             source,
             syntax,
             comments,
-            iter: source.char_indices().peekable(),
-            indent_size: 0,
+            state: TokenizerState {
+                chars: source.char_indices().peekable(),
+                indent_size: 0,
+            },
         }
     }
 
@@ -124,41 +125,30 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     pub fn peek(&mut self) -> PResult<Token<'s>> {
-        let state = self.clone_state();
+        let state = self.state.clone();
         let comments = self.comments.take();
 
         let token = self.bump();
-        self.replace_state(state);
+        self.state = state;
         self.comments = comments;
         token
     }
 
     pub fn current_offset(&self) -> usize {
-        self.iter
+        self.state
+            .chars
             .clone()
             .next()
             .map(|(i, _)| i)
             .unwrap_or_else(|| self.source.len())
     }
 
-    pub(crate) fn clone_state(&self) -> TokenizerState<'s> {
-        TokenizerState {
-            iter: self.iter.clone(),
-            indent_size: self.indent_size,
-        }
-    }
-
-    pub(crate) fn replace_state(&mut self, state: TokenizerState<'s>) {
-        self.iter = state.iter;
-        self.indent_size = state.indent_size;
-    }
-
     fn peek_one_char(&self) -> Option<(usize, char)> {
-        self.iter.clone().next()
+        self.state.chars.clone().next()
     }
 
     fn peek_two_chars(&self) -> Option<(usize, char, char)> {
-        let mut iter = self.iter.clone();
+        let mut iter = self.state.chars.clone();
         iter.next()
             .zip(iter.next())
             .map(|((start, first), (_, second))| (start, first, second))
@@ -181,7 +171,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             match self.peek_two_chars() {
                 Some((_, '/', '*')) => self.scan_block_comment(),
                 Some((_, '/', '/')) if self.syntax != Syntax::Css => self.scan_line_comment(),
-                _ => match self.iter.peek() {
+                _ => match self.state.chars.peek() {
                     Some((_, c)) if c.is_ascii_whitespace() => {
                         if self.syntax == Syntax::Sass {
                             indent = self.scan_indent();
@@ -196,9 +186,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn skip_ws(&mut self) {
-        while let Some((_, c)) = self.iter.peek() {
+        while let Some((_, c)) = self.state.chars.peek() {
             if c.is_ascii_whitespace() {
-                self.iter.next();
+                self.state.chars.next();
             } else {
                 break;
             }
@@ -208,10 +198,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_indent(&mut self) -> Option<Token<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Sass);
         let mut start = None;
-        while let Some((i, c)) = self.iter.peek() {
+        while let Some((i, c)) = self.state.chars.peek() {
             if c.is_ascii_whitespace() {
-                let (i, c) = self.iter.next()?;
-                if c == '\n' || c == '\r' && matches!(self.iter.peek(), Some((_, '\n'))) {
+                let (i, c) = self.state.chars.next()?;
+                if c == '\n' || c == '\r' && matches!(self.state.chars.peek(), Some((_, '\n'))) {
                     start = Some(i + 1);
                 }
             } else {
@@ -219,11 +209,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let end = *i;
                     let len = end - start;
                     let span = Span { start, end };
-                    if len > self.indent_size {
-                        self.indent_size = len;
+                    if len > self.state.indent_size {
+                        self.state.indent_size = len;
                         Token::Indent(Indent { span })
-                    } else if len < self.indent_size {
-                        self.indent_size = len;
+                    } else if len < self.state.indent_size {
+                        self.state.indent_size = len;
                         Token::Dedent(Dedent { span })
                     } else {
                         Token::Linebreak(Linebreak { span })
@@ -242,12 +232,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_block_comment(&mut self) {
-        let start = if let Some((i, '/')) = self.iter.next() {
+        let start = if let Some((i, '/')) = self.state.chars.next() {
             i
         } else {
             return;
         };
-        let content_start = if let Some((i, '*')) = self.iter.next() {
+        let content_start = if let Some((i, '*')) = self.state.chars.next() {
             i + 1
         } else {
             return;
@@ -261,12 +251,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     content_end = i;
                     end = i + 2;
 
-                    self.iter.next();
-                    self.iter.next();
+                    self.state.chars.next();
+                    self.state.chars.next();
                     break;
                 }
                 Some(..) => {
-                    self.iter.next();
+                    self.state.chars.next();
                 }
                 None => {
                     content_end = self.source.len();
@@ -286,12 +276,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_line_comment(&mut self) {
-        let start = if let Some((i, '/')) = self.iter.next() {
+        let start = if let Some((i, '/')) = self.state.chars.next() {
             i
         } else {
             return;
         };
-        let content_start = if let Some((i, '/')) = self.iter.next() {
+        let content_start = if let Some((i, '/')) = self.state.chars.next() {
             i + 1
         } else {
             return;
@@ -304,22 +294,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 Some((i, '\r', '\n')) => {
                     content_end = i;
                     end = i;
-                    self.iter.next();
-                    self.iter.next();
+                    self.state.chars.next();
+                    self.state.chars.next();
                     break;
                 }
                 Some((i, '\n', _)) => {
                     content_end = i;
                     end = i;
-                    self.iter.next();
+                    self.state.chars.next();
                     break;
                 }
                 Some(..) => {
-                    self.iter.next();
+                    self.state.chars.next();
                 }
                 None => {
                     content_end = if let Some((i, '\n')) = self.peek_one_char() {
-                        self.iter.next();
+                        self.state.chars.next();
                         i
                     } else {
                         self.source.len()
@@ -345,8 +335,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         match self.peek_one_char() {
             Some((i, '-')) => {
                 start = i;
-                self.iter.next();
-                if let Some((i, c)) = self.iter.next() {
+                self.state.chars.next();
+                if let Some((i, c)) = self.state.chars.next() {
                     debug_assert!(
                         c.is_ascii_alphabetic()
                             || c == '-'
@@ -361,7 +351,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
             Some((i, c)) if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() => {
                 start = i;
-                self.iter.next();
+                self.state.chars.next();
                 end = i + c.len_utf8();
             }
             Some((i, '\\')) => {
@@ -375,7 +365,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         while let Some((i, c)) = self.peek_one_char() {
             if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() {
-                self.iter.next();
+                self.state.chars.next();
             } else if c == '\\' {
                 self.scan_escape()?;
             } else {
@@ -398,20 +388,20 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_escape(&mut self) -> PResult<usize> {
-        self.iter.next(); // consume `\\`
-        match self.iter.next() {
+        self.state.chars.next(); // consume `\\`
+        match self.state.chars.next() {
             Some((i, c)) if c.is_ascii_hexdigit() => {
                 let mut count: usize = 1;
                 let mut end = i + 1;
                 while let Some((i, c)) = self.peek_one_char() {
                     if c.is_ascii_hexdigit() && count < 6 {
                         count += 1;
-                        self.iter.next();
+                        self.state.chars.next();
                     } else {
                         // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
                         // consume a whitespace
                         if c.is_ascii_whitespace() {
-                            self.iter.next();
+                            self.state.chars.next();
                             end = i + 1;
                         } else {
                             end = i;
@@ -431,14 +421,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut end = 0;
 
         let is_start_with_dot;
-        if let Some((i, c)) = self.iter.next() {
+        if let Some((i, c)) = self.state.chars.next() {
             start = i;
             if c.is_ascii_digit() {
                 is_start_with_dot = false;
                 end = i + 1;
             } else if c == '+' || c == '-' {
-                is_start_with_dot = if let Some((_, '.')) = self.iter.peek() {
-                    self.iter.next();
+                is_start_with_dot = if let Some((_, '.')) = self.state.chars.peek() {
+                    self.state.chars.next();
                     true
                 } else {
                     false
@@ -461,7 +451,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         if is_start_with_dot {
             while let Some((i, c)) = self.peek_one_char() {
                 if c.is_ascii_digit() {
-                    self.iter.next();
+                    self.state.chars.next();
                 } else {
                     end = i;
                     break;
@@ -470,18 +460,18 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         } else {
             while let Some((i, c)) = self.peek_one_char() {
                 if c.is_ascii_digit() {
-                    self.iter.next();
+                    self.state.chars.next();
                 } else {
                     end = i;
                     break;
                 }
             }
-            if let Some((_, '.')) = self.iter.peek() {
+            if let Some((_, '.')) = self.state.chars.peek() {
                 // bump '.'
-                self.iter.next();
+                self.state.chars.next();
                 while let Some((i, c)) = self.peek_one_char() {
                     if c.is_ascii_digit() {
-                        self.iter.next();
+                        self.state.chars.next();
                     } else {
                         end = i;
                         break;
@@ -494,15 +484,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((_, 'e' | 'E', second))
                 if second == '-' || second == '+' || second.is_ascii_digit() =>
             {
-                self.iter.next();
+                self.state.chars.next();
 
-                if let Some((_, '-' | '+')) = self.iter.peek() {
-                    self.iter.next();
+                if let Some((_, '-' | '+')) = self.state.chars.peek() {
+                    self.state.chars.next();
                 }
 
-                while let Some((i, c)) = self.iter.clone().peek() {
+                while let Some((i, c)) = self.state.chars.clone().peek() {
                     if c.is_ascii_digit() {
-                        self.iter.next();
+                        self.state.chars.next();
                     } else {
                         end = *i;
                         break;
@@ -536,7 +526,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_dimension(number)
             }
-            _ => match self.iter.peek() {
+            _ => match self.state.chars.peek() {
                 Some((_, c))
                     if c.is_ascii_alphabetic() || *c == '_' || *c == '\\' || !c.is_ascii() =>
                 {
@@ -559,7 +549,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_percentage(&mut self, value: Number<'s>) -> PResult<Token<'s>> {
         let start = value.span.start;
-        let (i, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (i, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '%');
         Ok(Token::Percentage(Percentage {
             value,
@@ -569,11 +563,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_string(&mut self) -> PResult<Str<'s>> {
         // '\'' or '"' is checked (but not consumed) before
-        let (start, quote) = self.iter.next().unwrap();
+        let (start, quote) = self.state.chars.next().unwrap();
 
         let end;
         loop {
-            match self.iter.next() {
+            match self.state.chars.next() {
                 Some((i, '\n')) => {
                     return Err(Error {
                         kind: ErrorKind::UnexpectedLinebreak,
@@ -608,7 +602,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_ident_or_url(&mut self) -> PResult<Token<'s>> {
         let ident = self.scan_ident_sequence()?;
-        match self.iter.peek() {
+        match self.state.chars.peek() {
             Some((_, '(')) if ident.name.eq_ignore_ascii_case("url") => {
                 self.scan_url(ident.span.start).map(Token::Url)
             }
@@ -617,11 +611,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_url(&mut self, start: usize) -> PResult<Url<'s>> {
-        let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (_, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
-        if let Some((i, '\'' | '"')) = self.iter.peek() {
+        if let Some((i, '\'' | '"')) = self.state.chars.peek() {
             Ok(Url {
                 raw: None,
                 span: Span { start, end: *i },
@@ -643,7 +641,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_url_raw(&mut self) -> PResult<UrlRaw<'s>> {
         let start = self.current_offset();
         let mut end = self.source.len();
-        for (i, c) in self.iter.by_ref() {
+        for (i, c) in self.state.chars.by_ref() {
             if c == ')' {
                 end = i;
                 break;
@@ -662,11 +660,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_hash(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '#');
 
         let mut end;
-        match self.iter.next() {
+        match self.state.chars.next() {
             Some((i, c))
                 if c.is_ascii_alphanumeric()
                     || c == '-'
@@ -691,7 +693,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
         while let Some((i, c)) = self.peek_one_char() {
             if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() || c == '\\' {
-                self.iter.next();
+                self.state.chars.next();
             } else {
                 end = i;
                 break;
@@ -714,7 +716,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_dollar_var(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '$');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
@@ -725,13 +731,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_at_lbrace_var(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
-        let (_, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (_, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '{');
 
         let ident = self.scan_ident_sequence()?;
-        match self.iter.next() {
+        match self.state.chars.next() {
             Some((i, '}')) => Ok(Token::AtLBraceVar(AtLBraceVar {
                 ident,
                 span: Span { start, end: i + 1 },
@@ -748,7 +762,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_at_keyword(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self.iter.next().ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self
+            .state
+            .chars
+            .next()
+            .ok_or_else(|| self.build_eof_error())?;
         debug_assert_eq!(c, '@');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
@@ -761,8 +779,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_punc(&mut self) -> Option<Token<'s>> {
         match self.peek_two_chars() {
             Some((i, ':', ':')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::ColonColon(ColonColon {
                     span: Span {
                         start: i,
@@ -771,8 +789,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '|', '|')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::BarBar(BarBar {
                     span: Span {
                         start: i,
@@ -781,8 +799,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '~', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::TildeEqual(TildeEqual {
                     span: Span {
                         start: i,
@@ -791,8 +809,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '|', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::BarEqual(BarEqual {
                     span: Span {
                         start: i,
@@ -801,8 +819,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '^', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::CaretEqual(CaretEqual {
                     span: Span {
                         start: i,
@@ -811,8 +829,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '$', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::DollarEqual(DollarEqual {
                     span: Span {
                         start: i,
@@ -821,8 +839,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '*', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::AsteriskEqual(AsteriskEqual {
                     span: Span {
                         start: i,
@@ -831,8 +849,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '#', '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::HashLBrace(HashLBrace {
                     span: Span {
                         start: i,
@@ -841,8 +859,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '=', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::EqualEqual(EqualEqual {
                     span: Span {
                         start: i,
@@ -851,8 +869,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '!', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::ExclamationEqual(ExclamationEqual {
                     span: Span {
                         start: i,
@@ -861,8 +879,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '>', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::GreaterThanEqual(GreaterThanEqual {
                     span: Span {
                         start: i,
@@ -871,8 +889,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '<', '=')) => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::LessThanEqual(LessThanEqual {
                     span: Span {
                         start: i,
@@ -881,8 +899,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
             Some((i, '+', '_')) if self.syntax == Syntax::Less => {
-                self.iter.next();
-                self.iter.next();
+                self.state.chars.next();
+                self.state.chars.next();
                 Some(Token::PlusUnderscore(PlusUnderscore {
                     span: Span {
                         start: i,
@@ -890,7 +908,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 }))
             }
-            _ => match self.iter.next() {
+            _ => match self.state.chars.next() {
                 Some((i, ':')) => Some(Token::Colon(Colon {
                     span: Span {
                         start: i,
