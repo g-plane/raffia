@@ -25,6 +25,7 @@ pub enum ErrorKind {
     InvalidHash,
     ExpectRightParenForURL,
     ExpectRightBraceForLessVar,
+    UnexpectedLinebreak,
     UnexpectedEof,
 
     UnexpectedWhitespace,

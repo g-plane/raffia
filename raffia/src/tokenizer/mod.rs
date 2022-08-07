@@ -571,11 +571,24 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         // '\'' or '"' is checked (but not consumed) before
         let (start, quote) = self.iter.next().unwrap();
 
-        let mut end = 0;
-        for (i, c) in self.iter.by_ref() {
-            if c == quote {
-                end = i + c.len_utf8();
-                break;
+        let end;
+        loop {
+            match self.iter.next() {
+                Some((i, '\n')) => {
+                    return Err(Error {
+                        kind: ErrorKind::UnexpectedLinebreak,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    })
+                }
+                Some((i, c)) if c == quote => {
+                    end = i + c.len_utf8();
+                    break;
+                }
+                Some(..) => {}
+                None => return Err(self.build_eof_error()),
             }
         }
 
