@@ -3,7 +3,7 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     pos::Span,
 };
-use std::{borrow::Cow, iter::Peekable, str::CharIndices};
+use std::{borrow::Cow, cmp::Ordering, iter::Peekable, str::CharIndices};
 pub use token::Token;
 use token::*;
 
@@ -209,14 +209,16 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let end = *i;
                     let len = end - start;
                     let span = Span { start, end };
-                    if len > self.state.indent_size {
-                        self.state.indent_size = len;
-                        Token::Indent(Indent { span })
-                    } else if len < self.state.indent_size {
-                        self.state.indent_size = len;
-                        Token::Dedent(Dedent { span })
-                    } else {
-                        Token::Linebreak(Linebreak { span })
+                    match len.cmp(&self.state.indent_size) {
+                        Ordering::Greater => {
+                            self.state.indent_size = len;
+                            Token::Indent(Indent { span })
+                        }
+                        Ordering::Less => {
+                            self.state.indent_size = len;
+                            Token::Dedent(Dedent { span })
+                        }
+                        Ordering::Equal => Token::Linebreak(Linebreak { span }),
                     }
                 });
             }

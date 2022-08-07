@@ -270,12 +270,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         } else {
                             expect!(self, Linebreak);
                         }
+                    } else if is_block_element {
+                        eat!(self, Semicolon);
                     } else {
-                        if is_block_element {
-                            eat!(self, Semicolon);
-                        } else {
-                            expect!(self, Semicolon);
-                        }
+                        expect!(self, Semicolon);
                     }
                 }
             }
