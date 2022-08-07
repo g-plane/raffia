@@ -621,31 +621,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
-        if let Some((_, '\'' | '"')) = self.iter.peek() {
-            let value = self.scan_string().map(UrlValue::Str)?;
-            match self.iter.next() {
-                Some((i, ')')) => Ok(Url {
-                    value,
-                    span: Span { start, end: i + 1 },
-                }),
-                Some((i, c)) => Err(Error {
-                    kind: ErrorKind::ExpectRightParenForURL,
-                    span: Span {
-                        start,
-                        end: i + c.len_utf8(),
-                    },
-                }),
-                None => Err(self.build_eof_error()),
-            }
+        if let Some((i, '\'' | '"')) = self.iter.peek() {
+            Ok(Url {
+                raw: None,
+                span: Span { start, end: *i },
+            })
         } else {
             // ')' is consumed
-            let value = self.scan_url_raw().map(UrlValue::Raw)?;
+            let raw = self.scan_url_raw()?;
+            let span = Span {
+                start,
+                end: raw.span.end,
+            };
             Ok(Url {
-                value,
-                span: Span {
-                    start,
-                    end: self.current_offset(),
-                },
+                raw: Some(raw),
+                span,
             })
         }
     }

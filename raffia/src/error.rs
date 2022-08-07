@@ -23,7 +23,6 @@ pub enum ErrorKind {
     InvalidNumber,
     InvalidEscape,
     InvalidHash,
-    ExpectRightParenForURL,
     ExpectRightBraceForLessVar,
     UnexpectedLinebreak,
     UnexpectedEof,

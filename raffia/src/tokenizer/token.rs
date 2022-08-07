@@ -340,7 +340,7 @@ pub struct TildeEqual {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct Url<'a> {
-    pub value: UrlValue<'a>,
+    pub raw: Option<UrlRaw<'a>>,
     pub span: Span,
 }
 
@@ -349,10 +349,4 @@ pub struct UrlRaw<'a> {
     pub value: Cow<'a, str>,
     pub raw: &'a str,
     pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum UrlValue<'a> {
-    Str(Str<'a>),
-    Raw(UrlRaw<'a>),
 }
