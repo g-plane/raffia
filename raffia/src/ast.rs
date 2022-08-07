@@ -50,7 +50,7 @@ pub struct AttributeSelectorModifier<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum AttributeSelectorValue<'a> {
     Ident(InterpolableIdent<'a>),
-    Str(Str<'a>),
+    Str(InterpolableStr<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]

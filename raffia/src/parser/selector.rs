@@ -149,7 +149,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Ident(..) | Token::HashLBrace(..) => Some(AttributeSelectorValue::Ident(
                 self.parse_interpolable_ident()?,
             )),
-            Token::Str(str) => Some(AttributeSelectorValue::Str(str.into())),
+            Token::Str(..) | Token::StrTemplate(..) => {
+                Some(AttributeSelectorValue::Str(self.parse_interpolable_str()?))
+            }
             Token::RBracket(..) => None,
             token => {
                 return Err(Error {
