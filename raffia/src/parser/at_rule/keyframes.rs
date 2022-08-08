@@ -3,55 +3,13 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Syntax,
+    util,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_at_rule(&mut self) -> PResult<AtRule<'s>> {
-        let at_keyword = expect!(self, AtKeyword);
-
-        let at_rule_name = at_keyword.ident.name.clone();
-        let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
-        } else {
-            None
-        };
-
-        let block = if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(self.parse_keyframes_blocks()?)
-        } else {
-            match self.tokenizer.peek()? {
-                Token::LBrace(..) | Token::Indent(..) => Some(self.parse_simple_block()?),
-                _ => None,
-            }
-        };
-
-        let span = Span {
-            start: at_keyword.span.start,
-            end: match &block {
-                Some(block) => block.span.end,
-                None => {
-                    if self.syntax == Syntax::Sass {
-                        at_keyword.span.end
-                    } else {
-                        // next token should be semicolon, but it won't be consumed here
-                        self.tokenizer.peek()?.span().end
-                    }
-                }
-            },
-        };
-        Ok(AtRule {
-            name: at_keyword.ident.into(),
-            prelude,
-            block,
-            span,
-        })
-    }
-
-    fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
+    pub(super) fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
         self.parse_simple_block_with(|parser| {
             let mut statements = vec![];
             loop {
@@ -134,7 +92,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok((prelude, span))
     }
 
-    fn parse_keyframes_prelude(&mut self) -> PResult<KeyframesName<'s>> {
+    pub(super) fn parse_keyframes_prelude(&mut self) -> PResult<KeyframesName<'s>> {
         match self.tokenizer.peek()? {
             Token::Str(..) | Token::StrTemplate(..) => {
                 self.parse_interpolable_str().map(KeyframesName::Str)
