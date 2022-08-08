@@ -40,6 +40,9 @@ pub enum ErrorKind {
     ExpectDedentOrEof,
     ExpectString,
     UnexpectedTemplateInCss,
+
+    InvalidCSSCustomIdent,
+    UnknownKeyframeSelectorIdent,
 }
 
 pub type PResult<T> = Result<T, Error>;

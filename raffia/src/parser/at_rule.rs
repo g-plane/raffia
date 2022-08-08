@@ -2,11 +2,11 @@ use super::Parser;
 use crate::{
     ast::*,
     eat,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Syntax,
+    util, Syntax,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -86,6 +86,19 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             _ => {
                 let ident = self.parse_interpolable_ident()?;
+                match &ident {
+                    InterpolableIdent::Literal(ident)
+                        if !ident.name.eq_ignore_ascii_case("from")
+                            && !ident.name.eq_ignore_ascii_case("to") =>
+                    {
+                        // this should be recoverable
+                        return Err(Error {
+                            kind: ErrorKind::UnknownKeyframeSelectorIdent,
+                            span: ident.span.clone(),
+                        });
+                    }
+                    _ => {}
+                }
                 span = ident.span().clone();
                 prelude.push(KeyframeSelector::Ident(ident));
             }
@@ -95,7 +108,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::Percent(..) => {
                     prelude.push(KeyframeSelector::Percentage(self.parse_percentage()?))
                 }
-                _ => prelude.push(KeyframeSelector::Ident(self.parse_interpolable_ident()?)),
+                _ => {
+                    let ident = self.parse_interpolable_ident()?;
+                    match &ident {
+                        InterpolableIdent::Literal(ident)
+                            if !ident.name.eq_ignore_ascii_case("from")
+                                && !ident.name.eq_ignore_ascii_case("to") =>
+                        {
+                            // this should be recoverable
+                            return Err(Error {
+                                kind: ErrorKind::UnknownKeyframeSelectorIdent,
+                                span: ident.span.clone(),
+                            });
+                        }
+                        _ => {}
+                    }
+                    prelude.push(KeyframeSelector::Ident(ident))
+                }
             };
         }
 
@@ -110,7 +139,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Str(..) | Token::StrTemplate(..) => {
                 self.parse_interpolable_str().map(KeyframesName::Str)
             }
-            _ => self.parse_interpolable_ident().map(KeyframesName::Ident),
+            _ => {
+                let ident = self.parse_interpolable_ident()?;
+                match &ident {
+                    InterpolableIdent::Literal(ident)
+                        if util::is_css_wide_keyword(&ident.name)
+                            || ident.name.eq_ignore_ascii_case("default") =>
+                    {
+                        // this should be recoverable
+                        return Err(Error {
+                            kind: ErrorKind::InvalidCSSCustomIdent,
+                            span: ident.span.clone(),
+                        });
+                    }
+                    _ => {}
+                }
+                Ok(KeyframesName::Ident(ident))
+            }
         }
     }
 }
