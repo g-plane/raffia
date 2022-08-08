@@ -12,8 +12,14 @@ pub struct Angle<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct AtRule<'a> {
     pub name: Ident<'a>,
+    pub prelude: Option<AtRulePrelude<'a>>,
     pub block: Option<SimpleBlock<'a>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum AtRulePrelude<'a> {
+    Keyframes(KeyframesName<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -251,6 +257,25 @@ pub struct IdSelector<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct KeyframeBlock<'a> {
+    pub prelude: Vec<KeyframeSelector<'a>>,
+    pub block: SimpleBlock<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum KeyframeSelector<'a> {
+    Ident(InterpolableIdent<'a>),
+    Percentage(Percentage<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum KeyframesName<'a> {
+    Ident(InterpolableIdent<'a>),
+    Str(InterpolableStr<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct LessInterpolatedIdent<'a> {
     pub elements: Vec<LessInterpolatedIdentElement<'a>>,
     pub span: Span,
@@ -470,6 +495,7 @@ pub enum SimpleSelector<'a> {
 pub enum Statement<'a> {
     AtRule(AtRule<'a>),
     Declaration(Declaration<'a>),
+    KeyframeBlock(KeyframeBlock<'a>),
     LessVariableDeclaration(LessVariableDeclaration<'a>),
     QualifiedRule(QualifiedRule<'a>),
     SassVariableDeclaration(SassVariableDeclaration<'a>),

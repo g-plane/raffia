@@ -107,6 +107,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let name = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
+                ..self.state.clone()
             })
             .parse_interpolable_ident()?;
 
@@ -120,6 +121,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let value = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
+                ..self.state.clone()
             })
             .parse_component_values(/* allow_comma */ true)?;
 
@@ -139,6 +141,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let selector_list = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
+                ..self.state.clone()
             })
             .parse_selector_list()?;
         let block = self.parse_simple_block()?;
@@ -154,6 +157,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_simple_block(&mut self) -> PResult<SimpleBlock<'s>> {
+        self.parse_simple_block_with(|parser| {
+            parser.parse_statements(/* is_top_level */ false)
+        })
+    }
+
+    fn parse_simple_block_with<F>(&mut self, f: F) -> PResult<SimpleBlock<'s>>
+    where
+        F: Fn(&mut Self) -> PResult<Vec<Statement<'s>>>,
+    {
         let start = if self.syntax == Syntax::Sass {
             if let Some(token) = eat!(self, Indent) {
                 token.span.end
@@ -171,7 +183,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             expect!(self, LBrace).span.start
         };
 
-        let statements = self.parse_statements(/* is_top_level */ false)?;
+        let statements = f(self)?;
+
         if self.syntax == Syntax::Sass {
             match self.tokenizer.peek()? {
                 Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
