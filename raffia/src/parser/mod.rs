@@ -107,7 +107,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let name = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
-                ..self.state.clone()
             })
             .parse_interpolable_ident()?;
 
@@ -121,7 +120,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let value = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
-                ..self.state.clone()
             })
             .parse_component_values(/* allow_comma */ true)?;
 
@@ -141,7 +139,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let selector_list = self
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
-                ..self.state.clone()
             })
             .parse_selector_list()?;
         let block = self.parse_simple_block()?;
