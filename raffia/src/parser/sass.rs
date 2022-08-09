@@ -146,7 +146,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
             }
             Token::HashLBrace(..) => self.parse_sass_interpolated_ident_expr()?,
-            _ => unreachable!(),
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::Unexpected("Ident or HashLBrace"),
+                    span: token.span().clone(),
+                })
+            }
         };
         let mut last_span_end = span.end;
 

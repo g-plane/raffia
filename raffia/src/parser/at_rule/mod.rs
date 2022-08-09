@@ -9,14 +9,17 @@ use crate::{
 };
 
 mod keyframes;
+mod supports;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_at_rule(&mut self) -> PResult<AtRule<'s>> {
         let at_keyword = expect!(self, AtKeyword);
 
-        let at_rule_name = at_keyword.ident.name.clone();
+        let at_rule_name = &at_keyword.ident.name;
         let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
+        } else if at_rule_name.eq_ignore_ascii_case("supports") {
+            Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
         } else {
             None
         };

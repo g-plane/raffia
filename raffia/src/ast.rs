@@ -20,6 +20,7 @@ pub struct AtRule<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum AtRulePrelude<'a> {
     Keyframes(KeyframesName<'a>),
+    Supports(SupportsCondition<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -512,6 +513,53 @@ pub struct Str<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct Stylesheet<'a> {
     pub statements: Vec<Statement<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SupportsAnd<'a> {
+    pub ident: Ident<'a>,
+    pub condition: SupportsInParens<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SupportsCondition<'a> {
+    pub conditions: Vec<SupportsConditionKind<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SupportsConditionKind<'a> {
+    Not(SupportsNot<'a>),
+    And(SupportsAnd<'a>),
+    Or(SupportsOr<'a>),
+    SupportsInParens(SupportsInParens<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SupportsDecl<'a> {
+    pub decl: Declaration<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SupportsInParens<'a> {
+    SupportsCondition(SupportsCondition<'a>),
+    Feature(SupportsDecl<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SupportsNot<'a> {
+    pub ident: Ident<'a>,
+    pub condition: SupportsInParens<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct SupportsOr<'a> {
+    pub ident: Ident<'a>,
+    pub condition: SupportsInParens<'a>,
     pub span: Span,
 }
 
