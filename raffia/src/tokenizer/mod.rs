@@ -547,6 +547,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                     })
                 }
+                Some((_, '\\')) => {
+                    self.scan_escape()?;
+                }
                 Some((i, c)) if c == quote => {
                     end = i + c.len_utf8();
                     break;
@@ -589,7 +592,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_string_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
         let end;
-        let (_, quote) = self.state.template.last().unwrap();
+        let quote = self
+            .state
+            .template
+            .last()
+            .expect("scanned quote should be store when scanning template")
+            .1;
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -601,7 +609,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                     })
                 }
-                Some((i, c)) if c == *quote => {
+                Some((_, '\\')) => {
+                    self.scan_escape()?;
+                }
+                Some((i, c)) if c == quote => {
                     end = i + c.len_utf8();
                     debug_assert!(start < end);
 
