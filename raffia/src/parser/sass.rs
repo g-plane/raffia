@@ -148,7 +148,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::HashLBrace(..) => self.parse_sass_interpolated_ident_expr()?,
             token => {
                 return Err(Error {
-                    kind: ErrorKind::Unexpected("Ident or HashLBrace"),
+                    kind: ErrorKind::Unexpected("<ident> or '#{'", token.symbol()),
                     span: token.span().clone(),
                 })
             }
@@ -233,7 +233,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 token => {
                     return Err(Error {
-                        kind: ErrorKind::Unexpected("StrTemplate or LBrace"),
+                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
                         span: token.span().clone(),
                     })
                 }

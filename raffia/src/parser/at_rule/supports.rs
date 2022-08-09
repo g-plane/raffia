@@ -82,7 +82,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
             }
             token => Err(Error {
-                kind: ErrorKind::Unexpected("LParen"),
+                kind: ErrorKind::Unexpected("'('", token.symbol()),
                 span: token.span().clone(),
             }),
         }

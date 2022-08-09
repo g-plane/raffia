@@ -39,13 +39,14 @@ macro_rules! expect {
             tokenizer::Token,
         };
         let tokenizer = &mut $parser.tokenizer;
-        if let Token::$variant(token) = tokenizer.bump()? {
-            token
-        } else {
-            return Err(Error {
-                kind: ErrorKind::Unexpected(stringify!($variant)),
-                span: tokenizer.peek()?.span().clone(),
-            });
+        match tokenizer.bump()? {
+            Token::$variant(token) => token,
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::Unexpected(stringify!($variant), token.symbol()),
+                    span: tokenizer.peek()?.span().clone(),
+                });
+            }
         }
     }};
 }

@@ -17,7 +17,10 @@ impl error::Error for Error {}
 
 #[derive(Clone, Debug)]
 pub enum ErrorKind {
-    Unexpected(&'static str),
+    Unexpected(
+        /* expected */ &'static str,
+        /* actual */ &'static str,
+    ),
 
     UnknownToken,
     InvalidNumber,

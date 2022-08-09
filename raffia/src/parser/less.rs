@@ -98,7 +98,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 token => {
                     return Err(Error {
-                        kind: ErrorKind::Unexpected("StrTemplate or LBrace"),
+                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
                         span: token.span().clone(),
                     })
                 }

@@ -74,6 +74,64 @@ pub enum Token<'a> {
     Url(Url<'a>),
 }
 
+impl Token<'_> {
+    pub(crate) fn symbol(&self) -> &'static str {
+        use Token::*;
+        match self {
+            Eof(..) => "<eof>",
+            Ampersand(..) => "&",
+            Asterisk(..) => "*",
+            AsteriskEqual(..) => "*=",
+            AtKeyword(..) => "<at-keyword>",
+            AtLBraceVar(..) => "@{",
+            Bar(..) => "|",
+            BarBar(..) => "||",
+            BarEqual(..) => "|=",
+            CaretEqual(..) => "^=",
+            Colon(..) => ":",
+            ColonColon(..) => "::",
+            Comma(..) => ",",
+            Dedent(..) => "<dedent>",
+            Dimension(..) => "<dimension>",
+            DollarEqual(..) => "$=",
+            DollarVar(..) => "$var",
+            Dot(..) => ".",
+            Equal(..) => "=",
+            EqualEqual(..) => "==",
+            ExclamationEqual(..) => "!=",
+            GreaterThan(..) => ">",
+            GreaterThanEqual(..) => ">=",
+            Hash(..) => "<hash>",
+            HashLBrace(..) => "#{",
+            Ident(..) => "<ident>",
+            Indent(..) => "<indent>",
+            LBrace(..) => "{",
+            LBracket(..) => "[",
+            LessThan(..) => "<",
+            LessThanEqual(..) => "<=",
+            Linebreak(..) => "<linebreak>",
+            LParen(..) => "(",
+            Minus(..) => "-",
+            Number(..) => "<number>",
+            NumberSign(..) => "#",
+            Percent(..) => "%",
+            Percentage(..) => "<percentage>",
+            Plus(..) => "+",
+            PlusUnderscore(..) => "+_",
+            RBrace(..) => "}",
+            RBracket(..) => "]",
+            RParen(..) => ")",
+            Semicolon(..) => ";",
+            Solidus(..) => "/",
+            Str(..) => "<string>",
+            StrTemplate(..) => "<string template>",
+            Tilde(..) => "~",
+            TildeEqual(..) => "~=",
+            Url(..) => "<url>",
+        }
+    }
+}
+
 #[derive(Clone, Debug, Spanned)]
 pub struct Ampersand {
     pub span: Span,
