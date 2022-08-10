@@ -29,6 +29,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         let block = if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(self.parse_keyframes_blocks()?)
+        } else if at_rule_name.eq_ignore_ascii_case("media")
+            || at_rule_name.eq_ignore_ascii_case("font-face")
+            || at_rule_name.eq_ignore_ascii_case("supports")
+        {
+            self.parse_simple_block().map(Some)?
         } else {
             match self.tokenizer.peek()? {
                 Token::LBrace(..) | Token::Indent(..) => Some(self.parse_simple_block()?),
