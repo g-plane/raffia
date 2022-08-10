@@ -19,6 +19,7 @@ pub struct AtRule<'a> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum AtRulePrelude<'a> {
+    Charset(Str<'a>),
     Keyframes(KeyframesName<'a>),
     Media(MediqQueryList<'a>),
     Supports(SupportsCondition<'a>),

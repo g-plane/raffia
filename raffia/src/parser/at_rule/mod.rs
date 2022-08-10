@@ -21,6 +21,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {
             Some(AtRulePrelude::Media(self.parse_media_query_list()?))
+        } else if at_rule_name.eq_ignore_ascii_case("charset") {
+            Some(AtRulePrelude::Charset(self.parse_str()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
         } else {
@@ -34,6 +36,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("supports")
         {
             self.parse_simple_block().map(Some)?
+        } else if at_rule_name.eq_ignore_ascii_case("charset") {
+            None
         } else {
             match self.tokenizer.peek()? {
                 Token::LBrace(..) | Token::Indent(..) => Some(self.parse_simple_block()?),
