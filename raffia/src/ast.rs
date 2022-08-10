@@ -20,6 +20,7 @@ pub struct AtRule<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum AtRulePrelude<'a> {
     Keyframes(KeyframesName<'a>),
+    Media(MediqQueryList<'a>),
     Supports(SupportsCondition<'a>),
 }
 
@@ -339,6 +340,134 @@ pub struct Length<'a> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct MediaAnd<'a> {
+    pub ident: Ident<'a>,
+    pub media_in_parens: MediaInParens<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaCondition<'a> {
+    pub conditions: Vec<MediaConditionKind<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaConditionKind<'a> {
+    MediaInParens(MediaInParens<'a>),
+    And(MediaAnd<'a>),
+    Or(MediaOr<'a>),
+    Not(MediaNot<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaFeature<'a> {
+    Plain(MediaFeaturePlain<'a>),
+    Boolean(MediaFeatureBoolean<'a>),
+    Range(MediaFeatureRange<'a>),
+    RangeInterval(MediaFeatureRangeInterval<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaFeatureComparison {
+    pub kind: MediaFeatureComparisonKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug)]
+pub enum MediaFeatureComparisonKind {
+    Lt,
+    Le,
+    Gt,
+    Ge,
+    Eq,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaFeatureName<'a> {
+    Ident(InterpolableIdent<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaFeatureBoolean<'a> {
+    pub name: MediaFeatureName<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaFeaturePlain<'a> {
+    pub name: MediaFeatureName<'a>,
+    pub value: MediaFeatureValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaFeatureRange<'a> {
+    pub left: MediaFeatureValue<'a>,
+    pub comparison: MediaFeatureComparison,
+    pub right: MediaFeatureValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaFeatureRangeInterval<'a> {
+    pub left: MediaFeatureValue<'a>,
+    pub left_comparison: MediaFeatureComparison,
+    pub name: MediaFeatureName<'a>,
+    pub right_comparison: MediaFeatureComparison,
+    pub right: MediaFeatureValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaFeatureValue<'a> {
+    Number(Number<'a>),
+    Dimension(Dimension<'a>),
+    Ident(InterpolableIdent<'a>),
+    Ratio(Ratio<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaInParens<'a> {
+    MediaCondition(MediaCondition<'a>),
+    MediaFeature(MediaFeature<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaNot<'a> {
+    pub ident: Ident<'a>,
+    pub media_in_parens: MediaInParens<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaOr<'a> {
+    pub ident: Ident<'a>,
+    pub media_in_parens: MediaInParens<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum MediaQuery<'a> {
+    ConditionOnly(MediaCondition<'a>),
+    WithType(MediaQueryWithType<'a>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediqQueryList<'a> {
+    pub queries: Vec<MediaQuery<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct MediaQueryWithType<'a> {
+    pub modifier: Option<Ident<'a>>,
+    pub media_type: InterpolableIdent<'a>,
+    pub condition: Option<MediaCondition<'a>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct NestingSelector {
     pub span: Span,
 }
@@ -377,6 +506,13 @@ pub struct Percentage<'a> {
 pub struct QualifiedRule<'a> {
     pub selector: SelectorList<'a>,
     pub block: SimpleBlock<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Ratio<'a> {
+    pub numerator: Number<'a>,
+    pub denominator: Number<'a>,
     pub span: Span,
 }
 

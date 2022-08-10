@@ -9,6 +9,7 @@ use crate::{
 };
 
 mod keyframes;
+mod media;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -18,6 +19,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let at_rule_name = &at_keyword.ident.name;
         let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
+        } else if at_rule_name.eq_ignore_ascii_case("media") {
+            Some(AtRulePrelude::Media(self.parse_media_query_list()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
         } else {

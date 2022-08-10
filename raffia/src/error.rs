@@ -43,9 +43,15 @@ pub enum ErrorKind {
     ExpectDedentOrEof,
     ExpectString,
     UnexpectedTemplateInCss,
+    ExpectMediaFeatureComparison,
+    ExpectMediaAnd,
+    ExpectMediaOr,
+    ExpectMediaNot,
 
     InvalidCSSCustomIdent,
     UnknownKeyframeSelectorIdent,
+    InvalidRatioDenominator,
+    ExpectMediaFeatureName,
 }
 
 pub type PResult<T> = Result<T, Error>;

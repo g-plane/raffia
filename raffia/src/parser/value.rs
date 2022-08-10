@@ -297,6 +297,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         })
     }
 
+    pub(super) fn parse_ratio(&mut self, numerator: Number<'s>) -> PResult<Ratio<'s>> {
+        expect!(self, Solidus);
+        let denominator = self.parse_number()?;
+        if denominator.value <= 0.0 {
+            // this should be recoverable
+            return Err(Error {
+                kind: ErrorKind::InvalidRatioDenominator,
+                span: denominator.span,
+            });
+        }
+
+        let span = Span {
+            start: numerator.span.start,
+            end: denominator.span.end,
+        };
+        Ok(Ratio {
+            numerator,
+            denominator,
+            span,
+        })
+    }
+
     pub(super) fn parse_str(&mut self) -> PResult<Str<'s>> {
         Ok(expect!(self, Str).into())
     }
