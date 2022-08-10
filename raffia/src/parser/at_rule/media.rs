@@ -74,7 +74,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_media_feature(&mut self) -> PResult<MediaFeature<'s>> {
         let left = self.parse_media_feature_value()?;
-        if let MediaFeatureValue::Ident(ident) = left {
+        if let ComponentValue::InterpolableIdent(ident) = left {
             match self.tokenizer.peek()? {
                 Token::Colon(..) => self
                     .parse_media_feature_plain(ident)
@@ -83,8 +83,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::LessThanEqual(..)
                 | Token::GreaterThan(..)
                 | Token::GreaterThanEqual(..)
-                | Token::Equal(..) => self
-                    .parse_media_feature_range_or_range_interval(MediaFeatureValue::Ident(ident)),
+                | Token::Equal(..) => self.parse_media_feature_range_or_range_interval(
+                    ComponentValue::InterpolableIdent(ident),
+                ),
                 _ => {
                     let span = ident.span().clone();
                     Ok(MediaFeature::Boolean(MediaFeatureBoolean {
@@ -146,11 +147,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_media_feature_range_or_range_interval(
         &mut self,
-        left: MediaFeatureValue<'s>,
+        left: ComponentValue<'s>,
     ) -> PResult<MediaFeature<'s>> {
         let comparison = self.parse_media_feature_comparison()?;
         let name_or_right = self.parse_media_feature_value()?;
-        if let MediaFeatureValue::Ident(ident) = name_or_right {
+        if let ComponentValue::InterpolableIdent(ident) = name_or_right {
             match self.tokenizer.peek()? {
                 Token::LessThan(..)
                 | Token::LessThanEqual(..)
@@ -180,13 +181,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     Ok(MediaFeature::Range(MediaFeatureRange {
                         left,
                         comparison,
-                        right: MediaFeatureValue::Ident(ident),
+                        right: ComponentValue::InterpolableIdent(ident),
                         span,
                     }))
                 }
             }
-        } else if !matches!(left, MediaFeatureValue::Ident(..))
-            && !matches!(name_or_right, MediaFeatureValue::Ident(..))
+        } else if !matches!(left, ComponentValue::InterpolableIdent(..))
+            && !matches!(name_or_right, ComponentValue::InterpolableIdent(..))
         {
             // this should be recoverable
             Err(Error {
@@ -207,21 +208,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    fn parse_media_feature_value(&mut self) -> PResult<MediaFeatureValue<'s>> {
-        match self.tokenizer.peek()? {
-            Token::Number(..) => {
-                let number = self.parse_number()?;
-                match self.tokenizer.peek()? {
-                    Token::Solidus(..) if number.value >= 0.0 => {
-                        self.parse_ratio(number).map(MediaFeatureValue::Ratio)
-                    }
-                    _ => Ok(MediaFeatureValue::Number(number)),
+    fn parse_media_feature_value(&mut self) -> PResult<ComponentValue<'s>> {
+        match self.parse_component_value_internally()? {
+            ComponentValue::Number(number) => match self.tokenizer.peek()? {
+                Token::Solidus(..) if number.value >= 0.0 => {
+                    self.parse_ratio(number).map(ComponentValue::Ratio)
                 }
-            }
-            Token::Dimension(..) => self.parse_dimension().map(MediaFeatureValue::Dimension),
-            _ => self
-                .parse_interpolable_ident()
-                .map(MediaFeatureValue::Ident),
+                _ => Ok(ComponentValue::Number(number)),
+            },
+            value => Ok(value),
         }
     }
 

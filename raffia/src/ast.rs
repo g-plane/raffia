@@ -132,6 +132,7 @@ pub enum ComponentValue<'a> {
     LessVariable(LessVariable<'a>),
     Number(Number<'a>),
     Percentage(Percentage<'a>),
+    Ratio(Ratio<'a>),
     SassBinaryExpression(SassBinaryExpression<'a>),
     SassParenthesizedExpression(SassParenthesizedExpression<'a>),
     SassUnaryExpression(SassUnaryExpression<'a>),
@@ -397,34 +398,26 @@ pub struct MediaFeatureBoolean<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub struct MediaFeaturePlain<'a> {
     pub name: MediaFeatureName<'a>,
-    pub value: MediaFeatureValue<'a>,
+    pub value: ComponentValue<'a>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
 pub struct MediaFeatureRange<'a> {
-    pub left: MediaFeatureValue<'a>,
+    pub left: ComponentValue<'a>,
     pub comparison: MediaFeatureComparison,
-    pub right: MediaFeatureValue<'a>,
+    pub right: ComponentValue<'a>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
 pub struct MediaFeatureRangeInterval<'a> {
-    pub left: MediaFeatureValue<'a>,
+    pub left: ComponentValue<'a>,
     pub left_comparison: MediaFeatureComparison,
     pub name: MediaFeatureName<'a>,
     pub right_comparison: MediaFeatureComparison,
-    pub right: MediaFeatureValue<'a>,
+    pub right: ComponentValue<'a>,
     pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-pub enum MediaFeatureValue<'a> {
-    Number(Number<'a>),
-    Dimension(Dimension<'a>),
-    Ident(InterpolableIdent<'a>),
-    Ratio(Ratio<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]
