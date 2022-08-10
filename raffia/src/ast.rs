@@ -377,11 +377,11 @@ pub struct MediaFeatureComparison {
 
 #[derive(Clone, Debug)]
 pub enum MediaFeatureComparisonKind {
-    Lt,
-    Le,
-    Gt,
-    Ge,
-    Eq,
+    LessThan,
+    LessThanEqual,
+    GreaterThan,
+    GreaterThanEqual,
+    Equal,
 }
 
 #[derive(Clone, Debug, Spanned)]

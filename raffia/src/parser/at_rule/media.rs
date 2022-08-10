@@ -102,23 +102,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_media_feature_comparison(&mut self) -> PResult<MediaFeatureComparison> {
         match self.tokenizer.bump()? {
             Token::LessThan(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::Lt,
+                kind: MediaFeatureComparisonKind::LessThan,
                 span: token.span,
             }),
             Token::LessThanEqual(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::Le,
+                kind: MediaFeatureComparisonKind::LessThanEqual,
                 span: token.span,
             }),
             Token::GreaterThan(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::Gt,
+                kind: MediaFeatureComparisonKind::GreaterThan,
                 span: token.span,
             }),
             Token::GreaterThanEqual(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::Ge,
+                kind: MediaFeatureComparisonKind::GreaterThanEqual,
                 span: token.span,
             }),
             Token::Equal(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::Eq,
+                kind: MediaFeatureComparisonKind::Equal,
                 span: token.span,
             }),
             token => Err(Error {
