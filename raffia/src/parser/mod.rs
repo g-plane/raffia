@@ -223,8 +223,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             self.try_parse(|parser| parser.parse_declaration())
                         {
                             statements.push(Statement::Declaration(declaration));
+                            continue;
                         }
-                    } else if let Some(qualified_rule) =
+                    }
+                    if let Some(qualified_rule) =
                         self.try_parse(|parser| parser.parse_qualified_rule())
                     {
                         statements.push(Statement::QualifiedRule(qualified_rule));
