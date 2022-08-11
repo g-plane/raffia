@@ -424,4 +424,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(SassWarnAtRule { expr, span })
     }
+
+    pub(super) fn parse_sass_while_at_rule(&mut self) -> PResult<SassWhileAtRule<'s>> {
+        let at_keyword = expect!(self, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "while");
+        let condition = self.parse_component_value()?;
+        let body = self.parse_simple_block()?;
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassWhileAtRule {
+            condition,
+            body,
+            span,
+        })
+    }
 }

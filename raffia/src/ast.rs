@@ -651,6 +651,13 @@ pub struct SassWarnAtRule<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassWhileAtRule<'s> {
+    pub condition: ComponentValue<'s>,
+    pub body: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SelectorList<'s> {
     pub selectors: Vec<ComplexSelector<'s>>,
     pub span: Span,
@@ -682,6 +689,7 @@ pub enum Statement<'s> {
     SassEachAtRule(SassEachAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
+    SassWhileAtRule(SassWhileAtRule<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
