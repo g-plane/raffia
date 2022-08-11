@@ -48,6 +48,7 @@ pub enum ErrorKind {
     ExpectMediaAnd,
     ExpectMediaOr,
     ExpectMediaNot,
+    ExpectSassKeyword(&'static str),
 
     CSSWideKeywordDisallowed,
     UnknownKeyframeSelectorIdent,

@@ -2,6 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     config::Syntax,
+    eat,
     error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
@@ -131,6 +132,37 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
 
         Ok(left)
+    }
+
+    pub(super) fn parse_sass_each_at_rule(&mut self) -> PResult<SassEachAtRule<'s>> {
+        let at_keyword = expect!(self, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "each");
+
+        let mut bindings = vec![self.parse_sass_variable()?];
+        while eat!(self, Comma).is_some() {
+            bindings.push(self.parse_sass_variable()?);
+        }
+
+        let keyword_in = expect!(self, Ident);
+        if keyword_in.name != "in" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("in"),
+                span: keyword_in.span,
+            });
+        }
+
+        let expr = self.parse_component_value()?;
+        let body = self.parse_simple_block()?;
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassEachAtRule {
+            bindings,
+            expr,
+            body,
+            span,
+        })
     }
 
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {

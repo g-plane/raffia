@@ -251,25 +251,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         self.parse_sass_variable_declaration()?,
                     ));
                 }
-                Token::AtKeyword(at_keyword) => match &*at_keyword.ident.name {
-                    "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                        statements.push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?))
-                    }
-                    _ if self.syntax == Syntax::Less => {
-                        if let Some(less_variable_declaration) =
-                            self.try_parse(|parser| parser.parse_less_variable_declaration())
-                        {
-                            statements.push(Statement::LessVariableDeclaration(
-                                less_variable_declaration,
-                            ));
+                Token::AtKeyword(at_keyword) => {
+                    match &*at_keyword.ident.name {
+                        "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
+                        "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassEachAtRule(self.parse_sass_each_at_rule()?)),
+                        _ if self.syntax == Syntax::Less => {
+                            if let Some(less_variable_declaration) =
+                                self.try_parse(|parser| parser.parse_less_variable_declaration())
+                            {
+                                statements.push(Statement::LessVariableDeclaration(
+                                    less_variable_declaration,
+                                ));
+                            }
+                        }
+                        _ => {
+                            let at_rule = self.parse_at_rule()?;
+                            is_block_element = at_rule.block.is_some();
+                            statements.push(Statement::AtRule(at_rule));
                         }
                     }
-                    _ => {
-                        let at_rule = self.parse_at_rule()?;
-                        is_block_element = at_rule.block.is_some();
-                        statements.push(Statement::AtRule(at_rule));
-                    }
-                },
+                }
                 _ => {}
             };
             match self.tokenizer.peek()? {
