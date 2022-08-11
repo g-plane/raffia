@@ -22,6 +22,7 @@ pub enum AtRulePrelude<'s> {
     Charset(Str<'s>),
     CustomMedia(CustomMedia<'s>),
     Keyframes(KeyframesName<'s>),
+    Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
     Supports(SupportsCondition<'s>),
 }
@@ -300,6 +301,12 @@ pub enum KeyframeSelector<'s> {
 pub enum KeyframesName<'s> {
     Ident(InterpolableIdent<'s>),
     Str(InterpolableStr<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LayerName<'s> {
+    pub idents: Vec<InterpolableIdent<'s>>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]

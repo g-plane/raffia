@@ -10,6 +10,7 @@ use crate::{
 
 mod custom_media;
 mod keyframes;
+mod layer;
 mod media;
 mod supports;
 
@@ -26,6 +27,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::Charset(self.parse_str()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
+        } else if at_rule_name.eq_ignore_ascii_case("layer") {
+            match self.tokenizer.peek()? {
+                Token::Ident(..) => Some(AtRulePrelude::Layer(self.parse_layer_name()?)),
+                Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    Some(AtRulePrelude::Layer(self.parse_layer_name()?))
+                }
+                Token::AtLBraceVar(..) if self.syntax == Syntax::Less => {
+                    Some(AtRulePrelude::Layer(self.parse_layer_name()?))
+                }
+                _ => None,
+            }
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
         } else {
@@ -37,6 +49,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         } else if at_rule_name.eq_ignore_ascii_case("media")
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
+            || at_rule_name.eq_ignore_ascii_case("layer")
         {
             self.parse_simple_block().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("charset")
