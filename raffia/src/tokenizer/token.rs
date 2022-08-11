@@ -3,31 +3,31 @@ use raffia_derive::Spanned;
 use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned)]
-pub enum Comment<'a> {
-    Block(BlockComment<'a>),
-    Line(LineComment<'a>),
+pub enum Comment<'s> {
+    Block(BlockComment<'s>),
+    Line(LineComment<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct BlockComment<'a> {
-    pub content: &'a str,
+pub struct BlockComment<'s> {
+    pub content: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LineComment<'a> {
-    pub content: &'a str,
+pub struct LineComment<'s> {
+    pub content: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum Token<'a> {
+pub enum Token<'s> {
     Eof(Eof),
     Ampersand(Ampersand),
     Asterisk(Asterisk),
     AsteriskEqual(AsteriskEqual),
-    AtKeyword(AtKeyword<'a>),
-    AtLBraceVar(AtLBraceVar<'a>),
+    AtKeyword(AtKeyword<'s>),
+    AtLBraceVar(AtLBraceVar<'s>),
     Bar(Bar),
     BarBar(BarBar),
     BarEqual(BarEqual),
@@ -36,18 +36,18 @@ pub enum Token<'a> {
     ColonColon(ColonColon),
     Comma(Comma),
     Dedent(Dedent),
-    Dimension(Dimension<'a>),
+    Dimension(Dimension<'s>),
     DollarEqual(DollarEqual),
-    DollarVar(DollarVar<'a>),
+    DollarVar(DollarVar<'s>),
     Dot(Dot),
     Equal(Equal),
     EqualEqual(EqualEqual),
     ExclamationEqual(ExclamationEqual),
     GreaterThan(GreaterThan),
     GreaterThanEqual(GreaterThanEqual),
-    Hash(Hash<'a>),
+    Hash(Hash<'s>),
     HashLBrace(HashLBrace),
-    Ident(Ident<'a>),
+    Ident(Ident<'s>),
     Indent(Indent),
     LBrace(LBrace),
     LBracket(LBracket),
@@ -56,10 +56,10 @@ pub enum Token<'a> {
     Linebreak(Linebreak),
     LParen(LParen),
     Minus(Minus),
-    Number(Number<'a>),
+    Number(Number<'s>),
     NumberSign(NumberSign),
     Percent(Percent),
-    Percentage(Percentage<'a>),
+    Percentage(Percentage<'s>),
     Plus(Plus),
     PlusUnderscore(PlusUnderscore),
     RBrace(RBrace),
@@ -67,11 +67,11 @@ pub enum Token<'a> {
     RParen(RParen),
     Semicolon(Semicolon),
     Solidus(Solidus),
-    Str(Str<'a>),
-    StrTemplate(StrTemplate<'a>),
+    Str(Str<'s>),
+    StrTemplate(StrTemplate<'s>),
     Tilde(Tilde),
     TildeEqual(TildeEqual),
-    Url(Url<'a>),
+    Url(Url<'s>),
 }
 
 impl Token<'_> {
@@ -148,21 +148,21 @@ pub struct AsteriskEqual {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct AtKeyword<'a> {
-    pub ident: Ident<'a>,
+pub struct AtKeyword<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct AtLBraceVar<'a> {
-    pub ident: Ident<'a>,
+pub struct AtLBraceVar<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct BadStr<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct BadStr<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
@@ -207,9 +207,9 @@ pub struct Dedent {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Dimension<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Dimension<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
@@ -219,8 +219,8 @@ pub struct DollarEqual {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct DollarVar<'a> {
-    pub ident: Ident<'a>,
+pub struct DollarVar<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 
@@ -260,12 +260,12 @@ pub struct GreaterThanEqual {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Hash<'a> {
-    pub value: Cow<'a, str>,
+pub struct Hash<'s> {
+    pub value: Cow<'s, str>,
     /// raw string with beginning `#` char
-    pub raw: &'a str,
+    pub raw: &'s str,
     /// raw string without beginning `#` char
-    pub raw_without_hash: &'a str,
+    pub raw_without_hash: &'s str,
     pub span: Span,
 }
 
@@ -275,9 +275,9 @@ pub struct HashLBrace {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Ident<'a> {
-    pub name: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct Ident<'s> {
+    pub name: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
@@ -322,9 +322,9 @@ pub struct Minus {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Number<'a> {
+pub struct Number<'s> {
     pub value: f64,
-    pub raw: &'a str,
+    pub raw: &'s str,
     pub span: Span,
 }
 
@@ -340,8 +340,8 @@ pub struct Percent {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Percentage<'a> {
-    pub value: Number<'a>,
+pub struct Percentage<'s> {
+    pub value: Number<'s>,
     pub span: Span,
 }
 
@@ -381,16 +381,16 @@ pub struct Solidus {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Str<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct Str<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct StrTemplate<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct StrTemplate<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub tail: bool,
     pub span: Span,
 }
@@ -406,14 +406,14 @@ pub struct TildeEqual {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Url<'a> {
-    pub raw: Option<UrlRaw<'a>>,
+pub struct Url<'s> {
+    pub raw: Option<UrlRaw<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct UrlRaw<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct UrlRaw<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }

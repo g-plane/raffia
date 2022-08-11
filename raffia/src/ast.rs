@@ -3,35 +3,35 @@ use raffia_derive::Spanned;
 use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Angle<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Angle<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct AtRule<'a> {
-    pub name: Ident<'a>,
-    pub prelude: Option<AtRulePrelude<'a>>,
-    pub block: Option<SimpleBlock<'a>>,
+pub struct AtRule<'s> {
+    pub name: Ident<'s>,
+    pub prelude: Option<AtRulePrelude<'s>>,
+    pub block: Option<SimpleBlock<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum AtRulePrelude<'a> {
-    Charset(Str<'a>),
-    CustomMedia(CustomMedia<'a>),
-    Keyframes(KeyframesName<'a>),
-    Media(MediqQueryList<'a>),
-    Supports(SupportsCondition<'a>),
+pub enum AtRulePrelude<'s> {
+    Charset(Str<'s>),
+    CustomMedia(CustomMedia<'s>),
+    Keyframes(KeyframesName<'s>),
+    Media(MediqQueryList<'s>),
+    Supports(SupportsCondition<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct AttributeSelector<'a> {
-    pub name: WqName<'a>,
+pub struct AttributeSelector<'s> {
+    pub name: WqName<'s>,
     pub matcher: Option<AttributeSelectorMatcher>,
-    pub value: Option<AttributeSelectorValue<'a>>,
-    pub modifier: Option<AttributeSelectorModifier<'a>>,
+    pub value: Option<AttributeSelectorValue<'s>>,
+    pub modifier: Option<AttributeSelectorModifier<'s>>,
     pub span: Span,
 }
 
@@ -52,15 +52,15 @@ pub enum AttributeSelectorMatcherKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct AttributeSelectorModifier<'a> {
-    pub ident: InterpolableIdent<'a>,
+pub struct AttributeSelectorModifier<'s> {
+    pub ident: InterpolableIdent<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum AttributeSelectorValue<'a> {
-    Ident(InterpolableIdent<'a>),
-    Str(InterpolableStr<'a>),
+pub enum AttributeSelectorValue<'s> {
+    Ident(InterpolableIdent<'s>),
+    Str(InterpolableStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -86,8 +86,8 @@ pub enum BinaryOperatorKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct ClassSelector<'a> {
-    pub name: InterpolableIdent<'a>,
+pub struct ClassSelector<'s> {
+    pub name: InterpolableIdent<'s>,
     pub span: Span,
 }
 
@@ -112,65 +112,65 @@ pub enum CombinatorKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct ComplexSelector<'a> {
-    pub children: Vec<ComplexSelectorChild<'a>>,
+pub struct ComplexSelector<'s> {
+    pub children: Vec<ComplexSelectorChild<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum ComplexSelectorChild<'a> {
-    CompoundSelector(CompoundSelector<'a>),
+pub enum ComplexSelectorChild<'s> {
+    CompoundSelector(CompoundSelector<'s>),
     Combinator(Combinator),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum ComponentValue<'a> {
+pub enum ComponentValue<'s> {
     Delimiter(Delimiter),
-    Dimension(Dimension<'a>),
-    Function(Function<'a>),
-    HexColor(HexColor<'a>),
-    InterpolableIdent(InterpolableIdent<'a>),
-    InterpolableStr(InterpolableStr<'a>),
-    LessVariable(LessVariable<'a>),
-    Number(Number<'a>),
-    Percentage(Percentage<'a>),
-    Ratio(Ratio<'a>),
-    SassBinaryExpression(SassBinaryExpression<'a>),
-    SassParenthesizedExpression(SassParenthesizedExpression<'a>),
-    SassUnaryExpression(SassUnaryExpression<'a>),
-    SassVariable(SassVariable<'a>),
+    Dimension(Dimension<'s>),
+    Function(Function<'s>),
+    HexColor(HexColor<'s>),
+    InterpolableIdent(InterpolableIdent<'s>),
+    InterpolableStr(InterpolableStr<'s>),
+    LessVariable(LessVariable<'s>),
+    Number(Number<'s>),
+    Percentage(Percentage<'s>),
+    Ratio(Ratio<'s>),
+    SassBinaryExpression(SassBinaryExpression<'s>),
+    SassParenthesizedExpression(SassParenthesizedExpression<'s>),
+    SassUnaryExpression(SassUnaryExpression<'s>),
+    SassVariable(SassVariable<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct ComponentValues<'a> {
-    pub values: Vec<ComponentValue<'a>>,
+pub struct ComponentValues<'s> {
+    pub values: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct CompoundSelector<'a> {
-    pub children: Vec<SimpleSelector<'a>>,
+pub struct CompoundSelector<'s> {
+    pub children: Vec<SimpleSelector<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct CustomMedia<'a> {
-    pub name: InterpolableIdent<'a>,
-    pub value: CustomMediaValue<'a>,
+pub struct CustomMedia<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub value: CustomMediaValue<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum CustomMediaValue<'a> {
-    MediaQueryList(MediqQueryList<'a>),
-    True(Ident<'a>),
-    False(Ident<'a>),
+pub enum CustomMediaValue<'s> {
+    MediaQueryList(MediqQueryList<'s>),
+    True(Ident<'s>),
+    False(Ident<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Declaration<'a> {
-    pub name: InterpolableIdent<'a>,
-    pub value: ComponentValues<'a>,
+pub struct Declaration<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub value: ComponentValues<'s>,
     pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
 }
@@ -189,133 +189,133 @@ pub enum DelimiterKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum Dimension<'a> {
-    Length(Length<'a>),
-    Angle(Angle<'a>),
-    Duration(Duration<'a>),
-    Frequency(Frequency<'a>),
-    Resolution(Resolution<'a>),
-    Flex(Flex<'a>),
-    Unknown(UnknownDimension<'a>),
+pub enum Dimension<'s> {
+    Length(Length<'s>),
+    Angle(Angle<'s>),
+    Duration(Duration<'s>),
+    Frequency(Frequency<'s>),
+    Resolution(Resolution<'s>),
+    Flex(Flex<'s>),
+    Unknown(UnknownDimension<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Duration<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Duration<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Flex<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Flex<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Function<'a> {
-    pub name: InterpolableIdent<'a>,
-    pub args: Vec<ComponentValue<'a>>,
+pub struct Function<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub args: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Frequency<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Frequency<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct HexColor<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct HexColor<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Ident<'a> {
-    pub name: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct Ident<'s> {
+    pub name: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum InterpolableIdent<'a> {
-    Literal(Ident<'a>),
-    SassInterpolated(SassInterpolatedIdent<'a>),
-    LessInterpolated(LessInterpolatedIdent<'a>),
+pub enum InterpolableIdent<'s> {
+    Literal(Ident<'s>),
+    SassInterpolated(SassInterpolatedIdent<'s>),
+    LessInterpolated(LessInterpolatedIdent<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct InterpolableIdentStaticPart<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct InterpolableIdentStaticPart<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum InterpolableStr<'a> {
-    Literal(Str<'a>),
-    SassInterpolated(SassInterpolatedStr<'a>),
-    LessInterpolated(LessInterpolatedStr<'a>),
+pub enum InterpolableStr<'s> {
+    Literal(Str<'s>),
+    SassInterpolated(SassInterpolatedStr<'s>),
+    LessInterpolated(LessInterpolatedStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct InterpolableStrStaticPart<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct InterpolableStrStaticPart<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct IdSelector<'a> {
-    pub name: InterpolableIdent<'a>,
+pub struct IdSelector<'s> {
+    pub name: InterpolableIdent<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct KeyframeBlock<'a> {
-    pub prelude: Vec<KeyframeSelector<'a>>,
-    pub block: SimpleBlock<'a>,
+pub struct KeyframeBlock<'s> {
+    pub prelude: Vec<KeyframeSelector<'s>>,
+    pub block: SimpleBlock<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum KeyframeSelector<'a> {
-    Ident(InterpolableIdent<'a>),
-    Percentage(Percentage<'a>),
+pub enum KeyframeSelector<'s> {
+    Ident(InterpolableIdent<'s>),
+    Percentage(Percentage<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum KeyframesName<'a> {
-    Ident(InterpolableIdent<'a>),
-    Str(InterpolableStr<'a>),
+pub enum KeyframesName<'s> {
+    Ident(InterpolableIdent<'s>),
+    Str(InterpolableStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessInterpolatedIdent<'a> {
-    pub elements: Vec<LessInterpolatedIdentElement<'a>>,
+pub struct LessInterpolatedIdent<'s> {
+    pub elements: Vec<LessInterpolatedIdentElement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum LessInterpolatedIdentElement<'a> {
-    Variable(LessVariableInterpolation<'a>),
-    Static(InterpolableIdentStaticPart<'a>),
+pub enum LessInterpolatedIdentElement<'s> {
+    Variable(LessVariableInterpolation<'s>),
+    Static(InterpolableIdentStaticPart<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessInterpolatedStr<'a> {
-    pub elements: Vec<LessInterpolatedStrElement<'a>>,
+pub struct LessInterpolatedStr<'s> {
+    pub elements: Vec<LessInterpolatedStrElement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum LessInterpolatedStrElement<'a> {
-    Variable(LessVariableInterpolation<'a>),
-    Static(InterpolableStrStaticPart<'a>),
+pub enum LessInterpolatedStrElement<'s> {
+    Variable(LessVariableInterpolation<'s>),
+    Static(InterpolableStrStaticPart<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -331,58 +331,58 @@ pub enum LessPropertyMergeKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessVariable<'a> {
-    pub name: Ident<'a>,
+pub struct LessVariable<'s> {
+    pub name: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessVariableDeclaration<'a> {
-    pub name: LessVariable<'a>,
-    pub value: ComponentValues<'a>,
+pub struct LessVariableDeclaration<'s> {
+    pub name: LessVariable<'s>,
+    pub value: ComponentValues<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct LessVariableInterpolation<'a> {
-    pub name: Ident<'a>,
+pub struct LessVariableInterpolation<'s> {
+    pub name: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Length<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Length<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaAnd<'a> {
-    pub ident: Ident<'a>,
-    pub media_in_parens: MediaInParens<'a>,
+pub struct MediaAnd<'s> {
+    pub ident: Ident<'s>,
+    pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaCondition<'a> {
-    pub conditions: Vec<MediaConditionKind<'a>>,
+pub struct MediaCondition<'s> {
+    pub conditions: Vec<MediaConditionKind<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum MediaConditionKind<'a> {
-    MediaInParens(MediaInParens<'a>),
-    And(MediaAnd<'a>),
-    Or(MediaOr<'a>),
-    Not(MediaNot<'a>),
+pub enum MediaConditionKind<'s> {
+    MediaInParens(MediaInParens<'s>),
+    And(MediaAnd<'s>),
+    Or(MediaOr<'s>),
+    Not(MediaNot<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum MediaFeature<'a> {
-    Plain(MediaFeaturePlain<'a>),
-    Boolean(MediaFeatureBoolean<'a>),
-    Range(MediaFeatureRange<'a>),
-    RangeInterval(MediaFeatureRangeInterval<'a>),
+pub enum MediaFeature<'s> {
+    Plain(MediaFeaturePlain<'s>),
+    Boolean(MediaFeatureBoolean<'s>),
+    Range(MediaFeatureRange<'s>),
+    RangeInterval(MediaFeatureRangeInterval<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -401,78 +401,78 @@ pub enum MediaFeatureComparisonKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum MediaFeatureName<'a> {
-    Ident(InterpolableIdent<'a>),
+pub enum MediaFeatureName<'s> {
+    Ident(InterpolableIdent<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaFeatureBoolean<'a> {
-    pub name: MediaFeatureName<'a>,
+pub struct MediaFeatureBoolean<'s> {
+    pub name: MediaFeatureName<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaFeaturePlain<'a> {
-    pub name: MediaFeatureName<'a>,
-    pub value: ComponentValue<'a>,
+pub struct MediaFeaturePlain<'s> {
+    pub name: MediaFeatureName<'s>,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaFeatureRange<'a> {
-    pub left: ComponentValue<'a>,
+pub struct MediaFeatureRange<'s> {
+    pub left: ComponentValue<'s>,
     pub comparison: MediaFeatureComparison,
-    pub right: ComponentValue<'a>,
+    pub right: ComponentValue<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaFeatureRangeInterval<'a> {
-    pub left: ComponentValue<'a>,
+pub struct MediaFeatureRangeInterval<'s> {
+    pub left: ComponentValue<'s>,
     pub left_comparison: MediaFeatureComparison,
-    pub name: MediaFeatureName<'a>,
+    pub name: MediaFeatureName<'s>,
     pub right_comparison: MediaFeatureComparison,
-    pub right: ComponentValue<'a>,
+    pub right: ComponentValue<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum MediaInParens<'a> {
-    MediaCondition(MediaCondition<'a>),
-    MediaFeature(MediaFeature<'a>),
+pub enum MediaInParens<'s> {
+    MediaCondition(MediaCondition<'s>),
+    MediaFeature(MediaFeature<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaNot<'a> {
-    pub ident: Ident<'a>,
-    pub media_in_parens: MediaInParens<'a>,
+pub struct MediaNot<'s> {
+    pub ident: Ident<'s>,
+    pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaOr<'a> {
-    pub ident: Ident<'a>,
-    pub media_in_parens: MediaInParens<'a>,
+pub struct MediaOr<'s> {
+    pub ident: Ident<'s>,
+    pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum MediaQuery<'a> {
-    ConditionOnly(MediaCondition<'a>),
-    WithType(MediaQueryWithType<'a>),
+pub enum MediaQuery<'s> {
+    ConditionOnly(MediaCondition<'s>),
+    WithType(MediaQueryWithType<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediqQueryList<'a> {
-    pub queries: Vec<MediaQuery<'a>>,
+pub struct MediqQueryList<'s> {
+    pub queries: Vec<MediaQuery<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct MediaQueryWithType<'a> {
-    pub modifier: Option<Ident<'a>>,
-    pub media_type: InterpolableIdent<'a>,
-    pub condition: Option<MediaCondition<'a>>,
+pub struct MediaQueryWithType<'s> {
+    pub modifier: Option<Ident<'s>>,
+    pub media_type: InterpolableIdent<'s>,
+    pub condition: Option<MediaCondition<'s>>,
     pub span: Span,
 }
 
@@ -482,14 +482,14 @@ pub struct NestingSelector {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct NsPrefix<'a> {
-    pub kind: Option<NsPrefixKind<'a>>,
+pub struct NsPrefix<'s> {
+    pub kind: Option<NsPrefixKind<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum NsPrefixKind<'a> {
-    Ident(InterpolableIdent<'a>),
+pub enum NsPrefixKind<'s> {
+    Ident(InterpolableIdent<'s>),
     Universal(NsPrefixUniversal),
 }
 
@@ -499,87 +499,87 @@ pub struct NsPrefixUniversal {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Number<'a> {
+pub struct Number<'s> {
     pub value: f64,
-    pub raw: &'a str,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Percentage<'a> {
-    pub value: Number<'a>,
+pub struct Percentage<'s> {
+    pub value: Number<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct QualifiedRule<'a> {
-    pub selector: SelectorList<'a>,
-    pub block: SimpleBlock<'a>,
+pub struct QualifiedRule<'s> {
+    pub selector: SelectorList<'s>,
+    pub block: SimpleBlock<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Ratio<'a> {
-    pub numerator: Number<'a>,
-    pub denominator: Number<'a>,
+pub struct Ratio<'s> {
+    pub numerator: Number<'s>,
+    pub denominator: Number<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Resolution<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct Resolution<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassBinaryExpression<'a> {
-    pub left: Box<ComponentValue<'a>>,
+pub struct SassBinaryExpression<'s> {
+    pub left: Box<ComponentValue<'s>>,
     pub op: BinaryOperator,
-    pub right: Box<ComponentValue<'a>>,
+    pub right: Box<ComponentValue<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassInterpolatedIdent<'a> {
-    pub elements: Vec<SassInterpolatedIdentElement<'a>>,
+pub struct SassInterpolatedIdent<'s> {
+    pub elements: Vec<SassInterpolatedIdentElement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SassInterpolatedIdentElement<'a> {
-    Expression(ComponentValues<'a>),
-    Static(InterpolableIdentStaticPart<'a>),
+pub enum SassInterpolatedIdentElement<'s> {
+    Expression(ComponentValues<'s>),
+    Static(InterpolableIdentStaticPart<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassInterpolatedStr<'a> {
-    pub elements: Vec<SassInterpolatedStrElement<'a>>,
+pub struct SassInterpolatedStr<'s> {
+    pub elements: Vec<SassInterpolatedStrElement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SassInterpolatedStrElement<'a> {
-    Expression(ComponentValues<'a>),
-    Static(InterpolableStrStaticPart<'a>),
+pub enum SassInterpolatedStrElement<'s> {
+    Expression(ComponentValues<'s>),
+    Static(InterpolableStrStaticPart<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassParenthesizedExpression<'a> {
-    pub expr: Box<ComponentValue<'a>>,
+pub struct SassParenthesizedExpression<'s> {
+    pub expr: Box<ComponentValue<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassPlaceholderSelector<'a> {
-    pub name: InterpolableIdent<'a>,
+pub struct SassPlaceholderSelector<'s> {
+    pub name: InterpolableIdent<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassUnaryExpression<'a> {
+pub struct SassUnaryExpression<'s> {
     pub op: SassUnaryOperator,
-    pub expr: Box<ComponentValue<'a>>,
+    pub expr: Box<ComponentValue<'s>>,
     pub span: Span,
 }
 
@@ -597,145 +597,145 @@ pub enum SassUnaryOperatorKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassVariable<'a> {
-    pub name: Ident<'a>,
+pub struct SassVariable<'s> {
+    pub name: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassVariableDeclaration<'a> {
-    pub name: SassVariable<'a>,
-    pub value: ComponentValues<'a>,
+pub struct SassVariableDeclaration<'s> {
+    pub name: SassVariable<'s>,
+    pub value: ComponentValues<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SassWarnAtRule<'a> {
-    pub expr: ComponentValues<'a>,
+pub struct SassWarnAtRule<'s> {
+    pub expr: ComponentValues<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SelectorList<'a> {
-    pub selectors: Vec<ComplexSelector<'a>>,
+pub struct SelectorList<'s> {
+    pub selectors: Vec<ComplexSelector<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SimpleBlock<'a> {
-    pub statements: Vec<Statement<'a>>,
+pub struct SimpleBlock<'s> {
+    pub statements: Vec<Statement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SimpleSelector<'a> {
-    Class(ClassSelector<'a>),
-    Id(IdSelector<'a>),
-    Type(TypeSelector<'a>),
-    Attribute(AttributeSelector<'a>),
+pub enum SimpleSelector<'s> {
+    Class(ClassSelector<'s>),
+    Id(IdSelector<'s>),
+    Type(TypeSelector<'s>),
+    Attribute(AttributeSelector<'s>),
     Nesting(NestingSelector),
-    SassPlaceholder(SassPlaceholderSelector<'a>),
+    SassPlaceholder(SassPlaceholderSelector<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum Statement<'a> {
-    AtRule(AtRule<'a>),
-    Declaration(Declaration<'a>),
-    KeyframeBlock(KeyframeBlock<'a>),
-    LessVariableDeclaration(LessVariableDeclaration<'a>),
-    QualifiedRule(QualifiedRule<'a>),
-    SassVariableDeclaration(SassVariableDeclaration<'a>),
-    SassWarnAtRule(SassWarnAtRule<'a>),
+pub enum Statement<'s> {
+    AtRule(AtRule<'s>),
+    Declaration(Declaration<'s>),
+    KeyframeBlock(KeyframeBlock<'s>),
+    LessVariableDeclaration(LessVariableDeclaration<'s>),
+    QualifiedRule(QualifiedRule<'s>),
+    SassVariableDeclaration(SassVariableDeclaration<'s>),
+    SassWarnAtRule(SassWarnAtRule<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Str<'a> {
-    pub value: Cow<'a, str>,
-    pub raw: &'a str,
+pub struct Str<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct Stylesheet<'a> {
-    pub statements: Vec<Statement<'a>>,
+pub struct Stylesheet<'s> {
+    pub statements: Vec<Statement<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SupportsAnd<'a> {
-    pub ident: Ident<'a>,
-    pub condition: SupportsInParens<'a>,
+pub struct SupportsAnd<'s> {
+    pub ident: Ident<'s>,
+    pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SupportsCondition<'a> {
-    pub conditions: Vec<SupportsConditionKind<'a>>,
+pub struct SupportsCondition<'s> {
+    pub conditions: Vec<SupportsConditionKind<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SupportsConditionKind<'a> {
-    Not(SupportsNot<'a>),
-    And(SupportsAnd<'a>),
-    Or(SupportsOr<'a>),
-    SupportsInParens(SupportsInParens<'a>),
+pub enum SupportsConditionKind<'s> {
+    Not(SupportsNot<'s>),
+    And(SupportsAnd<'s>),
+    Or(SupportsOr<'s>),
+    SupportsInParens(SupportsInParens<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SupportsDecl<'a> {
-    pub decl: Declaration<'a>,
+pub struct SupportsDecl<'s> {
+    pub decl: Declaration<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum SupportsInParens<'a> {
-    SupportsCondition(SupportsCondition<'a>),
-    Feature(SupportsDecl<'a>),
+pub enum SupportsInParens<'s> {
+    SupportsCondition(SupportsCondition<'s>),
+    Feature(SupportsDecl<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SupportsNot<'a> {
-    pub ident: Ident<'a>,
-    pub condition: SupportsInParens<'a>,
+pub struct SupportsNot<'s> {
+    pub ident: Ident<'s>,
+    pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct SupportsOr<'a> {
-    pub ident: Ident<'a>,
-    pub condition: SupportsInParens<'a>,
+pub struct SupportsOr<'s> {
+    pub ident: Ident<'s>,
+    pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct TagNameSelector<'a> {
-    pub name: WqName<'a>,
+pub struct TagNameSelector<'s> {
+    pub name: WqName<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub enum TypeSelector<'a> {
-    TagName(TagNameSelector<'a>),
-    Universal(UniversalSelector<'a>),
+pub enum TypeSelector<'s> {
+    TagName(TagNameSelector<'s>),
+    Universal(UniversalSelector<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct UniversalSelector<'a> {
-    pub prefix: Option<NsPrefix<'a>>,
+pub struct UniversalSelector<'s> {
+    pub prefix: Option<NsPrefix<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct UnknownDimension<'a> {
-    pub value: Number<'a>,
-    pub unit: Ident<'a>,
+pub struct UnknownDimension<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]
-pub struct WqName<'a> {
-    pub name: InterpolableIdent<'a>,
-    pub prefix: Option<NsPrefix<'a>>,
+pub struct WqName<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub prefix: Option<NsPrefix<'s>>,
     pub span: Span,
 }
