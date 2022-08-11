@@ -139,6 +139,7 @@ pub enum ComponentValue<'s> {
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
+    Url(Url<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -264,6 +265,13 @@ pub enum InterpolableStr<'s> {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct InterpolableStrStaticPart<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct InterpolableUrlStaticPart<'s> {
     pub value: Cow<'s, str>,
     pub raw: &'s str,
     pub span: Span,
@@ -565,6 +573,18 @@ pub enum SassInterpolatedStrElement<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassInterpolatedUrl<'s> {
+    pub elements: Vec<SassInterpolatedUrlElement<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum SassInterpolatedUrlElement<'s> {
+    Expression(ComponentValues<'s>),
+    Static(InterpolableUrlStaticPart<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassParenthesizedExpression<'s> {
     pub expr: Box<ComponentValue<'s>>,
     pub span: Span,
@@ -731,6 +751,28 @@ pub struct UnknownDimension<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Url<'s> {
+    pub ident: Ident<'s>,
+    pub value: UrlValue<'s>,
+    pub span: Span,
+}
+
+/// `)` is excluded
+#[derive(Clone, Debug, Spanned)]
+pub struct UrlRaw<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum UrlValue<'s> {
+    Raw(UrlRaw<'s>),
+    SassInterpolated(SassInterpolatedUrl<'s>),
+    Str(InterpolableStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]

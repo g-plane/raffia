@@ -243,6 +243,54 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(SassInterpolatedStr { elements, span })
     }
 
+    pub(super) fn parse_sass_interpolated_url(&mut self) -> PResult<SassInterpolatedUrl<'s>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+
+        let first = expect!(self, UrlTemplate);
+        let mut span = first.span.clone();
+        let mut elements = vec![SassInterpolatedUrlElement::Static(
+            InterpolableUrlStaticPart {
+                value: first.value,
+                raw: first.raw,
+                span: first.span,
+            },
+        )];
+
+        loop {
+            match self.tokenizer.bump()? {
+                Token::UrlTemplate(token) => {
+                    let end = token.span.end;
+                    elements.push(SassInterpolatedUrlElement::Static(
+                        InterpolableUrlStaticPart {
+                            value: token.value,
+                            raw: token.raw,
+                            span: token.span,
+                        },
+                    ));
+                    if token.tail {
+                        span.end = end;
+                        break;
+                    }
+                }
+                // '#' is consumed, so '{' left only
+                Token::LBrace(..) => {
+                    elements.push(SassInterpolatedUrlElement::Expression(
+                        self.parse_component_values(/* allow_comma */ true)?,
+                    ));
+                    expect!(self, RBrace);
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected("<url template> or '{'", token.symbol()),
+                        span: token.span().clone(),
+                    })
+                }
+            }
+        }
+
+        Ok(SassInterpolatedUrl { elements, span })
+    }
+
     pub(super) fn parse_sass_parenthesized_expression(
         &mut self,
     ) -> PResult<SassParenthesizedExpression<'s>> {

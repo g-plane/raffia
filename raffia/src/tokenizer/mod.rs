@@ -15,12 +15,20 @@ pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
     indent_size: usize,
     template: Vec<(TemplateState, char)>,
+    url: UrlState,
 }
 
 #[derive(Clone)]
 enum TemplateState {
     Interpolation,
     Static,
+}
+
+#[derive(Clone, PartialEq, Eq)]
+enum UrlState {
+    None,
+    Ambiguous,
+    Template,
 }
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
@@ -44,13 +52,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 chars: source.char_indices().peekable(),
                 indent_size: 0,
                 template: Vec::with_capacity(1),
+                url: UrlState::None,
             },
         }
     }
 
     pub fn bump(&mut self) -> PResult<Token<'s>> {
         if let Some((TemplateState::Static, _)) = self.state.template.last() {
-            return self.scan_string_template();
+            return if self.state.url == UrlState::Template {
+                self.scan_url_template()
+            } else {
+                self.scan_string_template()
+            };
+        }
+        if self.state.url == UrlState::Ambiguous {
+            return self.scan_url_raw_or_template();
         }
 
         if let Some(indent) = self.skip_ws_or_comment() {
@@ -554,7 +570,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end = i + c.len_utf8();
                     break;
                 }
-                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_template() => {
+                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
                     self.state
                         .template
                         .push((TemplateState::Interpolation, quote));
@@ -598,6 +614,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             .last()
             .expect("scanned quote should be store when scanning template")
             .1;
+        debug_assert!(matches!(quote, '\'' | '"'));
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -617,7 +634,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     debug_assert!(start < end);
 
                     self.state.template.pop();
-                    let raw = unsafe { self.source.get_unchecked(start..end - 1) };
+                    let raw = unsafe { self.source.get_unchecked(start..i) };
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
@@ -629,7 +646,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         span,
                     }));
                 }
-                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_template() => {
+                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
                     if let Some((state, _)) = self.state.template.last_mut() {
                         *state = TemplateState::Interpolation;
                     }
@@ -651,7 +668,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn is_start_of_interpolation_in_template(&self) -> bool {
+    fn is_start_of_interpolation_in_str_template(&self) -> bool {
         match self.syntax {
             Syntax::Css => false,
             Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
@@ -665,14 +682,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let ident = self.scan_ident_sequence()?;
         match self.state.chars.peek() {
             Some((_, '(')) if ident.name.eq_ignore_ascii_case("url") => {
-                self.scan_url(ident.span.start).map(Token::Url)
+                self.scan_url(ident).map(Token::UrlPrefix)
             }
             _ => Ok(Token::Ident(ident)),
         }
     }
 
-    fn scan_url(&mut self, start: usize) -> PResult<Url<'s>> {
-        let (_, c) = self
+    fn scan_url(&mut self, ident: Ident<'s>) -> PResult<UrlPrefix<'s>> {
+        let (i, c) = self
             .state
             .chars
             .next()
@@ -680,44 +697,131 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
-        if let Some((i, '\'' | '"')) = self.state.chars.peek() {
-            Ok(Url {
-                raw: None,
-                span: Span { start, end: *i },
-            })
-        } else {
-            // ')' is consumed
-            let raw = self.scan_url_raw()?;
-            let span = Span {
-                start,
-                end: raw.span.end,
-            };
-            Ok(Url {
-                raw: Some(raw),
-                span,
-            })
-        }
+        self.state.url = UrlState::Ambiguous;
+        let span = Span {
+            start: ident.span.start,
+            end: i + 1,
+        };
+        Ok(UrlPrefix { ident, span })
     }
 
-    fn scan_url_raw(&mut self) -> PResult<UrlRaw<'s>> {
+    fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
-        let mut end = self.source.len();
-        for (i, c) in self.state.chars.by_ref() {
-            if c == ')' {
-                end = i;
-                break;
+        let end;
+        loop {
+            match self.state.chars.next() {
+                Some((i, '\n')) => {
+                    return Err(Error {
+                        kind: ErrorKind::UnexpectedLinebreak,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    })
+                }
+                Some((_, '\\')) => {
+                    self.scan_escape()?;
+                }
+                Some((i, ')')) => {
+                    end = i;
+                    break;
+                }
+                Some((end, '#')) if self.is_start_of_interpolation_in_url_template() => {
+                    self.state.url = UrlState::Template;
+                    self.state
+                        .template
+                        .push((TemplateState::Interpolation, ')'));
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    let span = Span { start, end };
+                    return Ok(Token::UrlTemplate(UrlTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: false,
+                        span,
+                    }));
+                }
+                Some(..) => {}
+                None => return Err(self.build_eof_error()),
             }
         }
+
+        self.state.url = UrlState::None;
+        debug_assert!(start <= end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
-        Ok(UrlRaw {
+        Ok(Token::UrlRaw(UrlRaw {
+            raw,
             value: handle_escape(raw).map_err(|kind| Error {
                 kind,
                 span: span.clone(),
             })?,
-            raw,
             span,
-        })
+        }))
+    }
+
+    fn scan_url_template(&mut self) -> PResult<Token<'s>> {
+        let start = self.current_offset();
+        loop {
+            match self.state.chars.next() {
+                Some((i, '\n')) => {
+                    return Err(Error {
+                        kind: ErrorKind::UnexpectedLinebreak,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    })
+                }
+                Some((_, '\\')) => {
+                    self.scan_escape()?;
+                }
+                Some((end, ')')) => {
+                    debug_assert!(start <= end);
+
+                    self.state.template.pop();
+                    self.state.url = UrlState::None;
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    let span = Span { start, end };
+                    return Ok(Token::UrlTemplate(UrlTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: true,
+                        span,
+                    }));
+                }
+                Some((end, '#')) if self.is_start_of_interpolation_in_url_template() => {
+                    if let Some((state, _)) = self.state.template.last_mut() {
+                        *state = TemplateState::Interpolation;
+                    }
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    let span = Span { start, end };
+                    return Ok(Token::UrlTemplate(UrlTemplate {
+                        raw,
+                        value: handle_escape(raw).map_err(|kind| Error {
+                            kind,
+                            span: span.clone(),
+                        })?,
+                        tail: false,
+                        span,
+                    }));
+                }
+                Some(..) => {}
+                None => return Err(self.build_eof_error()),
+            }
+        }
+    }
+
+    fn is_start_of_interpolation_in_url_template(&self) -> bool {
+        match self.syntax {
+            Syntax::Css | Syntax::Less => false,
+            Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
+        }
     }
 
     fn scan_hash(&mut self) -> PResult<Token<'s>> {

@@ -39,6 +39,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .parse_str()
                 .map(InterpolableStr::Literal)
                 .map(ComponentValue::InterpolableStr),
+            Token::UrlPrefix(..) => self.parse_url().map(ComponentValue::Url),
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse_sass_variable().map(ComponentValue::SassVariable)
             }
@@ -321,5 +322,61 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_str(&mut self) -> PResult<Str<'s>> {
         Ok(expect!(self, Str).into())
+    }
+
+    pub(super) fn parse_url(&mut self) -> PResult<Url<'s>> {
+        let prefix = expect!(self, UrlPrefix);
+        match self.tokenizer.peek()? {
+            Token::UrlRaw(..) => {
+                let value = self.parse_url_raw()?;
+                let span = Span {
+                    start: prefix.span.start,
+                    end: value.span.end + 1, // `)` is consumed, but span excludes it
+                };
+                Ok(Url {
+                    ident: prefix.ident.into(),
+                    value: UrlValue::Raw(value),
+                    span,
+                })
+            }
+            Token::Str(..) | Token::StrTemplate(..) => {
+                let value = self.parse_interpolable_str()?;
+                let r_paren = expect!(self, RParen);
+                let span = Span {
+                    start: prefix.span.start,
+                    end: r_paren.span.end,
+                };
+                Ok(Url {
+                    ident: prefix.ident.into(),
+                    value: UrlValue::Str(value),
+                    span,
+                })
+            }
+            Token::UrlTemplate(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                let value = self.parse_sass_interpolated_url()?;
+                let span = Span {
+                    start: prefix.span.start,
+                    end: value.span.end + 1, // `)` is consumed, but span excludes it
+                };
+                Ok(Url {
+                    ident: prefix.ident.into(),
+                    value: UrlValue::SassInterpolated(value),
+                    span,
+                })
+            }
+            token => Err(Error {
+                kind: ErrorKind::ExpectUrl,
+                span: token.span().clone(),
+            }),
+        }
+    }
+
+    fn parse_url_raw(&mut self) -> PResult<UrlRaw<'s>> {
+        let url = expect!(self, UrlRaw);
+        Ok(UrlRaw {
+            value: url.value,
+            raw: url.raw,
+            span: url.span,
+        })
     }
 }

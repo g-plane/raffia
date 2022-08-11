@@ -71,7 +71,9 @@ pub enum Token<'s> {
     StrTemplate(StrTemplate<'s>),
     Tilde(Tilde),
     TildeEqual(TildeEqual),
-    Url(Url<'s>),
+    UrlPrefix(UrlPrefix<'s>),
+    UrlRaw(UrlRaw<'s>),
+    UrlTemplate(UrlTemplate<'s>),
 }
 
 impl Token<'_> {
@@ -127,7 +129,9 @@ impl Token<'_> {
             StrTemplate(..) => "<string template>",
             Tilde(..) => "~",
             TildeEqual(..) => "~=",
-            Url(..) => "<url>",
+            UrlPrefix(..) => "url(",
+            UrlRaw(..) => "<url>",
+            UrlTemplate(..) => "<url template>",
         }
     }
 }
@@ -405,9 +409,10 @@ pub struct TildeEqual {
     pub span: Span,
 }
 
+/// `url(` only
 #[derive(Clone, Debug, Spanned)]
-pub struct Url<'s> {
-    pub raw: Option<UrlRaw<'s>>,
+pub struct UrlPrefix<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 
@@ -415,5 +420,13 @@ pub struct Url<'s> {
 pub struct UrlRaw<'s> {
     pub value: Cow<'s, str>,
     pub raw: &'s str,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct UrlTemplate<'s> {
+    pub value: Cow<'s, str>,
+    pub raw: &'s str,
+    pub tail: bool,
     pub span: Span,
 }

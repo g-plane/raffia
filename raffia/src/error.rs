@@ -42,6 +42,7 @@ pub enum ErrorKind {
     ExpectSassExpression,
     ExpectDedentOrEof,
     ExpectString,
+    ExpectUrl,
     UnexpectedTemplateInCss,
     ExpectMediaFeatureComparison,
     ExpectMediaAnd,
