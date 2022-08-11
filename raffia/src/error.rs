@@ -49,7 +49,7 @@ pub enum ErrorKind {
     ExpectMediaOr,
     ExpectMediaNot,
 
-    InvalidCSSCustomIdent,
+    CSSWideKeywordDisallowed,
     UnknownKeyframeSelectorIdent,
     InvalidRatioDenominator,
     ExpectMediaFeatureName,

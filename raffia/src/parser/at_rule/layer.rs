@@ -1,9 +1,10 @@
 use super::Parser;
 use crate::{
     ast::*,
-    error::PResult,
+    error::{Error, PResult},
     pos::{Span, Spanned},
     tokenizer::Token,
+    util,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -23,6 +24,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             } else {
                 break;
             }
+        }
+
+        let invalid_ident = idents.iter().find(|ident| match &ident {
+            InterpolableIdent::Literal(ident) => util::is_css_wide_keyword(&ident.name),
+            _ => false,
+        });
+        if let Some(invalid_ident) = invalid_ident {
+            // this should be recoverable
+            return Err(Error {
+                kind: crate::error::ErrorKind::CSSWideKeywordDisallowed,
+                span: invalid_ident.span().clone(),
+            });
         }
 
         let span = Span { start, end };

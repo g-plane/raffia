@@ -106,7 +106,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     {
                         // this should be recoverable
                         return Err(Error {
-                            kind: ErrorKind::InvalidCSSCustomIdent,
+                            kind: ErrorKind::CSSWideKeywordDisallowed,
                             span: ident.span.clone(),
                         });
                     }
