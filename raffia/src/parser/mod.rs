@@ -257,6 +257,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
                         "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassEachAtRule(self.parse_sass_each_at_rule()?)),
+                        "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassForAtRule(self.parse_sass_for_at_rule()?)),
                         "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassWhileAtRule(self.parse_sass_while_at_rule()?)),
                         _ if self.syntax == Syntax::Less => {

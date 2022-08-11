@@ -165,6 +165,48 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         })
     }
 
+    pub(super) fn parse_sass_for_at_rule(&mut self) -> PResult<SassForAtRule<'s>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+
+        let at_keyword = expect!(self, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "for");
+
+        let binding = self.parse_sass_variable()?;
+
+        let keyword_from = expect!(self, Ident);
+        if keyword_from.name != "from" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("from"),
+                span: keyword_from.span,
+            });
+        }
+        let start = self.parse_component_value()?;
+
+        let keyword_to_or_through = expect!(self, Ident);
+        if keyword_to_or_through.name != "to" && keyword_to_or_through.name != "through" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("to"),
+                span: keyword_from.span,
+            });
+        }
+        let is_exclusive = keyword_to_or_through.name == "to";
+        let end = self.parse_component_value()?;
+
+        let body = self.parse_simple_block()?;
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassForAtRule {
+            binding,
+            start,
+            end,
+            is_exclusive,
+            body,
+            span,
+        })
+    }
+
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         let (first, mut span) = match self.tokenizer.peek()? {
             Token::Ident(ident) => {

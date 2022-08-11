@@ -564,6 +564,16 @@ pub struct SassEachAtRule<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassForAtRule<'s> {
+    pub binding: SassVariable<'s>,
+    pub start: ComponentValue<'s>,
+    pub end: ComponentValue<'s>,
+    pub is_exclusive: bool,
+    pub body: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassInterpolatedIdent<'s> {
     pub elements: Vec<SassInterpolatedIdentElement<'s>>,
     pub span: Span,
@@ -687,6 +697,7 @@ pub enum Statement<'s> {
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
+    SassForAtRule(SassForAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
     SassWhileAtRule(SassWhileAtRule<'s>),
