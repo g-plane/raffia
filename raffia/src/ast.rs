@@ -20,6 +20,7 @@ pub struct AtRule<'a> {
 #[derive(Clone, Debug, Spanned)]
 pub enum AtRulePrelude<'a> {
     Charset(Str<'a>),
+    CustomMedia(CustomMedia<'a>),
     Keyframes(KeyframesName<'a>),
     Media(MediqQueryList<'a>),
     Supports(SupportsCondition<'a>),
@@ -150,6 +151,20 @@ pub struct ComponentValues<'a> {
 pub struct CompoundSelector<'a> {
     pub children: Vec<SimpleSelector<'a>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct CustomMedia<'a> {
+    pub name: InterpolableIdent<'a>,
+    pub value: CustomMediaValue<'a>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum CustomMediaValue<'a> {
+    MediaQueryList(MediqQueryList<'a>),
+    True(Ident<'a>),
+    False(Ident<'a>),
 }
 
 #[derive(Clone, Debug, Spanned)]

@@ -52,6 +52,7 @@ pub enum ErrorKind {
     UnknownKeyframeSelectorIdent,
     InvalidRatioDenominator,
     ExpectMediaFeatureName,
+    InvalidExtensionName,
 }
 
 pub type PResult<T> = Result<T, Error>;

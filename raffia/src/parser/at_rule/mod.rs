@@ -8,6 +8,7 @@ use crate::{
     Syntax,
 };
 
+mod custom_media;
 mod keyframes;
 mod media;
 mod supports;
@@ -25,6 +26,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::Charset(self.parse_str()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
+        } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
+            Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
         } else {
             None
         };
@@ -36,7 +39,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("supports")
         {
             self.parse_simple_block().map(Some)?
-        } else if at_rule_name.eq_ignore_ascii_case("charset") {
+        } else if at_rule_name.eq_ignore_ascii_case("charset")
+            || at_rule_name.eq_ignore_ascii_case("custom-media")
+        {
             None
         } else {
             match self.tokenizer.peek()? {
