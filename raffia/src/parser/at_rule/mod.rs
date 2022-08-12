@@ -11,6 +11,7 @@ use crate::{
 mod color_profile;
 mod counter_style;
 mod custom_media;
+mod document;
 mod import;
 mod keyframes;
 mod layer;
@@ -72,6 +73,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::Nest(self.parse_selector_list()?))
         } else if at_rule_name.eq_ignore_ascii_case("property") {
             Some(AtRulePrelude::Property(self.parse_property_prelude()?))
+        } else if at_rule_name.eq_ignore_ascii_case("document") {
+            Some(AtRulePrelude::Document(self.parse_document_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
@@ -95,6 +98,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("nest")
             || at_rule_name.eq_ignore_ascii_case("property")
+            || at_rule_name.eq_ignore_ascii_case("document")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
             self.parse_simple_block().map(Some)?

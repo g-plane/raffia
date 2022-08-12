@@ -23,6 +23,7 @@ pub enum AtRulePrelude<'s> {
     ColorProfile(ColorProfilePrelude<'s>),
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
+    Document(DocumentPrelude<'s>),
     Import(ImportPrelude<'s>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
@@ -214,6 +215,18 @@ pub enum Dimension<'s> {
     Resolution(Resolution<'s>),
     Flex(Flex<'s>),
     Unknown(UnknownDimension<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct DocumentPrelude<'s> {
+    pub matchers: Vec<DocumentPreludeMatcher<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum DocumentPreludeMatcher<'s> {
+    Url(Url<'s>),
+    Function(Function<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
