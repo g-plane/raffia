@@ -26,6 +26,7 @@ pub enum AtRulePrelude<'s> {
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
+    Namespace(NamespacePrelude<'s>),
     PositionFallback(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
@@ -499,6 +500,19 @@ pub struct MediaQueryWithType<'s> {
     pub media_type: InterpolableIdent<'s>,
     pub condition: Option<MediaCondition<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct NamespacePrelude<'s> {
+    pub prefix: Option<InterpolableIdent<'s>>,
+    pub uri: NamespacePreludeUri<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum NamespacePreludeUri<'s> {
+    Str(InterpolableStr<'s>),
+    Url(Url<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]

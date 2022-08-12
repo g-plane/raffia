@@ -14,6 +14,7 @@ mod custom_media;
 mod keyframes;
 mod layer;
 mod media;
+mod namespace;
 mod position_fallback;
 mod scroll_timeline;
 mod supports;
@@ -43,6 +44,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => None,
             }
+        } else if at_rule_name.eq_ignore_ascii_case("namespace") {
+            Some(AtRulePrelude::Namespace(self.parse_namespace_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
             Some(AtRulePrelude::ColorProfile(
                 self.parse_color_profile_prelude()?,
@@ -85,6 +88,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             self.parse_simple_block().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("charset")
             || at_rule_name.eq_ignore_ascii_case("custom-media")
+            || at_rule_name.eq_ignore_ascii_case("namespace")
         {
             None
         } else {
