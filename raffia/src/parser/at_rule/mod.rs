@@ -12,6 +12,7 @@ mod custom_media;
 mod keyframes;
 mod layer;
 mod media;
+mod position_fallback;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -19,6 +20,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let at_keyword = expect!(self, AtKeyword);
 
         let at_rule_name = &at_keyword.ident.name;
+        #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {
@@ -40,7 +42,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
+        } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
+            Some(AtRulePrelude::PositionFallback(
+                self.parse_position_fallback_prelude()?,
+            ))
+        } else if at_rule_name.eq_ignore_ascii_case("try") {
+            None
         } else {
+            // todo: allow any tokens
             None
         };
 
@@ -50,6 +59,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
             || at_rule_name.eq_ignore_ascii_case("layer")
+            || at_rule_name.eq_ignore_ascii_case("position-fallback")
+            || at_rule_name.eq_ignore_ascii_case("try")
         {
             self.parse_simple_block().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("charset")

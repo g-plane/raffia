@@ -24,6 +24,7 @@ pub enum AtRulePrelude<'s> {
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
+    PositionFallback(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
 }
 

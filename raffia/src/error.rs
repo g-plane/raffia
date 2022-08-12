@@ -55,6 +55,7 @@ pub enum ErrorKind {
     InvalidRatioDenominator,
     ExpectMediaFeatureName,
     InvalidExtensionName,
+    ExpectDashedIdent,
 }
 
 pub type PResult<T> = Result<T, Error>;
