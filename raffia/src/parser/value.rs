@@ -67,7 +67,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(super) fn parse_component_values(
+    pub(in crate::parser) fn parse_component_values(
         &mut self,
         allow_comma: bool,
     ) -> PResult<ComponentValues<'s>> {

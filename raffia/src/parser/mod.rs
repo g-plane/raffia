@@ -12,6 +12,7 @@ use crate::{
 
 mod at_rule;
 mod less;
+pub mod partial_parse;
 mod sass;
 mod selector;
 mod state;
@@ -51,7 +52,7 @@ macro_rules! expect {
     }};
 }
 
-struct Parser<'cmt, 's: 'cmt> {
+pub struct Parser<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
     tokenizer: Tokenizer<'cmt, 's>,
@@ -59,7 +60,11 @@ struct Parser<'cmt, 's: 'cmt> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn new(source: &'s str, syntax: Syntax, comments: Option<&'cmt mut Vec<Comment<'s>>>) -> Self {
+    pub fn new(
+        source: &'s str,
+        syntax: Syntax,
+        comments: Option<&'cmt mut Vec<Comment<'s>>>,
+    ) -> Self {
         Parser {
             source,
             syntax: syntax.clone(),

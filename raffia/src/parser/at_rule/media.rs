@@ -275,7 +275,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    fn parse_media_query(&mut self) -> PResult<MediaQuery<'s>> {
+    pub(in crate::parser) fn parse_media_query(&mut self) -> PResult<MediaQuery<'s>> {
         if let Some(condition_only) =
             self.try_parse(|parser| parser.parse_media_condition(/* allow_or */ true))
         {
@@ -285,7 +285,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(super) fn parse_media_query_list(&mut self) -> PResult<MediqQueryList<'s>> {
+    pub(in crate::parser) fn parse_media_query_list(&mut self) -> PResult<MediqQueryList<'s>> {
         let first = self.parse_media_query()?;
         let mut span = first.span().clone();
 
