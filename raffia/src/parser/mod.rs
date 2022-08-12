@@ -265,6 +265,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
                         "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassErrorAtRule(self.parse_sass_error_at_rule()?)),
+                        "debug" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassDebugAtRule(self.parse_sass_debug_at_rule()?)),
                         _ if self.syntax == Syntax::Less => {
                             if let Some(less_variable_declaration) =
                                 self.try_parse(|parser| parser.parse_less_variable_declaration())

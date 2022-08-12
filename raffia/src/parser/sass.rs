@@ -134,6 +134,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
+    pub(super) fn parse_sass_debug_at_rule(&mut self) -> PResult<SassDebugAtRule<'s>> {
+        let token = expect!(self, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "debug");
+        let expr = self.parse_component_values(/* allow_comma */ true)?;
+        let span = Span {
+            start: token.span.start,
+            end: expr.span.end,
+        };
+        Ok(SassDebugAtRule { expr, span })
+    }
+
     pub(super) fn parse_sass_each_at_rule(&mut self) -> PResult<SassEachAtRule<'s>> {
         let at_keyword = expect!(self, AtKeyword);
         debug_assert_eq!(&*at_keyword.ident.name, "each");

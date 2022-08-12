@@ -556,6 +556,12 @@ pub struct SassBinaryExpression<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassDebugAtRule<'s> {
+    pub expr: ComponentValues<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassEachAtRule<'s> {
     pub bindings: Vec<SassVariable<'s>>,
     pub expr: ComponentValue<'s>,
@@ -702,6 +708,7 @@ pub enum Statement<'s> {
     KeyframeBlock(KeyframeBlock<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
+    SassDebugAtRule(SassDebugAtRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
     SassErrorAtRule(SassErrorAtRule<'s>),
     SassForAtRule(SassForAtRule<'s>),
