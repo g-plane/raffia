@@ -5,7 +5,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Syntax,
+    util, Syntax,
 };
 
 mod color_profile;
@@ -23,7 +23,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_at_rule(&mut self) -> PResult<AtRule<'s>> {
         let at_keyword = expect!(self, AtKeyword);
 
-        let at_rule_name = &at_keyword.ident.name;
+        let at_rule_name = util::trim_vendor_prefix(&at_keyword.ident.name);
         #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
@@ -65,6 +65,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse_position_fallback_prelude()?,
             ))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
+            || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
             None
@@ -83,6 +84,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("counter-style")
             || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
+            || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
             self.parse_simple_block().map(Some)?
