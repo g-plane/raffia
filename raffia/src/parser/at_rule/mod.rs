@@ -11,6 +11,7 @@ use crate::{
 mod color_profile;
 mod counter_style;
 mod custom_media;
+mod import;
 mod keyframes;
 mod layer;
 mod media;
@@ -26,7 +27,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         let at_rule_name = util::trim_vendor_prefix(&at_keyword.ident.name);
         #[allow(clippy::if_same_then_else)]
-        let prelude = if at_rule_name.eq_ignore_ascii_case("keyframes") {
+        let prelude = if at_rule_name.eq_ignore_ascii_case("import") {
+            Some(AtRulePrelude::Import(self.parse_import_prelude()?))
+        } else if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {
             Some(AtRulePrelude::Media(self.parse_media_query_list()?))
@@ -95,7 +98,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("try")
         {
             self.parse_simple_block().map(Some)?
-        } else if at_rule_name.eq_ignore_ascii_case("charset")
+        } else if at_rule_name.eq_ignore_ascii_case("import")
+            || at_rule_name.eq_ignore_ascii_case("charset")
             || at_rule_name.eq_ignore_ascii_case("custom-media")
             || at_rule_name.eq_ignore_ascii_case("namespace")
         {

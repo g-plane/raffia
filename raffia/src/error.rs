@@ -50,6 +50,7 @@ pub enum ErrorKind {
     ExpectMediaNot,
     ExpectSassKeyword(&'static str),
 
+    TryParseError,
     CSSWideKeywordDisallowed,
     UnknownKeyframeSelectorIdent,
     InvalidRatioDenominator,

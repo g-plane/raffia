@@ -23,6 +23,7 @@ pub enum AtRulePrelude<'s> {
     ColorProfile(ColorProfilePrelude<'s>),
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
+    Import(ImportPrelude<'s>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
@@ -145,6 +146,7 @@ pub enum ComponentValue<'s> {
     HexColor(HexColor<'s>),
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
+    LayerName(LayerName<'s>),
     LessVariable(LessVariable<'s>),
     Number(Number<'s>),
     Percentage(Percentage<'s>),
@@ -254,6 +256,33 @@ pub struct Ident<'s> {
     pub name: Cow<'s, str>,
     pub raw: &'s str,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ImportPrelude<'s> {
+    pub href: ImportPreludeHref<'s>,
+    pub layer: Option<ImportPreludeLayer<'s>>,
+    pub supports: Option<ImportPreludeSupports<'s>>,
+    pub media: Option<MediqQueryList<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ImportPreludeHref<'s> {
+    Str(InterpolableStr<'s>),
+    Url(Url<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ImportPreludeLayer<'s> {
+    Empty(Ident<'s>),
+    WithName(Function<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ImportPreludeSupports<'s> {
+    SupportsCondition(SupportsCondition<'s>),
+    Declaration(Declaration<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
