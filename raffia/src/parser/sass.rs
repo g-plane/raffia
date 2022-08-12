@@ -17,6 +17,34 @@ const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(super) fn parse_sass_at_rule(
+        &mut self,
+        at_keyword_name: &str,
+    ) -> PResult<Option<Statement<'s>>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+        match at_keyword_name {
+            "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassEachAtRule(self.parse_sass_each_at_rule()?),
+            )),
+            "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassForAtRule(self.parse_sass_for_at_rule()?),
+            )),
+            "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassWhileAtRule(self.parse_sass_while_at_rule()?),
+            )),
+            "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?),
+            )),
+            "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassErrorAtRule(self.parse_sass_error_at_rule()?),
+            )),
+            "debug" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
+                Statement::SassDebugAtRule(self.parse_sass_debug_at_rule()?),
+            )),
+            _ => Ok(None),
+        }
+    }
+
     pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         self.parse_sass_bin_expr_recursively(0)
