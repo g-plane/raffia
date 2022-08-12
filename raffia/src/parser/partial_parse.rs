@@ -12,6 +12,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        input.parse_complex_selector()
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         input.parse_component_value()

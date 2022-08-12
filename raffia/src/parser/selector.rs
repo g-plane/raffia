@@ -200,7 +200,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(ClassSelector { name: ident, span })
     }
 
-    fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'s>> {
+    pub(in crate::parser) fn parse_complex_selector(&mut self) -> PResult<ComplexSelector<'s>> {
         let mut children = Vec::with_capacity(1);
         let first = self.parse_compound_selector()?;
         let mut span = first.span.clone();
