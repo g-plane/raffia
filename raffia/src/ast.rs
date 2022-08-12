@@ -454,7 +454,7 @@ pub struct MediaFeatureRangeInterval<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub enum MediaInParens<'s> {
     MediaCondition(MediaCondition<'s>),
-    MediaFeature(MediaFeature<'s>),
+    MediaFeature(Box<MediaFeature<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned)]

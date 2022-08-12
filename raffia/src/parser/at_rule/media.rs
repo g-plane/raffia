@@ -227,7 +227,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         {
             MediaInParens::MediaCondition(media_condition)
         } else {
-            MediaInParens::MediaFeature(self.parse_media_feature()?)
+            MediaInParens::MediaFeature(Box::new(self.parse_media_feature()?))
         };
         expect!(self, RParen);
         Ok(media_in_parens)
