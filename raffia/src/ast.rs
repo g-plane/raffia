@@ -24,6 +24,7 @@ pub enum AtRulePrelude<'s> {
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
     Document(DocumentPrelude<'s>),
+    FontPaletteValues(InterpolableIdent<'s>),
     Import(ImportPrelude<'s>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),

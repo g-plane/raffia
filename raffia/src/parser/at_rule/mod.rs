@@ -53,6 +53,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::ColorProfile(
                 self.parse_color_profile_prelude()?,
             ))
+        } else if at_rule_name.eq_ignore_ascii_case("font-palette-values") {
+            Some(AtRulePrelude::FontPaletteValues(self.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("counter-style") {
             Some(AtRulePrelude::CounterStyle(
                 self.parse_counter_style_prelude()?,
@@ -88,6 +90,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("supports")
             || at_rule_name.eq_ignore_ascii_case("layer")
             || at_rule_name.eq_ignore_ascii_case("color-profile")
+            || at_rule_name.eq_ignore_ascii_case("font-palette-values")
             || at_rule_name.eq_ignore_ascii_case("counter-style")
             || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
