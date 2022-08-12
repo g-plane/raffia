@@ -73,6 +73,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
+    pub fn parse<T>(&mut self) -> PResult<T>
+    where
+        T: partial_parse::Parse<'cmt, 's>,
+    {
+        T::parse(self)
+    }
+
     fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> Option<R> {
         let tokenizer_state = self.tokenizer.state.clone();
         let comments_count = self
