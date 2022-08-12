@@ -27,6 +27,7 @@ pub enum AtRulePrelude<'s> {
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
+    Nest(SelectorList<'s>),
     PositionFallback(InterpolableIdent<'s>),
     Property(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),

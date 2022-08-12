@@ -65,6 +65,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::PositionFallback(
                 self.parse_position_fallback_prelude()?,
             ))
+        } else if at_rule_name.eq_ignore_ascii_case("nest") {
+            Some(AtRulePrelude::Nest(self.parse_selector_list()?))
         } else if at_rule_name.eq_ignore_ascii_case("property") {
             Some(AtRulePrelude::Property(self.parse_property_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
@@ -88,6 +90,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
             || at_rule_name.eq_ignore_ascii_case("viewport")
+            || at_rule_name.eq_ignore_ascii_case("nest")
             || at_rule_name.eq_ignore_ascii_case("property")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
