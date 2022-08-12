@@ -25,6 +25,7 @@ pub enum AtRulePrelude<'s> {
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
     PositionFallback(InterpolableIdent<'s>),
+    ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
 }
 

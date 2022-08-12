@@ -13,6 +13,7 @@ mod keyframes;
 mod layer;
 mod media;
 mod position_fallback;
+mod scroll_timeline;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -42,6 +43,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
+        } else if at_rule_name.eq_ignore_ascii_case("scroll-timeline") {
+            Some(AtRulePrelude::ScrollTimeline(
+                self.parse_scroll_timeline_prelude()?,
+            ))
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
             Some(AtRulePrelude::PositionFallback(
                 self.parse_position_fallback_prelude()?,
@@ -59,6 +64,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
             || at_rule_name.eq_ignore_ascii_case("layer")
+            || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
