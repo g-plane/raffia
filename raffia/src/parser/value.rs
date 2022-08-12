@@ -220,7 +220,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
         expect!(self, LParen);
-        let values = self.parse_component_values(/* allow_comma */ true)?;
+        let values = match self.tokenizer.peek()? {
+            Token::RParen(..) => vec![],
+            _ => self.parse_component_values(/* allow_comma */ true)?.values,
+        };
         let r_paren = expect!(self, RParen);
         let span = Span {
             start: name.span().start,
@@ -228,7 +231,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(Function {
             name,
-            args: values.values,
+            args: values,
             span,
         })
     }
