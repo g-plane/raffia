@@ -28,6 +28,7 @@ pub enum AtRulePrelude<'s> {
     Media(MediqQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
     PositionFallback(InterpolableIdent<'s>),
+    Property(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
 }

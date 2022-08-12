@@ -16,6 +16,7 @@ mod layer;
 mod media;
 mod namespace;
 mod position_fallback;
+mod property;
 mod scroll_timeline;
 mod supports;
 
@@ -64,6 +65,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::PositionFallback(
                 self.parse_position_fallback_prelude()?,
             ))
+        } else if at_rule_name.eq_ignore_ascii_case("property") {
+            Some(AtRulePrelude::Property(self.parse_property_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
@@ -85,6 +88,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
             || at_rule_name.eq_ignore_ascii_case("viewport")
+            || at_rule_name.eq_ignore_ascii_case("property")
             || at_rule_name.eq_ignore_ascii_case("try")
         {
             self.parse_simple_block().map(Some)?
