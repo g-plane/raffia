@@ -56,7 +56,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::PositionFallback(
                 self.parse_position_fallback_prelude()?,
             ))
-        } else if at_rule_name.eq_ignore_ascii_case("try") {
+        } else if at_rule_name.eq_ignore_ascii_case("font-face")
+            || at_rule_name.eq_ignore_ascii_case("try")
+        {
             None
         } else {
             // todo: allow any tokens
