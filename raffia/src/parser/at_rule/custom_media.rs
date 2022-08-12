@@ -1,25 +1,14 @@
 use super::Parser;
 use crate::{
     ast::*,
-    error::{Error, ErrorKind, PResult},
+    error::PResult,
     pos::{Span, Spanned},
     tokenizer::Token,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_custom_media(&mut self) -> PResult<CustomMedia<'s>> {
-        let name = self.parse_interpolable_ident()?;
-        match &name {
-            InterpolableIdent::Literal(ident) if !ident.name.starts_with("--") => {
-                // this should be recoverable
-                return Err(Error {
-                    kind: ErrorKind::InvalidExtensionName,
-                    span: ident.span.clone(),
-                });
-            }
-            _ => {}
-        }
-
+        let name = self.parse_dashed_ident()?;
         let value = self.parse_custom_media_value()?;
         let span = Span {
             start: name.span().start,

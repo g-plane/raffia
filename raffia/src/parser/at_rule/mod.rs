@@ -17,8 +17,6 @@ mod keyframes;
 mod layer;
 mod media;
 mod namespace;
-mod position_fallback;
-mod property;
 mod scroll_timeline;
 mod supports;
 
@@ -66,13 +64,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse_scroll_timeline_prelude()?,
             ))
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
-            Some(AtRulePrelude::PositionFallback(
-                self.parse_position_fallback_prelude()?,
-            ))
+            Some(AtRulePrelude::PositionFallback(self.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("nest") {
             Some(AtRulePrelude::Nest(self.parse_selector_list()?))
         } else if at_rule_name.eq_ignore_ascii_case("property") {
-            Some(AtRulePrelude::Property(self.parse_property_prelude()?))
+            Some(AtRulePrelude::Property(self.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("document") {
             Some(AtRulePrelude::Document(self.parse_document_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")

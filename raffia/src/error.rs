@@ -55,7 +55,6 @@ pub enum ErrorKind {
     UnknownKeyframeSelectorIdent,
     InvalidRatioDenominator,
     ExpectMediaFeatureName,
-    InvalidExtensionName,
     ExpectDashedIdent,
 }
 
