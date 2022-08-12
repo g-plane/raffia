@@ -8,6 +8,7 @@ use crate::{
     Syntax,
 };
 
+mod color_profile;
 mod custom_media;
 mod keyframes;
 mod layer;
@@ -41,6 +42,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => None,
             }
+        } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
+            Some(AtRulePrelude::ColorProfile(
+                self.parse_color_profile_prelude()?,
+            ))
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
         } else if at_rule_name.eq_ignore_ascii_case("scroll-timeline") {
@@ -64,6 +69,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
             || at_rule_name.eq_ignore_ascii_case("layer")
+            || at_rule_name.eq_ignore_ascii_case("color-profile")
             || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
             || at_rule_name.eq_ignore_ascii_case("try")

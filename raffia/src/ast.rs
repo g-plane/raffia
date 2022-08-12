@@ -20,6 +20,7 @@ pub struct AtRule<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub enum AtRulePrelude<'s> {
     Charset(Str<'s>),
+    ColorProfile(ColorProfilePrelude<'s>),
     CustomMedia(CustomMedia<'s>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
@@ -92,6 +93,12 @@ pub enum BinaryOperatorKind {
 pub struct ClassSelector<'s> {
     pub name: InterpolableIdent<'s>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ColorProfilePrelude<'s> {
+    DashedIdent(InterpolableIdent<'s>),
+    DeviceCmyk(Ident<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
