@@ -21,6 +21,7 @@ pub struct AtRule<'s> {
 pub enum AtRulePrelude<'s> {
     Charset(Str<'s>),
     ColorProfile(ColorProfilePrelude<'s>),
+    CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
