@@ -7,8 +7,7 @@ use crate::{
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_scroll_timeline_prelude(&mut self) -> PResult<InterpolableIdent<'s>> {
-        let ident = self.parse_interpolable_ident()?;
-        match ident {
+        match self.parse_interpolable_ident()? {
             // this should be recoverable
             InterpolableIdent::Literal(ident) if util::is_css_wide_keyword(&ident.name) => {
                 Err(Error {
