@@ -564,6 +564,12 @@ pub struct SassEachAtRule<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct SassErrorAtRule<'s> {
+    pub expr: ComponentValues<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct SassForAtRule<'s> {
     pub binding: SassVariable<'s>,
     pub start: ComponentValue<'s>,
@@ -697,6 +703,7 @@ pub enum Statement<'s> {
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
+    SassErrorAtRule(SassErrorAtRule<'s>),
     SassForAtRule(SassForAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),

@@ -255,14 +255,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 Token::AtKeyword(at_keyword) => {
                     match &*at_keyword.ident.name {
-                        "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
-                            .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
                         "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassEachAtRule(self.parse_sass_each_at_rule()?)),
                         "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassForAtRule(self.parse_sass_for_at_rule()?)),
                         "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
                             .push(Statement::SassWhileAtRule(self.parse_sass_while_at_rule()?)),
+                        "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?)),
+                        "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => statements
+                            .push(Statement::SassErrorAtRule(self.parse_sass_error_at_rule()?)),
                         _ if self.syntax == Syntax::Less => {
                             if let Some(less_variable_declaration) =
                                 self.try_parse(|parser| parser.parse_less_variable_declaration())
