@@ -21,6 +21,7 @@ pub struct AtRule<'s> {
 pub enum AtRulePrelude<'s> {
     Charset(Str<'s>),
     ColorProfile(ColorProfilePrelude<'s>),
+    Container(ContainerPrelude<'s>),
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
     Document(DocumentPrelude<'s>),
@@ -193,6 +194,48 @@ pub struct ComponentValues<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub struct CompoundSelector<'s> {
     pub children: Vec<SimpleSelector<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ContainerCondition<'s> {
+    pub conditions: Vec<ContainerConditionKind<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum ContainerConditionKind<'s> {
+    QueryInParens(QueryInParens<'s>),
+    And(ContainerConditionAnd<'s>),
+    Or(ContainerConditionOr<'s>),
+    Not(ContainerConditionNot<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ContainerConditionAnd<'s> {
+    pub ident: Ident<'s>,
+    pub query_in_parens: QueryInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ContainerConditionNot<'s> {
+    pub ident: Ident<'s>,
+    pub query_in_parens: QueryInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ContainerConditionOr<'s> {
+    pub ident: Ident<'s>,
+    pub query_in_parens: QueryInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ContainerPrelude<'s> {
+    pub name: Option<InterpolableIdent<'s>>,
+    pub condition: ContainerCondition<'s>,
     pub span: Span,
 }
 
@@ -633,6 +676,13 @@ pub struct QualifiedRule<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum QueryInParens<'s> {
+    ContainerCondition(ContainerCondition<'s>),
+    SizeFeature(MediaFeature<'s>),
+    StyleQuery(StyleQuery<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Ratio<'s> {
     pub numerator: Number<'s>,
     pub denominator: Number<'s>,
@@ -821,6 +871,53 @@ pub struct Str<'s> {
     pub value: Cow<'s, str>,
     pub raw: &'s str,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct StyleCondition<'s> {
+    pub conditions: Vec<StyleConditionKind<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum StyleConditionKind<'s> {
+    StyleInParens(StyleInParens<'s>),
+    And(StyleConditionAnd<'s>),
+    Or(StyleConditionOr<'s>),
+    Not(StyleConditionNot<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct StyleConditionAnd<'s> {
+    pub ident: Ident<'s>,
+    pub style_in_parens: StyleInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct StyleConditionNot<'s> {
+    pub ident: Ident<'s>,
+    pub style_in_parens: StyleInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct StyleConditionOr<'s> {
+    pub ident: Ident<'s>,
+    pub style_in_parens: StyleInParens<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum StyleInParens<'s> {
+    Condition(StyleCondition<'s>),
+    Feature(Declaration<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum StyleQuery<'s> {
+    Condition(StyleCondition<'s>),
+    Feature(Declaration<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]

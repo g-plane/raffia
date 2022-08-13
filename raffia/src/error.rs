@@ -48,6 +48,13 @@ pub enum ErrorKind {
     ExpectMediaAnd,
     ExpectMediaOr,
     ExpectMediaNot,
+    ExpectContainerConditionAnd,
+    ExpectContainerConditionOr,
+    ExpectContainerConditionNot,
+    ExpectStyleConditionAnd,
+    ExpectStyleConditionOr,
+    ExpectStyleConditionNot,
+    ExpectStyleQuery,
     ExpectSassKeyword(&'static str),
 
     TryParseError,

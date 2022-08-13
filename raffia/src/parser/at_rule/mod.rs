@@ -9,6 +9,7 @@ use crate::{
 };
 
 mod color_profile;
+mod container;
 mod counter_style;
 mod custom_media;
 mod document;
@@ -48,6 +49,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => None,
             }
+        } else if at_rule_name.eq_ignore_ascii_case("container") {
+            Some(AtRulePrelude::Container(self.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
             Some(AtRulePrelude::Namespace(self.parse_namespace_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
@@ -101,6 +104,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
             || at_rule_name.eq_ignore_ascii_case("layer")
+            || at_rule_name.eq_ignore_ascii_case("container")
             || at_rule_name.eq_ignore_ascii_case("color-profile")
             || at_rule_name.eq_ignore_ascii_case("font-palette-values")
             || at_rule_name.eq_ignore_ascii_case("counter-style")

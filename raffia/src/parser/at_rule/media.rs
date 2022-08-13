@@ -72,7 +72,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    fn parse_media_feature(&mut self) -> PResult<MediaFeature<'s>> {
+    pub(super) fn parse_media_feature(&mut self) -> PResult<MediaFeature<'s>> {
         let left = self.parse_media_feature_value()?;
         if let ComponentValue::InterpolableIdent(ident) = left {
             match self.tokenizer.peek()? {
