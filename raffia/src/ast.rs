@@ -24,6 +24,7 @@ pub enum AtRulePrelude<'s> {
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(CustomMedia<'s>),
     Document(DocumentPrelude<'s>),
+    FontFeatureValues(FontFamilyName<'s>),
     FontPaletteValues(InterpolableIdent<'s>),
     Import(ImportPrelude<'s>),
     Keyframes(KeyframesName<'s>),
@@ -242,6 +243,12 @@ pub struct Flex<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum FontFamilyName<'s> {
+    Str(InterpolableStr<'s>),
+    Unquoted(UnquotedFontFamilyName<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -868,6 +875,12 @@ pub struct UniversalSelector<'s> {
 pub struct UnknownDimension<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct UnquotedFontFamilyName<'s> {
+    pub idents: Vec<InterpolableIdent<'s>>,
     pub span: Span,
 }
 

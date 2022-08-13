@@ -12,6 +12,7 @@ mod color_profile;
 mod counter_style;
 mod custom_media;
 mod document;
+mod font_feature_values;
 mod import;
 mod keyframes;
 mod layer;
@@ -53,6 +54,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Some(AtRulePrelude::ColorProfile(
                 self.parse_color_profile_prelude()?,
             ))
+        } else if at_rule_name.eq_ignore_ascii_case("font-feature-values") {
+            Some(AtRulePrelude::FontFeatureValues(
+                self.parse_font_feature_values_prelude()?,
+            ))
         } else if at_rule_name.eq_ignore_ascii_case("font-palette-values") {
             Some(AtRulePrelude::FontPaletteValues(self.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("counter-style") {
@@ -76,6 +81,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
+            || at_rule_name.eq_ignore_ascii_case("stylistic")
+            || at_rule_name.eq_ignore_ascii_case("historical-forms")
+            || at_rule_name.eq_ignore_ascii_case("styleset")
+            || at_rule_name.eq_ignore_ascii_case("character-variant")
+            || at_rule_name.eq_ignore_ascii_case("swash")
+            || at_rule_name.eq_ignore_ascii_case("ornaments")
+            || at_rule_name.eq_ignore_ascii_case("annotation")
         {
             None
         } else {
@@ -99,6 +111,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("property")
             || at_rule_name.eq_ignore_ascii_case("document")
             || at_rule_name.eq_ignore_ascii_case("try")
+            || at_rule_name.eq_ignore_ascii_case("font-feature-values")
+            || at_rule_name.eq_ignore_ascii_case("stylistic")
+            || at_rule_name.eq_ignore_ascii_case("historical-forms")
+            || at_rule_name.eq_ignore_ascii_case("styleset")
+            || at_rule_name.eq_ignore_ascii_case("character-variant")
+            || at_rule_name.eq_ignore_ascii_case("swash")
+            || at_rule_name.eq_ignore_ascii_case("ornaments")
+            || at_rule_name.eq_ignore_ascii_case("annotation")
         {
             self.parse_simple_block().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("import")
