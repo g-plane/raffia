@@ -6,7 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Syntax,
+    Syntax,
 };
 
 const PRECEDENCE_MULTIPLY: u8 = 2;
@@ -174,12 +174,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_dashed_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         match self.parse_interpolable_ident()? {
             // this should be recoverable
-            InterpolableIdent::Literal(ident) if util::is_css_wide_keyword(&ident.name) => {
-                Err(Error {
-                    kind: ErrorKind::CSSWideKeywordDisallowed,
-                    span: ident.span,
-                })
-            }
+            InterpolableIdent::Literal(ident) if !ident.name.starts_with("--") => Err(Error {
+                kind: ErrorKind::ExpectDashedIdent,
+                span: ident.span,
+            }),
             ident => Ok(ident),
         }
     }
