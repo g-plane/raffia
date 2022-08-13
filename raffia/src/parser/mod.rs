@@ -9,6 +9,7 @@ use crate::{
         Token, Tokenizer,
     },
 };
+pub use partial_parse::Parse;
 
 mod at_rule;
 mod less;
