@@ -8,7 +8,7 @@ use crate::{
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_import_prelude(&mut self) -> PResult<ImportPrelude<'s>> {
+    pub(in crate::parser) fn parse_import_prelude(&mut self) -> PResult<ImportPrelude<'s>> {
         let href = match self.tokenizer.peek()? {
             Token::UrlPrefix(..) => self.parse_url().map(ImportPreludeHref::Url)?,
             _ => self.parse_interpolable_str().map(ImportPreludeHref::Str)?,

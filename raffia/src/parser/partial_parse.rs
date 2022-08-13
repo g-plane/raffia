@@ -36,6 +36,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        input.parse_import_prelude()
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         input.parse_media_query()
