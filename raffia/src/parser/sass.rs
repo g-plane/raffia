@@ -465,10 +465,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     span: token.span,
                 }
             }
-            _ => return self.parse_component_value_internally(),
+            _ => return self.parse_component_value_atom(),
         };
 
-        let expr = self.parse_component_value_internally()?;
+        let expr = self.parse_component_value_atom()?;
         let span = Span {
             start: op.span.start,
             end: expr.span().end,

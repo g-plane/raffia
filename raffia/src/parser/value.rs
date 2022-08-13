@@ -24,7 +24,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 expect!(self, RParen);
                 expr
             } else {
-                self.parse_component_value_internally()?
+                self.parse_component_value_atom()?
             }
         } else {
             self.parse_calc_expr_recursively(precedence + 1)?
@@ -83,11 +83,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
             self.parse_sass_bin_expr()
         } else {
-            self.parse_component_value_internally()
+            self.parse_component_value_atom()
         }
     }
 
-    pub(super) fn parse_component_value_internally(&mut self) -> PResult<ComponentValue<'s>> {
+    pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
         match self.tokenizer.peek()? {
             Token::Ident(..) => {
                 let ident = self.parse_interpolable_ident()?;

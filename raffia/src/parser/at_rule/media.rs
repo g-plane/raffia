@@ -209,7 +209,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_media_feature_value(&mut self) -> PResult<ComponentValue<'s>> {
-        match self.parse_component_value_internally()? {
+        match self.parse_component_value_atom()? {
             ComponentValue::Number(number) => match self.tokenizer.peek()? {
                 Token::Solidus(..) if number.value >= 0.0 => {
                     self.parse_ratio(number).map(ComponentValue::Ratio)
