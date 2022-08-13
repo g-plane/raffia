@@ -1,6 +1,7 @@
 use super::{state::QualifiedRuleContext, Parser};
 use crate::{
     ast::*,
+    eat,
     error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
@@ -8,7 +9,76 @@ use crate::{
     util, Syntax,
 };
 
+const PRECEDENCE_MULTIPLY: u8 = 2;
+const PRECEDENCE_PLUS: u8 = 1;
+
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    pub(in crate::parser) fn parse_calc_expr(&mut self) -> PResult<ComponentValue<'s>> {
+        self.parse_calc_expr_recursively(0)
+    }
+
+    fn parse_calc_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'s>> {
+        let mut left = if precedence >= PRECEDENCE_MULTIPLY {
+            if eat!(self, LParen).is_some() {
+                let expr = self.parse_calc_expr()?;
+                expect!(self, RParen);
+                expr
+            } else {
+                self.parse_component_value_internally()?
+            }
+        } else {
+            self.parse_calc_expr_recursively(precedence + 1)?
+        };
+
+        loop {
+            let operator = match self.tokenizer.peek()? {
+                Token::Asterisk(token) if precedence == PRECEDENCE_MULTIPLY => {
+                    self.tokenizer.bump()?;
+                    CalcOperator {
+                        kind: CalcOperatorKind::Multiply,
+                        span: token.span,
+                    }
+                }
+                Token::Solidus(token) if precedence == PRECEDENCE_MULTIPLY => {
+                    self.tokenizer.bump()?;
+                    CalcOperator {
+                        kind: CalcOperatorKind::Division,
+                        span: token.span,
+                    }
+                }
+                Token::Plus(token) if precedence == PRECEDENCE_PLUS => {
+                    self.tokenizer.bump()?;
+                    CalcOperator {
+                        kind: CalcOperatorKind::Plus,
+                        span: token.span,
+                    }
+                }
+                Token::Minus(token) if precedence == PRECEDENCE_PLUS => {
+                    self.tokenizer.bump()?;
+                    CalcOperator {
+                        kind: CalcOperatorKind::Minus,
+                        span: token.span,
+                    }
+                }
+                _ => break,
+            };
+
+            let right = self.parse_calc_expr_recursively(precedence + 1)?;
+            let span = Span {
+                start: left.span().start,
+                end: right.span().end,
+            };
+            left = ComponentValue::Calc(Calc {
+                left: Box::new(left),
+                op: operator,
+                right: Box::new(right),
+                span,
+            });
+        }
+
+        Ok(left)
+    }
+
     pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'s>> {
         if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
             self.parse_sass_bin_expr()
@@ -235,7 +305,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         expect!(self, LParen);
         let values = match self.tokenizer.peek()? {
             Token::RParen(..) => vec![],
-            _ => self.parse_component_values(/* allow_comma */ true)?.values,
+            _ => match &name {
+                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
+                    vec![self.parse_calc_expr()?]
+                }
+                _ => self.parse_component_values(/* allow_comma */ true)?.values,
+            },
         };
         let r_paren = expect!(self, RParen);
         let span = Span {

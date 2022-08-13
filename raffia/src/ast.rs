@@ -98,6 +98,28 @@ pub enum BinaryOperatorKind {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct Calc<'s> {
+    pub left: Box<ComponentValue<'s>>,
+    pub op: CalcOperator,
+    pub right: Box<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct CalcOperator {
+    pub kind: CalcOperatorKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum CalcOperatorKind {
+    Plus,
+    Minus,
+    Multiply,
+    Division,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct ClassSelector<'s> {
     pub name: InterpolableIdent<'s>,
     pub span: Span,
@@ -143,6 +165,7 @@ pub enum ComplexSelectorChild<'s> {
 
 #[derive(Clone, Debug, Spanned)]
 pub enum ComponentValue<'s> {
+    Calc(Calc<'s>),
     Delimiter(Delimiter),
     Dimension(Dimension<'s>),
     Function(Function<'s>),
