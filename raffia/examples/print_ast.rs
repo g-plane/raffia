@@ -1,4 +1,4 @@
-use raffia::{parse, Syntax};
+use raffia::{ast::Stylesheet, Parser, Syntax};
 use std::{env, fs, path::Path};
 
 fn main() {
@@ -12,6 +12,6 @@ fn main() {
         Some("less") => Syntax::Less,
         _ => Syntax::Css,
     };
-    let ast = parse(&file, syntax).unwrap();
+    let ast = Parser::new(&file, syntax).parse::<Stylesheet>().unwrap();
     println!("{:#?}", ast);
 }

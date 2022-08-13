@@ -4,13 +4,12 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     pos::{Span, Spanned},
-    tokenizer::{
-        token::{self, Comment},
-        Token, Tokenizer,
-    },
+    tokenizer::{token, Token, Tokenizer},
 };
+pub use builder::ParserBuilder;
 
 mod at_rule;
+mod builder;
 mod less;
 mod sass;
 mod selector;
@@ -63,15 +62,11 @@ pub struct Parser<'cmt, 's: 'cmt> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub fn new(
-        source: &'s str,
-        syntax: Syntax,
-        comments: Option<&'cmt mut Vec<Comment<'s>>>,
-    ) -> Self {
+    pub fn new(source: &'s str, syntax: Syntax) -> Self {
         Parser {
             source,
             syntax: syntax.clone(),
-            tokenizer: Tokenizer::new(source, syntax, comments),
+            tokenizer: Tokenizer::new(source, syntax, None),
             state: Default::default(),
         }
     }
@@ -328,15 +323,4 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Stylesheet<'s> {
             },
         })
     }
-}
-
-pub fn parse(source: &str, syntax: Syntax) -> PResult<Stylesheet> {
-    let mut parser = Parser::new(source, syntax, None);
-    parser.parse()
-}
-
-pub fn parse_with_comments(source: &str, syntax: Syntax) -> PResult<(Stylesheet, Vec<Comment>)> {
-    let mut comments = vec![];
-    let mut parser = Parser::new(source, syntax, Some(&mut comments));
-    parser.parse().map(|ast| (ast, comments))
 }

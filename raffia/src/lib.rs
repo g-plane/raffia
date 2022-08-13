@@ -1,5 +1,5 @@
 pub use config::Syntax;
-pub use parser::{parse, parse_with_comments, Parse, Parser};
+pub use parser::{Parse, Parser, ParserBuilder};
 pub use pos::{Span, Spanned};
 
 pub mod ast;
