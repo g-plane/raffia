@@ -285,6 +285,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleQuery<'s> {
     }
 }
 
+// https://drafts.csswg.org/css-contain-3/#container-rule
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let name = input.try_parse(|parser| match parser.parse_interpolable_ident()? {
