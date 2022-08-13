@@ -29,7 +29,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         let at_rule_name = util::trim_vendor_prefix(&at_keyword.ident.name);
         #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("import") {
-            Some(AtRulePrelude::Import(input.parse()?))
+            Some(AtRulePrelude::Import(Box::new(input.parse()?)))
         } else if at_rule_name.eq_ignore_ascii_case("keyframes") {
             Some(AtRulePrelude::Keyframes(input.parse_keyframes_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {

@@ -27,7 +27,7 @@ pub enum AtRulePrelude<'s> {
     Document(DocumentPrelude<'s>),
     FontFeatureValues(FontFamilyName<'s>),
     FontPaletteValues(InterpolableIdent<'s>),
-    Import(ImportPrelude<'s>),
+    Import(Box<ImportPrelude<'s>>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
     Media(MediqQueryList<'s>),
@@ -678,7 +678,7 @@ pub struct QualifiedRule<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub enum QueryInParens<'s> {
     ContainerCondition(ContainerCondition<'s>),
-    SizeFeature(MediaFeature<'s>),
+    SizeFeature(Box<MediaFeature<'s>>),
     StyleQuery(StyleQuery<'s>),
 }
 

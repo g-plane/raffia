@@ -10,13 +10,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FontFamilyName<'s> {
                 let mut span = first.span().clone();
 
                 let mut idents = vec![first];
-                loop {
-                    match input.tokenizer.peek()? {
-                        Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
-                            idents.push(input.parse()?);
-                        }
-                        _ => break,
-                    }
+                while let Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) =
+                    input.tokenizer.peek()?
+                {
+                    idents.push(input.parse()?);
                 }
                 if let Some(last) = idents.last() {
                     span.end = last.span().end;
