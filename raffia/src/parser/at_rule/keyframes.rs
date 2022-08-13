@@ -24,7 +24,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_keyframe_block(&mut self) -> PResult<KeyframeBlock<'s>> {
         let (prelude, mut span) = self.parse_keyframe_selectors()?;
-        let block = self.parse_simple_block()?;
+        let block = self.parse::<SimpleBlock>()?;
         span.end = block.span.end;
         Ok(KeyframeBlock {
             prelude,
@@ -38,12 +38,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut span;
         match self.tokenizer.peek()? {
             Token::Percentage(..) => {
-                let percentage = self.parse_percentage()?;
+                let percentage = self.parse::<Percentage>()?;
                 span = percentage.span.clone();
                 prelude.push(KeyframeSelector::Percentage(percentage));
             }
             _ => {
-                let ident = self.parse_interpolable_ident()?;
+                let ident = self.parse()?;
                 match &ident {
                     InterpolableIdent::Literal(ident)
                         if !ident.name.eq_ignore_ascii_case("from")
@@ -63,11 +63,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         while eat!(self, Comma).is_some() {
             match self.tokenizer.peek()? {
-                Token::Percent(..) => {
-                    prelude.push(KeyframeSelector::Percentage(self.parse_percentage()?))
-                }
+                Token::Percent(..) => prelude.push(KeyframeSelector::Percentage(self.parse()?)),
                 _ => {
-                    let ident = self.parse_interpolable_ident()?;
+                    let ident = self.parse()?;
                     match &ident {
                         InterpolableIdent::Literal(ident)
                             if !ident.name.eq_ignore_ascii_case("from")
@@ -94,11 +92,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_keyframes_prelude(&mut self) -> PResult<KeyframesName<'s>> {
         match self.tokenizer.peek()? {
-            Token::Str(..) | Token::StrTemplate(..) => {
-                self.parse_interpolable_str().map(KeyframesName::Str)
-            }
+            Token::Str(..) | Token::StrTemplate(..) => self.parse().map(KeyframesName::Str),
             _ => {
-                let ident = self.parse_interpolable_ident()?;
+                let ident = self.parse()?;
                 match &ident {
                     InterpolableIdent::Literal(ident)
                         if util::is_css_wide_keyword(&ident.name)

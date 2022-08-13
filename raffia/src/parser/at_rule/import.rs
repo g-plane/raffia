@@ -5,27 +5,28 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    Parse,
 };
 
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(in crate::parser) fn parse_import_prelude(&mut self) -> PResult<ImportPrelude<'s>> {
-        let href = match self.tokenizer.peek()? {
-            Token::UrlPrefix(..) => self.parse_url().map(ImportPreludeHref::Url)?,
-            _ => self.parse_interpolable_str().map(ImportPreludeHref::Str)?,
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let href = match input.tokenizer.peek()? {
+            Token::UrlPrefix(..) => input.parse().map(ImportPreludeHref::Url)?,
+            _ => input.parse().map(ImportPreludeHref::Str)?,
         };
         let mut span = href.span().clone();
 
-        let layer = match self.tokenizer.peek()? {
+        let layer = match input.tokenizer.peek()? {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("layer") => {
-                let ident = self.parse_ident()?;
-                let layer = match self.tokenizer.peek()? {
+                let ident = input.parse::<Ident>()?;
+                let layer = match input.tokenizer.peek()? {
                     Token::LParen(l_paren) if l_paren.span.start == ident.span.end => {
-                        expect!(self, LParen);
-                        let args = match self.tokenizer.peek()? {
+                        expect!(input, LParen);
+                        let args = match input.tokenizer.peek()? {
                             Token::RParen(..) => vec![],
-                            _ => vec![self.parse_layer_name().map(ComponentValue::LayerName)?],
+                            _ => vec![input.parse().map(ComponentValue::LayerName)?],
                         };
-                        let r_paren = expect!(self, RParen);
+                        let r_paren = expect!(input, RParen);
                         let span = Span {
                             start: ident.span.start,
                             end: r_paren.span.end,
@@ -44,7 +45,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             _ => None,
         };
 
-        let supports = self.try_parse(|parser| {
+        let supports = input.try_parse(|parser| {
             let ident = expect!(parser, Ident);
             if !ident.name.eq_ignore_ascii_case("supports") {
                 return Err(Error {
@@ -56,15 +57,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             let l_paren = expect!(parser, LParen);
             parser.assert_no_ws_or_comment(&ident.span, &l_paren.span)?;
 
-            let supports = if let Some(supports_condition) =
-                parser.try_parse(|parser| parser.parse_supports_condition())
-            {
-                Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
-            } else {
-                parser
-                    .parse_declaration()
-                    .map(ImportPreludeSupports::Declaration)
-            };
+            let supports =
+                if let Some(supports_condition) = parser.try_parse(|parser| parser.parse()) {
+                    Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
+                } else {
+                    parser.parse().map(ImportPreludeSupports::Declaration)
+                };
             expect!(parser, RParen);
             supports
         });
@@ -72,10 +70,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             span.end = supports.span().end;
         }
 
-        let media = match self.tokenizer.peek()? {
+        let media = match input.tokenizer.peek()? {
             Token::Semicolon(..) => None,
             _ => {
-                let media = self.parse_media_query_list()?;
+                let media = input.parse::<MediqQueryList>()?;
                 span.end = media.span.end;
                 Some(media)
             }

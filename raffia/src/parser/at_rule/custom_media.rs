@@ -4,30 +4,31 @@ use crate::{
     error::PResult,
     pos::{Span, Spanned},
     tokenizer::Token,
+    Parse,
 };
 
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_custom_media(&mut self) -> PResult<CustomMedia<'s>> {
-        let name = self.parse_dashed_ident()?;
-        let value = self.parse_custom_media_value()?;
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMedia<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let name = input.parse_dashed_ident()?;
+        let value = input.parse::<CustomMediaValue>()?;
         let span = Span {
             start: name.span().start,
             end: value.span().end,
         };
         Ok(CustomMedia { name, value, span })
     }
+}
 
-    fn parse_custom_media_value(&mut self) -> PResult<CustomMediaValue<'s>> {
-        match self.tokenizer.peek()? {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMediaValue<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("true") => {
-                self.parse_ident().map(CustomMediaValue::True)
+                input.parse().map(CustomMediaValue::True)
             }
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("false") => {
-                self.parse_ident().map(CustomMediaValue::False)
+                input.parse().map(CustomMediaValue::False)
             }
-            _ => self
-                .parse_media_query_list()
-                .map(CustomMediaValue::MediaQueryList),
+            _ => input.parse().map(CustomMediaValue::MediaQueryList),
         }
     }
 }

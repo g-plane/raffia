@@ -6,6 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    Parse,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -22,9 +23,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     _ => return Ok(InterpolableIdent::Literal(ident.into())),
                 }
             }
-            Token::AtLBraceVar(..) => self
-                .parse_less_variable_interpolation()
-                .map(LessInterpolatedIdentElement::Variable)?,
+            Token::AtLBraceVar(..) => self.parse().map(LessInterpolatedIdentElement::Variable)?,
             _ => unreachable!(),
         };
         let mut span = first.span().clone();
@@ -39,7 +38,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     elements.push(LessInterpolatedIdentElement::Static(ident.into()));
                 }
                 Token::AtLBraceVar(token) if span.end == token.span.start => {
-                    let variable = self.parse_less_variable_interpolation()?;
+                    let variable = self.parse::<LessVariableInterpolation>()?;
                     span.end = variable.span.end;
                     elements.push(LessInterpolatedIdentElement::Variable(variable));
                 }
@@ -52,9 +51,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             span,
         }))
     }
+}
 
-    pub(super) fn parse_less_interpolated_str(&mut self) -> PResult<LessInterpolatedStr<'s>> {
-        let first = expect!(self, StrTemplate);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = expect!(input, StrTemplate);
         let mut span = first.span.clone();
         let mut elements = vec![LessInterpolatedStrElement::Static(
             InterpolableStrStaticPart {
@@ -65,7 +66,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         )];
 
         loop {
-            match self.tokenizer.bump()? {
+            match input.tokenizer.bump()? {
                 Token::StrTemplate(token) => {
                     let end = token.span.end;
                     elements.push(LessInterpolatedStrElement::Static(
@@ -82,10 +83,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 // '@' is consumed, so '{' left only
                 Token::LBrace(l_brace) => {
-                    let name = self.parse_ident()?;
-                    self.assert_no_ws_or_comment(&l_brace.span, &name.span)?;
+                    let name = input.parse::<Ident>()?;
+                    input.assert_no_ws_or_comment(&l_brace.span, &name.span)?;
 
-                    let r_brace = expect!(self, RBrace);
+                    let r_brace = expect!(input, RBrace);
                     elements.push(LessInterpolatedStrElement::Variable(
                         LessVariableInterpolation {
                             name,
@@ -107,20 +108,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         Ok(LessInterpolatedStr { elements, span })
     }
+}
 
-    pub(super) fn parse_less_property_merge(&mut self) -> PResult<Option<LessPropertyMerge>> {
-        debug_assert_eq!(self.syntax, Syntax::Less);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
 
-        match self.tokenizer.peek()? {
+        match input.tokenizer.peek()? {
             Token::Plus(token) => {
-                let _ = self.tokenizer.bump();
+                let _ = input.tokenizer.bump();
                 Ok(Some(LessPropertyMerge {
                     kind: LessPropertyMergeKind::Comma,
                     span: token.span,
                 }))
             }
             Token::PlusUnderscore(token) => {
-                let _ = self.tokenizer.bump();
+                let _ = input.tokenizer.bump();
                 Ok(Some(LessPropertyMerge {
                     kind: LessPropertyMergeKind::Space,
                     span: token.span,
@@ -129,23 +132,25 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             _ => Ok(None),
         }
     }
+}
 
-    pub(super) fn parse_less_variable(&mut self) -> PResult<LessVariable<'s>> {
-        let at_keyword = expect!(self, AtKeyword);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariable<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_keyword = expect!(input, AtKeyword);
         Ok(LessVariable {
             name: at_keyword.ident.into(),
             span: at_keyword.span,
         })
     }
+}
 
-    pub(super) fn parse_less_variable_declaration(
-        &mut self,
-    ) -> PResult<LessVariableDeclaration<'s>> {
-        debug_assert_eq!(self.syntax, Syntax::Less);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
 
-        let name = self.parse_less_variable()?;
-        expect!(self, Colon);
-        let value = self.parse_component_values(/* allow_comma */ true)?;
+        let name = input.parse::<LessVariable>()?;
+        expect!(input, Colon);
+        let value = input.parse_component_values(/* allow_comma */ true)?;
 
         let span = Span {
             start: name.span.start,
@@ -153,9 +158,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(LessVariableDeclaration { name, value, span })
     }
+}
 
-    fn parse_less_variable_interpolation(&mut self) -> PResult<LessVariableInterpolation<'s>> {
-        let at_lbrace_var = expect!(self, AtLBraceVar);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableInterpolation<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_lbrace_var = expect!(input, AtLBraceVar);
         Ok(LessVariableInterpolation {
             name: at_lbrace_var.ident.into(),
             span: at_lbrace_var.span,

@@ -9,11 +9,9 @@ use crate::{
         Token, Tokenizer,
     },
 };
-pub use partial_parse::Parse;
 
 mod at_rule;
 mod less;
-pub mod partial_parse;
 mod sass;
 mod selector;
 mod state;
@@ -53,6 +51,10 @@ macro_rules! expect {
     }};
 }
 
+pub trait Parse<'cmt, 's: 'cmt>: Sized {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self>;
+}
+
 pub struct Parser<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
@@ -76,7 +78,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub fn parse<T>(&mut self) -> PResult<T>
     where
-        T: partial_parse::Parse<'cmt, 's>,
+        T: Parse<'cmt, 's>,
     {
         T::parse(self)
     }
@@ -115,62 +117,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 },
             })
         }
-    }
-
-    fn parse_declaration(&mut self) -> PResult<Declaration<'s>> {
-        let name = self
-            .with_state(ParserState {
-                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
-            })
-            .parse_interpolable_ident()?;
-
-        let less_property_merge = if self.syntax == Syntax::Less {
-            self.parse_less_property_merge()?
-        } else {
-            None
-        };
-
-        expect!(self, Colon);
-        let value = self
-            .with_state(ParserState {
-                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
-            })
-            .parse_component_values(/* allow_comma */ true)?;
-
-        let span = Span {
-            start: name.span().start,
-            end: value.span.end,
-        };
-        Ok(Declaration {
-            name,
-            value,
-            less_property_merge,
-            span,
-        })
-    }
-
-    fn parse_qualified_rule(&mut self) -> PResult<QualifiedRule<'s>> {
-        let selector_list = self
-            .with_state(ParserState {
-                qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
-            })
-            .parse_selector_list()?;
-        let block = self.parse_simple_block()?;
-        let span = Span {
-            start: selector_list.span.start,
-            end: block.span.end,
-        };
-        Ok(QualifiedRule {
-            selector: selector_list,
-            block,
-            span,
-        })
-    }
-
-    fn parse_simple_block(&mut self) -> PResult<SimpleBlock<'s>> {
-        self.parse_simple_block_with(|parser| {
-            parser.parse_statements(/* is_top_level */ false)
-        })
     }
 
     fn parse_simple_block_with<F>(&mut self, f: F) -> PResult<SimpleBlock<'s>>
@@ -232,16 +178,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match self.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if !is_top_level {
-                        if let Some(declaration) =
-                            self.try_parse(|parser| parser.parse_declaration())
-                        {
+                        if let Some(declaration) = self.try_parse(|parser| parser.parse()) {
                             statements.push(Statement::Declaration(declaration));
                             continue;
                         }
                     }
-                    if let Some(qualified_rule) =
-                        self.try_parse(|parser| parser.parse_qualified_rule())
-                    {
+                    if let Some(qualified_rule) = self.try_parse(|parser| parser.parse()) {
                         statements.push(Statement::QualifiedRule(qualified_rule));
                         is_block_element = true;
                     }
@@ -254,22 +196,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
                 | Token::Bar(..) => {
-                    statements.push(Statement::QualifiedRule(self.parse_qualified_rule()?));
+                    statements.push(Statement::QualifiedRule(self.parse()?));
                     is_block_element = true;
                 }
                 Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    statements.push(Statement::QualifiedRule(self.parse_qualified_rule()?));
+                    statements.push(Statement::QualifiedRule(self.parse()?));
                     is_block_element = true;
                 }
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    statements.push(Statement::SassVariableDeclaration(
-                        self.parse_sass_variable_declaration()?,
-                    ));
+                    statements.push(Statement::SassVariableDeclaration(self.parse()?));
                 }
                 Token::AtKeyword(at_keyword) => {
                     if self.syntax == Syntax::Less {
                         if let Some(less_variable_declaration) =
-                            self.try_parse(|parser| parser.parse_less_variable_declaration())
+                            self.try_parse(|parser| parser.parse())
                         {
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
@@ -283,7 +223,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             continue;
                         }
                     }
-                    let at_rule = self.parse_at_rule()?;
+                    let at_rule = self.parse::<AtRule>()?;
                     is_block_element = at_rule.block.is_some();
                     statements.push(Statement::AtRule(at_rule));
                 }
@@ -308,19 +248,83 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
         Ok(statements)
     }
+}
 
-    fn parse_stylesheet(&mut self) -> PResult<Stylesheet<'s>> {
-        if self.syntax == Syntax::Sass {
-            eat!(self, Linebreak);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let name = input
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
+            })
+            .parse::<InterpolableIdent>()?;
+
+        let less_property_merge = if input.syntax == Syntax::Less {
+            input.parse()?
+        } else {
+            None
+        };
+
+        expect!(input, Colon);
+        let value = input
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
+            })
+            .parse_component_values(/* allow_comma */ true)?;
+
+        let span = Span {
+            start: name.span().start,
+            end: value.span.end,
+        };
+        Ok(Declaration {
+            name,
+            value,
+            less_property_merge,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QualifiedRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let selector_list = input
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
+            })
+            .parse::<SelectorList>()?;
+        let block = input.parse::<SimpleBlock>()?;
+        let span = Span {
+            start: selector_list.span.start,
+            end: block.span.end,
+        };
+        Ok(QualifiedRule {
+            selector: selector_list,
+            block,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleBlock<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        input.parse_simple_block_with(|parser| {
+            parser.parse_statements(/* is_top_level */ false)
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Stylesheet<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        if input.syntax == Syntax::Sass {
+            eat!(input, Linebreak);
         }
 
-        let statements = self.parse_statements(/* is_top_level */ true)?;
-        expect!(self, Eof);
+        let statements = input.parse_statements(/* is_top_level */ true)?;
+        expect!(input, Eof);
         Ok(Stylesheet {
             statements,
             span: Span {
                 start: 0,
-                end: self.source.len(),
+                end: input.source.len(),
             },
         })
     }
@@ -328,11 +332,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
 pub fn parse(source: &str, syntax: Syntax) -> PResult<Stylesheet> {
     let mut parser = Parser::new(source, syntax, None);
-    parser.parse_stylesheet()
+    parser.parse()
 }
 
 pub fn parse_with_comments(source: &str, syntax: Syntax) -> PResult<(Stylesheet, Vec<Comment>)> {
     let mut comments = vec![];
     let mut parser = Parser::new(source, syntax, Some(&mut comments));
-    parser.parse_stylesheet().map(|ast| (ast, comments))
+    parser.parse().map(|ast| (ast, comments))
 }

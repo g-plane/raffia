@@ -6,7 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Syntax,
+    Parse, Syntax,
 };
 
 const PRECEDENCE_MULTIPLY: u8 = 2;
@@ -79,18 +79,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
-    pub(super) fn parse_component_value(&mut self) -> PResult<ComponentValue<'s>> {
-        if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
-            self.parse_sass_bin_expr()
-        } else {
-            self.parse_component_value_atom()
-        }
-    }
-
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
         match self.tokenizer.peek()? {
             Token::Ident(..) => {
-                let ident = self.parse_interpolable_ident()?;
+                let ident = self.parse::<InterpolableIdent>()?;
                 match self.tokenizer.peek()? {
                     Token::LParen(token) if token.span.start == ident.span().end => {
                         self.parse_function(ident).map(ComponentValue::Function)
@@ -99,35 +91,35 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
             }
             Token::Solidus(..) | Token::Comma(..) | Token::Semicolon(..) => {
-                self.parse_delimiter().map(ComponentValue::Delimiter)
+                self.parse().map(ComponentValue::Delimiter)
             }
-            Token::Number(..) => self.parse_number().map(ComponentValue::Number),
-            Token::Dimension(..) => self.parse_dimension().map(ComponentValue::Dimension),
-            Token::Percentage(..) => self.parse_percentage().map(ComponentValue::Percentage),
-            Token::Hash(..) => self.parse_hex_color().map(ComponentValue::HexColor),
+            Token::Number(..) => self.parse().map(ComponentValue::Number),
+            Token::Dimension(..) => self.parse().map(ComponentValue::Dimension),
+            Token::Percentage(..) => self.parse().map(ComponentValue::Percentage),
+            Token::Hash(..) => self.parse().map(ComponentValue::HexColor),
             Token::Str(..) => self
-                .parse_str()
+                .parse()
                 .map(InterpolableStr::Literal)
                 .map(ComponentValue::InterpolableStr),
-            Token::UrlPrefix(..) => self.parse_url().map(ComponentValue::Url),
+            Token::UrlPrefix(..) => self.parse().map(ComponentValue::Url),
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.parse_sass_variable().map(ComponentValue::SassVariable)
+                self.parse().map(ComponentValue::SassVariable)
             }
             Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
-                .parse_sass_parenthesized_expression()
+                .parse()
                 .map(ComponentValue::SassParenthesizedExpression),
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),
             Token::StrTemplate(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
-                .parse_sass_interpolated_str()
+                .parse()
                 .map(InterpolableStr::SassInterpolated)
                 .map(ComponentValue::InterpolableStr),
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
-                self.parse_less_variable().map(ComponentValue::LessVariable)
+                self.parse().map(ComponentValue::LessVariable)
             }
             Token::StrTemplate(..) if self.syntax == Syntax::Less => self
-                .parse_less_interpolated_str()
+                .parse()
                 .map(InterpolableStr::LessInterpolated)
                 .map(ComponentValue::InterpolableStr),
             token => Err(Error {
@@ -141,7 +133,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &mut self,
         allow_comma: bool,
     ) -> PResult<ComponentValues<'s>> {
-        let first = self.parse_component_value()?;
+        let first = self.parse::<ComponentValue>()?;
         let mut span = first.span().clone();
 
         let mut values = Vec::with_capacity(4);
@@ -156,12 +148,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::Eof(..) => break,
                 Token::Comma(..) => {
                     if allow_comma {
-                        values.push(self.parse_delimiter().map(ComponentValue::Delimiter)?);
+                        values.push(self.parse().map(ComponentValue::Delimiter)?);
                     } else {
                         break;
                     }
                 }
-                _ => values.push(self.parse_component_value()?),
+                _ => values.push(self.parse()?),
             }
         }
 
@@ -172,7 +164,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_dashed_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
-        match self.parse_interpolable_ident()? {
+        match self.parse()? {
             // this should be recoverable
             InterpolableIdent::Literal(ident) if !ident.name.starts_with("--") => Err(Error {
                 kind: ErrorKind::ExpectDashedIdent,
@@ -182,9 +174,73 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    fn parse_delimiter(&mut self) -> PResult<Delimiter> {
+    pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
+        expect!(self, LParen);
+        let values = match self.tokenizer.peek()? {
+            Token::RParen(..) => vec![],
+            _ => match &name {
+                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
+                    vec![self.parse_calc_expr()?]
+                }
+                _ => self.parse_component_values(/* allow_comma */ true)?.values,
+            },
+        };
+        let r_paren = expect!(self, RParen);
+        let span = Span {
+            start: name.span().start,
+            end: r_paren.span.end,
+        };
+        Ok(Function {
+            name,
+            args: values,
+            span,
+        })
+    }
+
+    pub(super) fn parse_ratio(&mut self, numerator: Number<'s>) -> PResult<Ratio<'s>> {
+        expect!(self, Solidus);
+        let denominator = self.parse::<Number>()?;
+        if denominator.value <= 0.0 {
+            // this should be recoverable
+            return Err(Error {
+                kind: ErrorKind::InvalidRatioDenominator,
+                span: denominator.span,
+            });
+        }
+
+        let span = Span {
+            start: numerator.span.start,
+            end: denominator.span.end,
+        };
+        Ok(Ratio {
+            numerator,
+            denominator,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+            input.parse_sass_bin_expr()
+        } else {
+            input.parse_component_value_atom()
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValues<'s> {
+    /// This is for public-use only. For internal code of Raffia, **DO NOT** use.
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        input.parse_component_values(/* allow_comma */ true)
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         use crate::tokenizer::token::*;
-        match self.tokenizer.bump()? {
+        match input.tokenizer.bump()? {
             Token::Solidus(Solidus { span }) => Ok(Delimiter {
                 kind: DelimiterKind::Solidus,
                 span,
@@ -200,9 +256,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             _ => unreachable!(),
         }
     }
+}
 
-    pub(super) fn parse_dimension(&mut self) -> PResult<Dimension<'s>> {
-        let dimension_token = expect!(self, Dimension);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let dimension_token = expect!(input, Dimension);
         let unit_name = &dimension_token.unit.name;
         if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
@@ -298,71 +356,52 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }))
         }
     }
+}
 
-    pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
-        expect!(self, LParen);
-        let values = match self.tokenizer.peek()? {
-            Token::RParen(..) => vec![],
-            _ => match &name {
-                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
-                    vec![self.parse_calc_expr()?]
-                }
-                _ => self.parse_component_values(/* allow_comma */ true)?.values,
-            },
-        };
-        let r_paren = expect!(self, RParen);
-        let span = Span {
-            start: name.span().start,
-            end: r_paren.span.end,
-        };
-        Ok(Function {
-            name,
-            args: values,
-            span,
-        })
-    }
-
-    pub(super) fn parse_hex_color(&mut self) -> PResult<HexColor<'s>> {
-        let token = expect!(self, Hash);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, Hash);
         Ok(HexColor {
             value: token.value,
             raw: token.raw_without_hash,
             span: token.span,
         })
     }
+}
 
-    pub(super) fn parse_ident(&mut self) -> PResult<Ident<'s>> {
-        Ok(expect!(self, Ident).into())
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Ident<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        Ok(expect!(input, Ident).into())
     }
+}
 
-    pub(super) fn parse_interpolable_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
-        match self.syntax {
-            Syntax::Css => self.parse_ident().map(InterpolableIdent::Literal),
-            Syntax::Scss | Syntax::Sass => self.parse_sass_interpolated_ident(),
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableIdent<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.syntax {
+            Syntax::Css => input.parse().map(InterpolableIdent::Literal),
+            Syntax::Scss | Syntax::Sass => input.parse_sass_interpolated_ident(),
             Syntax::Less => {
                 // Less variable interpolation is disallowed in declaration value
                 if matches!(
-                    self.state.qualified_rule_ctx,
+                    input.state.qualified_rule_ctx,
                     Some(QualifiedRuleContext::Selector | QualifiedRuleContext::DeclarationName)
                 ) {
-                    self.parse_less_interpolated_ident()
+                    input.parse_less_interpolated_ident()
                 } else {
-                    self.parse_ident().map(InterpolableIdent::Literal)
+                    input.parse().map(InterpolableIdent::Literal)
                 }
             }
         }
     }
+}
 
-    pub(super) fn parse_interpolable_str(&mut self) -> PResult<InterpolableStr<'s>> {
-        match self.tokenizer.peek()? {
-            Token::Str(..) => self.parse_str().map(InterpolableStr::Literal),
-            Token::StrTemplate(token) => match self.syntax {
-                Syntax::Scss | Syntax::Sass => self
-                    .parse_sass_interpolated_str()
-                    .map(InterpolableStr::SassInterpolated),
-                Syntax::Less => self
-                    .parse_less_interpolated_str()
-                    .map(InterpolableStr::LessInterpolated),
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableStr<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Str(..) => input.parse().map(InterpolableStr::Literal),
+            Token::StrTemplate(token) => match input.syntax {
+                Syntax::Scss | Syntax::Sass => input.parse().map(InterpolableStr::SassInterpolated),
+                Syntax::Less => input.parse().map(InterpolableStr::LessInterpolated),
                 Syntax::Css => Err(Error {
                     kind: ErrorKind::UnexpectedTemplateInCss,
                     span: token.span,
@@ -374,50 +413,36 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }),
         }
     }
+}
 
-    pub(super) fn parse_number(&mut self) -> PResult<Number<'s>> {
-        Ok(expect!(self, Number).into())
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Number<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        Ok(expect!(input, Number).into())
     }
+}
 
-    pub(super) fn parse_percentage(&mut self) -> PResult<Percentage<'s>> {
-        let token = expect!(self, Percentage);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, Percentage);
         Ok(Percentage {
             value: token.value.into(),
             span: token.span,
         })
     }
+}
 
-    pub(super) fn parse_ratio(&mut self, numerator: Number<'s>) -> PResult<Ratio<'s>> {
-        expect!(self, Solidus);
-        let denominator = self.parse_number()?;
-        if denominator.value <= 0.0 {
-            // this should be recoverable
-            return Err(Error {
-                kind: ErrorKind::InvalidRatioDenominator,
-                span: denominator.span,
-            });
-        }
-
-        let span = Span {
-            start: numerator.span.start,
-            end: denominator.span.end,
-        };
-        Ok(Ratio {
-            numerator,
-            denominator,
-            span,
-        })
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        Ok(expect!(input, Str).into())
     }
+}
 
-    pub(super) fn parse_str(&mut self) -> PResult<Str<'s>> {
-        Ok(expect!(self, Str).into())
-    }
-
-    pub(super) fn parse_url(&mut self) -> PResult<Url<'s>> {
-        let prefix = expect!(self, UrlPrefix);
-        match self.tokenizer.peek()? {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let prefix = expect!(input, UrlPrefix);
+        match input.tokenizer.peek()? {
             Token::UrlRaw(..) => {
-                let value = self.parse_url_raw()?;
+                let value = input.parse::<UrlRaw>()?;
                 let span = Span {
                     start: prefix.span.start,
                     end: value.span.end + 1, // `)` is consumed, but span excludes it
@@ -429,8 +454,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 })
             }
             Token::Str(..) | Token::StrTemplate(..) => {
-                let value = self.parse_interpolable_str()?;
-                let r_paren = expect!(self, RParen);
+                let value = input.parse()?;
+                let r_paren = expect!(input, RParen);
                 let span = Span {
                     start: prefix.span.start,
                     end: r_paren.span.end,
@@ -441,8 +466,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     span,
                 })
             }
-            Token::UrlTemplate(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                let value = self.parse_sass_interpolated_url()?;
+            Token::UrlTemplate(..) if matches!(input.syntax, Syntax::Scss | Syntax::Sass) => {
+                let value = input.parse::<SassInterpolatedUrl>()?;
                 let span = Span {
                     start: prefix.span.start,
                     end: value.span.end + 1, // `)` is consumed, but span excludes it
@@ -459,9 +484,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }),
         }
     }
+}
 
-    fn parse_url_raw(&mut self) -> PResult<UrlRaw<'s>> {
-        let url = expect!(self, UrlRaw);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let url = expect!(input, UrlRaw);
         Ok(UrlRaw {
             value: url.value,
             raw: url.raw,

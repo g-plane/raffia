@@ -1,21 +1,19 @@
 use super::Parser;
-use crate::{ast::*, error::PResult, tokenizer::Token, Spanned};
+use crate::{ast::*, error::PResult, tokenizer::Token, Parse, Spanned};
 
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_font_feature_values_prelude(&mut self) -> PResult<FontFamilyName<'s>> {
-        match self.tokenizer.peek()? {
-            Token::Str(..) | Token::StrTemplate(..) => {
-                self.parse_interpolable_str().map(FontFamilyName::Str)
-            }
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FontFamilyName<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(FontFamilyName::Str),
             _ => {
-                let first = self.parse_interpolable_ident()?;
+                let first = input.parse::<InterpolableIdent>()?;
                 let mut span = first.span().clone();
 
                 let mut idents = vec![first];
                 loop {
-                    match self.tokenizer.peek()? {
+                    match input.tokenizer.peek()? {
                         Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
-                            idents.push(self.parse_interpolable_ident()?);
+                            idents.push(input.parse()?);
                         }
                         _ => break,
                     }

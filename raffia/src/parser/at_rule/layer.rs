@@ -4,21 +4,21 @@ use crate::{
     error::{Error, PResult},
     pos::{Span, Spanned},
     tokenizer::Token,
-    util,
+    util, Parse,
 };
 
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_layer_name(&mut self) -> PResult<LayerName<'s>> {
-        let first = self.parse_interpolable_ident()?;
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse::<InterpolableIdent>()?;
         let start = first.span().start;
         let mut end = first.span().end;
 
         let mut idents = vec![first];
-        while let Token::Dot(dot) = self.tokenizer.peek()? {
+        while let Token::Dot(dot) = input.tokenizer.peek()? {
             if dot.span.start == end {
-                self.tokenizer.bump()?;
-                let ident = self.parse_interpolable_ident()?;
-                self.assert_no_ws_or_comment(&dot.span, ident.span())?;
+                input.tokenizer.bump()?;
+                let ident = input.parse::<InterpolableIdent>()?;
+                input.assert_no_ws_or_comment(&dot.span, ident.span())?;
                 end = ident.span().end;
                 idents.push(ident);
             } else {

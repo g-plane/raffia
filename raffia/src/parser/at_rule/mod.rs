@@ -5,7 +5,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Syntax,
+    util, Parse, Syntax,
 };
 
 mod color_profile;
@@ -22,65 +22,63 @@ mod namespace;
 mod scroll_timeline;
 mod supports;
 
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_at_rule(&mut self) -> PResult<AtRule<'s>> {
-        let at_keyword = expect!(self, AtKeyword);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_keyword = expect!(input, AtKeyword);
 
         let at_rule_name = util::trim_vendor_prefix(&at_keyword.ident.name);
         #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("import") {
-            Some(AtRulePrelude::Import(self.parse_import_prelude()?))
+            Some(AtRulePrelude::Import(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(AtRulePrelude::Keyframes(self.parse_keyframes_prelude()?))
+            Some(AtRulePrelude::Keyframes(input.parse_keyframes_prelude()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {
-            Some(AtRulePrelude::Media(self.parse_media_query_list()?))
+            Some(AtRulePrelude::Media(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
-            Some(AtRulePrelude::Charset(self.parse_str()?))
+            Some(AtRulePrelude::Charset(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
-            Some(AtRulePrelude::Supports(self.parse_supports_condition()?))
+            Some(AtRulePrelude::Supports(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("layer") {
-            match self.tokenizer.peek()? {
-                Token::Ident(..) => Some(AtRulePrelude::Layer(self.parse_layer_name()?)),
-                Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    Some(AtRulePrelude::Layer(self.parse_layer_name()?))
+            match input.tokenizer.peek()? {
+                Token::Ident(..) => Some(AtRulePrelude::Layer(input.parse()?)),
+                Token::HashLBrace(..) if matches!(input.syntax, Syntax::Scss | Syntax::Sass) => {
+                    Some(AtRulePrelude::Layer(input.parse()?))
                 }
-                Token::AtLBraceVar(..) if self.syntax == Syntax::Less => {
-                    Some(AtRulePrelude::Layer(self.parse_layer_name()?))
+                Token::AtLBraceVar(..) if input.syntax == Syntax::Less => {
+                    Some(AtRulePrelude::Layer(input.parse()?))
                 }
                 _ => None,
             }
         } else if at_rule_name.eq_ignore_ascii_case("container") {
-            Some(AtRulePrelude::Container(self.parse()?))
+            Some(AtRulePrelude::Container(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
-            Some(AtRulePrelude::Namespace(self.parse_namespace_prelude()?))
+            Some(AtRulePrelude::Namespace(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
-            Some(AtRulePrelude::ColorProfile(
-                self.parse_color_profile_prelude()?,
-            ))
+            Some(AtRulePrelude::ColorProfile(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-feature-values") {
-            Some(AtRulePrelude::FontFeatureValues(
-                self.parse_font_feature_values_prelude()?,
-            ))
+            Some(AtRulePrelude::FontFeatureValues(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-palette-values") {
-            Some(AtRulePrelude::FontPaletteValues(self.parse_dashed_ident()?))
+            Some(AtRulePrelude::FontPaletteValues(
+                input.parse_dashed_ident()?,
+            ))
         } else if at_rule_name.eq_ignore_ascii_case("counter-style") {
             Some(AtRulePrelude::CounterStyle(
-                self.parse_counter_style_prelude()?,
+                input.parse_counter_style_prelude()?,
             ))
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
-            Some(AtRulePrelude::CustomMedia(self.parse_custom_media()?))
+            Some(AtRulePrelude::CustomMedia(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("scroll-timeline") {
             Some(AtRulePrelude::ScrollTimeline(
-                self.parse_scroll_timeline_prelude()?,
+                input.parse_scroll_timeline_prelude()?,
             ))
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
-            Some(AtRulePrelude::PositionFallback(self.parse_dashed_ident()?))
+            Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("nest") {
-            Some(AtRulePrelude::Nest(self.parse_selector_list()?))
+            Some(AtRulePrelude::Nest(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("property") {
-            Some(AtRulePrelude::Property(self.parse_dashed_ident()?))
+            Some(AtRulePrelude::Property(input.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("document") {
-            Some(AtRulePrelude::Document(self.parse_document_prelude()?))
+            Some(AtRulePrelude::Document(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
@@ -99,7 +97,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         let block = if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(self.parse_keyframes_blocks()?)
+            Some(input.parse_keyframes_blocks()?)
         } else if at_rule_name.eq_ignore_ascii_case("media")
             || at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("supports")
@@ -124,7 +122,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             || at_rule_name.eq_ignore_ascii_case("ornaments")
             || at_rule_name.eq_ignore_ascii_case("annotation")
         {
-            self.parse_simple_block().map(Some)?
+            input.parse().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("import")
             || at_rule_name.eq_ignore_ascii_case("charset")
             || at_rule_name.eq_ignore_ascii_case("custom-media")
@@ -132,8 +130,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         {
             None
         } else {
-            match self.tokenizer.peek()? {
-                Token::LBrace(..) | Token::Indent(..) => Some(self.parse_simple_block()?),
+            match input.tokenizer.peek()? {
+                Token::LBrace(..) | Token::Indent(..) => Some(input.parse()?),
                 _ => None,
             }
         };
@@ -143,11 +141,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             end: match &block {
                 Some(block) => block.span.end,
                 None => {
-                    if self.syntax == Syntax::Sass {
+                    if input.syntax == Syntax::Sass {
                         at_keyword.span.end
                     } else {
                         // next token should be semicolon, but it won't be consumed here
-                        self.tokenizer.peek()?.span().end
+                        input.tokenizer.peek()?.span().end
                     }
                 }
             },

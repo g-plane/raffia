@@ -7,6 +7,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    Parse,
 };
 
 const PRECEDENCE_MULTIPLY: u8 = 6;
@@ -23,24 +24,24 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<Option<Statement<'s>>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         match at_keyword_name {
-            "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassEachAtRule(self.parse_sass_each_at_rule()?),
-            )),
-            "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassForAtRule(self.parse_sass_for_at_rule()?),
-            )),
-            "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassWhileAtRule(self.parse_sass_while_at_rule()?),
-            )),
-            "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassWarnAtRule(self.parse_sass_warn_at_rule()?),
-            )),
-            "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassErrorAtRule(self.parse_sass_error_at_rule()?),
-            )),
-            "debug" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => Ok(Some(
-                Statement::SassDebugAtRule(self.parse_sass_debug_at_rule()?),
-            )),
+            "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassEachAtRule(self.parse()?)))
+            }
+            "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassForAtRule(self.parse()?)))
+            }
+            "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassWhileAtRule(self.parse()?)))
+            }
+            "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassWarnAtRule(self.parse()?)))
+            }
+            "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassErrorAtRule(self.parse()?)))
+            }
+            "debug" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassDebugAtRule(self.parse()?)))
+            }
             _ => Ok(None),
         }
     }
@@ -162,101 +163,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
-    pub(super) fn parse_sass_debug_at_rule(&mut self) -> PResult<SassDebugAtRule<'s>> {
-        let token = expect!(self, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "debug");
-        let expr = self.parse_component_values(/* allow_comma */ true)?;
-        let span = Span {
-            start: token.span.start,
-            end: expr.span.end,
-        };
-        Ok(SassDebugAtRule { expr, span })
-    }
-
-    pub(super) fn parse_sass_each_at_rule(&mut self) -> PResult<SassEachAtRule<'s>> {
-        let at_keyword = expect!(self, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "each");
-
-        let mut bindings = vec![self.parse_sass_variable()?];
-        while eat!(self, Comma).is_some() {
-            bindings.push(self.parse_sass_variable()?);
-        }
-
-        let keyword_in = expect!(self, Ident);
-        if keyword_in.name != "in" {
-            return Err(Error {
-                kind: ErrorKind::ExpectSassKeyword("in"),
-                span: keyword_in.span,
-            });
-        }
-
-        let expr = self.parse_component_value()?;
-        let body = self.parse_simple_block()?;
-        let span = Span {
-            start: at_keyword.span.start,
-            end: body.span.end,
-        };
-        Ok(SassEachAtRule {
-            bindings,
-            expr,
-            body,
-            span,
-        })
-    }
-
-    pub(super) fn parse_sass_error_at_rule(&mut self) -> PResult<SassErrorAtRule<'s>> {
-        let token = expect!(self, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "error");
-        let expr = self.parse_component_values(/* allow_comma */ true)?;
-        let span = Span {
-            start: token.span.start,
-            end: expr.span.end,
-        };
-        Ok(SassErrorAtRule { expr, span })
-    }
-
-    pub(super) fn parse_sass_for_at_rule(&mut self) -> PResult<SassForAtRule<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-
-        let at_keyword = expect!(self, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "for");
-
-        let binding = self.parse_sass_variable()?;
-
-        let keyword_from = expect!(self, Ident);
-        if keyword_from.name != "from" {
-            return Err(Error {
-                kind: ErrorKind::ExpectSassKeyword("from"),
-                span: keyword_from.span,
-            });
-        }
-        let start = self.parse_component_value()?;
-
-        let keyword_to_or_through = expect!(self, Ident);
-        if keyword_to_or_through.name != "to" && keyword_to_or_through.name != "through" {
-            return Err(Error {
-                kind: ErrorKind::ExpectSassKeyword("to"),
-                span: keyword_from.span,
-            });
-        }
-        let is_exclusive = keyword_to_or_through.name == "to";
-        let end = self.parse_component_value()?;
-
-        let body = self.parse_simple_block()?;
-        let span = Span {
-            start: at_keyword.span.start,
-            end: body.span.end,
-        };
-        Ok(SassForAtRule {
-            binding,
-            start,
-            end,
-            is_exclusive,
-            body,
-            span,
-        })
-    }
-
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         let (first, mut span) = match self.tokenizer.peek()? {
             Token::Ident(ident) => {
@@ -321,127 +227,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         ))
     }
 
-    pub(super) fn parse_sass_interpolated_str(&mut self) -> PResult<SassInterpolatedStr<'s>> {
-        let first = expect!(self, StrTemplate);
-        let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedStrElement::Static(
-            InterpolableStrStaticPart {
-                value: first.value,
-                raw: first.raw,
-                span: first.span,
-            },
-        )];
-
-        loop {
-            match self.tokenizer.bump()? {
-                Token::StrTemplate(token) => {
-                    let end = token.span.end;
-                    elements.push(SassInterpolatedStrElement::Static(
-                        InterpolableStrStaticPart {
-                            value: token.value,
-                            raw: token.raw,
-                            span: token.span,
-                        },
-                    ));
-                    if token.tail {
-                        span.end = end;
-                        break;
-                    }
-                }
-                // '#' is consumed, so '{' left only
-                Token::LBrace(..) => {
-                    elements.push(SassInterpolatedStrElement::Expression(
-                        self.parse_component_values(/* allow_comma */ true)?,
-                    ));
-                    expect!(self, RBrace);
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
-                        span: token.span().clone(),
-                    })
-                }
-            }
-        }
-
-        Ok(SassInterpolatedStr { elements, span })
-    }
-
-    pub(super) fn parse_sass_interpolated_url(&mut self) -> PResult<SassInterpolatedUrl<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-
-        let first = expect!(self, UrlTemplate);
-        let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedUrlElement::Static(
-            InterpolableUrlStaticPart {
-                value: first.value,
-                raw: first.raw,
-                span: first.span,
-            },
-        )];
-
-        loop {
-            match self.tokenizer.bump()? {
-                Token::UrlTemplate(token) => {
-                    let end = token.span.end;
-                    elements.push(SassInterpolatedUrlElement::Static(
-                        InterpolableUrlStaticPart {
-                            value: token.value,
-                            raw: token.raw,
-                            span: token.span,
-                        },
-                    ));
-                    if token.tail {
-                        span.end = end;
-                        break;
-                    }
-                }
-                // '#' is consumed, so '{' left only
-                Token::LBrace(..) => {
-                    elements.push(SassInterpolatedUrlElement::Expression(
-                        self.parse_component_values(/* allow_comma */ true)?,
-                    ));
-                    expect!(self, RBrace);
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected("<url template> or '{'", token.symbol()),
-                        span: token.span().clone(),
-                    })
-                }
-            }
-        }
-
-        Ok(SassInterpolatedUrl { elements, span })
-    }
-
-    pub(super) fn parse_sass_parenthesized_expression(
-        &mut self,
-    ) -> PResult<SassParenthesizedExpression<'s>> {
-        let l_paren = expect!(self, LParen);
-        let expr = Box::new(self.parse_component_value()?);
-        let r_paren = expect!(self, RParen);
-        Ok(SassParenthesizedExpression {
-            expr,
-            span: Span {
-                start: l_paren.span.start,
-                end: r_paren.span.end,
-            },
-        })
-    }
-
-    pub(super) fn parse_sass_placeholder_selector(
-        &mut self,
-    ) -> PResult<SassPlaceholderSelector<'s>> {
-        let percent = expect!(self, Percent);
-        let name = self.parse_interpolable_ident()?;
-        let span = Span {
-            start: percent.span.start,
-            end: name.span().end,
-        };
-        Ok(SassPlaceholderSelector { name, span })
-    }
-
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match self.tokenizer.peek()? {
             Token::Plus(token) => {
@@ -479,25 +264,255 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             span,
         }))
     }
+}
 
-    pub(super) fn parse_sass_variable(&mut self) -> PResult<SassVariable<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "debug");
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let span = Span {
+            start: token.span.start,
+            end: expr.span.end,
+        };
+        Ok(SassDebugAtRule { expr, span })
+    }
+}
 
-        let dollar_var = expect!(self, DollarVar);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_keyword = expect!(input, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "each");
+
+        let mut bindings = vec![input.parse()?];
+        while eat!(input, Comma).is_some() {
+            bindings.push(input.parse()?);
+        }
+
+        let keyword_in = expect!(input, Ident);
+        if keyword_in.name != "in" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("in"),
+                span: keyword_in.span,
+            });
+        }
+
+        let expr = input.parse()?;
+        let body = input.parse::<SimpleBlock>()?;
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassEachAtRule {
+            bindings,
+            expr,
+            body,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "error");
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let span = Span {
+            start: token.span.start,
+            end: expr.span.end,
+        };
+        Ok(SassErrorAtRule { expr, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let at_keyword = expect!(input, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "for");
+
+        let binding = input.parse()?;
+
+        let keyword_from = expect!(input, Ident);
+        if keyword_from.name != "from" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("from"),
+                span: keyword_from.span,
+            });
+        }
+        let start = input.parse()?;
+
+        let keyword_to_or_through = expect!(input, Ident);
+        if keyword_to_or_through.name != "to" && keyword_to_or_through.name != "through" {
+            return Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("to"),
+                span: keyword_from.span,
+            });
+        }
+        let is_exclusive = keyword_to_or_through.name == "to";
+        let end = input.parse()?;
+
+        let body = input.parse::<SimpleBlock>()?;
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassForAtRule {
+            binding,
+            start,
+            end,
+            is_exclusive,
+            body,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = expect!(input, StrTemplate);
+        let mut span = first.span.clone();
+        let mut elements = vec![SassInterpolatedStrElement::Static(
+            InterpolableStrStaticPart {
+                value: first.value,
+                raw: first.raw,
+                span: first.span,
+            },
+        )];
+
+        loop {
+            match input.tokenizer.bump()? {
+                Token::StrTemplate(token) => {
+                    let end = token.span.end;
+                    elements.push(SassInterpolatedStrElement::Static(
+                        InterpolableStrStaticPart {
+                            value: token.value,
+                            raw: token.raw,
+                            span: token.span,
+                        },
+                    ));
+                    if token.tail {
+                        span.end = end;
+                        break;
+                    }
+                }
+                // '#' is consumed, so '{' left only
+                Token::LBrace(..) => {
+                    elements.push(SassInterpolatedStrElement::Expression(
+                        input.parse_component_values(/* allow_comma */ true)?,
+                    ));
+                    expect!(input, RBrace);
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
+                        span: token.span().clone(),
+                    })
+                }
+            }
+        }
+
+        Ok(SassInterpolatedStr { elements, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let first = expect!(input, UrlTemplate);
+        let mut span = first.span.clone();
+        let mut elements = vec![SassInterpolatedUrlElement::Static(
+            InterpolableUrlStaticPart {
+                value: first.value,
+                raw: first.raw,
+                span: first.span,
+            },
+        )];
+
+        loop {
+            match input.tokenizer.bump()? {
+                Token::UrlTemplate(token) => {
+                    let end = token.span.end;
+                    elements.push(SassInterpolatedUrlElement::Static(
+                        InterpolableUrlStaticPart {
+                            value: token.value,
+                            raw: token.raw,
+                            span: token.span,
+                        },
+                    ));
+                    if token.tail {
+                        span.end = end;
+                        break;
+                    }
+                }
+                // '#' is consumed, so '{' left only
+                Token::LBrace(..) => {
+                    elements.push(SassInterpolatedUrlElement::Expression(
+                        input.parse_component_values(/* allow_comma */ true)?,
+                    ));
+                    expect!(input, RBrace);
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected("<url template> or '{'", token.symbol()),
+                        span: token.span().clone(),
+                    })
+                }
+            }
+        }
+
+        Ok(SassInterpolatedUrl { elements, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let l_paren = expect!(input, LParen);
+        let expr = Box::new(input.parse()?);
+        let r_paren = expect!(input, RParen);
+        Ok(SassParenthesizedExpression {
+            expr,
+            span: Span {
+                start: l_paren.span.start,
+                end: r_paren.span.end,
+            },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let percent = expect!(input, Percent);
+        let name = input.parse::<InterpolableIdent>()?;
+        let span = Span {
+            start: percent.span.start,
+            end: name.span().end,
+        };
+        Ok(SassPlaceholderSelector { name, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariable<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let dollar_var = expect!(input, DollarVar);
         Ok(SassVariable {
             name: dollar_var.ident.into(),
             span: dollar_var.span,
         })
     }
+}
 
-    pub(super) fn parse_sass_variable_declaration(
-        &mut self,
-    ) -> PResult<SassVariableDeclaration<'s>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let name = self.parse_sass_variable()?;
-        expect!(self, Colon);
-        let value = self.parse_component_values(/* allow_comma */ true)?;
+        let name = input.parse::<SassVariable>()?;
+        expect!(input, Colon);
+        let value = input.parse_component_values(/* allow_comma */ true)?;
 
         let span = Span {
             start: name.span.start,
@@ -505,23 +520,27 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(SassVariableDeclaration { name, value, span })
     }
+}
 
-    pub(super) fn parse_sass_warn_at_rule(&mut self) -> PResult<SassWarnAtRule<'s>> {
-        let token = expect!(self, AtKeyword);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
         debug_assert_eq!(&*token.ident.name, "warn");
-        let expr = self.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start: token.span.start,
             end: expr.span.end,
         };
         Ok(SassWarnAtRule { expr, span })
     }
+}
 
-    pub(super) fn parse_sass_while_at_rule(&mut self) -> PResult<SassWhileAtRule<'s>> {
-        let at_keyword = expect!(self, AtKeyword);
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWhileAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_keyword = expect!(input, AtKeyword);
         debug_assert_eq!(&*at_keyword.ident.name, "while");
-        let condition = self.parse_component_value()?;
-        let body = self.parse_simple_block()?;
+        let condition = input.parse()?;
+        let body = input.parse::<SimpleBlock>()?;
         let span = Span {
             start: at_keyword.span.start,
             end: body.span.end,

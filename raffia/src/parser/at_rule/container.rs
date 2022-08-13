@@ -53,7 +53,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("and") {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
@@ -76,7 +76,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionAnd<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionNot<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("not") {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
@@ -99,7 +99,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionNot<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionOr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("or") {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
@@ -127,9 +127,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
                 if let Some(container_condition) = input.try_parse(|parser| parser.parse()) {
                     QueryInParens::ContainerCondition(container_condition)
                 } else {
-                    input
-                        .parse_media_feature()
-                        .map(QueryInParens::SizeFeature)?
+                    input.parse().map(QueryInParens::SizeFeature)?
                 };
             expect!(input, RParen);
             Ok(query_in_parens)
@@ -194,7 +192,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleCondition<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("and") {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
@@ -217,7 +215,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionAnd<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionNot<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("not") {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
@@ -240,7 +238,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionNot<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionOr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse_ident()?;
+        let ident = input.parse::<Ident>()?;
         if ident.name.eq_ignore_ascii_case("or") {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
@@ -288,7 +286,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleQuery<'s> {
 // https://drafts.csswg.org/css-contain-3/#container-rule
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let name = input.try_parse(|parser| match parser.parse_interpolable_ident()? {
+        let name = input.try_parse(|parser| match parser.parse()? {
             InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("not") => {
                 Err(Error {
                     kind: ErrorKind::TryParseError,
