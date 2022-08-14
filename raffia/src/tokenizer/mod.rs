@@ -105,7 +105,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let number = self.scan_number()?;
                     self.scan_dimension_or_percentage(number)
                 }
-                Some((_, c)) if is_start_of_ident(c) => self.scan_ident_or_url(),
+                Some((_, c)) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
                 Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
                     kind: ErrorKind::UnknownToken,
                     span: Span {
