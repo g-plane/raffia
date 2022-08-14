@@ -947,283 +947,294 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_punc(&mut self) -> Option<Token<'s>> {
-        match self.peek_two_chars() {
-            Some((i, ':', ':')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::ColonColon(ColonColon {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '|', '|')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::BarBar(BarBar {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '~', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::TildeEqual(TildeEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '|', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::BarEqual(BarEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '^', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::CaretEqual(CaretEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '$', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::DollarEqual(DollarEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '*', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::AsteriskEqual(AsteriskEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '#', '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::HashLBrace(HashLBrace {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '=', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::EqualEqual(EqualEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '!', '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::ExclamationEqual(ExclamationEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '>', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::GreaterThanEqual(GreaterThanEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '<', '=')) => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::LessThanEqual(LessThanEqual {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            Some((i, '+', '_')) if self.syntax == Syntax::Less => {
-                self.state.chars.next();
-                self.state.chars.next();
-                Some(Token::PlusUnderscore(PlusUnderscore {
-                    span: Span {
-                        start: i,
-                        end: i + 2,
-                    },
-                }))
-            }
-            _ => match self.state.chars.next() {
-                Some((i, ':')) => Some(Token::Colon(Colon {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '(')) => Some(Token::LParen(LParen {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, ')')) => Some(Token::RParen(RParen {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '[')) => Some(Token::LBracket(LBracket {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, ']')) => Some(Token::RBracket(RBracket {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '{')) => Some(Token::LBrace(LBrace {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '}')) => {
-                    if let Some(state) = self.state.template.last_mut() {
-                        (*state).0 = TemplateState::Static;
-                    }
-                    Some(Token::RBrace(RBrace {
+        match self.state.chars.next() {
+            Some((start, ':')) => match self.state.chars.peek() {
+                Some((_, ':')) => {
+                    self.state.chars.next();
+                    Some(Token::ColonColon(ColonColon {
                         span: Span {
-                            start: i,
-                            end: i + 1,
+                            start,
+                            end: start + 2,
                         },
                     }))
                 }
-                Some((i, '/')) => Some(Token::Solidus(Solidus {
+                _ => Some(Token::Colon(Colon {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, ',')) => Some(Token::Comma(Comma {
+            },
+            Some((start, '(')) => Some(Token::LParen(LParen {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, ')')) => Some(Token::RParen(RParen {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '[')) => Some(Token::LBracket(LBracket {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, ']')) => Some(Token::RBracket(RBracket {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '{')) => Some(Token::LBrace(LBrace {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '}')) => {
+                if let Some(state) = self.state.template.last_mut() {
+                    (*state).0 = TemplateState::Static;
+                }
+                Some(Token::RBrace(RBrace {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
+                    },
+                }))
+            }
+            Some((start, '/')) => Some(Token::Solidus(Solidus {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, ',')) => Some(Token::Comma(Comma {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, ';')) => Some(Token::Semicolon(Semicolon {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '.')) => Some(Token::Dot(Dot {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '>')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::GreaterThanEqual(GreaterThanEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::GreaterThan(GreaterThan {
+                    span: Span {
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, ';')) => Some(Token::Semicolon(Semicolon {
+            },
+            Some((start, '<')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::LessThanEqual(LessThanEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::LessThan(LessThan {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '.')) => Some(Token::Dot(Dot {
+            },
+            Some((start, '+')) => match self.state.chars.peek() {
+                Some((_, '_')) if self.syntax == Syntax::Less => {
+                    self.state.chars.next();
+                    Some(Token::PlusUnderscore(PlusUnderscore {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Plus(Plus {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '>')) => Some(Token::GreaterThan(GreaterThan {
+            },
+            Some((start, '=')) => match self.state.chars.peek() {
+                Some((_, '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    self.state.chars.next();
+                    Some(Token::EqualEqual(EqualEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Equal(Equal {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '<')) => Some(Token::LessThan(LessThan {
+            },
+            Some((start, '-')) => Some(Token::Minus(Minus {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '~')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::TildeEqual(TildeEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Tilde(Tilde {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '+')) => Some(Token::Plus(Plus {
+            },
+            Some((start, '&')) => Some(Token::Ampersand(Ampersand {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            Some((start, '*')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::AsteriskEqual(AsteriskEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Asterisk(Asterisk {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '-')) => Some(Token::Minus(Minus {
+            },
+            Some((start, '|')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::BarEqual(BarEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                Some((_, '|')) => {
+                    self.state.chars.next();
+                    Some(Token::BarBar(BarBar {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Bar(Bar {
                     span: Span {
-                        start: i,
-                        end: i + 1,
+                        start,
+                        end: start + 1,
                     },
                 })),
-                Some((i, '~')) => Some(Token::Tilde(Tilde {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '&')) => Some(Token::Ampersand(Ampersand {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '*')) => Some(Token::Asterisk(Asterisk {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '|')) => Some(Token::Bar(Bar {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '=')) => Some(Token::Equal(Equal {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '%')) => Some(Token::Percent(Percent {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '#')) => Some(Token::NumberSign(NumberSign {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
-                Some((i, '!')) => Some(Token::Exclamation(Exclamation {
-                    span: Span {
-                        start: i,
-                        end: i + 1,
-                    },
-                })),
+            },
+            Some((start, '^')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::CaretEqual(CaretEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
                 _ => None,
             },
+            Some((start, '$')) => match self.state.chars.peek() {
+                Some((_, '=')) => {
+                    self.state.chars.next();
+                    Some(Token::DollarEqual(DollarEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => None,
+            },
+            Some((start, '!')) => match self.state.chars.peek() {
+                Some((_, '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    self.state.chars.next();
+                    Some(Token::ExclamationEqual(ExclamationEqual {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::Exclamation(Exclamation {
+                    span: Span {
+                        start,
+                        end: start + 1,
+                    },
+                })),
+            },
+            Some((start, '#')) => match self.state.chars.peek() {
+                Some((_, '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    self.state.chars.next();
+                    Some(Token::HashLBrace(HashLBrace {
+                        span: Span {
+                            start,
+                            end: start + 2,
+                        },
+                    }))
+                }
+                _ => Some(Token::NumberSign(NumberSign {
+                    span: Span {
+                        start,
+                        end: start + 1,
+                    },
+                })),
+            },
+            Some((start, '%')) => Some(Token::Percent(Percent {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
+            _ => None,
         }
     }
 }
