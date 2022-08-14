@@ -9,3 +9,14 @@ license = "MIT"
 
 [dependencies]
 raffia_derive = { path = "../raffia_derive" }
+
+[dev-dependencies]
+criterion = "0.3"
+parcel_css = "1.0.0-alpha.30"
+swc_common = "0.27.7"
+swc_css_ast = "0.107.0"
+swc_css_parser = "0.116.0"
+
+[[bench]]
+name = "parse"
+harness = false
