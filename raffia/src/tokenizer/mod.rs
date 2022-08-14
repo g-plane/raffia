@@ -75,12 +75,17 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         match self.peek_two_chars() {
             Some((_, '\'' | '"', _)) => self.scan_string_or_template(),
-            Some((_, '-' | '+', c)) if c.is_ascii_digit() || c == '.' => {
+            Some((_, '-' | '+', '.'))
+                if {
+                    let mut chars = self.state.chars.clone();
+                    matches!(chars.nth(2), Some((_, c)) if c.is_ascii_digit())
+                } =>
+            {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
             Some((_, '-', c)) if is_start_of_ident(c) => self.scan_ident_or_url(),
-            Some((_, '.', c)) if c.is_ascii_digit() => {
+            Some((_, '.' | '+' | '-', c)) if c.is_ascii_digit() => {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
