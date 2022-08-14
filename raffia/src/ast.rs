@@ -721,6 +721,19 @@ pub enum PseudoClassSelectorArg<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct PseudoElementSelector<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub arg: Option<PseudoElementSelectorArg<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum PseudoElementSelectorArg<'s> {
+    CompoundSelector(CompoundSelector<'s>),
+    Ident(InterpolableIdent<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct QualifiedRule<'s> {
     pub selector: SelectorList<'s>,
     pub block: SimpleBlock<'s>,
@@ -912,6 +925,7 @@ pub enum SimpleSelector<'s> {
     Type(TypeSelector<'s>),
     Attribute(AttributeSelector<'s>),
     PseudoClass(PseudoClassSelector<'s>),
+    PseudoElement(PseudoElementSelector<'s>),
     Nesting(NestingSelector),
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }

@@ -807,7 +807,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             .parse()
                             .map(PseudoClassSelectorArg::RelativeSelectorList)?
                     }
-
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("dir") =>
                     {
@@ -853,6 +852,49 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
             end,
         };
         Ok(PseudoClassSelector { name, arg, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let colon_colon = expect!(input, ColonColon);
+        let name = input.parse::<InterpolableIdent>()?;
+        let name_span = name.span();
+        let mut end = name_span.end;
+        input.assert_no_ws_or_comment(&colon_colon.span, name_span)?;
+
+        let arg = match input.tokenizer.peek()? {
+            Token::LParen(l_paren) if l_paren.span.start == name_span.end => {
+                expect!(input, LParen);
+                let arg = match &name {
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("part") =>
+                    {
+                        input.parse().map(PseudoElementSelectorArg::Ident)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("cue")
+                            || name.eq_ignore_ascii_case("cue-region")
+                            || name.eq_ignore_ascii_case("slotted") =>
+                    {
+                        input
+                            .parse()
+                            .map(PseudoElementSelectorArg::CompoundSelector)?
+                    }
+                    _ => todo!(),
+                };
+
+                end = expect!(input, RParen).span.end;
+                Some(arg)
+            }
+            _ => None,
+        };
+
+        let span = Span {
+            start: colon_colon.span.start,
+            end,
+        };
+        Ok(PseudoElementSelector { name, arg, span })
     }
 }
 
@@ -914,7 +956,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleSelector<'s> {
             Token::Hash(..) | Token::NumberSign(..) => input.parse().map(SimpleSelector::Id),
             Token::LBracket(..) => input.parse().map(SimpleSelector::Attribute),
             Token::Colon(..) => input.parse().map(SimpleSelector::PseudoClass),
-            Token::ColonColon(..) => todo!(),
+            Token::ColonColon(..) => input.parse().map(SimpleSelector::PseudoElement),
             Token::Ident(..) | Token::Asterisk(..) | Token::HashLBrace(..) | Token::Bar(..) => {
                 input.parse().map(SimpleSelector::Type)
             }
