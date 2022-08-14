@@ -259,22 +259,42 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             None
         };
 
-        expect!(input, Colon);
-        let value = input
-            .with_state(ParserState {
+        let colon = expect!(input, Colon);
+        let value = {
+            let mut parser = input.with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
-            })
-            .parse_component_values(/* allow_comma */ true)?;
+            });
+            let mut values = Vec::<ComponentValue>::with_capacity(4);
+            loop {
+                match parser.tokenizer.peek()? {
+                    Token::RBrace(..)
+                    | Token::RParen(..)
+                    | Token::Semicolon(..)
+                    | Token::Dedent(..)
+                    | Token::Linebreak(..)
+                    | Token::Exclamation(..)
+                    | Token::Eof(..) => break,
+                    _ => values.push(parser.parse()?),
+                }
+            }
+            values
+        };
 
         let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {
-            input.parse().map(Some)?
+            input.parse::<ImportantAnnotation>().map(Some)?
         } else {
             None
         };
 
         let span = Span {
             start: name.span().start,
-            end: value.span.end,
+            end: if let Some(important) = &important {
+                important.span.end
+            } else if let Some(last) = value.last() {
+                last.span().end
+            } else {
+                colon.span.end
+            },
         };
         Ok(Declaration {
             name,

@@ -90,9 +90,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     _ => Ok(ComponentValue::InterpolableIdent(ident)),
                 }
             }
-            Token::Solidus(..) | Token::Comma(..) | Token::Semicolon(..) => {
-                self.parse().map(ComponentValue::Delimiter)
-            }
+            Token::Solidus(..) | Token::Comma(..) => self.parse().map(ComponentValue::Delimiter),
             Token::Number(..) => self.parse().map(ComponentValue::Number),
             Token::Dimension(..) => self.parse().map(ComponentValue::Dimension),
             Token::Percentage(..) => self.parse().map(ComponentValue::Percentage),

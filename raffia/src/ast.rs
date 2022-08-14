@@ -269,7 +269,7 @@ pub enum CustomMediaValue<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
-    pub value: ComponentValues<'s>,
+    pub value: Vec<ComponentValue<'s>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
