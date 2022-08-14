@@ -1,5 +1,8 @@
 use super::token;
-use crate::ast::{Ident, InterpolableIdentStaticPart, Number, Str};
+use crate::{
+    ast::{Ident, InterpolableIdentStaticPart, Number, Str},
+    error::{Error, ErrorKind, PResult},
+};
 
 impl<'a> From<token::Str<'a>> for Str<'a> {
     fn from(str: token::Str<'a>) -> Self {
@@ -17,6 +20,22 @@ impl<'a> From<token::Number<'a>> for Number<'a> {
             value: number.value,
             raw: number.raw,
             span: number.span,
+        }
+    }
+}
+
+impl TryFrom<token::Number<'_>> for i32 {
+    type Error = Error;
+
+    fn try_from(token::Number { value, span, .. }: token::Number) -> PResult<Self> {
+        if value.fract() == 0.0 {
+            // SAFETY: f64 parsed from source text will never be NaN or infinity.
+            unsafe { Ok(value.to_int_unchecked()) }
+        } else {
+            Err(Error {
+                kind: ErrorKind::ExpectInteger,
+                span,
+            })
         }
     }
 }

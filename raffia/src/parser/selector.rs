@@ -10,6 +10,381 @@ use crate::{
 };
 use raffia_derive::Spanned;
 
+// https://www.w3.org/TR/css-syntax-3/#the-anb-type
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Dimension(token::Dimension {
+                value,
+                unit:
+                    token::Ident {
+                        name,
+                        span: unit_span,
+                        ..
+                    },
+                span,
+            }) => {
+                input.tokenizer.bump()?;
+                if name.eq_ignore_ascii_case("n") {
+                    match input.tokenizer.peek()? {
+                        // syntax: <n-dimension> ['+' | '-'] <signless-integer>
+                        // examples: '1n + 1', '1n - 1', '1n+ 1'
+                        sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
+                            input.tokenizer.bump()?;
+                            let number = expect_unsigned_int(input)?;
+                            let span = Span {
+                                start: span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: value.try_into()?,
+                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
+                                    * i32::try_from(number)?,
+                                span,
+                            })
+                        }
+
+                        // syntax: <n-dimension> <signed-integer>
+                        // examples: '1n +1', '1n -1'
+                        Token::Number(number) => {
+                            input.tokenizer.bump()?;
+                            let span = Span {
+                                start: span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: value.try_into()?,
+                                b: number.try_into()?,
+                                span,
+                            })
+                        }
+
+                        // syntax: <n-dimension>
+                        // examples: '1n'
+                        _ => Ok(AnPlusB {
+                            a: value.try_into()?,
+                            b: 0,
+                            span,
+                        }),
+                    }
+                } else if name.eq_ignore_ascii_case("n-") {
+                    // syntax: <ndash-dimension> <signless-integer>
+                    // examples: '1n- 1'
+                    let number = expect_unsigned_int(input)?;
+                    let span = Span {
+                        start: span.start,
+                        end: number.span.end,
+                    };
+                    Ok(AnPlusB {
+                        a: value.try_into()?,
+                        b: -i32::try_from(number)?,
+                        span,
+                    })
+                } else if let Some(digits) = name.strip_prefix("n-") {
+                    // syntax: <ndashdigit-dimension>
+                    // examples: '1n-1'
+                    if digits.chars().any(|c| !c.is_ascii_digit()) {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectUnsignedInteger,
+                            span: Span {
+                                start: unit_span.start + 2,
+                                end: unit_span.end,
+                            },
+                        });
+                    }
+                    let b = digits.parse::<i32>().map_err(|_| Error {
+                        kind: ErrorKind::ExpectInteger,
+                        span: Span {
+                            start: unit_span.start + 2,
+                            end: unit_span.end,
+                        },
+                    })?;
+                    Ok(AnPlusB {
+                        a: value.try_into()?,
+                        b: -b,
+                        span,
+                    })
+                } else {
+                    Err(Error {
+                        kind: ErrorKind::InvalidAnPlusB,
+                        span,
+                    })
+                }
+            }
+
+            Token::Plus(plus) => {
+                input.tokenizer.bump()?;
+                let ident = expect!(input, Ident);
+                input.assert_no_ws_or_comment(&plus.span, &ident.span)?;
+                if ident.name.eq_ignore_ascii_case("n") {
+                    match input.tokenizer.peek()? {
+                        // syntax: +n ['+' | '-'] <signless-integer>
+                        // examples: '+n + 1', '+n - 1', '+n+ 1'
+                        sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
+                            input.tokenizer.bump()?;
+                            let number = expect_unsigned_int(input)?;
+                            let span = Span {
+                                start: plus.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: 1,
+                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
+                                    * i32::try_from(number)?,
+                                span,
+                            })
+                        }
+
+                        // syntax: +n <signed-integer>
+                        // examples: '+n +1', '+n -1'
+                        Token::Number(number) => {
+                            input.tokenizer.bump()?;
+                            let span = Span {
+                                start: plus.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: 1,
+                                b: number.try_into()?,
+                                span,
+                            })
+                        }
+
+                        // syntax: +n
+                        _ => Ok(AnPlusB {
+                            a: 1,
+                            b: 0,
+                            span: Span {
+                                start: plus.span.start,
+                                end: ident.span.end,
+                            },
+                        }),
+                    }
+                } else if ident.name.eq_ignore_ascii_case("n-") {
+                    // syntax: +n- <signless-integer>
+                    // examples: '+n- 1'
+                    let number = expect_unsigned_int(input)?;
+                    let span = Span {
+                        start: plus.span.start,
+                        end: number.span.end,
+                    };
+                    Ok(AnPlusB {
+                        a: 1,
+                        b: -i32::try_from(number)?,
+                        span,
+                    })
+                } else if let Some(digits) = ident.name.strip_prefix("n-") {
+                    // syntax: +<ndashdigit-ident>
+                    // examples: '+n-1'
+                    if digits.chars().any(|c| !c.is_ascii_digit()) {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectUnsignedInteger,
+                            span: Span {
+                                start: ident.span.start + 2,
+                                end: ident.span.end,
+                            },
+                        });
+                    }
+                    let b = digits.parse::<i32>().map_err(|_| Error {
+                        kind: ErrorKind::ExpectInteger,
+                        span: Span {
+                            start: ident.span.start + 2,
+                            end: ident.span.end,
+                        },
+                    })?;
+                    Ok(AnPlusB {
+                        a: 1,
+                        b: -b,
+                        span: Span {
+                            start: plus.span.start,
+                            end: ident.span.end,
+                        },
+                    })
+                } else {
+                    Err(Error {
+                        kind: ErrorKind::InvalidAnPlusB,
+                        span: Span {
+                            start: plus.span.start,
+                            end: ident.span.end,
+                        },
+                    })
+                }
+            }
+
+            Token::Ident(ident) => {
+                input.tokenizer.bump()?;
+                if ident.name.eq_ignore_ascii_case("n") {
+                    match input.tokenizer.peek()? {
+                        // syntax: n ['+' | '-'] <signless-integer>
+                        // examples: 'n + 1', 'n - 1', 'n+ 1'
+                        sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
+                            input.tokenizer.bump()?;
+                            let number = expect_unsigned_int(input)?;
+                            let span = Span {
+                                start: ident.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: 1,
+                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
+                                    * i32::try_from(number)?,
+                                span,
+                            })
+                        }
+
+                        // syntax: n <signed-integer>
+                        // examples: 'n +1', 'n -1'
+                        Token::Number(number) => {
+                            input.tokenizer.bump()?;
+                            let span = Span {
+                                start: ident.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: 1,
+                                b: number.try_into()?,
+                                span,
+                            })
+                        }
+
+                        // syntax: n
+                        _ => Ok(AnPlusB {
+                            a: 1,
+                            b: 0,
+                            span: ident.span,
+                        }),
+                    }
+                } else if ident.name.eq_ignore_ascii_case("n-") {
+                    // syntax: n- <signless-integer>
+                    // examples: 'n- 1'
+                    let number = expect_unsigned_int(input)?;
+                    let span = Span {
+                        start: ident.span.start,
+                        end: number.span.end,
+                    };
+                    Ok(AnPlusB {
+                        a: 1,
+                        b: -i32::try_from(number)?,
+                        span,
+                    })
+                } else if let Some(digits) = ident.name.strip_prefix("n-") {
+                    // syntax: <ndashdigit-ident>
+                    // examples: 'n-1'
+                    if digits.chars().any(|c| !c.is_ascii_digit()) {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectUnsignedInteger,
+                            span: Span {
+                                start: ident.span.start + 2,
+                                end: ident.span.end,
+                            },
+                        });
+                    }
+                    let b = digits.parse::<i32>().map_err(|_| Error {
+                        kind: ErrorKind::ExpectInteger,
+                        span: Span {
+                            start: ident.span.start + 2,
+                            end: ident.span.end,
+                        },
+                    })?;
+                    Ok(AnPlusB {
+                        a: 1,
+                        b: -b,
+                        span: ident.span,
+                    })
+                } else if ident.name.eq_ignore_ascii_case("-n") {
+                    match input.tokenizer.peek()? {
+                        // syntax: -n ['+' | '-'] <signless-integer>
+                        // examples: '-n + 1', '-n - 1', '-n+ 1'
+                        sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
+                            input.tokenizer.bump()?;
+                            let number = expect_unsigned_int(input)?;
+                            let span = Span {
+                                start: ident.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: -1,
+                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
+                                    * i32::try_from(number)?,
+                                span,
+                            })
+                        }
+
+                        // syntax: -n <signed-integer>
+                        // examples: '-n +1', '-n -1'
+                        Token::Number(number) => {
+                            input.tokenizer.bump()?;
+                            let span = Span {
+                                start: ident.span.start,
+                                end: number.span.end,
+                            };
+                            Ok(AnPlusB {
+                                a: -1,
+                                b: number.try_into()?,
+                                span,
+                            })
+                        }
+
+                        // syntax: -n
+                        _ => Ok(AnPlusB {
+                            a: -1,
+                            b: 0,
+                            span: ident.span,
+                        }),
+                    }
+                } else if ident.name.eq_ignore_ascii_case("-n-") {
+                    // syntax: -n- <signless-integer>
+                    // examples: '-n- 1'
+                    let number = expect_unsigned_int(input)?;
+                    let span = Span {
+                        start: ident.span.start,
+                        end: number.span.end,
+                    };
+                    Ok(AnPlusB {
+                        a: -1,
+                        b: -i32::try_from(number)?,
+                        span,
+                    })
+                } else if let Some(digits) = ident.name.strip_prefix("-n-") {
+                    // syntax: -n-<ndashdigit-ident>
+                    // examples: '-n-1'
+                    if digits.chars().any(|c| !c.is_ascii_digit()) {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectUnsignedInteger,
+                            span: Span {
+                                start: ident.span.start + 3,
+                                end: ident.span.end,
+                            },
+                        });
+                    }
+                    let b = digits.parse::<i32>().map_err(|_| Error {
+                        kind: ErrorKind::ExpectInteger,
+                        span: Span {
+                            start: ident.span.start + 3,
+                            end: ident.span.end,
+                        },
+                    })?;
+                    Ok(AnPlusB {
+                        a: -1,
+                        b: -b,
+                        span: ident.span,
+                    })
+                } else {
+                    Err(Error {
+                        kind: ErrorKind::InvalidAnPlusB,
+                        span: ident.span,
+                    })
+                }
+            }
+
+            token => Err(Error {
+                kind: ErrorKind::InvalidAnPlusB,
+                span: token.span().clone(),
+            }),
+        }
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let l_bracket = expect!(input, LBracket);
@@ -255,6 +630,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse::<CompoundSelector>()?;
+        let mut span = first.span.clone();
+
+        let mut selectors = vec![first];
+        while eat!(input, Comma).is_some() {
+            selectors.push(input.parse()?);
+        }
+
+        if let Some(last) = selectors.last() {
+            span.end = last.span.end;
+        }
+        Ok(CompoundSelectorList { selectors, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.bump()? {
@@ -320,10 +712,180 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRange<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(LanguageRange::Str),
+            _ => input.parse().map(LanguageRange::Ident),
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRangeList<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse::<LanguageRange>()?;
+        let mut span = first.span().clone();
+
+        let mut ranges = vec![first];
+        while eat!(input, Comma).is_some() {
+            ranges.push(input.parse()?);
+        }
+
+        if let Some(last) = ranges.last() {
+            span.end = last.span().end;
+        }
+        Ok(LanguageRangeList { ranges, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, Ampersand);
         Ok(NestingSelector { span: token.span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("odd") => {
+                Ok(Nth::Odd(input.parse()?))
+            }
+            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("even") => {
+                Ok(Nth::Even(input.parse()?))
+            }
+            Token::Number(..) => {
+                let number = expect!(input, Number);
+                if number.value.fract() == 0.0 {
+                    Ok(Nth::Integer(number.into()))
+                } else {
+                    Err(Error {
+                        kind: ErrorKind::ExpectInteger,
+                        span: number.span,
+                    })
+                }
+            }
+            _ => Ok(Nth::AnPlusB(input.parse()?)),
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let colon = expect!(input, Colon);
+        let name = input.parse::<InterpolableIdent>()?;
+        let name_span = name.span();
+        let mut end = name_span.end;
+        input.assert_no_ws_or_comment(&colon.span, name_span)?;
+
+        let arg = match input.tokenizer.peek()? {
+            Token::LParen(l_paren) if l_paren.span.start == name_span.end => {
+                expect!(input, LParen);
+                let arg = match &name {
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("nth-child")
+                            || name.eq_ignore_ascii_case("nth-last-child")
+                            || name.eq_ignore_ascii_case("nth-of-type")
+                            || name.eq_ignore_ascii_case("nth-last-of-type")
+                            || name.eq_ignore_ascii_case("nth-col")
+                            || name.eq_ignore_ascii_case("nth-last-col") =>
+                    {
+                        input.parse().map(PseudoClassSelectorArg::Nth)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("not")
+                            || name.eq_ignore_ascii_case("is")
+                            || name.eq_ignore_ascii_case("where")
+                            || name.eq_ignore_ascii_case("matches") =>
+                    {
+                        input.parse().map(PseudoClassSelectorArg::SelectorList)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("has") =>
+                    {
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArg::RelativeSelectorList)?
+                    }
+
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("dir") =>
+                    {
+                        input.parse().map(PseudoClassSelectorArg::Ident)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("lang") =>
+                    {
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArg::LanguageRangeList)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("-moz-any")
+                            || name.eq_ignore_ascii_case("-webkit-any")
+                            || name.eq_ignore_ascii_case("current")
+                            || name.eq_ignore_ascii_case("past")
+                            || name.eq_ignore_ascii_case("future") =>
+                    {
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArg::CompoundSelectorList)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("host")
+                            || name.eq_ignore_ascii_case("host-context") =>
+                    {
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArg::CompoundSelector)?
+                    }
+                    _ => todo!(),
+                };
+
+                end = expect!(input, RParen).span.end;
+                Some(arg)
+            }
+            _ => None,
+        };
+
+        let span = Span {
+            start: colon.span.start,
+            end,
+        };
+        Ok(PseudoClassSelector { name, arg, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let combinator = input.parse_combinator()?;
+        let complex_selector = input.parse::<ComplexSelector>()?;
+        let mut span = complex_selector.span.clone();
+        if let Some(combinator) = &combinator {
+            span.start = combinator.span.start;
+        }
+        Ok(RelativeSelector {
+            combinator,
+            complex_selector,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelectorList<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse::<RelativeSelector>()?;
+        let mut span = first.span.clone();
+
+        let mut selectors = vec![first];
+        while eat!(input, Comma).is_some() {
+            selectors.push(input.parse()?);
+        }
+
+        if let Some(last) = selectors.last() {
+            span.end = last.span.end;
+        }
+        Ok(RelativeSelectorList { selectors, span })
     }
 }
 
@@ -351,7 +913,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleSelector<'s> {
             Token::Dot(..) => input.parse().map(SimpleSelector::Class),
             Token::Hash(..) | Token::NumberSign(..) => input.parse().map(SimpleSelector::Id),
             Token::LBracket(..) => input.parse().map(SimpleSelector::Attribute),
-            Token::Colon(..) => todo!(),
+            Token::Colon(..) => input.parse().map(SimpleSelector::PseudoClass),
             Token::ColonColon(..) => todo!(),
             Token::Ident(..) | Token::Asterisk(..) | Token::HashLBrace(..) | Token::Bar(..) => {
                 input.parse().map(SimpleSelector::Type)
@@ -536,5 +1098,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             _ => Ok(None),
         }
+    }
+}
+
+fn expect_unsigned_int<'cmt, 's: 'cmt>(input: &mut Parser<'cmt, 's>) -> PResult<token::Number<'s>> {
+    let number = expect!(input, Number);
+    if number.raw.chars().any(|c| !c.is_ascii_digit()) {
+        Err(Error {
+            kind: ErrorKind::ExpectUnsignedInteger,
+            span: number.span,
+        })
+    } else {
+        Ok(number)
     }
 }

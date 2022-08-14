@@ -10,6 +10,13 @@ pub struct Angle<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct AnPlusB {
+    pub a: i32,
+    pub b: i32,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct AtRule<'s> {
     pub name: Ident<'s>,
     pub prelude: Option<AtRulePrelude<'s>>,
@@ -194,6 +201,12 @@ pub struct ComponentValues<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub struct CompoundSelector<'s> {
     pub children: Vec<SimpleSelector<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct CompoundSelectorList<'s> {
+    pub selectors: Vec<CompoundSelector<'s>>,
     pub span: Span,
 }
 
@@ -433,6 +446,18 @@ pub enum KeyframesName<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum LanguageRange<'s> {
+    Str(InterpolableStr<'s>),
+    Ident(InterpolableIdent<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct LanguageRangeList<'s> {
+    pub ranges: Vec<LanguageRange<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct LayerName<'s> {
     pub idents: Vec<InterpolableIdent<'s>>,
     pub span: Span,
@@ -656,6 +681,14 @@ pub struct NsPrefixUniversal {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub enum Nth<'s> {
+    Odd(Ident<'s>),
+    Even(Ident<'s>),
+    Integer(Number<'s>),
+    AnPlusB(AnPlusB),
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Number<'s> {
     pub value: f64,
     pub raw: &'s str,
@@ -666,6 +699,25 @@ pub struct Number<'s> {
 pub struct Percentage<'s> {
     pub value: Number<'s>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct PseudoClassSelector<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub arg: Option<PseudoClassSelectorArg<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub enum PseudoClassSelectorArg<'s> {
+    CompoundSelector(CompoundSelector<'s>),
+    CompoundSelectorList(CompoundSelectorList<'s>),
+    Ident(InterpolableIdent<'s>),
+    LanguageRangeList(LanguageRangeList<'s>),
+    Nth(Nth<'s>),
+    Number(Number<'s>),
+    RelativeSelectorList(RelativeSelectorList<'s>),
+    SelectorList(SelectorList<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -686,6 +738,19 @@ pub enum QueryInParens<'s> {
 pub struct Ratio<'s> {
     pub numerator: Number<'s>,
     pub denominator: Number<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct RelativeSelector<'s> {
+    pub combinator: Option<Combinator>,
+    pub complex_selector: ComplexSelector<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct RelativeSelectorList<'s> {
+    pub selectors: Vec<RelativeSelector<'s>>,
     pub span: Span,
 }
 
@@ -846,6 +911,7 @@ pub enum SimpleSelector<'s> {
     Id(IdSelector<'s>),
     Type(TypeSelector<'s>),
     Attribute(AttributeSelector<'s>),
+    PseudoClass(PseudoClassSelector<'s>),
     Nesting(NestingSelector),
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }

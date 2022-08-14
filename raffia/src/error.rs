@@ -56,6 +56,9 @@ pub enum ErrorKind {
     ExpectStyleConditionNot,
     ExpectStyleQuery,
     ExpectSassKeyword(&'static str),
+    InvalidAnPlusB,
+    ExpectInteger,
+    ExpectUnsignedInteger,
 
     TryParseError,
     CSSWideKeywordDisallowed,
