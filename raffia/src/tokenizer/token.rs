@@ -336,7 +336,6 @@ pub struct Minus {
 pub struct Number<'s> {
     pub value: f64,
     pub raw: &'s str,
-    pub signed: bool,
     pub span: Span,
 }
 

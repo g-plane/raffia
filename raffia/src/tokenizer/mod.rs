@@ -418,7 +418,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let start;
         let mut end = 0;
 
-        let mut signed = false;
         let is_start_with_dot;
         if let Some((i, c)) = self.state.chars.next() {
             start = i;
@@ -426,7 +425,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 is_start_with_dot = false;
                 end = i + 1;
             } else if c == '+' || c == '-' {
-                signed = true;
                 is_start_with_dot = if let Some((_, '.')) = self.state.chars.peek() {
                     self.state.chars.next();
                     true
@@ -511,7 +509,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 span: span.clone(),
             })?,
             raw,
-            signed,
             span,
         })
     }
