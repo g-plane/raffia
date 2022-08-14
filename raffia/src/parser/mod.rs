@@ -266,6 +266,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             })
             .parse_component_values(/* allow_comma */ true)?;
 
+        let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {
+            input.parse().map(Some)?
+        } else {
+            None
+        };
+
         let span = Span {
             start: name.span().start,
             end: value.span.end,
@@ -273,9 +279,34 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
         Ok(Declaration {
             name,
             value,
+            important,
             less_property_merge,
             span,
         })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let exclamation = expect!(input, Exclamation);
+        let ident = expect!(input, Ident);
+        input.assert_no_ws_or_comment(&exclamation.span, &ident.span)?;
+
+        let span = Span {
+            start: exclamation.span.start,
+            end: ident.span.end,
+        };
+        if ident.name.eq_ignore_ascii_case("important") {
+            Ok(ImportantAnnotation {
+                ident: ident.into(),
+                span,
+            })
+        } else {
+            Err(Error {
+                kind: ErrorKind::ExpectImportantAnnotation,
+                span,
+            })
+        }
     }
 }
 

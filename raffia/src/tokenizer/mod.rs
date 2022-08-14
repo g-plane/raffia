@@ -1214,6 +1214,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         end: i + 1,
                     },
                 })),
+                Some((i, '!')) => Some(Token::Exclamation(Exclamation {
+                    span: Span {
+                        start: i,
+                        end: i + 1,
+                    },
+                })),
                 _ => None,
             },
         }

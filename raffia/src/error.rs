@@ -59,6 +59,7 @@ pub enum ErrorKind {
     InvalidAnPlusB,
     ExpectInteger,
     ExpectUnsignedInteger,
+    ExpectImportantAnnotation,
 
     TryParseError,
     CSSWideKeywordDisallowed,

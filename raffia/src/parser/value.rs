@@ -145,6 +145,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::Semicolon(..)
                 | Token::Dedent(..)
                 | Token::Linebreak(..)
+                | Token::Exclamation(..)
                 | Token::Eof(..) => break,
                 Token::Comma(..) => {
                     if allow_comma {

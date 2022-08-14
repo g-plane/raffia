@@ -270,6 +270,7 @@ pub enum CustomMediaValue<'s> {
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
     pub value: ComponentValues<'s>,
+    pub important: Option<ImportantAnnotation<'s>>,
     pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
 }
@@ -423,6 +424,12 @@ pub struct InterpolableUrlStaticPart<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub struct IdSelector<'s> {
     pub name: InterpolableIdent<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct ImportantAnnotation<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 

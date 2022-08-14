@@ -42,6 +42,7 @@ pub enum Token<'s> {
     Dot(Dot),
     Equal(Equal),
     EqualEqual(EqualEqual),
+    Exclamation(Exclamation),
     ExclamationEqual(ExclamationEqual),
     GreaterThan(GreaterThan),
     GreaterThanEqual(GreaterThanEqual),
@@ -100,6 +101,7 @@ impl Token<'_> {
             Dot(..) => ".",
             Equal(..) => "=",
             EqualEqual(..) => "==",
+            Exclamation(..) => "!",
             ExclamationEqual(..) => "!=",
             GreaterThan(..) => ">",
             GreaterThanEqual(..) => ">=",
@@ -245,6 +247,11 @@ pub struct Equal {
 
 #[derive(Clone, Debug, Spanned)]
 pub struct EqualEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct Exclamation {
     pub span: Span,
 }
 
