@@ -76,7 +76,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
         match input.tokenizer.peek()? {
             Token::LParen(..) => {
                 if let Some(supports_decl) = input.try_parse(|parser| parser.parse()) {
-                    Ok(SupportsInParens::Feature(supports_decl))
+                    Ok(SupportsInParens::Feature(Box::new(supports_decl)))
                 } else {
                     expect!(input, LParen);
                     let condition = input.parse()?;

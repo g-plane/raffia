@@ -1043,7 +1043,7 @@ pub struct SupportsDecl<'s> {
 #[derive(Clone, Debug, Spanned)]
 pub enum SupportsInParens<'s> {
     SupportsCondition(SupportsCondition<'s>),
-    Feature(SupportsDecl<'s>),
+    Feature(Box<SupportsDecl<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned)]
