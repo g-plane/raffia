@@ -521,7 +521,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
         };
 
         let value = if matcher.is_some() {
-            match input.tokenizer.bump()? {
+            match input.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) => {
                     Some(AttributeSelectorValue::Ident(input.parse()?))
                 }
@@ -1102,6 +1102,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             | Token::Hash(token::Hash { span, .. })
             | Token::Colon(token::Colon { span, .. })
             | Token::ColonColon(token::ColonColon { span })
+            | Token::LBracket(token::LBracket { span, .. })
             | Token::Asterisk(token::Asterisk { span })
             | Token::Ampersand(token::Ampersand { span })
             | Token::Bar(token::Bar { span }) // selector like `|type` (with <ns-prefix>)
