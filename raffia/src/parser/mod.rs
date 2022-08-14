@@ -264,20 +264,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             let mut parser = input.with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
             });
-            let mut values = Vec::<ComponentValue>::with_capacity(4);
-            loop {
-                match parser.tokenizer.peek()? {
-                    Token::RBrace(..)
-                    | Token::RParen(..)
-                    | Token::Semicolon(..)
-                    | Token::Dedent(..)
-                    | Token::Linebreak(..)
-                    | Token::Exclamation(..)
-                    | Token::Eof(..) => break,
-                    _ => values.push(parser.parse()?),
+            match &name {
+                InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
+                    let mut values = Vec::with_capacity(4);
+                    loop {
+                        match parser.tokenizer.peek()? {
+                            Token::RBrace(..)
+                            | Token::Semicolon(..)
+                            | Token::Dedent(..)
+                            | Token::Linebreak(..)
+                            | Token::Eof(..) => break,
+                            _ => values.push(parser.tokenizer.bump().map(ComponentValue::Token)?),
+                        }
+                    }
+                    values
+                }
+                _ => {
+                    let mut values = Vec::<ComponentValue>::with_capacity(4);
+                    loop {
+                        match parser.tokenizer.peek()? {
+                            Token::RBrace(..)
+                            | Token::RParen(..)
+                            | Token::Semicolon(..)
+                            | Token::Dedent(..)
+                            | Token::Linebreak(..)
+                            | Token::Exclamation(..)
+                            | Token::Eof(..) => break,
+                            _ => values.push(parser.parse()?),
+                        }
+                    }
+                    values
                 }
             }
-            values
         };
 
         let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {

@@ -1,4 +1,4 @@
-use crate::pos::Span;
+use crate::{pos::Span, tokenizer::Token};
 use raffia_derive::Spanned;
 use std::borrow::Cow;
 
@@ -189,6 +189,7 @@ pub enum ComponentValue<'s> {
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
+    Token(Token<'s>),
     Url(Url<'s>),
 }
 
