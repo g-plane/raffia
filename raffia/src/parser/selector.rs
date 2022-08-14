@@ -389,8 +389,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let l_bracket = expect!(input, LBracket);
 
-        let name = match input.tokenizer.bump()? {
-            Token::Ident(..) | Token::HashLBrace(..) => {
+        let name = match input.tokenizer.peek()? {
+            Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let ident = input.parse::<InterpolableIdent>()?;
                 let ident_span = ident.span();
                 if let Some(bar_token) = eat!(input, Bar) {
@@ -520,20 +520,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
             }
         };
 
-        let value = match input.tokenizer.bump()? {
-            Token::Ident(..) | Token::HashLBrace(..) => {
-                Some(AttributeSelectorValue::Ident(input.parse()?))
+        let value = if matcher.is_some() {
+            match input.tokenizer.bump()? {
+                Token::Ident(..) | Token::HashLBrace(..) => {
+                    Some(AttributeSelectorValue::Ident(input.parse()?))
+                }
+                Token::Str(..) | Token::StrTemplate(..) => {
+                    Some(AttributeSelectorValue::Str(input.parse()?))
+                }
+                Token::RBracket(..) => None,
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::ExpectAttributeSelectorValue,
+                        span: token.span().clone(),
+                    });
+                }
             }
-            Token::Str(..) | Token::StrTemplate(..) => {
-                Some(AttributeSelectorValue::Str(input.parse()?))
-            }
-            Token::RBracket(..) => None,
-            token => {
-                return Err(Error {
-                    kind: ErrorKind::ExpectAttributeSelectorValue,
-                    span: token.span().clone(),
-                });
-            }
+        } else {
+            None
         };
 
         let modifier = if value.is_some() {
@@ -609,6 +613,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
                 | Token::Hash(token::Hash { span, .. })
                 | Token::Colon(token::Colon { span })
                 | Token::ColonColon(token::ColonColon { span })
+                | Token::LBracket(token::LBracket { span })
                 | Token::Ampersand(token::Ampersand { span })
                 | Token::Ident(token::Ident { span, .. })
                 | Token::Asterisk(token::Asterisk { span })

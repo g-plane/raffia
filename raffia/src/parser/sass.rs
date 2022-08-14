@@ -164,6 +164,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         let (first, mut span) = match self.tokenizer.peek()? {
             Token::Ident(ident) => {
                 self.tokenizer.bump()?;
