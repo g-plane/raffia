@@ -63,7 +63,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         while eat!(self, Comma).is_some() {
             match self.tokenizer.peek()? {
-                Token::Percent(..) => prelude.push(KeyframeSelector::Percentage(self.parse()?)),
+                Token::Percentage(..) => prelude.push(KeyframeSelector::Percentage(self.parse()?)),
                 _ => {
                     let ident = self.parse()?;
                     match &ident {
