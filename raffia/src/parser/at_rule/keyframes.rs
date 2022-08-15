@@ -5,8 +5,69 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     pos::{Span, Spanned},
     tokenizer::Token,
-    util,
+    util, Parse,
 };
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (prelude, mut span) = input.parse_keyframe_selectors()?;
+        let block = input.parse::<SimpleBlock>()?;
+        span.end = block.span.end;
+        Ok(KeyframeBlock {
+            prelude,
+            block,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Percentage(..) => Ok(KeyframeSelector::Percentage(input.parse()?)),
+            _ => {
+                let ident = input.parse()?;
+                match &ident {
+                    InterpolableIdent::Literal(ident)
+                        if !ident.name.eq_ignore_ascii_case("from")
+                            && !ident.name.eq_ignore_ascii_case("to") =>
+                    {
+                        // this should be recoverable
+                        Err(Error {
+                            kind: ErrorKind::UnknownKeyframeSelectorIdent,
+                            span: ident.span.clone(),
+                        })
+                    }
+                    _ => Ok(KeyframeSelector::Ident(ident)),
+                }
+            }
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.peek()? {
+            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(KeyframesName::Str),
+            _ => {
+                let ident = input.parse()?;
+                match &ident {
+                    InterpolableIdent::Literal(ident)
+                        if util::is_css_wide_keyword(&ident.name)
+                            || ident.name.eq_ignore_ascii_case("default") =>
+                    {
+                        // this should be recoverable
+                        Err(Error {
+                            kind: ErrorKind::CSSWideKeywordDisallowed,
+                            span: ident.span.clone(),
+                        })
+                    }
+                    _ => Ok(KeyframesName::Ident(ident)),
+                }
+            }
+        }
+    }
+}
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
@@ -15,101 +76,25 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             loop {
                 match parser.tokenizer.peek()? {
                     Token::RBrace(..) | Token::Dedent(..) | Token::Eof(..) => break,
-                    _ => statements.push(Statement::KeyframeBlock(parser.parse_keyframe_block()?)),
+                    _ => statements.push(Statement::KeyframeBlock(parser.parse()?)),
                 }
             }
             Ok(statements)
         })
     }
 
-    fn parse_keyframe_block(&mut self) -> PResult<KeyframeBlock<'s>> {
-        let (prelude, mut span) = self.parse_keyframe_selectors()?;
-        let block = self.parse::<SimpleBlock>()?;
-        span.end = block.span.end;
-        Ok(KeyframeBlock {
-            prelude,
-            block,
-            span,
-        })
-    }
-
     fn parse_keyframe_selectors(&mut self) -> PResult<(Vec<KeyframeSelector<'s>>, Span)> {
-        let mut prelude = vec![];
-        let mut span;
-        match self.tokenizer.peek()? {
-            Token::Percentage(..) => {
-                let percentage = self.parse::<Percentage>()?;
-                span = percentage.span.clone();
-                prelude.push(KeyframeSelector::Percentage(percentage));
-            }
-            _ => {
-                let ident = self.parse()?;
-                match &ident {
-                    InterpolableIdent::Literal(ident)
-                        if !ident.name.eq_ignore_ascii_case("from")
-                            && !ident.name.eq_ignore_ascii_case("to") =>
-                    {
-                        // this should be recoverable
-                        return Err(Error {
-                            kind: ErrorKind::UnknownKeyframeSelectorIdent,
-                            span: ident.span.clone(),
-                        });
-                    }
-                    _ => {}
-                }
-                span = ident.span().clone();
-                prelude.push(KeyframeSelector::Ident(ident));
-            }
-        };
+        let first = self.parse::<KeyframeSelector>()?;
+        let mut span = first.span().clone();
+
+        let mut prelude = vec![first];
         while eat!(self, Comma).is_some() {
-            match self.tokenizer.peek()? {
-                Token::Percentage(..) => prelude.push(KeyframeSelector::Percentage(self.parse()?)),
-                _ => {
-                    let ident = self.parse()?;
-                    match &ident {
-                        InterpolableIdent::Literal(ident)
-                            if !ident.name.eq_ignore_ascii_case("from")
-                                && !ident.name.eq_ignore_ascii_case("to") =>
-                        {
-                            // this should be recoverable
-                            return Err(Error {
-                                kind: ErrorKind::UnknownKeyframeSelectorIdent,
-                                span: ident.span.clone(),
-                            });
-                        }
-                        _ => {}
-                    }
-                    prelude.push(KeyframeSelector::Ident(ident))
-                }
-            };
+            prelude.push(self.parse()?);
         }
 
         if let Some(keyframe_selector) = prelude.last() {
             span.end = keyframe_selector.span().end;
         }
         Ok((prelude, span))
-    }
-
-    pub(super) fn parse_keyframes_prelude(&mut self) -> PResult<KeyframesName<'s>> {
-        match self.tokenizer.peek()? {
-            Token::Str(..) | Token::StrTemplate(..) => self.parse().map(KeyframesName::Str),
-            _ => {
-                let ident = self.parse()?;
-                match &ident {
-                    InterpolableIdent::Literal(ident)
-                        if util::is_css_wide_keyword(&ident.name)
-                            || ident.name.eq_ignore_ascii_case("default") =>
-                    {
-                        // this should be recoverable
-                        return Err(Error {
-                            kind: ErrorKind::CSSWideKeywordDisallowed,
-                            span: ident.span.clone(),
-                        });
-                    }
-                    _ => {}
-                }
-                Ok(KeyframesName::Ident(ident))
-            }
-        }
     }
 }

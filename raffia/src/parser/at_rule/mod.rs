@@ -31,7 +31,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         let prelude = if at_rule_name.eq_ignore_ascii_case("import") {
             Some(AtRulePrelude::Import(Box::new(input.parse()?)))
         } else if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(AtRulePrelude::Keyframes(input.parse_keyframes_prelude()?))
+            Some(AtRulePrelude::Keyframes(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("media") {
             Some(AtRulePrelude::Media(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
