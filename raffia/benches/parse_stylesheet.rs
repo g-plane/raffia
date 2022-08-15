@@ -38,7 +38,7 @@ fn create_swc_source_file(code: &str, filename: &str) -> swc_common::SourceFile 
 }
 
 fn bench_parsers(c: &mut Criterion) {
-    let mut group = c.benchmark_group("Parser");
+    let mut group = c.benchmark_group("parser_stylesheet");
     group.measurement_time(Duration::from_secs(12));
 
     fs::read_dir(".")

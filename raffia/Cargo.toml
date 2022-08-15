@@ -18,5 +18,9 @@ swc_css_ast = "0.107.0"
 swc_css_parser = "0.116.0"
 
 [[bench]]
+name = "parse_selector"
+harness = false
+
+[[bench]]
 name = "parse_stylesheet"
 harness = false
