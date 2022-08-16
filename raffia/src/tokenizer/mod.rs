@@ -111,13 +111,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     self.scan_dimension_or_percentage(number)
                 }
                 Some((_, c)) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
-                Some((i, c)) => self.scan_punc().ok_or_else(|| Error {
-                    kind: ErrorKind::UnknownToken,
-                    span: Span {
-                        start: i,
-                        end: i + c.len_utf8(),
-                    },
-                }),
+                Some(..) => self.scan_punc(),
                 None => {
                     let offset = self.current_offset();
                     Ok(Token::Eof(Eof {
@@ -951,50 +945,50 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         Ok(Token::AtKeyword(AtKeyword { ident, span }))
     }
 
-    fn scan_punc(&mut self) -> Option<Token<'s>> {
+    fn scan_punc(&mut self) -> PResult<Token<'s>> {
         match self.state.chars.next() {
             Some((start, ':')) => match self.state.chars.peek() {
                 Some((_, ':')) => {
                     self.state.chars.next();
-                    Some(Token::ColonColon(ColonColon {
+                    Ok(Token::ColonColon(ColonColon {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Colon(Colon {
+                _ => Ok(Token::Colon(Colon {
                     span: Span {
                         start,
                         end: start + 1,
                     },
                 })),
             },
-            Some((start, '(')) => Some(Token::LParen(LParen {
+            Some((start, '(')) => Ok(Token::LParen(LParen {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, ')')) => Some(Token::RParen(RParen {
+            Some((start, ')')) => Ok(Token::RParen(RParen {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, '[')) => Some(Token::LBracket(LBracket {
+            Some((start, '[')) => Ok(Token::LBracket(LBracket {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, ']')) => Some(Token::RBracket(RBracket {
+            Some((start, ']')) => Ok(Token::RBracket(RBracket {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, '{')) => Some(Token::LBrace(LBrace {
+            Some((start, '{')) => Ok(Token::LBrace(LBrace {
                 span: Span {
                     start,
                     end: start + 1,
@@ -1004,32 +998,32 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 if let Some(state) = self.state.template.last_mut() {
                     (*state).0 = TemplateState::Static;
                 }
-                Some(Token::RBrace(RBrace {
+                Ok(Token::RBrace(RBrace {
                     span: Span {
                         start,
                         end: start + 1,
                     },
                 }))
             }
-            Some((start, '/')) => Some(Token::Solidus(Solidus {
+            Some((start, '/')) => Ok(Token::Solidus(Solidus {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, ',')) => Some(Token::Comma(Comma {
+            Some((start, ',')) => Ok(Token::Comma(Comma {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, ';')) => Some(Token::Semicolon(Semicolon {
+            Some((start, ';')) => Ok(Token::Semicolon(Semicolon {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            Some((start, '.')) => Some(Token::Dot(Dot {
+            Some((start, '.')) => Ok(Token::Dot(Dot {
                 span: Span {
                     start,
                     end: start + 1,
@@ -1038,14 +1032,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '>')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::GreaterThanEqual(GreaterThanEqual {
+                    Ok(Token::GreaterThanEqual(GreaterThanEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::GreaterThan(GreaterThan {
+                _ => Ok(Token::GreaterThan(GreaterThan {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1055,14 +1049,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '<')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::LessThanEqual(LessThanEqual {
+                    Ok(Token::LessThanEqual(LessThanEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::LessThan(LessThan {
+                _ => Ok(Token::LessThan(LessThan {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1072,14 +1066,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '+')) => match self.state.chars.peek() {
                 Some((_, '_')) if self.syntax == Syntax::Less => {
                     self.state.chars.next();
-                    Some(Token::PlusUnderscore(PlusUnderscore {
+                    Ok(Token::PlusUnderscore(PlusUnderscore {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Plus(Plus {
+                _ => Ok(Token::Plus(Plus {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1089,21 +1083,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '=')) => match self.state.chars.peek() {
                 Some((_, '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     self.state.chars.next();
-                    Some(Token::EqualEqual(EqualEqual {
+                    Ok(Token::EqualEqual(EqualEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Equal(Equal {
+                _ => Ok(Token::Equal(Equal {
                     span: Span {
                         start,
                         end: start + 1,
                     },
                 })),
             },
-            Some((start, '-')) => Some(Token::Minus(Minus {
+            Some((start, '-')) => Ok(Token::Minus(Minus {
                 span: Span {
                     start,
                     end: start + 1,
@@ -1112,21 +1106,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '~')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::TildeEqual(TildeEqual {
+                    Ok(Token::TildeEqual(TildeEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Tilde(Tilde {
+                _ => Ok(Token::Tilde(Tilde {
                     span: Span {
                         start,
                         end: start + 1,
                     },
                 })),
             },
-            Some((start, '&')) => Some(Token::Ampersand(Ampersand {
+            Some((start, '&')) => Ok(Token::Ampersand(Ampersand {
                 span: Span {
                     start,
                     end: start + 1,
@@ -1135,14 +1129,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '*')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::AsteriskEqual(AsteriskEqual {
+                    Ok(Token::AsteriskEqual(AsteriskEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Asterisk(Asterisk {
+                _ => Ok(Token::Asterisk(Asterisk {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1152,7 +1146,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '|')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::BarEqual(BarEqual {
+                    Ok(Token::BarEqual(BarEqual {
                         span: Span {
                             start,
                             end: start + 2,
@@ -1161,14 +1155,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((_, '|')) => {
                     self.state.chars.next();
-                    Some(Token::BarBar(BarBar {
+                    Ok(Token::BarBar(BarBar {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Bar(Bar {
+                _ => Ok(Token::Bar(Bar {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1178,38 +1172,50 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '^')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::CaretEqual(CaretEqual {
+                    Ok(Token::CaretEqual(CaretEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => None,
+                _ => Err(Error {
+                    kind: ErrorKind::UnknownToken,
+                    span: Span {
+                        start,
+                        end: start + 1,
+                    },
+                }),
             },
             Some((start, '$')) => match self.state.chars.peek() {
                 Some((_, '=')) => {
                     self.state.chars.next();
-                    Some(Token::DollarEqual(DollarEqual {
+                    Ok(Token::DollarEqual(DollarEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => None,
+                _ => Err(Error {
+                    kind: ErrorKind::UnknownToken,
+                    span: Span {
+                        start,
+                        end: start + 1,
+                    },
+                }),
             },
             Some((start, '!')) => match self.state.chars.peek() {
                 Some((_, '=')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     self.state.chars.next();
-                    Some(Token::ExclamationEqual(ExclamationEqual {
+                    Ok(Token::ExclamationEqual(ExclamationEqual {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::Exclamation(Exclamation {
+                _ => Ok(Token::Exclamation(Exclamation {
                     span: Span {
                         start,
                         end: start + 1,
@@ -1219,27 +1225,42 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((start, '#')) => match self.state.chars.peek() {
                 Some((_, '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     self.state.chars.next();
-                    Some(Token::HashLBrace(HashLBrace {
+                    Ok(Token::HashLBrace(HashLBrace {
                         span: Span {
                             start,
                             end: start + 2,
                         },
                     }))
                 }
-                _ => Some(Token::NumberSign(NumberSign {
+                _ => Ok(Token::NumberSign(NumberSign {
                     span: Span {
                         start,
                         end: start + 1,
                     },
                 })),
             },
-            Some((start, '%')) => Some(Token::Percent(Percent {
+            Some((start, '%')) => Ok(Token::Percent(Percent {
                 span: Span {
                     start,
                     end: start + 1,
                 },
             })),
-            _ => None,
+            Some((i, c)) => Err(Error {
+                kind: ErrorKind::UnknownToken,
+                span: Span {
+                    start: i,
+                    end: i + c.len_utf8(),
+                },
+            }),
+            None => {
+                let offset = self.current_offset();
+                Ok(Token::Eof(Eof {
+                    span: Span {
+                        start: offset,
+                        end: offset,
+                    },
+                }))
+            }
         }
     }
 }
