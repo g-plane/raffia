@@ -73,23 +73,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             return Ok(indent);
         }
 
-        match self.peek_two_chars() {
-            Some((_, '\'' | '"', _)) => self.scan_string_or_template(),
-            Some((_, '-' | '+', '.'))
-                if {
-                    let mut chars = self.state.chars.clone();
-                    matches!(chars.nth(2), Some((_, c)) if c.is_ascii_digit())
-                } =>
-            {
+        let mut chars = self.state.chars.clone();
+        match (chars.next(), chars.next()) {
+            (Some((_, c)), ..) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
+            (Some((_, c)), ..) if c.is_ascii_digit() => {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
-            Some((_, '-', c)) if is_start_of_ident(c) => self.scan_ident_or_url(),
-            Some((_, '.' | '+' | '-', c)) if c.is_ascii_digit() => {
-                let number = self.scan_number()?;
-                self.scan_dimension_or_percentage(number)
-            }
-            Some((_, '#', c))
+            (Some((_, '#')), Some((_, c)))
                 if c.is_ascii_alphanumeric()
                     || c == '-'
                     || c == '_'
@@ -98,30 +89,40 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_hash()
             }
-            Some((_, '@', c)) if is_start_of_ident(c) => self.scan_at_keyword(),
-            Some((_, '$', c))
+            (Some((_, '\'' | '"')), ..) => self.scan_string_or_template(),
+            (Some((_, '-')), Some((_, c))) if is_start_of_ident(c) => self.scan_ident_or_url(),
+            (Some((_, '.' | '+' | '-')), Some((_, c))) if c.is_ascii_digit() => {
+                let number = self.scan_number()?;
+                self.scan_dimension_or_percentage(number)
+            }
+            (Some((_, '-' | '+')), Some((_, '.')))
+                if {
+                    let mut chars = self.state.chars.clone();
+                    matches!(chars.nth(2), Some((_, c)) if c.is_ascii_digit())
+                } =>
+            {
+                let number = self.scan_number()?;
+                self.scan_dimension_or_percentage(number)
+            }
+            (Some((_, '@')), Some((_, c))) if is_start_of_ident(c) => self.scan_at_keyword(),
+            (Some((_, '$')), Some((_, c)))
                 if matches!(self.syntax, Syntax::Scss | Syntax::Sass) && is_start_of_ident(c) =>
             {
                 self.scan_dollar_var()
             }
-            Some((_, '@', '{')) if self.syntax == Syntax::Less => self.scan_at_lbrace_var(),
-            _ => match self.peek_one_char() {
-                Some((_, c)) if c.is_ascii_digit() => {
-                    let number = self.scan_number()?;
-                    self.scan_dimension_or_percentage(number)
-                }
-                Some((_, c)) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
-                Some(..) => self.scan_punc(),
-                None => {
-                    let offset = self.current_offset();
-                    Ok(Token::Eof(Eof {
-                        span: Span {
-                            start: offset,
-                            end: offset,
-                        },
-                    }))
-                }
-            },
+            (Some((_, '@')), Some((_, '{'))) if self.syntax == Syntax::Less => {
+                self.scan_at_lbrace_var()
+            }
+            (Some(..), ..) => self.scan_punc(),
+            (None, ..) => {
+                let offset = self.current_offset();
+                Ok(Token::Eof(Eof {
+                    span: Span {
+                        start: offset,
+                        end: offset,
+                    },
+                }))
+            }
         }
     }
 
@@ -135,13 +136,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         token
     }
 
-    pub fn current_offset(&self) -> usize {
-        self.state
-            .chars
-            .clone()
-            .next()
-            .map(|(i, _)| i)
-            .unwrap_or_else(|| self.source.len())
+    pub fn current_offset(&mut self) -> usize {
+        if let Some((offset, _)) = self.state.chars.peek() {
+            *offset
+        } else {
+            self.source.len()
+        }
     }
 
     #[inline]
@@ -157,7 +157,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             .map(|((start, first), (_, second))| (start, first, second))
     }
 
-    fn build_eof_error(&self) -> Error {
+    fn build_eof_error(&mut self) -> Error {
         let offset = self.current_offset();
         Error {
             kind: ErrorKind::UnexpectedEof,
