@@ -584,7 +584,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let mut children = Vec::with_capacity(1);
+        let mut children = Vec::with_capacity(3);
         let first = input.parse::<CompoundSelector>()?;
         let mut span = first.span.clone();
 
@@ -606,7 +606,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
         let first = input.parse::<SimpleSelector>()?;
         let mut span = first.span().clone();
 
-        let mut children = vec![first];
+        let mut children = Vec::with_capacity(2);
+        children.push(first);
         loop {
             match input.tokenizer.peek()? {
                 Token::Dot(token::Dot { span })
@@ -941,7 +942,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
         let first = input.parse::<ComplexSelector>()?;
         let mut span = first.span.clone();
 
-        let mut selectors = vec![first];
+        let mut selectors = Vec::with_capacity(2);
+        selectors.push(first);
         while eat!(input, Comma).is_some() {
             selectors.push(input.parse()?);
         }

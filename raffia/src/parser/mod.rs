@@ -118,7 +118,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     where
         F: Fn(&mut Self) -> PResult<Vec<Statement<'s>>>,
     {
-        let start = if self.syntax == Syntax::Sass {
+        let is_sass = self.syntax == Syntax::Sass;
+        let start = if is_sass {
             if let Some(token) = eat!(self, Indent) {
                 token.span.end
             } else {
@@ -137,7 +138,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         let statements = f(self)?;
 
-        if self.syntax == Syntax::Sass {
+        if is_sass {
             match self.tokenizer.peek()? {
                 Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
                     self.tokenizer.bump()?;
