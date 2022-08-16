@@ -343,9 +343,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_ident_sequence(&mut self) -> PResult<Ident<'s>> {
         let start;
         let mut end;
-        match self.peek_one_char() {
+        match self.state.chars.peek() {
             Some((i, '-')) => {
-                start = i;
+                start = *i;
                 self.state.chars.next();
                 if let Some((i, c)) = self.state.chars.next() {
                     debug_assert!(is_start_of_ident(c));
@@ -354,13 +354,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     return Err(self.build_eof_error());
                 }
             }
-            Some((i, c)) if c.is_ascii_alphabetic() || c == '_' || !c.is_ascii() => {
-                start = i;
+            Some((i, c)) if c.is_ascii_alphabetic() || *c == '_' || !c.is_ascii() => {
+                start = *i;
+                end = start + c.len_utf8();
                 self.state.chars.next();
-                end = i + c.len_utf8();
             }
             Some((i, '\\')) => {
-                start = i;
+                start = *i;
                 end = self.scan_escape()?;
             }
             _ => {
@@ -368,18 +368,18 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
 
-        while let Some((i, c)) = self.peek_one_char() {
-            if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() {
+        while let Some((i, c)) = self.state.chars.peek() {
+            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
                 self.state.chars.next();
-            } else if c == '\\' {
+            } else if c == &'\\' {
                 self.scan_escape()?;
             } else {
-                end = i;
+                end = *i;
                 break;
             }
         }
 
-        assert!(start < end);
+        debug_assert!(start < end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
         Ok(Ident {
@@ -398,7 +398,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((i, c)) if c.is_ascii_hexdigit() => {
                 let mut count: usize = 1;
                 let mut end = i + 1;
-                while let Some((i, c)) = self.peek_one_char() {
+                while let Some((i, c)) = self.state.chars.peek() {
                     if c.is_ascii_hexdigit() && count < 6 {
                         count += 1;
                         self.state.chars.next();
@@ -406,10 +406,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
                         // consume a whitespace
                         if c.is_ascii_whitespace() {
-                            self.state.chars.next();
                             end = i + 1;
+                            self.state.chars.next();
                         } else {
-                            end = i;
+                            end = *i;
                         }
                         break;
                     }
@@ -454,31 +454,31 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
 
         if is_start_with_dot {
-            while let Some((i, c)) = self.peek_one_char() {
+            while let Some((i, c)) = self.state.chars.peek() {
                 if c.is_ascii_digit() {
                     self.state.chars.next();
                 } else {
-                    end = i;
+                    end = *i;
                     break;
                 }
             }
         } else {
-            while let Some((i, c)) = self.peek_one_char() {
+            while let Some((i, c)) = self.state.chars.peek() {
                 if c.is_ascii_digit() {
                     self.state.chars.next();
                 } else {
-                    end = i;
+                    end = *i;
                     break;
                 }
             }
             if let Some((_, '.')) = self.state.chars.peek() {
                 // bump '.'
                 self.state.chars.next();
-                while let Some((i, c)) = self.peek_one_char() {
+                while let Some((i, c)) = self.state.chars.peek() {
                     if c.is_ascii_digit() {
                         self.state.chars.next();
                     } else {
-                        end = i;
+                        end = *i;
                         break;
                     }
                 }
@@ -678,7 +678,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn is_start_of_interpolation_in_str_template(&mut self) -> bool {
         match self.syntax {
             Syntax::Css => false,
-            Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
+            Syntax::Scss | Syntax::Sass => matches!(self.state.chars.peek(), Some((_, '{'))),
             Syntax::Less => {
                 matches!(self.peek_two_chars(), Some((_, '{', second)) if is_start_of_ident(second))
             }
@@ -687,11 +687,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_ident_or_url(&mut self) -> PResult<Token<'s>> {
         let ident = self.scan_ident_sequence()?;
-        match self.state.chars.peek() {
-            Some((_, '(')) if ident.name.eq_ignore_ascii_case("url") => {
+        if ident.name.eq_ignore_ascii_case("url") {
+            if let Some((_, '(')) = self.state.chars.peek() {
                 self.scan_url(ident).map(Token::UrlPrefix)
+            } else {
+                Ok(Token::Ident(ident))
             }
-            _ => Ok(Token::Ident(ident)),
+        } else {
+            Ok(Token::Ident(ident))
         }
     }
 
@@ -827,7 +830,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn is_start_of_interpolation_in_url_template(&mut self) -> bool {
         match self.syntax {
             Syntax::Css | Syntax::Less => false,
-            Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
+            Syntax::Scss | Syntax::Sass => matches!(self.state.chars.peek(), Some((_, '{'))),
         }
     }
 
@@ -863,11 +866,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 return Err(self.build_eof_error());
             }
         }
-        while let Some((i, c)) = self.peek_one_char() {
-            if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() || c == '\\' {
+        while let Some((i, c)) = self.state.chars.peek() {
+            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() || *c == '\\' {
                 self.state.chars.next();
             } else {
-                end = i;
+                end = *i;
                 break;
             }
         }
