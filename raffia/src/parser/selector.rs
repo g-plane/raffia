@@ -608,24 +608,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
 
         let mut children = Vec::with_capacity(2);
         children.push(first);
-        loop {
-            match input.tokenizer.peek()? {
-                Token::Dot(token::Dot { span })
-                | Token::Hash(token::Hash { span, .. })
-                | Token::Colon(token::Colon { span })
-                | Token::ColonColon(token::ColonColon { span })
-                | Token::LBracket(token::LBracket { span })
-                | Token::Ampersand(token::Ampersand { span })
-                | Token::Ident(token::Ident { span, .. })
-                | Token::Asterisk(token::Asterisk { span })
-                | Token::HashLBrace(token::HashLBrace { span })
-                | Token::NumberSign(token::NumberSign { span })
-                | Token::Bar(token::Bar { span })
-                    if input.tokenizer.current_offset() == span.start =>
-                {
-                    children.push(input.parse()?)
-                }
-                _ => break,
+        while input.tokenizer.peek()?.span().start == input.tokenizer.current_offset() {
+            if let Some(child) = input.try_parse(|parser| parser.parse()) {
+                children.push(child);
+            } else {
+                break;
             }
         }
 
