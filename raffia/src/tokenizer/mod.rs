@@ -150,10 +150,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             .unwrap_or_else(|| self.source.len())
     }
 
-    fn peek_one_char(&self) -> Option<(usize, char)> {
-        self.state.chars.clone().next()
+    #[inline]
+    fn peek_one_char(&mut self) -> Option<(usize, char)> {
+        self.state.chars.peek().copied()
     }
 
+    #[inline]
     fn peek_two_chars(&self) -> Option<(usize, char, char)> {
         let mut iter = self.state.chars.clone();
         iter.next()
@@ -673,7 +675,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn is_start_of_interpolation_in_str_template(&self) -> bool {
+    fn is_start_of_interpolation_in_str_template(&mut self) -> bool {
         match self.syntax {
             Syntax::Css => false,
             Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
@@ -822,7 +824,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn is_start_of_interpolation_in_url_template(&self) -> bool {
+    fn is_start_of_interpolation_in_url_template(&mut self) -> bool {
         match self.syntax {
             Syntax::Css | Syntax::Less => false,
             Syntax::Scss | Syntax::Sass => matches!(self.peek_one_char(), Some((_, '{'))),
