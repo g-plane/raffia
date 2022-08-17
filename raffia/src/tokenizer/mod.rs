@@ -350,6 +350,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_ident_sequence(&mut self) -> PResult<Ident<'s>> {
         let start;
         let mut end;
+        let mut escaped = false;
         match self.state.chars.peek() {
             Some((i, '-')) => {
                 start = *i;
@@ -367,6 +368,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.state.chars.next();
             }
             Some((i, '\\')) => {
+                escaped = true;
                 start = *i;
                 end = self.scan_escape()?;
             }
@@ -379,6 +381,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
                 self.state.chars.next();
             } else if c == &'\\' {
+                escaped = true;
                 self.scan_escape()?;
             } else {
                 end = *i;
@@ -390,10 +393,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
         Ok(Ident {
-            name: handle_escape(raw).map_err(|kind| Error {
-                kind,
-                span: span.clone(),
-            })?,
+            name: if escaped {
+                handle_escape(raw).map_err(|kind| Error {
+                    kind,
+                    span: span.clone(),
+                })?
+            } else {
+                Cow::Borrowed(raw)
+            },
             raw,
             span,
         })
@@ -565,6 +572,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let (start, quote) = self.state.chars.next().unwrap();
 
         let end;
+        let mut escaped = false;
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -577,6 +585,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     })
                 }
                 Some((_, '\\')) => {
+                    escaped = true;
                     self.scan_escape()?;
                 }
                 Some((i, c)) if c == quote => {
@@ -591,10 +600,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: false,
                         span,
                     }));
@@ -610,10 +623,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let span = Span { start, end };
         Ok(Token::Str(Str {
             raw,
-            value: handle_escape(value).map_err(|kind| Error {
-                kind,
-                span: span.clone(),
-            })?,
+            value: if escaped {
+                handle_escape(value).map_err(|kind| Error {
+                    kind,
+                    span: span.clone(),
+                })?
+            } else {
+                Cow::Borrowed(value)
+            },
             span,
         }))
     }
@@ -621,6 +638,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_string_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
         let end;
+        let mut escaped = false;
         let quote = self
             .state
             .template
@@ -640,6 +658,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     })
                 }
                 Some((_, '\\')) => {
+                    escaped = true;
                     self.scan_escape()?;
                 }
                 Some((i, c)) if c == quote => {
@@ -651,10 +670,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: true,
                         span,
                     }));
@@ -667,10 +690,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: false,
                         span,
                     }));
@@ -724,6 +751,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
         let end;
+        let mut escaped = false;
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -736,6 +764,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     })
                 }
                 Some((_, '\\')) => {
+                    escaped = true;
                     self.scan_escape()?;
                 }
                 Some((i, ')')) => {
@@ -751,10 +780,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::UrlTemplate(UrlTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: false,
                         span,
                     }));
@@ -770,16 +803,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let span = Span { start, end };
         Ok(Token::UrlRaw(UrlRaw {
             raw,
-            value: handle_escape(raw).map_err(|kind| Error {
-                kind,
-                span: span.clone(),
-            })?,
+            value: if escaped {
+                handle_escape(raw).map_err(|kind| Error {
+                    kind,
+                    span: span.clone(),
+                })?
+            } else {
+                Cow::Borrowed(raw)
+            },
             span,
         }))
     }
 
     fn scan_url_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
+        let mut escaped = false;
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -792,6 +830,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     })
                 }
                 Some((_, '\\')) => {
+                    escaped = true;
                     self.scan_escape()?;
                 }
                 Some((end, ')')) => {
@@ -803,10 +842,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::UrlTemplate(UrlTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: true,
                         span,
                     }));
@@ -819,10 +862,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::UrlTemplate(UrlTemplate {
                         raw,
-                        value: handle_escape(raw).map_err(|kind| Error {
-                            kind,
-                            span: span.clone(),
-                        })?,
+                        value: if escaped {
+                            handle_escape(raw).map_err(|kind| Error {
+                                kind,
+                                span: span.clone(),
+                            })?
+                        } else {
+                            Cow::Borrowed(raw)
+                        },
                         tail: false,
                         span,
                     }));
@@ -849,15 +896,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert_eq!(c, '#');
 
         let mut end;
+        let mut escaped = false;
         match self.state.chars.next() {
-            Some((i, c))
-                if c.is_ascii_alphanumeric()
-                    || c == '-'
-                    || c == '_'
-                    || !c.is_ascii()
-                    || c == '\\' =>
-            {
+            Some((i, c)) if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() => {
                 end = i + c.len_utf8();
+            }
+            Some((_, '\\')) => {
+                escaped = true;
+                end = self.scan_escape()?;
             }
             Some((i, _)) => {
                 return Err(Error {
@@ -886,10 +932,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let value = unsafe { self.source.get_unchecked(start + 1..end) };
         let span = Span { start, end };
         Ok(Token::Hash(Hash {
-            value: handle_escape(value).map_err(|kind| Error {
-                kind,
-                span: span.clone(),
-            })?,
+            value: if escaped {
+                handle_escape(value).map_err(|kind| Error {
+                    kind,
+                    span: span.clone(),
+                })?
+            } else {
+                Cow::Borrowed(value)
+            },
             raw,
             raw_without_hash: value,
             span,
@@ -1278,45 +1328,40 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 }
 
 fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
-    if s.contains('\\') {
-        let mut escaped = String::with_capacity(s.len());
-        let mut chars = s.char_indices().peekable();
-        while let Some((_, c)) = chars.next() {
-            if c == '\\' {
-                match chars.next() {
-                    Some((start, c)) if c.is_ascii_hexdigit() => {
-                        let mut count: usize = 1;
-                        while let Some((_, c)) = chars.peek() {
-                            if c.is_ascii_hexdigit() && count < 6 {
-                                count += 1;
+    let mut escaped = String::with_capacity(s.len());
+    let mut chars = s.char_indices().peekable();
+    while let Some((_, c)) = chars.next() {
+        if c == '\\' {
+            match chars.next() {
+                Some((start, c)) if c.is_ascii_hexdigit() => {
+                    let mut count: usize = 1;
+                    while let Some((_, c)) = chars.peek() {
+                        if c.is_ascii_hexdigit() && count < 6 {
+                            count += 1;
+                            chars.next();
+                        } else {
+                            // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
+                            // consume a whitespace
+                            if c.is_ascii_whitespace() {
                                 chars.next();
-                            } else {
-                                // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
-                                // consume a whitespace
-                                if c.is_ascii_whitespace() {
-                                    chars.next();
-                                }
-                                break;
                             }
+                            break;
                         }
-                        let unicode = s
-                            .get(start..start + count)
-                            .and_then(|hexdigits| u32::from_str_radix(hexdigits, 16).ok())
-                            .ok_or(ErrorKind::InvalidEscape)?;
-                        escaped
-                            .push(char::from_u32(unicode).unwrap_or(char::REPLACEMENT_CHARACTER));
                     }
-                    Some((_, c)) => escaped.push(c),
-                    None => return Err(ErrorKind::InvalidEscape),
+                    let unicode = s
+                        .get(start..start + count)
+                        .and_then(|hexdigits| u32::from_str_radix(hexdigits, 16).ok())
+                        .ok_or(ErrorKind::InvalidEscape)?;
+                    escaped.push(char::from_u32(unicode).unwrap_or(char::REPLACEMENT_CHARACTER));
                 }
-            } else {
-                escaped.push(c);
+                Some((_, c)) => escaped.push(c),
+                None => return Err(ErrorKind::InvalidEscape),
             }
+        } else {
+            escaped.push(c);
         }
-        Ok(escaped.into())
-    } else {
-        Ok(s.into())
     }
+    Ok(Cow::Owned(escaped))
 }
 
 fn is_start_of_ident(c: char) -> bool {
