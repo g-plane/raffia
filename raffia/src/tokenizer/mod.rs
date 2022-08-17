@@ -171,19 +171,20 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn skip_ws_or_comment(&mut self) -> Option<Token<'s>> {
         let mut indent = None;
         loop {
-            match self.peek_two_chars() {
-                Some((_, '/', '*')) => self.scan_block_comment(),
-                Some((_, '/', '/')) if self.syntax != Syntax::Css => self.scan_line_comment(),
-                _ => match self.state.chars.peek() {
-                    Some((_, c)) if c.is_ascii_whitespace() => {
-                        if self.syntax == Syntax::Sass {
-                            indent = self.scan_indent();
-                        } else {
-                            self.skip_ws();
-                        }
+            let mut chars = self.state.chars.clone();
+            match (chars.next(), chars.next()) {
+                (Some((_, '/')), Some((_, '*'))) => self.scan_block_comment(),
+                (Some((_, '/')), Some((_, '/'))) if self.syntax != Syntax::Css => {
+                    self.scan_line_comment()
+                }
+                (Some((_, c)), ..) if c.is_ascii_whitespace() => {
+                    if self.syntax == Syntax::Sass {
+                        indent = self.scan_indent();
+                    } else {
+                        self.skip_ws();
                     }
-                    _ => return indent,
-                },
+                }
+                _ => return indent,
             }
         }
     }
@@ -515,13 +516,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_dimension_or_percentage(&mut self, number: Number<'s>) -> PResult<Token<'s>> {
-        match self.peek_two_chars() {
-            Some((_, '-', c)) if is_start_of_ident(c) => self.scan_dimension(number),
-            _ => match self.state.chars.peek() {
-                Some((_, c)) if is_start_of_ident(*c) => self.scan_dimension(number),
-                Some((_, '%')) => self.scan_percentage(number),
-                _ => Ok(Token::Number(number)),
-            },
+        let mut chars = self.state.chars.clone();
+        match (chars.next(), chars.next()) {
+            (Some((_, '-')), Some((_, c))) if is_start_of_ident(c) => self.scan_dimension(number),
+            (Some((_, c)), ..) if c != '-' && is_start_of_ident(c) => self.scan_dimension(number),
+            (Some((_, '%')), ..) => self.scan_percentage(number),
+            _ => Ok(Token::Number(number)),
         }
     }
 
