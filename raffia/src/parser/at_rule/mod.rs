@@ -41,16 +41,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("layer") {
-            match input.tokenizer.peek()? {
-                Token::Ident(..) => Some(AtRulePrelude::Layer(input.parse()?)),
-                Token::HashLBrace(..) if matches!(input.syntax, Syntax::Scss | Syntax::Sass) => {
-                    Some(AtRulePrelude::Layer(input.parse()?))
-                }
-                Token::AtLBraceVar(..) if input.syntax == Syntax::Less => {
-                    Some(AtRulePrelude::Layer(input.parse()?))
-                }
-                _ => None,
-            }
+            input
+                .try_parse(|parser| parser.parse())
+                .map(AtRulePrelude::Layer)
         } else if at_rule_name.eq_ignore_ascii_case("container") {
             Some(AtRulePrelude::Container(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("page") {
