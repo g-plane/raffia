@@ -8,6 +8,7 @@ use crate::{
     Parse,
 };
 
+// https://www.w3.org/TR/css-cascade-5/#at-import
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let href = match input.tokenizer.peek()? {

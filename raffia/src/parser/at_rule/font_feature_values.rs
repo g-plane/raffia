@@ -1,6 +1,7 @@
 use super::Parser;
 use crate::{ast::*, error::PResult, tokenizer::Token, Parse, Spanned};
 
+// https://drafts.csswg.org/css-fonts/Overview.bs
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FontFamilyName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.peek()? {

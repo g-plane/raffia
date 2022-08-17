@@ -7,6 +7,7 @@ use crate::{
     Parse,
 };
 
+// https://www.w3.org/TR/mediaqueries-5/#custom-mq
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMedia<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let name = input.parse_dashed_ident()?;

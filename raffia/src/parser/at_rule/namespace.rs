@@ -1,6 +1,7 @@
 use super::Parser;
 use crate::{ast::*, error::PResult, tokenizer::Token, Parse, Spanned};
 
+// https://www.w3.org/TR/css-namespaces-3/#syntax
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let prefix = match input.tokenizer.peek()? {

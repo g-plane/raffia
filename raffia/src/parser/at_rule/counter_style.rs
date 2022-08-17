@@ -5,6 +5,7 @@ use crate::{
     util,
 };
 
+// https://www.w3.org/TR/css-counter-styles-3/#the-counter-style-rule
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_counter_style_prelude(&mut self) -> PResult<InterpolableIdent<'s>> {
         match self.parse()? {

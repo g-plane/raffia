@@ -8,6 +8,7 @@ use crate::{
     util, Parse,
 };
 
+// https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (prelude, mut span) = input.parse_keyframe_selectors()?;
@@ -45,6 +46,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
     }
 }
 
+// https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.peek()? {

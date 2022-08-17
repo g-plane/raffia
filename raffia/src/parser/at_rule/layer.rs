@@ -7,6 +7,7 @@ use crate::{
     util, Parse,
 };
 
+// https://drafts.csswg.org/css-cascade-5/#layer-names
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = input.parse::<InterpolableIdent>()?;

@@ -35,6 +35,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("media") {
             Some(AtRulePrelude::Media(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
+            // https://drafts.csswg.org/css2/#charset%E2%91%A0
             Some(AtRulePrelude::Charset(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
             Some(AtRulePrelude::Supports(input.parse()?))
@@ -58,6 +59,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("font-feature-values") {
             Some(AtRulePrelude::FontFeatureValues(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-palette-values") {
+            // https://drafts.csswg.org/css-fonts/Overview.bs
             Some(AtRulePrelude::FontPaletteValues(
                 input.parse_dashed_ident()?,
             ))
@@ -72,10 +74,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 input.parse_scroll_timeline_prelude()?,
             ))
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
+            // https://tabatkins.github.io/specs/css-anchor-position/#fallback-rule
             Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("nest") {
+            // https://www.w3.org/TR/css-nesting-1/#at-nest
             Some(AtRulePrelude::Nest(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("property") {
+            // https://drafts.css-houdini.org/css-properties-values-api/#at-property-rule
             Some(AtRulePrelude::Property(input.parse_dashed_ident()?))
         } else if at_rule_name.eq_ignore_ascii_case("document") {
             Some(AtRulePrelude::Document(input.parse()?))

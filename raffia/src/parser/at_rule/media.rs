@@ -165,6 +165,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
     }
 }
 
+// https://www.w3.org/TR/mediaqueries-4/#mq-syntax
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediqQueryList<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = input.parse::<MediaQuery>()?;

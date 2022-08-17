@@ -5,6 +5,7 @@ use crate::{
     util,
 };
 
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@scroll-timeline
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_scroll_timeline_prelude(&mut self) -> PResult<InterpolableIdent<'s>> {
         match self.parse()? {

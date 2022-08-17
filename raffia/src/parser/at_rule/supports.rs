@@ -8,6 +8,7 @@ use crate::{
     Parse,
 };
 
+// https://drafts.csswg.org/css-conditional-3/#at-supports
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.peek()? {
