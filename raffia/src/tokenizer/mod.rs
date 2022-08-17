@@ -95,11 +95,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
             }
-            (Some((_, '-' | '+')), Some((_, '.')))
-                if {
-                    let mut chars = self.state.chars.clone();
-                    matches!(chars.nth(2), Some((_, c)) if c.is_ascii_digit())
-                } =>
+            (Some((_, '-' | '+')), Some((_, '.'))) if matches!(chars.peek(), Some((_, c)) if c.is_ascii_digit()) =>
             {
                 let number = self.scan_number()?;
                 self.scan_dimension_or_percentage(number)
@@ -352,6 +348,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut end;
         let mut escaped = false;
         match self.state.chars.peek() {
+            Some((i, c)) if c.is_ascii_alphabetic() || *c == '_' || !c.is_ascii() => {
+                start = *i;
+                end = start + c.len_utf8();
+                self.state.chars.next();
+            }
             Some((i, '-')) => {
                 start = *i;
                 self.state.chars.next();
@@ -361,11 +362,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 } else {
                     return Err(self.build_eof_error());
                 }
-            }
-            Some((i, c)) if c.is_ascii_alphabetic() || *c == '_' || !c.is_ascii() => {
-                start = *i;
-                end = start + c.len_utf8();
-                self.state.chars.next();
             }
             Some((i, '\\')) => {
                 escaped = true;
@@ -1364,6 +1360,7 @@ fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
     Ok(Cow::Owned(escaped))
 }
 
+#[inline]
 fn is_start_of_ident(c: char) -> bool {
     c.is_ascii_alphabetic() || c == '-' || c == '_' || !c.is_ascii() || c == '\\'
 }
