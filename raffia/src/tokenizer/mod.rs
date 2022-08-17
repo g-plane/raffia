@@ -144,6 +144,18 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
+    /// This should only be used when parsing selectors.
+    #[inline]
+    pub fn has_ws_or_comments(&mut self) -> bool {
+        let mut chars = self.state.chars.clone();
+        match (chars.next(), chars.next()) {
+            (Some((_, '/')), Some((_, '*'))) => true,
+            (Some((_, '/')), Some((_, '/'))) => self.syntax != Syntax::Css,
+            (Some((_, c)), ..) => c.is_ascii_whitespace(),
+            _ => false,
+        }
+    }
+
     #[inline]
     fn peek_one_char(&mut self) -> Option<(usize, char)> {
         self.state.chars.peek().copied()
