@@ -40,6 +40,7 @@ pub enum AtRulePrelude<'s> {
     Media(MediqQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
     Nest(SelectorList<'s>),
+    Page(PageSelectorList<'s>),
     PositionFallback(InterpolableIdent<'s>),
     Property(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
@@ -704,6 +705,19 @@ pub struct Number<'s> {
 }
 
 #[derive(Clone, Debug, Spanned)]
+pub struct PageSelector<'s> {
+    pub name: Option<InterpolableIdent<'s>>,
+    pub pseudo: Vec<PseudoPage<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct PageSelectorList<'s> {
+    pub selectors: Vec<PageSelector<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
 pub struct Percentage<'s> {
     pub value: Number<'s>,
     pub span: Span,
@@ -739,6 +753,12 @@ pub struct PseudoElementSelector<'s> {
 pub enum PseudoElementSelectorArg<'s> {
     CompoundSelector(CompoundSelector<'s>),
     Ident(InterpolableIdent<'s>),
+}
+
+#[derive(Clone, Debug, Spanned)]
+pub struct PseudoPage<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned)]

@@ -19,6 +19,7 @@ mod keyframes;
 mod layer;
 mod media;
 mod namespace;
+mod page;
 mod scroll_timeline;
 mod supports;
 
@@ -52,6 +53,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             }
         } else if at_rule_name.eq_ignore_ascii_case("container") {
             Some(AtRulePrelude::Container(input.parse()?))
+        } else if at_rule_name.eq_ignore_ascii_case("page") {
+            input
+                .try_parse(|parser| parser.parse())
+                .map(AtRulePrelude::Page)
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
             Some(AtRulePrelude::Namespace(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
@@ -94,6 +99,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("swash")
             || at_rule_name.eq_ignore_ascii_case("ornaments")
             || at_rule_name.eq_ignore_ascii_case("annotation")
+            || at_rule_name.eq_ignore_ascii_case("top-left-corner")
+            || at_rule_name.eq_ignore_ascii_case("top-left")
+            || at_rule_name.eq_ignore_ascii_case("top-center")
+            || at_rule_name.eq_ignore_ascii_case("top-right")
+            || at_rule_name.eq_ignore_ascii_case("top-right-corner")
+            || at_rule_name.eq_ignore_ascii_case("bottom-left-corner")
+            || at_rule_name.eq_ignore_ascii_case("bottom-left")
+            || at_rule_name.eq_ignore_ascii_case("bottom-center")
+            || at_rule_name.eq_ignore_ascii_case("bottom-right")
+            || at_rule_name.eq_ignore_ascii_case("bottom-right-corner")
+            || at_rule_name.eq_ignore_ascii_case("left-top")
+            || at_rule_name.eq_ignore_ascii_case("left-middle")
+            || at_rule_name.eq_ignore_ascii_case("left-bottom")
+            || at_rule_name.eq_ignore_ascii_case("right-top")
+            || at_rule_name.eq_ignore_ascii_case("right-middle")
+            || at_rule_name.eq_ignore_ascii_case("right-bottom")
         {
             None
         } else {
@@ -126,6 +147,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("swash")
             || at_rule_name.eq_ignore_ascii_case("ornaments")
             || at_rule_name.eq_ignore_ascii_case("annotation")
+            || at_rule_name.eq_ignore_ascii_case("top-left-corner")
+            || at_rule_name.eq_ignore_ascii_case("top-left")
+            || at_rule_name.eq_ignore_ascii_case("top-center")
+            || at_rule_name.eq_ignore_ascii_case("top-right")
+            || at_rule_name.eq_ignore_ascii_case("top-right-corner")
+            || at_rule_name.eq_ignore_ascii_case("bottom-left-corner")
+            || at_rule_name.eq_ignore_ascii_case("bottom-left")
+            || at_rule_name.eq_ignore_ascii_case("bottom-center")
+            || at_rule_name.eq_ignore_ascii_case("bottom-right")
+            || at_rule_name.eq_ignore_ascii_case("bottom-right-corner")
+            || at_rule_name.eq_ignore_ascii_case("left-top")
+            || at_rule_name.eq_ignore_ascii_case("left-middle")
+            || at_rule_name.eq_ignore_ascii_case("left-bottom")
+            || at_rule_name.eq_ignore_ascii_case("right-top")
+            || at_rule_name.eq_ignore_ascii_case("right-middle")
+            || at_rule_name.eq_ignore_ascii_case("right-bottom")
         {
             input.parse().map(Some)?
         } else if at_rule_name.eq_ignore_ascii_case("import")
