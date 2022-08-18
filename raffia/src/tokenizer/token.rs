@@ -8,9 +8,7 @@ use std::borrow::Cow;
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum Comment<'s> {
-    #[serde(rename = "block")]
     Block(BlockComment<'s>),
-    #[serde(rename = "line")]
     Line(LineComment<'s>),
 }
 
