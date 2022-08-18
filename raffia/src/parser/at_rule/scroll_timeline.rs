@@ -8,15 +8,16 @@ use crate::{
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@scroll-timeline
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_scroll_timeline_prelude(&mut self) -> PResult<InterpolableIdent<'s>> {
-        match self.parse()? {
-            // this should be recoverable
+        let ident = self.parse()?;
+        match &ident {
             InterpolableIdent::Literal(ident) if util::is_css_wide_keyword(&ident.name) => {
-                Err(Error {
+                self.recoverable_errors.push(Error {
                     kind: ErrorKind::CSSWideKeywordDisallowed,
-                    span: ident.span,
-                })
+                    span: ident.span.clone(),
+                });
             }
-            ident => Ok(ident),
+            _ => {}
         }
+        Ok(ident)
     }
 }

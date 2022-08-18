@@ -40,6 +40,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
             syntax: self.syntax.clone(),
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),
             state: Default::default(),
+            recoverable_errors: vec![],
         }
     }
 }

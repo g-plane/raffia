@@ -163,14 +163,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_dashed_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
-        match self.parse()? {
-            // this should be recoverable
-            InterpolableIdent::Literal(ident) if !ident.name.starts_with("--") => Err(Error {
-                kind: ErrorKind::ExpectDashedIdent,
-                span: ident.span,
-            }),
-            ident => Ok(ident),
+        let ident = self.parse()?;
+        match &ident {
+            InterpolableIdent::Literal(ident) if !ident.name.starts_with("--") => {
+                self.recoverable_errors.push(Error {
+                    kind: ErrorKind::ExpectDashedIdent,
+                    span: ident.span.clone(),
+                });
+            }
+            _ => {}
         }
+        Ok(ident)
     }
 
     pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
@@ -200,10 +203,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         expect!(self, Solidus);
         let denominator = self.parse::<Number>()?;
         if denominator.value <= 0.0 {
-            // this should be recoverable
-            return Err(Error {
+            self.recoverable_errors.push(Error {
                 kind: ErrorKind::InvalidRatioDenominator,
-                span: denominator.span,
+                span: denominator.span.clone(),
             });
         }
 

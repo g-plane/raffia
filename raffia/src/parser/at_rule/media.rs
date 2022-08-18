@@ -325,15 +325,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }))
                 }
             }
-        } else if !matches!(left, ComponentValue::InterpolableIdent(..))
-            && !matches!(name_or_right, ComponentValue::InterpolableIdent(..))
-        {
-            // this should be recoverable
-            Err(Error {
-                kind: ErrorKind::ExpectMediaFeatureName,
-                span: name_or_right.span().clone(),
-            })
         } else {
+            if !matches!(left, ComponentValue::InterpolableIdent(..))
+                && !matches!(name_or_right, ComponentValue::InterpolableIdent(..))
+            {
+                self.recoverable_errors.push(Error {
+                    kind: ErrorKind::ExpectMediaFeatureName,
+                    span: name_or_right.span().clone(),
+                });
+            }
             let span = Span {
                 start: left.span().start,
                 end: name_or_right.span().end,

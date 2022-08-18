@@ -32,8 +32,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {
             _ => false,
         });
         if let Some(invalid_ident) = invalid_ident {
-            // this should be recoverable
-            return Err(Error {
+            input.recoverable_errors.push(Error {
                 kind: crate::error::ErrorKind::CSSWideKeywordDisallowed,
                 span: invalid_ident.span().clone(),
             });

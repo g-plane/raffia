@@ -33,14 +33,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
                         if !ident.name.eq_ignore_ascii_case("from")
                             && !ident.name.eq_ignore_ascii_case("to") =>
                     {
-                        // this should be recoverable
-                        Err(Error {
+                        input.recoverable_errors.push(Error {
                             kind: ErrorKind::UnknownKeyframeSelectorIdent,
                             span: ident.span.clone(),
-                        })
+                        });
                     }
-                    _ => Ok(KeyframeSelector::Ident(ident)),
+                    _ => {}
                 }
+                Ok(KeyframeSelector::Ident(ident))
             }
         }
     }
@@ -58,14 +58,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
                         if util::is_css_wide_keyword(&ident.name)
                             || ident.name.eq_ignore_ascii_case("default") =>
                     {
-                        // this should be recoverable
-                        Err(Error {
+                        input.recoverable_errors.push(Error {
                             kind: ErrorKind::CSSWideKeywordDisallowed,
                             span: ident.span.clone(),
-                        })
+                        });
                     }
-                    _ => Ok(KeyframesName::Ident(ident)),
+                    _ => {}
                 }
+                Ok(KeyframesName::Ident(ident))
             }
         }
     }
