@@ -439,21 +439,21 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut end = 0;
 
         let is_start_with_dot;
-        if let Some((i, c)) = self.state.chars.next() {
-            start = i;
-            if c.is_ascii_digit() {
+        match self.state.chars.next() {
+            Some((i, c)) if c.is_ascii_digit() => {
+                start = i;
                 is_start_with_dot = false;
                 end = i + 1;
-            } else if c == '+' || c == '-' {
-                is_start_with_dot = if let Some((_, '.')) = self.state.chars.peek() {
-                    self.state.chars.next();
-                    true
-                } else {
-                    false
-                };
-            } else if c == '.' {
+            }
+            Some((i, '+' | '-')) => {
+                start = i;
+                is_start_with_dot = matches!(self.state.chars.next(), Some((_, '.')));
+            }
+            Some((i, '.')) => {
+                start = i;
                 is_start_with_dot = true;
-            } else {
+            }
+            Some((i, c)) => {
                 return Err(Error {
                     kind: ErrorKind::InvalidNumber,
                     span: Span {
@@ -462,28 +462,20 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 });
             }
-        } else {
-            return Err(self.build_eof_error());
+            None => {
+                return Err(self.build_eof_error());
+            }
         }
 
-        if is_start_with_dot {
-            while let Some((i, c)) = self.state.chars.peek() {
-                if c.is_ascii_digit() {
-                    self.state.chars.next();
-                } else {
-                    end = *i;
-                    break;
-                }
+        while let Some((i, c)) = self.state.chars.peek() {
+            if c.is_ascii_digit() {
+                self.state.chars.next();
+            } else {
+                end = *i;
+                break;
             }
-        } else {
-            while let Some((i, c)) = self.state.chars.peek() {
-                if c.is_ascii_digit() {
-                    self.state.chars.next();
-                } else {
-                    end = *i;
-                    break;
-                }
-            }
+        }
+        if !is_start_with_dot {
             if let Some((_, '.')) = self.state.chars.peek() {
                 // bump '.'
                 self.state.chars.next();
@@ -520,7 +512,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             _ => {}
         }
 
-        assert!(start < end);
+        debug_assert!(start < end);
         let span = Span { start, end };
         let raw = unsafe { self.source.get_unchecked(start..end) };
         Ok(Number {
