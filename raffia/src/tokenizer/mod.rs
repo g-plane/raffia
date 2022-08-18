@@ -106,7 +106,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_dollar_var()
             }
-            (Some((_, '@')), Some((_, '{'))) if self.syntax == Syntax::Less => {
+            (Some((_, '@')), Some((_, '{')))
+                if self.syntax == Syntax::Less
+                    && matches!(chars.peek(), Some((_, c)) if is_start_of_ident(*c)) =>
+            {
                 self.scan_at_lbrace_var()
             }
             (Some(..), ..) => self.scan_punc(),
