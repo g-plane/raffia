@@ -9,13 +9,18 @@ license = "MIT"
 
 [dependencies]
 raffia_derive = { path = "../raffia_derive" }
+serde = { version = "1.0", features = ["derive"], optional = true }
 
 [dev-dependencies]
 criterion = "0.3"
 parcel_css = "1.0.0-alpha.30"
+serde_json = "1.0"
 swc_common = "0.27.7"
 swc_css_ast = "0.107.0"
 swc_css_parser = "0.116.0"
+
+[features]
+serialize = ["serde"]
 
 [[bench]]
 name = "parse_selector"
