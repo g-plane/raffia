@@ -187,15 +187,6 @@ pub struct AtLBraceVar<'s> {
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind"))]
-pub struct BadStr<'s> {
-    pub value: Cow<'s, str>,
-    pub raw: &'s str,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "kind"))]
 pub struct Bar {
     pub span: Span,
 }
