@@ -168,6 +168,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             .map(|((start, first), (_, second))| (start, first, second))
     }
 
+    #[cold]
     fn build_eof_error(&mut self) -> Error {
         let offset = self.current_offset();
         Error {
@@ -184,16 +185,16 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         loop {
             let mut chars = self.state.chars.clone();
             match (chars.next(), chars.next()) {
-                (Some((_, '/')), Some((_, '*'))) => self.scan_block_comment(),
-                (Some((_, '/')), Some((_, '/'))) if self.syntax != Syntax::Css => {
-                    self.scan_line_comment()
-                }
                 (Some((_, c)), ..) if c.is_ascii_whitespace() => {
                     if self.syntax == Syntax::Sass {
                         indent = self.scan_indent();
                     } else {
                         self.skip_ws();
                     }
+                }
+                (Some((_, '/')), Some((_, '*'))) => self.scan_block_comment(),
+                (Some((_, '/')), Some((_, '/'))) if self.syntax != Syntax::Css => {
+                    self.scan_line_comment()
                 }
                 _ => return indent,
             }
@@ -371,9 +372,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 start = *i;
                 end = self.scan_escape()?;
             }
-            _ => {
-                return Err(self.build_eof_error());
-            }
+            _ => unreachable!(),
         }
 
         while let Some((i, c)) = self.state.chars.peek() {
@@ -453,18 +452,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 start = i;
                 is_start_with_dot = true;
             }
-            Some((i, c)) => {
-                return Err(Error {
-                    kind: ErrorKind::InvalidNumber,
-                    span: Span {
-                        start: i,
-                        end: i + c.len_utf8(),
-                    },
-                });
-            }
-            None => {
-                return Err(self.build_eof_error());
-            }
+            _ => unreachable!(),
         }
 
         while let Some((i, c)) = self.state.chars.peek() {
