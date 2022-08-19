@@ -84,7 +84,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &self.recoverable_errors
     }
 
-    fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> Option<R> {
+    fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> PResult<R> {
         let tokenizer_state = self.tokenizer.state.clone();
         let comments_count = self
             .tokenizer
@@ -92,19 +92,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             .as_ref()
             .map(|comments| comments.len());
         let recoverable_errors_count = self.recoverable_errors.len();
-        match f(self) {
-            Ok(value) => Some(value),
-            Err(..) => {
-                self.tokenizer.state = tokenizer_state;
-                if let Some((comments, count)) =
-                    self.tokenizer.comments.as_mut().zip(comments_count)
-                {
-                    comments.truncate(count);
-                }
-                self.recoverable_errors.truncate(recoverable_errors_count);
-                None
+        let result = f(self);
+        if result.is_err() {
+            self.tokenizer.state = tokenizer_state;
+            if let Some((comments, count)) = self.tokenizer.comments.as_mut().zip(comments_count) {
+                comments.truncate(count);
             }
+            self.recoverable_errors.truncate(recoverable_errors_count);
         }
+        result
     }
 
     fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
@@ -182,12 +178,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match self.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if !is_top_level {
-                        if let Some(declaration) = self.try_parse(|parser| parser.parse()) {
+                        if let Ok(declaration) = self.try_parse(|parser| parser.parse()) {
                             statements.push(Statement::Declaration(declaration));
                             continue;
                         }
                     }
-                    if let Some(qualified_rule) = self.try_parse(|parser| parser.parse()) {
+                    if let Ok(qualified_rule) = self.try_parse(|parser| parser.parse()) {
                         statements.push(Statement::QualifiedRule(qualified_rule));
                         is_block_element = true;
                     }
@@ -212,7 +208,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 Token::AtKeyword(at_keyword) => {
                     if self.syntax == Syntax::Less {
-                        if let Some(less_variable_declaration) =
+                        if let Ok(less_variable_declaration) =
                             self.try_parse(|parser| parser.parse())
                         {
                             statements.push(Statement::LessVariableDeclaration(

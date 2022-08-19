@@ -58,16 +58,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
             let l_paren = expect!(parser, LParen);
             parser.assert_no_ws_or_comment(&ident.span, &l_paren.span)?;
 
-            let supports =
-                if let Some(supports_condition) = parser.try_parse(|parser| parser.parse()) {
-                    Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
-                } else {
-                    parser.parse().map(ImportPreludeSupports::Declaration)
-                };
+            let supports = if let Ok(supports_condition) = parser.try_parse(|parser| parser.parse())
+            {
+                Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
+            } else {
+                parser.parse().map(ImportPreludeSupports::Declaration)
+            };
             expect!(parser, RParen);
             supports
         });
-        if let Some(supports) = &supports {
+        if let Ok(supports) = &supports {
             span.end = supports.span().end;
         }
 
@@ -83,7 +83,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
         Ok(ImportPrelude {
             href,
             layer,
-            supports,
+            supports: supports.ok(),
             media,
             span,
         })

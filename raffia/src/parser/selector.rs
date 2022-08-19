@@ -609,7 +609,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
         let mut children = Vec::with_capacity(2);
         children.push(first);
         while !input.tokenizer.has_ws_or_comments() {
-            if let Some(child) = input.try_parse(|parser| parser.parse()) {
+            if let Ok(child) = input.try_parse(|parser| parser.parse()) {
                 children.push(child);
             } else {
                 break;

@@ -44,12 +44,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             input
                 .try_parse(|parser| parser.parse())
                 .map(AtRulePrelude::Layer)
+                .ok()
         } else if at_rule_name.eq_ignore_ascii_case("container") {
             Some(AtRulePrelude::Container(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("page") {
             input
                 .try_parse(|parser| parser.parse())
                 .map(AtRulePrelude::Page)
+                .ok()
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
             Some(AtRulePrelude::Namespace(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {

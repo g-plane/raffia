@@ -95,7 +95,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeatureComparison {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         expect!(input, LParen);
-        let media_in_parens = if let Some(media_condition) =
+        let media_in_parens = if let Ok(media_condition) =
             input.try_parse(|parser| parser.parse_media_condition(/* allow_or */ true))
         {
             MediaInParens::MediaCondition(media_condition)
@@ -155,7 +155,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaOr<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        if let Some(condition_only) =
+        if let Ok(condition_only) =
             input.try_parse(|parser| parser.parse_media_condition(/* allow_or */ true))
         {
             Ok(MediaQuery::ConditionOnly(condition_only))

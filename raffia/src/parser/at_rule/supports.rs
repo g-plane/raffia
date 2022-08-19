@@ -75,16 +75,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.peek()? {
-            Token::LParen(..) => {
-                if let Some(supports_decl) = input.try_parse(|parser| parser.parse()) {
-                    Ok(SupportsInParens::Feature(Box::new(supports_decl)))
-                } else {
+            Token::LParen(..) => input
+                .try_parse(|parser| {
+                    parser
+                        .parse()
+                        .map(|supports_decl| SupportsInParens::Feature(Box::new(supports_decl)))
+                })
+                .or_else(|_| {
                     expect!(input, LParen);
                     let condition = input.parse()?;
                     expect!(input, RParen);
                     Ok(SupportsInParens::SupportsCondition(condition))
-                }
-            }
+                }),
             token => Err(Error {
                 kind: ErrorKind::Unexpected("'('", token.symbol()),
                 span: token.span().clone(),
