@@ -1,8 +1,8 @@
 use crate::pos::Span;
+use beef::Cow;
 use raffia_derive::Spanned;
 #[cfg(feature = "serialize")]
 use serde::Serialize;
-use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

@@ -8,6 +8,7 @@ use crate::{
     tokenizer::Token,
     Parse,
 };
+use smallvec::smallvec;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
@@ -171,12 +172,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediqQueryList<'s> {
         let first = input.parse::<MediaQuery>()?;
         let mut span = first.span().clone();
 
-        let mut queries = vec![first];
+        let mut queries = smallvec![first];
         while eat!(input, Comma).is_some() {
             queries.push(input.parse()?);
         }
 
-        if let Some(last) = queries.last() {
+        let last: Option<&MediaQuery> = queries.last();
+        if let Some(last) = last {
             span.end = last.span().end;
         }
         Ok(MediqQueryList { queries, span })

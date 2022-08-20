@@ -1,8 +1,9 @@
 use crate::{pos::Span, tokenizer::Token};
+use beef::Cow;
 use raffia_derive::Spanned;
 #[cfg(feature = "serialize")]
 use serde::Serialize;
-use std::borrow::Cow;
+use smallvec::SmallVec;
 
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
@@ -202,7 +203,7 @@ pub enum CombinatorKind {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct ComplexSelector<'s> {
-    pub children: Vec<ComplexSelectorChild<'s>>,
+    pub children: SmallVec<[ComplexSelectorChild<'s>; 3]>,
     pub span: Span,
 }
 
@@ -339,7 +340,7 @@ pub enum CustomMediaValue<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
-    pub value: Vec<ComponentValue<'s>>,
+    pub value: SmallVec<[ComponentValue<'s>; 3]>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
@@ -820,7 +821,7 @@ pub enum MediaQuery<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct MediqQueryList<'s> {
-    pub queries: Vec<MediaQuery<'s>>,
+    pub queries: SmallVec<[MediaQuery<'s>; 1]>,
     pub span: Span,
 }
 
@@ -1202,7 +1203,7 @@ pub struct SassWhileAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct SelectorList<'s> {
-    pub selectors: Vec<ComplexSelector<'s>>,
+    pub selectors: SmallVec<[ComplexSelector<'s>; 2]>,
     pub span: Span,
 }
 

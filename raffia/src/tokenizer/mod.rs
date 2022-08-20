@@ -3,7 +3,8 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     pos::Span,
 };
-use std::{borrow::Cow, cmp::Ordering, iter::Peekable, str::CharIndices};
+use beef::Cow;
+use std::{cmp::Ordering, iter::Peekable, str::CharIndices};
 pub use token::Token;
 use token::*;
 
@@ -402,7 +403,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     span: span.clone(),
                 })?
             } else {
-                Cow::Borrowed(raw)
+                Cow::from(raw)
             },
             raw,
             span,
@@ -590,7 +591,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: false,
                         span,
@@ -613,7 +614,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     span: span.clone(),
                 })?
             } else {
-                Cow::Borrowed(value)
+                Cow::from(value)
             },
             span,
         }))
@@ -660,7 +661,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: true,
                         span,
@@ -680,7 +681,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: false,
                         span,
@@ -770,7 +771,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: false,
                         span,
@@ -793,7 +794,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     span: span.clone(),
                 })?
             } else {
-                Cow::Borrowed(raw)
+                Cow::from(raw)
             },
             span,
         }))
@@ -832,7 +833,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: true,
                         span,
@@ -852,7 +853,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::Borrowed(raw)
+                            Cow::from(raw)
                         },
                         tail: false,
                         span,
@@ -922,7 +923,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     span: span.clone(),
                 })?
             } else {
-                Cow::Borrowed(value)
+                Cow::from(value)
             },
             raw,
             raw_without_hash: value,
@@ -1345,7 +1346,7 @@ fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
             escaped.push(c);
         }
     }
-    Ok(Cow::Owned(escaped))
+    Ok(Cow::from(escaped))
 }
 
 #[inline]

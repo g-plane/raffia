@@ -6,9 +6,10 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
-    Parse, Syntax,
+    util, Parse, Syntax,
 };
 use raffia_derive::Spanned;
+use smallvec::SmallVec;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
@@ -584,7 +585,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let mut children = Vec::with_capacity(3);
+        let mut children = SmallVec::with_capacity(3);
         let first = input.parse::<CompoundSelector>()?;
         let mut span = first.span.clone();
 
@@ -594,9 +595,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
             children.push(input.parse().map(ComplexSelectorChild::CompoundSelector)?);
         }
 
-        if let Some(last) = children.last() {
-            span.end = last.span().end;
-        }
+        span.end = util::last_of_non_empty_small_vec(&children).span().end;
         Ok(ComplexSelector { children, span })
     }
 }
@@ -929,15 +928,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
         let first = input.parse::<ComplexSelector>()?;
         let mut span = first.span.clone();
 
-        let mut selectors = Vec::with_capacity(2);
+        let mut selectors = SmallVec::with_capacity(2);
         selectors.push(first);
         while eat!(input, Comma).is_some() {
             selectors.push(input.parse()?);
         }
 
-        if let Some(selector) = selectors.last() {
-            span.end = selector.span.end;
-        }
+        span.end = util::last_of_non_empty_small_vec(&selectors).span.end;
         Ok(SelectorList { selectors, span })
     }
 }

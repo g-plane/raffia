@@ -7,6 +7,7 @@ use crate::{
     tokenizer::{token, Token, Tokenizer},
 };
 pub use builder::ParserBuilder;
+use smallvec::SmallVec;
 
 mod at_rule;
 mod builder;
@@ -271,7 +272,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             });
             match &name {
                 InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
-                    let mut values = Vec::with_capacity(4);
+                    let mut values = SmallVec::with_capacity(3);
                     loop {
                         match parser.tokenizer.peek()? {
                             Token::RBrace(..)
@@ -285,7 +286,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     values
                 }
                 _ => {
-                    let mut values = Vec::<ComponentValue>::with_capacity(4);
+                    let mut values = SmallVec::with_capacity(3);
                     loop {
                         match parser.tokenizer.peek()? {
                             Token::RBrace(..)
@@ -295,7 +296,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Linebreak(..)
                             | Token::Exclamation(..)
                             | Token::Eof(..) => break,
-                            _ => values.push(parser.parse()?),
+                            _ => values.push(parser.parse::<ComponentValue>()?),
                         }
                     }
                     values
@@ -313,10 +314,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             start: name.span().start,
             end: if let Some(important) = &important {
                 important.span.end
-            } else if let Some(last) = value.last() {
-                last.span().end
             } else {
-                colon.span.end
+                let last_value: Option<&ComponentValue> = value.last();
+                if let Some(last) = last_value {
+                    last.span().end
+                } else {
+                    colon.span.end
+                }
             },
         };
         Ok(Declaration {
