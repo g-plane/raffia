@@ -6,7 +6,8 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
-    util, Parse, Syntax,
+    util::LastOfNonEmpty,
+    Parse, Syntax,
 };
 use raffia_derive::Spanned;
 use smallvec::SmallVec;
@@ -595,7 +596,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
             children.push(input.parse().map(ComplexSelectorChild::CompoundSelector)?);
         }
 
-        span.end = util::last_of_non_empty_small_vec(&children).span().end;
+        span.end = children.last_of_non_empty().span().end;
         Ok(ComplexSelector { children, span })
     }
 }
@@ -615,9 +616,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
             }
         }
 
-        if let Some(last) = children.last() {
-            span.end = last.span().end;
-        }
+        span.end = children.last_of_non_empty().span().end;
         Ok(CompoundSelector { children, span })
     }
 }
@@ -632,9 +631,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        if let Some(last) = selectors.last() {
-            span.end = last.span.end;
-        }
+        span.end = selectors.last_of_non_empty().span.end;
         Ok(CompoundSelectorList { selectors, span })
     }
 }
@@ -723,9 +720,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRangeList<'s> {
             ranges.push(input.parse()?);
         }
 
-        if let Some(last) = ranges.last() {
-            span.end = last.span().end;
-        }
+        span.end = ranges.last_of_non_empty().span().end;
         Ok(LanguageRangeList { ranges, span })
     }
 }
@@ -916,9 +911,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        if let Some(last) = selectors.last() {
-            span.end = last.span.end;
-        }
+        span.end = selectors.last_of_non_empty().span.end;
         Ok(RelativeSelectorList { selectors, span })
     }
 }
@@ -934,7 +927,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        span.end = util::last_of_non_empty_small_vec(&selectors).span.end;
+        span.end = selectors.last_of_non_empty().span.end;
         Ok(SelectorList { selectors, span })
     }
 }

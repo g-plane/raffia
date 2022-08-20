@@ -6,6 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    util::LastOfNonEmpty,
     Parse, Syntax,
 };
 
@@ -156,9 +157,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         }
 
-        if let Some(last) = values.last() {
-            span.end = last.span().end;
-        }
+        span.end = values.last_of_non_empty().span().end;
         Ok(ComponentValues { values, span })
     }
 

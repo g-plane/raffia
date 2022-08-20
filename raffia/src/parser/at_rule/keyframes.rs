@@ -5,7 +5,8 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Parse,
+    util::{self, LastOfNonEmpty},
+    Parse,
 };
 
 // https://drafts.csswg.org/css-animations/#keyframes
@@ -94,9 +95,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             prelude.push(self.parse()?);
         }
 
-        if let Some(keyframe_selector) = prelude.last() {
-            span.end = keyframe_selector.span().end;
-        }
+        span.end = prelude.last_of_non_empty().span().end;
         Ok((prelude, span))
     }
 }
