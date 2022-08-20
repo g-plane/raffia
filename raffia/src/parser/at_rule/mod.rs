@@ -27,14 +27,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let at_keyword = expect!(input, AtKeyword);
 
-        let at_rule_name = util::trim_vendor_prefix(&at_keyword.ident.name);
+        let at_rule_name = &at_keyword.ident.name;
         #[allow(clippy::if_same_then_else)]
-        let prelude = if at_rule_name.eq_ignore_ascii_case("import") {
-            Some(AtRulePrelude::Import(Box::new(input.parse()?)))
-        } else if at_rule_name.eq_ignore_ascii_case("keyframes") {
-            Some(AtRulePrelude::Keyframes(input.parse()?))
-        } else if at_rule_name.eq_ignore_ascii_case("media") {
+        let prelude = if at_rule_name.eq_ignore_ascii_case("media") {
             Some(AtRulePrelude::Media(input.parse()?))
+        } else if at_rule_name.eq_ignore_ascii_case("keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
+        {
+            Some(AtRulePrelude::Keyframes(input.parse()?))
+        } else if at_rule_name.eq_ignore_ascii_case("import") {
+            Some(AtRulePrelude::Import(Box::new(input.parse()?)))
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
             // https://drafts.csswg.org/css2/#charset%E2%91%A0
             Some(AtRulePrelude::Charset(input.parse()?))
@@ -82,7 +86,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("property") {
             // https://drafts.css-houdini.org/css-properties-values-api/#at-property-rule
             Some(AtRulePrelude::Property(input.parse_dashed_ident()?))
-        } else if at_rule_name.eq_ignore_ascii_case("document") {
+        } else if at_rule_name.eq_ignore_ascii_case("document")
+            || at_rule_name.eq_ignore_ascii_case("-moz-document")
+        {
             Some(AtRulePrelude::Document(input.parse()?))
         } else if at_rule_name.eq_ignore_ascii_case("font-face")
             || at_rule_name.eq_ignore_ascii_case("viewport")
