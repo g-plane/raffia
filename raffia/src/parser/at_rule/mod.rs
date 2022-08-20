@@ -5,7 +5,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Parse, Syntax,
+    Parse, Syntax,
 };
 
 mod color_profile;
