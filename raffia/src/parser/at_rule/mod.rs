@@ -123,7 +123,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             None
         };
 
-        let block = if at_rule_name.eq_ignore_ascii_case("keyframes") {
+        let block = if at_rule_name.eq_ignore_ascii_case("keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
+        {
             Some(input.parse_keyframes_blocks()?)
         } else if at_rule_name.eq_ignore_ascii_case("media")
             || at_rule_name.eq_ignore_ascii_case("font-face")
@@ -139,6 +143,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("nest")
             || at_rule_name.eq_ignore_ascii_case("property")
             || at_rule_name.eq_ignore_ascii_case("document")
+            || at_rule_name.eq_ignore_ascii_case("-moz-document")
             || at_rule_name.eq_ignore_ascii_case("try")
             || at_rule_name.eq_ignore_ascii_case("font-feature-values")
             || at_rule_name.eq_ignore_ascii_case("stylistic")
