@@ -57,7 +57,67 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
+    #[inline]
     pub fn bump(&mut self) -> PResult<Token<'s>> {
+        self.next()
+    }
+
+    pub fn peek(&mut self) -> PResult<Token<'s>> {
+        let state = self.state.clone();
+        let comments = self.comments.take();
+
+        let token = self.bump();
+        self.state = state;
+        self.comments = comments;
+        token
+    }
+
+    pub fn current_offset(&mut self) -> usize {
+        if let Some((offset, _)) = self.state.chars.peek() {
+            *offset
+        } else {
+            self.source.len()
+        }
+    }
+
+    /// This should only be used when parsing selectors.
+    #[inline]
+    pub fn has_ws_or_comments(&mut self) -> bool {
+        let mut chars = self.state.chars.clone();
+        match (chars.next(), chars.next()) {
+            (Some((_, '/')), Some((_, '*'))) => true,
+            (Some((_, '/')), Some((_, '/'))) => self.syntax != Syntax::Css,
+            (Some((_, c)), ..) => c.is_ascii_whitespace(),
+            _ => false,
+        }
+    }
+
+    #[inline]
+    fn peek_one_char(&mut self) -> Option<(usize, char)> {
+        self.state.chars.peek().copied()
+    }
+
+    #[inline]
+    fn peek_two_chars(&self) -> Option<(usize, char, char)> {
+        let mut iter = self.state.chars.clone();
+        iter.next()
+            .zip(iter.next())
+            .map(|((start, first), (_, second))| (start, first, second))
+    }
+
+    #[cold]
+    fn build_eof_error(&mut self) -> Error {
+        let offset = self.current_offset();
+        Error {
+            kind: ErrorKind::UnexpectedEof,
+            span: Span {
+                start: offset,
+                end: offset,
+            },
+        }
+    }
+
+    fn next(&mut self) -> PResult<Token<'s>> {
         if let Some((TemplateState::Static, _)) = self.state.template.last() {
             return if self.state.url == UrlState::Template {
                 self.scan_url_template()
@@ -122,61 +182,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 }))
             }
-        }
-    }
-
-    pub fn peek(&mut self) -> PResult<Token<'s>> {
-        let state = self.state.clone();
-        let comments = self.comments.take();
-
-        let token = self.bump();
-        self.state = state;
-        self.comments = comments;
-        token
-    }
-
-    pub fn current_offset(&mut self) -> usize {
-        if let Some((offset, _)) = self.state.chars.peek() {
-            *offset
-        } else {
-            self.source.len()
-        }
-    }
-
-    /// This should only be used when parsing selectors.
-    #[inline]
-    pub fn has_ws_or_comments(&mut self) -> bool {
-        let mut chars = self.state.chars.clone();
-        match (chars.next(), chars.next()) {
-            (Some((_, '/')), Some((_, '*'))) => true,
-            (Some((_, '/')), Some((_, '/'))) => self.syntax != Syntax::Css,
-            (Some((_, c)), ..) => c.is_ascii_whitespace(),
-            _ => false,
-        }
-    }
-
-    #[inline]
-    fn peek_one_char(&mut self) -> Option<(usize, char)> {
-        self.state.chars.peek().copied()
-    }
-
-    #[inline]
-    fn peek_two_chars(&self) -> Option<(usize, char, char)> {
-        let mut iter = self.state.chars.clone();
-        iter.next()
-            .zip(iter.next())
-            .map(|((start, first), (_, second))| (start, first, second))
-    }
-
-    #[cold]
-    fn build_eof_error(&mut self) -> Error {
-        let offset = self.current_offset();
-        Error {
-            kind: ErrorKind::UnexpectedEof,
-            span: Span {
-                start: offset,
-                end: offset,
-            },
         }
     }
 
