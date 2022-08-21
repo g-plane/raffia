@@ -725,7 +725,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
-        self.state.url = UrlState::Ambiguous;
+        match self.state.chars.peek() {
+            Some((_, '\'' | '"')) => {}
+            _ => self.state.url = UrlState::Ambiguous,
+        }
         let span = Span {
             start: ident.span.start,
             end: i + 1,
