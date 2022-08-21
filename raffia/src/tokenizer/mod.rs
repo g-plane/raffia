@@ -376,7 +376,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((i, '\\')) => {
                 escaped = true;
                 start = *i;
-                end = self.scan_escape()?;
+                end = self.scan_escape(false)?;
             }
             _ => unreachable!(),
         }
@@ -386,7 +386,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.state.chars.next();
             } else if c == &'\\' {
                 escaped = true;
-                self.scan_escape()?;
+                self.scan_escape(false)?;
             } else {
                 end = *i;
                 break;
@@ -410,8 +410,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         })
     }
 
-    fn scan_escape(&mut self) -> PResult<usize> {
-        self.state.chars.next(); // consume `\\`
+    fn scan_escape(&mut self, prefix_consumed: bool) -> PResult<usize> {
+        if !prefix_consumed {
+            self.state.chars.next(); // consume `\\`
+        }
         match self.state.chars.next() {
             Some((i, c)) if c.is_ascii_hexdigit() => {
                 let mut count: usize = 1;
@@ -571,7 +573,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((_, '\\')) => {
                     escaped = true;
-                    self.scan_escape()?;
+                    self.scan_escape(true)?;
                 }
                 Some((i, c)) if c == quote => {
                     end = i + c.len_utf8();
@@ -644,7 +646,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((_, '\\')) => {
                     escaped = true;
-                    self.scan_escape()?;
+                    self.scan_escape(true)?;
                 }
                 Some((i, c)) if c == quote => {
                     end = i + c.len_utf8();
@@ -753,7 +755,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((_, '\\')) => {
                     escaped = true;
-                    self.scan_escape()?;
+                    self.scan_escape(true)?;
                 }
                 Some((i, ')')) => {
                     end = i;
@@ -819,7 +821,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((_, '\\')) => {
                     escaped = true;
-                    self.scan_escape()?;
+                    self.scan_escape(true)?;
                 }
                 Some((end, ')')) => {
                     debug_assert!(start <= end);
@@ -891,7 +893,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
             Some((_, '\\')) => {
                 escaped = true;
-                end = self.scan_escape()?;
+                end = self.scan_escape(true)?;
             }
             Some((i, _)) => {
                 return Err(Error {
@@ -911,7 +913,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.state.chars.next();
             } else if c == &'\\' {
                 escaped = true;
-                self.scan_escape()?;
+                self.scan_escape(false)?;
             } else {
                 end = *i;
                 break;
