@@ -914,8 +914,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
         while let Some((i, c)) = self.state.chars.peek() {
-            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() || *c == '\\' {
+            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
                 self.state.chars.next();
+            } else if c == &'\\' {
+                escaped = true;
+                self.scan_escape()?;
             } else {
                 end = *i;
                 break;
