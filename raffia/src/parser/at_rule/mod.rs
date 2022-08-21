@@ -28,7 +28,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         let at_keyword = expect!(input, AtKeyword);
 
         let at_rule_name = &at_keyword.ident.name;
-        #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("media") {
             input
                 .try_parse(|parser| parser.parse())
@@ -122,8 +121,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         {
             None
         } else {
-            // todo: allow any tokens
-            None
+            input
+                .parse_unknown_at_rule_prelude()?
+                .map(AtRulePrelude::Unknown)
         };
 
         let block = if at_rule_name.eq_ignore_ascii_case("keyframes")
@@ -207,5 +207,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             block,
             span,
         })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<TokenSeq<'s>>> {
+        let mut tokens = vec![];
+        loop {
+            match self.tokenizer.peek()? {
+                Token::LBrace(..)
+                | Token::Indent(..)
+                | Token::Dedent(..)
+                | Token::Linebreak(..)
+                | Token::Eof(..) => break,
+                _ => tokens.push(self.tokenizer.bump()?),
+            }
+        }
+
+        if let Some((first, last)) = tokens.first().zip(tokens.last()) {
+            let span = Span {
+                start: first.span().start,
+                end: last.span().end,
+            };
+            Ok(Some(TokenSeq { tokens, span }))
+        } else {
+            Ok(None)
+        }
     }
 }

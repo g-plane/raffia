@@ -56,6 +56,7 @@ pub enum AtRulePrelude<'s> {
     Property(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
+    Unknown(TokenSeq<'s>),
 }
 
 #[derive(Clone, Debug, Spanned)]
@@ -1391,6 +1392,14 @@ pub struct SupportsOr<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct TagNameSelector<'s> {
     pub name: WqName<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type"))]
+pub struct TokenSeq<'s> {
+    pub tokens: Vec<Token<'s>>,
     pub span: Span,
 }
 
