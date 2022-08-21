@@ -30,7 +30,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         let at_rule_name = &at_keyword.ident.name;
         #[allow(clippy::if_same_then_else)]
         let prelude = if at_rule_name.eq_ignore_ascii_case("media") {
-            Some(AtRulePrelude::Media(input.parse()?))
+            input
+                .try_parse(|parser| parser.parse())
+                .ok()
+                .map(AtRulePrelude::Media)
         } else if at_rule_name.eq_ignore_ascii_case("keyframes")
             || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
             || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")

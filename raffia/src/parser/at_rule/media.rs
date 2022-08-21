@@ -6,6 +6,7 @@ use crate::{
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
+    util::LastOfNonEmpty,
     Parse,
 };
 use smallvec::smallvec;
@@ -177,10 +178,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
             queries.push(input.parse()?);
         }
 
-        let last: Option<&MediaQuery> = queries.last();
-        if let Some(last) = last {
-            span.end = last.span().end;
-        }
+        span.end = queries.last_of_non_empty().span().end;
         Ok(MediaQueryList { queries, span })
     }
 }
