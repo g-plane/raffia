@@ -74,7 +74,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
         let media = match input.tokenizer.peek()? {
             Token::Semicolon(..) => None,
             _ => {
-                let media = input.parse::<MediqQueryList>()?;
+                let media = input.parse::<MediaQueryList>()?;
                 span.end = media.span.end;
                 Some(media)
             }

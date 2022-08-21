@@ -48,7 +48,7 @@ pub enum AtRulePrelude<'s> {
     Import(Box<ImportPrelude<'s>>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
-    Media(MediqQueryList<'s>),
+    Media(MediaQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
     Nest(SelectorList<'s>),
     Page(PageSelectorList<'s>),
@@ -330,7 +330,7 @@ pub struct CustomMedia<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum CustomMediaValue<'s> {
-    MediaQueryList(MediqQueryList<'s>),
+    MediaQueryList(MediaQueryList<'s>),
     True(Ident<'s>),
     False(Ident<'s>),
 }
@@ -461,7 +461,7 @@ pub struct ImportPrelude<'s> {
     pub href: ImportPreludeHref<'s>,
     pub layer: Option<ImportPreludeLayer<'s>>,
     pub supports: Option<ImportPreludeSupports<'s>>,
-    pub media: Option<MediqQueryList<'s>>,
+    pub media: Option<MediaQueryList<'s>>,
     pub span: Span,
 }
 
@@ -820,7 +820,7 @@ pub enum MediaQuery<'s> {
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
-pub struct MediqQueryList<'s> {
+pub struct MediaQueryList<'s> {
     pub queries: SmallVec<[MediaQuery<'s>; 1]>,
     pub span: Span,
 }

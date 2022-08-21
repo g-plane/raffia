@@ -167,7 +167,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
 }
 
 // https://www.w3.org/TR/mediaqueries-4/#mq-syntax
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediqQueryList<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = input.parse::<MediaQuery>()?;
         let mut span = first.span().clone();
@@ -181,7 +181,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediqQueryList<'s> {
         if let Some(last) = last {
             span.end = last.span().end;
         }
-        Ok(MediqQueryList { queries, span })
+        Ok(MediaQueryList { queries, span })
     }
 }
 
