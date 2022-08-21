@@ -232,10 +232,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             continue;
                         }
                     }
-                    if let Ok(qualified_rule) = self.try_parse(|parser| parser.parse()) {
-                        statements.push(Statement::QualifiedRule(qualified_rule));
-                        is_block_element = true;
-                    }
+                    statements.push(Statement::QualifiedRule(self.parse()?));
+                    is_block_element = true;
                 }
                 Token::Dot(..)
                 | Token::Hash(..)
