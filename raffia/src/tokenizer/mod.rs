@@ -37,7 +37,6 @@ pub struct Tokenizer<'cmt, 's: 'cmt> {
     syntax: Syntax,
     pub(crate) comments: Option<&'cmt mut Vec<Comment<'s>>>,
     pub(crate) state: TokenizerState<'s>,
-    pub(crate) line_offsets: Vec<usize>,
 }
 
 impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
@@ -46,9 +45,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         syntax: Syntax,
         comments: Option<&'cmt mut Vec<Comment<'s>>>,
     ) -> Self {
-        let mut line_offsets = Vec::with_capacity(512);
-        line_offsets.push(0);
-
         Self {
             source,
             syntax,
@@ -59,7 +55,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 template: Vec::with_capacity(1),
                 url: UrlState::None,
             },
-            line_offsets,
         }
     }
 
@@ -71,12 +66,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     pub fn peek(&mut self) -> PResult<Token<'s>> {
         let state = self.state.clone();
         let comments = self.comments.take();
-        let lines_count = self.line_offsets.len();
 
         let token = self.bump();
         self.state = state;
         self.comments = comments;
-        self.line_offsets.truncate(lines_count);
         token
     }
 
@@ -198,10 +191,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         loop {
             let mut chars = self.state.chars.clone();
             match (chars.next(), chars.next()) {
-                (Some((i, c)), ..) if c.is_ascii_whitespace() => {
-                    if c == '\n' {
-                        self.line_offsets.push(i);
-                    }
+                (Some((_, c)), ..) if c.is_ascii_whitespace() => {
                     if self.syntax == Syntax::Sass {
                         indent = self.scan_indent();
                     } else {

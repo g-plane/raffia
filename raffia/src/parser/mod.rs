@@ -85,11 +85,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &self.recoverable_errors
     }
 
-    #[inline]
-    pub fn line_offsets(&self) -> &[usize] {
-        &self.tokenizer.line_offsets
-    }
-
     fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> PResult<R> {
         let tokenizer_state = self.tokenizer.state.clone();
         let comments_count = self
@@ -98,7 +93,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             .as_ref()
             .map(|comments| comments.len());
         let recoverable_errors_count = self.recoverable_errors.len();
-        let lines_count = self.tokenizer.line_offsets.len();
         let result = f(self);
         if result.is_err() {
             self.tokenizer.state = tokenizer_state;
@@ -106,7 +100,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 comments.truncate(count);
             }
             self.recoverable_errors.truncate(recoverable_errors_count);
-            self.tokenizer.line_offsets.truncate(lines_count);
         }
         result
     }
