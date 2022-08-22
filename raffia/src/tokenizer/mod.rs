@@ -14,7 +14,7 @@ pub mod token;
 #[derive(Clone)]
 pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
-    indent_size: usize,
+    indent_size: u16,
     template: Vec<(TemplateState, char)>,
     url: UrlState,
 }
@@ -229,15 +229,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             } else {
                 return start.map(|start| {
                     let end = *i;
-                    let len = end - start;
+                    let len = (end - start) as u16;
                     let span = Span { start, end };
                     match len.cmp(&self.state.indent_size) {
                         Ordering::Greater => {
-                            self.state.indent_size = len;
+                            self.state.indent_size = len as u16;
                             Token::Indent(Indent { span })
                         }
                         Ordering::Less => {
-                            self.state.indent_size = len;
+                            self.state.indent_size = len as u16;
                             Token::Dedent(Dedent { span })
                         }
                         Ordering::Equal => Token::Linebreak(Linebreak { span }),
