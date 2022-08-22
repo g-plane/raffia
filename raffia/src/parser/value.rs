@@ -448,7 +448,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                     end: value.span.end + 1, // `)` is consumed, but span excludes it
                 };
                 Ok(Url {
-                    ident: prefix.ident.into(),
+                    name: prefix.ident.into(),
                     value: UrlValue::Raw(value),
                     span,
                 })
@@ -461,7 +461,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                     end: r_paren.span.end,
                 };
                 Ok(Url {
-                    ident: prefix.ident.into(),
+                    name: prefix.ident.into(),
                     value: UrlValue::Str(value),
                     span,
                 })
@@ -473,7 +473,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                     end: value.span.end + 1, // `)` is consumed, but span excludes it
                 };
                 Ok(Url {
-                    ident: prefix.ident.into(),
+                    name: prefix.ident.into(),
                     value: UrlValue::SassInterpolated(value),
                     span,
                 })

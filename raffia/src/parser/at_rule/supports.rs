@@ -13,15 +13,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.peek()? {
             Token::Ident(token) if token.name.eq_ignore_ascii_case("not") => {
-                let ident = input.parse::<Ident>()?;
+                let keyword = input.parse::<Ident>()?;
                 let condition = input.parse::<SupportsInParens>()?;
                 let span = Span {
-                    start: ident.span.start,
+                    start: keyword.span.start,
                     end: condition.span().end,
                 };
                 Ok(SupportsCondition {
                     conditions: vec![SupportsConditionKind::Not(SupportsNot {
-                        ident,
+                        keyword,
                         condition,
                         span: span.clone(),
                     })],
@@ -42,7 +42,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
                                 end: condition.span().end,
                             };
                             conditions.push(SupportsConditionKind::And(SupportsAnd {
-                                ident,
+                                keyword: ident,
                                 condition,
                                 span,
                             }));
@@ -55,7 +55,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
                                 end: condition.span().end,
                             };
                             conditions.push(SupportsConditionKind::Or(SupportsOr {
-                                ident,
+                                keyword: ident,
                                 condition,
                                 span,
                             }));

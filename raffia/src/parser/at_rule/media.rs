@@ -13,22 +13,22 @@ use smallvec::smallvec;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse::<Ident>()?;
-        if ident.name.eq_ignore_ascii_case("and") {
+        let keyword = input.parse::<Ident>()?;
+        if keyword.name.eq_ignore_ascii_case("and") {
             let media_in_parens = input.parse::<MediaInParens>()?;
             let span = Span {
-                start: ident.span.start,
+                start: keyword.span.start,
                 end: media_in_parens.span().end,
             };
             Ok(MediaAnd {
-                ident,
+                keyword,
                 media_in_parens,
                 span,
             })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectMediaAnd,
-                span: ident.span,
+                span: keyword.span,
             })
         }
     }
@@ -111,22 +111,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaInParens<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaNot<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse::<Ident>()?;
-        if ident.name.eq_ignore_ascii_case("not") {
+        let keyword = input.parse::<Ident>()?;
+        if keyword.name.eq_ignore_ascii_case("not") {
             let media_in_parens = input.parse::<MediaInParens>()?;
             let span = Span {
-                start: ident.span.start,
+                start: keyword.span.start,
                 end: media_in_parens.span().end,
             };
             Ok(MediaNot {
-                ident,
+                keyword,
                 media_in_parens,
                 span,
             })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectMediaNot,
-                span: ident.span,
+                span: keyword.span,
             })
         }
     }
@@ -134,22 +134,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaNot<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaOr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse::<Ident>()?;
-        if ident.name.eq_ignore_ascii_case("or") {
+        let keyword = input.parse::<Ident>()?;
+        if keyword.name.eq_ignore_ascii_case("or") {
             let media_in_parens = input.parse::<MediaInParens>()?;
             let span = Span {
-                start: ident.span.start,
+                start: keyword.span.start,
                 end: media_in_parens.span().end,
             };
             Ok(MediaOr {
-                ident,
+                keyword,
                 media_in_parens,
                 span,
             })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectMediaOr,
-                span: ident.span,
+                span: keyword.span,
             })
         }
     }

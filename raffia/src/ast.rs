@@ -286,7 +286,7 @@ pub enum ContainerConditionKind<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct ContainerConditionAnd<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub query_in_parens: QueryInParens<'s>,
     pub span: Span,
 }
@@ -295,7 +295,7 @@ pub struct ContainerConditionAnd<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct ContainerConditionNot<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub query_in_parens: QueryInParens<'s>,
     pub span: Span,
 }
@@ -304,7 +304,7 @@ pub struct ContainerConditionNot<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct ContainerConditionOr<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub query_in_parens: QueryInParens<'s>,
     pub span: Span,
 }
@@ -686,7 +686,7 @@ pub struct Length<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct MediaAnd<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
@@ -796,7 +796,7 @@ pub enum MediaInParens<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct MediaNot<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
@@ -805,7 +805,7 @@ pub struct MediaNot<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct MediaOr<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub media_in_parens: MediaInParens<'s>,
     pub span: Span,
 }
@@ -1279,7 +1279,7 @@ pub enum StyleConditionKind<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct StyleConditionAnd<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub style_in_parens: StyleInParens<'s>,
     pub span: Span,
 }
@@ -1288,7 +1288,7 @@ pub struct StyleConditionAnd<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct StyleConditionNot<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub style_in_parens: StyleInParens<'s>,
     pub span: Span,
 }
@@ -1297,7 +1297,7 @@ pub struct StyleConditionNot<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct StyleConditionOr<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub style_in_parens: StyleInParens<'s>,
     pub span: Span,
 }
@@ -1330,7 +1330,7 @@ pub struct Stylesheet<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct SupportsAnd<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
@@ -1373,7 +1373,7 @@ pub enum SupportsInParens<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct SupportsNot<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
@@ -1382,7 +1382,7 @@ pub struct SupportsNot<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct SupportsOr<'s> {
-    pub ident: Ident<'s>,
+    pub keyword: Ident<'s>,
     pub condition: SupportsInParens<'s>,
     pub span: Span,
 }
@@ -1440,7 +1440,7 @@ pub struct UnquotedFontFamilyName<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type"))]
 pub struct Url<'s> {
-    pub ident: Ident<'s>,
+    pub name: Ident<'s>,
     pub value: UrlValue<'s>,
     pub span: Span,
 }
