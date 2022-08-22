@@ -440,59 +440,60 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let prefix = expect!(input, UrlPrefix);
-        match input.tokenizer.peek()? {
-            Token::UrlRaw(..) => {
-                let value = input.parse::<UrlRaw>()?;
-                let span = Span {
-                    start: prefix.span.start,
-                    end: value.span.end + 1, // `)` is consumed, but span excludes it
-                };
-                Ok(Url {
-                    name: prefix.ident.into(),
-                    value: UrlValue::Raw(value),
-                    span,
-                })
-            }
-            Token::Str(..) | Token::StrTemplate(..) => {
-                let value = input.parse()?;
-                let r_paren = expect!(input, RParen);
-                let span = Span {
-                    start: prefix.span.start,
-                    end: r_paren.span.end,
-                };
-                Ok(Url {
-                    name: prefix.ident.into(),
-                    value: UrlValue::Str(value),
-                    span,
-                })
-            }
-            Token::UrlTemplate(..) if matches!(input.syntax, Syntax::Scss | Syntax::Sass) => {
-                let value = input.parse::<SassInterpolatedUrl>()?;
-                let span = Span {
-                    start: prefix.span.start,
-                    end: value.span.end + 1, // `)` is consumed, but span excludes it
-                };
-                Ok(Url {
-                    name: prefix.ident.into(),
-                    value: UrlValue::SassInterpolated(value),
-                    span,
-                })
-            }
-            token => Err(Error {
+        if let Some((_, '\'' | '"')) = input.tokenizer.peek_one_char() {
+            let value = input.parse()?;
+            let r_paren = expect!(input, RParen);
+            let span = Span {
+                start: prefix.span.start,
+                end: r_paren.span.end,
+            };
+            Ok(Url {
+                name: prefix.ident.into(),
+                value: UrlValue::Str(value),
+                span,
+            })
+        } else if let Ok(value) = input.try_parse(|parser| parser.parse::<UrlRaw>()) {
+            let span = Span {
+                start: prefix.span.start,
+                end: value.span.end + 1, // `)` is consumed, but span excludes it
+            };
+            Ok(Url {
+                name: prefix.ident.into(),
+                value: UrlValue::Raw(value),
+                span,
+            })
+        } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+            let value = input.parse::<SassInterpolatedUrl>()?;
+            let span = Span {
+                start: prefix.span.start,
+                end: value.span.end + 1, // `)` is consumed, but span excludes it
+            };
+            Ok(Url {
+                name: prefix.ident.into(),
+                value: UrlValue::SassInterpolated(value),
+                span,
+            })
+        } else {
+            Err(Error {
                 kind: ErrorKind::ExpectUrl,
-                span: token.span().clone(),
-            }),
+                span: input.tokenizer.bump()?.span().clone(),
+            })
         }
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let url = expect!(input, UrlRaw);
-        Ok(UrlRaw {
-            value: url.value,
-            raw: url.raw,
-            span: url.span,
-        })
+        match input.tokenizer.scan_url_raw_or_template()? {
+            Token::UrlRaw(url) => Ok(UrlRaw {
+                value: url.value,
+                raw: url.raw,
+                span: url.span,
+            }),
+            token => Err(Error {
+                kind: ErrorKind::Unexpected("<url>", token.symbol()),
+                span: token.span().clone(),
+            }),
+        }
     }
 }

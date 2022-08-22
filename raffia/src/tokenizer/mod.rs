@@ -15,21 +15,6 @@ pub mod token;
 pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
     indent_size: u16,
-    template: Vec<(TemplateState, char)>,
-    url: UrlState,
-}
-
-#[derive(Clone)]
-enum TemplateState {
-    Interpolation,
-    Static,
-}
-
-#[derive(Clone, PartialEq, Eq)]
-enum UrlState {
-    None,
-    Ambiguous,
-    Template,
 }
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
@@ -52,8 +37,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             state: TokenizerState {
                 chars: source.char_indices().peekable(),
                 indent_size: 0,
-                template: Vec::with_capacity(1),
-                url: UrlState::None,
             },
         }
     }
@@ -94,7 +77,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     #[inline]
-    fn peek_one_char(&mut self) -> Option<(usize, char)> {
+    pub(crate) fn peek_one_char(&mut self) -> Option<(usize, char)> {
         self.state.chars.peek().copied()
     }
 
@@ -119,17 +102,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn next(&mut self) -> PResult<Token<'s>> {
-        if let Some((TemplateState::Static, _)) = self.state.template.last() {
-            return if self.state.url == UrlState::Template {
-                self.scan_url_template()
-            } else {
-                self.scan_string_template()
-            };
-        }
-        if self.state.url == UrlState::Ambiguous {
-            return self.scan_url_raw_or_template();
-        }
-
         if let Some(indent) = self.skip_ws_or_comment() {
             return Ok(indent);
         }
@@ -580,20 +552,18 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     break;
                 }
                 Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
-                    self.state
-                        .template
-                        .push((TemplateState::Interpolation, quote));
-                    let raw = unsafe { self.source.get_unchecked(start + 1..end) };
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    let value = unsafe { self.source.get_unchecked(start + 1..end) };
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
                         value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
+                            handle_escape(value).map_err(|kind| Error {
                                 kind,
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::from(raw)
+                            Cow::from(value)
                         },
                         tail: false,
                         span,
@@ -622,17 +592,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }))
     }
 
-    fn scan_string_template(&mut self) -> PResult<Token<'s>> {
+    pub(crate) fn scan_string_template(&mut self, quote: char) -> PResult<StrTemplate<'s>> {
         let start = self.current_offset();
         let end;
         let mut escaped = false;
-        let quote = self
-            .state
-            .template
-            .last()
-            .expect("scanned quote should be store when scanning template")
-            .1;
-        debug_assert!(matches!(quote, '\'' | '"'));
         loop {
             match self.state.chars.next() {
                 Some((i, '\n')) => {
@@ -652,30 +615,27 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end = i + c.len_utf8();
                     debug_assert!(start < end);
 
-                    self.state.template.pop();
-                    let raw = unsafe { self.source.get_unchecked(start..i) };
+                    let raw = unsafe { self.source.get_unchecked(start..i + 1) };
+                    let value = unsafe { self.source.get_unchecked(start..i) };
                     let span = Span { start, end };
-                    return Ok(Token::StrTemplate(StrTemplate {
+                    return Ok(StrTemplate {
                         raw,
                         value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
+                            handle_escape(value).map_err(|kind| Error {
                                 kind,
                                 span: span.clone(),
                             })?
                         } else {
-                            Cow::from(raw)
+                            Cow::from(value)
                         },
                         tail: true,
                         span,
-                    }));
+                    });
                 }
                 Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
-                    if let Some((state, _)) = self.state.template.last_mut() {
-                        *state = TemplateState::Interpolation;
-                    }
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
-                    return Ok(Token::StrTemplate(StrTemplate {
+                    return Ok(StrTemplate {
                         raw,
                         value: if escaped {
                             handle_escape(raw).map_err(|kind| Error {
@@ -687,7 +647,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                         tail: false,
                         span,
-                    }));
+                    });
                 }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
@@ -727,10 +687,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
-        match self.state.chars.peek() {
-            Some((_, '\'' | '"')) => {}
-            _ => self.state.url = UrlState::Ambiguous,
-        }
         let span = Span {
             start: ident.span.start,
             end: i + 1,
@@ -738,7 +694,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         Ok(UrlPrefix { ident, span })
     }
 
-    fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {
+    pub(crate) fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {
         let start = self.current_offset();
         let end;
         let mut escaped = false;
@@ -762,10 +718,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     break;
                 }
                 Some((end, '#')) if self.is_start_of_interpolation_in_url_template() => {
-                    self.state.url = UrlState::Template;
-                    self.state
-                        .template
-                        .push((TemplateState::Interpolation, ')'));
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
                     return Ok(Token::UrlTemplate(UrlTemplate {
@@ -787,7 +739,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
 
-        self.state.url = UrlState::None;
         debug_assert!(start <= end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
@@ -805,7 +756,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }))
     }
 
-    fn scan_url_template(&mut self) -> PResult<Token<'s>> {
+    pub(crate) fn scan_url_template(&mut self) -> PResult<UrlTemplate<'s>> {
         let start = self.current_offset();
         let mut escaped = false;
         loop {
@@ -826,11 +777,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 Some((end, ')')) => {
                     debug_assert!(start <= end);
 
-                    self.state.template.pop();
-                    self.state.url = UrlState::None;
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
-                    return Ok(Token::UrlTemplate(UrlTemplate {
+                    return Ok(UrlTemplate {
                         raw,
                         value: if escaped {
                             handle_escape(raw).map_err(|kind| Error {
@@ -842,15 +791,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                         tail: true,
                         span,
-                    }));
+                    });
                 }
                 Some((end, '#')) if self.is_start_of_interpolation_in_url_template() => {
-                    if let Some((state, _)) = self.state.template.last_mut() {
-                        *state = TemplateState::Interpolation;
-                    }
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
-                    return Ok(Token::UrlTemplate(UrlTemplate {
+                    return Ok(UrlTemplate {
                         raw,
                         value: if escaped {
                             handle_escape(raw).map_err(|kind| Error {
@@ -862,7 +808,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                         tail: false,
                         span,
-                    }));
+                    });
                 }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
@@ -1049,17 +995,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: start + 1,
                 },
             })),
-            Some((start, '}')) => {
-                if let Some(state) = self.state.template.last_mut() {
-                    (*state).0 = TemplateState::Static;
-                }
-                Ok(Token::RBrace(RBrace {
-                    span: Span {
-                        start,
-                        end: start + 1,
-                    },
-                }))
-            }
+            Some((start, '}')) => Ok(Token::RBrace(RBrace {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
             Some((start, '/')) => Ok(Token::Solidus(Solidus {
                 span: Span {
                     start,

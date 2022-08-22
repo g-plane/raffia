@@ -373,6 +373,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = expect!(input, StrTemplate);
+        let quote = first.raw.chars().next().unwrap();
+        debug_assert!(quote == '\'' || quote == '"');
         let mut span = first.span.clone();
         let mut elements = vec![SassInterpolatedStrElement::Static(
             InterpolableStrStaticPart {
@@ -382,36 +384,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
             },
         )];
 
+        let mut is_parsing_static_part = false;
         loop {
-            match input.tokenizer.bump()? {
-                Token::StrTemplate(token) => {
-                    let end = token.span.end;
-                    elements.push(SassInterpolatedStrElement::Static(
-                        InterpolableStrStaticPart {
-                            value: token.value,
-                            raw: token.raw,
-                            span: token.span,
-                        },
-                    ));
-                    if token.tail {
-                        span.end = end;
-                        break;
-                    }
+            if is_parsing_static_part {
+                let token = input.tokenizer.scan_string_template(quote)?;
+                let end = token.span.end;
+                elements.push(SassInterpolatedStrElement::Static(
+                    InterpolableStrStaticPart {
+                        value: token.value,
+                        raw: token.raw,
+                        span: token.span,
+                    },
+                ));
+                if token.tail {
+                    span.end = end;
+                    break;
                 }
+            } else {
                 // '#' is consumed, so '{' left only
-                Token::LBrace(..) => {
-                    elements.push(SassInterpolatedStrElement::Expression(
-                        input.parse_component_values(/* allow_comma */ true)?,
-                    ));
-                    expect!(input, RBrace);
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
-                        span: token.span().clone(),
-                    })
-                }
+                expect!(input, LBrace);
+                elements.push(SassInterpolatedStrElement::Expression(
+                    input.parse_component_values(/* allow_comma */ true)?,
+                ));
+                expect!(input, RBrace);
             }
+            is_parsing_static_part = !is_parsing_static_part;
         }
 
         Ok(SassInterpolatedStr { elements, span })
@@ -422,7 +419,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let first = expect!(input, UrlTemplate);
+        let first = match input.tokenizer.scan_url_raw_or_template()? {
+            Token::UrlTemplate(template) => template,
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::Unexpected("<url template>", token.symbol()),
+                    span: token.span().clone(),
+                });
+            }
+        };
         let mut span = first.span.clone();
         let mut elements = vec![SassInterpolatedUrlElement::Static(
             InterpolableUrlStaticPart {
@@ -432,36 +437,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
             },
         )];
 
+        let mut is_parsing_static_part = false;
         loop {
-            match input.tokenizer.bump()? {
-                Token::UrlTemplate(token) => {
-                    let end = token.span.end;
-                    elements.push(SassInterpolatedUrlElement::Static(
-                        InterpolableUrlStaticPart {
-                            value: token.value,
-                            raw: token.raw,
-                            span: token.span,
-                        },
-                    ));
-                    if token.tail {
-                        span.end = end;
-                        break;
-                    }
+            if is_parsing_static_part {
+                let token = input.tokenizer.scan_url_template()?;
+                let end = token.span.end;
+                elements.push(SassInterpolatedUrlElement::Static(
+                    InterpolableUrlStaticPart {
+                        value: token.value,
+                        raw: token.raw,
+                        span: token.span,
+                    },
+                ));
+                if token.tail {
+                    span.end = end;
+                    break;
                 }
+            } else {
                 // '#' is consumed, so '{' left only
-                Token::LBrace(..) => {
-                    elements.push(SassInterpolatedUrlElement::Expression(
-                        input.parse_component_values(/* allow_comma */ true)?,
-                    ));
-                    expect!(input, RBrace);
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected("<url template> or '{'", token.symbol()),
-                        span: token.span().clone(),
-                    })
-                }
+                expect!(input, LBrace);
+                elements.push(SassInterpolatedUrlElement::Expression(
+                    input.parse_component_values(/* allow_comma */ true)?,
+                ));
+                expect!(input, RBrace);
             }
+            is_parsing_static_part = !is_parsing_static_part;
         }
 
         Ok(SassInterpolatedUrl { elements, span })

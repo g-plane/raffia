@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     config::Syntax,
-    error::{Error, ErrorKind, PResult},
+    error::PResult,
     expect,
     pos::{Span, Spanned},
     tokenizer::Token,
@@ -56,6 +56,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = expect!(input, StrTemplate);
+        let quote = first.raw.chars().next().unwrap();
+        debug_assert!(quote == '\'' || quote == '"');
         let mut span = first.span.clone();
         let mut elements = vec![LessInterpolatedStrElement::Static(
             InterpolableStrStaticPart {
@@ -65,45 +67,40 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
             },
         )];
 
+        let mut is_parsing_static_part = false;
         loop {
-            match input.tokenizer.bump()? {
-                Token::StrTemplate(token) => {
-                    let end = token.span.end;
-                    elements.push(LessInterpolatedStrElement::Static(
-                        InterpolableStrStaticPart {
-                            value: token.value,
-                            raw: token.raw,
-                            span: token.span,
-                        },
-                    ));
-                    if token.tail {
-                        span.end = end;
-                        break;
-                    }
+            if is_parsing_static_part {
+                let token = input.tokenizer.scan_string_template(quote)?;
+                let end = token.span.end;
+                elements.push(LessInterpolatedStrElement::Static(
+                    InterpolableStrStaticPart {
+                        value: token.value,
+                        raw: token.raw,
+                        span: token.span,
+                    },
+                ));
+                if token.tail {
+                    span.end = end;
+                    break;
                 }
+            } else {
                 // '@' is consumed, so '{' left only
-                Token::LBrace(l_brace) => {
-                    let name = input.parse::<Ident>()?;
-                    input.assert_no_ws_or_comment(&l_brace.span, &name.span)?;
+                let l_brace = expect!(input, LBrace);
+                let name = input.parse::<Ident>()?;
+                input.assert_no_ws_or_comment(&l_brace.span, &name.span)?;
 
-                    let r_brace = expect!(input, RBrace);
-                    elements.push(LessInterpolatedStrElement::Variable(
-                        LessVariableInterpolation {
-                            name,
-                            span: Span {
-                                start: l_brace.span.start - 1,
-                                end: r_brace.span.end,
-                            },
+                let r_brace = expect!(input, RBrace);
+                elements.push(LessInterpolatedStrElement::Variable(
+                    LessVariableInterpolation {
+                        name,
+                        span: Span {
+                            start: l_brace.span.start - 1,
+                            end: r_brace.span.end,
                         },
-                    ));
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected("<string template> or '{'", token.symbol()),
-                        span: token.span().clone(),
-                    })
-                }
+                    },
+                ));
             }
+            is_parsing_static_part = !is_parsing_static_part;
         }
 
         Ok(LessInterpolatedStr { elements, span })
