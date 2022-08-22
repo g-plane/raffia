@@ -216,6 +216,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         loop {
             match self.tokenizer.peek()? {
                 Token::LBrace(..)
+                | Token::Semicolon(..)
                 | Token::Indent(..)
                 | Token::Dedent(..)
                 | Token::Linebreak(..)
