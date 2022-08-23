@@ -16,11 +16,11 @@ smallvec = { version = "1.9", features = ["const_generics", "serde"] }
 [dev-dependencies]
 codespan-reporting = "0.11"
 criterion = "0.3"
-parcel_css = "1.0.0-alpha.30"
+parcel_css = "1.0.0-alpha.31"
 serde_json = "1.0"
-swc_common = "0.27.7"
-swc_css_ast = "0.107.0"
-swc_css_parser = "0.116.0"
+swc_common = "0.27.13"
+swc_css_ast = "0.108.1"
+swc_css_parser = "0.117.1"
 
 [features]
 serialize = ["serde"]
