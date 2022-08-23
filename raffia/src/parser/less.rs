@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     config::Syntax,
     error::PResult,
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -86,8 +86,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
             } else {
                 // '@' is consumed, so '{' left only
                 let l_brace = expect!(input, LBrace);
-                let name = input.parse::<Ident>()?;
-                input.assert_no_ws_or_comment(&l_brace.span, &name.span)?;
+                let name = expect_without_ws_or_comments!(input, Ident).into();
 
                 let r_brace = expect!(input, RBrace);
                 elements.push(LessInterpolatedStrElement::Variable(

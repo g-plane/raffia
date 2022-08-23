@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
     util::LastOfNonEmpty,
@@ -116,8 +116,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
 
             Token::Plus(plus) => {
                 input.tokenizer.bump()?;
-                let ident = expect!(input, Ident);
-                input.assert_no_ws_or_comment(&plus.span, &ident.span)?;
+                let ident = expect_without_ws_or_comments!(input, Ident);
                 if ident.name.eq_ignore_ascii_case("n") {
                     match input.tokenizer.peek()? {
                         // syntax: +n ['+' | '-'] <signless-integer>
@@ -572,15 +571,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let dot = expect!(input, Dot);
-        let ident = input.parse::<InterpolableIdent>()?;
-        let ident_span = ident.span();
-        input.assert_no_ws_or_comment(&dot.span, ident_span)?;
-
-        let span = Span {
-            start: dot.span.start,
-            end: ident_span.end,
+        let start = dot.span.start;
+        let end;
+        let name = if input.syntax == Syntax::Css {
+            let ident = expect_without_ws_or_comments!(input, Ident);
+            end = ident.span.end;
+            InterpolableIdent::Literal(ident.into())
+        } else {
+            let ident = input.parse::<InterpolableIdent>()?;
+            let ident_span = ident.span();
+            input.assert_no_ws_or_comment(&dot.span, ident_span)?;
+            end = ident_span.end;
+            ident
         };
-        Ok(ClassSelector { name: ident, span })
+
+        Ok(ClassSelector {
+            name,
+            span: Span { start, end },
+        })
     }
 }
 
@@ -760,13 +768,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let colon = expect!(input, Colon);
-        let name = input.parse::<InterpolableIdent>()?;
-        let name_span = name.span();
-        let mut end = name_span.end;
-        input.assert_no_ws_or_comment(&colon.span, name_span)?;
+        let mut end;
+        let name = if input.syntax == Syntax::Css {
+            let ident = expect_without_ws_or_comments!(input, Ident);
+            end = ident.span.end;
+            InterpolableIdent::Literal(ident.into())
+        } else {
+            let name = input.parse::<InterpolableIdent>()?;
+            let name_span = name.span();
+            end = name_span.end;
+            input.assert_no_ws_or_comment(&colon.span, name_span)?;
+            name
+        };
 
         let arg = match input.tokenizer.peek()? {
-            Token::LParen(l_paren) if l_paren.span.start == name_span.end => {
+            Token::LParen(l_paren) if l_paren.span.start == end => {
                 expect!(input, LParen);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
@@ -845,13 +861,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let colon_colon = expect!(input, ColonColon);
-        let name = input.parse::<InterpolableIdent>()?;
-        let name_span = name.span();
-        let mut end = name_span.end;
-        input.assert_no_ws_or_comment(&colon_colon.span, name_span)?;
+        let mut end;
+        let name = if input.syntax == Syntax::Css {
+            let ident = expect_without_ws_or_comments!(input, Ident);
+            end = ident.span.end;
+            InterpolableIdent::Literal(ident.into())
+        } else {
+            let name = input.parse::<InterpolableIdent>()?;
+            let name_span = name.span();
+            end = name_span.end;
+            input.assert_no_ws_or_comment(&colon_colon.span, name_span)?;
+            name
+        };
 
         let arg = match input.tokenizer.peek()? {
-            Token::LParen(l_paren) if l_paren.span.start == name_span.end => {
+            Token::LParen(l_paren) if l_paren.span.start == end => {
                 expect!(input, LParen);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })

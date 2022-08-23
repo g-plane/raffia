@@ -8,7 +8,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
     Parse, Syntax,
@@ -99,8 +99,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let exclamation = expect!(input, Exclamation);
-        let ident = expect!(input, Ident);
-        input.assert_no_ws_or_comment(&exclamation.span, &ident.span)?;
+        let ident = expect_without_ws_or_comments!(input, Ident);
 
         let span = Span {
             start: exclamation.span.start,

@@ -43,6 +43,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     #[inline]
     pub fn bump(&mut self) -> PResult<Token<'s>> {
+        if let Some(indent) = self.skip_ws_or_comment() {
+            Ok(indent)
+        } else {
+            self.next()
+        }
+    }
+
+    #[inline]
+    pub fn bump_without_ws_or_comments(&mut self) -> PResult<Token<'s>> {
         self.next()
     }
 
@@ -102,10 +111,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn next(&mut self) -> PResult<Token<'s>> {
-        if let Some(indent) = self.skip_ws_or_comment() {
-            return Ok(indent);
-        }
-
         let mut chars = self.state.chars.clone();
         match (chars.next(), chars.next()) {
             (Some((_, c)), ..) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
@@ -161,22 +166,27 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn skip_ws_or_comment(&mut self) -> Option<Token<'s>> {
         let mut indent = None;
         loop {
-            let mut chars = self.state.chars.clone();
-            match (chars.next(), chars.next()) {
-                (Some((_, c)), ..) if c.is_ascii_whitespace() => {
+            match self.state.chars.peek() {
+                Some((_, c)) if c.is_ascii_whitespace() => {
                     if self.syntax == Syntax::Sass {
                         indent = self.scan_indent();
                     } else {
                         self.skip_ws();
                     }
                 }
-                (Some((_, '/')), Some((_, '*'))) => self.scan_block_comment(),
-                (Some((_, '/')), Some((_, '/'))) if self.syntax != Syntax::Css => {
-                    self.scan_line_comment()
+                Some((_, '/')) => {
+                    let mut chars = self.state.chars.clone();
+                    chars.next();
+                    match chars.next() {
+                        Some((_, '*')) => self.scan_block_comment(),
+                        Some((_, '/')) if self.syntax != Syntax::Css => self.scan_line_comment(),
+                        _ => break,
+                    }
                 }
-                _ => return indent,
+                _ => break,
             }
         }
+        indent
     }
 
     fn skip_ws(&mut self) {
@@ -1245,6 +1255,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: start + 1,
                 },
             })),
+            Some((i, c)) if c.is_ascii_whitespace() => Err(Error {
+                kind: ErrorKind::UnexpectedWhitespace,
+                span: Span {
+                    start: i,
+                    end: i + 1,
+                },
+            }),
             Some((i, c)) => Err(Error {
                 kind: ErrorKind::UnknownToken,
                 span: Span {

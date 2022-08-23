@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -52,8 +52,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
                 });
             }
 
-            let l_paren = expect!(parser, LParen);
-            parser.assert_no_ws_or_comment(&ident.span, &l_paren.span)?;
+            expect_without_ws_or_comments!(parser, LParen);
 
             let supports = if let Ok(supports_condition) = parser.try_parse(|parser| parser.parse())
             {
