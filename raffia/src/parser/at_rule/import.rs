@@ -23,10 +23,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
                 let layer = match input.tokenizer.peek()? {
                     Token::LParen(l_paren) if l_paren.span.start == ident.span.end => {
                         expect!(input, LParen);
-                        let args = match input.tokenizer.peek()? {
-                            Token::RParen(..) => vec![],
-                            _ => vec![input.parse().map(ComponentValue::LayerName)?],
-                        };
+                        let args = vec![input.parse().map(ComponentValue::LayerName)?];
                         let r_paren = expect!(input, RParen);
                         let span = Span {
                             start: ident.span.start,
