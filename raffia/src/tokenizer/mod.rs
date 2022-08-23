@@ -111,13 +111,37 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn next(&mut self) -> PResult<Token<'s>> {
+        // detect frequent tokens here, but DO NOT add too many and don't forget to do profiling
+        match self.state.chars.peek() {
+            Some((_, c)) if is_start_of_ident(*c) && c != &'-' => return self.scan_ident_or_url(),
+            Some((_, c)) if c.is_ascii_digit() => {
+                let number = self.scan_number()?;
+                return self.scan_dimension_or_percentage(number);
+            }
+            Some((start, '.')) => {
+                let token = Token::Dot(Dot {
+                    span: Span {
+                        start: *start,
+                        end: start + 1,
+                    },
+                });
+                self.state.chars.next();
+                return Ok(token);
+            }
+            Some((start, '{')) => {
+                let token = Token::LBrace(LBrace {
+                    span: Span {
+                        start: *start,
+                        end: start + 1,
+                    },
+                });
+                self.state.chars.next();
+                return Ok(token);
+            }
+            _ => {}
+        }
         let mut chars = self.state.chars.clone();
         match (chars.next(), chars.next()) {
-            (Some((_, c)), ..) if c != '-' && is_start_of_ident(c) => self.scan_ident_or_url(),
-            (Some((_, c)), ..) if c.is_ascii_digit() => {
-                let number = self.scan_number()?;
-                self.scan_dimension_or_percentage(number)
-            }
             (Some((_, '#')), Some((_, c)))
                 if c.is_ascii_alphanumeric()
                     || c == '-'
@@ -979,6 +1003,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 })),
             },
+            Some((start, '}')) => Ok(Token::RBrace(RBrace {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
             Some((start, '(')) => Ok(Token::LParen(LParen {
                 span: Span {
                     start,
@@ -1003,18 +1033,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: start + 1,
                 },
             })),
-            Some((start, '{')) => Ok(Token::LBrace(LBrace {
-                span: Span {
-                    start,
-                    end: start + 1,
-                },
-            })),
-            Some((start, '}')) => Ok(Token::RBrace(RBrace {
-                span: Span {
-                    start,
-                    end: start + 1,
-                },
-            })),
             Some((start, '/')) => Ok(Token::Solidus(Solidus {
                 span: Span {
                     start,
@@ -1028,12 +1046,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 },
             })),
             Some((start, ';')) => Ok(Token::Semicolon(Semicolon {
-                span: Span {
-                    start,
-                    end: start + 1,
-                },
-            })),
-            Some((start, '.')) => Ok(Token::Dot(Dot {
                 span: Span {
                     start,
                     end: start + 1,
