@@ -77,7 +77,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     #[inline]
-    pub(crate) fn peek_one_char(&mut self) -> Option<(usize, char)> {
+    fn peek_one_char(&mut self) -> Option<(usize, char)> {
         self.state.chars.peek().copied()
     }
 
@@ -691,7 +691,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             start: ident.span.start,
             end: i + 1,
         };
-        Ok(UrlPrefix { ident, span })
+        Ok(UrlPrefix {
+            ident,
+            is_raw: !matches!(self.state.chars.peek(), Some((_, '\'' | '"'))),
+            span,
+        })
     }
 
     pub(crate) fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {

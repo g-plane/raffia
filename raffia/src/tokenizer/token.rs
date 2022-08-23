@@ -524,6 +524,7 @@ pub struct TildeEqual {
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct UrlPrefix<'s> {
     pub ident: Ident<'s>,
+    pub is_raw: bool,
     pub span: Span,
 }
 
