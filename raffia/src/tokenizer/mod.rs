@@ -118,16 +118,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 let number = self.scan_number()?;
                 return self.scan_dimension_or_percentage(number);
             }
-            Some((start, '.')) => {
-                let token = Token::Dot(Dot {
-                    span: Span {
-                        start: *start,
-                        end: start + 1,
-                    },
-                });
-                self.state.chars.next();
-                return Ok(token);
-            }
             Some((start, '{')) => {
                 let token = Token::LBrace(LBrace {
                     span: Span {
@@ -986,6 +976,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_punc(&mut self) -> PResult<Token<'s>> {
         match self.state.chars.next() {
+            Some((start, '.')) => Ok(Token::Dot(Dot {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
             Some((start, ':')) => match self.state.chars.peek() {
                 Some((_, ':')) => {
                     self.state.chars.next();
