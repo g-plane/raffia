@@ -507,14 +507,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert!(start < end);
         let span = Span { start, end };
         let raw = unsafe { self.source.get_unchecked(start..end) };
-        Ok(Number {
-            value: raw.parse().map_err(|_| Error {
-                kind: ErrorKind::InvalidNumber,
-                span: span.clone(),
-            })?,
-            raw,
-            span,
-        })
+        Ok(Number { raw, span })
     }
 
     fn scan_dimension_or_percentage(&mut self, number: Number<'s>) -> PResult<Token<'s>> {
@@ -577,18 +570,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }
                 Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
                     let raw = unsafe { self.source.get_unchecked(start..end) };
-                    let value = unsafe { self.source.get_unchecked(start + 1..end) };
                     let span = Span { start, end };
                     return Ok(Token::StrTemplate(StrTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(value).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(value)
-                        },
+                        escaped,
+                        head: true,
                         tail: false,
                         span,
                     }));
@@ -600,20 +586,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         assert!(start + 1 < end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
-        let value = unsafe { self.source.get_unchecked(start + 1..end - 1) };
         let span = Span { start, end };
-        Ok(Token::Str(Str {
-            raw,
-            value: if escaped {
-                handle_escape(value).map_err(|kind| Error {
-                    kind,
-                    span: span.clone(),
-                })?
-            } else {
-                Cow::from(value)
-            },
-            span,
-        }))
+        Ok(Token::Str(Str { raw, escaped, span }))
     }
 
     pub(crate) fn scan_string_template(&mut self, quote: char) -> PResult<StrTemplate<'s>> {
@@ -640,18 +614,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     debug_assert!(start < end);
 
                     let raw = unsafe { self.source.get_unchecked(start..i + 1) };
-                    let value = unsafe { self.source.get_unchecked(start..i) };
                     let span = Span { start, end };
                     return Ok(StrTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(value).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(value)
-                        },
+                        escaped,
+                        head: false,
                         tail: true,
                         span,
                     });
@@ -661,14 +628,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(StrTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(raw)
-                        },
+                        escaped,
+                        head: false,
                         tail: false,
                         span,
                     });
@@ -750,14 +711,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(Token::UrlTemplate(UrlTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(raw)
-                        },
+                        escaped,
                         tail: false,
                         span,
                     }));
@@ -770,18 +724,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert!(start <= end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
-        Ok(Token::UrlRaw(UrlRaw {
-            raw,
-            value: if escaped {
-                handle_escape(raw).map_err(|kind| Error {
-                    kind,
-                    span: span.clone(),
-                })?
-            } else {
-                Cow::from(raw)
-            },
-            span,
-        }))
+        Ok(Token::UrlRaw(UrlRaw { raw, escaped, span }))
     }
 
     pub(crate) fn scan_url_template(&mut self) -> PResult<UrlTemplate<'s>> {
@@ -809,14 +752,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(UrlTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(raw)
-                        },
+                        escaped,
                         tail: true,
                         span,
                     });
@@ -826,14 +762,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     return Ok(UrlTemplate {
                         raw,
-                        value: if escaped {
-                            handle_escape(raw).map_err(|kind| Error {
-                                kind,
-                                span: span.clone(),
-                            })?
-                        } else {
-                            Cow::from(raw)
-                        },
+                        escaped,
                         tail: false,
                         span,
                     });
@@ -896,19 +825,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         assert!(end > start + 1);
         let raw = unsafe { self.source.get_unchecked(start..end) };
-        let value = unsafe { self.source.get_unchecked(start + 1..end) };
+        let raw_without_hash = unsafe { self.source.get_unchecked(start + 1..end) };
         let span = Span { start, end };
         Ok(Token::Hash(Hash {
-            value: if escaped {
-                handle_escape(value).map_err(|kind| Error {
-                    kind,
-                    span: span.clone(),
-                })?
-            } else {
-                Cow::from(value)
-            },
+            escaped,
             raw,
-            raw_without_hash: value,
+            raw_without_hash,
             span,
         }))
     }
@@ -1290,7 +1212,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 }
 
-fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
+pub(crate) fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
     let mut escaped = String::with_capacity(s.len());
     let mut chars = s.char_indices().peekable();
     while let Some((_, c)) = chars.next() {

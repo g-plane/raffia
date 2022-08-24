@@ -324,11 +324,11 @@ pub struct GreaterThanEqual {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Hash<'s> {
-    pub value: Cow<'s, str>,
     /// raw string with beginning `#` char
     pub raw: &'s str,
     /// raw string without beginning `#` char
     pub raw_without_hash: &'s str,
+    pub escaped: bool,
     pub span: Span,
 }
 
@@ -408,7 +408,6 @@ pub struct Minus {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Number<'s> {
-    pub value: f64,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -489,8 +488,8 @@ pub struct Solidus {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Str<'s> {
-    pub value: Cow<'s, str>,
     pub raw: &'s str,
+    pub escaped: bool,
     pub span: Span,
 }
 
@@ -498,8 +497,9 @@ pub struct Str<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct StrTemplate<'s> {
-    pub value: Cow<'s, str>,
     pub raw: &'s str,
+    pub escaped: bool,
+    pub head: bool,
     pub tail: bool,
     pub span: Span,
 }
@@ -532,8 +532,8 @@ pub struct UrlPrefix<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct UrlRaw<'s> {
-    pub value: Cow<'s, str>,
     pub raw: &'s str,
+    pub escaped: bool,
     pub span: Span,
 }
 
@@ -541,8 +541,8 @@ pub struct UrlRaw<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct UrlTemplate<'s> {
-    pub value: Cow<'s, str>,
     pub raw: &'s str,
+    pub escaped: bool,
     pub tail: bool,
     pub span: Span,
 }

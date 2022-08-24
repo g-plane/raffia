@@ -5,10 +5,11 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{handle_escape, Token},
     util::LastOfNonEmpty,
     Parse, Syntax,
 };
+use beef::Cow;
 
 const PRECEDENCE_MULTIPLY: u8 = 2;
 const PRECEDENCE_PLUS: u8 = 1;
@@ -307,7 +308,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
             || unit_name.eq_ignore_ascii_case("pt")
         {
             Ok(Dimension::Length(Length {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
@@ -317,19 +318,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
             || unit_name.eq_ignore_ascii_case("turn")
         {
             Ok(Dimension::Angle(Angle {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
         } else if unit_name.eq_ignore_ascii_case("s") || unit_name.eq_ignore_ascii_case("ms") {
             Ok(Dimension::Duration(Duration {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
         } else if unit_name.eq_ignore_ascii_case("Hz") || unit_name.eq_ignore_ascii_case("kHz") {
             Ok(Dimension::Frequency(Frequency {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
@@ -338,19 +339,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
             || unit_name.eq_ignore_ascii_case("dppx")
         {
             Ok(Dimension::Resolution(Resolution {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
         } else if unit_name.eq_ignore_ascii_case("fr") {
             Ok(Dimension::Flex(Flex {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
         } else {
             Ok(Dimension::Unknown(UnknownDimension {
-                value: dimension_token.value.into(),
+                value: dimension_token.value.try_into()?,
                 unit: dimension_token.unit.into(),
                 span: dimension_token.span,
             }))
@@ -361,9 +362,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, Hash);
+        let raw = token.raw_without_hash;
+        let value = if token.escaped {
+            handle_escape(raw).map_err(|kind| Error {
+                kind,
+                span: token.span.clone(),
+            })?
+        } else {
+            Cow::from(raw)
+        };
         Ok(HexColor {
-            value: token.value,
-            raw: token.raw_without_hash,
+            value,
+            raw,
             span: token.span,
         })
     }
@@ -417,7 +427,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableStr<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Number<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        Ok(expect!(input, Number).into())
+        expect!(input, Number).try_into()
     }
 }
 
@@ -425,7 +435,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, Percentage);
         Ok(Percentage {
-            value: token.value.into(),
+            value: token.value.try_into()?,
             span: token.span,
         })
     }
@@ -433,7 +443,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        Ok(expect!(input, Str).into())
+        expect!(input, Str).try_into()
     }
 }
 
@@ -487,11 +497,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.scan_url_raw_or_template()? {
-            Token::UrlRaw(url) => Ok(UrlRaw {
-                value: url.value,
-                raw: url.raw,
-                span: url.span,
-            }),
+            Token::UrlRaw(url) => {
+                let value = if url.escaped {
+                    handle_escape(url.raw).map_err(|kind| Error {
+                        kind,
+                        span: url.span.clone(),
+                    })?
+                } else {
+                    Cow::from(url.raw)
+                };
+                Ok(UrlRaw {
+                    value,
+                    raw: url.raw,
+                    span: url.span,
+                })
+            }
             token => Err(Error {
                 kind: ErrorKind::Unexpected("<url>", token.symbol()),
                 span: token.span().clone(),

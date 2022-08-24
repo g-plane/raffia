@@ -5,10 +5,11 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
-    tokenizer::{token, Token},
+    tokenizer::{handle_escape, token, Token},
     util::LastOfNonEmpty,
     Parse, Syntax,
 };
+use beef::Cow;
 use raffia_derive::Spanned;
 use smallvec::SmallVec;
 
@@ -652,14 +653,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     start: token.span.start + 1,
                     end: token.span.end,
                 };
-                if token.value.starts_with(|c: char| c.is_ascii_digit()) {
+                let raw = token.raw_without_hash;
+                let value = if token.escaped {
+                    handle_escape(raw).map_err(|kind| Error {
+                        kind,
+                        span: token.span.clone(),
+                    })?
+                } else {
+                    Cow::from(raw)
+                };
+                if value.starts_with(|c: char| c.is_ascii_digit()) {
                     return Err(Error {
                         kind: ErrorKind::InvalidIdSelectorName,
                         span: first_span,
                     });
                 }
                 let first = Ident {
-                    name: token.value,
+                    name: value,
                     raw: token.raw_without_hash,
                     span: first_span,
                 };
@@ -750,9 +760,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
                 Ok(Nth::Even(input.parse()?))
             }
             Token::Number(..) => {
-                let number = expect!(input, Number);
+                let number: Number = expect!(input, Number).try_into()?;
                 if number.value.fract() == 0.0 {
-                    Ok(Nth::Integer(number.into()))
+                    Ok(Nth::Integer(number))
                 } else {
                     Err(Error {
                         kind: ErrorKind::ExpectInteger,

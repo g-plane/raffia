@@ -376,27 +376,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
         let quote = first.raw.chars().next().unwrap();
         debug_assert!(quote == '\'' || quote == '"');
         let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedStrElement::Static(
-            InterpolableStrStaticPart {
-                value: first.value,
-                raw: first.raw,
-                span: first.span,
-            },
-        )];
+        let mut elements = vec![SassInterpolatedStrElement::Static(first.try_into()?)];
 
         let mut is_parsing_static_part = false;
         loop {
             if is_parsing_static_part {
                 let token = input.tokenizer.scan_string_template(quote)?;
+                let tail = token.tail;
                 let end = token.span.end;
-                elements.push(SassInterpolatedStrElement::Static(
-                    InterpolableStrStaticPart {
-                        value: token.value,
-                        raw: token.raw,
-                        span: token.span,
-                    },
-                ));
-                if token.tail {
+                elements.push(SassInterpolatedStrElement::Static(token.try_into()?));
+                if tail {
                     span.end = end;
                     break;
                 }
@@ -429,27 +418,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
             }
         };
         let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedUrlElement::Static(
-            InterpolableUrlStaticPart {
-                value: first.value,
-                raw: first.raw,
-                span: first.span,
-            },
-        )];
+        let mut elements = vec![SassInterpolatedUrlElement::Static(first.try_into()?)];
 
         let mut is_parsing_static_part = false;
         loop {
             if is_parsing_static_part {
                 let token = input.tokenizer.scan_url_template()?;
+                let tail = token.tail;
                 let end = token.span.end;
-                elements.push(SassInterpolatedUrlElement::Static(
-                    InterpolableUrlStaticPart {
-                        value: token.value,
-                        raw: token.raw,
-                        span: token.span,
-                    },
-                ));
-                if token.tail {
+                elements.push(SassInterpolatedUrlElement::Static(token.try_into()?));
+                if tail {
                     span.end = end;
                     break;
                 }
