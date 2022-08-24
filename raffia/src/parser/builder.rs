@@ -19,17 +19,17 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
         }
     }
 
-    pub fn syntax(&mut self, syntax: Syntax) -> &Self {
+    pub fn syntax(mut self, syntax: Syntax) -> Self {
         self.syntax = syntax;
         self
     }
 
-    pub fn comments(&mut self, comments: &'cmt mut Vec<Comment<'s>>) -> &Self {
+    pub fn comments(mut self, comments: &'cmt mut Vec<Comment<'s>>) -> Self {
         self.comments = Some(comments);
         self
     }
 
-    pub fn ignore_comments(&mut self) -> &Self {
+    pub fn ignore_comments(mut self) -> Self {
         self.comments = None;
         self
     }
