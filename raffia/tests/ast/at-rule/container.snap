@@ -1,0 +1,314 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 11,
+            end: 15,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            MediaFeatureBoolean(
+              type: "MediaFeatureBoolean",
+              name: Ident(
+                type: "Ident",
+                name: "width",
+                raw: "width",
+                span: Span(
+                  start: 17,
+                  end: 22,
+                ),
+              ),
+              span: Span(
+                start: 17,
+                end: 22,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 17,
+            end: 22,
+          ),
+        ),
+        span: Span(
+          start: 11,
+          end: 22,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 24,
+          end: 26,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 26,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 28,
+          end: 37,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 38,
+            end: 42,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                MediaFeatureBoolean(
+                  type: "MediaFeatureBoolean",
+                  name: Ident(
+                    type: "Ident",
+                    name: "width",
+                    raw: "width",
+                    span: Span(
+                      start: 45,
+                      end: 50,
+                    ),
+                  ),
+                  span: Span(
+                    start: 45,
+                    end: 50,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 45,
+                end: 50,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 53,
+                  end: 55,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 57,
+                        end: 60,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        MediaFeatureBoolean(
+                          type: "MediaFeatureBoolean",
+                          name: Ident(
+                            type: "Ident",
+                            name: "width",
+                            raw: "width",
+                            span: Span(
+                              start: 63,
+                              end: 68,
+                            ),
+                          ),
+                          span: Span(
+                            start: 63,
+                            end: 68,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 63,
+                        end: 68,
+                      ),
+                    ),
+                    span: Span(
+                      start: 57,
+                      end: 68,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 57,
+                  end: 68,
+                ),
+              ),
+              span: Span(
+                start: 53,
+                end: 68,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 45,
+            end: 68,
+          ),
+        ),
+        span: Span(
+          start: 38,
+          end: 68,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 74,
+                                end: 78,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 74,
+                              end: 78,
+                            ),
+                          ),
+                          span: Span(
+                            start: 74,
+                            end: 78,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 74,
+                        end: 78,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 74,
+                    end: 78,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 74,
+                end: 78,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 81,
+                      end: 88,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 89,
+                        end: 93,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 81,
+                    end: 93,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 79,
+                end: 96,
+              ),
+            ),
+            span: Span(
+              start: 74,
+              end: 96,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 72,
+          end: 98,
+        ),
+      )),
+      span: Span(
+        start: 27,
+        end: 98,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 99,
+  ),
+)
