@@ -565,7 +565,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     self.scan_escape(/* backslash_consumed */ true)?;
                 }
                 Some((i, c)) if c == quote => {
-                    end = i + c.len_utf8();
+                    end = i + 1;
                     break;
                 }
                 Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {

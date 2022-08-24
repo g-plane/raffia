@@ -12,8 +12,7 @@ impl<'a> TryFrom<token::Str<'a>> for Str<'a> {
     type Error = Error;
 
     fn try_from(str: token::Str<'a>) -> PResult<Self> {
-        let raw_without_quotes =
-            unsafe { str.raw.get_unchecked(str.span.start + 1..str.span.end - 1) };
+        let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
         let value = if str.escaped {
             handle_escape(raw_without_quotes).map_err(|kind| Error {
                 kind,
@@ -94,17 +93,9 @@ impl<'s> TryFrom<token::StrTemplate<'s>> for InterpolableStrStaticPart<'s> {
 
     fn try_from(token: token::StrTemplate<'s>) -> PResult<Self> {
         let raw_without_quotes = if token.tail {
-            unsafe {
-                token
-                    .raw
-                    .get_unchecked(token.span.start..token.span.end - 1)
-            }
+            unsafe { token.raw.get_unchecked(0..token.raw.len() - 1) }
         } else if token.head {
-            unsafe {
-                token
-                    .raw
-                    .get_unchecked(token.span.start + 1..token.span.end)
-            }
+            unsafe { token.raw.get_unchecked(1..token.raw.len()) }
         } else {
             token.raw
         };
