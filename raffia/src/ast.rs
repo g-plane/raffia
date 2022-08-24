@@ -1,3 +1,5 @@
+//! All kinds of AST nodes are here.
+
 use crate::{pos::Span, tokenizer::Token};
 use beef::Cow;
 use raffia_derive::Spanned;

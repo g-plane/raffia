@@ -1,3 +1,5 @@
+//! Error management.
+
 use crate::pos::Span;
 use std::fmt::Display;
 

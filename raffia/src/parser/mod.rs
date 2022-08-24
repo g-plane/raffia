@@ -21,6 +21,7 @@ pub trait Parse<'cmt, 's: 'cmt>: Sized {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self>;
 }
 
+/// Create a parser with some source code, then parse it.
 pub struct Parser<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
@@ -30,6 +31,8 @@ pub struct Parser<'cmt, 's: 'cmt> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    /// Create a parser with the given source code and specified syntax.
+    /// If you need to control more options, please use [`ParserBuilder`].
     pub fn new(source: &'s str, syntax: Syntax) -> Self {
         Parser {
             source,
@@ -40,6 +43,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
+    /// Start to parse.
     pub fn parse<T>(&mut self) -> PResult<T>
     where
         T: Parse<'cmt, 's>,
@@ -47,6 +51,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         T::parse(self)
     }
 
+    /// Retrieve recoverable errors.
     #[inline]
     pub fn recoverable_errors(&self) -> &[Error] {
         &self.recoverable_errors

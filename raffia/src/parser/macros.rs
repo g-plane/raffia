@@ -1,3 +1,4 @@
+#[doc(hidden)]
 #[macro_export]
 macro_rules! expect {
     ($parser:expr, $variant:ident) => {{
@@ -18,6 +19,7 @@ macro_rules! expect {
     }};
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! expect_without_ws_or_comments {
     ($parser:expr, $variant:ident) => {{
@@ -38,6 +40,7 @@ macro_rules! expect_without_ws_or_comments {
     }};
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! eat {
     ($parser:expr, $variant:ident) => {{
