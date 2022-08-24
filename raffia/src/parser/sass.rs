@@ -4,7 +4,7 @@ use crate::{
     config::Syntax,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -486,12 +486,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let percent = expect!(input, Percent);
-        let name = input.parse::<InterpolableIdent>()?;
+        let name: Ident = expect_without_ws_or_comments!(input, Ident).into();
         let span = Span {
             start: percent.span.start,
-            end: name.span().end,
+            end: name.span.end,
         };
-        Ok(SassPlaceholderSelector { name, span })
+        Ok(SassPlaceholderSelector {
+            name: InterpolableIdent::Literal(name),
+            span,
+        })
     }
 }
 
