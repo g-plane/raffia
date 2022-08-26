@@ -1358,9 +1358,309 @@ Stylesheet(
         end: 783,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 786,
+          end: 795,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "abc",
+        raw: "\\61 bc",
+        span: Span(
+          start: 796,
+          end: 802,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "from",
+                span: Span(
+                  start: 805,
+                  end: 809,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 810,
+                end: 812,
+              ),
+            ),
+            span: Span(
+              start: 805,
+              end: 812,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 803,
+          end: 814,
+        ),
+      )),
+      span: Span(
+        start: 785,
+        end: 814,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 816,
+          end: 825,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "abc",
+        raw: "a\\62 c",
+        span: Span(
+          start: 826,
+          end: 832,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "from",
+                span: Span(
+                  start: 835,
+                  end: 839,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 840,
+                end: 842,
+              ),
+            ),
+            span: Span(
+              start: 835,
+              end: 842,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 833,
+          end: 844,
+        ),
+      )),
+      span: Span(
+        start: 815,
+        end: 844,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 846,
+          end: 855,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "abc",
+        raw: "abc",
+        span: Span(
+          start: 856,
+          end: 859,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "\\66rom",
+                span: Span(
+                  start: 862,
+                  end: 868,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 869,
+                end: 871,
+              ),
+            ),
+            span: Span(
+              start: 862,
+              end: 871,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 860,
+          end: 873,
+        ),
+      )),
+      span: Span(
+        start: 845,
+        end: 873,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 875,
+          end: 884,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "a,c",
+        raw: "a\\2c c",
+        span: Span(
+          start: 885,
+          end: 891,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "\\66rom",
+                span: Span(
+                  start: 894,
+                  end: 900,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 901,
+                end: 903,
+              ),
+            ),
+            span: Span(
+              start: 894,
+              end: 903,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 892,
+          end: 905,
+        ),
+      )),
+      span: Span(
+        start: 874,
+        end: 905,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 907,
+          end: 916,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "a,c",
+        raw: "a\\,c",
+        span: Span(
+          start: 917,
+          end: 921,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "\\66rom",
+                span: Span(
+                  start: 924,
+                  end: 930,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 931,
+                end: 933,
+              ),
+            ),
+            span: Span(
+              start: 924,
+              end: 933,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 922,
+          end: 935,
+        ),
+      )),
+      span: Span(
+        start: 906,
+        end: 935,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 784,
+    end: 936,
   ),
 )
