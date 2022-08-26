@@ -22,6 +22,13 @@ For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 -   SCSS/Sass: Partially implemented. Some features are still in progress.
 -   Less: Only a few features are implemented.
 
+## Credit
+
+Tests come from:
+
+-   [Web Platform Tests](https://github.com/web-platform-tests/wpt)
+-   [SWC CSS parser](https://github.com/swc-project/swc/tree/main/crates/swc_css_parser/tests)
+
 ## License
 
 MIT License
