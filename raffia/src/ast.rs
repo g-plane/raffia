@@ -727,9 +727,9 @@ pub struct MediaFeatureComparison {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum MediaFeatureComparisonKind {
     LessThan,
-    LessThanEqual,
+    LessThanOrEqual,
     GreaterThan,
-    GreaterThanEqual,
+    GreaterThanOrEqual,
     Equal,
 }
 

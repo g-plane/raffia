@@ -71,7 +71,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeatureComparison {
                 span: token.span,
             }),
             Token::LessThanEqual(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::LessThanEqual,
+                kind: MediaFeatureComparisonKind::LessThanOrEqual,
                 span: token.span,
             }),
             Token::GreaterThan(token) => Ok(MediaFeatureComparison {
@@ -79,7 +79,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeatureComparison {
                 span: token.span,
             }),
             Token::GreaterThanEqual(token) => Ok(MediaFeatureComparison {
-                kind: MediaFeatureComparisonKind::GreaterThanEqual,
+                kind: MediaFeatureComparisonKind::GreaterThanOrEqual,
                 span: token.span,
             }),
             Token::Equal(token) => Ok(MediaFeatureComparison {
