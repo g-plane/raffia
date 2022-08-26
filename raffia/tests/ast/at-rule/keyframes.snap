@@ -1,0 +1,1366 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "foo",
+        raw: "foo",
+        span: Span(
+          start: 11,
+          end: 14,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 15,
+          end: 28,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 28,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 30,
+          end: 39,
+        ),
+      ),
+      prelude: Some(Str(
+        type: "Str",
+        value: "foo",
+        raw: "\"foo\"",
+        span: Span(
+          start: 40,
+          end: 45,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 46,
+          end: 59,
+        ),
+      )),
+      span: Span(
+        start: 29,
+        end: 59,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 61,
+          end: 70,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "foo",
+        raw: "foo",
+        span: Span(
+          start: 74,
+          end: 77,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 81,
+          end: 94,
+        ),
+      )),
+      span: Span(
+        start: 60,
+        end: 94,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 97,
+          end: 106,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "slidein",
+        raw: "slidein",
+        span: Span(
+          start: 107,
+          end: 114,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "from",
+                span: Span(
+                  start: 121,
+                  end: 125,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "transform",
+                    raw: "transform",
+                    span: Span(
+                      start: 136,
+                      end: 145,
+                    ),
+                  ),
+                  value: [
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateX",
+                        raw: "translateX",
+                        span: Span(
+                          start: 147,
+                          end: 157,
+                        ),
+                      ),
+                      args: [
+                        Percentage(
+                          type: "Percentage",
+                          value: Number(
+                            type: "Number",
+                            value: 0.0,
+                            raw: "0",
+                            span: Span(
+                              start: 158,
+                              end: 159,
+                            ),
+                          ),
+                          span: Span(
+                            start: 158,
+                            end: 160,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 147,
+                        end: 161,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 136,
+                    end: 161,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 126,
+                end: 168,
+              ),
+            ),
+            span: Span(
+              start: 121,
+              end: 168,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "to",
+                raw: "to",
+                span: Span(
+                  start: 174,
+                  end: 176,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "transform",
+                    raw: "transform",
+                    span: Span(
+                      start: 187,
+                      end: 196,
+                    ),
+                  ),
+                  value: [
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateX",
+                        raw: "translateX",
+                        span: Span(
+                          start: 198,
+                          end: 208,
+                        ),
+                      ),
+                      args: [
+                        Percentage(
+                          type: "Percentage",
+                          value: Number(
+                            type: "Number",
+                            value: 100.0,
+                            raw: "100",
+                            span: Span(
+                              start: 209,
+                              end: 212,
+                            ),
+                          ),
+                          span: Span(
+                            start: 209,
+                            end: 213,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 198,
+                        end: 214,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 187,
+                    end: 214,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 177,
+                end: 221,
+              ),
+            ),
+            span: Span(
+              start: 174,
+              end: 221,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 115,
+          end: 223,
+        ),
+      )),
+      span: Span(
+        start: 96,
+        end: 223,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 226,
+          end: 235,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "identifier",
+        raw: "identifier",
+        span: Span(
+          start: 236,
+          end: 246,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 0.0,
+                  raw: "0",
+                  span: Span(
+                    start: 253,
+                    end: 254,
+                  ),
+                ),
+                span: Span(
+                  start: 253,
+                  end: 255,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "top",
+                    raw: "top",
+                    span: Span(
+                      start: 258,
+                      end: 261,
+                    ),
+                  ),
+                  value: [
+                    Number(
+                      type: "Number",
+                      value: 0.0,
+                      raw: "0",
+                      span: Span(
+                        start: 263,
+                        end: 264,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 258,
+                    end: 264,
+                  ),
+                ),
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "left",
+                    raw: "left",
+                    span: Span(
+                      start: 266,
+                      end: 270,
+                    ),
+                  ),
+                  value: [
+                    Number(
+                      type: "Number",
+                      value: 0.0,
+                      raw: "0",
+                      span: Span(
+                        start: 272,
+                        end: 273,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 266,
+                    end: 273,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 256,
+                end: 276,
+              ),
+            ),
+            span: Span(
+              start: 253,
+              end: 276,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 30.0,
+                  raw: "30",
+                  span: Span(
+                    start: 281,
+                    end: 283,
+                  ),
+                ),
+                span: Span(
+                  start: 281,
+                  end: 284,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "top",
+                    raw: "top",
+                    span: Span(
+                      start: 287,
+                      end: 290,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 50.0,
+                        raw: "50",
+                        span: Span(
+                          start: 292,
+                          end: 294,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 294,
+                          end: 296,
+                        ),
+                      ),
+                      span: Span(
+                        start: 292,
+                        end: 296,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 287,
+                    end: 296,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 285,
+                end: 299,
+              ),
+            ),
+            span: Span(
+              start: 281,
+              end: 299,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 68.0,
+                  raw: "68",
+                  span: Span(
+                    start: 304,
+                    end: 306,
+                  ),
+                ),
+                span: Span(
+                  start: 304,
+                  end: 307,
+                ),
+              ),
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 72.0,
+                  raw: "72",
+                  span: Span(
+                    start: 309,
+                    end: 311,
+                  ),
+                ),
+                span: Span(
+                  start: 309,
+                  end: 312,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "left",
+                    raw: "left",
+                    span: Span(
+                      start: 315,
+                      end: 319,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 50.0,
+                        raw: "50",
+                        span: Span(
+                          start: 321,
+                          end: 323,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 323,
+                          end: 325,
+                        ),
+                      ),
+                      span: Span(
+                        start: 321,
+                        end: 325,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 315,
+                    end: 325,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 313,
+                end: 328,
+              ),
+            ),
+            span: Span(
+              start: 304,
+              end: 328,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 100.0,
+                  raw: "100",
+                  span: Span(
+                    start: 333,
+                    end: 336,
+                  ),
+                ),
+                span: Span(
+                  start: 333,
+                  end: 337,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "top",
+                    raw: "top",
+                    span: Span(
+                      start: 340,
+                      end: 343,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 100.0,
+                        raw: "100",
+                        span: Span(
+                          start: 345,
+                          end: 348,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 348,
+                          end: 350,
+                        ),
+                      ),
+                      span: Span(
+                        start: 345,
+                        end: 350,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 340,
+                    end: 350,
+                  ),
+                ),
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "left",
+                    raw: "left",
+                    span: Span(
+                      start: 352,
+                      end: 356,
+                    ),
+                  ),
+                  value: [
+                    Percentage(
+                      type: "Percentage",
+                      value: Number(
+                        type: "Number",
+                        value: 100.0,
+                        raw: "100",
+                        span: Span(
+                          start: 358,
+                          end: 361,
+                        ),
+                      ),
+                      span: Span(
+                        start: 358,
+                        end: 362,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 352,
+                    end: 362,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 338,
+                end: 365,
+              ),
+            ),
+            span: Span(
+              start: 333,
+              end: 365,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 247,
+          end: 367,
+        ),
+      )),
+      span: Span(
+        start: 225,
+        end: 367,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 370,
+          end: 379,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "FOO",
+        raw: "FOO",
+        span: Span(
+          start: 380,
+          end: 383,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 384,
+          end: 386,
+        ),
+      )),
+      span: Span(
+        start: 369,
+        end: 386,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 388,
+          end: 397,
+        ),
+      ),
+      prelude: Some(Str(
+        type: "Str",
+        value: "initial",
+        raw: "\"initial\"",
+        span: Span(
+          start: 398,
+          end: 407,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 408,
+          end: 410,
+        ),
+      )),
+      span: Span(
+        start: 387,
+        end: 410,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 412,
+          end: 421,
+        ),
+      ),
+      prelude: Some(Str(
+        type: "Str",
+        value: "None",
+        raw: "\"None\"",
+        span: Span(
+          start: 422,
+          end: 428,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 429,
+          end: 431,
+        ),
+      )),
+      span: Span(
+        start: 411,
+        end: 431,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 433,
+          end: 442,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "slide-right",
+        raw: "slide-right",
+        span: Span(
+          start: 443,
+          end: 454,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "from",
+                raw: "from",
+                span: Span(
+                  start: 462,
+                  end: 466,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "margin-left",
+                    raw: "margin-left",
+                    span: Span(
+                      start: 477,
+                      end: 488,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 0.0,
+                        raw: "0",
+                        span: Span(
+                          start: 490,
+                          end: 491,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 491,
+                          end: 493,
+                        ),
+                      ),
+                      span: Span(
+                        start: 490,
+                        end: 493,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 477,
+                    end: 493,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 467,
+                end: 500,
+              ),
+            ),
+            span: Span(
+              start: 462,
+              end: 500,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 506,
+                    end: 508,
+                  ),
+                ),
+                span: Span(
+                  start: 506,
+                  end: 509,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "margin-left",
+                    raw: "margin-left",
+                    span: Span(
+                      start: 520,
+                      end: 531,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 110.0,
+                        raw: "110",
+                        span: Span(
+                          start: 533,
+                          end: 536,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 536,
+                          end: 538,
+                        ),
+                      ),
+                      span: Span(
+                        start: 533,
+                        end: 538,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 520,
+                    end: 538,
+                  ),
+                ),
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "opacity",
+                    raw: "opacity",
+                    span: Span(
+                      start: 548,
+                      end: 555,
+                    ),
+                  ),
+                  value: [
+                    Number(
+                      type: "Number",
+                      value: 1.0,
+                      raw: "1",
+                      span: Span(
+                        start: 557,
+                        end: 558,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 548,
+                    end: 558,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 510,
+                end: 565,
+              ),
+            ),
+            span: Span(
+              start: 506,
+              end: 565,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 571,
+                    end: 573,
+                  ),
+                ),
+                span: Span(
+                  start: 571,
+                  end: 574,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "opacity",
+                    raw: "opacity",
+                    span: Span(
+                      start: 585,
+                      end: 592,
+                    ),
+                  ),
+                  value: [
+                    Number(
+                      type: "Number",
+                      value: 0.9,
+                      raw: "0.9",
+                      span: Span(
+                        start: 594,
+                        end: 597,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 585,
+                    end: 597,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 575,
+                end: 604,
+              ),
+            ),
+            span: Span(
+              start: 571,
+              end: 604,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "to",
+                raw: "to",
+                span: Span(
+                  start: 610,
+                  end: 612,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "margin-left",
+                    raw: "margin-left",
+                    span: Span(
+                      start: 623,
+                      end: 634,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 200.0,
+                        raw: "200",
+                        span: Span(
+                          start: 636,
+                          end: 639,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 639,
+                          end: 641,
+                        ),
+                      ),
+                      span: Span(
+                        start: 636,
+                        end: 641,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 623,
+                    end: 641,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 613,
+                end: 648,
+              ),
+            ),
+            span: Span(
+              start: 610,
+              end: 648,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 455,
+          end: 651,
+        ),
+      )),
+      span: Span(
+        start: 432,
+        end: 651,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 654,
+          end: 663,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "slidein-up",
+        raw: "slidein-up",
+        span: Span(
+          start: 664,
+          end: 674,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "fRoM",
+                raw: "fRoM",
+                span: Span(
+                  start: 681,
+                  end: 685,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "transform",
+                    raw: "transform",
+                    span: Span(
+                      start: 696,
+                      end: 705,
+                    ),
+                  ),
+                  value: [
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateX",
+                        raw: "translateX",
+                        span: Span(
+                          start: 707,
+                          end: 717,
+                        ),
+                      ),
+                      args: [
+                        Percentage(
+                          type: "Percentage",
+                          value: Number(
+                            type: "Number",
+                            value: 0.0,
+                            raw: "0",
+                            span: Span(
+                              start: 718,
+                              end: 719,
+                            ),
+                          ),
+                          span: Span(
+                            start: 718,
+                            end: 720,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 707,
+                        end: 721,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 696,
+                    end: 721,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 686,
+                end: 728,
+              ),
+            ),
+            span: Span(
+              start: 681,
+              end: 728,
+            ),
+          ),
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "tO",
+                raw: "tO",
+                span: Span(
+                  start: 734,
+                  end: 736,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "transform",
+                    raw: "transform",
+                    span: Span(
+                      start: 747,
+                      end: 756,
+                    ),
+                  ),
+                  value: [
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateX",
+                        raw: "translateX",
+                        span: Span(
+                          start: 758,
+                          end: 768,
+                        ),
+                      ),
+                      args: [
+                        Percentage(
+                          type: "Percentage",
+                          value: Number(
+                            type: "Number",
+                            value: 100.0,
+                            raw: "100",
+                            span: Span(
+                              start: 769,
+                              end: 772,
+                            ),
+                          ),
+                          span: Span(
+                            start: 769,
+                            end: 773,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 758,
+                        end: 774,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 747,
+                    end: 774,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 737,
+                end: 781,
+              ),
+            ),
+            span: Span(
+              start: 734,
+              end: 781,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 675,
+          end: 783,
+        ),
+      )),
+      span: Span(
+        start: 653,
+        end: 783,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 784,
+  ),
+)
