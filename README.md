@@ -1,6 +1,6 @@
 # Raffia
 
-Raffia is parser which can parse CSS, SCSS, Sass (indented syntax) and Less. However, it only parses SCSS, Sass or Less, but it doesn't compile to CSS.
+Raffia is a parser which can parse CSS, SCSS, Sass (indented syntax) and Less. However, it won't compile SCSS, Sass or Less to CSS.
 
 ## Example
 
