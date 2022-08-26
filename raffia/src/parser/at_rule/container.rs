@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -139,8 +139,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
                     span: style_keyword.span,
                 });
             }
-            let l_paren = expect!(input, LParen);
-            input.assert_no_ws_or_comment(&style_keyword.span, &l_paren.span)?;
+            expect_without_ws_or_comments!(input, LParen);
             let query_in_parens = input.parse().map(QueryInParens::StyleQuery)?;
             expect!(input, RParen);
             Ok(query_in_parens)
