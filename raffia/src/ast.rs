@@ -1043,6 +1043,15 @@ pub struct SassBinaryExpression<'s> {
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassConditionalClause<'s> {
+    pub condition: ComponentValue<'s>,
+    pub block: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassDebugAtRule<'s> {
     pub expr: ComponentValues<'s>,
     pub span: Span,
@@ -1075,6 +1084,16 @@ pub struct SassForAtRule<'s> {
     pub end: ComponentValue<'s>,
     pub is_exclusive: bool,
     pub body: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassIfAtRule<'s> {
+    pub if_clause: SassConditionalClause<'s>,
+    pub else_if_clauses: Vec<SassConditionalClause<'s>>,
+    pub else_clause: Option<SimpleBlock<'s>>,
     pub span: Span,
 }
 
@@ -1245,6 +1264,7 @@ pub enum Statement<'s> {
     SassEachAtRule(SassEachAtRule<'s>),
     SassErrorAtRule(SassErrorAtRule<'s>),
     SassForAtRule(SassForAtRule<'s>),
+    SassIfAtRule(SassIfAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
     SassWhileAtRule(SassWhileAtRule<'s>),

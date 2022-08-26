@@ -30,6 +30,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 Ok(Some(Statement::SassForAtRule(self.parse()?)))
             }
+            "if" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassIfAtRule(self.parse()?)))
+            }
             "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 Ok(Some(Statement::SassWhileAtRule(self.parse()?)))
             }
@@ -267,6 +270,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassConditionalClause<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let condition = input.parse::<ComponentValue>()?;
+        let block = input.parse::<SimpleBlock>()?;
+        let span = Span {
+            start: condition.span().start,
+            end: block.span.end,
+        };
+        Ok(SassConditionalClause {
+            condition,
+            block,
+            span,
+        })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
@@ -366,6 +385,44 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
             is_exclusive,
             body,
             span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let at_keyword = expect!(input, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "if");
+
+        let if_clause = input.parse()?;
+        let mut else_if_clauses = vec![];
+        let mut else_clause = None;
+
+        while let Token::AtKeyword(at_keyword) = input.tokenizer.peek()? {
+            if at_keyword.ident.name == "else" {
+                input.tokenizer.bump()?;
+                match input.tokenizer.peek()? {
+                    Token::Ident(ident) if ident.name == "if" => {
+                        input.tokenizer.bump()?;
+                        else_if_clauses.push(input.parse()?);
+                    }
+                    _ => else_clause = Some(input.parse()?),
+                }
+            } else {
+                break;
+            }
+        }
+
+        Ok(SassIfAtRule {
+            if_clause,
+            else_if_clauses,
+            else_clause,
+            span: Span {
+                start: at_keyword.span.start,
+                end: input.tokenizer.current_offset(),
+            },
         })
     }
 }
