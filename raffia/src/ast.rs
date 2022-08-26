@@ -82,7 +82,6 @@ pub struct AttributeSelectorMatcher {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum AttributeSelectorMatcherKind {
     Equals,
     Tilde,
@@ -118,7 +117,6 @@ pub struct BinaryOperator {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum BinaryOperatorKind {
     Multiply,
     Modulo,
@@ -154,7 +152,6 @@ pub struct CalcOperator {
 
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum CalcOperatorKind {
     Plus,
     Minus,
@@ -188,7 +185,6 @@ pub struct Combinator {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum CombinatorKind {
     /// ` `
     Descendant,
@@ -359,7 +355,6 @@ pub struct Delimiter {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum DelimiterKind {
     Comma,
     Solidus,
@@ -644,7 +639,6 @@ pub struct LessPropertyMerge {
 
 #[derive(Clone, Debug, Spanned)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LessPropertyMergeKind {
     Comma,
     Space,
@@ -731,7 +725,6 @@ pub struct MediaFeatureComparison {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaFeatureComparisonKind {
     LessThan,
     LessThanEqual,
@@ -1180,7 +1173,6 @@ pub struct SassUnaryOperator {
 
 #[derive(Clone, Debug)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassUnaryOperatorKind {
     Plus,
     Minus,
