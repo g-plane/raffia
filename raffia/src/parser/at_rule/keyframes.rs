@@ -12,11 +12,11 @@ use crate::{
 // https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (prelude, mut span) = input.parse_keyframe_selectors()?;
+        let (selectors, mut span) = input.parse_keyframe_selectors()?;
         let block = input.parse::<SimpleBlock>()?;
         span.end = block.span.end;
         Ok(KeyframeBlock {
-            prelude,
+            selectors,
             block,
             span,
         })
