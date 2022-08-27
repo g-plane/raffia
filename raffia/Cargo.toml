@@ -3,13 +3,13 @@ name = "raffia"
 version = "0.1.0"
 edition = "2021"
 authors = ["Pig Fang <g-plane@hotmail.com>"]
-description = "Generic parser for CSS/SCSS/Less."
+description = "One parser for CSS/SCSS/Sass/Less."
 repository = "https://github.com/g-plane/raffia"
 license = "MIT"
 
 [dependencies]
 beef = { version = "0.5", features = ["impl_serde"] }
-raffia_derive = { path = "../raffia_derive" }
+raffia_derive = { path = "../raffia_derive", version = "0.1" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 smallvec = { version = "1.9", features = ["const_generics", "serde"] }
 
