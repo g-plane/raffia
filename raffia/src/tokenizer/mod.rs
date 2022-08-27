@@ -666,11 +666,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_url(&mut self, ident: Ident<'s>) -> PResult<UrlPrefix<'s>> {
-        let (i, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (i, c) = self.state.chars.next().unwrap();
         debug_assert_eq!(c, '(');
 
         self.skip_ws();
@@ -691,15 +687,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut escaped = false;
         loop {
             match self.state.chars.next() {
-                Some((i, '\n')) => {
-                    return Err(Error {
-                        kind: ErrorKind::UnexpectedLinebreak,
-                        span: Span {
-                            start: i,
-                            end: i + 1,
-                        },
-                    })
-                }
                 Some((_, '\\')) => {
                     escaped = true;
                     self.scan_escape(/* backslash_consumed */ true)?;
@@ -717,6 +704,25 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         tail: false,
                         span,
                     }));
+                }
+                Some((i, c)) if c.is_ascii_whitespace() => {
+                    self.skip_ws();
+                    match self.state.chars.next() {
+                        Some((_, ')')) => {
+                            end = i;
+                            break;
+                        }
+                        Some((i, c)) => {
+                            return Err(Error {
+                                kind: ErrorKind::ExpectUrl,
+                                span: Span {
+                                    start: i,
+                                    end: i + c.len_utf8(),
+                                },
+                            })
+                        }
+                        None => return Err(self.build_eof_error()),
+                    }
                 }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
