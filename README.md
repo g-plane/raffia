@@ -2,7 +2,7 @@
 
 Raffia is a parser which can parse CSS, SCSS, Sass (indented syntax) and Less. However, it won't compile SCSS, Sass or Less to CSS.
 
-## Example
+## 🍭 Example
 
 ```rust
 use raffia::{ast::Stylesheet, Parser, Syntax};
@@ -16,13 +16,13 @@ You can find more examples in the [examples](https://github.com/g-plane/raffia/b
 
 For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 
-## Current Status
+## 🏗️ Current Status
 
 -   CSS: Almost completed.
 -   SCSS/Sass: Partially implemented. Some features are still in progress.
 -   Less: Only a few features are implemented.
 
-## Benchmark
+## ⌛ Benchmark
 
 You can run compare performance with other parsers with benchmark.
 
@@ -33,7 +33,7 @@ Don't forget to rename those CSS files to make sure their names are prefixed wit
 
 Now you can run benchmark by running `cargo criterion`.
 
-## Credit
+## ✨ Credit
 
 Tests come from:
 
@@ -41,7 +41,7 @@ Tests come from:
 -   [SWC CSS parser](https://github.com/swc-project/swc/tree/main/crates/swc_css_parser/tests)
 -   [ESBuild](https://github.com/evanw/esbuild/blob/master/internal/css_parser/css_parser_test.go)
 
-## License
+## 📜 License
 
 MIT License
 
