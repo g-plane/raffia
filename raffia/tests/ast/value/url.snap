@@ -1,0 +1,1306 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 8,
+                end: 18,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 20,
+                    end: 23,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 24,
+                    end: 53,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 20,
+                  end: 54,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 54,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 58,
+                end: 68,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "URL",
+                  raw: "URL",
+                  span: Span(
+                    start: 70,
+                    end: 73,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 74,
+                    end: 103,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 70,
+                  end: 104,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 58,
+              end: 104,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 108,
+                end: 118,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "URL",
+                  raw: "\\URL",
+                  span: Span(
+                    start: 120,
+                    end: 124,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 125,
+                    end: 154,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 120,
+                  end: 155,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 108,
+              end: 155,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 159,
+                end: 169,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 171,
+                    end: 174,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "https://example.com/image.png",
+                  raw: "\"https://example.com/image.png\"",
+                  span: Span(
+                    start: 175,
+                    end: 206,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 171,
+                  end: 207,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 159,
+              end: 207,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 211,
+                end: 221,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 223,
+                    end: 226,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "https://example.com/image.png",
+                  raw: "\'https://example.com/image.png\'",
+                  span: Span(
+                    start: 227,
+                    end: 258,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 223,
+                  end: 259,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 211,
+              end: 259,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 263,
+                end: 273,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "URL",
+                  raw: "URL",
+                  span: Span(
+                    start: 275,
+                    end: 278,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "https://example.com/image.png",
+                  raw: "\'https://example.com/image.png\'",
+                  span: Span(
+                    start: 279,
+                    end: 310,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 275,
+                  end: 311,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 263,
+              end: 311,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 315,
+                end: 325,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "URL",
+                  raw: "\\URL",
+                  span: Span(
+                    start: 327,
+                    end: 331,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "https://example.com/image.png",
+                  raw: "\'https://example.com/image.png\'",
+                  span: Span(
+                    start: 332,
+                    end: 363,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 327,
+                  end: 364,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 315,
+              end: 364,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 368,
+                end: 378,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 380,
+                    end: 383,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "data:image/png;base64,iRxVB0",
+                  raw: "data:image/png;base64,iRxVB0",
+                  span: Span(
+                    start: 384,
+                    end: 412,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 380,
+                  end: 413,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 368,
+              end: 413,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 417,
+                end: 427,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 429,
+                    end: 432,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "#IDofSVGpath",
+                  raw: "#IDofSVGpath",
+                  span: Span(
+                    start: 433,
+                    end: 445,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 429,
+                  end: 446,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 417,
+              end: 446,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 523,
+                end: 533,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 535,
+                    end: 538,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "//aa.com/img.svg",
+                  raw: "\"//aa.com/img.svg\"",
+                  span: Span(
+                    start: 539,
+                    end: 557,
+                  ),
+                )),
+                modifiers: [
+                  Ident(
+                    type: "Ident",
+                    name: "prefetch",
+                    raw: "prefetch",
+                    span: Span(
+                      start: 558,
+                      end: 566,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 535,
+                  end: 567,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 523,
+              end: 567,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 571,
+                end: 581,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 583,
+                    end: 586,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "//aa.com/img.svg",
+                  raw: "\"//aa.com/img.svg\"",
+                  span: Span(
+                    start: 587,
+                    end: 605,
+                  ),
+                )),
+                modifiers: [
+                  Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
+                    span: Span(
+                      start: 606,
+                      end: 609,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
+                    span: Span(
+                      start: 610,
+                      end: 613,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "baz",
+                    raw: "baz",
+                    span: Span(
+                      start: 614,
+                      end: 617,
+                    ),
+                  ),
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "func",
+                      raw: "func",
+                      span: Span(
+                        start: 618,
+                        end: 622,
+                      ),
+                    ),
+                    args: [
+                      Ident(
+                        type: "Ident",
+                        name: "test",
+                        raw: "test",
+                        span: Span(
+                          start: 623,
+                          end: 627,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 618,
+                      end: 628,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 583,
+                  end: 629,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 571,
+              end: 629,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 633,
+                end: 643,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 645,
+                    end: 648,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "http://example.com/image.svg",
+                  raw: "\"http://example.com/image.svg\"",
+                  span: Span(
+                    start: 649,
+                    end: 679,
+                  ),
+                )),
+                modifiers: [
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "param",
+                      raw: "param",
+                      span: Span(
+                        start: 680,
+                        end: 685,
+                      ),
+                    ),
+                    args: [
+                      Ident(
+                        type: "Ident",
+                        name: "--color",
+                        raw: "--color",
+                        span: Span(
+                          start: 686,
+                          end: 693,
+                        ),
+                      ),
+                      Function(
+                        type: "Function",
+                        name: Ident(
+                          type: "Ident",
+                          name: "var",
+                          raw: "var",
+                          span: Span(
+                            start: 694,
+                            end: 697,
+                          ),
+                        ),
+                        args: [
+                          Ident(
+                            type: "Ident",
+                            name: "--primary-color",
+                            raw: "--primary-color",
+                            span: Span(
+                              start: 698,
+                              end: 713,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 694,
+                          end: 714,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 680,
+                      end: 715,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 645,
+                  end: 716,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 633,
+              end: 716,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 721,
+                end: 731,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 733,
+                    end: 736,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "",
+                  raw: "",
+                  span: Span(
+                    start: 737,
+                    end: 737,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 733,
+                  end: 738,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 721,
+              end: 738,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 742,
+                end: 752,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 754,
+                    end: 757,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "",
+                  raw: "\"\"",
+                  span: Span(
+                    start: 758,
+                    end: 760,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 754,
+                  end: 761,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 742,
+              end: 761,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 765,
+                end: 775,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 777,
+                    end: 780,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "",
+                  raw: "\'\'",
+                  span: Span(
+                    start: 781,
+                    end: 783,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 777,
+                  end: 784,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 765,
+              end: 784,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "--foo",
+              raw: "--foo",
+              span: Span(
+                start: 789,
+                end: 794,
+              ),
+            ),
+            value: [
+              Str(Str(
+                kind: "Str",
+                raw: "\"http://www.example.com/pinkish.gif\"",
+                escaped: false,
+                span: Span(
+                  start: 796,
+                  end: 832,
+                ),
+              )),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 789,
+              end: 832,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 837,
+                end: 847,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "src",
+                  raw: "src",
+                  span: Span(
+                    start: 849,
+                    end: 852,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "http://www.example.com/pinkish.gif",
+                  raw: "\"http://www.example.com/pinkish.gif\"",
+                  span: Span(
+                    start: 853,
+                    end: 889,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 849,
+                  end: 890,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 837,
+              end: 890,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 894,
+                end: 904,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "SRC",
+                  raw: "SRC",
+                  span: Span(
+                    start: 906,
+                    end: 909,
+                  ),
+                ),
+                value: Some(Str(
+                  type: "Str",
+                  value: "http://www.example.com/pinkish.gif",
+                  raw: "\"http://www.example.com/pinkish.gif\"",
+                  span: Span(
+                    start: 910,
+                    end: 946,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 906,
+                  end: 947,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 894,
+              end: 947,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 951,
+                end: 961,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "src",
+                  raw: "src",
+                  span: Span(
+                    start: 963,
+                    end: 966,
+                  ),
+                ),
+                value: None,
+                modifiers: [
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "var",
+                      raw: "var",
+                      span: Span(
+                        start: 967,
+                        end: 970,
+                      ),
+                    ),
+                    args: [
+                      Ident(
+                        type: "Ident",
+                        name: "--foo",
+                        raw: "--foo",
+                        span: Span(
+                          start: 971,
+                          end: 976,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 967,
+                      end: 977,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 963,
+                  end: 978,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 951,
+              end: 978,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 982,
+                end: 992,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 994,
+                    end: 997,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 1001,
+                    end: 1030,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 994,
+                  end: 1031,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 982,
+              end: 1031,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 1038,
+                end: 1048,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "u\\rl",
+                  span: Span(
+                    start: 1050,
+                    end: 1054,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 1058,
+                    end: 1087,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1050,
+                  end: 1088,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1038,
+              end: 1088,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 1095,
+                end: 1105,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1107,
+                    end: 1110,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 1130,
+                    end: 1159,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1107,
+                  end: 1160,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1095,
+              end: 1160,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 1167,
+                end: 1177,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1179,
+                    end: 1182,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/image.png",
+                  raw: "https://example.com/image.png",
+                  span: Span(
+                    start: 1186,
+                    end: 1215,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1179,
+                  end: 1216,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1167,
+              end: 1216,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 1223,
+                end: 1233,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "URL",
+                  raw: "URL",
+                  span: Span(
+                    start: 1235,
+                    end: 1238,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "https://example.com/ima)ge.png",
+                  raw: "https://example.com/ima\\)ge.png",
+                  span: Span(
+                    start: 1239,
+                    end: 1270,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1235,
+                  end: 1271,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1223,
+              end: 1271,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 1274,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 1274,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 1275,
+  ),
+)
