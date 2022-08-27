@@ -11,6 +11,7 @@ use crate::{
     expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
+    util::PairedToken,
     Parse, Syntax,
 };
 
@@ -36,6 +37,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             match &name {
                 InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
                     let mut values = SmallVec::with_capacity(3);
+                    let mut pairs = Vec::with_capacity(1);
                     loop {
                         match parser.tokenizer.peek()? {
                             Token::RBrace(..)
@@ -43,7 +45,39 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
-                            _ => values.push(parser.tokenizer.bump().map(ComponentValue::Token)?),
+                            _ => {
+                                match parser.tokenizer.peek()? {
+                                    Token::LParen(..) | Token::UrlPrefix(..) => {
+                                        pairs.push(PairedToken::Paren);
+                                    }
+                                    Token::RParen(..) => {
+                                        if let Some(PairedToken::Paren) = pairs.pop() {
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                    Token::LBracket(..) => {
+                                        pairs.push(PairedToken::Bracket);
+                                    }
+                                    Token::RBracket(..) => {
+                                        if let Some(PairedToken::Bracket) = pairs.pop() {
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                    Token::LBrace(..) => {
+                                        pairs.push(PairedToken::Brace);
+                                    }
+                                    Token::RBrace(..) => {
+                                        if let Some(PairedToken::Brace) = pairs.pop() {
+                                        } else {
+                                            break;
+                                        }
+                                    }
+                                    _ => {}
+                                }
+                                values.push(ComponentValue::Token(parser.tokenizer.bump()?))
+                            }
                         }
                     }
                     values

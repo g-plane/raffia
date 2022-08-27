@@ -26553,9 +26553,3565 @@ Stylesheet(
         end: 8429,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8431,
+          end: 8440,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8441,
+            end: 8445,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--my-prop",
+                raw: "--my-prop",
+                span: Span(
+                  start: 8452,
+                  end: 8461,
+                ),
+              ),
+              value: [
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "foo",
+                  raw: "foo",
+                  span: Span(
+                    start: 8463,
+                    end: 8466,
+                  ),
+                )),
+              ],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 8452,
+                end: 8466,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8452,
+            end: 8466,
+          ),
+        ),
+        span: Span(
+          start: 8441,
+          end: 8466,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 8468,
+          end: 8470,
+        ),
+      )),
+      span: Span(
+        start: 8430,
+        end: 8470,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8472,
+          end: 8481,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8482,
+            end: 8486,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--my-prop",
+                    raw: "--my-prop",
+                    span: Span(
+                      start: 8494,
+                      end: 8503,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 8505,
+                        end: 8508,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 8494,
+                    end: 8508,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8494,
+                end: 8508,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 8511,
+                  end: 8513,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 8515,
+                        end: 8518,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--my-prop",
+                            raw: "--my-prop",
+                            span: Span(
+                              start: 8526,
+                              end: 8535,
+                            ),
+                          ),
+                          value: [
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "foo",
+                              raw: "foo",
+                              span: Span(
+                                start: 8537,
+                                end: 8540,
+                              ),
+                            )),
+                          ],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 8526,
+                            end: 8540,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8526,
+                        end: 8540,
+                      ),
+                    ),
+                    span: Span(
+                      start: 8515,
+                      end: 8540,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 8515,
+                  end: 8540,
+                ),
+              ),
+              span: Span(
+                start: 8511,
+                end: 8540,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8494,
+            end: 8540,
+          ),
+        ),
+        span: Span(
+          start: 8482,
+          end: 8540,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 8546,
+                                end: 8550,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 8546,
+                              end: 8550,
+                            ),
+                          ),
+                          span: Span(
+                            start: 8546,
+                            end: 8550,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8546,
+                        end: 8550,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 8546,
+                    end: 8550,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8546,
+                end: 8550,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 8553,
+                      end: 8560,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 8561,
+                        end: 8565,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 8553,
+                    end: 8565,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8551,
+                end: 8568,
+              ),
+            ),
+            span: Span(
+              start: 8546,
+              end: 8568,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8544,
+          end: 8570,
+        ),
+      )),
+      span: Span(
+        start: 8471,
+        end: 8570,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8572,
+          end: 8581,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8582,
+            end: 8586,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--my-prop",
+                raw: "--my-prop",
+                span: Span(
+                  start: 8593,
+                  end: 8602,
+                ),
+              ),
+              value: [
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "foo",
+                  raw: "foo",
+                  span: Span(
+                    start: 8604,
+                    end: 8607,
+                  ),
+                )),
+                Minus(Minus(
+                  kind: "Minus",
+                  span: Span(
+                    start: 8608,
+                    end: 8609,
+                  ),
+                )),
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "bar",
+                  raw: "bar",
+                  span: Span(
+                    start: 8610,
+                    end: 8613,
+                  ),
+                )),
+                LParen(LParen(
+                  kind: "LParen",
+                  span: Span(
+                    start: 8614,
+                    end: 8615,
+                  ),
+                )),
+                RParen(RParen(
+                  kind: "RParen",
+                  span: Span(
+                    start: 8615,
+                    end: 8616,
+                  ),
+                )),
+              ],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 8593,
+                end: 8616,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8593,
+            end: 8616,
+          ),
+        ),
+        span: Span(
+          start: 8582,
+          end: 8616,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 8618,
+          end: 8620,
+        ),
+      )),
+      span: Span(
+        start: 8571,
+        end: 8620,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8622,
+          end: 8631,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8632,
+            end: 8636,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--my-prop",
+                    raw: "--my-prop",
+                    span: Span(
+                      start: 8644,
+                      end: 8653,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 8655,
+                        end: 8658,
+                      ),
+                    )),
+                    Minus(Minus(
+                      kind: "Minus",
+                      span: Span(
+                        start: 8659,
+                        end: 8660,
+                      ),
+                    )),
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 8661,
+                        end: 8664,
+                      ),
+                    )),
+                    LParen(LParen(
+                      kind: "LParen",
+                      span: Span(
+                        start: 8665,
+                        end: 8666,
+                      ),
+                    )),
+                    RParen(RParen(
+                      kind: "RParen",
+                      span: Span(
+                        start: 8666,
+                        end: 8667,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 8644,
+                    end: 8667,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8644,
+                end: 8667,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 8670,
+                  end: 8672,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 8674,
+                        end: 8677,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--my-prop",
+                            raw: "--my-prop",
+                            span: Span(
+                              start: 8685,
+                              end: 8694,
+                            ),
+                          ),
+                          value: [
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "foo",
+                              raw: "foo",
+                              span: Span(
+                                start: 8696,
+                                end: 8699,
+                              ),
+                            )),
+                            Minus(Minus(
+                              kind: "Minus",
+                              span: Span(
+                                start: 8700,
+                                end: 8701,
+                              ),
+                            )),
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 8702,
+                                end: 8705,
+                              ),
+                            )),
+                            LParen(LParen(
+                              kind: "LParen",
+                              span: Span(
+                                start: 8706,
+                                end: 8707,
+                              ),
+                            )),
+                            RParen(RParen(
+                              kind: "RParen",
+                              span: Span(
+                                start: 8707,
+                                end: 8708,
+                              ),
+                            )),
+                          ],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 8685,
+                            end: 8708,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8685,
+                        end: 8708,
+                      ),
+                    ),
+                    span: Span(
+                      start: 8674,
+                      end: 8708,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 8674,
+                  end: 8708,
+                ),
+              ),
+              span: Span(
+                start: 8670,
+                end: 8708,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8644,
+            end: 8708,
+          ),
+        ),
+        span: Span(
+          start: 8632,
+          end: 8708,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 8714,
+                                end: 8718,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 8714,
+                              end: 8718,
+                            ),
+                          ),
+                          span: Span(
+                            start: 8714,
+                            end: 8718,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8714,
+                        end: 8718,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 8714,
+                    end: 8718,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8714,
+                end: 8718,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 8721,
+                      end: 8728,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 8729,
+                        end: 8733,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 8721,
+                    end: 8733,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8719,
+                end: 8736,
+              ),
+            ),
+            span: Span(
+              start: 8714,
+              end: 8736,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8712,
+          end: 8738,
+        ),
+      )),
+      span: Span(
+        start: 8621,
+        end: 8738,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8740,
+          end: 8749,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8750,
+            end: 8754,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            StyleCondition(
+              type: "StyleCondition",
+              conditions: [
+                StyleConditionNot(
+                  type: "StyleConditionNot",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "not",
+                    raw: "not",
+                    span: Span(
+                      start: 8761,
+                      end: 8764,
+                    ),
+                  ),
+                  styleInParens: StyleCondition(
+                    type: "StyleCondition",
+                    conditions: [
+                      Declaration(
+                        type: "Declaration",
+                        name: Ident(
+                          type: "Ident",
+                          name: "--foo",
+                          raw: "--foo",
+                          span: Span(
+                            start: 8767,
+                            end: 8772,
+                          ),
+                        ),
+                        value: [
+                          Ident(Ident(
+                            kind: "Ident",
+                            name: "calc",
+                            raw: "calc",
+                            span: Span(
+                              start: 8774,
+                              end: 8778,
+                            ),
+                          )),
+                          LParen(LParen(
+                            kind: "LParen",
+                            span: Span(
+                              start: 8778,
+                              end: 8779,
+                            ),
+                          )),
+                          Dimension(Dimension(
+                            kind: "Dimension",
+                            value: Number(
+                              kind: "Number",
+                              raw: "10",
+                              span: Span(
+                                start: 8779,
+                                end: 8781,
+                              ),
+                            ),
+                            unit: Ident(
+                              kind: "Ident",
+                              name: "px",
+                              raw: "px",
+                              span: Span(
+                                start: 8781,
+                                end: 8783,
+                              ),
+                            ),
+                            span: Span(
+                              start: 8779,
+                              end: 8783,
+                            ),
+                          )),
+                          Plus(Plus(
+                            kind: "Plus",
+                            span: Span(
+                              start: 8784,
+                              end: 8785,
+                            ),
+                          )),
+                          Dimension(Dimension(
+                            kind: "Dimension",
+                            value: Number(
+                              kind: "Number",
+                              raw: "2",
+                              span: Span(
+                                start: 8786,
+                                end: 8787,
+                              ),
+                            ),
+                            unit: Ident(
+                              kind: "Ident",
+                              name: "em",
+                              raw: "em",
+                              span: Span(
+                                start: 8787,
+                                end: 8789,
+                              ),
+                            ),
+                            span: Span(
+                              start: 8786,
+                              end: 8789,
+                            ),
+                          )),
+                          RParen(RParen(
+                            kind: "RParen",
+                            span: Span(
+                              start: 8789,
+                              end: 8790,
+                            ),
+                          )),
+                        ],
+                        important: None,
+                        lessPropertyMerge: None,
+                        span: Span(
+                          start: 8767,
+                          end: 8790,
+                        ),
+                      ),
+                      StyleConditionAnd(
+                        type: "StyleConditionAnd",
+                        keyword: Ident(
+                          type: "Ident",
+                          name: "and",
+                          raw: "and",
+                          span: Span(
+                            start: 8792,
+                            end: 8795,
+                          ),
+                        ),
+                        styleInParens: StyleCondition(
+                          type: "StyleCondition",
+                          conditions: [
+                            Declaration(
+                              type: "Declaration",
+                              name: Ident(
+                                type: "Ident",
+                                name: "--foo",
+                                raw: "--foo",
+                                span: Span(
+                                  start: 8798,
+                                  end: 8803,
+                                ),
+                              ),
+                              value: [
+                                UrlPrefix(UrlPrefix(
+                                  kind: "UrlPrefix",
+                                  ident: Ident(
+                                    kind: "Ident",
+                                    name: "url",
+                                    raw: "url",
+                                    span: Span(
+                                      start: 8805,
+                                      end: 8808,
+                                    ),
+                                  ),
+                                  isRaw: true,
+                                  span: Span(
+                                    start: 8805,
+                                    end: 8809,
+                                  ),
+                                )),
+                                Ident(Ident(
+                                  kind: "Ident",
+                                  name: "x",
+                                  raw: "x",
+                                  span: Span(
+                                    start: 8809,
+                                    end: 8810,
+                                  ),
+                                )),
+                                RParen(RParen(
+                                  kind: "RParen",
+                                  span: Span(
+                                    start: 8810,
+                                    end: 8811,
+                                  ),
+                                )),
+                              ],
+                              important: None,
+                              lessPropertyMerge: None,
+                              span: Span(
+                                start: 8798,
+                                end: 8811,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 8798,
+                            end: 8811,
+                          ),
+                        ),
+                        span: Span(
+                          start: 8792,
+                          end: 8811,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 8767,
+                      end: 8811,
+                    ),
+                  ),
+                  span: Span(
+                    start: 8761,
+                    end: 8811,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8761,
+                end: 8811,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8761,
+            end: 8811,
+          ),
+        ),
+        span: Span(
+          start: 8750,
+          end: 8811,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 8816,
+          end: 8818,
+        ),
+      )),
+      span: Span(
+        start: 8739,
+        end: 8818,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8820,
+          end: 8829,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 8830,
+            end: 8834,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                StyleCondition(
+                  type: "StyleCondition",
+                  conditions: [
+                    StyleConditionNot(
+                      type: "StyleConditionNot",
+                      keyword: Ident(
+                        type: "Ident",
+                        name: "not",
+                        raw: "not",
+                        span: Span(
+                          start: 8842,
+                          end: 8845,
+                        ),
+                      ),
+                      styleInParens: StyleCondition(
+                        type: "StyleCondition",
+                        conditions: [
+                          Declaration(
+                            type: "Declaration",
+                            name: Ident(
+                              type: "Ident",
+                              name: "--foo",
+                              raw: "--foo",
+                              span: Span(
+                                start: 8848,
+                                end: 8853,
+                              ),
+                            ),
+                            value: [
+                              Ident(Ident(
+                                kind: "Ident",
+                                name: "calc",
+                                raw: "calc",
+                                span: Span(
+                                  start: 8855,
+                                  end: 8859,
+                                ),
+                              )),
+                              LParen(LParen(
+                                kind: "LParen",
+                                span: Span(
+                                  start: 8859,
+                                  end: 8860,
+                                ),
+                              )),
+                              Dimension(Dimension(
+                                kind: "Dimension",
+                                value: Number(
+                                  kind: "Number",
+                                  raw: "10",
+                                  span: Span(
+                                    start: 8860,
+                                    end: 8862,
+                                  ),
+                                ),
+                                unit: Ident(
+                                  kind: "Ident",
+                                  name: "px",
+                                  raw: "px",
+                                  span: Span(
+                                    start: 8862,
+                                    end: 8864,
+                                  ),
+                                ),
+                                span: Span(
+                                  start: 8860,
+                                  end: 8864,
+                                ),
+                              )),
+                              Plus(Plus(
+                                kind: "Plus",
+                                span: Span(
+                                  start: 8865,
+                                  end: 8866,
+                                ),
+                              )),
+                              Dimension(Dimension(
+                                kind: "Dimension",
+                                value: Number(
+                                  kind: "Number",
+                                  raw: "2",
+                                  span: Span(
+                                    start: 8867,
+                                    end: 8868,
+                                  ),
+                                ),
+                                unit: Ident(
+                                  kind: "Ident",
+                                  name: "em",
+                                  raw: "em",
+                                  span: Span(
+                                    start: 8868,
+                                    end: 8870,
+                                  ),
+                                ),
+                                span: Span(
+                                  start: 8867,
+                                  end: 8870,
+                                ),
+                              )),
+                              RParen(RParen(
+                                kind: "RParen",
+                                span: Span(
+                                  start: 8870,
+                                  end: 8871,
+                                ),
+                              )),
+                            ],
+                            important: None,
+                            lessPropertyMerge: None,
+                            span: Span(
+                              start: 8848,
+                              end: 8871,
+                            ),
+                          ),
+                          StyleConditionAnd(
+                            type: "StyleConditionAnd",
+                            keyword: Ident(
+                              type: "Ident",
+                              name: "and",
+                              raw: "and",
+                              span: Span(
+                                start: 8873,
+                                end: 8876,
+                              ),
+                            ),
+                            styleInParens: StyleCondition(
+                              type: "StyleCondition",
+                              conditions: [
+                                Declaration(
+                                  type: "Declaration",
+                                  name: Ident(
+                                    type: "Ident",
+                                    name: "--foo",
+                                    raw: "--foo",
+                                    span: Span(
+                                      start: 8879,
+                                      end: 8884,
+                                    ),
+                                  ),
+                                  value: [
+                                    UrlPrefix(UrlPrefix(
+                                      kind: "UrlPrefix",
+                                      ident: Ident(
+                                        kind: "Ident",
+                                        name: "url",
+                                        raw: "url",
+                                        span: Span(
+                                          start: 8886,
+                                          end: 8889,
+                                        ),
+                                      ),
+                                      isRaw: true,
+                                      span: Span(
+                                        start: 8886,
+                                        end: 8890,
+                                      ),
+                                    )),
+                                    Ident(Ident(
+                                      kind: "Ident",
+                                      name: "x",
+                                      raw: "x",
+                                      span: Span(
+                                        start: 8890,
+                                        end: 8891,
+                                      ),
+                                    )),
+                                    RParen(RParen(
+                                      kind: "RParen",
+                                      span: Span(
+                                        start: 8891,
+                                        end: 8892,
+                                      ),
+                                    )),
+                                  ],
+                                  important: None,
+                                  lessPropertyMerge: None,
+                                  span: Span(
+                                    start: 8879,
+                                    end: 8892,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 8879,
+                                end: 8892,
+                              ),
+                            ),
+                            span: Span(
+                              start: 8873,
+                              end: 8892,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 8848,
+                          end: 8892,
+                        ),
+                      ),
+                      span: Span(
+                        start: 8842,
+                        end: 8892,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 8842,
+                    end: 8892,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8842,
+                end: 8892,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 8898,
+                  end: 8900,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 8902,
+                        end: 8905,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        StyleCondition(
+                          type: "StyleCondition",
+                          conditions: [
+                            StyleConditionNot(
+                              type: "StyleConditionNot",
+                              keyword: Ident(
+                                type: "Ident",
+                                name: "not",
+                                raw: "not",
+                                span: Span(
+                                  start: 8913,
+                                  end: 8916,
+                                ),
+                              ),
+                              styleInParens: StyleCondition(
+                                type: "StyleCondition",
+                                conditions: [
+                                  Declaration(
+                                    type: "Declaration",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "--foo",
+                                      raw: "--foo",
+                                      span: Span(
+                                        start: 8919,
+                                        end: 8924,
+                                      ),
+                                    ),
+                                    value: [
+                                      Ident(Ident(
+                                        kind: "Ident",
+                                        name: "calc",
+                                        raw: "calc",
+                                        span: Span(
+                                          start: 8926,
+                                          end: 8930,
+                                        ),
+                                      )),
+                                      LParen(LParen(
+                                        kind: "LParen",
+                                        span: Span(
+                                          start: 8930,
+                                          end: 8931,
+                                        ),
+                                      )),
+                                      Dimension(Dimension(
+                                        kind: "Dimension",
+                                        value: Number(
+                                          kind: "Number",
+                                          raw: "10",
+                                          span: Span(
+                                            start: 8931,
+                                            end: 8933,
+                                          ),
+                                        ),
+                                        unit: Ident(
+                                          kind: "Ident",
+                                          name: "px",
+                                          raw: "px",
+                                          span: Span(
+                                            start: 8933,
+                                            end: 8935,
+                                          ),
+                                        ),
+                                        span: Span(
+                                          start: 8931,
+                                          end: 8935,
+                                        ),
+                                      )),
+                                      Plus(Plus(
+                                        kind: "Plus",
+                                        span: Span(
+                                          start: 8936,
+                                          end: 8937,
+                                        ),
+                                      )),
+                                      Dimension(Dimension(
+                                        kind: "Dimension",
+                                        value: Number(
+                                          kind: "Number",
+                                          raw: "2",
+                                          span: Span(
+                                            start: 8938,
+                                            end: 8939,
+                                          ),
+                                        ),
+                                        unit: Ident(
+                                          kind: "Ident",
+                                          name: "em",
+                                          raw: "em",
+                                          span: Span(
+                                            start: 8939,
+                                            end: 8941,
+                                          ),
+                                        ),
+                                        span: Span(
+                                          start: 8938,
+                                          end: 8941,
+                                        ),
+                                      )),
+                                      RParen(RParen(
+                                        kind: "RParen",
+                                        span: Span(
+                                          start: 8941,
+                                          end: 8942,
+                                        ),
+                                      )),
+                                    ],
+                                    important: None,
+                                    lessPropertyMerge: None,
+                                    span: Span(
+                                      start: 8919,
+                                      end: 8942,
+                                    ),
+                                  ),
+                                  StyleConditionAnd(
+                                    type: "StyleConditionAnd",
+                                    keyword: Ident(
+                                      type: "Ident",
+                                      name: "and",
+                                      raw: "and",
+                                      span: Span(
+                                        start: 8944,
+                                        end: 8947,
+                                      ),
+                                    ),
+                                    styleInParens: StyleCondition(
+                                      type: "StyleCondition",
+                                      conditions: [
+                                        Declaration(
+                                          type: "Declaration",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "--foo",
+                                            raw: "--foo",
+                                            span: Span(
+                                              start: 8950,
+                                              end: 8955,
+                                            ),
+                                          ),
+                                          value: [
+                                            UrlPrefix(UrlPrefix(
+                                              kind: "UrlPrefix",
+                                              ident: Ident(
+                                                kind: "Ident",
+                                                name: "url",
+                                                raw: "url",
+                                                span: Span(
+                                                  start: 8957,
+                                                  end: 8960,
+                                                ),
+                                              ),
+                                              isRaw: true,
+                                              span: Span(
+                                                start: 8957,
+                                                end: 8961,
+                                              ),
+                                            )),
+                                            Ident(Ident(
+                                              kind: "Ident",
+                                              name: "x",
+                                              raw: "x",
+                                              span: Span(
+                                                start: 8961,
+                                                end: 8962,
+                                              ),
+                                            )),
+                                            RParen(RParen(
+                                              kind: "RParen",
+                                              span: Span(
+                                                start: 8962,
+                                                end: 8963,
+                                              ),
+                                            )),
+                                          ],
+                                          important: None,
+                                          lessPropertyMerge: None,
+                                          span: Span(
+                                            start: 8950,
+                                            end: 8963,
+                                          ),
+                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 8950,
+                                        end: 8963,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 8944,
+                                      end: 8963,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 8919,
+                                  end: 8963,
+                                ),
+                              ),
+                              span: Span(
+                                start: 8913,
+                                end: 8963,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 8913,
+                            end: 8963,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8913,
+                        end: 8963,
+                      ),
+                    ),
+                    span: Span(
+                      start: 8902,
+                      end: 8963,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 8902,
+                  end: 8963,
+                ),
+              ),
+              span: Span(
+                start: 8898,
+                end: 8963,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 8842,
+            end: 8963,
+          ),
+        ),
+        span: Span(
+          start: 8830,
+          end: 8963,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 8972,
+                                end: 8976,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 8972,
+                              end: 8976,
+                            ),
+                          ),
+                          span: Span(
+                            start: 8972,
+                            end: 8976,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8972,
+                        end: 8976,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 8972,
+                    end: 8976,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8972,
+                end: 8976,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 8979,
+                      end: 8986,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 8987,
+                        end: 8991,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 8979,
+                    end: 8991,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8977,
+                end: 8994,
+              ),
+            ),
+            span: Span(
+              start: 8972,
+              end: 8994,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8970,
+          end: 8996,
+        ),
+      )),
+      span: Span(
+        start: 8819,
+        end: 8996,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 8998,
+          end: 9007,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9008,
+            end: 9012,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            StyleCondition(
+              type: "StyleCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--foo",
+                    raw: "--foo",
+                    span: Span(
+                      start: 9020,
+                      end: 9025,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 9027,
+                        end: 9030,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9020,
+                    end: 9030,
+                  ),
+                ),
+                StyleConditionOr(
+                  type: "StyleConditionOr",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "or",
+                    raw: "or",
+                    span: Span(
+                      start: 9032,
+                      end: 9034,
+                    ),
+                  ),
+                  styleInParens: Declaration(
+                    type: "Declaration",
+                    name: Ident(
+                      type: "Ident",
+                      name: "--bar",
+                      raw: "--bar",
+                      span: Span(
+                        start: 9036,
+                        end: 9041,
+                      ),
+                    ),
+                    value: [
+                      Dimension(Dimension(
+                        kind: "Dimension",
+                        value: Number(
+                          kind: "Number",
+                          raw: "10",
+                          span: Span(
+                            start: 9043,
+                            end: 9045,
+                          ),
+                        ),
+                        unit: Ident(
+                          kind: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 9045,
+                            end: 9047,
+                          ),
+                        ),
+                        span: Span(
+                          start: 9043,
+                          end: 9047,
+                        ),
+                      )),
+                    ],
+                    important: None,
+                    lessPropertyMerge: None,
+                    span: Span(
+                      start: 9036,
+                      end: 9047,
+                    ),
+                  ),
+                  span: Span(
+                    start: 9032,
+                    end: 9047,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9020,
+                end: 9047,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9020,
+            end: 9047,
+          ),
+        ),
+        span: Span(
+          start: 9008,
+          end: 9047,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9050,
+          end: 9052,
+        ),
+      )),
+      span: Span(
+        start: 8997,
+        end: 9052,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9054,
+          end: 9063,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9064,
+            end: 9068,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                StyleCondition(
+                  type: "StyleCondition",
+                  conditions: [
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "--foo",
+                        raw: "--foo",
+                        span: Span(
+                          start: 9077,
+                          end: 9082,
+                        ),
+                      ),
+                      value: [
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 9084,
+                            end: 9087,
+                          ),
+                        )),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 9077,
+                        end: 9087,
+                      ),
+                    ),
+                    StyleConditionOr(
+                      type: "StyleConditionOr",
+                      keyword: Ident(
+                        type: "Ident",
+                        name: "or",
+                        raw: "or",
+                        span: Span(
+                          start: 9089,
+                          end: 9091,
+                        ),
+                      ),
+                      styleInParens: Declaration(
+                        type: "Declaration",
+                        name: Ident(
+                          type: "Ident",
+                          name: "--bar",
+                          raw: "--bar",
+                          span: Span(
+                            start: 9093,
+                            end: 9098,
+                          ),
+                        ),
+                        value: [
+                          Dimension(Dimension(
+                            kind: "Dimension",
+                            value: Number(
+                              kind: "Number",
+                              raw: "10",
+                              span: Span(
+                                start: 9100,
+                                end: 9102,
+                              ),
+                            ),
+                            unit: Ident(
+                              kind: "Ident",
+                              name: "px",
+                              raw: "px",
+                              span: Span(
+                                start: 9102,
+                                end: 9104,
+                              ),
+                            ),
+                            span: Span(
+                              start: 9100,
+                              end: 9104,
+                            ),
+                          )),
+                        ],
+                        important: None,
+                        lessPropertyMerge: None,
+                        span: Span(
+                          start: 9093,
+                          end: 9104,
+                        ),
+                      ),
+                      span: Span(
+                        start: 9089,
+                        end: 9104,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9077,
+                    end: 9104,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9077,
+                end: 9104,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 9108,
+                  end: 9110,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 9112,
+                        end: 9115,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        StyleCondition(
+                          type: "StyleCondition",
+                          conditions: [
+                            Declaration(
+                              type: "Declaration",
+                              name: Ident(
+                                type: "Ident",
+                                name: "--foo",
+                                raw: "--foo",
+                                span: Span(
+                                  start: 9124,
+                                  end: 9129,
+                                ),
+                              ),
+                              value: [
+                                Ident(Ident(
+                                  kind: "Ident",
+                                  name: "bar",
+                                  raw: "bar",
+                                  span: Span(
+                                    start: 9131,
+                                    end: 9134,
+                                  ),
+                                )),
+                              ],
+                              important: None,
+                              lessPropertyMerge: None,
+                              span: Span(
+                                start: 9124,
+                                end: 9134,
+                              ),
+                            ),
+                            StyleConditionOr(
+                              type: "StyleConditionOr",
+                              keyword: Ident(
+                                type: "Ident",
+                                name: "or",
+                                raw: "or",
+                                span: Span(
+                                  start: 9136,
+                                  end: 9138,
+                                ),
+                              ),
+                              styleInParens: Declaration(
+                                type: "Declaration",
+                                name: Ident(
+                                  type: "Ident",
+                                  name: "--bar",
+                                  raw: "--bar",
+                                  span: Span(
+                                    start: 9140,
+                                    end: 9145,
+                                  ),
+                                ),
+                                value: [
+                                  Dimension(Dimension(
+                                    kind: "Dimension",
+                                    value: Number(
+                                      kind: "Number",
+                                      raw: "10",
+                                      span: Span(
+                                        start: 9147,
+                                        end: 9149,
+                                      ),
+                                    ),
+                                    unit: Ident(
+                                      kind: "Ident",
+                                      name: "px",
+                                      raw: "px",
+                                      span: Span(
+                                        start: 9149,
+                                        end: 9151,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 9147,
+                                      end: 9151,
+                                    ),
+                                  )),
+                                ],
+                                important: None,
+                                lessPropertyMerge: None,
+                                span: Span(
+                                  start: 9140,
+                                  end: 9151,
+                                ),
+                              ),
+                              span: Span(
+                                start: 9136,
+                                end: 9151,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 9124,
+                            end: 9151,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9124,
+                        end: 9151,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9112,
+                      end: 9151,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9112,
+                  end: 9151,
+                ),
+              ),
+              span: Span(
+                start: 9108,
+                end: 9151,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9077,
+            end: 9151,
+          ),
+        ),
+        span: Span(
+          start: 9064,
+          end: 9151,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 9158,
+                                end: 9162,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 9158,
+                              end: 9162,
+                            ),
+                          ),
+                          span: Span(
+                            start: 9158,
+                            end: 9162,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9158,
+                        end: 9162,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9158,
+                    end: 9162,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9158,
+                end: 9162,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 9165,
+                      end: 9172,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 9173,
+                        end: 9177,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9165,
+                    end: 9177,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9163,
+                end: 9180,
+              ),
+            ),
+            span: Span(
+              start: 9158,
+              end: 9180,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9156,
+          end: 9182,
+        ),
+      )),
+      span: Span(
+        start: 9053,
+        end: 9182,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9184,
+          end: 9193,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9194,
+            end: 9198,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--my-prop",
+                raw: "--my-prop",
+                span: Span(
+                  start: 9205,
+                  end: 9214,
+                ),
+              ),
+              value: [],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 9205,
+                end: 9215,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9205,
+            end: 9215,
+          ),
+        ),
+        span: Span(
+          start: 9194,
+          end: 9215,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9217,
+          end: 9219,
+        ),
+      )),
+      span: Span(
+        start: 9183,
+        end: 9219,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9221,
+          end: 9230,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9231,
+            end: 9235,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--my-prop",
+                    raw: "--my-prop",
+                    span: Span(
+                      start: 9243,
+                      end: 9252,
+                    ),
+                  ),
+                  value: [],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9243,
+                    end: 9253,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9243,
+                end: 9253,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 9256,
+                  end: 9258,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 9260,
+                        end: 9263,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--my-prop",
+                            raw: "--my-prop",
+                            span: Span(
+                              start: 9271,
+                              end: 9280,
+                            ),
+                          ),
+                          value: [],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 9271,
+                            end: 9281,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9271,
+                        end: 9281,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9260,
+                      end: 9281,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9260,
+                  end: 9281,
+                ),
+              ),
+              span: Span(
+                start: 9256,
+                end: 9281,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9243,
+            end: 9281,
+          ),
+        ),
+        span: Span(
+          start: 9231,
+          end: 9281,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 9287,
+                                end: 9291,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 9287,
+                              end: 9291,
+                            ),
+                          ),
+                          span: Span(
+                            start: 9287,
+                            end: 9291,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9287,
+                        end: 9291,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9287,
+                    end: 9291,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9287,
+                end: 9291,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 9294,
+                      end: 9301,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 9302,
+                        end: 9306,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9294,
+                    end: 9306,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9292,
+                end: 9309,
+              ),
+            ),
+            span: Span(
+              start: 9287,
+              end: 9309,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9285,
+          end: 9311,
+        ),
+      )),
+      span: Span(
+        start: 9220,
+        end: 9311,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9313,
+          end: 9322,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9323,
+            end: 9327,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--my-prop",
+                raw: "--my-prop",
+                span: Span(
+                  start: 9334,
+                  end: 9343,
+                ),
+              ),
+              value: [],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 9334,
+                end: 9344,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9334,
+            end: 9344,
+          ),
+        ),
+        span: Span(
+          start: 9323,
+          end: 9344,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9347,
+          end: 9349,
+        ),
+      )),
+      span: Span(
+        start: 9312,
+        end: 9349,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9351,
+          end: 9360,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9361,
+            end: 9365,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--my-prop",
+                    raw: "--my-prop",
+                    span: Span(
+                      start: 9373,
+                      end: 9382,
+                    ),
+                  ),
+                  value: [],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9373,
+                    end: 9383,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9373,
+                end: 9383,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 9387,
+                  end: 9389,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 9391,
+                        end: 9394,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--my-prop",
+                            raw: "--my-prop",
+                            span: Span(
+                              start: 9402,
+                              end: 9411,
+                            ),
+                          ),
+                          value: [],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 9402,
+                            end: 9412,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9402,
+                        end: 9412,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9391,
+                      end: 9412,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9391,
+                  end: 9412,
+                ),
+              ),
+              span: Span(
+                start: 9387,
+                end: 9412,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9373,
+            end: 9412,
+          ),
+        ),
+        span: Span(
+          start: 9361,
+          end: 9412,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 9419,
+                                end: 9423,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 9419,
+                              end: 9423,
+                            ),
+                          ),
+                          span: Span(
+                            start: 9419,
+                            end: 9423,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9419,
+                        end: 9423,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9419,
+                    end: 9423,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9419,
+                end: 9423,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 9426,
+                      end: 9433,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 9434,
+                        end: 9438,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9426,
+                    end: 9438,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9424,
+                end: 9441,
+              ),
+            ),
+            span: Span(
+              start: 9419,
+              end: 9441,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9417,
+          end: 9443,
+        ),
+      )),
+      span: Span(
+        start: 9350,
+        end: 9443,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9445,
+          end: 9454,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9455,
+            end: 9459,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--foo",
+                raw: "--foo",
+                span: Span(
+                  start: 9466,
+                  end: 9471,
+                ),
+              ),
+              value: [
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "bar",
+                  raw: "bar",
+                  span: Span(
+                    start: 9473,
+                    end: 9476,
+                  ),
+                )),
+              ],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 9466,
+                end: 9476,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9466,
+            end: 9476,
+          ),
+        ),
+        span: Span(
+          start: 9455,
+          end: 9476,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9479,
+          end: 9481,
+        ),
+      )),
+      span: Span(
+        start: 9444,
+        end: 9481,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9483,
+          end: 9492,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9493,
+            end: 9497,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--foo",
+                    raw: "--foo",
+                    span: Span(
+                      start: 9505,
+                      end: 9510,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 9512,
+                        end: 9515,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9505,
+                    end: 9515,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9505,
+                end: 9515,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 9519,
+                  end: 9521,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 9523,
+                        end: 9526,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--foo",
+                            raw: "--foo",
+                            span: Span(
+                              start: 9534,
+                              end: 9539,
+                            ),
+                          ),
+                          value: [
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 9541,
+                                end: 9544,
+                              ),
+                            )),
+                          ],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 9534,
+                            end: 9544,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9534,
+                        end: 9544,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9523,
+                      end: 9544,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9523,
+                  end: 9544,
+                ),
+              ),
+              span: Span(
+                start: 9519,
+                end: 9544,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9505,
+            end: 9544,
+          ),
+        ),
+        span: Span(
+          start: 9493,
+          end: 9544,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 9551,
+                                end: 9555,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 9551,
+                              end: 9555,
+                            ),
+                          ),
+                          span: Span(
+                            start: 9551,
+                            end: 9555,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9551,
+                        end: 9555,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9551,
+                    end: 9555,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9551,
+                end: 9555,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 9558,
+                      end: 9565,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 9566,
+                        end: 9570,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9558,
+                    end: 9570,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9556,
+                end: 9573,
+              ),
+            ),
+            span: Span(
+              start: 9551,
+              end: 9573,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9549,
+          end: 9575,
+        ),
+      )),
+      span: Span(
+        start: 9482,
+        end: 9575,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9577,
+          end: 9586,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9587,
+            end: 9591,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "--foo",
+                raw: "--foo",
+                span: Span(
+                  start: 9598,
+                  end: 9603,
+                ),
+              ),
+              value: [
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "bar",
+                  raw: "bar",
+                  span: Span(
+                    start: 9605,
+                    end: 9608,
+                  ),
+                )),
+                Exclamation(Exclamation(
+                  kind: "Exclamation",
+                  span: Span(
+                    start: 9609,
+                    end: 9610,
+                  ),
+                )),
+                Ident(Ident(
+                  kind: "Ident",
+                  name: "important",
+                  raw: "important",
+                  span: Span(
+                    start: 9610,
+                    end: 9619,
+                  ),
+                )),
+              ],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 9598,
+                end: 9619,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9598,
+            end: 9619,
+          ),
+        ),
+        span: Span(
+          start: 9587,
+          end: 9619,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9621,
+          end: 9623,
+        ),
+      )),
+      span: Span(
+        start: 9576,
+        end: 9623,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9625,
+          end: 9634,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 9635,
+            end: 9639,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            ContainerCondition(
+              type: "ContainerCondition",
+              conditions: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--foo",
+                    raw: "--foo",
+                    span: Span(
+                      start: 9647,
+                      end: 9652,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 9654,
+                        end: 9657,
+                      ),
+                    )),
+                    Exclamation(Exclamation(
+                      kind: "Exclamation",
+                      span: Span(
+                        start: 9658,
+                        end: 9659,
+                      ),
+                    )),
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "important",
+                      raw: "important",
+                      span: Span(
+                        start: 9659,
+                        end: 9668,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9647,
+                    end: 9668,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9647,
+                end: 9668,
+              ),
+            ),
+            ContainerConditionOr(
+              type: "ContainerConditionOr",
+              keyword: Ident(
+                type: "Ident",
+                name: "or",
+                raw: "or",
+                span: Span(
+                  start: 9671,
+                  end: 9673,
+                ),
+              ),
+              queryInParens: ContainerCondition(
+                type: "ContainerCondition",
+                conditions: [
+                  ContainerConditionNot(
+                    type: "ContainerConditionNot",
+                    keyword: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 9675,
+                        end: 9678,
+                      ),
+                    ),
+                    queryInParens: ContainerCondition(
+                      type: "ContainerCondition",
+                      conditions: [
+                        Declaration(
+                          type: "Declaration",
+                          name: Ident(
+                            type: "Ident",
+                            name: "--foo",
+                            raw: "--foo",
+                            span: Span(
+                              start: 9686,
+                              end: 9691,
+                            ),
+                          ),
+                          value: [
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 9693,
+                                end: 9696,
+                              ),
+                            )),
+                            Exclamation(Exclamation(
+                              kind: "Exclamation",
+                              span: Span(
+                                start: 9697,
+                                end: 9698,
+                              ),
+                            )),
+                            Ident(Ident(
+                              kind: "Ident",
+                              name: "important",
+                              raw: "important",
+                              span: Span(
+                                start: 9698,
+                                end: 9707,
+                              ),
+                            )),
+                          ],
+                          important: None,
+                          lessPropertyMerge: None,
+                          span: Span(
+                            start: 9686,
+                            end: 9707,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9686,
+                        end: 9707,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9675,
+                      end: 9707,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9675,
+                  end: 9707,
+                ),
+              ),
+              span: Span(
+                start: 9671,
+                end: 9707,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9647,
+            end: 9707,
+          ),
+        ),
+        span: Span(
+          start: 9635,
+          end: 9707,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "main",
+                              raw: "main",
+                              span: Span(
+                                start: 9713,
+                                end: 9717,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 9713,
+                              end: 9717,
+                            ),
+                          ),
+                          span: Span(
+                            start: 9713,
+                            end: 9717,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 9713,
+                        end: 9717,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9713,
+                    end: 9717,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9713,
+                end: 9717,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "--match",
+                    raw: "--match",
+                    span: Span(
+                      start: 9720,
+                      end: 9727,
+                    ),
+                  ),
+                  value: [
+                    Ident(Ident(
+                      kind: "Ident",
+                      name: "true",
+                      raw: "true",
+                      span: Span(
+                        start: 9728,
+                        end: 9732,
+                      ),
+                    )),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 9720,
+                    end: 9732,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 9718,
+                end: 9735,
+              ),
+            ),
+            span: Span(
+              start: 9713,
+              end: 9735,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9711,
+          end: 9737,
+        ),
+      )),
+      span: Span(
+        start: 9624,
+        end: 9737,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 10008,
+    end: 9738,
   ),
 )

@@ -28,3 +28,10 @@ impl<T> LastOfNonEmpty<T> for Vec<T> {
         unsafe { self.get_unchecked(len - 1) }
     }
 }
+
+/// `PairedToken` is used for tracking when parsing with raw tokens.
+pub(crate) enum PairedToken {
+    Paren,
+    Bracket,
+    Brace,
+}

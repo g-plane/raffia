@@ -277,7 +277,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleQuery<'s> {
         if let Ok(condition) = input.try_parse(|parser| parser.parse()) {
             Ok(StyleQuery::Condition(condition))
         } else {
-            input.parse().map(StyleQuery::Feature)
+            let feature = input.parse().map(StyleQuery::Feature);
+            eat!(input, Semicolon);
+            feature
         }
     }
 }

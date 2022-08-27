@@ -115,7 +115,7 @@
 @container foo not (width) {}
 @container  foo not (width) {}
 @container  foo  not (width) {}
-/* @container name style(--my-prop: foo) {}
+@container name style(--my-prop: foo) {}
 @container name (style(--my-prop: foo)) or (not (style(--my-prop: foo))) { main { --match:true; } }
 @container name style(--my-prop: foo - bar ()) {}
 @container name (style(--my-prop: foo - bar ())) or (not (style(--my-prop: foo - bar ()))) { main { --match:true; } }
@@ -129,9 +129,5 @@
 @container name (style(--my-prop: )) or (not (style(--my-prop: ))) { main { --match:true; } }
 @container name style(--foo: bar;) {}
 @container name (style(--foo: bar;)) or (not (style(--foo: bar;))) { main { --match:true; } }
-@container name style(--foo) {}
-@container name (style(--foo)) or (not (style(--foo))) { main { --match:true; } }
-@container name style(style(--foo: bar)) {}
-@container name (style(style(--foo: bar))) or (not (style(style(--foo: bar)))) { main { --match:true; } }
 @container name style(--foo: bar !important) {}
-@container name (style(--foo: bar !important)) or (not (style(--foo: bar !important))) { main { --match:true; } } */
+@container name (style(--foo: bar !important)) or (not (style(--foo: bar !important))) { main { --match:true; } }
