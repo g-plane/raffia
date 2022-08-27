@@ -1455,7 +1455,7 @@ pub struct UnquotedFontFamilyName<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Url<'s> {
     pub name: Ident<'s>,
-    pub value: UrlValue<'s>,
+    pub value: Option<UrlValue<'s>>,
     pub modifiers: Vec<UrlModifier<'s>>,
     pub span: Span,
 }

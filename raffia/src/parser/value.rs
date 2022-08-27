@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, Token},
     util::LastOfNonEmpty,
@@ -86,9 +86,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Ident(..) => {
                 let ident = self.parse::<InterpolableIdent>()?;
                 match self.tokenizer.peek()? {
-                    Token::LParen(token) if token.span.start == ident.span().end => {
-                        self.parse_function(ident).map(ComponentValue::Function)
-                    }
+                    Token::LParen(token) if token.span.start == ident.span().end => match ident {
+                        InterpolableIdent::Literal(ident)
+                            if ident.name.eq_ignore_ascii_case("src") =>
+                        {
+                            self.parse_src_url(ident).map(ComponentValue::Url)
+                        }
+                        ident => self.parse_function(ident).map(ComponentValue::Function),
+                    },
                     _ => Ok(ComponentValue::InterpolableIdent(ident)),
                 }
             }
@@ -216,6 +221,40 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(Ratio {
             numerator,
             denominator,
+            span,
+        })
+    }
+
+    fn parse_src_url(&mut self, name: Ident<'s>) -> PResult<Url<'s>> {
+        expect_without_ws_or_comments!(self, LParen);
+        let value = match self.tokenizer.peek()? {
+            Token::Str(..) | Token::StrTemplate(..) => {
+                Some(UrlValue::Str(self.parse::<InterpolableStr>()?))
+            }
+            _ => None,
+        };
+        let modifiers = match self.tokenizer.peek()? {
+            Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
+                let mut modifiers = Vec::with_capacity(1);
+                loop {
+                    modifiers.push(self.parse()?);
+                    if let Token::RParen(..) = self.tokenizer.peek()? {
+                        break;
+                    }
+                }
+                modifiers
+            }
+            _ => vec![],
+        };
+        let r_paren = expect!(self, RParen);
+        let span = Span {
+            start: name.span.start,
+            end: r_paren.span.end,
+        };
+        Ok(Url {
+            name: name.into(),
+            value,
+            modifiers,
             span,
         })
     }
@@ -458,7 +497,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 };
                 Ok(Url {
                     name: prefix.ident.into(),
-                    value: UrlValue::Raw(value),
+                    value: Some(UrlValue::Raw(value)),
                     modifiers: vec![],
                     span,
                 })
@@ -470,7 +509,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 };
                 Ok(Url {
                     name: prefix.ident.into(),
-                    value: UrlValue::SassInterpolated(value),
+                    value: Some(UrlValue::SassInterpolated(value)),
                     modifiers: vec![],
                     span,
                 })
@@ -502,7 +541,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             };
             Ok(Url {
                 name: prefix.ident.into(),
-                value: UrlValue::Str(value),
+                value: Some(UrlValue::Str(value)),
                 modifiers,
                 span,
             })
