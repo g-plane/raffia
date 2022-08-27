@@ -1456,7 +1456,16 @@ pub struct UnquotedFontFamilyName<'s> {
 pub struct Url<'s> {
     pub name: Ident<'s>,
     pub value: UrlValue<'s>,
+    pub modifiers: Vec<UrlModifier<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum UrlModifier<'s> {
+    Ident(InterpolableIdent<'s>),
+    Function(Function<'s>),
 }
 
 /// `)` is excluded

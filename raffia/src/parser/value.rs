@@ -459,6 +459,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 Ok(Url {
                     name: prefix.ident.into(),
                     value: UrlValue::Raw(value),
+                    modifiers: vec![],
                     span,
                 })
             } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
@@ -470,6 +471,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 Ok(Url {
                     name: prefix.ident.into(),
                     value: UrlValue::SassInterpolated(value),
+                    modifiers: vec![],
                     span,
                 })
             } else {
@@ -480,6 +482,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             }
         } else {
             let value = input.parse()?;
+            let modifiers = match input.tokenizer.peek()? {
+                Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
+                    let mut modifiers = Vec::with_capacity(1);
+                    loop {
+                        modifiers.push(input.parse()?);
+                        if let Token::RParen(..) = input.tokenizer.peek()? {
+                            break;
+                        }
+                    }
+                    modifiers
+                }
+                _ => vec![],
+            };
             let r_paren = expect!(input, RParen);
             let span = Span {
                 start: prefix.span.start,
@@ -488,8 +503,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             Ok(Url {
                 name: prefix.ident.into(),
                 value: UrlValue::Str(value),
+                modifiers,
                 span,
             })
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlModifier<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let ident = input.parse::<InterpolableIdent>()?;
+        match input.tokenizer.peek()? {
+            Token::LParen(l_paren) if ident.span().end == l_paren.span.start => {
+                input.parse_function(ident).map(UrlModifier::Function)
+            }
+            _ => Ok(UrlModifier::Ident(ident)),
         }
     }
 }
