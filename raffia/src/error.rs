@@ -1,15 +1,20 @@
 //! Error management.
 
 use crate::pos::Span;
+#[cfg(feature = "serialize")]
+use serde::Serialize;
 use std::fmt::Display;
 
 #[derive(Clone, Debug)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(rename_all = "camelCase"))]
 pub struct Error {
     pub kind: ErrorKind,
     pub span: Span,
 }
 
 #[derive(Clone, Debug)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum ErrorKind {
     Unexpected(
         /* expected */ &'static str,
