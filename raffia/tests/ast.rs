@@ -1,3 +1,8 @@
+use codespan_reporting::{
+    diagnostic::{Diagnostic, Label},
+    files::SimpleFile,
+    term::{self, termcolor::Buffer},
+};
 use insta::{assert_ron_snapshot, glob, Settings};
 use raffia::{ast::Stylesheet, Parser, Syntax};
 use std::fs;
@@ -14,7 +19,19 @@ fn ast_snapshot() {
             _ => unreachable!("unknown file extension"),
         };
         let mut parser = Parser::new(&code, syntax);
-        let ast = parser.parse::<Stylesheet>().unwrap();
+        let ast = match parser.parse::<Stylesheet>() {
+            Ok(ast) => ast,
+            Err(error) => {
+                let file = SimpleFile::new(path.file_name().unwrap().to_str().unwrap(), &code);
+                let diagnostic = Diagnostic::error()
+                    .with_message(error.kind.to_string())
+                    .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
+                let mut buffer = Buffer::ansi();
+                let config = term::Config::default();
+                term::emit(&mut buffer, &config, &file, &diagnostic).unwrap();
+                panic!("\n{}", String::from_utf8(buffer.into_inner()).unwrap());
+            }
+        };
 
         let mut settings = Settings::clone_current();
         settings.set_snapshot_path(path.parent().unwrap());
