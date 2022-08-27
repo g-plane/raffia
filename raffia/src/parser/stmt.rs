@@ -226,9 +226,19 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match self.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if !is_top_level {
-                        if let Ok(declaration) = self.try_parse(|parser| parser.parse()) {
-                            statements.push(Statement::Declaration(declaration));
-                            continue;
+                        match self.try_parse(|parser| parser.parse()) {
+                            Ok(declaration) => {
+                                statements.push(Statement::Declaration(declaration));
+                                continue;
+                            }
+                            Err(e) => {
+                                if let Ok(rule) = self.parse() {
+                                    statements.push(Statement::QualifiedRule(rule));
+                                } else {
+                                    // using the error from parsing declaration for better error message
+                                    return Err(e);
+                                }
+                            }
                         }
                     }
                     statements.push(Statement::QualifiedRule(self.parse()?));
