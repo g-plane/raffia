@@ -1,0 +1,398 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 8,
+                end: 12,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [],
+                span: Span(
+                  start: 15,
+                  end: 17,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 17,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 21,
+                end: 25,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [],
+                span: Span(
+                  start: 28,
+                  end: 31,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 21,
+              end: 31,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 35,
+                end: 39,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "row1-start",
+                    raw: "row1-start",
+                    span: Span(
+                      start: 43,
+                      end: 53,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 42,
+                  end: 54,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 35,
+              end: 54,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 58,
+                end: 62,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "row1-start-with-spaces-around",
+                    raw: "row1-start-with-spaces-around",
+                    span: Span(
+                      start: 69,
+                      end: 98,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 65,
+                  end: 102,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 58,
+              end: 102,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 106,
+                end: 110,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "red",
+                    raw: "red",
+                    span: Span(
+                      start: 114,
+                      end: 117,
+                    ),
+                  ),
+                  HexColor(
+                    type: "HexColor",
+                    value: "fff",
+                    raw: "fff",
+                    span: Span(
+                      start: 118,
+                      end: 122,
+                    ),
+                  ),
+                  Length(
+                    type: "Length",
+                    value: Number(
+                      type: "Number",
+                      value: 12.0,
+                      raw: "12",
+                      span: Span(
+                        start: 123,
+                        end: 125,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 125,
+                        end: 127,
+                      ),
+                    ),
+                    span: Span(
+                      start: 123,
+                      end: 127,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 113,
+                  end: 128,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 106,
+              end: 128,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 132,
+                end: 136,
+              ),
+            ),
+            value: [
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "row1-start",
+                    raw: "row1-start",
+                    span: Span(
+                      start: 139,
+                      end: 149,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 138,
+                  end: 150,
+                ),
+              ),
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 25.0,
+                  raw: "25",
+                  span: Span(
+                    start: 151,
+                    end: 153,
+                  ),
+                ),
+                span: Span(
+                  start: 151,
+                  end: 154,
+                ),
+              ),
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "row1-end",
+                    raw: "row1-end",
+                    span: Span(
+                      start: 156,
+                      end: 164,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "row2-start",
+                    raw: "row2-start",
+                    span: Span(
+                      start: 165,
+                      end: 175,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 155,
+                  end: 176,
+                ),
+              ),
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 25.0,
+                  raw: "25",
+                  span: Span(
+                    start: 177,
+                    end: 179,
+                  ),
+                ),
+                span: Span(
+                  start: 177,
+                  end: 180,
+                ),
+              ),
+              BracketValues(
+                type: "BracketValues",
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "row2-end",
+                    raw: "row2-end",
+                    span: Span(
+                      start: 182,
+                      end: 190,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 181,
+                  end: 191,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 132,
+              end: 191,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 194,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 194,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 195,
+  ),
+)
