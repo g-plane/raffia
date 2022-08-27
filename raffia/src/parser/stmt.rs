@@ -225,15 +225,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             let mut is_block_element = false;
             match self.tokenizer.peek()? {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
-                    if !is_top_level {
+                    if is_top_level {
+                        statements.push(Statement::QualifiedRule(self.parse()?));
+                        is_block_element = true;
+                    } else {
                         match self.try_parse(|parser| parser.parse()) {
                             Ok(declaration) => {
                                 statements.push(Statement::Declaration(declaration));
-                                continue;
                             }
                             Err(e) => {
                                 if let Ok(rule) = self.parse() {
                                     statements.push(Statement::QualifiedRule(rule));
+                                    is_block_element = true;
                                 } else {
                                     // using the error from parsing declaration for better error message
                                     return Err(e);
@@ -241,8 +244,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             }
                         }
                     }
-                    statements.push(Statement::QualifiedRule(self.parse()?));
-                    is_block_element = true;
                 }
                 Token::Dot(..)
                 | Token::Hash(..)
