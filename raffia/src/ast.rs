@@ -952,6 +952,7 @@ pub enum PseudoClassSelectorArg<'s> {
     Number(Number<'s>),
     RelativeSelectorList(RelativeSelectorList<'s>),
     SelectorList(SelectorList<'s>),
+    TokenSeq(TokenSeq<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -969,6 +970,7 @@ pub struct PseudoElementSelector<'s> {
 pub enum PseudoElementSelectorArg<'s> {
     CompoundSelector(CompoundSelector<'s>),
     Ident(InterpolableIdent<'s>),
+    TokenSeq(TokenSeq<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

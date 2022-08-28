@@ -76,7 +76,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                     }
                                     _ => {}
                                 }
-                                values.push(ComponentValue::Token(parser.tokenizer.bump()?))
+                                values.push(ComponentValue::Token(parser.tokenizer.bump()?));
                             }
                         }
                     }

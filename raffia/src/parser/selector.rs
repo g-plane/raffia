@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, token, Token},
-    util::LastOfNonEmpty,
+    util::{LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
 use beef::Cow;
@@ -851,7 +851,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             .parse()
                             .map(PseudoClassSelectorArg::CompoundSelector)?
                     }
-                    _ => todo!(),
+                    _ => input
+                        .parse_pseudo_arg_tokens(l_paren.span.end)
+                        .map(PseudoClassSelectorArg::TokenSeq)?,
                 };
 
                 end = expect!(input, RParen).span.end;
@@ -902,7 +904,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                             .parse()
                             .map(PseudoElementSelectorArg::CompoundSelector)?
                     }
-                    _ => todo!(),
+                    _ => input
+                        .parse_pseudo_arg_tokens(l_paren.span.end)
+                        .map(PseudoElementSelectorArg::TokenSeq)?,
                 };
 
                 end = expect!(input, RParen).span.end;
@@ -1159,6 +1163,55 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             _ => Ok(None),
         }
+    }
+
+    fn parse_pseudo_arg_tokens(&mut self, start: usize) -> PResult<TokenSeq<'s>> {
+        let mut tokens = Vec::with_capacity(1);
+        let mut pairs = Vec::with_capacity(1);
+        loop {
+            match self.tokenizer.peek()? {
+                Token::LParen(..) | Token::UrlPrefix(..) => {
+                    pairs.push(PairedToken::Paren);
+                }
+                Token::RParen(..) => {
+                    if let Some(PairedToken::Paren) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                Token::LBracket(..) => {
+                    pairs.push(PairedToken::Bracket);
+                }
+                Token::RBracket(..) => {
+                    if let Some(PairedToken::Bracket) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                Token::LBrace(..) => {
+                    pairs.push(PairedToken::Brace);
+                }
+                Token::RBrace(..) => {
+                    if let Some(PairedToken::Brace) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                _ => {}
+            }
+            tokens.push(self.tokenizer.bump()?);
+        }
+        let span = Span {
+            start: tokens
+                .first()
+                .map(|token| token.span().start)
+                .unwrap_or(start),
+            end: tokens
+                .last()
+                .map(|token| token.span().end)
+                .unwrap_or_else(|| self.tokenizer.current_offset()),
+        };
+        Ok(TokenSeq { tokens, span })
     }
 }
 
