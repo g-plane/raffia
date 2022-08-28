@@ -1,0 +1,194 @@
+@media screen, (orientation) {}
+@media screen, not (orientation) {}
+@media ((orientation)), not all and ((orientation)) {}
+@media (not (orientation)), not all and (not (orientation)) {}
+@media screen, all and (orientation) {}
+@media screen, not all and (orientation) {}
+@media screen, only all and (orientation) {}
+@media screen, (orientation) and (orientation) {}
+@media screen, (orientation) or (orientation) {}
+@media screen, (orientation) or ((orientation) and ((orientation) or (orientation) or (not (orientation)))) {}
+@media ((orientation) and (orientation)), not all and ((orientation) and (orientation)) {}
+@media ((orientation) or (orientation)), not all and ((orientation) or (orientation)) {}
+@media ((orientation) or ((orientation) and ((orientation) or (orientation) or (not (orientation))))), not all and ((orientation) or ((orientation) and ((orientation) or (orientation) or (not (orientation))))) {}
+@media screen, all and (orientation) and (orientation) {}
+
+@media (width : 0), not all and (width : 0) {}
+@media (width : 0px), not all and (width : 0px) {}
+@media (width : -0), not all and (width : -0) {}
+@media (width : -0cm), not all and (width : -0cm) {}
+@media (width : 1px), not all and (width : 1px) {}
+@media (width : 0.001mm), not all and (width : 0.001mm) {}
+@media screen, (width : -1px) {}
+
+@media (width > 0), not all and (width > 0) {}
+@media (width > 0px), not all and (width > 0px) {}
+@media (width > -0), not all and (width > -0) {}
+@media (width > -0cm), not all and (width > -0cm) {}
+@media (width > 1px), not all and (width > 1px) {}
+@media (width > 0.001mm), not all and (width > 0.001mm) {}
+@media screen, (width > -1px) {}
+@media (width > -1px), not all and (width > -1px) {}
+@media (0px > width > 0px), not all and (0px > width > 0px) {}
+@media (0px > width >= 0px), not all and (0px > width >= 0px) {}
+@media screen, (0px > width = 0px) {}
+@media (0px > width = 0px), not all and (0px > width = 0px) {}
+@media screen, (0px > width <= 0px) {}
+@media (0px > width <= 0px), not all and (0px > width <= 0px) {}
+@media screen, (0px > width < 0px) {}
+@media (0px > width < 0px), not all and (0px > width < 0px) {}
+@media (width >= 0), not all and (width >= 0) {}
+@media (width >= 0px), not all and (width >= 0px) {}
+@media (width >= -0), not all and (width >= -0) {}
+@media (width >= -0cm), not all and (width >= -0cm) {}
+@media (width >= 1px), not all and (width >= 1px) {}
+@media (width >= 0.001mm), not all and (width >= 0.001mm) {}
+@media screen, (min-width >= -0) {}
+@media screen, (width >= -1px) {}
+@media (width >= -1px), not all and (width >= -1px) {}
+@media screen, (width >= -0.00001mm) {}
+@media (width >= -0.00001mm), not all and (width >= -0.00001mm) {}
+@media screen, (width >= -100000em) {}
+@media (width >= -100000em), not all and (width >= -100000em) {}
+@media (0px >= width > 0px), not all and (0px >= width > 0px) {}
+@media (0px >= width >= 0px), not all and (0px >= width >= 0px) {}
+@media screen, (0px >= width = 0px) {}
+@media (0px >= width = 0px), not all and (0px >= width = 0px) {}
+@media screen, (0px >= width <= 0px) {}
+@media (0px >= width <= 0px), not all and (0px >= width <= 0px) {}
+@media screen, (0px >= width < 0px) {}
+@media (0px >= width < 0px), not all and (0px >= width < 0px) {}
+@media (width = 0), not all and (width = 0) {}
+@media (width = 0px), not all and (width = 0px) {}
+@media (width = -0), not all and (width = -0) {}
+@media (width = -0cm), not all and (width = -0cm) {}
+@media (width = 0.001mm), not all and (width = 0.001mm) {}
+@media screen, (0px = width = 100000px) {}
+@media (0px = width = 100000px), not all and (0px = width = 100000px) {}
+@media screen, (width = -1px) {}
+@media (width = -1px), not all and (width = -1px) {}
+@media screen, (width = -0.00001mm) {}
+@media (width = -0.00001mm), not all and (width = -0.00001mm) {}
+@media screen, (0px = width > 0px) {}
+@media (0px = width > 0px), not all and (0px = width > 0px) {}
+@media screen, (0px = width >= 0px) {}
+@media (0px = width >= 0px), not all and (0px = width >= 0px) {}
+@media screen, (0px = width = 0px) {}
+@media (0px = width = 0px), not all and (0px = width = 0px) {}
+@media screen, (0px = width <= 0px) {}
+@media (0px = width <= 0px), not all and (0px = width <= 0px) {}
+@media screen, (0px = width < 0px) {}
+@media (0px = width < 0px), not all and (0px = width < 0px) {}
+@media (width <= 0), not all and (width <= 0) {}
+@media (width <= 0px), not all and (width <= 0px) {}
+@media (width <= -0), not all and (width <= -0) {}
+@media (width <= -0cm), not all and (width <= -0cm) {}
+@media (width <= 0.001mm), not all and (width <= 0.001mm) {}
+@media (0px <= width <= 100000px), not all and (0px <= width <= 100000px) {}
+@media screen, (width <= -1px) {}
+@media (width <= -1px), not all and (width <= -1px) {}
+@media screen, (width <= -0.00001mm) {}
+@media (width <= -0.00001mm), not all and (width <= -0.00001mm) {}
+@media screen, (0px <= width > 0px) {}
+@media (0px <= width > 0px), not all and (0px <= width > 0px) {}
+@media screen, (0px <= width >= 0px) {}
+@media (0px <= width >= 0px), not all and (0px <= width >= 0px) {}
+@media screen, (0px <= width = 0px) {}
+@media (0px <= width = 0px), not all and (0px <= width = 0px) {}
+@media (0px <= width <= 0px), not all and (0px <= width <= 0px) {}
+@media (0px <= width < 0px), not all and (0px <= width < 0px) {}
+@media (width < 0), not all and (width < 0) {}
+@media (width < 0px), not all and (width < 0px) {}
+@media (width < -0), not all and (width < -0) {}
+@media (width < -0cm), not all and (width < -0cm) {}
+@media (width < 0.001mm), not all and (width < 0.001mm) {}
+@media screen, (width < -1px) {}
+@media (width < -1px), not all and (width < -1px) {}
+@media screen, (0px < width > 0px) {}
+@media (0px < width > 0px), not all and (0px < width > 0px) {}
+@media screen, (0px < width >= 0px) {}
+@media (0px < width >= 0px), not all and (0px < width >= 0px) {}
+@media screen, (0px < width = 0px) {}
+@media (0px < width = 0px), not all and (0px < width = 0px) {}
+@media (0px < width <= 0px), not all and (0px < width <= 0px) {}
+@media (0px < width < 0px), not all and (0px < width < 0px) {}
+
+@media all and (width: 117px) {}
+@media all and (width = 117px) {}
+@media (width < 117px) {}
+@media (width > 117px) {}
+@media (width <= 118px) {}
+@media (width >= 118px) {}
+@media (116px < width) {}
+@media (116px <= width) {}
+@media (116px > width) {}
+@media (116px >= width) {}
+@media (116px < width < 118px) {}
+@media (116px < width <= 117px) {}
+@media (117px <= width < 118px) {}
+@media (118px > width > 116px) {}
+@media (118px > width >= 117px) {}
+@media (117px >= width > 116px) {}
+
+@media (orientation) {}
+@media (orientation: landscape) {}
+@media (orientation), not all and (orientation) {}
+@media (orientation: portrait), not all and (orientation: portrait) {}
+
+@media (max-aspect-ratio: 1/1), not all and (max-aspect-ratio: 1/1) {}
+@media (max-aspect-ratio: 1  /1), not all and (max-aspect-ratio: 1  /1) {}
+@media (max-aspect-ratio: 1  /
+1), not all and (max-aspect-ratio: 1  /
+1) {}
+@media (max-aspect-ratio: 1/
+1), not all and (max-aspect-ratio: 1/
+1) {}
+@media (max-aspect-ratio: 1.0/1), not all and (max-aspect-ratio: 1.0/1) {}
+@media (max-aspect-ratio: 0/1), not all and (max-aspect-ratio: 0/1) {}
+@media (resolution: 3dpi), not all and (resolution: 3dpi) {}
+@media (resolution:3dpi), not all and (resolution:3dpi) {}
+@media (resolution: 3.0dpi), not all and (resolution: 3.0dpi) {}
+@media (resolution	: 120dpcm), not all and (resolution	: 120dpcm) {}
+@media (resolution: 1dppx), not all and (resolution: 1dppx) {}
+@media (resolution: 1x), not all and (resolution: 1x) {}
+
+@media all,badmedium {}
+@media badmedium,all {}
+@media all,(badexpression) {}
+@media (badexpression),all {}
+@media (badexpression),badmedium {}
+@media badmedium,(badexpression) {}
+
+@media not all and (bogus) {}
+@media only all and (bogus) {}
+@media (hover), not all and (hover) {}
+@media (hover: hover), not all and (hover: hover) {}
+@media (hover: none), not all and (hover: none) {}
+@media (any-hover), not all and (any-hover) {}
+@media (any-hover: hover), not all and (any-hover: hover) {}
+@media (any-hover: none), not all and (any-hover: none) {}
+
+@media (height) or (height) {}
+@media (width) or (height) {}
+@media (height) or (width) {}
+@media (height) or (width) or (height) {}
+
+@media ((height)) {}
+@media ((width)) {}
+@media (((((width))))) {}
+
+@media not (width) {}
+@media not (height) {}
+@media not ((width) and (height)) {}
+@media not ((width) or (height)) {}
+@media not ((width) and (not (height))) {}
+
+@MeDIa aLL and (Height) AnD (mIN-Width:0cM) aND (orienTAtion:LandScape) {}
+@MeDIa nOT All and (heiGHt) and (Min-widtH:0MM) and (Orientation:porTrait) {}
+
+@media (--FOO: bar) {}
+
+@media (min-width: calc(1px - 1px)) {}
+@media (min-width: calc(1em)) {}
+@media (min-width: calc(1px * 2 + 1rem)) {}
+@media (min-width: calc(1 * (2px + 1rem))) {}
