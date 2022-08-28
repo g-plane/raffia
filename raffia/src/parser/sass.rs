@@ -1,4 +1,4 @@
-use super::Parser;
+use super::{state::ParserState, Parser};
 use crate::{
     ast::*,
     config::Syntax,
@@ -35,6 +35,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 Ok(Some(Statement::SassWhileAtRule(self.parse()?)))
+            }
+            "function" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                Ok(Some(Statement::SassFunctionAtRule(
+                    self.with_state(ParserState {
+                        in_sass_function: true,
+                        ..self.state.clone()
+                    })
+                    .parse()?,
+                )))
+            }
+            "return" if self.state.in_sass_function => {
+                Ok(Some(Statement::SassReturnAtRule(self.parse()?)))
             }
             "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 Ok(Some(Statement::SassWarnAtRule(self.parse()?)))
@@ -389,6 +401,77 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let at_keyword = expect!(input, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "function");
+
+        let name = input.parse()?;
+
+        expect!(input, LParen);
+        let mut parameters = vec![];
+        let mut arbitrary_parameter = None;
+        while eat!(input, RParen).is_none() {
+            let name = input.parse::<SassVariable>()?;
+            match input.tokenizer.bump()? {
+                Token::Comma(..) => {
+                    let span = name.span.clone();
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: None,
+                        span,
+                    });
+                    continue;
+                }
+                Token::Colon(..) => {
+                    let default_value = input.parse::<ComponentValue>()?;
+                    let span = Span {
+                        start: name.span.start,
+                        end: default_value.span().end,
+                    };
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: Some(default_value),
+                        span,
+                    });
+                }
+                Token::DotDotDot(token) => {
+                    let span = Span {
+                        start: name.span().start,
+                        end: token.span.end,
+                    };
+                    arbitrary_parameter = Some(SassArbitraryParameter { name, span });
+                    eat!(input, Comma);
+                    expect!(input, RParen);
+                    break;
+                }
+                _ => panic!(),
+            }
+            if eat!(input, RParen).is_some() {
+                break;
+            } else {
+                expect!(input, Comma);
+            }
+        }
+
+        let body = input.parse::<SimpleBlock>()?;
+
+        let span = Span {
+            start: at_keyword.span.start,
+            end: body.span.end,
+        };
+        Ok(SassFunctionAtRule {
+            name,
+            parameters,
+            arbitrary_parameter,
+            body,
+            span,
+        })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
@@ -530,6 +613,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
             name: InterpolableIdent::Literal(name),
             span,
         })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "return");
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let span = Span {
+            start: token.span.start,
+            end: expr.span.end,
+        };
+        Ok(SassReturnAtRule { expr, span })
     }
 }
 

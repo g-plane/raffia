@@ -1037,6 +1037,14 @@ pub struct Resolution<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassArbitraryParameter<'s> {
+    pub name: SassVariable<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassBinaryExpression<'s> {
     pub left: Box<ComponentValue<'s>>,
     pub op: BinaryOperator,
@@ -1087,6 +1095,17 @@ pub struct SassForAtRule<'s> {
     pub start: ComponentValue<'s>,
     pub end: ComponentValue<'s>,
     pub is_exclusive: bool,
+    pub body: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassFunctionAtRule<'s> {
+    pub name: Ident<'s>,
+    pub parameters: Vec<SassParameter<'s>>,
+    pub arbitrary_parameter: Option<SassArbitraryParameter<'s>>,
     pub body: SimpleBlock<'s>,
     pub span: Span,
 }
@@ -1152,6 +1171,15 @@ pub enum SassInterpolatedUrlElement<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassParameter<'s> {
+    pub name: SassVariable<'s>,
+    pub default_value: Option<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassParenthesizedExpression<'s> {
     pub expr: Box<ComponentValue<'s>>,
     pub span: Span,
@@ -1162,6 +1190,14 @@ pub struct SassParenthesizedExpression<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassPlaceholderSelector<'s> {
     pub name: InterpolableIdent<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassReturnAtRule<'s> {
+    pub expr: ComponentValues<'s>,
     pub span: Span,
 }
 
@@ -1267,7 +1303,9 @@ pub enum Statement<'s> {
     SassEachAtRule(SassEachAtRule<'s>),
     SassErrorAtRule(SassErrorAtRule<'s>),
     SassForAtRule(SassForAtRule<'s>),
+    SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
+    SassReturnAtRule(SassReturnAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
     SassWhileAtRule(SassWhileAtRule<'s>),

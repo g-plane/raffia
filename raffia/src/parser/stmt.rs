@@ -20,6 +20,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
         let name = input
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationName),
+                ..input.state
             })
             .parse::<InterpolableIdent>()?;
 
@@ -33,6 +34,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
         let value = {
             let mut parser = input.with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
+                ..input.state
             });
             match &name {
                 InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
@@ -158,6 +160,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QualifiedRule<'s> {
         let selector_list = input
             .with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
+                ..input.state
             })
             .parse::<SelectorList>()?;
         let block = input.parse::<SimpleBlock>()?;

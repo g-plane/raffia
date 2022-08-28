@@ -49,6 +49,7 @@ pub enum Token<'s> {
     DollarEqual(DollarEqual),
     DollarVar(DollarVar<'s>),
     Dot(Dot),
+    DotDotDot(DotDotDot),
     Equal(Equal),
     EqualEqual(EqualEqual),
     Exclamation(Exclamation),
@@ -108,6 +109,7 @@ impl Token<'_> {
             DollarEqual(..) => "$=",
             DollarVar(..) => "$var",
             Dot(..) => ".",
+            DotDotDot(..) => "...",
             Equal(..) => "=",
             EqualEqual(..) => "==",
             Exclamation(..) => "!",
@@ -268,6 +270,13 @@ pub struct DollarVar<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Dot {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct DotDotDot {
     pub span: Span,
 }
 

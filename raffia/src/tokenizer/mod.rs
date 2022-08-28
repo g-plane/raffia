@@ -906,12 +906,33 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_punc(&mut self) -> PResult<Token<'s>> {
         match self.state.chars.next() {
-            Some((start, '.')) => Ok(Token::Dot(Dot {
-                span: Span {
-                    start,
-                    end: start + 1,
-                },
-            })),
+            Some((start, '.')) => {
+                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                    && matches!(
+                        {
+                            let mut chars = self.state.chars.clone();
+                            (chars.next(), chars.next())
+                        },
+                        (Some((_, '.')), Some((_, '.')))
+                    )
+                {
+                    self.state.chars.next();
+                    self.state.chars.next();
+                    Ok(Token::DotDotDot(DotDotDot {
+                        span: Span {
+                            start,
+                            end: start + 3,
+                        },
+                    }))
+                } else {
+                    Ok(Token::Dot(Dot {
+                        span: Span {
+                            start,
+                            end: start + 1,
+                        },
+                    }))
+                }
+            }
             Some((start, ':')) => match self.state.chars.peek() {
                 Some((_, ':')) => {
                     self.state.chars.next();

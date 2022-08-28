@@ -4,6 +4,7 @@ use std::ops::{Deref, DerefMut};
 #[derive(Clone, Debug, Default)]
 pub(super) struct ParserState {
     pub(super) qualified_rule_ctx: Option<QualifiedRuleContext>,
+    pub(super) in_sass_function: bool,
 }
 
 #[derive(Clone, Debug)]
