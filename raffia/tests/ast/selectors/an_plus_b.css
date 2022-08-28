@@ -1,0 +1,131 @@
+:nth-child(1n+0) {}
+:nth-child(n) {}
+:nth-child(n+0) {}
+:nth-child(-n+0) {}
+:nth-child(-n) {}
+:nth-child(N) {}
+:nth-child(+n+3) {}
+:nth-child(n+3) {}
+:nth-child( +n + 3 ) {}
+:nth-child(  N- 10) {}
+:nth-child(n-10) {}
+:nth-child(n- 10) {}
+:nth-child(-n
+- 1) {}
+:nth-child(-n-1) {}
+:nth-child( 23n
+
++
+
+123 ) {}
+:nth-child(23n+123) {}
+
+:nth-last-child(1n+0) {}
+:nth-last-child(n) {}
+:nth-last-child(n+0) {}
+:nth-last-child(-n+0) {}
+:nth-last-child(-n) {}
+:nth-last-child(N) {}
+:nth-last-child(+n+3) {}
+:nth-last-child(n+3) {}
+:nth-last-child( +n + 3 ) {}
+:nth-last-child(  N- 10) {}
+:nth-last-child(n-10) {}
+:nth-last-child(n- 10) {}
+:nth-last-child(-n
+- 1) {}
+:nth-last-child(-n-1) {}
+:nth-last-child( 23n
+
++
+
+123 ) {}
+:nth-last-child(23n+123) {}
+
+:nth-of-type(1n+0) {}
+:nth-of-type(n) {}
+:nth-of-type(n+0) {}
+:nth-of-type(-n+0) {}
+:nth-of-type(-n) {}
+:nth-of-type(N) {}
+:nth-of-type(+n+3) {}
+:nth-of-type(n+3) {}
+:nth-of-type( +n + 3 ) {}
+:nth-of-type(  N- 10) {}
+:nth-of-type(n-10) {}
+:nth-of-type(n- 10) {}
+:nth-of-type(-n
+- 1) {}
+:nth-of-type(-n-1) {}
+:nth-of-type( 23n
+
++
+
+123 ) {}
+:nth-of-type(23n+123) {}
+
+:nth-last-of-type(1n+0) {}
+:nth-last-of-type(n) {}
+:nth-last-of-type(n+0) {}
+:nth-last-of-type(-n+0) {}
+:nth-last-of-type(-n) {}
+:nth-last-of-type(N) {}
+:nth-last-of-type(+n+3) {}
+:nth-last-of-type(n+3) {}
+:nth-last-of-type( +n + 3 ) {}
+:nth-last-of-type(  N- 10) {}
+:nth-last-of-type(n-10) {}
+:nth-last-of-type(n- 10) {}
+:nth-last-of-type(-n
+- 1) {}
+:nth-last-of-type(-n-1) {}
+:nth-last-of-type( 23n
+
++
+
+123 ) {}
+:nth-last-of-type(23n+123) {}
+
+:nth-col(1n+0) {}
+:nth-col(n) {}
+:nth-col(n+0) {}
+:nth-col(-n+0) {}
+:nth-col(-n) {}
+:nth-col(N) {}
+:nth-col(+n+3) {}
+:nth-col(n+3) {}
+:nth-col( +n + 3 ) {}
+:nth-col(  N- 10) {}
+:nth-col(n-10) {}
+:nth-col(n- 10) {}
+:nth-col(-n
+- 1) {}
+:nth-col(-n-1) {}
+:nth-col( 23n
+
++
+
+123 ) {}
+:nth-col(23n+123) {}
+
+:nth-last-col(1n+0) {}
+:nth-last-col(n) {}
+:nth-last-col(n+0) {}
+:nth-last-col(-n+0) {}
+:nth-last-col(-n) {}
+:nth-last-col(N) {}
+:nth-last-col(+n+3) {}
+:nth-last-col(n+3) {}
+:nth-last-col( +n + 3 ) {}
+:nth-last-col(  N- 10) {}
+:nth-last-col(n-10) {}
+:nth-last-col(n- 10) {}
+:nth-last-col(-n
+- 1) {}
+:nth-last-col(-n-1) {}
+:nth-last-col( 23n
+
++
+
+123 ) {}
+:nth-last-col(23n+123) {}

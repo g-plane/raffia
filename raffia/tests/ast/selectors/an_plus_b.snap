@@ -1,0 +1,6444 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 1,
+                        end: 10,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 11,
+                        end: 15,
+                      ),
+                    )),
+                    span: Span(
+                      start: 0,
+                      end: 16,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 16,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 16,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 16,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 17,
+          end: 19,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 19,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 21,
+                        end: 30,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 31,
+                        end: 32,
+                      ),
+                    )),
+                    span: Span(
+                      start: 20,
+                      end: 33,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 20,
+                  end: 33,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 20,
+              end: 33,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 20,
+          end: 33,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 34,
+          end: 36,
+        ),
+      ),
+      span: Span(
+        start: 20,
+        end: 36,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 38,
+                        end: 47,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 48,
+                        end: 51,
+                      ),
+                    )),
+                    span: Span(
+                      start: 37,
+                      end: 52,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 37,
+                  end: 52,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 37,
+              end: 52,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 37,
+          end: 52,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 53,
+          end: 55,
+        ),
+      ),
+      span: Span(
+        start: 37,
+        end: 55,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 57,
+                        end: 66,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 67,
+                        end: 71,
+                      ),
+                    )),
+                    span: Span(
+                      start: 56,
+                      end: 72,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 56,
+                  end: 72,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 56,
+              end: 72,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 56,
+          end: 72,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 73,
+          end: 75,
+        ),
+      ),
+      span: Span(
+        start: 56,
+        end: 75,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 77,
+                        end: 86,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 87,
+                        end: 89,
+                      ),
+                    )),
+                    span: Span(
+                      start: 76,
+                      end: 90,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 76,
+                  end: 90,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 76,
+              end: 90,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 76,
+          end: 90,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 91,
+          end: 93,
+        ),
+      ),
+      span: Span(
+        start: 76,
+        end: 93,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 95,
+                        end: 104,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 105,
+                        end: 106,
+                      ),
+                    )),
+                    span: Span(
+                      start: 94,
+                      end: 107,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 94,
+                  end: 107,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 94,
+              end: 107,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 94,
+          end: 107,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 108,
+          end: 110,
+        ),
+      ),
+      span: Span(
+        start: 94,
+        end: 110,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 112,
+                        end: 121,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 122,
+                        end: 126,
+                      ),
+                    )),
+                    span: Span(
+                      start: 111,
+                      end: 127,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 111,
+                  end: 127,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 111,
+              end: 127,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 111,
+          end: 127,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 128,
+          end: 130,
+        ),
+      ),
+      span: Span(
+        start: 111,
+        end: 130,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 132,
+                        end: 141,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 142,
+                        end: 145,
+                      ),
+                    )),
+                    span: Span(
+                      start: 131,
+                      end: 146,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 131,
+                  end: 146,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 131,
+              end: 146,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 131,
+          end: 146,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 147,
+          end: 149,
+        ),
+      ),
+      span: Span(
+        start: 131,
+        end: 149,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 151,
+                        end: 160,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 162,
+                        end: 168,
+                      ),
+                    )),
+                    span: Span(
+                      start: 150,
+                      end: 170,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 150,
+                  end: 170,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 150,
+              end: 170,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 150,
+          end: 170,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 171,
+          end: 173,
+        ),
+      ),
+      span: Span(
+        start: 150,
+        end: 173,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 175,
+                        end: 184,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 187,
+                        end: 192,
+                      ),
+                    )),
+                    span: Span(
+                      start: 174,
+                      end: 193,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 174,
+                  end: 193,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 174,
+              end: 193,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 174,
+          end: 193,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 194,
+          end: 196,
+        ),
+      ),
+      span: Span(
+        start: 174,
+        end: 196,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 198,
+                        end: 207,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 208,
+                        end: 212,
+                      ),
+                    )),
+                    span: Span(
+                      start: 197,
+                      end: 213,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 197,
+                  end: 213,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 197,
+              end: 213,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 197,
+          end: 213,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 214,
+          end: 216,
+        ),
+      ),
+      span: Span(
+        start: 197,
+        end: 216,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 218,
+                        end: 227,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 228,
+                        end: 233,
+                      ),
+                    )),
+                    span: Span(
+                      start: 217,
+                      end: 234,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 217,
+                  end: 234,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 217,
+              end: 234,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 217,
+          end: 234,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 235,
+          end: 237,
+        ),
+      ),
+      span: Span(
+        start: 217,
+        end: 237,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 239,
+                        end: 248,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 249,
+                        end: 255,
+                      ),
+                    )),
+                    span: Span(
+                      start: 238,
+                      end: 256,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 238,
+                  end: 256,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 238,
+              end: 256,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 238,
+          end: 256,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 257,
+          end: 259,
+        ),
+      ),
+      span: Span(
+        start: 238,
+        end: 259,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 261,
+                        end: 270,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 271,
+                        end: 275,
+                      ),
+                    )),
+                    span: Span(
+                      start: 260,
+                      end: 276,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 260,
+                  end: 276,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 260,
+              end: 276,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 260,
+          end: 276,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 277,
+          end: 279,
+        ),
+      ),
+      span: Span(
+        start: 260,
+        end: 279,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 281,
+                        end: 290,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 292,
+                        end: 303,
+                      ),
+                    )),
+                    span: Span(
+                      start: 280,
+                      end: 305,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 280,
+                  end: 305,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 280,
+              end: 305,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 280,
+          end: 305,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 306,
+          end: 308,
+        ),
+      ),
+      span: Span(
+        start: 280,
+        end: 308,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 310,
+                        end: 319,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 320,
+                        end: 327,
+                      ),
+                    )),
+                    span: Span(
+                      start: 309,
+                      end: 328,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 309,
+                  end: 328,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 309,
+              end: 328,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 309,
+          end: 328,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 329,
+          end: 331,
+        ),
+      ),
+      span: Span(
+        start: 309,
+        end: 331,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 334,
+                        end: 348,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 349,
+                        end: 353,
+                      ),
+                    )),
+                    span: Span(
+                      start: 333,
+                      end: 354,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 333,
+                  end: 354,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 333,
+              end: 354,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 333,
+          end: 354,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 355,
+          end: 357,
+        ),
+      ),
+      span: Span(
+        start: 333,
+        end: 357,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 359,
+                        end: 373,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 374,
+                        end: 375,
+                      ),
+                    )),
+                    span: Span(
+                      start: 358,
+                      end: 376,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 358,
+                  end: 376,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 358,
+              end: 376,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 358,
+          end: 376,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 377,
+          end: 379,
+        ),
+      ),
+      span: Span(
+        start: 358,
+        end: 379,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 381,
+                        end: 395,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 396,
+                        end: 399,
+                      ),
+                    )),
+                    span: Span(
+                      start: 380,
+                      end: 400,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 380,
+                  end: 400,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 380,
+              end: 400,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 380,
+          end: 400,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 401,
+          end: 403,
+        ),
+      ),
+      span: Span(
+        start: 380,
+        end: 403,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 405,
+                        end: 419,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 420,
+                        end: 424,
+                      ),
+                    )),
+                    span: Span(
+                      start: 404,
+                      end: 425,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 404,
+                  end: 425,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 404,
+              end: 425,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 404,
+          end: 425,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 426,
+          end: 428,
+        ),
+      ),
+      span: Span(
+        start: 404,
+        end: 428,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 430,
+                        end: 444,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 445,
+                        end: 447,
+                      ),
+                    )),
+                    span: Span(
+                      start: 429,
+                      end: 448,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 429,
+                  end: 448,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 429,
+              end: 448,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 429,
+          end: 448,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 449,
+          end: 451,
+        ),
+      ),
+      span: Span(
+        start: 429,
+        end: 451,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 453,
+                        end: 467,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 468,
+                        end: 469,
+                      ),
+                    )),
+                    span: Span(
+                      start: 452,
+                      end: 470,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 452,
+                  end: 470,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 452,
+              end: 470,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 452,
+          end: 470,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 471,
+          end: 473,
+        ),
+      ),
+      span: Span(
+        start: 452,
+        end: 473,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 475,
+                        end: 489,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 490,
+                        end: 494,
+                      ),
+                    )),
+                    span: Span(
+                      start: 474,
+                      end: 495,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 474,
+                  end: 495,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 474,
+              end: 495,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 474,
+          end: 495,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 496,
+          end: 498,
+        ),
+      ),
+      span: Span(
+        start: 474,
+        end: 498,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 500,
+                        end: 514,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 515,
+                        end: 518,
+                      ),
+                    )),
+                    span: Span(
+                      start: 499,
+                      end: 519,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 499,
+                  end: 519,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 499,
+              end: 519,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 499,
+          end: 519,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 520,
+          end: 522,
+        ),
+      ),
+      span: Span(
+        start: 499,
+        end: 522,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 524,
+                        end: 538,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 540,
+                        end: 546,
+                      ),
+                    )),
+                    span: Span(
+                      start: 523,
+                      end: 548,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 523,
+                  end: 548,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 523,
+              end: 548,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 523,
+          end: 548,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 549,
+          end: 551,
+        ),
+      ),
+      span: Span(
+        start: 523,
+        end: 551,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 553,
+                        end: 567,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 570,
+                        end: 575,
+                      ),
+                    )),
+                    span: Span(
+                      start: 552,
+                      end: 576,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 552,
+                  end: 576,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 552,
+              end: 576,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 552,
+          end: 576,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 577,
+          end: 579,
+        ),
+      ),
+      span: Span(
+        start: 552,
+        end: 579,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 581,
+                        end: 595,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 596,
+                        end: 600,
+                      ),
+                    )),
+                    span: Span(
+                      start: 580,
+                      end: 601,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 580,
+                  end: 601,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 580,
+              end: 601,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 580,
+          end: 601,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 602,
+          end: 604,
+        ),
+      ),
+      span: Span(
+        start: 580,
+        end: 604,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 606,
+                        end: 620,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 621,
+                        end: 626,
+                      ),
+                    )),
+                    span: Span(
+                      start: 605,
+                      end: 627,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 605,
+                  end: 627,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 605,
+              end: 627,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 605,
+          end: 627,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 628,
+          end: 630,
+        ),
+      ),
+      span: Span(
+        start: 605,
+        end: 630,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 632,
+                        end: 646,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 647,
+                        end: 653,
+                      ),
+                    )),
+                    span: Span(
+                      start: 631,
+                      end: 654,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 631,
+                  end: 654,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 631,
+              end: 654,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 631,
+          end: 654,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 655,
+          end: 657,
+        ),
+      ),
+      span: Span(
+        start: 631,
+        end: 657,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 659,
+                        end: 673,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 674,
+                        end: 678,
+                      ),
+                    )),
+                    span: Span(
+                      start: 658,
+                      end: 679,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 658,
+                  end: 679,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 658,
+              end: 679,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 658,
+          end: 679,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 680,
+          end: 682,
+        ),
+      ),
+      span: Span(
+        start: 658,
+        end: 682,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 684,
+                        end: 698,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 700,
+                        end: 711,
+                      ),
+                    )),
+                    span: Span(
+                      start: 683,
+                      end: 713,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 683,
+                  end: 713,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 683,
+              end: 713,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 683,
+          end: 713,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 714,
+          end: 716,
+        ),
+      ),
+      span: Span(
+        start: 683,
+        end: 716,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-child",
+                      raw: "nth-last-child",
+                      span: Span(
+                        start: 718,
+                        end: 732,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 733,
+                        end: 740,
+                      ),
+                    )),
+                    span: Span(
+                      start: 717,
+                      end: 741,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 717,
+                  end: 741,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 717,
+              end: 741,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 717,
+          end: 741,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 742,
+          end: 744,
+        ),
+      ),
+      span: Span(
+        start: 717,
+        end: 744,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 747,
+                        end: 758,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 759,
+                        end: 763,
+                      ),
+                    )),
+                    span: Span(
+                      start: 746,
+                      end: 764,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 746,
+                  end: 764,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 746,
+              end: 764,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 746,
+          end: 764,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 765,
+          end: 767,
+        ),
+      ),
+      span: Span(
+        start: 746,
+        end: 767,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 769,
+                        end: 780,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 781,
+                        end: 782,
+                      ),
+                    )),
+                    span: Span(
+                      start: 768,
+                      end: 783,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 768,
+                  end: 783,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 768,
+              end: 783,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 768,
+          end: 783,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 784,
+          end: 786,
+        ),
+      ),
+      span: Span(
+        start: 768,
+        end: 786,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 788,
+                        end: 799,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 800,
+                        end: 803,
+                      ),
+                    )),
+                    span: Span(
+                      start: 787,
+                      end: 804,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 787,
+                  end: 804,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 787,
+              end: 804,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 787,
+          end: 804,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 805,
+          end: 807,
+        ),
+      ),
+      span: Span(
+        start: 787,
+        end: 807,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 809,
+                        end: 820,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 821,
+                        end: 825,
+                      ),
+                    )),
+                    span: Span(
+                      start: 808,
+                      end: 826,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 808,
+                  end: 826,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 808,
+              end: 826,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 808,
+          end: 826,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 827,
+          end: 829,
+        ),
+      ),
+      span: Span(
+        start: 808,
+        end: 829,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 831,
+                        end: 842,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 843,
+                        end: 845,
+                      ),
+                    )),
+                    span: Span(
+                      start: 830,
+                      end: 846,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 830,
+                  end: 846,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 830,
+              end: 846,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 830,
+          end: 846,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 847,
+          end: 849,
+        ),
+      ),
+      span: Span(
+        start: 830,
+        end: 849,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 851,
+                        end: 862,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 863,
+                        end: 864,
+                      ),
+                    )),
+                    span: Span(
+                      start: 850,
+                      end: 865,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 850,
+                  end: 865,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 850,
+              end: 865,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 850,
+          end: 865,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 866,
+          end: 868,
+        ),
+      ),
+      span: Span(
+        start: 850,
+        end: 868,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 870,
+                        end: 881,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 882,
+                        end: 886,
+                      ),
+                    )),
+                    span: Span(
+                      start: 869,
+                      end: 887,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 869,
+                  end: 887,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 869,
+              end: 887,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 869,
+          end: 887,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 888,
+          end: 890,
+        ),
+      ),
+      span: Span(
+        start: 869,
+        end: 890,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 892,
+                        end: 903,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 904,
+                        end: 907,
+                      ),
+                    )),
+                    span: Span(
+                      start: 891,
+                      end: 908,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 891,
+                  end: 908,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 891,
+              end: 908,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 891,
+          end: 908,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 909,
+          end: 911,
+        ),
+      ),
+      span: Span(
+        start: 891,
+        end: 911,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 913,
+                        end: 924,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 926,
+                        end: 932,
+                      ),
+                    )),
+                    span: Span(
+                      start: 912,
+                      end: 934,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 912,
+                  end: 934,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 912,
+              end: 934,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 912,
+          end: 934,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 935,
+          end: 937,
+        ),
+      ),
+      span: Span(
+        start: 912,
+        end: 937,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 939,
+                        end: 950,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 953,
+                        end: 958,
+                      ),
+                    )),
+                    span: Span(
+                      start: 938,
+                      end: 959,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 938,
+                  end: 959,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 938,
+              end: 959,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 938,
+          end: 959,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 960,
+          end: 962,
+        ),
+      ),
+      span: Span(
+        start: 938,
+        end: 962,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 964,
+                        end: 975,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 976,
+                        end: 980,
+                      ),
+                    )),
+                    span: Span(
+                      start: 963,
+                      end: 981,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 963,
+                  end: 981,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 963,
+              end: 981,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 963,
+          end: 981,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 982,
+          end: 984,
+        ),
+      ),
+      span: Span(
+        start: 963,
+        end: 984,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 986,
+                        end: 997,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 998,
+                        end: 1003,
+                      ),
+                    )),
+                    span: Span(
+                      start: 985,
+                      end: 1004,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 985,
+                  end: 1004,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 985,
+              end: 1004,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 985,
+          end: 1004,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1005,
+          end: 1007,
+        ),
+      ),
+      span: Span(
+        start: 985,
+        end: 1007,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 1009,
+                        end: 1020,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1021,
+                        end: 1027,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1008,
+                      end: 1028,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1008,
+                  end: 1028,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1008,
+              end: 1028,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1008,
+          end: 1028,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1029,
+          end: 1031,
+        ),
+      ),
+      span: Span(
+        start: 1008,
+        end: 1031,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 1033,
+                        end: 1044,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1045,
+                        end: 1049,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1032,
+                      end: 1050,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1032,
+                  end: 1050,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1032,
+              end: 1050,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1032,
+          end: 1050,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1051,
+          end: 1053,
+        ),
+      ),
+      span: Span(
+        start: 1032,
+        end: 1053,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 1055,
+                        end: 1066,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1068,
+                        end: 1079,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1054,
+                      end: 1081,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1054,
+                  end: 1081,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1054,
+              end: 1081,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1054,
+          end: 1081,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1082,
+          end: 1084,
+        ),
+      ),
+      span: Span(
+        start: 1054,
+        end: 1084,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 1086,
+                        end: 1097,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1098,
+                        end: 1105,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1085,
+                      end: 1106,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1085,
+                  end: 1106,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1085,
+              end: 1106,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1085,
+          end: 1106,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1107,
+          end: 1109,
+        ),
+      ),
+      span: Span(
+        start: 1085,
+        end: 1109,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1112,
+                        end: 1128,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1129,
+                        end: 1133,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1111,
+                      end: 1134,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1111,
+                  end: 1134,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1111,
+              end: 1134,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1111,
+          end: 1134,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1135,
+          end: 1137,
+        ),
+      ),
+      span: Span(
+        start: 1111,
+        end: 1137,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1139,
+                        end: 1155,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1156,
+                        end: 1157,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1138,
+                      end: 1158,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1138,
+                  end: 1158,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1138,
+              end: 1158,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1138,
+          end: 1158,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1159,
+          end: 1161,
+        ),
+      ),
+      span: Span(
+        start: 1138,
+        end: 1161,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1163,
+                        end: 1179,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1180,
+                        end: 1183,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1162,
+                      end: 1184,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1162,
+                  end: 1184,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1162,
+              end: 1184,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1162,
+          end: 1184,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1185,
+          end: 1187,
+        ),
+      ),
+      span: Span(
+        start: 1162,
+        end: 1187,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1189,
+                        end: 1205,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1206,
+                        end: 1210,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1188,
+                      end: 1211,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1188,
+                  end: 1211,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1188,
+              end: 1211,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1188,
+          end: 1211,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1212,
+          end: 1214,
+        ),
+      ),
+      span: Span(
+        start: 1188,
+        end: 1214,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1216,
+                        end: 1232,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1233,
+                        end: 1235,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1215,
+                      end: 1236,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1215,
+                  end: 1236,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1215,
+              end: 1236,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1215,
+          end: 1236,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1237,
+          end: 1239,
+        ),
+      ),
+      span: Span(
+        start: 1215,
+        end: 1239,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1241,
+                        end: 1257,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1258,
+                        end: 1259,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1240,
+                      end: 1260,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1240,
+                  end: 1260,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1240,
+              end: 1260,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1240,
+          end: 1260,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1261,
+          end: 1263,
+        ),
+      ),
+      span: Span(
+        start: 1240,
+        end: 1263,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1265,
+                        end: 1281,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1282,
+                        end: 1286,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1264,
+                      end: 1287,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1264,
+                  end: 1287,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1264,
+              end: 1287,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1264,
+          end: 1287,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1288,
+          end: 1290,
+        ),
+      ),
+      span: Span(
+        start: 1264,
+        end: 1290,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1292,
+                        end: 1308,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1309,
+                        end: 1312,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1291,
+                      end: 1313,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1291,
+                  end: 1313,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1291,
+              end: 1313,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1291,
+          end: 1313,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1314,
+          end: 1316,
+        ),
+      ),
+      span: Span(
+        start: 1291,
+        end: 1316,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1318,
+                        end: 1334,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1336,
+                        end: 1342,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1317,
+                      end: 1344,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1317,
+                  end: 1344,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1317,
+              end: 1344,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1317,
+          end: 1344,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1345,
+          end: 1347,
+        ),
+      ),
+      span: Span(
+        start: 1317,
+        end: 1347,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1349,
+                        end: 1365,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1368,
+                        end: 1373,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1348,
+                      end: 1374,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1348,
+                  end: 1374,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1348,
+              end: 1374,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1348,
+          end: 1374,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1375,
+          end: 1377,
+        ),
+      ),
+      span: Span(
+        start: 1348,
+        end: 1377,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1379,
+                        end: 1395,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1396,
+                        end: 1400,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1378,
+                      end: 1401,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1378,
+                  end: 1401,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1378,
+              end: 1401,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1378,
+          end: 1401,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1402,
+          end: 1404,
+        ),
+      ),
+      span: Span(
+        start: 1378,
+        end: 1404,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1406,
+                        end: 1422,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1423,
+                        end: 1428,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1405,
+                      end: 1429,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1405,
+                  end: 1429,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1405,
+              end: 1429,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1405,
+          end: 1429,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1430,
+          end: 1432,
+        ),
+      ),
+      span: Span(
+        start: 1405,
+        end: 1432,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1434,
+                        end: 1450,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1451,
+                        end: 1457,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1433,
+                      end: 1458,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1433,
+                  end: 1458,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1433,
+              end: 1458,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1433,
+          end: 1458,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1459,
+          end: 1461,
+        ),
+      ),
+      span: Span(
+        start: 1433,
+        end: 1461,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1463,
+                        end: 1479,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1480,
+                        end: 1484,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1462,
+                      end: 1485,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1462,
+                  end: 1485,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1462,
+              end: 1485,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1462,
+          end: 1485,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1486,
+          end: 1488,
+        ),
+      ),
+      span: Span(
+        start: 1462,
+        end: 1488,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1490,
+                        end: 1506,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1508,
+                        end: 1519,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1489,
+                      end: 1521,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1489,
+                  end: 1521,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1489,
+              end: 1521,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1489,
+          end: 1521,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1522,
+          end: 1524,
+        ),
+      ),
+      span: Span(
+        start: 1489,
+        end: 1524,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-of-type",
+                      raw: "nth-last-of-type",
+                      span: Span(
+                        start: 1526,
+                        end: 1542,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1543,
+                        end: 1550,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1525,
+                      end: 1551,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1525,
+                  end: 1551,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1525,
+              end: 1551,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1525,
+          end: 1551,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1552,
+          end: 1554,
+        ),
+      ),
+      span: Span(
+        start: 1525,
+        end: 1554,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1557,
+                        end: 1564,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1565,
+                        end: 1569,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1556,
+                      end: 1570,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1556,
+                  end: 1570,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1556,
+              end: 1570,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1556,
+          end: 1570,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1571,
+          end: 1573,
+        ),
+      ),
+      span: Span(
+        start: 1556,
+        end: 1573,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1575,
+                        end: 1582,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1583,
+                        end: 1584,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1574,
+                      end: 1585,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1574,
+                  end: 1585,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1574,
+              end: 1585,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1574,
+          end: 1585,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1586,
+          end: 1588,
+        ),
+      ),
+      span: Span(
+        start: 1574,
+        end: 1588,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1590,
+                        end: 1597,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1598,
+                        end: 1601,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1589,
+                      end: 1602,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1589,
+                  end: 1602,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1589,
+              end: 1602,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1589,
+          end: 1602,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1603,
+          end: 1605,
+        ),
+      ),
+      span: Span(
+        start: 1589,
+        end: 1605,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1607,
+                        end: 1614,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1615,
+                        end: 1619,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1606,
+                      end: 1620,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1606,
+                  end: 1620,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1606,
+              end: 1620,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1606,
+          end: 1620,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1621,
+          end: 1623,
+        ),
+      ),
+      span: Span(
+        start: 1606,
+        end: 1623,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1625,
+                        end: 1632,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1633,
+                        end: 1635,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1624,
+                      end: 1636,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1624,
+                  end: 1636,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1624,
+              end: 1636,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1624,
+          end: 1636,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1637,
+          end: 1639,
+        ),
+      ),
+      span: Span(
+        start: 1624,
+        end: 1639,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1641,
+                        end: 1648,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1649,
+                        end: 1650,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1640,
+                      end: 1651,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1640,
+                  end: 1651,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1640,
+              end: 1651,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1640,
+          end: 1651,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1652,
+          end: 1654,
+        ),
+      ),
+      span: Span(
+        start: 1640,
+        end: 1654,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1656,
+                        end: 1663,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1664,
+                        end: 1668,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1655,
+                      end: 1669,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1655,
+                  end: 1669,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1655,
+              end: 1669,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1655,
+          end: 1669,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1670,
+          end: 1672,
+        ),
+      ),
+      span: Span(
+        start: 1655,
+        end: 1672,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1674,
+                        end: 1681,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1682,
+                        end: 1685,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1673,
+                      end: 1686,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1673,
+                  end: 1686,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1673,
+              end: 1686,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1673,
+          end: 1686,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1687,
+          end: 1689,
+        ),
+      ),
+      span: Span(
+        start: 1673,
+        end: 1689,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1691,
+                        end: 1698,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 1700,
+                        end: 1706,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1690,
+                      end: 1708,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1690,
+                  end: 1708,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1690,
+              end: 1708,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1690,
+          end: 1708,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1709,
+          end: 1711,
+        ),
+      ),
+      span: Span(
+        start: 1690,
+        end: 1711,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1713,
+                        end: 1720,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1723,
+                        end: 1728,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1712,
+                      end: 1729,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1712,
+                  end: 1729,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1712,
+              end: 1729,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1712,
+          end: 1729,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1730,
+          end: 1732,
+        ),
+      ),
+      span: Span(
+        start: 1712,
+        end: 1732,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1734,
+                        end: 1741,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1742,
+                        end: 1746,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1733,
+                      end: 1747,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1733,
+                  end: 1747,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1733,
+              end: 1747,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1733,
+          end: 1747,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1748,
+          end: 1750,
+        ),
+      ),
+      span: Span(
+        start: 1733,
+        end: 1750,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1752,
+                        end: 1759,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 1760,
+                        end: 1765,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1751,
+                      end: 1766,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1751,
+                  end: 1766,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1751,
+              end: 1766,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1751,
+          end: 1766,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1767,
+          end: 1769,
+        ),
+      ),
+      span: Span(
+        start: 1751,
+        end: 1769,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1771,
+                        end: 1778,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1779,
+                        end: 1785,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1770,
+                      end: 1786,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1770,
+                  end: 1786,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1770,
+              end: 1786,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1770,
+          end: 1786,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1787,
+          end: 1789,
+        ),
+      ),
+      span: Span(
+        start: 1770,
+        end: 1789,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1791,
+                        end: 1798,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 1799,
+                        end: 1803,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1790,
+                      end: 1804,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1790,
+                  end: 1804,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1790,
+              end: 1804,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1790,
+          end: 1804,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1805,
+          end: 1807,
+        ),
+      ),
+      span: Span(
+        start: 1790,
+        end: 1807,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1809,
+                        end: 1816,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1818,
+                        end: 1829,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1808,
+                      end: 1831,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1808,
+                  end: 1831,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1808,
+              end: 1831,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1808,
+          end: 1831,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1832,
+          end: 1834,
+        ),
+      ),
+      span: Span(
+        start: 1808,
+        end: 1834,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-col",
+                      raw: "nth-col",
+                      span: Span(
+                        start: 1836,
+                        end: 1843,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 1844,
+                        end: 1851,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1835,
+                      end: 1852,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1835,
+                  end: 1852,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1835,
+              end: 1852,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1835,
+          end: 1852,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1853,
+          end: 1855,
+        ),
+      ),
+      span: Span(
+        start: 1835,
+        end: 1855,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1858,
+                        end: 1870,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1871,
+                        end: 1875,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1857,
+                      end: 1876,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1857,
+                  end: 1876,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1857,
+              end: 1876,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1857,
+          end: 1876,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1877,
+          end: 1879,
+        ),
+      ),
+      span: Span(
+        start: 1857,
+        end: 1879,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1881,
+                        end: 1893,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1894,
+                        end: 1895,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1880,
+                      end: 1896,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1880,
+                  end: 1896,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1880,
+              end: 1896,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1880,
+          end: 1896,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1897,
+          end: 1899,
+        ),
+      ),
+      span: Span(
+        start: 1880,
+        end: 1899,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1901,
+                        end: 1913,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1914,
+                        end: 1917,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1900,
+                      end: 1918,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1900,
+                  end: 1918,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1900,
+              end: 1918,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1900,
+          end: 1918,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1919,
+          end: 1921,
+        ),
+      ),
+      span: Span(
+        start: 1900,
+        end: 1921,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1923,
+                        end: 1935,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1936,
+                        end: 1940,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1922,
+                      end: 1941,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1922,
+                  end: 1941,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1922,
+              end: 1941,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1922,
+          end: 1941,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1942,
+          end: 1944,
+        ),
+      ),
+      span: Span(
+        start: 1922,
+        end: 1944,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1946,
+                        end: 1958,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: 0,
+                      span: Span(
+                        start: 1959,
+                        end: 1961,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1945,
+                      end: 1962,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1945,
+                  end: 1962,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1945,
+              end: 1962,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1945,
+          end: 1962,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1963,
+          end: 1965,
+        ),
+      ),
+      span: Span(
+        start: 1945,
+        end: 1965,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1967,
+                        end: 1979,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 0,
+                      span: Span(
+                        start: 1980,
+                        end: 1981,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1966,
+                      end: 1982,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1966,
+                  end: 1982,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1966,
+              end: 1982,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1966,
+          end: 1982,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1983,
+          end: 1985,
+        ),
+      ),
+      span: Span(
+        start: 1966,
+        end: 1985,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 1987,
+                        end: 1999,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 2000,
+                        end: 2004,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1986,
+                      end: 2005,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1986,
+                  end: 2005,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1986,
+              end: 2005,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1986,
+          end: 2005,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2006,
+          end: 2008,
+        ),
+      ),
+      span: Span(
+        start: 1986,
+        end: 2008,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2010,
+                        end: 2022,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 2023,
+                        end: 2026,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2009,
+                      end: 2027,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2009,
+                  end: 2027,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2009,
+              end: 2027,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2009,
+          end: 2027,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2028,
+          end: 2030,
+        ),
+      ),
+      span: Span(
+        start: 2009,
+        end: 2030,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2032,
+                        end: 2044,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: 3,
+                      span: Span(
+                        start: 2046,
+                        end: 2052,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2031,
+                      end: 2054,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2031,
+                  end: 2054,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2031,
+              end: 2054,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2031,
+          end: 2054,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2055,
+          end: 2057,
+        ),
+      ),
+      span: Span(
+        start: 2031,
+        end: 2057,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2059,
+                        end: 2071,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 2074,
+                        end: 2079,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2058,
+                      end: 2080,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2058,
+                  end: 2080,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2058,
+              end: 2080,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2058,
+          end: 2080,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2081,
+          end: 2083,
+        ),
+      ),
+      span: Span(
+        start: 2058,
+        end: 2083,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2085,
+                        end: 2097,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 2098,
+                        end: 2102,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2084,
+                      end: 2103,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2084,
+                  end: 2103,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2084,
+              end: 2103,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2084,
+          end: 2103,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2104,
+          end: 2106,
+        ),
+      ),
+      span: Span(
+        start: 2084,
+        end: 2106,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2108,
+                        end: 2120,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 1,
+                      b: -10,
+                      span: Span(
+                        start: 2121,
+                        end: 2126,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2107,
+                      end: 2127,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2107,
+                  end: 2127,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2107,
+              end: 2127,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2107,
+          end: 2127,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2128,
+          end: 2130,
+        ),
+      ),
+      span: Span(
+        start: 2107,
+        end: 2130,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2132,
+                        end: 2144,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 2145,
+                        end: 2151,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2131,
+                      end: 2152,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2131,
+                  end: 2152,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2131,
+              end: 2152,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2131,
+          end: 2152,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2153,
+          end: 2155,
+        ),
+      ),
+      span: Span(
+        start: 2131,
+        end: 2155,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2157,
+                        end: 2169,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: -1,
+                      b: -1,
+                      span: Span(
+                        start: 2170,
+                        end: 2174,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2156,
+                      end: 2175,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2156,
+                  end: 2175,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2156,
+              end: 2175,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2156,
+          end: 2175,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2176,
+          end: 2178,
+        ),
+      ),
+      span: Span(
+        start: 2156,
+        end: 2178,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2180,
+                        end: 2192,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 2194,
+                        end: 2205,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2179,
+                      end: 2207,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2179,
+                  end: 2207,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2179,
+              end: 2207,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2179,
+          end: 2207,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2208,
+          end: 2210,
+        ),
+      ),
+      span: Span(
+        start: 2179,
+        end: 2210,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-last-col",
+                      raw: "nth-last-col",
+                      span: Span(
+                        start: 2212,
+                        end: 2224,
+                      ),
+                    ),
+                    arg: Some(AnPlusB(
+                      type: "AnPlusB",
+                      a: 23,
+                      b: 123,
+                      span: Span(
+                        start: 2225,
+                        end: 2232,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2211,
+                      end: 2233,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2211,
+                  end: 2233,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2211,
+              end: 2233,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2211,
+          end: 2233,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 2234,
+          end: 2236,
+        ),
+      ),
+      span: Span(
+        start: 2211,
+        end: 2236,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 2237,
+  ),
+)
