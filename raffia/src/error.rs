@@ -31,7 +31,6 @@ pub enum ErrorKind {
 
     UnexpectedWhitespace,
     ExpectSimpleSelector,
-    InvalidIdSelectorName,
     ExpectTypeSelector,
     ExpectIdSelector,
     ExpectWqName,
@@ -66,6 +65,7 @@ pub enum ErrorKind {
     InvalidRatioDenominator,
     ExpectMediaFeatureName,
     ExpectDashedIdent,
+    InvalidIdSelectorName,
 }
 
 impl Display for ErrorKind {
@@ -85,7 +85,6 @@ impl Display for ErrorKind {
 
             Self::UnexpectedWhitespace => write!(f, "unexpected whitespace"),
             Self::ExpectSimpleSelector => write!(f, "simple selector is expected"),
-            Self::InvalidIdSelectorName => write!(f, "invalid ID selector name"),
             Self::ExpectTypeSelector => write!(f, "type selector is expected"),
             Self::ExpectIdSelector => write!(f, "ID selector is expected"),
             Self::ExpectWqName => write!(f, "WqName is expected"),
@@ -124,6 +123,7 @@ impl Display for ErrorKind {
             Self::InvalidRatioDenominator => write!(f, "ratio denominator is invalid"),
             Self::ExpectMediaFeatureName => write!(f, "media feature name is expected"),
             Self::ExpectDashedIdent => write!(f, "dashed identifier is expected"),
+            Self::InvalidIdSelectorName => write!(f, "invalid ID selector name"),
         }
     }
 }
