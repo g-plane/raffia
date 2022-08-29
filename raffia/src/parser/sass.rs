@@ -77,85 +77,85 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             let operator = match self.tokenizer.peek()? {
                 Token::Asterisk(token) if precedence == PRECEDENCE_MULTIPLY => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::Multiply,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Multiply,
                         span: token.span,
                     }
                 }
                 Token::Percent(token) if precedence == PRECEDENCE_MULTIPLY => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::Modulo,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Modulo,
                         span: token.span,
                     }
                 }
                 Token::Plus(token) if precedence == PRECEDENCE_PLUS => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::Plus,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Plus,
                         span: token.span,
                     }
                 }
                 Token::Minus(token) if precedence == PRECEDENCE_PLUS => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::Minus,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Minus,
                         span: token.span,
                     }
                 }
                 Token::GreaterThan(token) if precedence == PRECEDENCE_RELATIONAL => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::GreaterThan,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::GreaterThan,
                         span: token.span,
                     }
                 }
                 Token::GreaterThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::GreaterThanEqual,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::GreaterThanOrEqual,
                         span: token.span,
                     }
                 }
                 Token::LessThan(token) if precedence == PRECEDENCE_RELATIONAL => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::LessThan,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::LessThan,
                         span: token.span,
                     }
                 }
                 Token::LessThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::LessThanEqual,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::LessThanOrEqual,
                         span: token.span,
                     }
                 }
                 Token::EqualEqual(token) if precedence == PRECEDENCE_EQUALITY => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::EqualsEquals,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::EqualsEquals,
                         span: token.span,
                     }
                 }
                 Token::ExclamationEqual(token) if precedence == PRECEDENCE_EQUALITY => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::ExclamationEquals,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::ExclamationEquals,
                         span: token.span,
                     }
                 }
                 Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::And,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::And,
                         span: token.span,
                     }
                 }
                 Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
                     self.tokenizer.bump()?;
-                    BinaryOperator {
-                        kind: BinaryOperatorKind::Or,
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Or,
                         span: token.span,
                     }
                 }

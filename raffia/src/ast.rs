@@ -110,31 +110,6 @@ pub enum AttributeSelectorValue<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct BinaryOperator {
-    pub kind: BinaryOperatorKind,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-pub enum BinaryOperatorKind {
-    Multiply,
-    Modulo,
-    Plus,
-    Minus,
-    GreaterThan,
-    GreaterThanEqual,
-    LessThan,
-    LessThanEqual,
-    EqualsEquals,
-    ExclamationEquals,
-    And,
-    Or,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct BracketValues<'s> {
     pub value: Vec<ComponentValue<'s>>,
     pub span: Span,
@@ -1047,9 +1022,34 @@ pub struct SassArbitraryParameter<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassBinaryExpression<'s> {
     pub left: Box<ComponentValue<'s>>,
-    pub op: BinaryOperator,
+    pub op: SassBinaryOperator,
     pub right: Box<ComponentValue<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassBinaryOperator {
+    pub kind: SassBinaryOperatorKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum SassBinaryOperatorKind {
+    Multiply,
+    Modulo,
+    Plus,
+    Minus,
+    GreaterThan,
+    GreaterThanOrEqual,
+    LessThan,
+    LessThanOrEqual,
+    EqualsEquals,
+    ExclamationEquals,
+    And,
+    Or,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
