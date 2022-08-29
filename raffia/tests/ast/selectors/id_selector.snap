@@ -2562,7 +2562,7 @@ Stylesheet(
                     ),
                     matcher: Some(AttributeSelectorMatcher(
                       type: "AttributeSelectorMatcher",
-                      kind: Caret,
+                      kind: Prefix,
                       span: Span(
                         start: 762,
                         end: 764,
