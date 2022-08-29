@@ -24,39 +24,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<Option<Statement<'s>>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         match at_keyword_name {
-            "each" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassEachAtRule(self.parse()?)))
-            }
-            "for" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassForAtRule(self.parse()?)))
-            }
-            "if" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassIfAtRule(self.parse()?)))
-            }
-            "while" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassWhileAtRule(self.parse()?)))
-            }
-            "function" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassFunctionAtRule(
-                    self.with_state(ParserState {
-                        in_sass_function: true,
-                        ..self.state.clone()
-                    })
-                    .parse()?,
-                )))
-            }
+            "each" => Ok(Some(Statement::SassEachAtRule(self.parse()?))),
+            "for" => Ok(Some(Statement::SassForAtRule(self.parse()?))),
+            "if" => Ok(Some(Statement::SassIfAtRule(self.parse()?))),
+            "while" => Ok(Some(Statement::SassWhileAtRule(self.parse()?))),
+            "function" => Ok(Some(Statement::SassFunctionAtRule(
+                self.with_state(ParserState {
+                    in_sass_function: true,
+                    ..self.state.clone()
+                })
+                .parse()?,
+            ))),
             "return" if self.state.in_sass_function => {
                 Ok(Some(Statement::SassReturnAtRule(self.parse()?)))
             }
-            "warn" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassWarnAtRule(self.parse()?)))
-            }
-            "error" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassErrorAtRule(self.parse()?)))
-            }
-            "debug" if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                Ok(Some(Statement::SassDebugAtRule(self.parse()?)))
-            }
+            "warn" => Ok(Some(Statement::SassWarnAtRule(self.parse()?))),
+            "error" => Ok(Some(Statement::SassErrorAtRule(self.parse()?))),
+            "debug" => Ok(Some(Statement::SassDebugAtRule(self.parse()?))),
             _ => Ok(None),
         }
     }
