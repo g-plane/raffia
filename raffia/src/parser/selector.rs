@@ -925,7 +925,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let combinator = input.parse_combinator()?;
+        let combinator = match input.parse_combinator()? {
+            Some(Combinator {
+                kind: CombinatorKind::Descendant,
+                ..
+            }) => None,
+            combinator => combinator,
+        };
         let complex_selector = input.parse::<ComplexSelector>()?;
         let mut span = complex_selector.span.clone();
         if let Some(combinator) = &combinator {
