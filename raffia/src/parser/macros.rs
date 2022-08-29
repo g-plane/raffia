@@ -4,14 +4,17 @@ macro_rules! expect {
     ($parser:expr, $variant:ident) => {{
         use $crate::{
             error::{Error, ErrorKind},
-            tokenizer::Token,
+            tokenizer::{Token, TokenSymbol},
         };
         let tokenizer = &mut $parser.tokenizer;
         match tokenizer.bump()? {
             Token::$variant(token) => token,
             token => {
                 return Err(Error {
-                    kind: ErrorKind::Unexpected(stringify!($variant), token.symbol()),
+                    kind: ErrorKind::Unexpected(
+                        $crate::tokenizer::token::$variant::symbol(),
+                        token.symbol(),
+                    ),
                     span: token.span().clone(),
                 });
             }
@@ -25,14 +28,17 @@ macro_rules! expect_without_ws_or_comments {
     ($parser:expr, $variant:ident) => {{
         use $crate::{
             error::{Error, ErrorKind},
-            tokenizer::Token,
+            tokenizer::{Token, TokenSymbol},
         };
         let tokenizer = &mut $parser.tokenizer;
         match tokenizer.bump_without_ws_or_comments()? {
             Token::$variant(token) => token,
             token => {
                 return Err(Error {
-                    kind: ErrorKind::Unexpected(stringify!($variant), token.symbol()),
+                    kind: ErrorKind::Unexpected(
+                        $crate::tokenizer::token::$variant::symbol(),
+                        token.symbol(),
+                    ),
                     span: token.span().clone(),
                 });
             }

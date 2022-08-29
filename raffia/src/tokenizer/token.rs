@@ -87,68 +87,6 @@ pub enum Token<'s> {
     UrlTemplate(UrlTemplate<'s>),
 }
 
-impl Token<'_> {
-    pub(crate) fn symbol(&self) -> &'static str {
-        use Token::*;
-        match self {
-            Eof(..) => "<eof>",
-            Ampersand(..) => "&",
-            Asterisk(..) => "*",
-            AsteriskEqual(..) => "*=",
-            AtKeyword(..) => "<at-keyword>",
-            AtLBraceVar(..) => "@{",
-            Bar(..) => "|",
-            BarBar(..) => "||",
-            BarEqual(..) => "|=",
-            CaretEqual(..) => "^=",
-            Colon(..) => ":",
-            ColonColon(..) => "::",
-            Comma(..) => ",",
-            Dedent(..) => "<dedent>",
-            Dimension(..) => "<dimension>",
-            DollarEqual(..) => "$=",
-            DollarVar(..) => "$var",
-            Dot(..) => ".",
-            DotDotDot(..) => "...",
-            Equal(..) => "=",
-            EqualEqual(..) => "==",
-            Exclamation(..) => "!",
-            ExclamationEqual(..) => "!=",
-            GreaterThan(..) => ">",
-            GreaterThanEqual(..) => ">=",
-            Hash(..) => "<hash>",
-            HashLBrace(..) => "#{",
-            Ident(..) => "<ident>",
-            Indent(..) => "<indent>",
-            LBrace(..) => "{",
-            LBracket(..) => "[",
-            LessThan(..) => "<",
-            LessThanEqual(..) => "<=",
-            Linebreak(..) => "<linebreak>",
-            LParen(..) => "(",
-            Minus(..) => "-",
-            Number(..) => "<number>",
-            NumberSign(..) => "#",
-            Percent(..) => "%",
-            Percentage(..) => "<percentage>",
-            Plus(..) => "+",
-            PlusUnderscore(..) => "+_",
-            RBrace(..) => "}",
-            RBracket(..) => "]",
-            RParen(..) => ")",
-            Semicolon(..) => ";",
-            Solidus(..) => "/",
-            Str(..) => "<string>",
-            StrTemplate(..) => "<string template>",
-            Tilde(..) => "~",
-            TildeEqual(..) => "~=",
-            UrlPrefix(..) => "url(",
-            UrlRaw(..) => "<url>",
-            UrlTemplate(..) => "<url template>",
-        }
-    }
-}
-
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]

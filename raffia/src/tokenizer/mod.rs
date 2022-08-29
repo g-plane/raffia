@@ -5,10 +5,12 @@ use crate::{
 };
 use beef::Cow;
 use std::{cmp::Ordering, iter::Peekable, str::CharIndices};
+pub(crate) use symbol::TokenSymbol;
 pub use token::Token;
 use token::*;
 
 mod convert;
+mod symbol;
 pub mod token;
 
 #[derive(Clone)]
