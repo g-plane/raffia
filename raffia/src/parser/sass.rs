@@ -447,7 +447,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
                     expect!(input, RParen);
                     break;
                 }
-                _ => panic!(),
+                Token::RParen(..) => {
+                    let span = name.span.clone();
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: None,
+                        span,
+                    });
+                    break;
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected(")", token.symbol()),
+                        span: token.span().clone(),
+                    });
+                }
             }
             if eat!(input, RParen).is_some() {
                 break;
