@@ -35,8 +35,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 })
                 .parse()?,
             ))),
-            "return" if self.state.in_sass_function => {
-                Ok(Some(Statement::SassReturnAtRule(self.parse()?)))
+            "return" => {
+                let rule = self.parse::<SassReturnAtRule>()?;
+                if !self.state.in_sass_function {
+                    self.recoverable_errors.push(Error {
+                        kind: ErrorKind::ReturnOutsideFunction,
+                        span: rule.span.clone(),
+                    });
+                }
+                Ok(Some(Statement::SassReturnAtRule(rule)))
             }
             "warn" => Ok(Some(Statement::SassWarnAtRule(self.parse()?))),
             "error" => Ok(Some(Statement::SassErrorAtRule(self.parse()?))),

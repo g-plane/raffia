@@ -66,6 +66,7 @@ pub enum ErrorKind {
     ExpectMediaFeatureName,
     ExpectDashedIdent,
     InvalidIdSelectorName,
+    ReturnOutsideFunction,
 }
 
 impl Display for ErrorKind {
@@ -124,6 +125,7 @@ impl Display for ErrorKind {
             Self::ExpectMediaFeatureName => write!(f, "media feature name is expected"),
             Self::ExpectDashedIdent => write!(f, "dashed identifier is expected"),
             Self::InvalidIdSelectorName => write!(f, "invalid ID selector name"),
+            Self::ReturnOutsideFunction => write!(f, "`@return` is disallowed outside function"),
         }
     }
 }
