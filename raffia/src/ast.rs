@@ -83,12 +83,18 @@ pub struct AttributeSelectorMatcher {
 #[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum AttributeSelectorMatcherKind {
-    Equals,
-    Tilde,
-    Bar,
-    Caret,
-    Dollar,
-    Asterisk,
+    /// `=`
+    Exact,
+    /// `~=`
+    MatchWord,
+    /// `|=`
+    ExactOrPrefixThenHyphen,
+    /// `^=`
+    Prefix,
+    /// `$=`
+    Suffix,
+    /// `*=`
+    Substring,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

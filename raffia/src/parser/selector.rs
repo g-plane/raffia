@@ -475,42 +475,42 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
             Token::Equal(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Equals,
+                    kind: AttributeSelectorMatcherKind::Exact,
                     span: token.span,
                 })
             }
             Token::TildeEqual(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Tilde,
+                    kind: AttributeSelectorMatcherKind::MatchWord,
                     span: token.span,
                 })
             }
             Token::BarEqual(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Bar,
+                    kind: AttributeSelectorMatcherKind::ExactOrPrefixThenHyphen,
                     span: token.span,
                 })
             }
             Token::CaretEqual(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Caret,
+                    kind: AttributeSelectorMatcherKind::Prefix,
                     span: token.span,
                 })
             }
             Token::DollarEqual(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Dollar,
+                    kind: AttributeSelectorMatcherKind::Suffix,
                     span: token.span,
                 })
             }
             Token::AsteriskEqual(token) => {
                 let _ = input.tokenizer.bump();
                 Some(AttributeSelectorMatcher {
-                    kind: AttributeSelectorMatcherKind::Asterisk,
+                    kind: AttributeSelectorMatcherKind::Substring,
                     span: token.span,
                 })
             }
