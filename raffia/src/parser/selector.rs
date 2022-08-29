@@ -654,6 +654,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     end: token.span.end,
                 };
                 let raw = token.raw_without_hash;
+                if raw.starts_with(|c: char| c.is_ascii_digit()) {
+                    input.recoverable_errors.push(Error {
+                        kind: ErrorKind::InvalidIdSelectorName,
+                        span: token.span.clone(),
+                    });
+                }
                 let value = if token.escaped {
                     handle_escape(raw).map_err(|kind| Error {
                         kind,
@@ -662,12 +668,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                 } else {
                     Cow::from(raw)
                 };
-                if value.starts_with(|c: char| c.is_ascii_digit()) {
-                    return Err(Error {
-                        kind: ErrorKind::InvalidIdSelectorName,
-                        span: first_span,
-                    });
-                }
                 let first = Ident {
                     name: value,
                     raw: token.raw_without_hash,
