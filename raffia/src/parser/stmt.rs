@@ -93,7 +93,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Semicolon(..)
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
-                            | Token::Exclamation(..)
+                            | Token::Flag(..)
                             | Token::Eof(..) => break,
                             _ => values.push(parser.parse::<ComponentValue>()?),
                         }
