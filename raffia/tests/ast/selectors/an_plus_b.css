@@ -129,3 +129,70 @@
 
 123 ) {}
 :nth-last-col(23n+123) {}
+
+:nth-child(2n+1) {}
+:nth-child(2n +1) {}
+:nth-child(2n + 1) {}
+:nth-child(2n+ 1) {}
+:nth-child(2n-1) {}
+:nth-child(2n -1) {}
+:nth-child(2n- 1) {}
+:nth-child(2n - 1) {}
+:nth-child(-2n+1) {}
+:nth-child(-2n +1) {}
+:nth-child(-2n + 1) {}
+:nth-child(-2n+ 1) {}
+:nth-child(-2n-1) {}
+:nth-child(-2n -1) {}
+:nth-child(-2n - 1) {}
+:nth-child(+2n+1) {}
+:nth-child(+2n +1) {}
+:nth-child(+2n + 1) {}
+:nth-child(+2n+ 1) {}
+:nth-child(+2n-1) {}
+:nth-child(+2n -1) {}
+:nth-child(+2n- 1) {}
+:nth-child(+2n - 1) {}
+:nth-child(n+1) {}
+:nth-child(n +1) {}
+:nth-child(n + 1) {}
+:nth-child(n+ 1) {}
+:nth-child(n-1) {}
+:nth-child(n -1) {}
+:nth-child(n- 1) {}
+:nth-child(n - 1) {}
+:nth-child(-n+1) {}
+:nth-child(-n +1) {}
+:nth-child(-n + 1) {}
+:nth-child(-n+ 1) {}
+:nth-child(-n-1) {}
+:nth-child(-n -1) {}
+:nth-child(-n- 1) {}
+:nth-child(-n - 1) {}
+:nth-child(+n+1) {}
+:nth-child(+n +1) {}
+:nth-child(+n + 1) {}
+:nth-child(+n+ 1) {}
+:nth-child(+n-1) {}
+:nth-child(+n -1) {}
+:nth-child(+n- 1) {}
+:nth-child(+n - 1) {}
+:nth-child(n) {}
+:nth-child(-n) {}
+:nth-child(+n) {}
+:nth-child(2n) {}
+:nth-child(-2n) {}
+:nth-child(+2n) {}
+:nth-child(N) {}
+:nth-child(-N) {}
+:nth-child(+N) {}
+:nth-child(2N) {}
+:nth-child(-2N) {}
+:nth-child(+2N) {}
+:nth-child(123456n-12345678) {}
+
+:Nth-Child(2n+1) {}
+:NTH-CHILD(2n+1) {}
+
+:nth-child(/*test*/2n/*test*/+/*test*/1/*test*/) {}
+:nth-last-child(/*test*/+3n/*test*/-/*test*/2/*test*/) {}
