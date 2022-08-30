@@ -1,6 +1,6 @@
 use crate::pos::Span;
 use beef::Cow;
-use raffia_derive::{SpanIgnoredEq, Spanned};
+use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 

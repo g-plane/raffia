@@ -10,7 +10,7 @@ use crate::{
     Parse, Syntax,
 };
 use beef::Cow;
-use raffia_derive::Spanned;
+use raffia_macro::Spanned;
 use smallvec::SmallVec;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type

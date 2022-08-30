@@ -2,7 +2,7 @@
 
 use crate::{pos::Span, tokenizer::Token};
 use beef::Cow;
-use raffia_derive::{SpanIgnoredEq, Spanned};
+use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 use smallvec::SmallVec;
