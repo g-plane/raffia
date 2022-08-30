@@ -1235,6 +1235,40 @@ pub enum SassUnaryOperatorKind {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassUnnamedNamespace {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassUseAtRule<'s> {
+    pub path: InterpolableStr<'s>,
+    pub namespace: Option<SassUseNamespace<'s>>,
+    pub config: Vec<SassUseConfigItem<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassUseConfigItem<'s> {
+    pub var: SassVariable<'s>,
+    pub value: ComponentValue<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum SassUseNamespace<'s> {
+    Named(Ident<'s>),
+    Unnamed(SassUnnamedNamespace),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassVariable<'s> {
     pub name: Ident<'s>,
     pub span: Span,
@@ -1312,6 +1346,7 @@ pub enum Statement<'s> {
     SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
     SassReturnAtRule(SassReturnAtRule<'s>),
+    SassUseAtRule(SassUseAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
     SassWhileAtRule(SassWhileAtRule<'s>),

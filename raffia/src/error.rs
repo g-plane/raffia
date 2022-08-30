@@ -58,6 +58,7 @@ pub enum ErrorKind {
     ExpectInteger,
     ExpectUnsignedInteger,
     ExpectImportantAnnotation,
+    ExpectSassUseNamespace,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -115,6 +116,9 @@ impl Display for ErrorKind {
             Self::ExpectInteger => write!(f, "an integer is expected"),
             Self::ExpectUnsignedInteger => write!(f, "unsigned integer is expected"),
             Self::ExpectImportantAnnotation => write!(f, "`!important` is expected"),
+            Self::ExpectSassUseNamespace => {
+                write!(f, "`*` or ident for Sass namespace is expected")
+            }
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {

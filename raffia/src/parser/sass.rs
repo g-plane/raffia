@@ -28,6 +28,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "for" => Ok(Some(Statement::SassForAtRule(self.parse()?))),
             "if" => Ok(Some(Statement::SassIfAtRule(self.parse()?))),
             "while" => Ok(Some(Statement::SassWhileAtRule(self.parse()?))),
+            "use" => Ok(Some(Statement::SassUseAtRule(self.parse()?))),
             "function" => Ok(Some(Statement::SassFunctionAtRule(
                 self.with_state(ParserState {
                     in_sass_function: true,
@@ -631,6 +632,77 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
             end: expr.span.end,
         };
         Ok(SassReturnAtRule { expr, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let at_keyword = expect!(input, AtKeyword);
+        debug_assert_eq!(&*at_keyword.ident.name, "use");
+
+        let path = input.parse()?;
+        let namespace = match input.tokenizer.peek()? {
+            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("as") => {
+                input.tokenizer.bump()?;
+                input.parse().map(Some)?
+            }
+            _ => None,
+        };
+
+        let mut config = vec![];
+        match input.tokenizer.peek()? {
+            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("with") => {
+                input.tokenizer.bump()?;
+                expect!(input, LParen);
+                loop {
+                    config.push(input.parse::<SassUseConfigItem>()?);
+                    if eat!(input, RParen).is_some() {
+                        break;
+                    } else {
+                        expect!(input, Comma);
+                    }
+                }
+            }
+            _ => {}
+        }
+
+        Ok(SassUseAtRule {
+            path,
+            namespace,
+            config,
+            span: Span {
+                start: at_keyword.span.start,
+                end: input.tokenizer.current_offset(),
+            },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let var = input.parse::<SassVariable>()?;
+        expect!(input, Colon);
+        let value = input.parse::<ComponentValue>()?;
+        let span = Span {
+            start: var.span.start,
+            end: value.span().end,
+        };
+        Ok(SassUseConfigItem { var, value, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseNamespace<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match input.tokenizer.bump()? {
+            Token::Asterisk(asterisk) => Ok(SassUseNamespace::Unnamed(SassUnnamedNamespace {
+                span: asterisk.span,
+            })),
+            Token::Ident(ident) => Ok(SassUseNamespace::Named(ident.into())),
+            token => Err(Error {
+                kind: ErrorKind::ExpectSassUseNamespace,
+                span: token.span().clone(),
+            }),
+        }
     }
 }
 
