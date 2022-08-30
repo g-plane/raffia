@@ -165,6 +165,13 @@ impl TokenSymbol for ExclamationEqual {
     }
 }
 
+impl TokenSymbol for Flag<'_> {
+    #[inline]
+    fn symbol() -> &'static str {
+        "<flag>"
+    }
+}
+
 impl TokenSymbol for GreaterThan {
     #[inline]
     fn symbol() -> &'static str {
@@ -409,6 +416,7 @@ impl Token<'_> {
             EqualEqual(..) => "==",
             Exclamation(..) => "!",
             ExclamationEqual(..) => "!=",
+            Flag(..) => "<flag>",
             GreaterThan(..) => ">",
             GreaterThanEqual(..) => ">=",
             Hash(..) => "<hash>",

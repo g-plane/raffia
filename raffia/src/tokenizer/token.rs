@@ -54,6 +54,7 @@ pub enum Token<'s> {
     EqualEqual(EqualEqual),
     Exclamation(Exclamation),
     ExclamationEqual(ExclamationEqual),
+    Flag(Flag<'s>),
     GreaterThan(GreaterThan),
     GreaterThanEqual(GreaterThanEqual),
     Hash(Hash<'s>),
@@ -250,6 +251,14 @@ pub struct Exclamation {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct ExclamationEqual {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Flag<'s> {
+    pub ident: Ident<'s>,
     pub span: Span,
 }
 

@@ -8,7 +8,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments,
+    expect,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
     util::PairedToken,
@@ -103,7 +103,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             }
         };
 
-        let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {
+        let important = if let Token::Flag(..) = input.tokenizer.peek()? {
             input.parse::<ImportantAnnotation>().map(Some)?
         } else {
             None
@@ -134,22 +134,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let exclamation = expect!(input, Exclamation);
-        let ident = expect_without_ws_or_comments!(input, Ident);
-
-        let span = Span {
-            start: exclamation.span.start,
-            end: ident.span.end,
-        };
-        if ident.name.eq_ignore_ascii_case("important") {
+        let flag = expect!(input, Flag);
+        if flag.ident.name.eq_ignore_ascii_case("important") {
             Ok(ImportantAnnotation {
-                ident: ident.into(),
-                span,
+                ident: flag.ident.into(),
+                span: flag.span,
             })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectImportantAnnotation,
-                span,
+                span: flag.span,
             })
         }
     }

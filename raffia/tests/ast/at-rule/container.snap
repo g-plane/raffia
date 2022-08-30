@@ -29766,19 +29766,19 @@ Stylesheet(
                     end: 9608,
                   ),
                 )),
-                Exclamation(Exclamation(
-                  kind: "Exclamation",
+                Flag(Flag(
+                  kind: "Flag",
+                  ident: Ident(
+                    kind: "Ident",
+                    name: "important",
+                    raw: "important",
+                    span: Span(
+                      start: 9610,
+                      end: 9619,
+                    ),
+                  ),
                   span: Span(
                     start: 9609,
-                    end: 9610,
-                  ),
-                )),
-                Ident(Ident(
-                  kind: "Ident",
-                  name: "important",
-                  raw: "important",
-                  span: Span(
-                    start: 9610,
                     end: 9619,
                   ),
                 )),
@@ -29863,19 +29863,19 @@ Stylesheet(
                         end: 9657,
                       ),
                     )),
-                    Exclamation(Exclamation(
-                      kind: "Exclamation",
+                    Flag(Flag(
+                      kind: "Flag",
+                      ident: Ident(
+                        kind: "Ident",
+                        name: "important",
+                        raw: "important",
+                        span: Span(
+                          start: 9659,
+                          end: 9668,
+                        ),
+                      ),
                       span: Span(
                         start: 9658,
-                        end: 9659,
-                      ),
-                    )),
-                    Ident(Ident(
-                      kind: "Ident",
-                      name: "important",
-                      raw: "important",
-                      span: Span(
-                        start: 9659,
                         end: 9668,
                       ),
                     )),
@@ -29942,19 +29942,19 @@ Stylesheet(
                                 end: 9696,
                               ),
                             )),
-                            Exclamation(Exclamation(
-                              kind: "Exclamation",
+                            Flag(Flag(
+                              kind: "Flag",
+                              ident: Ident(
+                                kind: "Ident",
+                                name: "important",
+                                raw: "important",
+                                span: Span(
+                                  start: 9698,
+                                  end: 9707,
+                                ),
+                              ),
                               span: Span(
                                 start: 9697,
-                                end: 9698,
-                              ),
-                            )),
-                            Ident(Ident(
-                              kind: "Ident",
-                              name: "important",
-                              raw: "important",
-                              span: Span(
-                                start: 9698,
                                 end: 9707,
                               ),
                             )),
