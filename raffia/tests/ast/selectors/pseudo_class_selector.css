@@ -1,0 +1,180 @@
+:root {}
+:any-link {}
+button:hover {}
+div\:before {}
+div\::before {}
+iNpUt {}
+:matches(section, article, aside, nav) h1 {}
+input:not([type='submit']) {}
+div.sidebar:has(*:nth-child(5)):not(:has(*:nth-child(6))) {}
+::-webkit-scrollbar-thumb:window-inactive {}
+::-webkit-scrollbar-button:horizontal:decrement {}
+.test::-webkit-scrollbar-button:horizontal:decrement {}
+*:is(*) {}
+:--heading {}
+a:-moz-placeholder {}
+a:hover::before {}
+div :nth-child(2) {}
+a:hOvEr {}
+:-webkit-full-screen a {}
+
+:nth-child(odd) {}
+:nth-child(ODD) {}
+:nth-child(oDd) {}
+:nth-child(even) {}
+:nth-child(eVeN) {}
+:nth-child(EVEN) {}
+:nth-child(0){}
+:nth-child(+0){}
+:nth-child(-0){}
+:nth-child(1){}
+:nth-child(+1){}
+:nth-child(-1){}
+:nth-child(3){}
+:nth-child(+3){}
+:nth-child(-3){}
+
+:not(p) {}
+:not(   p   ) {}
+:not(
+p
+) {}
+button:not([DISABLED]) {}
+*:not(FOO) {}
+html|*:not(:link):not(:visited) {}
+.selector:not(*:root) {}
+:not(:is(argument)) {}
+p:not(.fancy) {}
+body :not(p) {}
+body :not(div):not(span) {}
+body :not(div, .fancy) {}
+h2 :not(span.foo) {}
+body > h2:not(:first-of-type):not(:last-of-type) {}
+:not(em, strong#foo) {}
+html|*:not(:link):not(:visited) {}
+button:not([DISABLED]) {}
+a:not(:hover) {}
+a:where(:not(:hover)) {}
+section:not(:has(h1, h2, h3, h4, h5, h6)) {}
+section:has(:not(h1, h2, h3, h4, h5, h6)) {}
+ul li:not(:first-of-type) {}
+:not(:nth-child(6),
+     :nth-last-child(6),
+     :nth-of-type(6),
+     :nth-last-of-type(6)) {}
+
+:is(ul) li {}
+:is(ul, ol) li {}
+:is(header, main, footer) p:hover {}
+div:is(.cool, .fun) {}
+:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) :is(ul, menu, dir) {}
+*|*:is(:hover, :focus) {}
+*|*:is(*:hover, *:focus) {}
+:is(ul, ol, .list) > [hidden] {}
+:is(p, p:unsupported) {}
+:is(:valid, :unsupported) {}
+a:is(:not(:hover)) {}
+:is(section, article, aside, nav) :is(h1, h2, h3, h4, h5, h6) {}
+:is(:nth-child(6),
+    :nth-last-child(6),
+    :nth-of-type(6),
+    :nth-last-of-type(6)) {}
+
+:where(ul) li {}
+:where(ul, ol) li {}
+:where(header, main, footer) p:hover {}
+div:where(.cool, .fun) {}
+:where(ol, ul, menu, dir) :where(ol, ul, menu, dir) :where(ul, menu, dir) {}
+*|*:where(:hover, :focus) {}
+*|*:where(*:hover, *:focus) {}
+:where(ul, ol, .lwheret) > [hidden] {}
+:where(p, p:unsupported) {}
+:where(:valid, :unsupported) {}
+a:where(:not(:hover)) {}
+:where(:nth-child(6), :nth-child(6) #id){}
+:where(:nth-last-child(7), :nth-last-child(7 ) #id){}
+:where(:nth-of-type(8) #a, :nth-of-type(8) #b, :nth-of-type(8) #c) {}
+:where(:nth-last-of-type(9)   #a,
+       :nth-last-of-type(9 )  #b,
+       :nth-last-of-type( 9)  #c,
+       :nth-last-of-type( 9 ) #d,
+       :nth-last-of-type(9)   #e) {}
+:where(:nth-child(6),
+       :nth-last-child(6),
+       :nth-of-type(6),
+       :nth-last-of-type(6)) {}
+
+:matches(ul) li {}
+:matches(ul, ol) li {}
+
+a:has(> img) {}
+a:has(   > img   ) {}
+a:has(   >   img   ) {}
+a:has(   >   img   ,   >   img   ) {}
+a:has(   img   ) {}
+dt:has(+ dt) {}
+section:not(:has(h1, h2, h3, h4, h5, h6)) {}
+section:has(:not(h1, h2, h3, h4, h5, h6)) {}
+div:has(p) {}
+.header-group:has(h2):has(.subtitle) h2 {}
+
+:dir(ltr) {}
+:dir(   ltr   ) {}
+:dir(rtl) {}
+:dir(   rtl   ) {}
+
+:lang(\*-Latn) {}
+:lang("*-Latn") {}
+html:lang(fr-be) {}
+html:lang(de) {}
+html:lang(de, fr) {}
+:lang(fr-be) > q {}
+:lang(de) > q {}
+
+:-webkit-any(textarea) {}
+:-moz-any(textarea) {}
+:-webkit-any(header, main, footer) p:hover {}
+:-moz-any(header, main, footer) p:hover {}
+:-webkit-any(.class[test]) {}
+:-moz-any(.class[test]) {}
+:-webkit-any(.class[test], .class) {}
+:-moz-any(.class[test], .class) {}
+:-webkit-any(h1),
+:-webkit-any( #div1, b ),
+:-webkit-any(.foo, #bar),
+:-webkit-any(i,p,:link,span:focus) {}
+#test-last-child :-webkit-any(:last-child),
+:-webkit-any(:link:focus),
+#container-div :-webkit-any(:link, :not(a)),
+h1:-webkit-any(.h1class, #bar) {}
+
+:current(p, li, dt, dd) {}
+:past(p, li, dt, dd) {}
+:future(p, li, dt, dd) {}
+
+:host(.special-custom-element) {}
+:host(   .special-custom-element   ) {}
+:host(.footer) {}
+:host {}
+:host-context(h1) {}
+:host-context(   h1   ) {}
+
+:unknown {}
+:unknown() {}
+:unknown(foo) {}
+:unknown(foo bar) {}
+:unknown(foo, bar) {}
+:unknown([foo]) {}
+:unknown((foo bar)) {}
+:unknown(((foo bar))) {}
+:unknown({foo: bar}) {}
+:unknown({{foo: bar}}) {}
+:unknown({foo: bar !important}) {}
+:unknown("string") {}
+:unknown("string", foo) {}
+:unknown('string') {}
+:unknown(url(foo.png)) {}
+:unknown({!}) {}
+:unknown(!) {}
+:unknown({;}) {}
+:unknown(;) {}
