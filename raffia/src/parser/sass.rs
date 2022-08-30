@@ -235,6 +235,35 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         ))
     }
 
+    pub(super) fn parse_sass_namespaced_expression(
+        &mut self,
+        namespace: Ident<'s>,
+    ) -> PResult<SassNamespacedExpression<'s>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+
+        let dot = expect!(self, Dot);
+        let expr = match self.tokenizer.peek()? {
+            Token::DollarVar(..) => self.parse().map(ComponentValue::SassVariable)?,
+            _ => {
+                let name = InterpolableIdent::Literal(expect!(self, Ident).into());
+                self.parse_function(name).map(ComponentValue::Function)?
+            }
+        };
+
+        let expr_span = expr.span();
+        self.assert_no_ws_or_comment(&dot.span, expr_span)?;
+
+        let span = Span {
+            start: namespace.span.start,
+            end: expr_span.end,
+        };
+        Ok(SassNamespacedExpression {
+            namespace,
+            expr: Box::new(expr),
+            span,
+        })
+    }
+
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match self.tokenizer.peek()? {
             Token::Plus(token) => {

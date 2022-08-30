@@ -85,8 +85,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         match self.tokenizer.peek()? {
             Token::Ident(..) => {
                 let ident = self.parse::<InterpolableIdent>()?;
+                let ident_end = ident.span().end;
                 match self.tokenizer.peek()? {
-                    Token::LParen(token) if token.span.start == ident.span().end => match ident {
+                    Token::LParen(token) if token.span.start == ident_end => match ident {
                         InterpolableIdent::Literal(ident)
                             if ident.name.eq_ignore_ascii_case("src") =>
                         {
@@ -94,6 +95,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                         ident => self.parse_function(ident).map(ComponentValue::Function),
                     },
+                    Token::Dot(token) if token.span.start == ident_end => {
+                        if let InterpolableIdent::Literal(namespace) = ident {
+                            self.parse_sass_namespaced_expression(namespace)
+                                .map(ComponentValue::SassNamespacedExpression)
+                        } else {
+                            Ok(ComponentValue::InterpolableIdent(ident))
+                        }
+                    }
                     _ => Ok(ComponentValue::InterpolableIdent(ident)),
                 }
             }
