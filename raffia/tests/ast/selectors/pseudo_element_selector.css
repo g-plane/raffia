@@ -1,0 +1,55 @@
+a::after {}
+dialog::backdrop {}
+a::before {}
+::grammar-error {}
+::marker {}
+::placeholder {}
+::selection {}
+::spelling-error {}
+::target-text {}
+.form-range::-webkit-slider-thumb:active {}
+a::bEfOrE {}
+div::bef\ore {}
+a:hover::before {}
+a:hover::-moz-placeholder {}
+a, b > .foo::before {}
+*:hover.class {}
+
+tabbed-custom-element::part(active) {}
+tabbed-custom-element::part(   active   ) {}
+
+::cue {}
+::cue(v[voice="Esme"]) {}
+::cue(   v[voice="Esme"]   ) {}
+video::cue {}
+video::cue(b) {}
+video::cue(#cue1) {}
+video::cue(:lang(en)) {}
+
+video::cue-region {}
+video::cue-region(#scroll) {}
+video::cue-region(   #scroll   ) {}
+
+::slotted(*) {}
+::slotted(span) {}
+::slotted(   span   ) {}
+
+::unknown {}
+::unknown() {}
+::unknown(foo) {}
+::unknown(foo bar) {}
+::unknown(foo, bar) {}
+::unknown([foo]) {}
+::unknown((foo bar)) {}
+::unknown(((foo bar))) {}
+::unknown({foo: bar}) {}
+::unknown({{foo: bar}}) {}
+::unknown({foo: bar !important}) {}
+::unknown("string") {}
+::unknown("string", foo) {}
+::unknown('string') {}
+::unknown(url(foo.png)) {}
+::unknown({!}) {}
+::unknown(!) {}
+::unknown({;}) {}
+::unknown(;) {}

@@ -1,0 +1,4517 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 0,
+                          end: 1,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 1,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 1,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "after",
+                      raw: "after",
+                      span: Span(
+                        start: 3,
+                        end: 8,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 1,
+                      end: 8,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 8,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 8,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 8,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9,
+          end: 11,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 11,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "dialog",
+                        raw: "dialog",
+                        span: Span(
+                          start: 12,
+                          end: 18,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 12,
+                        end: 18,
+                      ),
+                    ),
+                    span: Span(
+                      start: 12,
+                      end: 18,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "backdrop",
+                      raw: "backdrop",
+                      span: Span(
+                        start: 20,
+                        end: 28,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 18,
+                      end: 28,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 12,
+                  end: 28,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 12,
+              end: 28,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 12,
+          end: 28,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 29,
+          end: 31,
+        ),
+      ),
+      span: Span(
+        start: 12,
+        end: 31,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 32,
+                          end: 33,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 32,
+                        end: 33,
+                      ),
+                    ),
+                    span: Span(
+                      start: 32,
+                      end: 33,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "before",
+                      raw: "before",
+                      span: Span(
+                        start: 35,
+                        end: 41,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 33,
+                      end: 41,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 32,
+                  end: 41,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 32,
+              end: 41,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 32,
+          end: 41,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 42,
+          end: 44,
+        ),
+      ),
+      span: Span(
+        start: 32,
+        end: 44,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "grammar-error",
+                      raw: "grammar-error",
+                      span: Span(
+                        start: 47,
+                        end: 60,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 45,
+                      end: 60,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 45,
+                  end: 60,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 45,
+              end: 60,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 45,
+          end: 60,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 61,
+          end: 63,
+        ),
+      ),
+      span: Span(
+        start: 45,
+        end: 63,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "marker",
+                      raw: "marker",
+                      span: Span(
+                        start: 66,
+                        end: 72,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 64,
+                      end: 72,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 64,
+                  end: 72,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 64,
+              end: 72,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 64,
+          end: 72,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 73,
+          end: 75,
+        ),
+      ),
+      span: Span(
+        start: 64,
+        end: 75,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "placeholder",
+                      raw: "placeholder",
+                      span: Span(
+                        start: 78,
+                        end: 89,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 76,
+                      end: 89,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 76,
+                  end: 89,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 76,
+              end: 89,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 76,
+          end: 89,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 90,
+          end: 92,
+        ),
+      ),
+      span: Span(
+        start: 76,
+        end: 92,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "selection",
+                      raw: "selection",
+                      span: Span(
+                        start: 95,
+                        end: 104,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 93,
+                      end: 104,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 93,
+                  end: 104,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 93,
+              end: 104,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 93,
+          end: 104,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 105,
+          end: 107,
+        ),
+      ),
+      span: Span(
+        start: 93,
+        end: 107,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "spelling-error",
+                      raw: "spelling-error",
+                      span: Span(
+                        start: 110,
+                        end: 124,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 108,
+                      end: 124,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 108,
+                  end: 124,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 108,
+              end: 124,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 108,
+          end: 124,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 125,
+          end: 127,
+        ),
+      ),
+      span: Span(
+        start: 108,
+        end: 127,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "target-text",
+                      raw: "target-text",
+                      span: Span(
+                        start: 130,
+                        end: 141,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 128,
+                      end: 141,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 128,
+                  end: 141,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 128,
+              end: 141,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 128,
+          end: 141,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 142,
+          end: 144,
+        ),
+      ),
+      span: Span(
+        start: 128,
+        end: 144,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "form-range",
+                      raw: "form-range",
+                      span: Span(
+                        start: 146,
+                        end: 156,
+                      ),
+                    ),
+                    span: Span(
+                      start: 145,
+                      end: 156,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "-webkit-slider-thumb",
+                      raw: "-webkit-slider-thumb",
+                      span: Span(
+                        start: 158,
+                        end: 178,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 156,
+                      end: 178,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "active",
+                      raw: "active",
+                      span: Span(
+                        start: 179,
+                        end: 185,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 178,
+                      end: 185,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 145,
+                  end: 185,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 145,
+              end: 185,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 145,
+          end: 185,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 186,
+          end: 188,
+        ),
+      ),
+      span: Span(
+        start: 145,
+        end: 188,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 189,
+                          end: 190,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 189,
+                        end: 190,
+                      ),
+                    ),
+                    span: Span(
+                      start: 189,
+                      end: 190,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "bEfOrE",
+                      raw: "bEfOrE",
+                      span: Span(
+                        start: 192,
+                        end: 198,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 190,
+                      end: 198,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 189,
+                  end: 198,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 189,
+              end: 198,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 189,
+          end: 198,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 199,
+          end: 201,
+        ),
+      ),
+      span: Span(
+        start: 189,
+        end: 201,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 202,
+                          end: 205,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 202,
+                        end: 205,
+                      ),
+                    ),
+                    span: Span(
+                      start: 202,
+                      end: 205,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "before",
+                      raw: "bef\\ore",
+                      span: Span(
+                        start: 207,
+                        end: 214,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 205,
+                      end: 214,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 202,
+                  end: 214,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 202,
+              end: 214,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 202,
+          end: 214,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 215,
+          end: 217,
+        ),
+      ),
+      span: Span(
+        start: 202,
+        end: 217,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 218,
+                          end: 219,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 218,
+                        end: 219,
+                      ),
+                    ),
+                    span: Span(
+                      start: 218,
+                      end: 219,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 220,
+                        end: 225,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 219,
+                      end: 225,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "before",
+                      raw: "before",
+                      span: Span(
+                        start: 227,
+                        end: 233,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 225,
+                      end: 233,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 218,
+                  end: 233,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 218,
+              end: 233,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 218,
+          end: 233,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 234,
+          end: 236,
+        ),
+      ),
+      span: Span(
+        start: 218,
+        end: 236,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 237,
+                          end: 238,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 237,
+                        end: 238,
+                      ),
+                    ),
+                    span: Span(
+                      start: 237,
+                      end: 238,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 239,
+                        end: 244,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 238,
+                      end: 244,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "-moz-placeholder",
+                      raw: "-moz-placeholder",
+                      span: Span(
+                        start: 246,
+                        end: 262,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 244,
+                      end: 262,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 237,
+                  end: 262,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 237,
+              end: 262,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 237,
+          end: 262,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 263,
+          end: 265,
+        ),
+      ),
+      span: Span(
+        start: 237,
+        end: 265,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 266,
+                          end: 267,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 266,
+                        end: 267,
+                      ),
+                    ),
+                    span: Span(
+                      start: 266,
+                      end: 267,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 266,
+                  end: 267,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 266,
+              end: 267,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 269,
+                          end: 270,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 269,
+                        end: 270,
+                      ),
+                    ),
+                    span: Span(
+                      start: 269,
+                      end: 270,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 269,
+                  end: 270,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Child,
+                span: Span(
+                  start: 271,
+                  end: 272,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 274,
+                        end: 277,
+                      ),
+                    ),
+                    span: Span(
+                      start: 273,
+                      end: 277,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "before",
+                      raw: "before",
+                      span: Span(
+                        start: 279,
+                        end: 285,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 277,
+                      end: 285,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 273,
+                  end: 285,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 269,
+              end: 285,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 266,
+          end: 285,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 286,
+          end: 288,
+        ),
+      ),
+      span: Span(
+        start: 266,
+        end: 288,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: None,
+                    span: Span(
+                      start: 289,
+                      end: 290,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 291,
+                        end: 296,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 290,
+                      end: 296,
+                    ),
+                  ),
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "class",
+                      raw: "class",
+                      span: Span(
+                        start: 297,
+                        end: 302,
+                      ),
+                    ),
+                    span: Span(
+                      start: 296,
+                      end: 302,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 289,
+                  end: 302,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 289,
+              end: 302,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 289,
+          end: 302,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 303,
+          end: 305,
+        ),
+      ),
+      span: Span(
+        start: 289,
+        end: 305,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "tabbed-custom-element",
+                        raw: "tabbed-custom-element",
+                        span: Span(
+                          start: 307,
+                          end: 328,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 307,
+                        end: 328,
+                      ),
+                    ),
+                    span: Span(
+                      start: 307,
+                      end: 328,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "part",
+                      raw: "part",
+                      span: Span(
+                        start: 330,
+                        end: 334,
+                      ),
+                    ),
+                    arg: Some(Ident(
+                      type: "Ident",
+                      name: "active",
+                      raw: "active",
+                      span: Span(
+                        start: 335,
+                        end: 341,
+                      ),
+                    )),
+                    span: Span(
+                      start: 328,
+                      end: 342,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 307,
+                  end: 342,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 307,
+              end: 342,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 307,
+          end: 342,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 343,
+          end: 345,
+        ),
+      ),
+      span: Span(
+        start: 307,
+        end: 345,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "tabbed-custom-element",
+                        raw: "tabbed-custom-element",
+                        span: Span(
+                          start: 346,
+                          end: 367,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 346,
+                        end: 367,
+                      ),
+                    ),
+                    span: Span(
+                      start: 346,
+                      end: 367,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "part",
+                      raw: "part",
+                      span: Span(
+                        start: 369,
+                        end: 373,
+                      ),
+                    ),
+                    arg: Some(Ident(
+                      type: "Ident",
+                      name: "active",
+                      raw: "active",
+                      span: Span(
+                        start: 377,
+                        end: 383,
+                      ),
+                    )),
+                    span: Span(
+                      start: 367,
+                      end: 387,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 346,
+                  end: 387,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 346,
+              end: 387,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 346,
+          end: 387,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 388,
+          end: 390,
+        ),
+      ),
+      span: Span(
+        start: 346,
+        end: 390,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 394,
+                        end: 397,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 392,
+                      end: 397,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 392,
+                  end: 397,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 392,
+              end: 397,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 392,
+          end: 397,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 398,
+          end: 400,
+        ),
+      ),
+      span: Span(
+        start: 392,
+        end: 400,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 403,
+                        end: 406,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "v",
+                              raw: "v",
+                              span: Span(
+                                start: 407,
+                                end: 408,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 407,
+                              end: 408,
+                            ),
+                          ),
+                          span: Span(
+                            start: 407,
+                            end: 408,
+                          ),
+                        ),
+                        AttributeSelector(
+                          type: "AttributeSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "voice",
+                              raw: "voice",
+                              span: Span(
+                                start: 409,
+                                end: 414,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 409,
+                              end: 414,
+                            ),
+                          ),
+                          matcher: Some(AttributeSelectorMatcher(
+                            type: "AttributeSelectorMatcher",
+                            kind: Exact,
+                            span: Span(
+                              start: 414,
+                              end: 415,
+                            ),
+                          )),
+                          value: Some(Str(
+                            type: "Str",
+                            value: "Esme",
+                            raw: "\"Esme\"",
+                            span: Span(
+                              start: 415,
+                              end: 421,
+                            ),
+                          )),
+                          modifier: None,
+                          span: Span(
+                            start: 408,
+                            end: 422,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 407,
+                        end: 422,
+                      ),
+                    )),
+                    span: Span(
+                      start: 401,
+                      end: 423,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 401,
+                  end: 423,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 401,
+              end: 423,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 401,
+          end: 423,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 424,
+          end: 426,
+        ),
+      ),
+      span: Span(
+        start: 401,
+        end: 426,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 429,
+                        end: 432,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "v",
+                              raw: "v",
+                              span: Span(
+                                start: 436,
+                                end: 437,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 436,
+                              end: 437,
+                            ),
+                          ),
+                          span: Span(
+                            start: 436,
+                            end: 437,
+                          ),
+                        ),
+                        AttributeSelector(
+                          type: "AttributeSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "voice",
+                              raw: "voice",
+                              span: Span(
+                                start: 438,
+                                end: 443,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 438,
+                              end: 443,
+                            ),
+                          ),
+                          matcher: Some(AttributeSelectorMatcher(
+                            type: "AttributeSelectorMatcher",
+                            kind: Exact,
+                            span: Span(
+                              start: 443,
+                              end: 444,
+                            ),
+                          )),
+                          value: Some(Str(
+                            type: "Str",
+                            value: "Esme",
+                            raw: "\"Esme\"",
+                            span: Span(
+                              start: 444,
+                              end: 450,
+                            ),
+                          )),
+                          modifier: None,
+                          span: Span(
+                            start: 437,
+                            end: 451,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 436,
+                        end: 451,
+                      ),
+                    )),
+                    span: Span(
+                      start: 427,
+                      end: 455,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 427,
+                  end: 455,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 427,
+              end: 455,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 427,
+          end: 455,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 456,
+          end: 458,
+        ),
+      ),
+      span: Span(
+        start: 427,
+        end: 458,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 459,
+                          end: 464,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 459,
+                        end: 464,
+                      ),
+                    ),
+                    span: Span(
+                      start: 459,
+                      end: 464,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 466,
+                        end: 469,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 464,
+                      end: 469,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 459,
+                  end: 469,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 459,
+              end: 469,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 459,
+          end: 469,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 470,
+          end: 472,
+        ),
+      ),
+      span: Span(
+        start: 459,
+        end: 472,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 473,
+                          end: 478,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 473,
+                        end: 478,
+                      ),
+                    ),
+                    span: Span(
+                      start: 473,
+                      end: 478,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 480,
+                        end: 483,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "b",
+                              raw: "b",
+                              span: Span(
+                                start: 484,
+                                end: 485,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 484,
+                              end: 485,
+                            ),
+                          ),
+                          span: Span(
+                            start: 484,
+                            end: 485,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 484,
+                        end: 485,
+                      ),
+                    )),
+                    span: Span(
+                      start: 478,
+                      end: 486,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 473,
+                  end: 486,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 473,
+              end: 486,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 473,
+          end: 486,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 487,
+          end: 489,
+        ),
+      ),
+      span: Span(
+        start: 473,
+        end: 489,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 490,
+                          end: 495,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 490,
+                        end: 495,
+                      ),
+                    ),
+                    span: Span(
+                      start: 490,
+                      end: 495,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 497,
+                        end: 500,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        IdSelector(
+                          type: "IdSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "cue1",
+                            raw: "cue1",
+                            span: Span(
+                              start: 502,
+                              end: 506,
+                            ),
+                          ),
+                          span: Span(
+                            start: 501,
+                            end: 506,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 501,
+                        end: 506,
+                      ),
+                    )),
+                    span: Span(
+                      start: 495,
+                      end: 507,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 490,
+                  end: 507,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 490,
+              end: 507,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 490,
+          end: 507,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 508,
+          end: 510,
+        ),
+      ),
+      span: Span(
+        start: 490,
+        end: 510,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 511,
+                          end: 516,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 511,
+                        end: 516,
+                      ),
+                    ),
+                    span: Span(
+                      start: 511,
+                      end: 516,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue",
+                      raw: "cue",
+                      span: Span(
+                        start: 518,
+                        end: 521,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "lang",
+                            raw: "lang",
+                            span: Span(
+                              start: 523,
+                              end: 527,
+                            ),
+                          ),
+                          arg: Some(LanguageRangeList(
+                            type: "LanguageRangeList",
+                            ranges: [
+                              Ident(
+                                type: "Ident",
+                                name: "en",
+                                raw: "en",
+                                span: Span(
+                                  start: 528,
+                                  end: 530,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 528,
+                              end: 530,
+                            ),
+                          )),
+                          span: Span(
+                            start: 522,
+                            end: 531,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 522,
+                        end: 531,
+                      ),
+                    )),
+                    span: Span(
+                      start: 516,
+                      end: 532,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 511,
+                  end: 532,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 511,
+              end: 532,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 511,
+          end: 532,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 533,
+          end: 535,
+        ),
+      ),
+      span: Span(
+        start: 511,
+        end: 535,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 537,
+                          end: 542,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 537,
+                        end: 542,
+                      ),
+                    ),
+                    span: Span(
+                      start: 537,
+                      end: 542,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue-region",
+                      raw: "cue-region",
+                      span: Span(
+                        start: 544,
+                        end: 554,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 542,
+                      end: 554,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 537,
+                  end: 554,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 537,
+              end: 554,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 537,
+          end: 554,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 555,
+          end: 557,
+        ),
+      ),
+      span: Span(
+        start: 537,
+        end: 557,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 558,
+                          end: 563,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 558,
+                        end: 563,
+                      ),
+                    ),
+                    span: Span(
+                      start: 558,
+                      end: 563,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue-region",
+                      raw: "cue-region",
+                      span: Span(
+                        start: 565,
+                        end: 575,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        IdSelector(
+                          type: "IdSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "scroll",
+                            raw: "scroll",
+                            span: Span(
+                              start: 577,
+                              end: 583,
+                            ),
+                          ),
+                          span: Span(
+                            start: 576,
+                            end: 583,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 576,
+                        end: 583,
+                      ),
+                    )),
+                    span: Span(
+                      start: 563,
+                      end: 584,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 558,
+                  end: 584,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 558,
+              end: 584,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 558,
+          end: 584,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 585,
+          end: 587,
+        ),
+      ),
+      span: Span(
+        start: 558,
+        end: 587,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "video",
+                        raw: "video",
+                        span: Span(
+                          start: 588,
+                          end: 593,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 588,
+                        end: 593,
+                      ),
+                    ),
+                    span: Span(
+                      start: 588,
+                      end: 593,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cue-region",
+                      raw: "cue-region",
+                      span: Span(
+                        start: 595,
+                        end: 605,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        IdSelector(
+                          type: "IdSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "scroll",
+                            raw: "scroll",
+                            span: Span(
+                              start: 610,
+                              end: 616,
+                            ),
+                          ),
+                          span: Span(
+                            start: 609,
+                            end: 616,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 609,
+                        end: 616,
+                      ),
+                    )),
+                    span: Span(
+                      start: 593,
+                      end: 620,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 588,
+                  end: 620,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 588,
+              end: 620,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 588,
+          end: 620,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 621,
+          end: 623,
+        ),
+      ),
+      span: Span(
+        start: 588,
+        end: 623,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "slotted",
+                      raw: "slotted",
+                      span: Span(
+                        start: 627,
+                        end: 634,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        UniversalSelector(
+                          type: "UniversalSelector",
+                          prefix: None,
+                          span: Span(
+                            start: 635,
+                            end: 636,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 635,
+                        end: 636,
+                      ),
+                    )),
+                    span: Span(
+                      start: 625,
+                      end: 637,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 625,
+                  end: 637,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 625,
+              end: 637,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 625,
+          end: 637,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 638,
+          end: 640,
+        ),
+      ),
+      span: Span(
+        start: 625,
+        end: 640,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "slotted",
+                      raw: "slotted",
+                      span: Span(
+                        start: 643,
+                        end: 650,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "span",
+                              raw: "span",
+                              span: Span(
+                                start: 651,
+                                end: 655,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 651,
+                              end: 655,
+                            ),
+                          ),
+                          span: Span(
+                            start: 651,
+                            end: 655,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 651,
+                        end: 655,
+                      ),
+                    )),
+                    span: Span(
+                      start: 641,
+                      end: 656,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 641,
+                  end: 656,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 641,
+              end: 656,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 641,
+          end: 656,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 657,
+          end: 659,
+        ),
+      ),
+      span: Span(
+        start: 641,
+        end: 659,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "slotted",
+                      raw: "slotted",
+                      span: Span(
+                        start: 662,
+                        end: 669,
+                      ),
+                    ),
+                    arg: Some(CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "span",
+                              raw: "span",
+                              span: Span(
+                                start: 673,
+                                end: 677,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 673,
+                              end: 677,
+                            ),
+                          ),
+                          span: Span(
+                            start: 673,
+                            end: 677,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 673,
+                        end: 677,
+                      ),
+                    )),
+                    span: Span(
+                      start: 660,
+                      end: 681,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 660,
+                  end: 681,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 660,
+              end: 681,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 660,
+          end: 681,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 682,
+          end: 684,
+        ),
+      ),
+      span: Span(
+        start: 660,
+        end: 684,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 688,
+                        end: 695,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 686,
+                      end: 695,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 686,
+                  end: 695,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 686,
+              end: 695,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 686,
+          end: 695,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 696,
+          end: 698,
+        ),
+      ),
+      span: Span(
+        start: 686,
+        end: 698,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 701,
+                        end: 708,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [],
+                      span: Span(
+                        start: 709,
+                        end: 709,
+                      ),
+                    )),
+                    span: Span(
+                      start: 699,
+                      end: 710,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 699,
+                  end: 710,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 699,
+              end: 710,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 699,
+          end: 710,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 711,
+          end: 713,
+        ),
+      ),
+      span: Span(
+        start: 699,
+        end: 713,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 716,
+                        end: 723,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 724,
+                            end: 727,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 724,
+                        end: 727,
+                      ),
+                    )),
+                    span: Span(
+                      start: 714,
+                      end: 728,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 714,
+                  end: 728,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 714,
+              end: 728,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 714,
+          end: 728,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 729,
+          end: 731,
+        ),
+      ),
+      span: Span(
+        start: 714,
+        end: 731,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 734,
+                        end: 741,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 742,
+                            end: 745,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 746,
+                            end: 749,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 742,
+                        end: 749,
+                      ),
+                    )),
+                    span: Span(
+                      start: 732,
+                      end: 750,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 732,
+                  end: 750,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 732,
+              end: 750,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 732,
+          end: 750,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 751,
+          end: 753,
+        ),
+      ),
+      span: Span(
+        start: 732,
+        end: 753,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 756,
+                        end: 763,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 764,
+                            end: 767,
+                          ),
+                        )),
+                        Comma(Comma(
+                          kind: "Comma",
+                          span: Span(
+                            start: 767,
+                            end: 768,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 769,
+                            end: 772,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 764,
+                        end: 772,
+                      ),
+                    )),
+                    span: Span(
+                      start: 754,
+                      end: 773,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 754,
+                  end: 773,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 754,
+              end: 773,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 754,
+          end: 773,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 774,
+          end: 776,
+        ),
+      ),
+      span: Span(
+        start: 754,
+        end: 776,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 779,
+                        end: 786,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBracket(LBracket(
+                          kind: "LBracket",
+                          span: Span(
+                            start: 787,
+                            end: 788,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 788,
+                            end: 791,
+                          ),
+                        )),
+                        RBracket(RBracket(
+                          kind: "RBracket",
+                          span: Span(
+                            start: 791,
+                            end: 792,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 787,
+                        end: 792,
+                      ),
+                    )),
+                    span: Span(
+                      start: 777,
+                      end: 793,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 777,
+                  end: 793,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 777,
+              end: 793,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 777,
+          end: 793,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 794,
+          end: 796,
+        ),
+      ),
+      span: Span(
+        start: 777,
+        end: 796,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 799,
+                        end: 806,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LParen(LParen(
+                          kind: "LParen",
+                          span: Span(
+                            start: 807,
+                            end: 808,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 808,
+                            end: 811,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 812,
+                            end: 815,
+                          ),
+                        )),
+                        RParen(RParen(
+                          kind: "RParen",
+                          span: Span(
+                            start: 815,
+                            end: 816,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 807,
+                        end: 816,
+                      ),
+                    )),
+                    span: Span(
+                      start: 797,
+                      end: 817,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 797,
+                  end: 817,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 797,
+              end: 817,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 797,
+          end: 817,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 818,
+          end: 820,
+        ),
+      ),
+      span: Span(
+        start: 797,
+        end: 820,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 823,
+                        end: 830,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LParen(LParen(
+                          kind: "LParen",
+                          span: Span(
+                            start: 831,
+                            end: 832,
+                          ),
+                        )),
+                        LParen(LParen(
+                          kind: "LParen",
+                          span: Span(
+                            start: 832,
+                            end: 833,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 833,
+                            end: 836,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 837,
+                            end: 840,
+                          ),
+                        )),
+                        RParen(RParen(
+                          kind: "RParen",
+                          span: Span(
+                            start: 840,
+                            end: 841,
+                          ),
+                        )),
+                        RParen(RParen(
+                          kind: "RParen",
+                          span: Span(
+                            start: 841,
+                            end: 842,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 831,
+                        end: 842,
+                      ),
+                    )),
+                    span: Span(
+                      start: 821,
+                      end: 843,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 821,
+                  end: 843,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 821,
+              end: 843,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 821,
+          end: 843,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 844,
+          end: 846,
+        ),
+      ),
+      span: Span(
+        start: 821,
+        end: 846,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 849,
+                        end: 856,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 857,
+                            end: 858,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 858,
+                            end: 861,
+                          ),
+                        )),
+                        Colon(Colon(
+                          kind: "Colon",
+                          span: Span(
+                            start: 861,
+                            end: 862,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 863,
+                            end: 866,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 866,
+                            end: 867,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 857,
+                        end: 867,
+                      ),
+                    )),
+                    span: Span(
+                      start: 847,
+                      end: 868,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 847,
+                  end: 868,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 847,
+              end: 868,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 847,
+          end: 868,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 869,
+          end: 871,
+        ),
+      ),
+      span: Span(
+        start: 847,
+        end: 871,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 874,
+                        end: 881,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 882,
+                            end: 883,
+                          ),
+                        )),
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 883,
+                            end: 884,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 884,
+                            end: 887,
+                          ),
+                        )),
+                        Colon(Colon(
+                          kind: "Colon",
+                          span: Span(
+                            start: 887,
+                            end: 888,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 889,
+                            end: 892,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 892,
+                            end: 893,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 893,
+                            end: 894,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 882,
+                        end: 894,
+                      ),
+                    )),
+                    span: Span(
+                      start: 872,
+                      end: 895,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 872,
+                  end: 895,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 872,
+              end: 895,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 872,
+          end: 895,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 896,
+          end: 898,
+        ),
+      ),
+      span: Span(
+        start: 872,
+        end: 898,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 901,
+                        end: 908,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 909,
+                            end: 910,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 910,
+                            end: 913,
+                          ),
+                        )),
+                        Colon(Colon(
+                          kind: "Colon",
+                          span: Span(
+                            start: 913,
+                            end: 914,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 915,
+                            end: 918,
+                          ),
+                        )),
+                        Exclamation(Exclamation(
+                          kind: "Exclamation",
+                          span: Span(
+                            start: 919,
+                            end: 920,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "important",
+                          raw: "important",
+                          span: Span(
+                            start: 920,
+                            end: 929,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 929,
+                            end: 930,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 909,
+                        end: 930,
+                      ),
+                    )),
+                    span: Span(
+                      start: 899,
+                      end: 931,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 899,
+                  end: 931,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 899,
+              end: 931,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 899,
+          end: 931,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 932,
+          end: 934,
+        ),
+      ),
+      span: Span(
+        start: 899,
+        end: 934,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 937,
+                        end: 944,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Str(Str(
+                          kind: "Str",
+                          raw: "\"string\"",
+                          escaped: false,
+                          span: Span(
+                            start: 945,
+                            end: 953,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 945,
+                        end: 953,
+                      ),
+                    )),
+                    span: Span(
+                      start: 935,
+                      end: 954,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 935,
+                  end: 954,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 935,
+              end: 954,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 935,
+          end: 954,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 955,
+          end: 957,
+        ),
+      ),
+      span: Span(
+        start: 935,
+        end: 957,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 960,
+                        end: 967,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Str(Str(
+                          kind: "Str",
+                          raw: "\"string\"",
+                          escaped: false,
+                          span: Span(
+                            start: 968,
+                            end: 976,
+                          ),
+                        )),
+                        Comma(Comma(
+                          kind: "Comma",
+                          span: Span(
+                            start: 976,
+                            end: 977,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 978,
+                            end: 981,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 968,
+                        end: 981,
+                      ),
+                    )),
+                    span: Span(
+                      start: 958,
+                      end: 982,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 958,
+                  end: 982,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 958,
+              end: 982,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 958,
+          end: 982,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 983,
+          end: 985,
+        ),
+      ),
+      span: Span(
+        start: 958,
+        end: 985,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 988,
+                        end: 995,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Str(Str(
+                          kind: "Str",
+                          raw: "\'string\'",
+                          escaped: false,
+                          span: Span(
+                            start: 996,
+                            end: 1004,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 996,
+                        end: 1004,
+                      ),
+                    )),
+                    span: Span(
+                      start: 986,
+                      end: 1005,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 986,
+                  end: 1005,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 986,
+              end: 1005,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 986,
+          end: 1005,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1006,
+          end: 1008,
+        ),
+      ),
+      span: Span(
+        start: 986,
+        end: 1008,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1011,
+                        end: 1018,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        UrlPrefix(UrlPrefix(
+                          kind: "UrlPrefix",
+                          ident: Ident(
+                            kind: "Ident",
+                            name: "url",
+                            raw: "url",
+                            span: Span(
+                              start: 1019,
+                              end: 1022,
+                            ),
+                          ),
+                          isRaw: true,
+                          span: Span(
+                            start: 1019,
+                            end: 1023,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 1023,
+                            end: 1026,
+                          ),
+                        )),
+                        Dot(Dot(
+                          kind: "Dot",
+                          span: Span(
+                            start: 1026,
+                            end: 1027,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "png",
+                          raw: "png",
+                          span: Span(
+                            start: 1027,
+                            end: 1030,
+                          ),
+                        )),
+                        RParen(RParen(
+                          kind: "RParen",
+                          span: Span(
+                            start: 1030,
+                            end: 1031,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 1019,
+                        end: 1031,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1009,
+                      end: 1032,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1009,
+                  end: 1032,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1009,
+              end: 1032,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1009,
+          end: 1032,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1033,
+          end: 1035,
+        ),
+      ),
+      span: Span(
+        start: 1009,
+        end: 1035,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1038,
+                        end: 1045,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 1046,
+                            end: 1047,
+                          ),
+                        )),
+                        Exclamation(Exclamation(
+                          kind: "Exclamation",
+                          span: Span(
+                            start: 1047,
+                            end: 1048,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 1048,
+                            end: 1049,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 1046,
+                        end: 1049,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1036,
+                      end: 1050,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1036,
+                  end: 1050,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1036,
+              end: 1050,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1036,
+          end: 1050,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1051,
+          end: 1053,
+        ),
+      ),
+      span: Span(
+        start: 1036,
+        end: 1053,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1056,
+                        end: 1063,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Exclamation(Exclamation(
+                          kind: "Exclamation",
+                          span: Span(
+                            start: 1064,
+                            end: 1065,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 1064,
+                        end: 1065,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1054,
+                      end: 1066,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1054,
+                  end: 1066,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1054,
+              end: 1066,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1054,
+          end: 1066,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1067,
+          end: 1069,
+        ),
+      ),
+      span: Span(
+        start: 1054,
+        end: 1069,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1072,
+                        end: 1079,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        LBrace(LBrace(
+                          kind: "LBrace",
+                          span: Span(
+                            start: 1080,
+                            end: 1081,
+                          ),
+                        )),
+                        Semicolon(Semicolon(
+                          kind: "Semicolon",
+                          span: Span(
+                            start: 1081,
+                            end: 1082,
+                          ),
+                        )),
+                        RBrace(RBrace(
+                          kind: "RBrace",
+                          span: Span(
+                            start: 1082,
+                            end: 1083,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 1080,
+                        end: 1083,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1070,
+                      end: 1084,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1070,
+                  end: 1084,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1070,
+              end: 1084,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1070,
+          end: 1084,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1085,
+          end: 1087,
+        ),
+      ),
+      span: Span(
+        start: 1070,
+        end: 1087,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1090,
+                        end: 1097,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        Semicolon(Semicolon(
+                          kind: "Semicolon",
+                          span: Span(
+                            start: 1098,
+                            end: 1099,
+                          ),
+                        )),
+                      ],
+                      span: Span(
+                        start: 1098,
+                        end: 1099,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1088,
+                      end: 1100,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1088,
+                  end: 1100,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1088,
+              end: 1100,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1088,
+          end: 1100,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1101,
+          end: 1103,
+        ),
+      ),
+      span: Span(
+        start: 1088,
+        end: 1103,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 1104,
+  ),
+)
