@@ -21770,19 +21770,19 @@ Stylesheet(
                             end: 4221,
                           ),
                         )),
-                        Flag(Flag(
-                          kind: "Flag",
-                          ident: Ident(
-                            kind: "Ident",
-                            name: "important",
-                            raw: "important",
-                            span: Span(
-                              start: 4223,
-                              end: 4232,
-                            ),
-                          ),
+                        Exclamation(Exclamation(
+                          kind: "Exclamation",
                           span: Span(
                             start: 4222,
+                            end: 4223,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "important",
+                          raw: "important",
+                          span: Span(
+                            start: 4223,
                             end: 4232,
                           ),
                         )),

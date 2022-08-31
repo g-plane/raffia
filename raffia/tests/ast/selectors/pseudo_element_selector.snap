@@ -3760,19 +3760,19 @@ Stylesheet(
                             end: 918,
                           ),
                         )),
-                        Flag(Flag(
-                          kind: "Flag",
-                          ident: Ident(
-                            kind: "Ident",
-                            name: "important",
-                            raw: "important",
-                            span: Span(
-                              start: 920,
-                              end: 929,
-                            ),
-                          ),
+                        Exclamation(Exclamation(
+                          kind: "Exclamation",
                           span: Span(
                             start: 919,
+                            end: 920,
+                          ),
+                        )),
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "important",
+                          raw: "important",
+                          span: Span(
+                            start: 920,
                             end: 929,
                           ),
                         )),
