@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     config::Syntax,
     error::PResult,
-    expect, expect_without_ws_or_comments,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -13,10 +13,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        let first = match self.tokenizer.peek()? {
+        let first = match peek!(self) {
             Token::Ident(..) => {
                 let ident = expect!(self, Ident);
-                match self.tokenizer.peek()? {
+                match peek!(self) {
                     Token::AtLBraceVar(token) if ident.span.end == token.span.start => {
                         LessInterpolatedIdentElement::Static(ident.into())
                     }
@@ -31,7 +31,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut elements = Vec::with_capacity(4);
         elements.push(first);
         loop {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::Ident(token) if span.end == token.span.start => {
                     let ident = expect!(self, Ident);
                     span.end = ident.span.end;
@@ -99,16 +99,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);
 
-        match input.tokenizer.peek()? {
-            Token::Plus(token) => {
-                let _ = input.tokenizer.bump();
+        match peek!(input) {
+            Token::Plus(..) => {
+                let token = expect!(input, Plus);
                 Ok(Some(LessPropertyMerge {
                     kind: LessPropertyMergeKind::Comma,
                     span: token.span,
                 }))
             }
-            Token::PlusUnderscore(token) => {
-                let _ = input.tokenizer.bump();
+            Token::PlusUnderscore(..) => {
+                let token = expect!(input, PlusUnderscore);
                 Ok(Some(LessPropertyMerge {
                     kind: LessPropertyMergeKind::Space,
                     span: token.span,

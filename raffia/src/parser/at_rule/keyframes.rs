@@ -3,6 +3,7 @@ use crate::{
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
+    peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     util::{self, LastOfNonEmpty},
@@ -25,7 +26,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Percentage(..) => Ok(KeyframeSelector::Percentage(input.parse()?)),
             _ => {
                 let ident = input.parse()?;
@@ -50,7 +51,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
 // https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Str(..) | Token::StrTemplate(..) => input.parse().map(KeyframesName::Str),
             _ => {
                 let ident = input.parse()?;
@@ -77,7 +78,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         self.parse_simple_block_with(|parser| {
             let mut statements = vec![];
             loop {
-                match parser.tokenizer.peek()? {
+                match peek!(parser) {
                     Token::RBrace(..) | Token::Dedent(..) | Token::Eof(..) => break,
                     _ => statements.push(Statement::KeyframeBlock(parser.parse()?)),
                 }

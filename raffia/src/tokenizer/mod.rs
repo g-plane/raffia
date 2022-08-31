@@ -57,35 +57,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         self.next()
     }
 
-    pub fn peek(&mut self) -> PResult<Token<'s>> {
-        let state = self.state.clone();
-        let comments = self.comments.take();
-
-        let token = self.bump();
-        self.state = state;
-        self.comments = comments;
-        token
-    }
-
     pub fn current_offset(&mut self) -> usize {
         if let Some((offset, _)) = self.state.chars.peek() {
             *offset
         } else {
             self.source.len()
-        }
-    }
-
-    /// This should only be used when parsing selectors.
-    #[inline]
-    pub fn has_ws_or_comments(&mut self) -> bool {
-        match self.state.chars.peek() {
-            Some((_, c)) if c.is_ascii_whitespace() => true,
-            Some((_, '/')) => {
-                let mut chars = self.state.chars.clone();
-                chars.next();
-                matches!(chars.next(), Some((_, '*' | '/')))
-            }
-            _ => false,
         }
     }
 

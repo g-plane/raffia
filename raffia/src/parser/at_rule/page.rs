@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     eat,
     error::PResult,
-    expect,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -17,7 +17,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelector<'s> {
         let start;
         let mut end;
 
-        if let Token::Colon(..) = input.tokenizer.peek()? {
+        if let Token::Colon(..) = peek!(input) {
             let first = input.parse::<PseudoPage>()?;
             start = first.span.start;
             end = first.span.end;
@@ -31,7 +31,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelector<'s> {
         }
 
         loop {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::Colon(colon) if colon.span.start == end => {
                     let item = input.parse::<PseudoPage>()?;
                     end = item.span.end;

@@ -55,6 +55,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),
             state: Default::default(),
             recoverable_errors: vec![],
+            cached_token: None,
         }
     }
 }

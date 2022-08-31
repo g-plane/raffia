@@ -1,8 +1,9 @@
 use super::Parser;
 use crate::{
     ast::*,
+    bump,
     error::PResult,
-    expect,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse, Syntax,
@@ -181,7 +182,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         {
             None
         } else {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::LBrace(..) | Token::Indent(..) => Some(input.parse()?),
                 _ => None,
             }
@@ -196,7 +197,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                         at_keyword.span.end
                     } else {
                         // next token should be semicolon, but it won't be consumed here
-                        input.tokenizer.peek()?.span().end
+                        peek!(input).span().end
                     }
                 }
             },
@@ -214,14 +215,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<TokenSeq<'s>>> {
         let mut tokens = vec![];
         loop {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::LBrace(..)
                 | Token::Semicolon(..)
                 | Token::Indent(..)
                 | Token::Dedent(..)
                 | Token::Linebreak(..)
                 | Token::Eof(..) => break,
-                _ => tokens.push(self.tokenizer.bump()?),
+                _ => tokens.push(bump!(self)),
             }
         }
 

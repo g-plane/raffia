@@ -1,9 +1,9 @@
 use super::{state::QualifiedRuleContext, Parser};
 use crate::{
     ast::*,
-    eat,
+    bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, Token},
     util::LastOfNonEmpty,
@@ -33,30 +33,30 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         loop {
-            let operator = match self.tokenizer.peek()? {
-                Token::Asterisk(token) if precedence == PRECEDENCE_MULTIPLY => {
-                    self.tokenizer.bump()?;
+            let operator = match peek!(self) {
+                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => {
+                    let token = expect!(self, Asterisk);
                     CalcOperator {
                         kind: CalcOperatorKind::Multiply,
                         span: token.span,
                     }
                 }
-                Token::Solidus(token) if precedence == PRECEDENCE_MULTIPLY => {
-                    self.tokenizer.bump()?;
+                Token::Solidus(..) if precedence == PRECEDENCE_MULTIPLY => {
+                    let token = expect!(self, Solidus);
                     CalcOperator {
                         kind: CalcOperatorKind::Division,
                         span: token.span,
                     }
                 }
-                Token::Plus(token) if precedence == PRECEDENCE_PLUS => {
-                    self.tokenizer.bump()?;
+                Token::Plus(..) if precedence == PRECEDENCE_PLUS => {
+                    let token = expect!(self, Plus);
                     CalcOperator {
                         kind: CalcOperatorKind::Plus,
                         span: token.span,
                     }
                 }
-                Token::Minus(token) if precedence == PRECEDENCE_PLUS => {
-                    self.tokenizer.bump()?;
+                Token::Minus(..) if precedence == PRECEDENCE_PLUS => {
+                    let token = expect!(self, Minus);
                     CalcOperator {
                         kind: CalcOperatorKind::Minus,
                         span: token.span,
@@ -82,11 +82,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
-        match self.tokenizer.peek()? {
+        match peek!(self) {
             Token::Ident(..) => {
                 let ident = self.parse::<InterpolableIdent>()?;
                 let ident_end = ident.span().end;
-                match self.tokenizer.peek()? {
+                match peek!(self) {
                     Token::LParen(token) if token.span.start == ident_end => match ident {
                         InterpolableIdent::Literal(ident)
                             if ident.name.eq_ignore_ascii_case("src") =>
@@ -154,7 +154,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut values = Vec::with_capacity(4);
         values.push(first);
         loop {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::RBrace(..)
                 | Token::RParen(..)
                 | Token::Semicolon(..)
@@ -193,7 +193,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
         expect!(self, LParen);
-        let values = match self.tokenizer.peek()? {
+        let values = match peek!(self) {
             Token::RParen(..) => vec![],
             _ => match &name {
                 InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
@@ -237,18 +237,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_src_url(&mut self, name: Ident<'s>) -> PResult<Url<'s>> {
         expect_without_ws_or_comments!(self, LParen);
-        let value = match self.tokenizer.peek()? {
+        let value = match peek!(self) {
             Token::Str(..) | Token::StrTemplate(..) => {
                 Some(UrlValue::Str(self.parse::<InterpolableStr>()?))
             }
             _ => None,
         };
-        let modifiers = match self.tokenizer.peek()? {
+        let modifiers = match peek!(self) {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let mut modifiers = Vec::with_capacity(1);
                 loop {
                     modifiers.push(self.parse()?);
-                    if let Token::RParen(..) = self.tokenizer.peek()? {
+                    if let Token::RParen(..) = peek!(self) {
                         break;
                     }
                 }
@@ -275,7 +275,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for BracketValues<'s> {
         let l_bracket = expect!(input, LBracket);
         let mut value = Vec::with_capacity(3);
         loop {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::RBracket(..) => break,
                 _ => value.push(input.parse()?),
             }
@@ -311,7 +311,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValues<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         use crate::tokenizer::token::*;
-        match input.tokenizer.bump()? {
+        match bump!(input) {
             Token::Solidus(Solidus { span }) => Ok(Delimiter {
                 kind: DelimiterKind::Solidus,
                 span,
@@ -477,14 +477,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableIdent<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Str(..) => input.parse().map(InterpolableStr::Literal),
             Token::StrTemplate(token) => match input.syntax {
                 Syntax::Scss | Syntax::Sass => input.parse().map(InterpolableStr::SassInterpolated),
                 Syntax::Less => input.parse().map(InterpolableStr::LessInterpolated),
                 Syntax::Css => Err(Error {
                     kind: ErrorKind::UnexpectedTemplateInCss,
-                    span: token.span,
+                    span: token.span.clone(),
                 }),
             },
             token => Err(Error {
@@ -547,17 +547,17 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             } else {
                 Err(Error {
                     kind: ErrorKind::ExpectUrl,
-                    span: input.tokenizer.bump()?.span().clone(),
+                    span: bump!(input).span().clone(),
                 })
             }
         } else {
             let value = input.parse()?;
-            let modifiers = match input.tokenizer.peek()? {
+            let modifiers = match peek!(input) {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     let mut modifiers = Vec::with_capacity(1);
                     loop {
                         modifiers.push(input.parse()?);
-                        if let Token::RParen(..) = input.tokenizer.peek()? {
+                        if let Token::RParen(..) = peek!(input) {
                             break;
                         }
                     }
@@ -583,7 +583,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlModifier<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let ident = input.parse::<InterpolableIdent>()?;
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::LParen(l_paren) if ident.span().end == l_paren.span.start => {
                 input.parse_function(ident).map(UrlModifier::Function)
             }

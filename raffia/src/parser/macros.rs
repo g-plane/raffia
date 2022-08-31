@@ -1,13 +1,33 @@
 #[doc(hidden)]
 #[macro_export]
+macro_rules! bump {
+    ($parser:expr) => {{
+        match $parser.cached_token.take() {
+            Some(token) => token,
+            None => {
+                let tokenizer = &mut $parser.tokenizer;
+                tokenizer.bump()?
+            }
+        }
+    }};
+}
+
+#[doc(hidden)]
+#[macro_export]
 macro_rules! expect {
     ($parser:expr, $variant:ident) => {{
         use $crate::{
             error::{Error, ErrorKind},
             tokenizer::{Token, TokenSymbol},
         };
-        let tokenizer = &mut $parser.tokenizer;
-        match tokenizer.bump()? {
+        let token = match $parser.cached_token.take() {
+            Some(token) => token,
+            None => {
+                let tokenizer = &mut $parser.tokenizer;
+                tokenizer.bump()?
+            }
+        };
+        match token {
             Token::$variant(token) => token,
             token => {
                 return Err(Error {
@@ -30,8 +50,14 @@ macro_rules! expect_without_ws_or_comments {
             error::{Error, ErrorKind},
             tokenizer::{Token, TokenSymbol},
         };
-        let tokenizer = &mut $parser.tokenizer;
-        match tokenizer.bump_without_ws_or_comments()? {
+        let token = match $parser.cached_token.take() {
+            Some(token) => token,
+            None => {
+                let tokenizer = &mut $parser.tokenizer;
+                tokenizer.bump_without_ws_or_comments()?
+            }
+        };
+        match token {
             Token::$variant(token) => token,
             token => {
                 return Err(Error {
@@ -50,13 +76,30 @@ macro_rules! expect_without_ws_or_comments {
 #[macro_export]
 macro_rules! eat {
     ($parser:expr, $variant:ident) => {{
-        use $crate::tokenizer::Token;
-        let tokenizer = &mut $parser.tokenizer;
-        if let Token::$variant(token) = tokenizer.peek()? {
-            let _ = tokenizer.bump();
-            Some(token)
-        } else {
-            None
+        use $crate::{bump, tokenizer::Token};
+        match bump!($parser) {
+            Token::$variant(token) => Some(token),
+            value => {
+                $parser.cached_token = Some(value);
+                None
+            }
+        }
+    }};
+}
+
+#[doc(hidden)]
+#[macro_export]
+macro_rules! peek {
+    ($parser:expr) => {{
+        match &$parser.cached_token {
+            Some(token) => token,
+            None => {
+                let tokenizer = &mut $parser.tokenizer;
+                let token = tokenizer.bump()?;
+                $parser.cached_token = Some(token);
+                // SAFETY: We've written `Some(..)` value to `cached_token`, so it won't be `None`.
+                unsafe { $parser.cached_token.as_ref().unwrap_unchecked() }
+            }
         }
     }};
 }

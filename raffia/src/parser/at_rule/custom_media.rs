@@ -2,6 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     error::PResult,
+    peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -22,7 +23,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMedia<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMediaValue<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("true") => {
                 input.parse().map(CustomMediaValue::True)
             }

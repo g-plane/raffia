@@ -3,7 +3,7 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     pos::Span,
-    tokenizer::Tokenizer,
+    tokenizer::{Token, Tokenizer},
 };
 pub use builder::ParserBuilder;
 
@@ -28,6 +28,7 @@ pub struct Parser<'cmt, 's: 'cmt> {
     tokenizer: Tokenizer<'cmt, 's>,
     state: ParserState,
     recoverable_errors: Vec<Error>,
+    cached_token: Option<Token<'s>>,
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -40,6 +41,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             tokenizer: Tokenizer::new(source, syntax, None),
             state: Default::default(),
             recoverable_errors: vec![],
+            cached_token: None,
         }
     }
 
@@ -65,6 +67,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             .as_ref()
             .map(|comments| comments.len());
         let recoverable_errors_count = self.recoverable_errors.len();
+        let cached_token = self.cached_token.clone();
         let result = f(self);
         if result.is_err() {
             self.tokenizer.state = tokenizer_state;
@@ -72,6 +75,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 comments.truncate(count);
             }
             self.recoverable_errors.truncate(recoverable_errors_count);
+            self.cached_token = cached_token;
         }
         result
     }

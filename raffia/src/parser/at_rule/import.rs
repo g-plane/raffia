@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -11,16 +11,16 @@ use crate::{
 // https://www.w3.org/TR/css-cascade-5/#at-import
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let href = match input.tokenizer.peek()? {
+        let href = match peek!(input) {
             Token::UrlPrefix(..) => input.parse().map(ImportPreludeHref::Url)?,
             _ => input.parse().map(ImportPreludeHref::Str)?,
         };
         let mut span = href.span().clone();
 
-        let layer = match input.tokenizer.peek()? {
+        let layer = match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("layer") => {
                 let ident = input.parse::<Ident>()?;
-                let layer = match input.tokenizer.peek()? {
+                let layer = match peek!(input) {
                     Token::LParen(l_paren) if l_paren.span.start == ident.span.end => {
                         expect!(input, LParen);
                         let args = vec![input.parse().map(ComponentValue::LayerName)?];
@@ -67,7 +67,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
             span.end = supports.span().end;
         }
 
-        let media = match input.tokenizer.peek()? {
+        let media = match peek!(input) {
             Token::Semicolon(..) => None,
             _ => {
                 let media = input.parse::<MediaQueryList>()?;

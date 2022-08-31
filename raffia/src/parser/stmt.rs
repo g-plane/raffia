@@ -6,9 +6,9 @@ use super::{
 };
 use crate::{
     ast::*,
-    eat,
+    bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token},
     util::PairedToken,
@@ -41,14 +41,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     let mut values = SmallVec::with_capacity(3);
                     let mut pairs = Vec::with_capacity(1);
                     loop {
-                        match parser.tokenizer.peek()? {
+                        match peek!(parser) {
                             Token::RBrace(..)
                             | Token::Semicolon(..)
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
                             _ => {
-                                match parser.tokenizer.peek()? {
+                                match peek!(parser) {
                                     Token::LParen(..) | Token::UrlPrefix(..) => {
                                         pairs.push(PairedToken::Paren);
                                     }
@@ -78,7 +78,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                     }
                                     _ => {}
                                 }
-                                values.push(ComponentValue::Token(parser.tokenizer.bump()?));
+                                values.push(ComponentValue::Token(bump!(parser)));
                             }
                         }
                     }
@@ -87,7 +87,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                 _ => {
                     let mut values = SmallVec::with_capacity(3);
                     loop {
-                        match parser.tokenizer.peek()? {
+                        match peek!(parser) {
                             Token::RBrace(..)
                             | Token::RParen(..)
                             | Token::Semicolon(..)
@@ -103,7 +103,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             }
         };
 
-        let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {
+        let important = if let Token::Exclamation(..) = peek!(input) {
             input.parse::<ImportantAnnotation>().map(Some)?
         } else {
             None
@@ -211,7 +211,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             if let Some(token) = eat!(self, Indent) {
                 token.span.end
             } else {
-                let offset = self.tokenizer.current_offset();
+                let offset = peek!(self).span().start;
                 return Ok(SimpleBlock {
                     statements: vec![],
                     span: Span {
@@ -227,15 +227,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let statements = f(self)?;
 
         if is_sass {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
-                    self.tokenizer.bump()?;
+                    let end = span.start;
+                    bump!(self);
                     Ok(SimpleBlock {
                         statements,
-                        span: Span {
-                            start,
-                            end: span.start,
-                        },
+                        span: Span { start, end },
                     })
                 }
                 token => Err(Error {
@@ -259,7 +257,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut statements = Vec::with_capacity(1);
         loop {
             let mut is_block_element = false;
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
@@ -300,6 +298,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     statements.push(Statement::SassVariableDeclaration(self.parse()?));
                 }
                 Token::AtKeyword(at_keyword) => {
+                    let at_keyword = at_keyword.clone();
                     if self.syntax == Syntax::Less {
                         if let Ok(less_variable_declaration) =
                             self.try_parse(|parser| parser.parse())
@@ -322,7 +321,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {}
             };
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
                 _ => {
                     if self.syntax == Syntax::Sass {

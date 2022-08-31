@@ -1,5 +1,5 @@
 use super::Parser;
-use crate::{ast::*, eat, error::PResult, tokenizer::Token, Parse, Spanned};
+use crate::{ast::*, eat, error::PResult, peek, tokenizer::Token, Parse, Spanned};
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/@document
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for DocumentPrelude<'s> {
@@ -20,11 +20,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for DocumentPrelude<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for DocumentPreludeMatcher<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::UrlPrefix(..) => input.parse().map(DocumentPreludeMatcher::Url),
             _ => {
                 let name = input.parse::<InterpolableIdent>()?;
-                let next_token = input.tokenizer.peek()?;
+                let next_token = peek!(input);
                 input.assert_no_ws_or_comment(name.span(), next_token.span())?;
                 input
                     .parse_function(name)

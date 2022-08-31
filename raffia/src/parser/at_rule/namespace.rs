@@ -1,16 +1,16 @@
 use super::Parser;
-use crate::{ast::*, error::PResult, tokenizer::Token, Parse, Spanned};
+use crate::{ast::*, error::PResult, peek, tokenizer::Token, Parse, Spanned};
 
 // https://www.w3.org/TR/css-namespaces-3/#syntax
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let prefix = match input.tokenizer.peek()? {
+        let prefix = match peek!(input) {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 input.parse::<InterpolableIdent>().map(Some)?
             }
             _ => None,
         };
-        let uri = match input.tokenizer.peek()? {
+        let uri = match peek!(input) {
             Token::UrlPrefix(..) => input.parse().map(NamespacePreludeUri::Url)?,
             _ => input.parse().map(NamespacePreludeUri::Str)?,
         };

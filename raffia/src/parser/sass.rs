@@ -1,10 +1,11 @@
 use super::{state::ParserState, Parser};
 use crate::{
     ast::*,
+    bump,
     config::Syntax,
     eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -66,86 +67,86 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         loop {
-            let operator = match self.tokenizer.peek()? {
-                Token::Asterisk(token) if precedence == PRECEDENCE_MULTIPLY => {
-                    self.tokenizer.bump()?;
+            let operator = match peek!(self) {
+                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => {
+                    let token = expect!(self, Asterisk);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Multiply,
                         span: token.span,
                     }
                 }
-                Token::Percent(token) if precedence == PRECEDENCE_MULTIPLY => {
-                    self.tokenizer.bump()?;
+                Token::Percent(..) if precedence == PRECEDENCE_MULTIPLY => {
+                    let token = expect!(self, Percent);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Modulo,
                         span: token.span,
                     }
                 }
-                Token::Plus(token) if precedence == PRECEDENCE_PLUS => {
-                    self.tokenizer.bump()?;
+                Token::Plus(..) if precedence == PRECEDENCE_PLUS => {
+                    let token = expect!(self, Plus);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Plus,
                         span: token.span,
                     }
                 }
-                Token::Minus(token) if precedence == PRECEDENCE_PLUS => {
-                    self.tokenizer.bump()?;
+                Token::Minus(..) if precedence == PRECEDENCE_PLUS => {
+                    let token = expect!(self, Minus);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Minus,
                         span: token.span,
                     }
                 }
-                Token::GreaterThan(token) if precedence == PRECEDENCE_RELATIONAL => {
-                    self.tokenizer.bump()?;
+                Token::GreaterThan(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    let token = expect!(self, GreaterThan);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::GreaterThan,
                         span: token.span,
                     }
                 }
-                Token::GreaterThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
-                    self.tokenizer.bump()?;
+                Token::GreaterThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    let token = expect!(self, GreaterThanEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::GreaterThanOrEqual,
                         span: token.span,
                     }
                 }
-                Token::LessThan(token) if precedence == PRECEDENCE_RELATIONAL => {
-                    self.tokenizer.bump()?;
+                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    let token = expect!(self, LessThan);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::LessThan,
                         span: token.span,
                     }
                 }
-                Token::LessThanEqual(token) if precedence == PRECEDENCE_RELATIONAL => {
-                    self.tokenizer.bump()?;
+                Token::LessThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    let token = expect!(self, LessThanEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::LessThanOrEqual,
                         span: token.span,
                     }
                 }
-                Token::EqualEqual(token) if precedence == PRECEDENCE_EQUALITY => {
-                    self.tokenizer.bump()?;
+                Token::EqualEqual(..) if precedence == PRECEDENCE_EQUALITY => {
+                    let token = expect!(self, EqualEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::EqualsEquals,
                         span: token.span,
                     }
                 }
-                Token::ExclamationEqual(token) if precedence == PRECEDENCE_EQUALITY => {
-                    self.tokenizer.bump()?;
+                Token::ExclamationEqual(..) if precedence == PRECEDENCE_EQUALITY => {
+                    let token = expect!(self, ExclamationEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::ExclamationEquals,
                         span: token.span,
                     }
                 }
                 Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
-                    self.tokenizer.bump()?;
+                    let token = expect!(self, Ident);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::And,
                         span: token.span,
                     }
                 }
                 Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
-                    self.tokenizer.bump()?;
+                    let token = expect!(self, Ident);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Or,
                         span: token.span,
@@ -172,11 +173,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-        let (first, mut span) = match self.tokenizer.peek()? {
-            Token::Ident(ident) => {
-                self.tokenizer.bump()?;
+        let (first, mut span) = match peek!(self) {
+            Token::Ident(..) => {
+                let ident = expect!(self, Ident);
                 let span = ident.span.clone();
-                match self.tokenizer.peek()? {
+                match peek!(self) {
                     Token::HashLBrace(token) if ident.span.end == token.span.start => {
                         (SassInterpolatedIdentElement::Static(ident.into()), span)
                     }
@@ -196,10 +197,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut elements = Vec::with_capacity(4);
         elements.push(first);
         loop {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::Ident(token) if last_span_end == token.span.start => {
                     last_span_end = token.span.end;
-                    self.tokenizer.bump()?;
+                    let token = expect!(self, Ident);
                     elements.push(SassInterpolatedIdentElement::Static(token.into()));
                 }
                 Token::HashLBrace(token) if last_span_end == token.span.start => {
@@ -242,7 +243,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let dot = expect!(self, Dot);
-        let expr = match self.tokenizer.peek()? {
+        let expr = match peek!(self) {
             Token::DollarVar(..) => self.parse().map(ComponentValue::SassVariable)?,
             _ => {
                 let name = InterpolableIdent::Literal(expect!(self, Ident).into());
@@ -265,23 +266,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
-        let op = match self.tokenizer.peek()? {
-            Token::Plus(token) => {
-                let _ = self.tokenizer.bump();
+        let op = match peek!(self) {
+            Token::Plus(..) => {
+                let token = expect!(self, Plus);
                 SassUnaryOperator {
                     kind: SassUnaryOperatorKind::Plus,
                     span: token.span,
                 }
             }
-            Token::Minus(token) => {
-                let _ = self.tokenizer.bump();
+            Token::Minus(..) => {
+                let token = expect!(self, Minus);
                 SassUnaryOperator {
                     kind: SassUnaryOperatorKind::Minus,
                     span: token.span,
                 }
             }
             Token::Ident(token) if token.raw == "not" => {
-                let _ = self.tokenizer.bump();
+                let token = expect!(self, Ident);
                 SassUnaryOperator {
                     kind: SassUnaryOperatorKind::Not,
                     span: token.span,
@@ -436,7 +437,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
         let mut arbitrary_parameter = None;
         while eat!(input, RParen).is_none() {
             let name = input.parse::<SassVariable>()?;
-            match input.tokenizer.bump()? {
+            match bump!(input) {
                 Token::Comma(..) => {
                     let span = name.span.clone();
                     parameters.push(SassParameter {
@@ -518,12 +519,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
         let mut else_if_clauses = vec![];
         let mut else_clause = None;
 
-        while let Token::AtKeyword(at_keyword) = input.tokenizer.peek()? {
+        while let Token::AtKeyword(at_keyword) = peek!(input) {
             if at_keyword.ident.name == "else" {
-                input.tokenizer.bump()?;
-                match input.tokenizer.peek()? {
+                bump!(input);
+                match peek!(input) {
                     Token::Ident(ident) if ident.name == "if" => {
-                        input.tokenizer.bump()?;
+                        bump!(input);
                         else_if_clauses.push(input.parse()?);
                     }
                     _ => else_clause = Some(input.parse()?),
@@ -670,18 +671,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
         debug_assert_eq!(&*at_keyword.ident.name, "use");
 
         let path = input.parse()?;
-        let namespace = match input.tokenizer.peek()? {
+        let namespace = match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("as") => {
-                input.tokenizer.bump()?;
+                bump!(input);
                 input.parse().map(Some)?
             }
             _ => None,
         };
 
         let mut config = vec![];
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("with") => {
-                input.tokenizer.bump()?;
+                bump!(input);
                 expect!(input, LParen);
                 loop {
                     config.push(input.parse::<SassUseConfigItem>()?);
@@ -722,7 +723,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseNamespace<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.bump()? {
+        match bump!(input) {
             Token::Asterisk(asterisk) => Ok(SassUseNamespace::Unnamed(SassUnnamedNamespace {
                 span: asterisk.span,
             })),

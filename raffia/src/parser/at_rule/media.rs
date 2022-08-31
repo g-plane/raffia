@@ -1,9 +1,9 @@
 use super::Parser;
 use crate::{
     ast::*,
-    eat,
+    bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     util::LastOfNonEmpty,
@@ -38,7 +38,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeature<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let left = input.parse_media_feature_value()?;
         if let ComponentValue::InterpolableIdent(ident) = left {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::Colon(..) => input
                     .parse_media_feature_plain(ident)
                     .map(MediaFeature::Plain),
@@ -65,7 +65,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeature<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeatureComparison {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.bump()? {
+        match bump!(input) {
             Token::LessThan(token) => Ok(MediaFeatureComparison {
                 kind: MediaFeatureComparisonKind::LessThan,
                 span: token.span,
@@ -185,7 +185,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryWithType<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let modifier = match input.tokenizer.peek()? {
+        let modifier = match peek!(input) {
             Token::Ident(ident)
                 if ident.name.eq_ignore_ascii_case("not")
                     || ident.name.eq_ignore_ascii_case("only") =>
@@ -195,9 +195,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryWithType<'s> {
             _ => None,
         };
         let media_type = input.parse::<InterpolableIdent>()?;
-        let condition = match input.tokenizer.peek()? {
+        let condition = match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("and") => {
-                input.tokenizer.bump()?;
+                bump!(input);
                 input
                     .parse_media_condition(/* allow_or */ false)
                     .map(Some)?
@@ -226,7 +226,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryWithType<'s> {
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_media_condition(&mut self, allow_or: bool) -> PResult<MediaCondition<'s>> {
-        match self.tokenizer.peek()? {
+        match peek!(self) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("not") => {
                 let media_not = self.parse::<MediaNot>()?;
                 let span = media_not.span.clone();
@@ -239,10 +239,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 let first = self.parse::<MediaInParens>()?;
                 let mut span = first.span().clone();
                 let mut conditions = vec![MediaConditionKind::MediaInParens(first)];
-                match self.tokenizer.peek()? {
+                match peek!(self) {
                     Token::Ident(ident) if ident.name.eq_ignore_ascii_case("and") => loop {
                         conditions.push(MediaConditionKind::And(self.parse()?));
-                        match self.tokenizer.peek()? {
+                        match peek!(self) {
                             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("and") => {}
                             _ => break,
                         }
@@ -250,7 +250,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     Token::Ident(ident) if allow_or && ident.name.eq_ignore_ascii_case("or") => {
                         loop {
                             conditions.push(MediaConditionKind::Or(self.parse()?));
-                            match self.tokenizer.peek()? {
+                            match peek!(self) {
                                 Token::Ident(ident) if ident.name.eq_ignore_ascii_case("or") => {}
                                 _ => break,
                             }
@@ -291,7 +291,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let comparison = self.parse()?;
         let name_or_right = self.parse_media_feature_value()?;
         if let ComponentValue::InterpolableIdent(ident) = name_or_right {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::LessThan(..)
                 | Token::LessThanEqual(..)
                 | Token::GreaterThan(..)
@@ -349,7 +349,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_media_feature_value(&mut self) -> PResult<ComponentValue<'s>> {
         match self.parse_component_value_atom()? {
-            ComponentValue::Number(number) => match self.tokenizer.peek()? {
+            ComponentValue::Number(number) => match peek!(self) {
                 Token::Solidus(..) if number.value >= 0.0 => {
                     self.parse_ratio(number).map(ComponentValue::Ratio)
                 }

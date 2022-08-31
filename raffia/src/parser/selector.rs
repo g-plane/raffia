@@ -1,9 +1,9 @@
 use super::Parser;
 use crate::{
     ast::*,
-    eat,
+    bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, token, Token},
     util::{LastOfNonEmpty, PairedToken},
@@ -16,24 +16,25 @@ use smallvec::SmallVec;
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
-            Token::Dimension(token::Dimension {
-                value,
-                unit:
-                    token::Ident {
-                        name,
-                        span: unit_span,
-                        ..
-                    },
-                span,
-            }) => {
-                input.tokenizer.bump()?;
+        match peek!(input) {
+            Token::Dimension(..) => {
+                let token::Dimension {
+                    value,
+                    unit:
+                        token::Ident {
+                            name,
+                            span: unit_span,
+                            ..
+                        },
+                    span,
+                } = expect!(input, Dimension);
                 if name.eq_ignore_ascii_case("n") {
-                    match input.tokenizer.peek()? {
+                    match peek!(input) {
                         // syntax: <n-dimension> ['+' | '-'] <signless-integer>
                         // examples: '1n + 1', '1n - 1', '1n+ 1'
                         sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
-                            input.tokenizer.bump()?;
+                            let sign = if let Token::Plus(..) = sign { 1 } else { -1 };
+                            bump!(input);
                             let number = expect_unsigned_int(input)?;
                             let span = Span {
                                 start: span.start,
@@ -41,16 +42,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             };
                             Ok(AnPlusB {
                                 a: value.try_into()?,
-                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
-                                    * i32::try_from(number)?,
+                                b: sign * i32::try_from(number)?,
                                 span,
                             })
                         }
 
                         // syntax: <n-dimension> <signed-integer>
                         // examples: '1n +1', '1n -1'
-                        Token::Number(number) => {
-                            input.tokenizer.bump()?;
+                        Token::Number(..) => {
+                            let number = expect!(input, Number);
                             let span = Span {
                                 start: span.start,
                                 end: number.span.end,
@@ -115,15 +115,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                 }
             }
 
-            Token::Plus(plus) => {
-                input.tokenizer.bump()?;
+            Token::Plus(..) => {
+                let plus = expect!(input, Plus);
                 let ident = expect_without_ws_or_comments!(input, Ident);
                 if ident.name.eq_ignore_ascii_case("n") {
-                    match input.tokenizer.peek()? {
+                    match peek!(input) {
                         // syntax: +n ['+' | '-'] <signless-integer>
                         // examples: '+n + 1', '+n - 1', '+n+ 1'
                         sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
-                            input.tokenizer.bump()?;
+                            let sign = if let Token::Plus(..) = sign { 1 } else { -1 };
+                            bump!(input);
                             let number = expect_unsigned_int(input)?;
                             let span = Span {
                                 start: plus.span.start,
@@ -131,16 +132,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             };
                             Ok(AnPlusB {
                                 a: 1,
-                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
-                                    * i32::try_from(number)?,
+                                b: sign * i32::try_from(number)?,
                                 span,
                             })
                         }
 
                         // syntax: +n <signed-integer>
                         // examples: '+n +1', '+n -1'
-                        Token::Number(number) => {
-                            input.tokenizer.bump()?;
+                        Token::Number(..) => {
+                            let number = expect!(input, Number);
                             let span = Span {
                                 start: plus.span.start,
                                 end: number.span.end,
@@ -213,14 +213,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                 }
             }
 
-            Token::Ident(ident) => {
-                input.tokenizer.bump()?;
+            Token::Ident(..) => {
+                let ident = expect!(input, Ident);
                 if ident.name.eq_ignore_ascii_case("n") {
-                    match input.tokenizer.peek()? {
+                    match peek!(input) {
                         // syntax: n ['+' | '-'] <signless-integer>
                         // examples: 'n + 1', 'n - 1', 'n+ 1'
                         sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
-                            input.tokenizer.bump()?;
+                            let sign = if let Token::Plus(..) = sign { 1 } else { -1 };
+                            bump!(input);
                             let number = expect_unsigned_int(input)?;
                             let span = Span {
                                 start: ident.span.start,
@@ -228,16 +229,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             };
                             Ok(AnPlusB {
                                 a: 1,
-                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
-                                    * i32::try_from(number)?,
+                                b: sign * i32::try_from(number)?,
                                 span,
                             })
                         }
 
                         // syntax: n <signed-integer>
                         // examples: 'n +1', 'n -1'
-                        Token::Number(number) => {
-                            input.tokenizer.bump()?;
+                        Token::Number(..) => {
+                            let number = expect!(input, Number);
                             let span = Span {
                                 start: ident.span.start,
                                 end: number.span.end,
@@ -294,11 +294,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         span: ident.span,
                     })
                 } else if ident.name.eq_ignore_ascii_case("-n") {
-                    match input.tokenizer.peek()? {
+                    match peek!(input) {
                         // syntax: -n ['+' | '-'] <signless-integer>
                         // examples: '-n + 1', '-n - 1', '-n+ 1'
                         sign @ Token::Plus(..) | sign @ Token::Minus(..) => {
-                            input.tokenizer.bump()?;
+                            let sign = if let Token::Plus(..) = sign { 1 } else { -1 };
+                            bump!(input);
                             let number = expect_unsigned_int(input)?;
                             let span = Span {
                                 start: ident.span.start,
@@ -306,16 +307,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             };
                             Ok(AnPlusB {
                                 a: -1,
-                                b: if let Token::Plus(..) = sign { 1 } else { -1 }
-                                    * i32::try_from(number)?,
+                                b: sign * i32::try_from(number)?,
                                 span,
                             })
                         }
 
                         // syntax: -n <signed-integer>
                         // examples: '-n +1', '-n -1'
-                        Token::Number(number) => {
-                            input.tokenizer.bump()?;
+                        Token::Number(..) => {
+                            let number = expect!(input, Number);
                             let span = Span {
                                 start: ident.span.start,
                                 end: number.span.end,
@@ -391,7 +391,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let l_bracket = expect!(input, LBracket);
 
-        let name = match input.tokenizer.peek()? {
+        let name = match peek!(input) {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let ident = input.parse::<InterpolableIdent>()?;
                 let ident_span = ident.span();
@@ -424,9 +424,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                     }
                 }
             }
-            Token::Asterisk(asterisk) => {
-                input.tokenizer.bump()?;
-                let asterisk_span = asterisk.span;
+            Token::Asterisk(..) => {
+                let asterisk_span = expect!(input, Asterisk).span;
                 let bar_token = expect!(input, Bar);
                 let name = input.parse::<InterpolableIdent>()?;
 
@@ -446,8 +445,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                     span: Span { start, end },
                 }
             }
-            Token::Bar(bar_token) => {
-                input.tokenizer.bump()?;
+            Token::Bar(..) => {
+                let bar_token = expect!(input, Bar);
                 let name = input.parse::<InterpolableIdent>()?;
 
                 let start = bar_token.span.start;
@@ -472,45 +471,45 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
             }
         };
 
-        let matcher = match input.tokenizer.peek()? {
+        let matcher = match peek!(input) {
             Token::RBracket(..) => None,
-            Token::Equal(token) => {
-                let _ = input.tokenizer.bump();
+            Token::Equal(..) => {
+                let token = expect!(input, Equal);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::Exact,
                     span: token.span,
                 })
             }
-            Token::TildeEqual(token) => {
-                let _ = input.tokenizer.bump();
+            Token::TildeEqual(..) => {
+                let token = expect!(input, TildeEqual);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::MatchWord,
                     span: token.span,
                 })
             }
-            Token::BarEqual(token) => {
-                let _ = input.tokenizer.bump();
+            Token::BarEqual(..) => {
+                let token = expect!(input, BarEqual);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::ExactOrPrefixThenHyphen,
                     span: token.span,
                 })
             }
-            Token::CaretEqual(token) => {
-                let _ = input.tokenizer.bump();
+            Token::CaretEqual(..) => {
+                let token = expect!(input, CaretEqual);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::Prefix,
                     span: token.span,
                 })
             }
-            Token::DollarEqual(token) => {
-                let _ = input.tokenizer.bump();
+            Token::DollarEqual(..) => {
+                let token = expect!(input, DollarEqual);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::Suffix,
                     span: token.span,
                 })
             }
-            Token::AsteriskEqual(token) => {
-                let _ = input.tokenizer.bump();
+            Token::AsteriskEqual(..) => {
+                let token = expect!(input, AsteriskEqual);
                 Some(AttributeSelectorMatcher {
                     kind: AttributeSelectorMatcherKind::Substring,
                     span: token.span,
@@ -525,7 +524,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
         };
 
         let value = if matcher.is_some() {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::Ident(..) | Token::HashLBrace(..) => {
                     Some(AttributeSelectorValue::Ident(input.parse()?))
                 }
@@ -545,7 +544,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
         };
 
         let modifier = if value.is_some() {
-            match input.tokenizer.peek()? {
+            match peek!(input) {
                 Token::Ident(..) | Token::HashLBrace(..) => {
                     let ident = input.parse::<InterpolableIdent>()?;
                     let span = ident.span().clone();
@@ -599,36 +598,46 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let mut children = SmallVec::with_capacity(3);
         let first = input.parse::<CompoundSelector>()?;
-        let mut span = first.span.clone();
+        let start = first.span.start;
+        let mut end = first.span.end;
 
         children.push(ComplexSelectorChild::CompoundSelector(first));
-        while let Some(combinator) = input.parse_combinator()? {
+        while let Some(combinator) = input.parse_combinator(end)? {
             children.push(ComplexSelectorChild::Combinator(combinator));
-            children.push(input.parse().map(ComplexSelectorChild::CompoundSelector)?);
+            let compound_selector = input.parse::<CompoundSelector>()?;
+            end = compound_selector.span.end;
+            children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
         }
 
-        span.end = children.last_of_non_empty().span().end;
-        Ok(ComplexSelector { children, span })
+        Ok(ComplexSelector {
+            children,
+            span: Span { start, end },
+        })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first = input.parse::<SimpleSelector>()?;
-        let mut span = first.span().clone();
+        let first_span = first.span();
+        let start = first_span.start;
+        let mut end = first_span.end;
 
         let mut children = Vec::with_capacity(2);
         children.push(first);
-        while !input.tokenizer.has_ws_or_comments() {
-            if let Ok(child) = input.try_parse(|parser| parser.parse()) {
+        while end == peek!(input).span().start {
+            if let Ok(child) = input.try_parse(|parser| parser.parse::<SimpleSelector>()) {
+                end = child.span().end;
                 children.push(child);
             } else {
                 break;
             }
         }
 
-        span.end = children.last_of_non_empty().span().end;
-        Ok(CompoundSelector { children, span })
+        Ok(CompoundSelector {
+            children,
+            span: Span { start, end },
+        })
     }
 }
 
@@ -649,7 +658,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.bump()? {
+        match bump!(input) {
             Token::Hash(token) => {
                 let first_span = Span {
                     start: token.span.start + 1,
@@ -675,7 +684,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     raw: token.raw_without_hash,
                     span: first_span,
                 };
-                let name = match input.tokenizer.peek()? {
+                let name = match peek!(input) {
                     Token::HashLBrace(token)
                         if matches!(input.syntax, Syntax::Scss | Syntax::Sass)
                             && first.span.end == token.span.start =>
@@ -723,7 +732,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRange<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Str(..) | Token::StrTemplate(..) => input.parse().map(LanguageRange::Str),
             _ => input.parse().map(LanguageRange::Ident),
         }
@@ -754,7 +763,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Ident(ident) if ident.name.eq_ignore_ascii_case("odd") => {
                 Ok(Nth::Odd(input.parse()?))
             }
@@ -793,9 +802,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
             name
         };
 
-        let arg = match input.tokenizer.peek()? {
+        let arg = match peek!(input) {
             Token::LParen(l_paren) if l_paren.span.start == end => {
-                expect!(input, LParen);
+                let l_paren = expect!(input, LParen);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("nth-child")
@@ -888,9 +897,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
             name
         };
 
-        let arg = match input.tokenizer.peek()? {
+        let arg = match peek!(input) {
             Token::LParen(l_paren) if l_paren.span.start == end => {
-                expect!(input, LParen);
+                let l_paren = expect!(input, LParen);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("part") =>
@@ -927,7 +936,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let combinator = match input.parse_combinator()? {
+        let pos = input.tokenizer.current_offset();
+        let combinator = match input.parse_combinator(pos)? {
             Some(Combinator {
                 kind: CombinatorKind::Descendant,
                 ..
@@ -981,7 +991,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
 // https://www.w3.org/TR/selectors-4/#ref-for-typedef-simple-selector
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Dot(..) => input.parse().map(SimpleSelector::Class),
             Token::Hash(..) | Token::NumberSign(..) => input.parse().map(SimpleSelector::Id),
             Token::LBracket(..) => input.parse().map(SimpleSelector::Attribute),
@@ -1010,27 +1020,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
             Asterisk(token::Asterisk),
         }
 
-        let ident_or_asterisk = match input.tokenizer.peek()? {
+        let ident_or_asterisk = match peek!(input) {
             Token::Ident(..) | Token::HashLBrace(..) => {
                 input.parse().map(IdentOrAsterisk::Ident).map(Some)?
             }
-            Token::Asterisk(token) => {
-                input.tokenizer.bump()?;
-                Some(IdentOrAsterisk::Asterisk(token))
-            }
+            Token::Asterisk(..) => Some(IdentOrAsterisk::Asterisk(expect!(input, Asterisk))),
             Token::Bar(..) => None,
             _ => unreachable!(),
         };
 
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Bar(bar_token)
                 if ident_or_asterisk
                     .as_ref()
                     .map(|t| t.span().end == bar_token.span.start)
                     .unwrap_or(true) =>
             {
-                let token = input.tokenizer.bump()?;
-                debug_assert!(matches!(&token, Token::Bar(..)));
+                let bar_token = expect!(input, Bar);
 
                 let prefix = match ident_or_asterisk {
                     Some(IdentOrAsterisk::Ident(ident)) => {
@@ -1057,7 +1063,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                     },
                 };
 
-                match input.tokenizer.peek()? {
+                match peek!(input) {
                     Token::Ident(..) | Token::HashLBrace(..) => {
                         let name = input.parse::<InterpolableIdent>()?;
                         let name_span = name.span();
@@ -1075,8 +1081,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                             span,
                         }))
                     }
-                    Token::Asterisk(asterisk) => {
-                        input.tokenizer.bump()?;
+                    Token::Asterisk(..) => {
+                        let asterisk = expect!(input, Asterisk);
                         input.assert_no_ws_or_comment(&prefix.span, &asterisk.span)?;
                         let span = Span {
                             start: prefix.span.start,
@@ -1119,9 +1125,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn parse_combinator(&mut self) -> PResult<Option<Combinator>> {
-        let current_offset = self.tokenizer.current_offset();
-        match self.tokenizer.peek()? {
+    fn parse_combinator(&mut self, pos: usize) -> PResult<Option<Combinator>> {
+        match peek!(self) {
             Token::Ident(token::Ident { span, .. })
             | Token::Dot(token::Dot { span })
             | Token::Hash(token::Hash { span, .. })
@@ -1131,39 +1136,39 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             | Token::Asterisk(token::Asterisk { span })
             | Token::Ampersand(token::Ampersand { span })
             | Token::Bar(token::Bar { span }) // selector like `|type` (with <ns-prefix>)
-                if current_offset < span.start =>
+                if pos < span.start =>
             {
                 Ok(Some(Combinator {
                     kind: CombinatorKind::Descendant,
                     span: Span {
-                        start: current_offset,
+                        start: pos,
                         end: span.start,
                     },
                 }))
             }
-            Token::GreaterThan(token) => {
-                let _ = self.tokenizer.bump();
+            Token::GreaterThan(..) => {
+                let token = expect!(self, GreaterThan);
                 Ok(Some(Combinator {
                     kind: CombinatorKind::Child,
                     span: token.span,
                 }))
             }
-            Token::Plus(token) => {
-                let _ = self.tokenizer.bump();
+            Token::Plus(..) => {
+                let token = expect!(self, Plus);
                 Ok(Some(Combinator {
                     kind: CombinatorKind::NextSibling,
                     span: token.span,
                 }))
             }
-            Token::Tilde(token) => {
-                let _ = self.tokenizer.bump();
+            Token::Tilde(..) => {
+                let token = expect!(self, Tilde);
                 Ok(Some(Combinator {
                     kind: CombinatorKind::LaterSibling,
                     span: token.span,
                 }))
             }
-            Token::BarBar(token) => {
-                let _ = self.tokenizer.bump();
+            Token::BarBar(..) => {
+                let token = expect!(self, BarBar);
                 Ok(Some(Combinator {
                     kind: CombinatorKind::Column,
                     span: token.span,
@@ -1177,7 +1182,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut tokens = Vec::with_capacity(1);
         let mut pairs = Vec::with_capacity(1);
         loop {
-            match self.tokenizer.peek()? {
+            match peek!(self) {
                 Token::LParen(..) | Token::UrlPrefix(..) => {
                     pairs.push(PairedToken::Paren);
                 }
@@ -1207,17 +1212,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {}
             }
-            tokens.push(self.tokenizer.bump()?);
+            tokens.push(bump!(self));
         }
         let span = Span {
             start: tokens
                 .first()
                 .map(|token| token.span().start)
                 .unwrap_or(start),
-            end: tokens
-                .last()
-                .map(|token| token.span().end)
-                .unwrap_or_else(|| self.tokenizer.current_offset()),
+            end: if let Some(last) = tokens.last() {
+                last.span().end
+            } else {
+                peek!(self).span().start
+            },
         };
         Ok(TokenSeq { tokens, span })
     }

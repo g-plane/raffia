@@ -2,7 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     error::{Error, ErrorKind, PResult},
-    expect,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     Parse,
@@ -11,7 +11,7 @@ use crate::{
 // https://drafts.csswg.org/css-conditional-3/#at-supports
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::Ident(token) if token.name.eq_ignore_ascii_case("not") => {
                 let keyword = input.parse::<Ident>()?;
                 let condition = input.parse::<SupportsInParens>()?;
@@ -33,7 +33,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
                 let mut span = first.span().clone();
                 let mut conditions = vec![SupportsConditionKind::SupportsInParens(first)];
                 loop {
-                    match input.tokenizer.peek()? {
+                    match peek!(input) {
                         Token::Ident(token) if token.name.eq_ignore_ascii_case("and") => {
                             let ident = input.parse::<Ident>()?;
                             let condition = input.parse::<SupportsInParens>()?;
@@ -74,7 +74,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match input.tokenizer.peek()? {
+        match peek!(input) {
             Token::LParen(..) => input
                 .try_parse(|parser| {
                     parser

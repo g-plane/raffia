@@ -2,6 +2,7 @@ use super::Parser;
 use crate::{
     ast::*,
     error::{Error, PResult},
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     util, Parse,
@@ -15,9 +16,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {
         let mut end = first.span().end;
 
         let mut idents = vec![first];
-        while let Token::Dot(dot) = input.tokenizer.peek()? {
+        while let Token::Dot(dot) = peek!(input) {
             if dot.span.start == end {
-                input.tokenizer.bump()?;
+                let dot = expect!(input, Dot);
                 let ident = input.parse::<InterpolableIdent>()?;
                 input.assert_no_ws_or_comment(&dot.span, ident.span())?;
                 end = ident.span().end;
