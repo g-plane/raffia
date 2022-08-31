@@ -425,6 +425,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 }
             }
             Token::Asterisk(asterisk) => {
+                input.tokenizer.bump()?;
                 let asterisk_span = asterisk.span;
                 let bar_token = expect!(input, Bar);
                 let name = input.parse::<InterpolableIdent>()?;
@@ -446,6 +447,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 }
             }
             Token::Bar(bar_token) => {
+                input.tokenizer.bump()?;
                 let name = input.parse::<InterpolableIdent>()?;
 
                 let start = bar_token.span.start;
