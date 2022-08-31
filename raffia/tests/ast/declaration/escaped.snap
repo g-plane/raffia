@@ -1,0 +1,195 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 0,
+                          end: 1,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 1,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 1,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 1,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 1,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 1,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "c\\6flor",
+              span: Span(
+                start: 6,
+                end: 13,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00",
+                raw: "f00",
+                span: Span(
+                  start: 15,
+                  end: 19,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 6,
+              end: 19,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "\\63olor",
+              span: Span(
+                start: 23,
+                end: 30,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00",
+                raw: "f00",
+                span: Span(
+                  start: 32,
+                  end: 36,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 23,
+              end: 36,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: ",olor",
+              raw: "\\2color",
+              span: Span(
+                start: 40,
+                end: 47,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00",
+                raw: "f00",
+                span: Span(
+                  start: 49,
+                  end: 53,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 40,
+              end: 53,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: ",olor",
+              raw: "\\,olor",
+              span: Span(
+                start: 57,
+                end: 63,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00",
+                raw: "f00",
+                span: Span(
+                  start: 65,
+                  end: 69,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 57,
+              end: 69,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2,
+          end: 71,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 71,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 72,
+  ),
+)
