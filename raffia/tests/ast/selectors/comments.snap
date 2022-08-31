@@ -1,0 +1,1726 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 9,
+                          end: 10,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 9,
+                        end: 10,
+                      ),
+                    ),
+                    span: Span(
+                      start: 9,
+                      end: 10,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 9,
+                  end: 10,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 10,
+                  end: 11,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 11,
+                          end: 12,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 11,
+                        end: 12,
+                      ),
+                    ),
+                    span: Span(
+                      start: 11,
+                      end: 12,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 11,
+                  end: 12,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 9,
+              end: 12,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9,
+          end: 12,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 13,
+          end: 15,
+        ),
+      ),
+      span: Span(
+        start: 9,
+        end: 15,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 26,
+                          end: 27,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 26,
+                        end: 27,
+                      ),
+                    ),
+                    span: Span(
+                      start: 26,
+                      end: 27,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 26,
+                  end: 27,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 27,
+                  end: 28,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 28,
+                          end: 29,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 28,
+                        end: 29,
+                      ),
+                    ),
+                    span: Span(
+                      start: 28,
+                      end: 29,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 28,
+                  end: 29,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 26,
+              end: 29,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 26,
+          end: 29,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 30,
+          end: 32,
+        ),
+      ),
+      span: Span(
+        start: 26,
+        end: 32,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 43,
+                          end: 44,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 43,
+                        end: 44,
+                      ),
+                    ),
+                    span: Span(
+                      start: 43,
+                      end: 44,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 43,
+                  end: 44,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 44,
+                  end: 45,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 45,
+                          end: 46,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 45,
+                        end: 46,
+                      ),
+                    ),
+                    span: Span(
+                      start: 45,
+                      end: 46,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 45,
+                  end: 46,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 43,
+              end: 46,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 43,
+          end: 46,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 47,
+          end: 49,
+        ),
+      ),
+      span: Span(
+        start: 43,
+        end: 49,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 61,
+                          end: 62,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 61,
+                        end: 62,
+                      ),
+                    ),
+                    span: Span(
+                      start: 61,
+                      end: 62,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 61,
+                  end: 62,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 62,
+                  end: 63,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 63,
+                          end: 64,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 63,
+                        end: 64,
+                      ),
+                    ),
+                    span: Span(
+                      start: 63,
+                      end: 64,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 63,
+                  end: 64,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 61,
+              end: 64,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 61,
+          end: 64,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 65,
+          end: 67,
+        ),
+      ),
+      span: Span(
+        start: 61,
+        end: 67,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 68,
+                          end: 69,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 68,
+                        end: 69,
+                      ),
+                    ),
+                    span: Span(
+                      start: 68,
+                      end: 69,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 68,
+                  end: 69,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 69,
+                  end: 78,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 78,
+                          end: 79,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 78,
+                        end: 79,
+                      ),
+                    ),
+                    span: Span(
+                      start: 78,
+                      end: 79,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 78,
+                  end: 79,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 68,
+              end: 79,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 68,
+          end: 79,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 80,
+          end: 82,
+        ),
+      ),
+      span: Span(
+        start: 68,
+        end: 82,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 83,
+                          end: 84,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 83,
+                        end: 84,
+                      ),
+                    ),
+                    span: Span(
+                      start: 83,
+                      end: 84,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 83,
+                  end: 84,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 84,
+                  end: 94,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 94,
+                          end: 95,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 94,
+                        end: 95,
+                      ),
+                    ),
+                    span: Span(
+                      start: 94,
+                      end: 95,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 94,
+                  end: 95,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 83,
+              end: 95,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 83,
+          end: 95,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 96,
+          end: 98,
+        ),
+      ),
+      span: Span(
+        start: 83,
+        end: 98,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 99,
+                          end: 100,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 99,
+                        end: 100,
+                      ),
+                    ),
+                    span: Span(
+                      start: 99,
+                      end: 100,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 99,
+                  end: 100,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 100,
+                  end: 111,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 111,
+                          end: 112,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 111,
+                        end: 112,
+                      ),
+                    ),
+                    span: Span(
+                      start: 111,
+                      end: 112,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 111,
+                  end: 112,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 99,
+              end: 112,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 99,
+          end: 112,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 113,
+          end: 115,
+        ),
+      ),
+      span: Span(
+        start: 99,
+        end: 115,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 116,
+                          end: 117,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 116,
+                        end: 117,
+                      ),
+                    ),
+                    span: Span(
+                      start: 116,
+                      end: 117,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 116,
+                  end: 117,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 117,
+                  end: 129,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 129,
+                          end: 130,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 129,
+                        end: 130,
+                      ),
+                    ),
+                    span: Span(
+                      start: 129,
+                      end: 130,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 129,
+                  end: 130,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 116,
+              end: 130,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 116,
+          end: 130,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 131,
+          end: 133,
+        ),
+      ),
+      span: Span(
+        start: 116,
+        end: 133,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 134,
+                          end: 135,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 134,
+                        end: 135,
+                      ),
+                    ),
+                    span: Span(
+                      start: 134,
+                      end: 135,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 134,
+                  end: 135,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 135,
+                  end: 136,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 136,
+                          end: 137,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 136,
+                        end: 137,
+                      ),
+                    ),
+                    span: Span(
+                      start: 136,
+                      end: 137,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 136,
+                  end: 137,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 134,
+              end: 137,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 134,
+          end: 137,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 147,
+          end: 149,
+        ),
+      ),
+      span: Span(
+        start: 134,
+        end: 149,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 150,
+                          end: 151,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 150,
+                        end: 151,
+                      ),
+                    ),
+                    span: Span(
+                      start: 150,
+                      end: 151,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 150,
+                  end: 151,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 151,
+                  end: 152,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 152,
+                          end: 153,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 152,
+                        end: 153,
+                      ),
+                    ),
+                    span: Span(
+                      start: 152,
+                      end: 153,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 152,
+                  end: 153,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 150,
+              end: 153,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 150,
+          end: 153,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 164,
+          end: 166,
+        ),
+      ),
+      span: Span(
+        start: 150,
+        end: 166,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 167,
+                          end: 168,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 167,
+                        end: 168,
+                      ),
+                    ),
+                    span: Span(
+                      start: 167,
+                      end: 168,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 167,
+                  end: 168,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 168,
+                  end: 169,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 169,
+                          end: 170,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 169,
+                        end: 170,
+                      ),
+                    ),
+                    span: Span(
+                      start: 169,
+                      end: 170,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 169,
+                  end: 170,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 167,
+              end: 170,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 167,
+          end: 170,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 181,
+          end: 183,
+        ),
+      ),
+      span: Span(
+        start: 167,
+        end: 183,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 184,
+                          end: 185,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 184,
+                        end: 185,
+                      ),
+                    ),
+                    span: Span(
+                      start: 184,
+                      end: 185,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 184,
+                  end: 185,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 185,
+                  end: 186,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 186,
+                          end: 187,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 186,
+                        end: 187,
+                      ),
+                    ),
+                    span: Span(
+                      start: 186,
+                      end: 187,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 186,
+                  end: 187,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 184,
+              end: 187,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 184,
+          end: 187,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 199,
+          end: 201,
+        ),
+      ),
+      span: Span(
+        start: 184,
+        end: 201,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 202,
+                          end: 203,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 202,
+                        end: 203,
+                      ),
+                    ),
+                    span: Span(
+                      start: 202,
+                      end: 203,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 202,
+                  end: 203,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 203,
+                  end: 204,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 204,
+                          end: 205,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 204,
+                        end: 205,
+                      ),
+                    ),
+                    span: Span(
+                      start: 204,
+                      end: 205,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 204,
+                  end: 205,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 202,
+              end: 205,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 202,
+          end: 205,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 214,
+          end: 216,
+        ),
+      ),
+      span: Span(
+        start: 202,
+        end: 216,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 217,
+                          end: 218,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 217,
+                        end: 218,
+                      ),
+                    ),
+                    span: Span(
+                      start: 217,
+                      end: 218,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 217,
+                  end: 218,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 218,
+                  end: 219,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 219,
+                          end: 220,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 219,
+                        end: 220,
+                      ),
+                    ),
+                    span: Span(
+                      start: 219,
+                      end: 220,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 219,
+                  end: 220,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 217,
+              end: 220,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 217,
+          end: 220,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 230,
+          end: 232,
+        ),
+      ),
+      span: Span(
+        start: 217,
+        end: 232,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 233,
+                          end: 234,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 233,
+                        end: 234,
+                      ),
+                    ),
+                    span: Span(
+                      start: 233,
+                      end: 234,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 233,
+                  end: 234,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 233,
+              end: 234,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 255,
+                          end: 256,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 255,
+                        end: 256,
+                      ),
+                    ),
+                    span: Span(
+                      start: 255,
+                      end: 256,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 255,
+                  end: 256,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 255,
+              end: 256,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 233,
+          end: 256,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 256,
+          end: 258,
+        ),
+      ),
+      span: Span(
+        start: 233,
+        end: 258,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 259,
+                          end: 260,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 259,
+                        end: 260,
+                      ),
+                    ),
+                    span: Span(
+                      start: 259,
+                      end: 260,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 259,
+                  end: 260,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 259,
+              end: 260,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 285,
+                          end: 286,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 285,
+                        end: 286,
+                      ),
+                    ),
+                    span: Span(
+                      start: 285,
+                      end: 286,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 285,
+                  end: 286,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 285,
+              end: 286,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 259,
+          end: 286,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 287,
+          end: 289,
+        ),
+      ),
+      span: Span(
+        start: 259,
+        end: 289,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 290,
+  ),
+)
