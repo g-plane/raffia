@@ -1,0 +1,4157 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 1,
+                          end: 6,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 1,
+                        end: 6,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 0,
+                      end: 7,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 7,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 7,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 7,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 8,
+          end: 10,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 10,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 12,
+                          end: 17,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 12,
+                        end: 17,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 17,
+                        end: 18,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 18,
+                        end: 21,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 11,
+                      end: 22,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 11,
+                  end: 22,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 11,
+              end: 22,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 11,
+          end: 22,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 23,
+          end: 25,
+        ),
+      ),
+      span: Span(
+        start: 11,
+        end: 25,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 27,
+                          end: 32,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 27,
+                        end: 32,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 32,
+                        end: 33,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\"foo\"",
+                      span: Span(
+                        start: 33,
+                        end: 38,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 26,
+                      end: 39,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 26,
+                  end: 39,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 26,
+              end: 39,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 26,
+          end: 39,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 40,
+          end: 42,
+        ),
+      ),
+      span: Span(
+        start: 26,
+        end: 42,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 45,
+                          end: 50,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 45,
+                        end: 50,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 51,
+                        end: 52,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\"foo\"",
+                      span: Span(
+                        start: 53,
+                        end: 58,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 43,
+                      end: 60,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 43,
+                  end: 60,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 43,
+              end: 60,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 43,
+          end: 60,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 61,
+          end: 63,
+        ),
+      ),
+      span: Span(
+        start: 43,
+        end: 63,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 68,
+                          end: 73,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 68,
+                        end: 73,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 76,
+                        end: 77,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\"foo\"",
+                      span: Span(
+                        start: 80,
+                        end: 85,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 64,
+                      end: 89,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 64,
+                  end: 89,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 64,
+              end: 89,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 64,
+          end: 89,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 90,
+          end: 92,
+        ),
+      ),
+      span: Span(
+        start: 64,
+        end: 92,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "lang",
+                        raw: "lang",
+                        span: Span(
+                          start: 94,
+                          end: 98,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 94,
+                        end: 98,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: MatchWord,
+                      span: Span(
+                        start: 98,
+                        end: 100,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "en-us",
+                      raw: "\"en-us\"",
+                      span: Span(
+                        start: 100,
+                        end: 107,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 93,
+                      end: 108,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 93,
+                  end: 108,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 93,
+              end: 108,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 93,
+          end: 108,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 109,
+          end: 111,
+        ),
+      ),
+      span: Span(
+        start: 93,
+        end: 111,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "lang",
+                        raw: "lang",
+                        span: Span(
+                          start: 113,
+                          end: 117,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 113,
+                        end: 117,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: ExactOrPrefixThenHyphen,
+                      span: Span(
+                        start: 117,
+                        end: 119,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "zh",
+                      raw: "\"zh\"",
+                      span: Span(
+                        start: 119,
+                        end: 123,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 112,
+                      end: 124,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 112,
+                  end: 124,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 112,
+              end: 124,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 112,
+          end: 124,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 125,
+          end: 127,
+        ),
+      ),
+      span: Span(
+        start: 112,
+        end: 127,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 129,
+                          end: 133,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 129,
+                        end: 133,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Prefix,
+                      span: Span(
+                        start: 133,
+                        end: 135,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "#",
+                      raw: "\"#\"",
+                      span: Span(
+                        start: 135,
+                        end: 138,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 128,
+                      end: 139,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 128,
+                  end: 139,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 128,
+              end: 139,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 128,
+          end: 139,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 140,
+          end: 142,
+        ),
+      ),
+      span: Span(
+        start: 128,
+        end: 142,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 144,
+                          end: 148,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 144,
+                        end: 148,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Suffix,
+                      span: Span(
+                        start: 148,
+                        end: 150,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: ".org",
+                      raw: "\".org\"",
+                      span: Span(
+                        start: 150,
+                        end: 156,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 143,
+                      end: 157,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 143,
+                  end: 157,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 143,
+              end: 157,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 143,
+          end: 157,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 158,
+          end: 160,
+        ),
+      ),
+      span: Span(
+        start: 143,
+        end: 160,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 162,
+                          end: 166,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 162,
+                        end: 166,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 166,
+                        end: 168,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "example",
+                      raw: "\"example\"",
+                      span: Span(
+                        start: 168,
+                        end: 177,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 161,
+                      end: 178,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 161,
+                  end: 178,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 161,
+              end: 178,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 161,
+          end: 178,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 179,
+          end: 181,
+        ),
+      ),
+      span: Span(
+        start: 161,
+        end: 181,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 183,
+                          end: 187,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 183,
+                        end: 187,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 187,
+                        end: 189,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "insensitive",
+                      raw: "\"insensitive\"",
+                      span: Span(
+                        start: 189,
+                        end: 202,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "i",
+                        raw: "i",
+                        span: Span(
+                          start: 203,
+                          end: 204,
+                        ),
+                      ),
+                      span: Span(
+                        start: 203,
+                        end: 204,
+                      ),
+                    )),
+                    span: Span(
+                      start: 182,
+                      end: 205,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 182,
+                  end: 205,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 182,
+              end: 205,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 182,
+          end: 205,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 206,
+          end: 208,
+        ),
+      ),
+      span: Span(
+        start: 182,
+        end: 208,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 210,
+                          end: 214,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 210,
+                        end: 214,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 214,
+                        end: 216,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "insensitive",
+                      raw: "\"insensitive\"",
+                      span: Span(
+                        start: 216,
+                        end: 229,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "I",
+                        raw: "I",
+                        span: Span(
+                          start: 230,
+                          end: 231,
+                        ),
+                      ),
+                      span: Span(
+                        start: 230,
+                        end: 231,
+                      ),
+                    )),
+                    span: Span(
+                      start: 209,
+                      end: 232,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 209,
+                  end: 232,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 209,
+              end: 232,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 209,
+          end: 232,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 233,
+          end: 235,
+        ),
+      ),
+      span: Span(
+        start: 209,
+        end: 235,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 237,
+                          end: 241,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 237,
+                        end: 241,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 241,
+                        end: 243,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "cAsE",
+                      raw: "\"cAsE\"",
+                      span: Span(
+                        start: 243,
+                        end: 249,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "s",
+                        raw: "s",
+                        span: Span(
+                          start: 250,
+                          end: 251,
+                        ),
+                      ),
+                      span: Span(
+                        start: 250,
+                        end: 251,
+                      ),
+                    )),
+                    span: Span(
+                      start: 236,
+                      end: 252,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 236,
+                  end: 252,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 236,
+              end: 252,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 236,
+          end: 252,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 253,
+          end: 255,
+        ),
+      ),
+      span: Span(
+        start: 236,
+        end: 255,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 257,
+                          end: 261,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 257,
+                        end: 261,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 261,
+                        end: 263,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "cAsE",
+                      raw: "\"cAsE\"",
+                      span: Span(
+                        start: 263,
+                        end: 269,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "S",
+                        raw: "S",
+                        span: Span(
+                          start: 270,
+                          end: 271,
+                        ),
+                      ),
+                      span: Span(
+                        start: 270,
+                        end: 271,
+                      ),
+                    )),
+                    span: Span(
+                      start: 256,
+                      end: 272,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 256,
+                  end: 272,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 256,
+              end: 272,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 256,
+          end: 272,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 273,
+          end: 275,
+        ),
+      ),
+      span: Span(
+        start: 256,
+        end: 275,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 281,
+                          end: 284,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(Ident(
+                          type: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 277,
+                            end: 280,
+                          ),
+                        )),
+                        span: Span(
+                          start: 277,
+                          end: 281,
+                        ),
+                      )),
+                      span: Span(
+                        start: 277,
+                        end: 284,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 284,
+                        end: 285,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "val",
+                      raw: "val",
+                      span: Span(
+                        start: 285,
+                        end: 288,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 276,
+                      end: 289,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 276,
+                  end: 289,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 276,
+              end: 289,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 276,
+          end: 289,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 290,
+          end: 292,
+        ),
+      ),
+      span: Span(
+        start: 276,
+        end: 292,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 296,
+                          end: 299,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(NsPrefixUniversal(
+                          type: "NsPrefixUniversal",
+                          span: Span(
+                            start: 294,
+                            end: 295,
+                          ),
+                        )),
+                        span: Span(
+                          start: 294,
+                          end: 296,
+                        ),
+                      )),
+                      span: Span(
+                        start: 294,
+                        end: 299,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 293,
+                      end: 300,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 293,
+                  end: 300,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 293,
+              end: 300,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 293,
+          end: 300,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 301,
+          end: 303,
+        ),
+      ),
+      span: Span(
+        start: 293,
+        end: 303,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 310,
+                          end: 313,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(NsPrefixUniversal(
+                          type: "NsPrefixUniversal",
+                          span: Span(
+                            start: 308,
+                            end: 309,
+                          ),
+                        )),
+                        span: Span(
+                          start: 308,
+                          end: 310,
+                        ),
+                      )),
+                      span: Span(
+                        start: 308,
+                        end: 313,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 304,
+                      end: 317,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 304,
+                  end: 317,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 304,
+              end: 317,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 304,
+          end: 317,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 318,
+          end: 320,
+        ),
+      ),
+      span: Span(
+        start: 304,
+        end: 320,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 323,
+                          end: 326,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: None,
+                        span: Span(
+                          start: 322,
+                          end: 323,
+                        ),
+                      )),
+                      span: Span(
+                        start: 322,
+                        end: 326,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 321,
+                      end: 327,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 321,
+                  end: 327,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 321,
+              end: 327,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 321,
+          end: 327,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 328,
+          end: 330,
+        ),
+      ),
+      span: Span(
+        start: 321,
+        end: 330,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 334,
+                          end: 337,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: None,
+                        span: Span(
+                          start: 333,
+                          end: 334,
+                        ),
+                      )),
+                      span: Span(
+                        start: 333,
+                        end: 337,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 331,
+                      end: 339,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 331,
+                  end: 339,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 331,
+              end: 339,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 331,
+          end: 339,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 340,
+          end: 342,
+        ),
+      ),
+      span: Span(
+        start: 331,
+        end: 342,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 348,
+                          end: 351,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: None,
+                        span: Span(
+                          start: 347,
+                          end: 348,
+                        ),
+                      )),
+                      span: Span(
+                        start: 347,
+                        end: 351,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 343,
+                      end: 355,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 343,
+                  end: 355,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 343,
+              end: 355,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 343,
+          end: 355,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 356,
+          end: 358,
+        ),
+      ),
+      span: Span(
+        start: 343,
+        end: 358,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 360,
+                          end: 363,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 360,
+                        end: 363,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 359,
+                      end: 364,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 359,
+                  end: 364,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 359,
+              end: 364,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 359,
+          end: 364,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 365,
+          end: 367,
+        ),
+      ),
+      span: Span(
+        start: 359,
+        end: 367,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 370,
+                          end: 373,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 370,
+                        end: 373,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 368,
+                      end: 375,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 368,
+                  end: 375,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 368,
+              end: 375,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 368,
+          end: 375,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 376,
+          end: 378,
+        ),
+      ),
+      span: Span(
+        start: 368,
+        end: 378,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "att",
+                        raw: "att",
+                        span: Span(
+                          start: 383,
+                          end: 386,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 383,
+                        end: 386,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 379,
+                      end: 390,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 379,
+                  end: 390,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 379,
+              end: 390,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 379,
+          end: 390,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 391,
+          end: 393,
+        ),
+      ),
+      span: Span(
+        start: 379,
+        end: 393,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 394,
+                          end: 395,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 394,
+                        end: 395,
+                      ),
+                    ),
+                    span: Span(
+                      start: 394,
+                      end: 395,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "class",
+                        raw: "class",
+                        span: Span(
+                          start: 397,
+                          end: 402,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 397,
+                        end: 402,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 403,
+                        end: 404,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "test",
+                      raw: "\"test\"",
+                      span: Span(
+                        start: 405,
+                        end: 411,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 395,
+                      end: 413,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 394,
+                  end: 413,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 394,
+              end: 413,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 394,
+          end: 413,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 414,
+          end: 416,
+        ),
+      ),
+      span: Span(
+        start: 394,
+        end: 416,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 417,
+                          end: 418,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 417,
+                        end: 418,
+                      ),
+                    ),
+                    span: Span(
+                      start: 417,
+                      end: 418,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "class",
+                        raw: "class",
+                        span: Span(
+                          start: 422,
+                          end: 427,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 422,
+                        end: 427,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 430,
+                        end: 431,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "test",
+                      raw: "\"test\"",
+                      span: Span(
+                        start: 434,
+                        end: 440,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 418,
+                      end: 444,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 417,
+                  end: 444,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 417,
+              end: 444,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 417,
+          end: 444,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 445,
+          end: 447,
+        ),
+      ),
+      span: Span(
+        start: 417,
+        end: 447,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 449,
+                          end: 453,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 449,
+                        end: 453,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 453,
+                        end: 455,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "insensitive",
+                      raw: "\"insensitive\"",
+                      span: Span(
+                        start: 455,
+                        end: 468,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "i",
+                        raw: "i",
+                        span: Span(
+                          start: 471,
+                          end: 472,
+                        ),
+                      ),
+                      span: Span(
+                        start: 471,
+                        end: 472,
+                      ),
+                    )),
+                    span: Span(
+                      start: 448,
+                      end: 473,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 448,
+                  end: 473,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 448,
+              end: 473,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 448,
+          end: 473,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 474,
+          end: 476,
+        ),
+      ),
+      span: Span(
+        start: 448,
+        end: 476,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 481,
+                          end: 485,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 481,
+                        end: 485,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 485,
+                        end: 487,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "insensitive",
+                      raw: "\"insensitive\"",
+                      span: Span(
+                        start: 487,
+                        end: 500,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "i",
+                        raw: "i",
+                        span: Span(
+                          start: 503,
+                          end: 504,
+                        ),
+                      ),
+                      span: Span(
+                        start: 503,
+                        end: 504,
+                      ),
+                    )),
+                    span: Span(
+                      start: 477,
+                      end: 508,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 477,
+                  end: 508,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 477,
+              end: 508,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 477,
+          end: 508,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 509,
+          end: 511,
+        ),
+      ),
+      span: Span(
+        start: 477,
+        end: 511,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 516,
+                          end: 520,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 516,
+                        end: 520,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Substring,
+                      span: Span(
+                        start: 523,
+                        end: 525,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "insensitive",
+                      raw: "\"insensitive\"",
+                      span: Span(
+                        start: 528,
+                        end: 541,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "i",
+                        raw: "i",
+                        span: Span(
+                          start: 544,
+                          end: 545,
+                        ),
+                      ),
+                      span: Span(
+                        start: 544,
+                        end: 545,
+                      ),
+                    )),
+                    span: Span(
+                      start: 512,
+                      end: 549,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 512,
+                  end: 549,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 512,
+              end: 549,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 512,
+          end: 549,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 550,
+          end: 552,
+        ),
+      ),
+      span: Span(
+        start: 512,
+        end: 552,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 557,
+                          end: 561,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 557,
+                        end: 561,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 553,
+                      end: 565,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 553,
+                  end: 565,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 553,
+              end: 565,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 553,
+          end: 565,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 566,
+          end: 568,
+        ),
+      ),
+      span: Span(
+        start: 553,
+        end: 568,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "frame",
+                        raw: "frame",
+                        span: Span(
+                          start: 570,
+                          end: 575,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 570,
+                        end: 575,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 575,
+                        end: 576,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "hsides",
+                      raw: "hsides",
+                      span: Span(
+                        start: 576,
+                        end: 582,
+                      ),
+                    )),
+                    modifier: Some(AttributeSelectorModifier(
+                      type: "AttributeSelectorModifier",
+                      ident: Ident(
+                        type: "Ident",
+                        name: "i",
+                        raw: "i",
+                        span: Span(
+                          start: 583,
+                          end: 584,
+                        ),
+                      ),
+                      span: Span(
+                        start: 583,
+                        end: 584,
+                      ),
+                    )),
+                    span: Span(
+                      start: 569,
+                      end: 585,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 569,
+                  end: 585,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 569,
+              end: 585,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 569,
+          end: 585,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 586,
+          end: 588,
+        ),
+      ),
+      span: Span(
+        start: 569,
+        end: 588,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "id",
+                      raw: "id",
+                      span: Span(
+                        start: 590,
+                        end: 592,
+                      ),
+                    ),
+                    span: Span(
+                      start: 589,
+                      end: 592,
+                    ),
+                  ),
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "class",
+                      raw: "class",
+                      span: Span(
+                        start: 593,
+                        end: 598,
+                      ),
+                    ),
+                    span: Span(
+                      start: 592,
+                      end: 598,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "target",
+                        raw: "target",
+                        span: Span(
+                          start: 599,
+                          end: 605,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 599,
+                        end: 605,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 598,
+                      end: 606,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 589,
+                  end: 606,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 589,
+              end: 606,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 589,
+          end: 606,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 607,
+          end: 609,
+        ),
+      ),
+      span: Span(
+        start: 589,
+        end: 609,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "id",
+                      raw: "id",
+                      span: Span(
+                        start: 611,
+                        end: 613,
+                      ),
+                    ),
+                    span: Span(
+                      start: 610,
+                      end: 613,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "target",
+                        raw: "target",
+                        span: Span(
+                          start: 614,
+                          end: 620,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 614,
+                        end: 620,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 613,
+                      end: 621,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 610,
+                  end: 621,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 610,
+              end: 621,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 610,
+          end: 621,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 622,
+          end: 624,
+        ),
+      ),
+      span: Span(
+        start: 610,
+        end: 624,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "target",
+                        raw: "target",
+                        span: Span(
+                          start: 626,
+                          end: 632,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 626,
+                        end: 632,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 625,
+                      end: 633,
+                    ),
+                  ),
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "class",
+                      raw: "class",
+                      span: Span(
+                        start: 634,
+                        end: 639,
+                      ),
+                    ),
+                    span: Span(
+                      start: 633,
+                      end: 639,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 625,
+                  end: 639,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 625,
+              end: 639,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 625,
+          end: 639,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 640,
+          end: 642,
+        ),
+      ),
+      span: Span(
+        start: 625,
+        end: 642,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "title",
+                        raw: "title",
+                        span: Span(
+                          start: 644,
+                          end: 649,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 644,
+                        end: 649,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 649,
+                        end: 650,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\'foo\'",
+                      span: Span(
+                        start: 650,
+                        end: 655,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 643,
+                      end: 656,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 643,
+                  end: 656,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 643,
+              end: 656,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 643,
+          end: 656,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 657,
+          end: 659,
+        ),
+      ),
+      span: Span(
+        start: 643,
+        end: 659,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "data-style",
+                        raw: "data-style",
+                        span: Span(
+                          start: 661,
+                          end: 671,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 661,
+                        end: 671,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 671,
+                        end: 672,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "value",
+                      raw: "\'value\'",
+                      span: Span(
+                        start: 672,
+                        end: 679,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 660,
+                      end: 680,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "data-loading",
+                        raw: "data-loading",
+                        span: Span(
+                          start: 681,
+                          end: 693,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 681,
+                        end: 693,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 680,
+                      end: 694,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 660,
+                  end: 694,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 660,
+              end: 694,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 660,
+          end: 694,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 695,
+          end: 697,
+        ),
+      ),
+      span: Span(
+        start: 660,
+        end: 697,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 698,
+                          end: 699,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 698,
+                        end: 699,
+                      ),
+                    ),
+                    span: Span(
+                      start: 698,
+                      end: 699,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 700,
+                          end: 704,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 700,
+                        end: 704,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 704,
+                        end: 705,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "te\'s\'t",
+                      raw: "\"te\'s\'t\"",
+                      span: Span(
+                        start: 705,
+                        end: 713,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 699,
+                      end: 714,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 698,
+                  end: 714,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 698,
+              end: 714,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 698,
+          end: 714,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 715,
+          end: 717,
+        ),
+      ),
+      span: Span(
+        start: 698,
+        end: 717,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 718,
+                          end: 719,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 718,
+                        end: 719,
+                      ),
+                    ),
+                    span: Span(
+                      start: 718,
+                      end: 719,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "href",
+                        raw: "href",
+                        span: Span(
+                          start: 720,
+                          end: 724,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 720,
+                        end: 724,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 724,
+                        end: 725,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "te\"s\"t",
+                      raw: "\'te\"s\"t\'",
+                      span: Span(
+                        start: 725,
+                        end: 733,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 719,
+                      end: 734,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 718,
+                  end: 734,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 718,
+              end: 734,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 718,
+          end: 734,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 735,
+          end: 737,
+        ),
+      ),
+      span: Span(
+        start: 718,
+        end: 737,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "ng:cloak",
+                        raw: "ng\\:cloak",
+                        span: Span(
+                          start: 739,
+                          end: 748,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 739,
+                        end: 748,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 738,
+                      end: 749,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 738,
+                  end: 749,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 738,
+              end: 749,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 738,
+          end: 749,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 750,
+          end: 752,
+        ),
+      ),
+      span: Span(
+        start: 738,
+        end: 752,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "ng:cloak",
+                        raw: "ng\\3a cloak",
+                        span: Span(
+                          start: 754,
+                          end: 765,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 754,
+                        end: 765,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 753,
+                      end: 766,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 753,
+                  end: 766,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 753,
+              end: 766,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 753,
+          end: 766,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 767,
+          end: 769,
+        ),
+      ),
+      span: Span(
+        start: 753,
+        end: 769,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "ng:cloak",
+                        raw: "ng\\00003acloak",
+                        span: Span(
+                          start: 771,
+                          end: 785,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 771,
+                        end: 785,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 770,
+                      end: 786,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 770,
+                  end: 786,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 770,
+              end: 786,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 770,
+          end: 786,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 787,
+          end: 789,
+        ),
+      ),
+      span: Span(
+        start: 770,
+        end: 789,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 791,
+                        end: 794,
+                      ),
+                    ),
+                    arg: Some(SelectorList(
+                      type: "SelectorList",
+                      selectors: [
+                        ComplexSelector(
+                          type: "ComplexSelector",
+                          children: [
+                            CompoundSelector(
+                              type: "CompoundSelector",
+                              children: [
+                                AttributeSelector(
+                                  type: "AttributeSelector",
+                                  name: WqName(
+                                    type: "WqName",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "foo",
+                                      raw: "foo",
+                                      span: Span(
+                                        start: 796,
+                                        end: 799,
+                                      ),
+                                    ),
+                                    prefix: None,
+                                    span: Span(
+                                      start: 796,
+                                      end: 799,
+                                    ),
+                                  ),
+                                  matcher: Some(AttributeSelectorMatcher(
+                                    type: "AttributeSelectorMatcher",
+                                    kind: Exact,
+                                    span: Span(
+                                      start: 799,
+                                      end: 800,
+                                    ),
+                                  )),
+                                  value: Some(Str(
+                                    type: "Str",
+                                    value: ")",
+                                    raw: "\")\"",
+                                    span: Span(
+                                      start: 800,
+                                      end: 803,
+                                    ),
+                                  )),
+                                  modifier: None,
+                                  span: Span(
+                                    start: 795,
+                                    end: 804,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 795,
+                                end: 804,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 795,
+                            end: 804,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 795,
+                        end: 804,
+                      ),
+                    )),
+                    span: Span(
+                      start: 790,
+                      end: 805,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 790,
+                  end: 805,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 790,
+              end: 805,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 790,
+          end: 805,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 806,
+          end: 808,
+        ),
+      ),
+      span: Span(
+        start: 790,
+        end: 808,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "not",
+                      raw: "not",
+                      span: Span(
+                        start: 810,
+                        end: 813,
+                      ),
+                    ),
+                    arg: Some(SelectorList(
+                      type: "SelectorList",
+                      selectors: [
+                        ComplexSelector(
+                          type: "ComplexSelector",
+                          children: [
+                            CompoundSelector(
+                              type: "CompoundSelector",
+                              children: [
+                                TagNameSelector(
+                                  type: "TagNameSelector",
+                                  name: WqName(
+                                    type: "WqName",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "div",
+                                      raw: "div",
+                                      span: Span(
+                                        start: 814,
+                                        end: 817,
+                                      ),
+                                    ),
+                                    prefix: None,
+                                    span: Span(
+                                      start: 814,
+                                      end: 817,
+                                    ),
+                                  ),
+                                  span: Span(
+                                    start: 814,
+                                    end: 817,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 814,
+                                end: 817,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 814,
+                            end: 817,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 814,
+                        end: 817,
+                      ),
+                    )),
+                    span: Span(
+                      start: 809,
+                      end: 823,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 809,
+                  end: 823,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 809,
+              end: 823,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 809,
+          end: 823,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 824,
+          end: 827,
+        ),
+      ),
+      span: Span(
+        start: 809,
+        end: 827,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 829,
+                          end: 832,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 829,
+                        end: 832,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 832,
+                        end: 833,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "\"",
+                      raw: "\\\"",
+                      span: Span(
+                        start: 833,
+                        end: 835,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 828,
+                      end: 836,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 828,
+                  end: 836,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 828,
+              end: 836,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 828,
+          end: 836,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 837,
+          end: 839,
+        ),
+      ),
+      span: Span(
+        start: 828,
+        end: 839,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 841,
+                          end: 844,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 841,
+                        end: 844,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 844,
+                        end: 845,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "{",
+                      raw: "\\{",
+                      span: Span(
+                        start: 845,
+                        end: 847,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 840,
+                      end: 848,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 840,
+                  end: 848,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 840,
+              end: 848,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 840,
+          end: 848,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 849,
+          end: 851,
+        ),
+      ),
+      span: Span(
+        start: 840,
+        end: 851,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 853,
+                          end: 856,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 853,
+                        end: 856,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 856,
+                        end: 857,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "(",
+                      raw: "\\(",
+                      span: Span(
+                        start: 857,
+                        end: 859,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 852,
+                      end: 860,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 852,
+                  end: 860,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 852,
+              end: 860,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 852,
+          end: 860,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 861,
+          end: 863,
+        ),
+      ),
+      span: Span(
+        start: 852,
+        end: 863,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 865,
+                          end: 868,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 865,
+                        end: 868,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 868,
+                        end: 869,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "yes:(it\'s work)",
+                      raw: "yes\\:\\(it\\\'s\\ work\\)",
+                      span: Span(
+                        start: 869,
+                        end: 889,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 864,
+                      end: 890,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 864,
+                  end: 890,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 864,
+              end: 890,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 864,
+          end: 890,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 891,
+          end: 893,
+        ),
+      ),
+      span: Span(
+        start: 864,
+        end: 893,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "attr",
+                        raw: "attr",
+                        span: Span(
+                          start: 895,
+                          end: 899,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 895,
+                        end: 899,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 899,
+                        end: 900,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: ";",
+                      raw: "\\;",
+                      span: Span(
+                        start: 900,
+                        end: 902,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 894,
+                      end: 903,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 894,
+                  end: 903,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 894,
+              end: 903,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 894,
+          end: 903,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 904,
+          end: 907,
+        ),
+      ),
+      span: Span(
+        start: 894,
+        end: 907,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 908,
+  ),
+)
