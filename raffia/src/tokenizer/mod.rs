@@ -157,7 +157,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.scan_dimension_or_percentage(number)
             }
             (Some((_, '@')), Some((_, c))) if is_start_of_ident(c) => self.scan_at_keyword(),
-            (Some((_, '!')), Some((_, c))) if is_start_of_ident(c) => self.scan_flag(),
             (Some((_, '$')), Some((_, c)))
                 if matches!(self.syntax, Syntax::Scss | Syntax::Sass) && is_start_of_ident(c) =>
             {
@@ -844,17 +843,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             raw_without_hash,
             span,
         }))
-    }
-
-    fn scan_flag(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self.state.chars.next().unwrap();
-        debug_assert_eq!(c, '!');
-        let ident = self.scan_ident_sequence()?;
-        let span = Span {
-            start,
-            end: ident.span.end,
-        };
-        Ok(Token::Flag(Flag { ident, span }))
     }
 
     fn scan_dollar_var(&mut self) -> PResult<Token<'s>> {

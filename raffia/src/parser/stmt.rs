@@ -93,7 +93,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Semicolon(..)
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
-                            | Token::Flag(..)
+                            | Token::Exclamation(..)
                             | Token::Eof(..) => break,
                             _ => values.push(parser.parse::<ComponentValue>()?),
                         }
@@ -103,7 +103,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             }
         };
 
-        let important = if let Token::Flag(..) = input.tokenizer.peek()? {
+        let important = if let Token::Exclamation(..) = input.tokenizer.peek()? {
             input.parse::<ImportantAnnotation>().map(Some)?
         } else {
             None
@@ -134,16 +134,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let flag = expect!(input, Flag);
-        if flag.ident.name.eq_ignore_ascii_case("important") {
+        let exclamation = expect!(input, Exclamation);
+        let ident = expect!(input, Ident);
+        let span = Span {
+            start: exclamation.span.start,
+            end: ident.span.end,
+        };
+        if ident.name.eq_ignore_ascii_case("important") {
             Ok(ImportantAnnotation {
-                ident: flag.ident.into(),
-                span: flag.span,
+                ident: ident.into(),
+                span,
             })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectImportantAnnotation,
-                span: flag.span,
+                span,
             })
         }
     }
