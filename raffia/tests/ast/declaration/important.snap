@@ -1,0 +1,897 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 1,
+                        end: 2,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 2,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 2,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 2,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 2,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 7,
+                end: 11,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 13,
+                  end: 22,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 7,
+              end: 22,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 26,
+                end: 31,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 33,
+                  end: 36,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 37,
+                  end: 46,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 26,
+              end: 46,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 50,
+                end: 55,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 57,
+                    end: 58,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 58,
+                    end: 60,
+                  ),
+                ),
+                span: Span(
+                  start: 57,
+                  end: 60,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 61,
+                  end: 70,
+                ),
+              ),
+              span: Span(
+                start: 60,
+                end: 70,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 50,
+              end: 70,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 74,
+                end: 79,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 81,
+                  end: 84,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 85,
+                  end: 94,
+                ),
+              ),
+              span: Span(
+                start: 84,
+                end: 94,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 74,
+              end: 94,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 98,
+                end: 103,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 105,
+                  end: 108,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 110,
+                  end: 119,
+                ),
+              ),
+              span: Span(
+                start: 109,
+                end: 119,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 98,
+              end: 119,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 123,
+                end: 128,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 130,
+                  end: 133,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 136,
+                  end: 145,
+                ),
+              ),
+              span: Span(
+                start: 135,
+                end: 145,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 123,
+              end: 145,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 149,
+                end: 154,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 156,
+                  end: 159,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 164,
+                  end: 173,
+                ),
+              ),
+              span: Span(
+                start: 160,
+                end: 173,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 149,
+              end: 173,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 180,
+                end: 185,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "blue",
+                raw: "blue",
+                span: Span(
+                  start: 187,
+                  end: 191,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "IMPORTANT",
+                raw: "IMPORTANT",
+                span: Span(
+                  start: 193,
+                  end: 202,
+                ),
+              ),
+              span: Span(
+                start: 192,
+                end: 202,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 180,
+              end: 202,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 206,
+                end: 211,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "white",
+                raw: "white",
+                span: Span(
+                  start: 213,
+                  end: 218,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "IMPORTANT",
+                raw: "IMPORTANT",
+                span: Span(
+                  start: 223,
+                  end: 232,
+                ),
+              ),
+              span: Span(
+                start: 219,
+                end: 232,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 206,
+              end: 232,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 239,
+                end: 245,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 10.0,
+                  raw: "10",
+                  span: Span(
+                    start: 247,
+                    end: 249,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 249,
+                    end: 251,
+                  ),
+                ),
+                span: Span(
+                  start: 247,
+                  end: 251,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 264,
+                  end: 273,
+                ),
+              ),
+              span: Span(
+                start: 257,
+                end: 273,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 239,
+              end: 273,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "padding",
+              raw: "padding",
+              span: Span(
+                start: 277,
+                end: 284,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 20.0,
+                  raw: "20",
+                  span: Span(
+                    start: 286,
+                    end: 288,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 288,
+                    end: 290,
+                  ),
+                ),
+                span: Span(
+                  start: 286,
+                  end: 290,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 311,
+                  end: 320,
+                ),
+              ),
+              span: Span(
+                start: 295,
+                end: 320,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 277,
+              end: 320,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 324,
+                end: 329,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 100.0,
+                  raw: "100",
+                  span: Span(
+                    start: 331,
+                    end: 334,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 334,
+                    end: 336,
+                  ),
+                ),
+                span: Span(
+                  start: 331,
+                  end: 336,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 351,
+                  end: 360,
+                ),
+              ),
+              span: Span(
+                start: 337,
+                end: 360,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 324,
+              end: 360,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "height",
+              raw: "height",
+              span: Span(
+                start: 364,
+                end: 370,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 100.0,
+                  raw: "100",
+                  span: Span(
+                    start: 372,
+                    end: 375,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 375,
+                    end: 377,
+                  ),
+                ),
+                span: Span(
+                  start: 372,
+                  end: 377,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 390,
+                  end: 399,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 364,
+              end: 399,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "z-index",
+              raw: "z-index",
+              span: Span(
+                start: 403,
+                end: 410,
+              ),
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 412,
+                  end: 413,
+                ),
+              ),
+              Str(
+                type: "Str",
+                value: "",
+                raw: "\"\"",
+                span: Span(
+                  start: 414,
+                  end: 416,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 418,
+                  end: 427,
+                ),
+              ),
+              span: Span(
+                start: 416,
+                end: 427,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 403,
+              end: 427,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "padding",
+              raw: "padding",
+              span: Span(
+                start: 431,
+                end: 438,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 440,
+                    end: 441,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 441,
+                    end: 443,
+                  ),
+                ),
+                span: Span(
+                  start: 440,
+                  end: 443,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 453,
+                  end: 462,
+                ),
+              ),
+              span: Span(
+                start: 452,
+                end: 462,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 431,
+              end: 462,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 466,
+                end: 470,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 472,
+                  end: 475,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "iMpOrTaNt",
+                raw: "iMpOrTaNt",
+                span: Span(
+                  start: 477,
+                  end: 486,
+                ),
+              ),
+              span: Span(
+                start: 476,
+                end: 486,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 466,
+              end: 486,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 490,
+                end: 495,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 497,
+                  end: 500,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "imp\\ortant",
+                span: Span(
+                  start: 502,
+                  end: 512,
+                ),
+              ),
+              span: Span(
+                start: 501,
+                end: 512,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 490,
+              end: 512,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3,
+          end: 515,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 515,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 516,
+  ),
+)
