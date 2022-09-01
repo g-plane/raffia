@@ -625,12 +625,34 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
 
         let mut children = Vec::with_capacity(2);
         children.push(first);
-        while end == peek!(input).span().start {
-            if let Ok(child) = input.try_parse(|parser| parser.parse::<SimpleSelector>()) {
-                end = child.span().end;
-                children.push(child);
-            } else {
-                break;
+        loop {
+            use token::*;
+            match peek!(input) {
+                Token::Dot(Dot { span })
+                | Token::Hash(Hash { span, .. })
+                | Token::NumberSign(NumberSign { span })
+                | Token::LBracket(LBracket { span })
+                | Token::Colon(Colon { span })
+                | Token::ColonColon(ColonColon { span })
+                | Token::Ident(Ident { span, .. })
+                | Token::Asterisk(Asterisk { span })
+                | Token::HashLBrace(HashLBrace { span })
+                | Token::Bar(Bar { span })
+                | Token::Ampersand(Ampersand { span })
+                    if end == span.start =>
+                {
+                    let child = input.parse::<SimpleSelector>()?;
+                    end = child.span().end;
+                    children.push(child);
+                }
+                Token::Percent(Percent { span })
+                    if matches!(input.syntax, Syntax::Scss | Syntax::Sass) && end == span.start =>
+                {
+                    let child = input.parse::<SimpleSelector>()?;
+                    end = child.span().end;
+                    children.push(child);
+                }
+                _ => break,
             }
         }
 
