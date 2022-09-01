@@ -135,7 +135,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
 
         let name = input.parse::<LessVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(/* allow_comma */ true)?;
+        let value = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
 
         let span = Span {
             start: name.span.start,

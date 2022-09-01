@@ -147,6 +147,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(in crate::parser) fn parse_component_values(
         &mut self,
         allow_comma: bool,
+        allow_semicolon: bool,
     ) -> PResult<ComponentValues<'s>> {
         let first = self.parse::<ComponentValue>()?;
         let mut span = first.span().clone();
@@ -157,11 +158,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match peek!(self) {
                 Token::RBrace(..)
                 | Token::RParen(..)
-                | Token::Semicolon(..)
                 | Token::Dedent(..)
                 | Token::Linebreak(..)
                 | Token::Exclamation(..)
                 | Token::Eof(..) => break,
+                Token::Semicolon(..) => {
+                    if allow_semicolon {
+                        values.push(self.parse().map(ComponentValue::Delimiter)?);
+                    } else {
+                        break;
+                    }
+                }
                 Token::Comma(..) => {
                     if allow_comma {
                         values.push(self.parse().map(ComponentValue::Delimiter)?);
@@ -199,7 +206,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
                     vec![self.parse_calc_expr()?]
                 }
-                _ => self.parse_component_values(/* allow_comma */ true)?.values,
+                _ => {
+                    self.parse_component_values(
+                        /* allow_comma */ true, /* allow_semicolon */ true,
+                    )?
+                    .values
+                }
             },
         };
         let r_paren = expect!(self, RParen);
@@ -304,7 +316,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValues<'s> {
     /// This is for public-use only. For internal code of Raffia, **DO NOT** use.
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        input.parse_component_values(/* allow_comma */ true)
+        input.parse_component_values(/* allow_comma */ true, /* allow_semicolon */ true)
     }
 }
 

@@ -225,7 +225,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let hash_lbrace = expect!(self, HashLBrace);
-        let expr = self.parse_component_values(/* allow_comma */ true)?;
+        let expr = self.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
         let r_brace = expect!(self, RBrace);
         Ok((
             SassInterpolatedIdentElement::Expression(expr),
@@ -324,7 +326,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
         debug_assert_eq!(&*token.ident.name, "debug");
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
         let span = Span {
             start: token.span.start,
             end: expr.span.end,
@@ -370,7 +374,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
         debug_assert_eq!(&*token.ident.name, "error");
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
         let span = Span {
             start: token.span.start,
             end: expr.span.end,
@@ -569,7 +575,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedStrElement::Expression(
-                    input.parse_component_values(/* allow_comma */ true)?,
+                    input.parse_component_values(
+                        /* allow_comma */ true, /* allow_semicolon */ false,
+                    )?,
                 ));
                 expect!(input, RBrace);
             }
@@ -611,7 +619,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedUrlElement::Expression(
-                    input.parse_component_values(/* allow_comma */ true)?,
+                    input.parse_component_values(
+                        /* allow_comma */ true, /* allow_semicolon */ false,
+                    )?,
                 ));
                 expect!(input, RBrace);
             }
@@ -656,7 +666,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
         debug_assert_eq!(&*token.ident.name, "return");
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
         let span = Span {
             start: token.span.start,
             end: expr.span.end,
@@ -754,7 +766,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let name = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(/* allow_comma */ true)?;
+        let value = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
 
         let span = Span {
             start: name.span.start,
@@ -768,7 +782,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
         debug_assert_eq!(&*token.ident.name, "warn");
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_component_values(
+            /* allow_comma */ true, /* allow_semicolon */ false,
+        )?;
         let span = Span {
             start: token.span.start,
             end: expr.span.end,
