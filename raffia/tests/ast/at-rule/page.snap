@@ -1,0 +1,2109 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 1,
+          end: 5,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 5,
+          end: 7,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 7,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 9,
+          end: 13,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 13,
+          end: 16,
+        ),
+      )),
+      span: Span(
+        start: 8,
+        end: 16,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 18,
+          end: 22,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 23,
+          end: 25,
+        ),
+      )),
+      span: Span(
+        start: 17,
+        end: 25,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 27,
+          end: 31,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 32,
+                end: 38,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 40,
+                    end: 41,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 41,
+                    end: 43,
+                  ),
+                ),
+                span: Span(
+                  start: 40,
+                  end: 43,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 32,
+              end: 43,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 31,
+          end: 44,
+        ),
+      )),
+      span: Span(
+        start: 26,
+        end: 44,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 46,
+          end: 50,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 52,
+                end: 58,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 60,
+                    end: 61,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 61,
+                    end: 63,
+                  ),
+                ),
+                span: Span(
+                  start: 60,
+                  end: 63,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 52,
+              end: 63,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 51,
+          end: 64,
+        ),
+      )),
+      span: Span(
+        start: 45,
+        end: 64,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 66,
+          end: 70,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 72,
+                end: 78,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 80,
+                    end: 81,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 81,
+                    end: 83,
+                  ),
+                ),
+                span: Span(
+                  start: 80,
+                  end: 83,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 72,
+              end: 83,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 71,
+          end: 85,
+        ),
+      )),
+      span: Span(
+        start: 65,
+        end: 85,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 87,
+          end: 91,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 92,
+                    end: 97,
+                  ),
+                ),
+                span: Span(
+                  start: 91,
+                  end: 97,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 91,
+              end: 97,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 91,
+          end: 97,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 98,
+          end: 100,
+        ),
+      )),
+      span: Span(
+        start: 86,
+        end: 100,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 102,
+          end: 106,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 108,
+                    end: 113,
+                  ),
+                ),
+                span: Span(
+                  start: 107,
+                  end: 113,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 107,
+              end: 113,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 107,
+          end: 113,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 115,
+                end: 121,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 123,
+                    end: 124,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 124,
+                    end: 126,
+                  ),
+                ),
+                span: Span(
+                  start: 123,
+                  end: 126,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 115,
+              end: 126,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 114,
+          end: 127,
+        ),
+      )),
+      span: Span(
+        start: 101,
+        end: 127,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 129,
+          end: 133,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 135,
+                    end: 140,
+                  ),
+                ),
+                span: Span(
+                  start: 134,
+                  end: 140,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 134,
+              end: 140,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 134,
+          end: 140,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 142,
+                end: 148,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 150,
+                    end: 151,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 151,
+                    end: 153,
+                  ),
+                ),
+                span: Span(
+                  start: 150,
+                  end: 153,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 142,
+              end: 153,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 141,
+          end: 155,
+        ),
+      )),
+      span: Span(
+        start: 128,
+        end: 155,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 157,
+          end: 161,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 163,
+                    end: 168,
+                  ),
+                ),
+                span: Span(
+                  start: 162,
+                  end: 168,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 162,
+              end: 168,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 162,
+          end: 168,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 169,
+                end: 175,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 177,
+                    end: 178,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "cm",
+                  raw: "cm",
+                  span: Span(
+                    start: 178,
+                    end: 180,
+                  ),
+                ),
+                span: Span(
+                  start: 177,
+                  end: 180,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 169,
+              end: 180,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 168,
+          end: 182,
+        ),
+      )),
+      span: Span(
+        start: 156,
+        end: 182,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 184,
+          end: 188,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "left",
+                  raw: "left",
+                  span: Span(
+                    start: 190,
+                    end: 194,
+                  ),
+                ),
+                span: Span(
+                  start: 189,
+                  end: 194,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 189,
+              end: 194,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 189,
+          end: 194,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 195,
+          end: 197,
+        ),
+      )),
+      span: Span(
+        start: 183,
+        end: 197,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 199,
+          end: 203,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "right",
+                  raw: "right",
+                  span: Span(
+                    start: 205,
+                    end: 210,
+                  ),
+                ),
+                span: Span(
+                  start: 204,
+                  end: 210,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 204,
+              end: 210,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 204,
+          end: 210,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 211,
+          end: 213,
+        ),
+      )),
+      span: Span(
+        start: 198,
+        end: 213,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 215,
+          end: 219,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "LandscapeTable",
+              raw: "LandscapeTable",
+              span: Span(
+                start: 220,
+                end: 234,
+              ),
+            )),
+            pseudo: [],
+            span: Span(
+              start: 220,
+              end: 234,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 220,
+          end: 234,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 235,
+          end: 237,
+        ),
+      )),
+      span: Span(
+        start: 214,
+        end: 237,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 239,
+          end: 243,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "CompanyLetterHead",
+              raw: "CompanyLetterHead",
+              span: Span(
+                start: 244,
+                end: 261,
+              ),
+            )),
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 262,
+                    end: 267,
+                  ),
+                ),
+                span: Span(
+                  start: 261,
+                  end: 267,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 244,
+              end: 267,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 244,
+          end: 267,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 268,
+          end: 270,
+        ),
+      )),
+      span: Span(
+        start: 238,
+        end: 270,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 307,
+          end: 311,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "toc",
+              raw: "toc",
+              span: Span(
+                start: 312,
+                end: 315,
+              ),
+            )),
+            pseudo: [],
+            span: Span(
+              start: 312,
+              end: 315,
+            ),
+          ),
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "index",
+              raw: "index",
+              span: Span(
+                start: 317,
+                end: 322,
+              ),
+            )),
+            pseudo: [],
+            span: Span(
+              start: 317,
+              end: 322,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 312,
+          end: 322,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 323,
+          end: 325,
+        ),
+      )),
+      span: Span(
+        start: 306,
+        end: 325,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 327,
+          end: 331,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "blank",
+                  raw: "blank",
+                  span: Span(
+                    start: 333,
+                    end: 338,
+                  ),
+                ),
+                span: Span(
+                  start: 332,
+                  end: 338,
+                ),
+              ),
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 339,
+                    end: 344,
+                  ),
+                ),
+                span: Span(
+                  start: 338,
+                  end: 344,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 332,
+              end: 344,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 332,
+          end: 344,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 345,
+          end: 348,
+        ),
+      )),
+      span: Span(
+        start: 326,
+        end: 348,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 350,
+          end: 354,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "top-left",
+              raw: "top-left",
+              span: Span(
+                start: 362,
+                end: 370,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 371,
+                end: 373,
+              ),
+            )),
+            span: Span(
+              start: 361,
+              end: 373,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "bottom-center",
+              raw: "bottom-center",
+              span: Span(
+                start: 379,
+                end: 392,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 393,
+                end: 395,
+              ),
+            )),
+            span: Span(
+              start: 378,
+              end: 395,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 355,
+          end: 397,
+        ),
+      )),
+      span: Span(
+        start: 349,
+        end: 397,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 399,
+          end: 403,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 405,
+                    end: 410,
+                  ),
+                ),
+                span: Span(
+                  start: 404,
+                  end: 410,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 404,
+              end: 410,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 404,
+          end: 410,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "bottom-left-corner",
+              raw: "bottom-left-corner",
+              span: Span(
+                start: 418,
+                end: 436,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 437,
+                end: 439,
+              ),
+            )),
+            span: Span(
+              start: 417,
+              end: 439,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "bottom-right-corner",
+              raw: "bottom-right-corner",
+              span: Span(
+                start: 445,
+                end: 464,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 465,
+                end: 467,
+              ),
+            )),
+            span: Span(
+              start: 444,
+              end: 467,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 411,
+          end: 469,
+        ),
+      )),
+      span: Span(
+        start: 398,
+        end: 469,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 471,
+          end: 475,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "left",
+                  raw: "left",
+                  span: Span(
+                    start: 477,
+                    end: 481,
+                  ),
+                ),
+                span: Span(
+                  start: 476,
+                  end: 481,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 476,
+              end: 481,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 476,
+          end: 481,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "left-middle",
+              raw: "left-middle",
+              span: Span(
+                start: 485,
+                end: 496,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 497,
+                end: 499,
+              ),
+            )),
+            span: Span(
+              start: 484,
+              end: 499,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 482,
+          end: 500,
+        ),
+      )),
+      span: Span(
+        start: 470,
+        end: 500,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 502,
+          end: 506,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "right",
+                  raw: "right",
+                  span: Span(
+                    start: 508,
+                    end: 513,
+                  ),
+                ),
+                span: Span(
+                  start: 507,
+                  end: 513,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 507,
+              end: 513,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 507,
+          end: 513,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "right-middle",
+              raw: "right-middle",
+              span: Span(
+                start: 516,
+                end: 528,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 529,
+                end: 531,
+              ),
+            )),
+            span: Span(
+              start: 515,
+              end: 531,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 513,
+          end: 532,
+        ),
+      )),
+      span: Span(
+        start: 501,
+        end: 532,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 534,
+          end: 538,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "left",
+                  raw: "left",
+                  span: Span(
+                    start: 540,
+                    end: 544,
+                  ),
+                ),
+                span: Span(
+                  start: 539,
+                  end: 544,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 539,
+              end: 544,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 539,
+          end: 544,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "bottom-left-corner",
+              raw: "bottom-left-corner",
+              span: Span(
+                start: 548,
+                end: 566,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 567,
+                end: 569,
+              ),
+            )),
+            span: Span(
+              start: 547,
+              end: 569,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 545,
+          end: 570,
+        ),
+      )),
+      span: Span(
+        start: 533,
+        end: 570,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 572,
+          end: 576,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "right",
+                  raw: "right",
+                  span: Span(
+                    start: 578,
+                    end: 583,
+                  ),
+                ),
+                span: Span(
+                  start: 577,
+                  end: 583,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 577,
+              end: 583,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 577,
+          end: 583,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "bottom-right-corner",
+              raw: "bottom-right-corner",
+              span: Span(
+                start: 587,
+                end: 606,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 607,
+                end: 609,
+              ),
+            )),
+            span: Span(
+              start: 586,
+              end: 609,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 584,
+          end: 610,
+        ),
+      )),
+      span: Span(
+        start: 571,
+        end: 610,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 612,
+          end: 616,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "blank",
+                  raw: "blank",
+                  span: Span(
+                    start: 618,
+                    end: 623,
+                  ),
+                ),
+                span: Span(
+                  start: 617,
+                  end: 623,
+                ),
+              ),
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "left",
+                  raw: "left",
+                  span: Span(
+                    start: 624,
+                    end: 628,
+                  ),
+                ),
+                span: Span(
+                  start: 623,
+                  end: 628,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 617,
+              end: 628,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 617,
+          end: 628,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 629,
+          end: 631,
+        ),
+      )),
+      span: Span(
+        start: 611,
+        end: 631,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 633,
+          end: 637,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "artsy",
+              raw: "artsy",
+              span: Span(
+                start: 638,
+                end: 643,
+              ),
+            )),
+            pseudo: [],
+            span: Span(
+              start: 638,
+              end: 643,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 638,
+          end: 643,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 644,
+          end: 646,
+        ),
+      )),
+      span: Span(
+        start: 632,
+        end: 646,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 648,
+          end: 652,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "artsy",
+              raw: "artsy",
+              span: Span(
+                start: 653,
+                end: 658,
+              ),
+            )),
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "left",
+                  raw: "left",
+                  span: Span(
+                    start: 659,
+                    end: 663,
+                  ),
+                ),
+                span: Span(
+                  start: 658,
+                  end: 663,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 653,
+              end: 663,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 653,
+          end: 663,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 664,
+          end: 666,
+        ),
+      )),
+      span: Span(
+        start: 647,
+        end: 666,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 668,
+          end: 672,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: Some(Ident(
+              type: "Ident",
+              name: "artsy",
+              raw: "artsy",
+              span: Span(
+                start: 673,
+                end: 678,
+              ),
+            )),
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 679,
+                    end: 684,
+                  ),
+                ),
+                span: Span(
+                  start: 678,
+                  end: 684,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 673,
+              end: 684,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 673,
+          end: 684,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 685,
+          end: 687,
+        ),
+      )),
+      span: Span(
+        start: 667,
+        end: 687,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "page",
+        raw: "page",
+        span: Span(
+          start: 689,
+          end: 693,
+        ),
+      ),
+      prelude: Some(PageSelectorList(
+        type: "PageSelectorList",
+        selectors: [
+          PageSelector(
+            type: "PageSelector",
+            name: None,
+            pseudo: [
+              PseudoPage(
+                type: "PseudoPage",
+                name: Ident(
+                  type: "Ident",
+                  name: "first",
+                  raw: "first",
+                  span: Span(
+                    start: 695,
+                    end: 700,
+                  ),
+                ),
+                span: Span(
+                  start: 694,
+                  end: 700,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 694,
+              end: 700,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 694,
+          end: 700,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 707,
+                end: 712,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 714,
+                  end: 719,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 707,
+              end: 719,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "top-left",
+              raw: "top-left",
+              span: Span(
+                start: 727,
+                end: 735,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "content",
+                    raw: "content",
+                    span: Span(
+                      start: 746,
+                      end: 753,
+                    ),
+                  ),
+                  value: [
+                    Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\"foo\"",
+                      span: Span(
+                        start: 755,
+                        end: 760,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 746,
+                    end: 760,
+                  ),
+                ),
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 770,
+                      end: 775,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "blue",
+                      raw: "blue",
+                      span: Span(
+                        start: 777,
+                        end: 781,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 770,
+                    end: 781,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 736,
+                end: 788,
+              ),
+            )),
+            span: Span(
+              start: 726,
+              end: 788,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "top-right",
+              raw: "top-right",
+              span: Span(
+                start: 794,
+                end: 803,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "content",
+                    raw: "content",
+                    span: Span(
+                      start: 814,
+                      end: 821,
+                    ),
+                  ),
+                  value: [
+                    Str(
+                      type: "Str",
+                      value: "bar",
+                      raw: "\"bar\"",
+                      span: Span(
+                        start: 823,
+                        end: 828,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 814,
+                    end: 828,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 804,
+                end: 835,
+              ),
+            )),
+            span: Span(
+              start: 793,
+              end: 835,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 841,
+                end: 847,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 20.0,
+                  raw: "20",
+                  span: Span(
+                    start: 849,
+                    end: 851,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 851,
+                    end: 853,
+                  ),
+                ),
+                span: Span(
+                  start: 849,
+                  end: 853,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 841,
+              end: 853,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 701,
+          end: 856,
+        ),
+      )),
+      span: Span(
+        start: 688,
+        end: 856,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 857,
+  ),
+)
