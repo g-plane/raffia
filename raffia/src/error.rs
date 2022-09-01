@@ -62,6 +62,7 @@ pub enum ErrorKind {
 
     TryParseError,
     CSSWideKeywordDisallowed,
+    MediaTypeKeywordDisallowed(String),
     UnknownKeyframeSelectorIdent,
     InvalidRatioDenominator,
     ExpectMediaFeatureName,
@@ -123,6 +124,9 @@ impl Display for ErrorKind {
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {
                 write!(f, "using CSS wide keyword as identifier is disallowed")
+            }
+            Self::MediaTypeKeywordDisallowed(keyword) => {
+                write!(f, "keyword `{keyword}` as media type is disallowed")
             }
             Self::UnknownKeyframeSelectorIdent => write!(f, "unknown keyframe selector"),
             Self::InvalidRatioDenominator => write!(f, "ratio denominator is invalid"),
