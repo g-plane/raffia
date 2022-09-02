@@ -50,14 +50,9 @@ macro_rules! expect_without_ws_or_comments {
             error::{Error, ErrorKind},
             tokenizer::{Token, TokenSymbol},
         };
-        let token = match $parser.cached_token.take() {
-            Some(token) => token,
-            None => {
-                let tokenizer = &mut $parser.tokenizer;
-                tokenizer.bump_without_ws_or_comments()?
-            }
-        };
-        match token {
+        debug_assert!($parser.cached_token.is_none());
+        let tokenizer = &mut $parser.tokenizer;
+        match tokenizer.bump_without_ws_or_comments()? {
             Token::$variant(token) => token,
             token => {
                 return Err(Error {

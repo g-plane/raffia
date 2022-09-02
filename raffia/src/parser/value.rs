@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments, peek,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, Token},
     util::LastOfNonEmpty,
@@ -248,7 +248,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_src_url(&mut self, name: Ident<'s>) -> PResult<Url<'s>> {
-        expect_without_ws_or_comments!(self, LParen);
+        // caller of `parse_src_url` should make sure there're no whitespaces before paren
+        expect!(self, LParen);
         let value = match peek!(self) {
             Token::Str(..) | Token::StrTemplate(..) => {
                 Some(UrlValue::Str(self.parse::<InterpolableStr>()?))
