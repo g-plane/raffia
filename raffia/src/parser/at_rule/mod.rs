@@ -21,7 +21,6 @@ mod layer;
 mod media;
 mod namespace;
 mod page;
-mod scroll_timeline;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
@@ -76,10 +75,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             ))
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             Some(AtRulePrelude::CustomMedia(input.parse()?))
-        } else if at_rule_name.eq_ignore_ascii_case("scroll-timeline") {
-            Some(AtRulePrelude::ScrollTimeline(
-                input.parse_scroll_timeline_prelude()?,
-            ))
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
             // https://tabatkins.github.io/specs/css-anchor-position/#fallback-rule
             Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?))
@@ -141,7 +136,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("color-profile")
             || at_rule_name.eq_ignore_ascii_case("font-palette-values")
             || at_rule_name.eq_ignore_ascii_case("counter-style")
-            || at_rule_name.eq_ignore_ascii_case("scroll-timeline")
             || at_rule_name.eq_ignore_ascii_case("position-fallback")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("nest")
