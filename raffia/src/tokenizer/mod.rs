@@ -66,11 +66,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     #[inline]
-    fn peek_one_char(&mut self) -> Option<(usize, char)> {
-        self.state.chars.peek().copied()
-    }
-
-    #[inline]
     fn peek_two_chars(&self) -> Option<(usize, char, char)> {
         let mut iter = self.state.chars.clone();
         iter.next()
@@ -239,32 +234,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_block_comment(&mut self) {
-        let start = if let Some((i, '/')) = self.state.chars.next() {
-            i
-        } else {
-            return;
-        };
-        let content_start = if let Some((i, '*')) = self.state.chars.next() {
-            i + 1
-        } else {
-            return;
-        };
+        let (start, c) = self.state.chars.next().unwrap();
+        debug_assert_eq!(c, '/');
+        self.state.chars.next();
 
         let content_end;
         let end;
         loop {
-            match self.peek_two_chars() {
-                Some((i, '*', '/')) => {
-                    content_end = i;
-                    end = i + 2;
-
-                    self.state.chars.next();
-                    self.state.chars.next();
-                    break;
+            match self.state.chars.next() {
+                Some((_, '*')) => {
+                    if let Some((i, '/')) = self.state.chars.next() {
+                        content_end = i - 1;
+                        end = i + 1;
+                        break;
+                    }
                 }
-                Some(..) => {
-                    self.state.chars.next();
-                }
+                Some(..) => {}
                 None => {
                     content_end = self.source.len();
                     end = content_end;
@@ -274,7 +259,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
 
         if let Some(comments) = &mut self.comments {
-            let content = unsafe { self.source.get_unchecked(content_start..content_end) };
+            let content = unsafe { self.source.get_unchecked(start + 2..content_end) };
             comments.push(Comment::Block(BlockComment {
                 content,
                 span: Span { start, end },
@@ -283,52 +268,33 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_line_comment(&mut self) {
-        let start = if let Some((i, '/')) = self.state.chars.next() {
-            i
-        } else {
-            return;
-        };
-        let content_start = if let Some((i, '/')) = self.state.chars.next() {
-            i + 1
-        } else {
-            return;
-        };
+        let (start, c) = self.state.chars.next().unwrap();
+        debug_assert_eq!(c, '/');
+        self.state.chars.next();
 
-        let content_end;
         let end;
         loop {
-            match self.peek_two_chars() {
-                Some((i, '\r', '\n')) => {
-                    content_end = i;
+            match self.state.chars.next() {
+                Some((_, '\r')) => {
+                    if let Some((i, '\n')) = self.state.chars.next() {
+                        end = i - 1;
+                        break;
+                    }
+                }
+                Some((i, '\n')) => {
                     end = i;
-                    self.state.chars.next();
-                    self.state.chars.next();
                     break;
                 }
-                Some((i, '\n', _)) => {
-                    content_end = i;
-                    end = i;
-                    self.state.chars.next();
-                    break;
-                }
-                Some(..) => {
-                    self.state.chars.next();
-                }
+                Some(..) => {}
                 None => {
-                    content_end = if let Some((i, '\n')) = self.peek_one_char() {
-                        self.state.chars.next();
-                        i
-                    } else {
-                        self.source.len()
-                    };
-                    end = content_end;
+                    end = self.source.len();
                     break;
                 }
             }
         }
 
         if let Some(comments) = &mut self.comments {
-            let content = unsafe { self.source.get_unchecked(content_start..content_end) };
+            let content = unsafe { self.source.get_unchecked(start + 2..end) };
             comments.push(Comment::Line(LineComment {
                 content,
                 span: Span { start, end },
