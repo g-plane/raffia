@@ -74,6 +74,20 @@ impl TokenSymbol for CaretEqual {
     }
 }
 
+impl TokenSymbol for Cdc {
+    #[inline]
+    fn symbol() -> &'static str {
+        "<CDC>"
+    }
+}
+
+impl TokenSymbol for Cdo {
+    #[inline]
+    fn symbol() -> &'static str {
+        "<CDO>"
+    }
+}
+
 impl TokenSymbol for Colon {
     #[inline]
     fn symbol() -> &'static str {
@@ -396,6 +410,8 @@ impl Token<'_> {
             BarBar(..) => "||",
             BarEqual(..) => "|=",
             CaretEqual(..) => "^=",
+            Cdc(..) => "<CDC>",
+            Cdo(..) => "<CDO>",
             Colon(..) => ":",
             ColonColon(..) => "::",
             Comma(..) => ",",

@@ -41,6 +41,8 @@ pub enum Token<'s> {
     BarBar(BarBar),
     BarEqual(BarEqual),
     CaretEqual(CaretEqual),
+    Cdc(Cdc),
+    Cdo(Cdo),
     Colon(Colon),
     ColonColon(ColonColon),
     Comma(Comma),
@@ -149,6 +151,22 @@ pub struct BarEqual {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct CaretEqual {
+    pub span: Span,
+}
+
+/// `-->`
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Cdc {
+    pub span: Span,
+}
+
+/// `<!--`
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Cdo {
     pub span: Span,
 }
 

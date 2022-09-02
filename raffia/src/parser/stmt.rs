@@ -319,6 +319,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     is_block_element = at_rule.block.is_some();
                     statements.push(Statement::AtRule(at_rule));
                 }
+                Token::Cdo(..) | Token::Cdc(..) => {
+                    bump!(self);
+                    continue;
+                }
                 _ => {}
             };
             match peek!(self) {

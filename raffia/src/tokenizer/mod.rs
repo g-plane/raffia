@@ -122,6 +122,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.scan_hash()
             }
             (Some((_, '\'' | '"')), ..) => self.scan_string_or_template(),
+            (Some((start, '-')), Some((_, '-'))) => {
+                if matches!(chars.peek(), Some((_, '>'))) {
+                    self.scan_cdc(start)
+                } else {
+                    self.scan_ident_or_url()
+                }
+            }
             (Some((_, '-')), Some((_, c))) if is_start_of_ident(c) => self.scan_ident_or_url(),
             (Some((_, '.' | '+' | '-')), Some((_, c))) if c.is_ascii_digit() => {
                 let number = self.scan_number()?;
@@ -1003,6 +1010,33 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                     }))
                 }
+                Some((_, '!')) => {
+                    let mut chars = self.state.chars.clone();
+                    if {
+                        chars.next();
+                        matches!(
+                            (chars.next(), chars.peek()),
+                            (Some((_, '-')), Some((_, '-')))
+                        )
+                    } {
+                        self.state.chars.next();
+                        self.state.chars.next();
+                        self.state.chars.next();
+                        Ok(Token::Cdo(Cdo {
+                            span: Span {
+                                start,
+                                end: start + 4,
+                            },
+                        }))
+                    } else {
+                        Ok(Token::LessThan(LessThan {
+                            span: Span {
+                                start,
+                                end: start + 1,
+                            },
+                        }))
+                    }
+                }
                 _ => Ok(Token::LessThan(LessThan {
                     span: Span {
                         start,
@@ -1216,6 +1250,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 }))
             }
         }
+    }
+
+    #[cold]
+    fn scan_cdc(&mut self, start: usize) -> PResult<Token<'s>> {
+        self.state.chars.next();
+        self.state.chars.next();
+        self.state.chars.next();
+        Ok(Token::Cdc(Cdc {
+            span: Span {
+                start,
+                end: start + 3,
+            },
+        }))
     }
 }
 
