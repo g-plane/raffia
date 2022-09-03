@@ -127,7 +127,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
                 if let Ok(container_condition) = input.try_parse(|parser| parser.parse()) {
                     QueryInParens::ContainerCondition(container_condition)
                 } else {
-                    QueryInParens::SizeFeature(Box::new(input.parse()?))
+                    QueryInParens::SizeFeature(input.parse()?)
                 };
             expect!(input, RParen);
             Ok(query_in_parens)

@@ -275,7 +275,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             end: r_paren.span.end,
         };
         Ok(Url {
-            name: name.into(),
+            name,
             value,
             modifiers,
             span,

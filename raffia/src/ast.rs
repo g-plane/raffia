@@ -470,6 +470,7 @@ pub enum ImportPreludeLayer<'s> {
     WithName(Function<'s>),
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -922,6 +923,7 @@ pub struct PseudoClassSelector<'s> {
     pub span: Span,
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -972,12 +974,13 @@ pub struct QualifiedRule<'s> {
     pub span: Span,
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum QueryInParens<'s> {
     ContainerCondition(ContainerCondition<'s>),
-    SizeFeature(Box<MediaFeature<'s>>),
+    SizeFeature(MediaFeature<'s>),
     StyleQuery(StyleQuery<'s>),
 }
 
@@ -1340,6 +1343,7 @@ pub enum SimpleSelector<'s> {
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -1416,6 +1420,7 @@ pub struct StyleConditionOr<'s> {
     pub span: Span,
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -1424,6 +1429,7 @@ pub enum StyleInParens<'s> {
     Feature(Declaration<'s>),
 }
 
+#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
