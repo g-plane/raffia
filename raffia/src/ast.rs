@@ -116,7 +116,7 @@ pub enum AttributeSelectorValue<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct BracketValues<'s> {
+pub struct BracketBlock<'s> {
     pub value: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
@@ -207,7 +207,7 @@ pub enum ComplexSelectorChild<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ComponentValue<'s> {
-    BracketValues(BracketValues<'s>),
+    BracketBlock(BracketBlock<'s>),
     Calc(Calc<'s>),
     Delimiter(Delimiter),
     Dimension(Dimension<'s>),

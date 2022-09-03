@@ -72,8 +72,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [],
                 span: Span(
                   start: 15,
@@ -100,8 +100,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [],
                 span: Span(
                   start: 28,
@@ -128,8 +128,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",
@@ -166,8 +166,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",
@@ -204,8 +204,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",
@@ -276,8 +276,8 @@ Stylesheet(
               ),
             ),
             value: [
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",
@@ -310,8 +310,8 @@ Stylesheet(
                   end: 154,
                 ),
               ),
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",
@@ -353,8 +353,8 @@ Stylesheet(
                   end: 180,
                 ),
               ),
-              BracketValues(
-                type: "BracketValues",
+              BracketBlock(
+                type: "BracketBlock",
                 value: [
                   Ident(
                     type: "Ident",

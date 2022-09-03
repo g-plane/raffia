@@ -116,7 +116,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .map(InterpolableStr::Literal)
                 .map(ComponentValue::InterpolableStr),
             Token::UrlPrefix(..) => self.parse().map(ComponentValue::Url),
-            Token::LBracket(..) => self.parse().map(ComponentValue::BracketValues),
+            Token::LBracket(..) => self.parse().map(ComponentValue::BracketBlock),
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse().map(ComponentValue::SassVariable)
             }
@@ -283,7 +283,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for BracketValues<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for BracketBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let l_bracket = expect!(input, LBracket);
         let mut value = Vec::with_capacity(3);
@@ -294,7 +294,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for BracketValues<'s> {
             }
         }
         let r_bracket = expect!(input, RBracket);
-        Ok(BracketValues {
+        Ok(BracketBlock {
             value,
             span: Span {
                 start: l_bracket.span.start,
