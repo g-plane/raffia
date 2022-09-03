@@ -9,9 +9,9 @@ use crate::{
     util::{LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
-use beef::Cow;
 use raffia_macro::Spanned;
 use smallvec::SmallVec;
+use std::borrow::Cow;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {

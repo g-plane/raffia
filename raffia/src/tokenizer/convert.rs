@@ -6,7 +6,7 @@ use crate::{
     },
     error::{Error, ErrorKind, PResult},
 };
-use beef::Cow;
+use std::borrow::Cow;
 
 impl<'a> TryFrom<token::Str<'a>> for Str<'a> {
     type Error = Error;

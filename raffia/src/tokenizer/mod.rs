@@ -3,8 +3,7 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     pos::Span,
 };
-use beef::Cow;
-use std::{cmp::Ordering, iter::Peekable, str::CharIndices};
+use std::{borrow::Cow, cmp::Ordering, iter::Peekable, str::CharIndices};
 pub(crate) use symbol::TokenSymbol;
 pub use token::Token;
 use token::*;

@@ -1,5 +1,5 @@
-use beef::Cow;
 use smallvec::SmallVec;
+use std::borrow::Cow;
 
 /// Compare equality of two AST nodes without respecting their spans.
 ///

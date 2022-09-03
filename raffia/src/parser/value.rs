@@ -9,7 +9,7 @@ use crate::{
     util::LastOfNonEmpty,
     Parse, Syntax,
 };
-use beef::Cow;
+use std::borrow::Cow;
 
 const PRECEDENCE_MULTIPLY: u8 = 2;
 const PRECEDENCE_PLUS: u8 = 1;

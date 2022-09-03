@@ -1,8 +1,8 @@
 use crate::pos::Span;
-use beef::Cow;
 use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
+use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

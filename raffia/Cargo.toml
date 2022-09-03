@@ -8,7 +8,6 @@ repository = "https://github.com/g-plane/raffia"
 license = "MIT"
 
 [dependencies]
-beef = { version = "0.5", features = ["impl_serde"] }
 raffia_macro = { path = "../raffia_macro", version = "0.1" }
 serde = { version = "1.0", features = ["derive"], optional = true }
 smallvec = { version = "1.9", features = ["const_generics", "serde"] }
