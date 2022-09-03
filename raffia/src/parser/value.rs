@@ -203,7 +203,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let values = match peek!(self) {
             Token::RParen(..) => vec![],
             _ => match &name {
-                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("calc") => {
+                InterpolableIdent::Literal(ident)
+                    if ident.name.eq_ignore_ascii_case("calc")
+                        || ident.name.eq_ignore_ascii_case("-webkit-calc")
+                        || ident.name.eq_ignore_ascii_case("-moz-calc") =>
+                {
                     vec![self.parse_calc_expr()?]
                 }
                 _ => {
