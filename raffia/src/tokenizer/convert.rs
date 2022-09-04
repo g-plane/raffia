@@ -52,12 +52,12 @@ impl TryFrom<token::Number<'_>> for i32 {
     type Error = Error;
 
     fn try_from(token::Number { raw, span, .. }: token::Number) -> PResult<Self> {
-        let value = raw.parse::<f64>().map_err(|_| Error {
+        let value = raw.parse::<f32>().map_err(|_| Error {
             kind: ErrorKind::InvalidNumber,
             span: span.clone(),
         })?;
         if value.fract() == 0.0 {
-            // SAFETY: f64 parsed from source text will never be NaN or infinity.
+            // SAFETY: f32 parsed from source text will never be NaN or infinity.
             unsafe { Ok(value.to_int_unchecked()) }
         } else {
             Err(Error {

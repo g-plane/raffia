@@ -32,7 +32,7 @@ impl SpanIgnoredEq for Cow<'_, str> {
     }
 }
 
-impl SpanIgnoredEq for f64 {
+impl SpanIgnoredEq for f32 {
     #[inline]
     fn span_ignored_eq(&self, other: &Self) -> bool {
         self == other

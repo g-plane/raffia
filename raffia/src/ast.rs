@@ -885,7 +885,7 @@ pub enum Nth<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Number<'s> {
-    pub value: f64,
+    pub value: f32,
     pub raw: &'s str,
     pub span: Span,
 }
