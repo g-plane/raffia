@@ -390,16 +390,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         };
 
-        let source = self
-            .source
-            .get(span_start + 1..span_end)
-            .ok_or_else(|| Error {
-                kind: ErrorKind::InvalidUnicodeRange,
-                span: Span {
-                    start: span_start + 1,
-                    end: span_end,
-                },
-            })?;
+        let source = self.source.get(span_start + 1..span_end).ok_or(Error {
+            kind: ErrorKind::InvalidUnicodeRange,
+            span: Span {
+                start: span_start + 1,
+                end: span_end,
+            },
+        })?;
         let span = Span {
             start: prefix_ident.span.start,
             end: span_end,
@@ -408,7 +405,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             if left.len() > 6 || !left.chars().all(|c| c.is_ascii_hexdigit()) {
                 return Err(Error {
                     kind: ErrorKind::InvalidUnicodeRange,
-                    span: span.clone(),
+                    span,
                 });
             }
             if right.len() > 6
@@ -419,7 +416,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             {
                 return Err(Error {
                     kind: ErrorKind::InvalidUnicodeRange,
-                    span: span.clone(),
+                    span,
                 });
             }
             let start = u32::from_str_radix(left, 16).map_err(|_| Error {
@@ -447,7 +444,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             {
                 return Err(Error {
                     kind: ErrorKind::InvalidUnicodeRange,
-                    span: span.clone(),
+                    span,
                 });
             }
             let start = u32::from_str_radix(&source.replace('?', "0"), 16).map_err(|_| Error {
