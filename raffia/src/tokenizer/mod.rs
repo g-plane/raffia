@@ -536,7 +536,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
 
-        assert!(start + 1 < end);
+        debug_assert!(start + 1 < end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
         Ok(Token::Str(Str { raw, escaped, span }))
@@ -781,7 +781,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
 
-        assert!(end > start + 1);
+        debug_assert!(end > start + 1);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let raw_without_hash = unsafe { self.source.get_unchecked(start + 1..end) };
         let span = Span { start, end };
