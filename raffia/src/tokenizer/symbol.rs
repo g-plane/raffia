@@ -312,6 +312,13 @@ impl TokenSymbol for PlusUnderscore {
     }
 }
 
+impl TokenSymbol for Question {
+    #[inline]
+    fn symbol() -> &'static str {
+        "?"
+    }
+}
+
 impl TokenSymbol for RBrace {
     #[inline]
     fn symbol() -> &'static str {
@@ -444,6 +451,7 @@ impl Token<'_> {
             Percentage(..) => "<percentage>",
             Plus(..) => "+",
             PlusUnderscore(..) => "+_",
+            Question(..) => "?",
             RBrace(..) => "}",
             RBracket(..) => "]",
             RParen(..) => ")",

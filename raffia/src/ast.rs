@@ -226,6 +226,7 @@ pub enum ComponentValue<'s> {
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
     Token(Token<'s>),
+    UnicodeRange(UnicodeRange<'s>),
     Url(Url<'s>),
 }
 
@@ -1529,6 +1530,18 @@ pub struct TokenSeq<'s> {
 pub enum TypeSelector<'s> {
     TagName(TagNameSelector<'s>),
     Universal(UniversalSelector<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct UnicodeRange<'s> {
+    pub prefix: char,
+    pub start: u32,
+    pub start_raw: &'s str,
+    pub end: u32,
+    pub end_raw: Option<&'s str>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

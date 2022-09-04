@@ -75,6 +75,7 @@ pub enum Token<'s> {
     Percentage(Percentage<'s>),
     Plus(Plus),
     PlusUnderscore(PlusUnderscore),
+    Question(Question),
     RBrace(RBrace),
     RBracket(RBracket),
     RParen(RParen),
@@ -411,6 +412,13 @@ pub struct Plus {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct PlusUnderscore {
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Question {
     pub span: Span,
 }
 

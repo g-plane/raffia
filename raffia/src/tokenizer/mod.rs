@@ -1168,6 +1168,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     },
                 })),
             },
+            Some((start, '?')) => Ok(Token::Question(Question {
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            })),
             Some((start, '#')) => match self.state.chars.peek() {
                 Some((_, '{')) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     self.state.chars.next();

@@ -5,7 +5,7 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
-    tokenizer::{handle_escape, Token},
+    tokenizer::{handle_escape, token, Token},
     util::LastOfNonEmpty,
     Parse, Syntax,
 };
@@ -87,23 +87,50 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 let ident = self.parse::<InterpolableIdent>()?;
                 let ident_end = ident.span().end;
                 match peek!(self) {
-                    Token::LParen(token) if token.span.start == ident_end => match ident {
-                        InterpolableIdent::Literal(ident)
-                            if ident.name.eq_ignore_ascii_case("src") =>
-                        {
-                            self.parse_src_url(ident).map(ComponentValue::Url)
-                        }
-                        ident => self.parse_function(ident).map(ComponentValue::Function),
-                    },
+                    Token::LParen(token) if token.span.start == ident_end => {
+                        return match ident {
+                            InterpolableIdent::Literal(ident)
+                                if ident.name.eq_ignore_ascii_case("src") =>
+                            {
+                                self.parse_src_url(ident).map(ComponentValue::Url)
+                            }
+                            ident => self.parse_function(ident).map(ComponentValue::Function),
+                        };
+                    }
                     Token::Dot(token)
                         if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
                             && token.span.start == ident_end =>
                     {
                         if let InterpolableIdent::Literal(namespace) = ident {
-                            self.parse_sass_namespaced_expression(namespace)
-                                .map(ComponentValue::SassNamespacedExpression)
-                        } else {
-                            Ok(ComponentValue::InterpolableIdent(ident))
+                            return self
+                                .parse_sass_namespaced_expression(namespace)
+                                .map(ComponentValue::SassNamespacedExpression);
+                        }
+                    }
+                    _ => {}
+                }
+                match ident {
+                    InterpolableIdent::Literal(ident) if ident.raw.eq_ignore_ascii_case("u") => {
+                        match peek!(self) {
+                            Token::Plus(token) if token.span.start == ident_end => self
+                                .parse_unicode_range(ident)
+                                .map(ComponentValue::UnicodeRange),
+                            Token::Number(token)
+                                if token.raw.starts_with('+') && token.span.start == ident_end =>
+                            {
+                                self.parse_unicode_range(ident)
+                                    .map(ComponentValue::UnicodeRange)
+                            }
+                            Token::Dimension(token)
+                                if token.value.raw.starts_with('+')
+                                    && token.span.start == ident_end =>
+                            {
+                                self.parse_unicode_range(ident)
+                                    .map(ComponentValue::UnicodeRange)
+                            }
+                            _ => Ok(ComponentValue::InterpolableIdent(
+                                InterpolableIdent::Literal(ident),
+                            )),
                         }
                     }
                     _ => Ok(ComponentValue::InterpolableIdent(ident)),
@@ -287,6 +314,172 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             modifiers,
             span,
         })
+    }
+
+    fn parse_unicode_range(&mut self, prefix_ident: Ident<'s>) -> PResult<UnicodeRange<'s>> {
+        let prefix = prefix_ident.raw.chars().next().unwrap();
+        let (span_start, span_end) = match bump!(self) {
+            Token::Plus(plus_token) => {
+                let start = plus_token.span.start;
+                let mut end = match self.tokenizer.bump_without_ws_or_comments()? {
+                    Token::Ident(ident_token) => ident_token.span.end,
+                    Token::Question(question_token) => question_token.span.end,
+                    token => {
+                        return Err(Error {
+                            kind: ErrorKind::Unexpected("?", token.symbol()),
+                            span: token.span().clone(),
+                        });
+                    }
+                };
+                loop {
+                    match peek!(self) {
+                        Token::Question(token) if token.span.start == end => {
+                            end = token.span.end;
+                            bump!(self);
+                        }
+                        _ => break,
+                    }
+                }
+                (start, end)
+            }
+            Token::Dimension(dimension_token) => {
+                let start = dimension_token.span.start;
+                let mut end = dimension_token.span.end;
+                loop {
+                    match peek!(self) {
+                        Token::Question(token) if token.span.start == end => {
+                            end = token.span.end;
+                            bump!(self);
+                        }
+                        _ => break,
+                    }
+                }
+                (start, end)
+            }
+            Token::Number(number_token) => {
+                let start = number_token.span.start;
+                let mut end = number_token.span.end;
+                match peek!(self) {
+                    Token::Question(token) => {
+                        end = token.span.end;
+                        bump!(self);
+                        loop {
+                            match peek!(self) {
+                                Token::Question(token) if token.span.start == end => {
+                                    end = token.span.end;
+                                    bump!(self);
+                                }
+                                _ => break,
+                            }
+                        }
+                    }
+                    Token::Dimension(token::Dimension { span, .. })
+                    | Token::Number(token::Number { span, .. }) => {
+                        end = span.end;
+                        bump!(self);
+                    }
+                    _ => {}
+                }
+                (start, end)
+            }
+            token => {
+                return Err(Error {
+                    kind: ErrorKind::InvalidUnicodeRange,
+                    span: token.span().clone(),
+                });
+            }
+        };
+
+        let source = self
+            .source
+            .get(span_start + 1..span_end)
+            .ok_or_else(|| Error {
+                kind: ErrorKind::InvalidUnicodeRange,
+                span: Span {
+                    start: span_start + 1,
+                    end: span_end,
+                },
+            })?;
+        let span = Span {
+            start: prefix_ident.span.start,
+            end: span_end,
+        };
+        let unicode_range = if let Some((left, right)) = source.split_once('-') {
+            if left.len() > 6 || !left.chars().all(|c| c.is_ascii_hexdigit()) {
+                return Err(Error {
+                    kind: ErrorKind::InvalidUnicodeRange,
+                    span: span.clone(),
+                });
+            }
+            if right.len() > 6
+                || !right
+                    .trim_end_matches('?')
+                    .chars()
+                    .all(|c| c.is_ascii_hexdigit())
+            {
+                return Err(Error {
+                    kind: ErrorKind::InvalidUnicodeRange,
+                    span: span.clone(),
+                });
+            }
+            let start = u32::from_str_radix(left, 16).map_err(|_| Error {
+                kind: ErrorKind::InvalidUnicodeRange,
+                span: span.clone(),
+            })?;
+            let end = u32::from_str_radix(&right.replace('?', "F"), 16).map_err(|_| Error {
+                kind: ErrorKind::InvalidUnicodeRange,
+                span: span.clone(),
+            })?;
+            UnicodeRange {
+                prefix,
+                start,
+                start_raw: left,
+                end,
+                end_raw: Some(right),
+                span,
+            }
+        } else {
+            if source.len() > 6
+                || !source
+                    .trim_end_matches('?')
+                    .chars()
+                    .all(|c| c.is_ascii_hexdigit())
+            {
+                return Err(Error {
+                    kind: ErrorKind::InvalidUnicodeRange,
+                    span: span.clone(),
+                });
+            }
+            let start = u32::from_str_radix(&source.replace('?', "0"), 16).map_err(|_| Error {
+                kind: ErrorKind::InvalidUnicodeRange,
+                span: span.clone(),
+            })?;
+            let end = u32::from_str_radix(&source.replace('?', "F"), 16).map_err(|_| Error {
+                kind: ErrorKind::InvalidUnicodeRange,
+                span: span.clone(),
+            })?;
+            UnicodeRange {
+                prefix,
+                start,
+                start_raw: source,
+                end,
+                end_raw: None,
+                span,
+            }
+        };
+        if unicode_range.end > 0x10ffff {
+            self.recoverable_errors.push(Error {
+                kind: ErrorKind::MaxCodePointExceeded,
+                span: unicode_range.span.clone(),
+            });
+        }
+        if unicode_range.start > unicode_range.end {
+            self.recoverable_errors.push(Error {
+                kind: ErrorKind::UnicodeRangeStartGreaterThanEnd,
+                span: unicode_range.span.clone(),
+            });
+        }
+        Ok(unicode_range)
     }
 }
 

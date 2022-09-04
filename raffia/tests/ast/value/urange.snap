@@ -1,0 +1,674 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "font-face",
+        raw: "font-face",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "font-family",
+              raw: "font-family",
+              span: Span(
+                start: 15,
+                end: 26,
+              ),
+            ),
+            value: [
+              Str(
+                type: "Str",
+                value: "Ampersand",
+                raw: "\'Ampersand\'",
+                span: Span(
+                  start: 28,
+                  end: 39,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 15,
+              end: 39,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "src",
+              raw: "src",
+              span: Span(
+                start: 43,
+                end: 46,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "local",
+                  raw: "local",
+                  span: Span(
+                    start: 48,
+                    end: 53,
+                  ),
+                ),
+                args: [
+                  Str(
+                    type: "Str",
+                    value: "Times New Roman",
+                    raw: "\'Times New Roman\'",
+                    span: Span(
+                      start: 54,
+                      end: 71,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 48,
+                  end: 72,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 43,
+              end: 72,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 76,
+                end: 89,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 38,
+                startRaw: "26",
+                end: 38,
+                endRaw: None,
+                span: Span(
+                  start: 91,
+                  end: 95,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 76,
+              end: 95,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 136,
+                end: 149,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'u',
+                start: 38,
+                startRaw: "26",
+                end: 38,
+                endRaw: None,
+                span: Span(
+                  start: 151,
+                  end: 155,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 136,
+              end: 155,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 159,
+                end: 172,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 0,
+                startRaw: "0",
+                end: 127,
+                endRaw: Some("7F"),
+                span: Span(
+                  start: 174,
+                  end: 180,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 159,
+              end: 180,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 184,
+                end: 197,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 37,
+                startRaw: "0025",
+                end: 255,
+                endRaw: Some("00FF"),
+                span: Span(
+                  start: 199,
+                  end: 210,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 184,
+              end: 210,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 243,
+                end: 256,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1024,
+                startRaw: "4??",
+                end: 1279,
+                endRaw: None,
+                span: Span(
+                  start: 258,
+                  end: 263,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 243,
+              end: 263,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 301,
+                end: 314,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 37,
+                startRaw: "0025",
+                end: 255,
+                endRaw: Some("00FF"),
+                span: Span(
+                  start: 316,
+                  end: 327,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 327,
+                  end: 328,
+                ),
+              ),
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1024,
+                startRaw: "4??",
+                end: 1279,
+                endRaw: None,
+                span: Span(
+                  start: 329,
+                  end: 334,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 301,
+              end: 334,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 360,
+                end: 373,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 165,
+                startRaw: "A5",
+                end: 165,
+                endRaw: None,
+                span: Span(
+                  start: 375,
+                  end: 379,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 379,
+                  end: 380,
+                ),
+              ),
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 19968,
+                startRaw: "4E00",
+                end: 40959,
+                endRaw: Some("9FFF"),
+                span: Span(
+                  start: 381,
+                  end: 392,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 392,
+                  end: 393,
+                ),
+              ),
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 12288,
+                startRaw: "30??",
+                end: 12543,
+                endRaw: None,
+                span: Span(
+                  start: 394,
+                  end: 400,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 400,
+                  end: 401,
+                ),
+              ),
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 65280,
+                startRaw: "FF00",
+                end: 65439,
+                endRaw: Some("FF9F"),
+                span: Span(
+                  start: 402,
+                  end: 413,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 360,
+              end: 413,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 439,
+                end: 452,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 0,
+                startRaw: "????",
+                end: 65535,
+                endRaw: None,
+                span: Span(
+                  start: 454,
+                  end: 460,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 439,
+              end: 460,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 464,
+                end: 477,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 0,
+                startRaw: "??????",
+                end: 16777215,
+                endRaw: None,
+                span: Span(
+                  start: 479,
+                  end: 487,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 464,
+              end: 487,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 491,
+                end: 504,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 18,
+                startRaw: "12",
+                end: 18,
+                endRaw: None,
+                span: Span(
+                  start: 506,
+                  end: 510,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 491,
+              end: 510,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 514,
+                end: 527,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1237266,
+                startRaw: "12e112",
+                end: 1237266,
+                endRaw: None,
+                span: Span(
+                  start: 529,
+                  end: 537,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 514,
+              end: 537,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 541,
+                end: 554,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973985,
+                startRaw: "1e1ee1",
+                end: 1973985,
+                endRaw: None,
+                span: Span(
+                  start: 556,
+                  end: 564,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 541,
+              end: 564,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 568,
+                end: 581,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973985,
+                startRaw: "1e1ee1",
+                end: 16777215,
+                endRaw: Some("FFFFFF"),
+                span: Span(
+                  start: 583,
+                  end: 598,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 568,
+              end: 598,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 602,
+                end: 615,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973984,
+                startRaw: "1e1ee?",
+                end: 1973999,
+                endRaw: None,
+                span: Span(
+                  start: 617,
+                  end: 625,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 602,
+              end: 625,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 629,
+                end: 642,
+              ),
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 18,
+                startRaw: "12",
+                end: 19,
+                endRaw: Some("13"),
+                span: Span(
+                  start: 644,
+                  end: 651,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 629,
+              end: 651,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 11,
+          end: 654,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 654,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 655,
+  ),
+)

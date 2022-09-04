@@ -18,6 +18,13 @@ impl SpanIgnoredEq for str {
     }
 }
 
+impl SpanIgnoredEq for &str {
+    #[inline]
+    fn span_ignored_eq(&self, other: &Self) -> bool {
+        self == other
+    }
+}
+
 impl SpanIgnoredEq for Cow<'_, str> {
     #[inline]
     fn span_ignored_eq(&self, other: &Self) -> bool {
@@ -39,7 +46,21 @@ impl SpanIgnoredEq for i32 {
     }
 }
 
+impl SpanIgnoredEq for u32 {
+    #[inline]
+    fn span_ignored_eq(&self, other: &Self) -> bool {
+        self == other
+    }
+}
+
 impl SpanIgnoredEq for bool {
+    #[inline]
+    fn span_ignored_eq(&self, other: &Self) -> bool {
+        self == other
+    }
+}
+
+impl SpanIgnoredEq for char {
     #[inline]
     fn span_ignored_eq(&self, other: &Self) -> bool {
         self == other

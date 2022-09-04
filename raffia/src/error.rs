@@ -59,6 +59,7 @@ pub enum ErrorKind {
     ExpectUnsignedInteger,
     ExpectImportantAnnotation,
     ExpectSassUseNamespace,
+    InvalidUnicodeRange,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -69,6 +70,8 @@ pub enum ErrorKind {
     ExpectDashedIdent,
     InvalidIdSelectorName,
     ReturnOutsideFunction,
+    MaxCodePointExceeded,
+    UnicodeRangeStartGreaterThanEnd,
 }
 
 impl Display for ErrorKind {
@@ -120,6 +123,7 @@ impl Display for ErrorKind {
             Self::ExpectSassUseNamespace => {
                 write!(f, "`*` or ident for Sass namespace is expected")
             }
+            Self::InvalidUnicodeRange => write!(f, "invalid unicode range"),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {
@@ -134,6 +138,12 @@ impl Display for ErrorKind {
             Self::ExpectDashedIdent => write!(f, "dashed identifier is expected"),
             Self::InvalidIdSelectorName => write!(f, "invalid ID selector name"),
             Self::ReturnOutsideFunction => write!(f, "`@return` is disallowed outside function"),
+            Self::MaxCodePointExceeded => {
+                write!(f, "unicode range end value exceeds max allowed code point")
+            }
+            Self::UnicodeRangeStartGreaterThanEnd => {
+                write!(f, "unicode range start value can't greater than end value")
+            }
         }
     }
 }
