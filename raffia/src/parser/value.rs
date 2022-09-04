@@ -95,7 +95,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                         ident => self.parse_function(ident).map(ComponentValue::Function),
                     },
-                    Token::Dot(token) if token.span.start == ident_end => {
+                    Token::Dot(token)
+                        if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                            && token.span.start == ident_end =>
+                    {
                         if let InterpolableIdent::Literal(namespace) = ident {
                             self.parse_sass_namespaced_expression(namespace)
                                 .map(ComponentValue::SassNamespacedExpression)
