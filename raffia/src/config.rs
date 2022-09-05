@@ -1,9 +1,9 @@
 #[cfg(feature = "serialize")]
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 /// Supported syntax.
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "serialize", serde(rename_all = "camelCase"))]
 pub enum Syntax {
     #[default]
