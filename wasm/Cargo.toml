@@ -12,6 +12,7 @@ publish = false
 crate-type = ["rlib", "cdylib"]
 
 [dependencies]
+serde = "1.0"
 serde-wasm-bindgen = "0.4"
 raffia = { path = "../raffia", features = ["serialize"] }
 wasm-bindgen = "=0.2.81"
