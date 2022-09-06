@@ -2,6 +2,10 @@
 
 Raffia is a parser which can parse CSS, SCSS, Sass (indented syntax) and Less. However, it won't compile SCSS, Sass or Less to CSS.
 
+## 🧪 Playground
+
+There is an online playground for inspecting AST. Visit: [https://raffia-play.vercel.app/](https://raffia-play.vercel.app/).
+
 ## 🍭 Example
 
 ```rust
