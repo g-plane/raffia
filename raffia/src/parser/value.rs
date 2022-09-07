@@ -235,9 +235,39 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 InterpolableIdent::Literal(ident)
                     if ident.name.eq_ignore_ascii_case("calc")
                         || ident.name.eq_ignore_ascii_case("-webkit-calc")
-                        || ident.name.eq_ignore_ascii_case("-moz-calc") =>
+                        || ident.name.eq_ignore_ascii_case("-moz-calc")
+                        || ident.name.eq_ignore_ascii_case("min")
+                        || ident.name.eq_ignore_ascii_case("max")
+                        || ident.name.eq_ignore_ascii_case("clamp")
+                        || ident.name.eq_ignore_ascii_case("sin")
+                        || ident.name.eq_ignore_ascii_case("cos")
+                        || ident.name.eq_ignore_ascii_case("tan")
+                        || ident.name.eq_ignore_ascii_case("asin")
+                        || ident.name.eq_ignore_ascii_case("acos")
+                        || ident.name.eq_ignore_ascii_case("atan")
+                        || ident.name.eq_ignore_ascii_case("sqrt")
+                        || ident.name.eq_ignore_ascii_case("exp")
+                        || ident.name.eq_ignore_ascii_case("abs")
+                        || ident.name.eq_ignore_ascii_case("sign")
+                        || ident.name.eq_ignore_ascii_case("hypot")
+                        || ident.name.eq_ignore_ascii_case("round")
+                        || ident.name.eq_ignore_ascii_case("mod")
+                        || ident.name.eq_ignore_ascii_case("rem")
+                        || ident.name.eq_ignore_ascii_case("atan2")
+                        || ident.name.eq_ignore_ascii_case("pow")
+                        || ident.name.eq_ignore_ascii_case("log") =>
                 {
-                    vec![self.parse_calc_expr()?]
+                    let mut values = Vec::with_capacity(1);
+                    loop {
+                        match peek!(self) {
+                            Token::RParen(..) => break,
+                            Token::Comma(..) => {
+                                values.push(ComponentValue::Delimiter(self.parse()?));
+                            }
+                            _ => values.push(self.parse_calc_expr()?),
+                        }
+                    }
+                    values
                 }
                 _ => {
                     self.parse_component_values(
