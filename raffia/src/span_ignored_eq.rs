@@ -1,5 +1,5 @@
+use crate::util::CowStr;
 use smallvec::SmallVec;
-use std::borrow::Cow;
 
 /// Compare equality of two AST nodes without respecting their spans.
 ///
@@ -25,7 +25,7 @@ impl SpanIgnoredEq for &str {
     }
 }
 
-impl SpanIgnoredEq for Cow<'_, str> {
+impl SpanIgnoredEq for CowStr<'_> {
     #[inline]
     fn span_ignored_eq(&self, other: &Self) -> bool {
         self == other

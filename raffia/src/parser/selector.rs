@@ -6,12 +6,11 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, token, Token},
-    util::{LastOfNonEmpty, PairedToken},
+    util::{CowStr, LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
 use raffia_macro::Spanned;
 use smallvec::SmallVec;
-use std::borrow::Cow;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
@@ -699,7 +698,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                         span: token.span.clone(),
                     })?
                 } else {
-                    Cow::from(raw)
+                    CowStr::from(raw)
                 };
                 let first = Ident {
                     name: value,

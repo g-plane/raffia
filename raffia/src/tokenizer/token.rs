@@ -1,8 +1,7 @@
-use crate::pos::Span;
+use crate::{pos::Span, util::CowStr};
 use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
-use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
@@ -309,7 +308,7 @@ pub struct HashLBrace {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Ident<'s> {
-    pub name: Cow<'s, str>,
+    pub name: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }

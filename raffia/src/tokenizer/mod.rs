@@ -2,8 +2,9 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     pos::Span,
+    util::CowStr,
 };
-use std::{borrow::Cow, cmp::Ordering, iter::Peekable, str::CharIndices};
+use std::{cmp::Ordering, iter::Peekable, str::CharIndices};
 pub(crate) use symbol::TokenSymbol;
 pub use token::Token;
 use token::*;
@@ -351,7 +352,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     span: span.clone(),
                 })?
             } else {
-                Cow::from(raw)
+                CowStr::from(raw)
             },
             raw,
             span,
@@ -1237,7 +1238,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 }
 
-pub(crate) fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
+pub(crate) fn handle_escape(s: &str) -> Result<CowStr, ErrorKind> {
     let mut escaped = String::with_capacity(s.len());
     let mut chars = s.char_indices().peekable();
     while let Some((_, c)) = chars.next() {
@@ -1271,7 +1272,7 @@ pub(crate) fn handle_escape(s: &str) -> Result<Cow<str>, ErrorKind> {
             escaped.push(c);
         }
     }
-    Ok(Cow::from(escaped))
+    Ok(CowStr::from(escaped))
 }
 
 #[inline]

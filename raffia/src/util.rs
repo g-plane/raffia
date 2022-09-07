@@ -1,4 +1,7 @@
 use smallvec::SmallVec;
+use std::borrow::Cow;
+
+pub type CowStr<'s> = Cow<'s, str>;
 
 pub fn is_css_wide_keyword(s: &str) -> bool {
     s.eq_ignore_ascii_case("initial")

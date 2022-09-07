@@ -5,8 +5,8 @@ use crate::{
         Number, Str,
     },
     error::{Error, ErrorKind, PResult},
+    util::CowStr,
 };
-use std::borrow::Cow;
 
 impl<'a> TryFrom<token::Str<'a>> for Str<'a> {
     type Error = Error;
@@ -19,7 +19,7 @@ impl<'a> TryFrom<token::Str<'a>> for Str<'a> {
                 span: str.span.clone(),
             })?
         } else {
-            Cow::from(raw_without_quotes)
+            CowStr::from(raw_without_quotes)
         };
         Ok(Self {
             value,
@@ -105,7 +105,7 @@ impl<'s> TryFrom<token::StrTemplate<'s>> for InterpolableStrStaticPart<'s> {
                 span: token.span.clone(),
             })?
         } else {
-            Cow::from(raw_without_quotes)
+            CowStr::from(raw_without_quotes)
         };
         Ok(Self {
             value,
@@ -125,7 +125,7 @@ impl<'s> TryFrom<token::UrlTemplate<'s>> for InterpolableUrlStaticPart<'s> {
                 span: token.span.clone(),
             })?
         } else {
-            Cow::from(token.raw)
+            CowStr::from(token.raw)
         };
         Ok(Self {
             value,

@@ -1,11 +1,10 @@
 //! All kinds of AST nodes are here.
 
-use crate::{pos::Span, tokenizer::Token};
+use crate::{pos::Span, tokenizer::Token, util::CowStr};
 use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 use smallvec::SmallVec;
-use std::borrow::Cow;
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
@@ -430,7 +429,7 @@ pub struct Frequency<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct HexColor<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -439,7 +438,7 @@ pub struct HexColor<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Ident<'s> {
-    pub name: Cow<'s, str>,
+    pub name: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -493,7 +492,7 @@ pub enum InterpolableIdent<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct InterpolableIdentStaticPart<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -511,7 +510,7 @@ pub enum InterpolableStr<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct InterpolableStrStaticPart<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -520,7 +519,7 @@ pub struct InterpolableStrStaticPart<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct InterpolableUrlStaticPart<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -1371,7 +1370,7 @@ pub enum Statement<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Str<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
@@ -1592,7 +1591,7 @@ pub enum UrlModifier<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct UrlRaw<'s> {
-    pub value: Cow<'s, str>,
+    pub value: CowStr<'s>,
     pub raw: &'s str,
     pub span: Span,
 }
