@@ -297,28 +297,36 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     statements.push(Statement::SassVariableDeclaration(self.parse()?));
                 }
-                Token::AtKeyword(at_keyword) => {
-                    let at_keyword = at_keyword.clone();
-                    if self.syntax == Syntax::Less {
+                Token::AtKeyword(at_keyword) => match self.syntax {
+                    Syntax::Css => {
+                        let at_rule = self.parse::<AtRule>()?;
+                        is_block_element = at_rule.block.is_some();
+                        statements.push(Statement::AtRule(at_rule));
+                    }
+                    Syntax::Scss | Syntax::Sass => {
+                        let at_keyword_name = at_keyword.ident.name.clone();
+                        if let Some(statement) = self.parse_sass_at_rule(&at_keyword_name)? {
+                            statements.push(statement);
+                        } else {
+                            let at_rule = self.parse::<AtRule>()?;
+                            is_block_element = at_rule.block.is_some();
+                            statements.push(Statement::AtRule(at_rule));
+                        }
+                    }
+                    Syntax::Less => {
                         if let Ok(less_variable_declaration) =
                             self.try_parse(|parser| parser.parse())
                         {
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));
-                            continue;
+                        } else {
+                            let at_rule = self.parse::<AtRule>()?;
+                            is_block_element = at_rule.block.is_some();
+                            statements.push(Statement::AtRule(at_rule));
                         }
                     }
-                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
-                        if let Some(statement) = self.parse_sass_at_rule(&at_keyword.ident.name)? {
-                            statements.push(statement);
-                            continue;
-                        }
-                    }
-                    let at_rule = self.parse::<AtRule>()?;
-                    is_block_element = at_rule.block.is_some();
-                    statements.push(Statement::AtRule(at_rule));
-                }
+                },
                 Token::Cdo(..) | Token::Cdc(..) => {
                     bump!(self);
                     continue;

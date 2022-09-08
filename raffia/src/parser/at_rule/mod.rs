@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Parse, Syntax,
+    Parse,
 };
 
 mod color_profile;
@@ -28,70 +28,125 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         let at_keyword = expect!(input, AtKeyword);
 
         let at_rule_name = &at_keyword.ident.name;
-        let prelude = if at_rule_name.eq_ignore_ascii_case("media") {
-            input
-                .try_parse(|parser| parser.parse())
+        let (prelude, block, end) = if at_rule_name.eq_ignore_ascii_case("media") {
+            let prelude = input
+                .try_parse(MediaQueryList::parse)
                 .ok()
-                .map(AtRulePrelude::Media)
+                .map(AtRulePrelude::Media);
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("keyframes")
             || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
             || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")
             || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
         {
-            Some(AtRulePrelude::Keyframes(input.parse()?))
+            let prelude = AtRulePrelude::Keyframes(input.parse()?);
+            let block = input.parse_keyframes_blocks()?;
+            let end = block.span.end;
+            (Some(prelude), Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("import") {
-            Some(AtRulePrelude::Import(Box::new(input.parse()?)))
+            let prelude = input.parse::<ImportPrelude>()?;
+            let end = prelude.span.end;
+            (Some(AtRulePrelude::Import(Box::new(prelude))), None, end)
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
             // https://drafts.csswg.org/css2/#charset%E2%91%A0
-            Some(AtRulePrelude::Charset(input.parse()?))
+            let prelude = input.parse::<Str>()?;
+            let end = prelude.span.end;
+            (Some(AtRulePrelude::Charset(prelude)), None, end)
+        } else if at_rule_name.eq_ignore_ascii_case("font-face") {
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (None, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("supports") {
-            Some(AtRulePrelude::Supports(input.parse()?))
+            let prelude = Some(AtRulePrelude::Supports(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("layer") {
-            input
-                .try_parse(|parser| parser.parse())
+            let prelude = input
+                .try_parse(LayerName::parse)
                 .map(AtRulePrelude::Layer)
-                .ok()
+                .ok();
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("container") {
-            Some(AtRulePrelude::Container(input.parse()?))
+            let prelude = Some(AtRulePrelude::Container(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("page") {
-            input
-                .try_parse(|parser| parser.parse())
+            let prelude = input
+                .try_parse(PageSelectorList::parse)
                 .map(AtRulePrelude::Page)
-                .ok()
+                .ok();
+            let block = input.try_parse(SimpleBlock::parse).ok();
+            let end = block
+                .as_ref()
+                .map(|block| block.span.end)
+                .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end))
+                .unwrap_or(at_keyword.span.end);
+            (prelude, block, end)
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
-            Some(AtRulePrelude::Namespace(input.parse()?))
+            let namespace = input.parse::<NamespacePrelude>()?;
+            let end = namespace.span.end;
+            (Some(AtRulePrelude::Namespace(namespace)), None, end)
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
-            Some(AtRulePrelude::ColorProfile(input.parse()?))
+            let prelude = Some(AtRulePrelude::ColorProfile(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("font-feature-values") {
-            Some(AtRulePrelude::FontFeatureValues(input.parse()?))
+            let prelude = Some(AtRulePrelude::FontFeatureValues(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("font-palette-values") {
             // https://drafts.csswg.org/css-fonts/Overview.bs
-            Some(AtRulePrelude::FontPaletteValues(
+            let prelude = Some(AtRulePrelude::FontPaletteValues(
                 input.parse_dashed_ident()?,
-            ))
+            ));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("counter-style") {
-            Some(AtRulePrelude::CounterStyle(
+            let prelude = Some(AtRulePrelude::CounterStyle(
                 input.parse_counter_style_prelude()?,
-            ))
+            ));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
-            Some(AtRulePrelude::CustomMedia(input.parse()?))
+            let custom_media = input.parse::<CustomMedia>()?;
+            let end = custom_media.span.end;
+            (Some(AtRulePrelude::CustomMedia(custom_media)), None, end)
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
             // https://tabatkins.github.io/specs/css-anchor-position/#fallback-rule
-            Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?))
+            let prelude = Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("nest") {
             // https://www.w3.org/TR/css-nesting-1/#at-nest
-            Some(AtRulePrelude::Nest(input.parse()?))
+            let prelude = Some(AtRulePrelude::Nest(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("property") {
             // https://drafts.css-houdini.org/css-properties-values-api/#at-property-rule
-            Some(AtRulePrelude::Property(input.parse_dashed_ident()?))
+            let prelude = Some(AtRulePrelude::Property(input.parse_dashed_ident()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("document")
             || at_rule_name.eq_ignore_ascii_case("-moz-document")
         {
-            Some(AtRulePrelude::Document(input.parse()?))
-        } else if at_rule_name.eq_ignore_ascii_case("font-face")
-            || at_rule_name.eq_ignore_ascii_case("viewport")
-            || at_rule_name.eq_ignore_ascii_case("try")
-            || at_rule_name.eq_ignore_ascii_case("stylistic")
+            let prelude = Some(AtRulePrelude::Document(input.parse()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
+        } else if at_rule_name.eq_ignore_ascii_case("stylistic")
             || at_rule_name.eq_ignore_ascii_case("historical-forms")
             || at_rule_name.eq_ignore_ascii_case("styleset")
             || at_rule_name.eq_ignore_ascii_case("character-variant")
@@ -114,87 +169,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("right-top")
             || at_rule_name.eq_ignore_ascii_case("right-middle")
             || at_rule_name.eq_ignore_ascii_case("right-bottom")
+            || at_rule_name.eq_ignore_ascii_case("viewport")
+            || at_rule_name.eq_ignore_ascii_case("try")
         {
-            None
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (None, Some(block), end)
         } else {
-            input
+            let prelude = input
                 .parse_unknown_at_rule_prelude()?
-                .map(AtRulePrelude::Unknown)
-        };
-
-        let block = if at_rule_name.eq_ignore_ascii_case("keyframes")
-            || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
-            || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")
-            || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
-        {
-            Some(input.parse_keyframes_blocks()?)
-        } else if at_rule_name.eq_ignore_ascii_case("media")
-            || at_rule_name.eq_ignore_ascii_case("font-face")
-            || at_rule_name.eq_ignore_ascii_case("supports")
-            || at_rule_name.eq_ignore_ascii_case("layer")
-            || at_rule_name.eq_ignore_ascii_case("container")
-            || at_rule_name.eq_ignore_ascii_case("color-profile")
-            || at_rule_name.eq_ignore_ascii_case("font-palette-values")
-            || at_rule_name.eq_ignore_ascii_case("counter-style")
-            || at_rule_name.eq_ignore_ascii_case("position-fallback")
-            || at_rule_name.eq_ignore_ascii_case("viewport")
-            || at_rule_name.eq_ignore_ascii_case("nest")
-            || at_rule_name.eq_ignore_ascii_case("property")
-            || at_rule_name.eq_ignore_ascii_case("document")
-            || at_rule_name.eq_ignore_ascii_case("-moz-document")
-            || at_rule_name.eq_ignore_ascii_case("try")
-            || at_rule_name.eq_ignore_ascii_case("font-feature-values")
-            || at_rule_name.eq_ignore_ascii_case("stylistic")
-            || at_rule_name.eq_ignore_ascii_case("historical-forms")
-            || at_rule_name.eq_ignore_ascii_case("styleset")
-            || at_rule_name.eq_ignore_ascii_case("character-variant")
-            || at_rule_name.eq_ignore_ascii_case("swash")
-            || at_rule_name.eq_ignore_ascii_case("ornaments")
-            || at_rule_name.eq_ignore_ascii_case("annotation")
-            || at_rule_name.eq_ignore_ascii_case("top-left-corner")
-            || at_rule_name.eq_ignore_ascii_case("top-left")
-            || at_rule_name.eq_ignore_ascii_case("top-center")
-            || at_rule_name.eq_ignore_ascii_case("top-right")
-            || at_rule_name.eq_ignore_ascii_case("top-right-corner")
-            || at_rule_name.eq_ignore_ascii_case("bottom-left-corner")
-            || at_rule_name.eq_ignore_ascii_case("bottom-left")
-            || at_rule_name.eq_ignore_ascii_case("bottom-center")
-            || at_rule_name.eq_ignore_ascii_case("bottom-right")
-            || at_rule_name.eq_ignore_ascii_case("bottom-right-corner")
-            || at_rule_name.eq_ignore_ascii_case("left-top")
-            || at_rule_name.eq_ignore_ascii_case("left-middle")
-            || at_rule_name.eq_ignore_ascii_case("left-bottom")
-            || at_rule_name.eq_ignore_ascii_case("right-top")
-            || at_rule_name.eq_ignore_ascii_case("right-middle")
-            || at_rule_name.eq_ignore_ascii_case("right-bottom")
-        {
-            input.parse().map(Some)?
-        } else if at_rule_name.eq_ignore_ascii_case("import")
-            || at_rule_name.eq_ignore_ascii_case("charset")
-            || at_rule_name.eq_ignore_ascii_case("custom-media")
-            || at_rule_name.eq_ignore_ascii_case("namespace")
-        {
-            None
-        } else {
-            match peek!(input) {
-                Token::LBrace(..) | Token::Indent(..) => Some(input.parse()?),
+                .map(AtRulePrelude::Unknown);
+            let block = match peek!(input) {
+                Token::LBrace(..) | Token::Indent(..) => Some(input.parse::<SimpleBlock>()?),
                 _ => None,
-            }
+            };
+            let end = block
+                .as_ref()
+                .map(|block| block.span.end)
+                .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end))
+                .unwrap_or(at_keyword.span.end);
+            (prelude, block, end)
         };
 
         let span = Span {
             start: at_keyword.span.start,
-            end: match &block {
-                Some(block) => block.span.end,
-                None => {
-                    if input.syntax == Syntax::Sass {
-                        at_keyword.span.end
-                    } else {
-                        // next token should be semicolon, but it won't be consumed here
-                        peek!(input).span().end
-                    }
-                }
-            },
+            end,
         };
         Ok(AtRule {
             name: at_keyword.ident.into(),
