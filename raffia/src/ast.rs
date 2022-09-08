@@ -222,6 +222,7 @@ pub enum ComponentValue<'s> {
     SassBinaryExpression(SassBinaryExpression<'s>),
     SassNamespacedExpression(SassNamespacedExpression<'s>),
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
+    SassParentSelector(NestingSelector),
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
     Token(Token<'s>),

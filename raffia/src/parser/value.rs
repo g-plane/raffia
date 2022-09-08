@@ -159,6 +159,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .parse()
                 .map(InterpolableStr::SassInterpolated)
                 .map(ComponentValue::InterpolableStr),
+            Token::Ampersand(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                self.parse().map(ComponentValue::SassParentSelector)
+            }
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessVariable)
             }
