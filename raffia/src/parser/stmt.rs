@@ -95,7 +95,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Linebreak(..)
                             | Token::Exclamation(..)
                             | Token::Eof(..) => break,
-                            _ => values.push(parser.parse::<ComponentValue>()?),
+                            _ => {
+                                let value = parser.parse::<ComponentValue>()?;
+                                match &value {
+                                    ComponentValue::SassNestingDeclaration(..)
+                                        if matches!(parser.syntax, Syntax::Scss | Syntax::Sass) =>
+                                    {
+                                        values.push(value);
+                                        break;
+                                    }
+                                    _ => values.push(value),
+                                }
+                            }
                         }
                     }
                     values
@@ -263,8 +274,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         statements.push(Statement::QualifiedRule(self.parse()?));
                         is_block_element = true;
                     } else {
-                        match self.try_parse(|parser| parser.parse()) {
+                        match self.try_parse(Declaration::parse) {
                             Ok(declaration) => {
+                                is_block_element = matches!(
+                                    declaration.value.last(),
+                                    Some(ComponentValue::SassNestingDeclaration(..))
+                                );
                                 statements.push(Statement::Declaration(declaration));
                             }
                             Err(e) => {

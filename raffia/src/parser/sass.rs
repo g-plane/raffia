@@ -632,6 +632,50 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let start = if input.syntax == Syntax::Scss {
+            expect!(input, LBrace).span.start
+        } else {
+            expect!(input, Indent).span.start
+        };
+
+        let mut decls = Vec::with_capacity(3);
+        let end;
+        loop {
+            match peek!(input) {
+                Token::RBrace(..) if input.syntax == Syntax::Scss => {}
+                Token::Dedent(..) if input.syntax == Syntax::Sass => {}
+                _ => {
+                    if input.syntax == Syntax::Scss {
+                        expect!(input, Semicolon);
+                        while eat!(input, Semicolon).is_some() {}
+                    } else {
+                        expect!(input, Linebreak);
+                        while eat!(input, Linebreak).is_some() {}
+                    }
+                }
+            }
+            match peek!(input) {
+                Token::RBrace(..) if input.syntax == Syntax::Scss => {
+                    end = expect!(input, RBrace).span.end;
+                    break;
+                }
+                Token::Dedent(..) if input.syntax == Syntax::Sass => {
+                    end = expect!(input, Dedent).span.end;
+                    break;
+                }
+                _ => decls.push(input.parse::<Declaration>()?),
+            }
+        }
+
+        Ok(SassNestingDeclaration {
+            decls,
+            span: Span { start, end },
+        })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let l_paren = expect!(input, LParen);

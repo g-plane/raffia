@@ -222,6 +222,7 @@ pub enum ComponentValue<'s> {
     Ratio(Ratio<'s>),
     SassBinaryExpression(SassBinaryExpression<'s>),
     SassNamespacedExpression(SassNamespacedExpression<'s>),
+    SassNestingDeclaration(SassNestingDeclaration<'s>),
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
     SassParentSelector(NestingSelector),
     SassUnaryExpression(SassUnaryExpression<'s>),
@@ -1186,6 +1187,14 @@ pub enum SassInterpolatedUrlElement<'s> {
 pub struct SassNamespacedExpression<'s> {
     pub namespace: Ident<'s>,
     pub expr: Box<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassNestingDeclaration<'s> {
+    pub decls: Vec<Declaration<'s>>,
     pub span: Span,
 }
 
