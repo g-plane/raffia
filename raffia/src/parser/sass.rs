@@ -187,7 +187,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::HashLBrace(..) => self.parse_sass_interpolated_ident_expr()?,
             token => {
                 return Err(Error {
-                    kind: ErrorKind::Unexpected("<ident> or '#{'", token.symbol()),
+                    kind: ErrorKind::Unexpected("<ident>` or `#{", token.symbol()),
                     span: token.span().clone(),
                 })
             }
