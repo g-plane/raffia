@@ -1277,7 +1277,7 @@ pub struct SassUseAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassUseConfigItem<'s> {
-    pub var: SassVariable<'s>,
+    pub variable: SassVariable<'s>,
     pub value: ComponentValue<'s>,
     pub span: Span,
 }

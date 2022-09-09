@@ -766,14 +766,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let var = input.parse::<SassVariable>()?;
+        let variable = input.parse::<SassVariable>()?;
         expect!(input, Colon);
         let value = input.parse::<ComponentValue>()?;
         let span = Span {
-            start: var.span.start,
+            start: variable.span.start,
             end: value.span().end,
         };
-        Ok(SassUseConfigItem { var, value, span })
+        Ok(SassUseConfigItem {
+            variable,
+            value,
+            span,
+        })
     }
 }
 
