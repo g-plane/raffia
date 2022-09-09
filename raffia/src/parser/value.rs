@@ -272,6 +272,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     values
                 }
+                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("element") => {
+                    vec![self.parse().map(ComponentValue::IdSelector)?]
+                }
                 _ => {
                     self.parse_component_values(
                         /* allow_comma */ true, /* allow_semicolon */ true,

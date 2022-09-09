@@ -212,6 +212,7 @@ pub enum ComponentValue<'s> {
     Dimension(Dimension<'s>),
     Function(Function<'s>),
     HexColor(HexColor<'s>),
+    IdSelector(IdSelector<'s>),
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
