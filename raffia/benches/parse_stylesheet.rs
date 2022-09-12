@@ -6,13 +6,13 @@ fn parse_with_raffia(code: &str) -> raffia::ast::Stylesheet {
     parser.parse().unwrap()
 }
 
-fn parse_with_parcel<'a>(
+fn parse_with_lightningcss<'a>(
     code: &'a str,
     filename: &str,
-) -> parcel_css::stylesheet::StyleSheet<'a, 'a> {
-    parcel_css::stylesheet::StyleSheet::parse(
+) -> lightningcss::stylesheet::StyleSheet<'a, 'a> {
+    lightningcss::stylesheet::StyleSheet::parse(
         code,
-        parcel_css::stylesheet::ParserOptions {
+        lightningcss::stylesheet::ParserOptions {
             filename: filename.into(),
             nesting: true,
             custom_media: true,
@@ -59,14 +59,14 @@ fn bench_parsers(c: &mut Criterion) {
             group.bench_with_input(BenchmarkId::new("Raffia", name), &code, |b, code| {
                 b.iter(|| parse_with_raffia(code))
             });
-            /* group.bench_with_input(BenchmarkId::new("Parcel", name), &code, |b, code| {
-                b.iter(|| parse_with_parcel(code, &name))
+            group.bench_with_input(BenchmarkId::new("LightningCSS", name), &code, |b, code| {
+                b.iter(|| parse_with_lightningcss(code, &name))
             });
             group.bench_with_input(
                 BenchmarkId::new("SWC", name),
                 &swc_source_file,
                 |b, source_file| b.iter(|| parse_with_swc(source_file)),
-            ); */
+            );
         });
     group.finish();
 }
