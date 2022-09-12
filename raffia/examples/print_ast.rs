@@ -24,7 +24,7 @@ fn main() {
     let mut parser = Parser::new(&code, syntax);
     let result = parser.parse::<Stylesheet>();
     match result {
-        Ok(ast) => println!("{:#?}", ast),
+        Ok(ast) => println!("{:#?}", ast.span),
         Err(error) => {
             let file = SimpleFile::new(path.file_name().unwrap().to_str().unwrap(), &code);
             let diagnostic = Diagnostic::error()

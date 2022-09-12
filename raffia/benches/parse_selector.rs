@@ -42,14 +42,14 @@ fn bench_parsers(c: &mut Criterion) {
     group.bench_with_input(BenchmarkId::new("Raffia", selector), selector, |b, code| {
         b.iter(|| parse_with_raffia(code))
     });
-    group.bench_with_input(BenchmarkId::new("Parcel", selector), selector, |b, code| {
+    /* group.bench_with_input(BenchmarkId::new("Parcel", selector), selector, |b, code| {
         b.iter(|| parse_with_parcel(code))
     });
     group.bench_with_input(
         BenchmarkId::new("SWC", selector),
         &swc_source_file,
         |b, source_file| b.iter(|| parse_with_swc(source_file)),
-    );
+    ); */
     group.finish();
 }
 

@@ -1,4 +1,4 @@
-use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
+use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
 use std::{fs, time::Duration};
 
 fn parse_with_raffia(code: &str) -> raffia::ast::Stylesheet {
@@ -53,20 +53,20 @@ fn bench_parsers(c: &mut Criterion) {
             let path = &entry.path();
             let name = entry.file_name();
             let name = &name.to_string_lossy();
-            let code = fs::read_to_string(path).unwrap();
+            let code = black_box(fs::read_to_string(path).unwrap());
             let swc_source_file = create_swc_source_file(&code, &name);
 
             group.bench_with_input(BenchmarkId::new("Raffia", name), &code, |b, code| {
                 b.iter(|| parse_with_raffia(code))
             });
-            group.bench_with_input(BenchmarkId::new("Parcel", name), &code, |b, code| {
+            /* group.bench_with_input(BenchmarkId::new("Parcel", name), &code, |b, code| {
                 b.iter(|| parse_with_parcel(code, &name))
             });
             group.bench_with_input(
                 BenchmarkId::new("SWC", name),
                 &swc_source_file,
                 |b, source_file| b.iter(|| parse_with_swc(source_file)),
-            );
+            ); */
         });
     group.finish();
 }
