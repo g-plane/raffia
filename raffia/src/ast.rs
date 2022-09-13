@@ -333,7 +333,7 @@ pub enum CustomMediaValue<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
-    pub value: SmallVec<[ComponentValue<'s>; 3]>,
+    pub value: Vec<ComponentValue<'s>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub less_property_merge: Option<LessPropertyMerge>,
     pub span: Span,
@@ -473,7 +473,6 @@ pub enum ImportPreludeLayer<'s> {
     WithName(Function<'s>),
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -926,7 +925,6 @@ pub struct PseudoClassSelector<'s> {
     pub span: Span,
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -938,7 +936,7 @@ pub enum PseudoClassSelectorArg<'s> {
     Nth(Nth<'s>),
     Number(Number<'s>),
     RelativeSelectorList(RelativeSelectorList<'s>),
-    SelectorList(SelectorList<'s>),
+    SelectorList(Box<SelectorList<'s>>),
     TokenSeq(TokenSeq<'s>),
 }
 
@@ -977,13 +975,12 @@ pub struct QualifiedRule<'s> {
     pub span: Span,
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum QueryInParens<'s> {
     ContainerCondition(ContainerCondition<'s>),
-    SizeFeature(MediaFeature<'s>),
+    SizeFeature(Box<MediaFeature<'s>>),
     StyleQuery(StyleQuery<'s>),
 }
 
@@ -1354,7 +1351,6 @@ pub enum SimpleSelector<'s> {
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -1431,7 +1427,6 @@ pub struct StyleConditionOr<'s> {
     pub span: Span,
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -1440,7 +1435,6 @@ pub enum StyleInParens<'s> {
     Feature(Declaration<'s>),
 }
 
-#[allow(clippy::large_enum_variant)]
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]

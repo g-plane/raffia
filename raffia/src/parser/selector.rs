@@ -843,7 +843,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             || name.eq_ignore_ascii_case("where")
                             || name.eq_ignore_ascii_case("matches") =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::SelectorList)?
+                        PseudoClassSelectorArg::SelectorList(Box::new(input.parse()?))
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("has") =>

@@ -1,5 +1,3 @@
-use smallvec::SmallVec;
-
 use super::{
     state::{ParserState, QualifiedRuleContext},
     Parser,
@@ -38,7 +36,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             });
             match &name {
                 InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
-                    let mut values = SmallVec::with_capacity(3);
+                    let mut values = Vec::with_capacity(3);
                     let mut pairs = Vec::with_capacity(1);
                     loop {
                         match peek!(parser) {
@@ -85,7 +83,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     values
                 }
                 _ => {
-                    let mut values = SmallVec::with_capacity(3);
+                    let mut values = Vec::with_capacity(3);
                     loop {
                         match peek!(parser) {
                             Token::RBrace(..)
@@ -124,13 +122,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             start: name.span().start,
             end: if let Some(important) = &important {
                 important.span.end
+            } else if let Some(last) = value.last() {
+                last.span().end
             } else {
-                let last_value: Option<&ComponentValue> = value.last();
-                if let Some(last) = last_value {
-                    last.span().end
-                } else {
-                    colon.span.end
-                }
+                colon.span.end
             },
         };
         Ok(Declaration {
