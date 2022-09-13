@@ -483,17 +483,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_percentage(&mut self, value: Number<'s>) -> PResult<Token<'s>> {
-        let start = value.span.start;
-        let (i, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
-        debug_assert_eq!(c, '%');
-        Ok(Token::Percentage(Percentage {
-            value,
-            span: Span { start, end: i + 1 },
-        }))
+        self.state.chars.next();
+        let span = Span {
+            start: value.span.start,
+            end: value.span.end + 1,
+        };
+        Ok(Token::Percentage(Percentage { value, span }))
     }
 
     fn scan_string_or_template(&mut self) -> PResult<Token<'s>> {
@@ -785,11 +780,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_dollar_var(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self.state.chars.next().expect("expect char `$`");
         debug_assert_eq!(c, '$');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
@@ -800,17 +791,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_at_lbrace_var(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self.state.chars.next().expect("expect char `@`");
         debug_assert_eq!(c, '@');
-        let (_, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (_, c) = self.state.chars.next().expect("expect char `{`");
         debug_assert_eq!(c, '{');
 
         let ident = self.scan_ident_sequence()?;
@@ -831,11 +814,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_at_keyword(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self.state.chars.next().expect("expect char `@`");
         debug_assert_eq!(c, '@');
         let ident = self.scan_ident_sequence()?;
         let span = Span {
