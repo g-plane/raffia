@@ -36,6 +36,7 @@ pub enum Token<'s> {
     AsteriskEqual(AsteriskEqual),
     AtKeyword(AtKeyword<'s>),
     AtLBraceVar(AtLBraceVar<'s>),
+    BadStr(BadStr<'s>),
     Bar(Bar),
     BarBar(BarBar),
     BarEqual(BarEqual),
@@ -123,6 +124,15 @@ pub struct AtKeyword<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct AtLBraceVar<'s> {
     pub ident: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct BadStr<'s> {
+    pub raw: &'s str,
+    pub escaped: bool,
     pub span: Span,
 }
 

@@ -499,15 +499,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut escaped = false;
         loop {
             match self.state.chars.next() {
-                Some((i, '\n')) => {
-                    return Err(Error {
-                        kind: ErrorKind::UnexpectedLinebreak,
-                        span: Span {
-                            start: i,
-                            end: i + 1,
-                        },
-                    })
-                }
                 Some((_, '\\')) => {
                     escaped = true;
                     self.scan_escape(/* backslash_consumed */ true)?;
@@ -527,8 +518,24 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         span,
                     }));
                 }
+                Some((end, '\n')) => {
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    return Ok(Token::BadStr(BadStr {
+                        raw,
+                        escaped,
+                        span: Span { start, end },
+                    }));
+                }
                 Some(..) => {}
-                None => return Err(self.build_eof_error()),
+                None => {
+                    let end = self.source.len();
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    return Ok(Token::BadStr(BadStr {
+                        raw,
+                        escaped,
+                        span: Span { start, end },
+                    }));
+                }
             }
         }
 

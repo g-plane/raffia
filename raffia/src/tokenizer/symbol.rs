@@ -46,6 +46,13 @@ impl TokenSymbol for AtLBraceVar<'_> {
     }
 }
 
+impl TokenSymbol for BadStr<'_> {
+    #[inline]
+    fn symbol() -> &'static str {
+        "<bad string>"
+    }
+}
+
 impl TokenSymbol for Bar {
     #[inline]
     fn symbol() -> &'static str {
@@ -413,6 +420,7 @@ impl Token<'_> {
             AsteriskEqual(..) => "*=",
             AtKeyword(..) => "<at-keyword>",
             AtLBraceVar(..) => "@{",
+            BadStr(..) => "<bad string>",
             Bar(..) => "|",
             BarBar(..) => "||",
             BarEqual(..) => "|=",
