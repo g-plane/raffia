@@ -1287,20 +1287,296 @@ Stylesheet(
               end: 1271,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1276,
+                end: 1281,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1283,
+                    end: 1286,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "abc",
+                  raw: "a\\62 c",
+                  span: Span(
+                    start: 1287,
+                    end: 1293,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1283,
+                  end: 1294,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1276,
+              end: 1294,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1298,
+                end: 1303,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1305,
+                    end: 1308,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "aج",
+                  raw: "a\\62c",
+                  span: Span(
+                    start: 1309,
+                    end: 1314,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1305,
+                  end: 1315,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1298,
+              end: 1315,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1319,
+                end: 1324,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1326,
+                    end: 1329,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "abc",
+                  raw: "\\61 bc",
+                  span: Span(
+                    start: 1330,
+                    end: 1336,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1326,
+                  end: 1337,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1319,
+              end: 1337,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1341,
+                end: 1346,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1348,
+                    end: 1351,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "憼",
+                  raw: "\\61bc",
+                  span: Span(
+                    start: 1352,
+                    end: 1357,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1348,
+                  end: 1358,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1341,
+              end: 1358,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1362,
+                end: 1367,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1369,
+                    end: 1372,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: ",",
+                  raw: "\\2c",
+                  span: Span(
+                    start: 1373,
+                    end: 1376,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1369,
+                  end: 1377,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1362,
+              end: 1377,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 1381,
+                end: 1386,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1388,
+                    end: 1391,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: ",",
+                  raw: "\\,",
+                  span: Span(
+                    start: 1392,
+                    end: 1394,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1388,
+                  end: 1395,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1381,
+              end: 1395,
+            ),
+          ),
         ],
         span: Span(
           start: 4,
-          end: 1274,
+          end: 1398,
         ),
       ),
       span: Span(
         start: 0,
-        end: 1274,
+        end: 1398,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 1275,
+    end: 1399,
   ),
 )

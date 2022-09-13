@@ -36,4 +36,11 @@ https://example.com/image.png
 
 );
   background: URL(https://example.com/ima\)ge.png);
+
+  value: url(a\62 c);
+  value: url(a\62c);
+  value: url(\61 bc);
+  value: url(\61bc);
+  value: url(\2c);
+  value: url(\,);
 }
