@@ -685,7 +685,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     start: token.span.start + 1,
                     end: token.span.end,
                 };
-                let raw = token.raw_without_hash;
+                let raw = token.raw;
                 if raw.starts_with(|c: char| c.is_ascii_digit()) {
                     input.recoverable_errors.push(Error {
                         kind: ErrorKind::InvalidIdSelectorName,
@@ -702,7 +702,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                 };
                 let first = Ident {
                     name: value,
-                    raw: token.raw_without_hash,
+                    raw: token.raw,
                     span: first_span,
                 };
                 let name = match peek!(input) {

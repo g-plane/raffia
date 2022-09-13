@@ -683,7 +683,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, Hash);
-        let raw = token.raw_without_hash;
+        let raw = token.raw;
         let value = if token.escaped {
             handle_escape(raw).map_err(|kind| Error {
                 kind,

@@ -289,10 +289,8 @@ pub struct GreaterThanEqual {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Hash<'s> {
-    /// raw string with beginning `#` char
-    pub raw: &'s str,
     /// raw string without beginning `#` char
-    pub raw_without_hash: &'s str,
+    pub raw: &'s str,
     pub escaped: bool,
     pub span: Span,
 }

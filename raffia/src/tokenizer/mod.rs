@@ -740,11 +740,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_hash(&mut self) -> PResult<Token<'s>> {
-        let (start, c) = self
-            .state
-            .chars
-            .next()
-            .ok_or_else(|| self.build_eof_error())?;
+        let (start, c) = self.state.chars.next().unwrap();
         debug_assert_eq!(c, '#');
 
         let mut end;
@@ -783,15 +779,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
 
         debug_assert!(end > start + 1);
-        let raw = unsafe { self.source.get_unchecked(start..end) };
-        let raw_without_hash = unsafe { self.source.get_unchecked(start + 1..end) };
+        let raw = unsafe { self.source.get_unchecked(start + 1..end) };
         let span = Span { start, end };
-        Ok(Token::Hash(Hash {
-            escaped,
-            raw,
-            raw_without_hash,
-            span,
-        }))
+        Ok(Token::Hash(Hash { escaped, raw, span }))
     }
 
     fn scan_dollar_var(&mut self) -> PResult<Token<'s>> {
