@@ -29,6 +29,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "for" => Ok(Some(Statement::SassForAtRule(self.parse()?))),
             "if" => Ok(Some(Statement::SassIfAtRule(self.parse()?))),
             "while" => Ok(Some(Statement::SassWhileAtRule(self.parse()?))),
+            "content" => Ok(Some(Statement::SassContentAtRule(self.parse()?))),
             "use" => Ok(Some(Statement::SassUseAtRule(self.parse()?))),
             "function" => Ok(Some(Statement::SassFunctionAtRule(
                 self.with_state(ParserState {
@@ -319,6 +320,33 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassConditionalClause<'s> {
             condition,
             block,
             span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "content");
+        let mut end = token.span.end;
+
+        let arguments = if eat!(input, LParen).is_some() {
+            let arguments = input
+                .parse_component_values(
+                    /* allow_comma */ false, /* allow_semicolon */ false,
+                )?
+                .values;
+            end = expect!(input, RParen).span.end;
+            Some(arguments)
+        } else {
+            None
+        };
+        Ok(SassContentAtRule {
+            arguments,
+            span: Span {
+                start: token.span.start,
+                end,
+            },
         })
     }
 }

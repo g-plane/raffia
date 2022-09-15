@@ -1074,6 +1074,14 @@ pub struct SassConditionalClause<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassContentAtRule<'s> {
+    pub arguments: Option<Vec<ComponentValue<'s>>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassDebugAtRule<'s> {
     pub expr: ComponentValues<'s>,
     pub span: Span,
@@ -1377,6 +1385,7 @@ pub enum Statement<'s> {
     KeyframeBlock(KeyframeBlock<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
+    SassContentAtRule(SassContentAtRule<'s>),
     SassDebugAtRule(SassDebugAtRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
     SassErrorAtRule(SassErrorAtRule<'s>),
