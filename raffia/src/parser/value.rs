@@ -583,7 +583,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let dimension_token = expect!(input, Dimension);
-        let unit_name = &dimension_token.unit.name;
+        let value = dimension_token.value.try_into()?;
+        let unit: Ident = dimension_token.unit.into();
+        let unit_name = &unit.name;
+        let span = dimension_token.span;
         if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
             || unit_name.eq_ignore_ascii_case("rem")
@@ -628,54 +631,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
             || unit_name.eq_ignore_ascii_case("pc")
             || unit_name.eq_ignore_ascii_case("pt")
         {
-            Ok(Dimension::Length(Length {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Length(Length { value, unit, span }))
         } else if unit_name.eq_ignore_ascii_case("deg")
             || unit_name.eq_ignore_ascii_case("grad")
             || unit_name.eq_ignore_ascii_case("rad")
             || unit_name.eq_ignore_ascii_case("turn")
         {
-            Ok(Dimension::Angle(Angle {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Angle(Angle { value, unit, span }))
         } else if unit_name.eq_ignore_ascii_case("s") || unit_name.eq_ignore_ascii_case("ms") {
-            Ok(Dimension::Duration(Duration {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Duration(Duration { value, unit, span }))
         } else if unit_name.eq_ignore_ascii_case("Hz") || unit_name.eq_ignore_ascii_case("kHz") {
-            Ok(Dimension::Frequency(Frequency {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Frequency(Frequency { value, unit, span }))
         } else if unit_name.eq_ignore_ascii_case("dpi")
             || unit_name.eq_ignore_ascii_case("dpcm")
             || unit_name.eq_ignore_ascii_case("dppx")
         {
-            Ok(Dimension::Resolution(Resolution {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Resolution(Resolution { value, unit, span }))
         } else if unit_name.eq_ignore_ascii_case("fr") {
-            Ok(Dimension::Flex(Flex {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Flex(Flex { value, unit, span }))
         } else {
-            Ok(Dimension::Unknown(UnknownDimension {
-                value: dimension_token.value.try_into()?,
-                unit: dimension_token.unit.into(),
-                span: dimension_token.span,
-            }))
+            Ok(Dimension::Unknown(UnknownDimension { value, unit, span }))
         }
     }
 }
