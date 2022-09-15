@@ -6,16 +6,27 @@ use crate::{
     peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util::{self, LastOfNonEmpty},
-    Parse,
+    util, Parse,
 };
+use smallvec::SmallVec;
 
 // https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (selectors, mut span) = input.parse_keyframe_selectors()?;
+        let first_selector = input.parse::<KeyframeSelector>()?;
+        let start = first_selector.span().start;
+
+        let mut selectors = SmallVec::with_capacity(3);
+        selectors.push(first_selector);
+        while eat!(input, Comma).is_some() {
+            selectors.push(input.parse()?);
+        }
+
         let block = input.parse::<SimpleBlock>()?;
-        span.end = block.span.end;
+        let span = Span {
+            start,
+            end: block.span.end,
+        };
         Ok(KeyframeBlock {
             selectors,
             block,
@@ -52,8 +63,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(KeyframesName::Str),
-            _ => {
+            Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let ident = input.parse()?;
                 match &ident {
                     InterpolableIdent::Literal(ident)
@@ -69,6 +79,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
                 }
                 Ok(KeyframesName::Ident(ident))
             }
+            _ => input.parse().map(KeyframesName::Str),
         }
     }
 }
@@ -76,27 +87,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
         self.parse_simple_block_with(|parser| {
-            let mut statements = vec![];
-            loop {
-                match peek!(parser) {
-                    Token::RBrace(..) | Token::Dedent(..) | Token::Eof(..) => break,
-                    _ => statements.push(Statement::KeyframeBlock(parser.parse()?)),
-                }
+            let mut statements = Vec::with_capacity(3);
+            while let Token::Percentage(..)
+            | Token::Ident(..)
+            | Token::HashLBrace(..)
+            | Token::AtLBraceVar(..) = peek!(parser)
+            {
+                statements.push(Statement::KeyframeBlock(parser.parse()?));
             }
             Ok(statements)
         })
-    }
-
-    fn parse_keyframe_selectors(&mut self) -> PResult<(Vec<KeyframeSelector<'s>>, Span)> {
-        let first = self.parse::<KeyframeSelector>()?;
-        let mut span = first.span().clone();
-
-        let mut prelude = vec![first];
-        while eat!(self, Comma).is_some() {
-            prelude.push(self.parse()?);
-        }
-
-        span.end = prelude.last_of_non_empty().span().end;
-        Ok((prelude, span))
     }
 }

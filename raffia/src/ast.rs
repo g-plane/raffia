@@ -546,7 +546,7 @@ pub struct ImportantAnnotation<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct KeyframeBlock<'s> {
-    pub selectors: Vec<KeyframeSelector<'s>>,
+    pub selectors: SmallVec<[KeyframeSelector<'s>; 3]>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
 }
