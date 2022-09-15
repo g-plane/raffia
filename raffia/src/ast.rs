@@ -1100,6 +1100,23 @@ pub struct SassErrorAtRule<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassExtendAtRule<'s> {
+    pub selector: SelectorList<'s>,
+    pub optional: Option<SassFlag<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassFlag<'s> {
+    pub keyword: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassForAtRule<'s> {
     pub binding: SassVariable<'s>,
     pub start: ComponentValue<'s>,
@@ -1363,6 +1380,7 @@ pub enum Statement<'s> {
     SassDebugAtRule(SassDebugAtRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
     SassErrorAtRule(SassErrorAtRule<'s>),
+    SassExtendAtRule(SassExtendAtRule<'s>),
     SassForAtRule(SassForAtRule<'s>),
     SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),

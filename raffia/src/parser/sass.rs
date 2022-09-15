@@ -47,6 +47,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 Ok(Some(Statement::SassReturnAtRule(rule)))
             }
+            "extend" => Ok(Some(Statement::SassExtendAtRule(self.parse()?))),
             "warn" => Ok(Some(Statement::SassWarnAtRule(self.parse()?))),
             "error" => Ok(Some(Statement::SassErrorAtRule(self.parse()?))),
             "debug" => Ok(Some(Statement::SassDebugAtRule(self.parse()?))),
@@ -382,6 +383,48 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
             end: expr.span.end,
         };
         Ok(SassErrorAtRule { expr, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let token = expect!(input, AtKeyword);
+        debug_assert_eq!(&*token.ident.name, "extend");
+        let selector = input.parse::<SelectorList>()?;
+        let mut end = selector.span.end;
+
+        let optional = if let Token::Exclamation(..) = peek!(input) {
+            let exclamation = expect!(input, Exclamation);
+            let keyword = expect_without_ws_or_comments!(input, Ident);
+            if keyword.name.eq_ignore_ascii_case("optional") {
+                let span = Span {
+                    start: exclamation.span.start,
+                    end: keyword.span.end,
+                };
+                end = keyword.span.end;
+                Some(SassFlag {
+                    keyword: keyword.into(),
+                    span,
+                })
+            } else {
+                input.recoverable_errors.push(Error {
+                    kind: ErrorKind::ExpectSassKeyword("optional"),
+                    span: keyword.span,
+                });
+                None
+            }
+        } else {
+            None
+        };
+
+        Ok(SassExtendAtRule {
+            selector,
+            optional,
+            span: Span {
+                start: token.span.start,
+                end,
+            },
+        })
     }
 }
 
