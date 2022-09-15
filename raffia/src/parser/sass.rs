@@ -421,8 +421,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
         let selector = input.parse::<SelectorList>()?;
         let mut end = selector.span.end;
 
-        let optional = if let Token::Exclamation(..) = peek!(input) {
-            let exclamation = expect!(input, Exclamation);
+        let optional = if let Some(exclamation) = eat!(input, Exclamation) {
             let keyword = expect_without_ws_or_comments!(input, Ident);
             if keyword.name.eq_ignore_ascii_case("optional") {
                 let span = Span {
