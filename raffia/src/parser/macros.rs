@@ -45,6 +45,26 @@ macro_rules! expect {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! expect_without_ws_or_comments {
+    ($parser:expr, Ident) => {{
+        use $crate::{
+            error::{Error, ErrorKind},
+            tokenizer::TokenSymbol,
+        };
+        debug_assert!($parser.cached_token.is_none());
+        let tokenizer = &mut $parser.tokenizer;
+        if tokenizer.is_start_of_ident() {
+            tokenizer.scan_ident_sequence()?
+        } else {
+            let token = tokenizer.bump_without_ws_or_comments()?;
+            return Err(Error {
+                kind: ErrorKind::Unexpected(
+                    $crate::tokenizer::token::Ident::symbol(),
+                    token.symbol(),
+                ),
+                span: token.span().clone(),
+            });
+        }
+    }};
     ($parser:expr, $variant:ident) => {{
         use $crate::{
             error::{Error, ErrorKind},

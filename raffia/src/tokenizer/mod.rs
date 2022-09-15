@@ -302,7 +302,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn scan_ident_sequence(&mut self) -> PResult<Ident<'s>> {
+    pub(crate) fn scan_ident_sequence(&mut self) -> PResult<Ident<'s>> {
         let start;
         let mut end;
         let mut escaped = false;
@@ -1211,6 +1211,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 end: start + 3,
             },
         }))
+    }
+
+    #[inline]
+    pub(crate) fn is_start_of_ident(&mut self) -> bool {
+        match self.state.chars.peek() {
+            Some((_, c)) if is_start_of_ident(*c) => true,
+            Some((_, '-')) => {
+                let mut chars = self.state.chars.clone();
+                chars.next();
+                matches!(chars.peek(), Some((_, c)) if is_start_of_ident(*c))
+            }
+            _ => false,
+        }
     }
 }
 
