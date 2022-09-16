@@ -327,7 +327,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassConditionalClause<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "content");
         let mut end = token.span.end;
 
         let arguments = if eat!(input, LParen).is_some() {
@@ -354,7 +353,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "debug");
         let expr = input.parse_component_values(
             /* allow_comma */ true, /* allow_semicolon */ false,
         )?;
@@ -369,7 +367,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "each");
 
         let mut bindings = vec![input.parse()?];
         while eat!(input, Comma).is_some() {
@@ -402,7 +399,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "error");
         let expr = input.parse_component_values(
             /* allow_comma */ true, /* allow_semicolon */ false,
         )?;
@@ -417,7 +413,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "extend");
         let selector = input.parse::<SelectorList>()?;
         let mut end = selector.span.end;
 
@@ -460,7 +455,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "for");
 
         let binding = input.parse()?;
 
@@ -504,7 +498,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "function");
 
         let name = input.parse()?;
 
@@ -589,7 +582,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "if");
 
         let if_clause = input.parse()?;
         let mut else_if_clauses = vec![];
@@ -779,7 +771,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "return");
         let expr = input.parse_component_values(
             /* allow_comma */ true, /* allow_semicolon */ false,
         )?;
@@ -794,7 +785,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "use");
 
         let path = input.parse()?;
         let namespace = match peek!(input) {
@@ -899,7 +889,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let token = expect!(input, AtKeyword);
-        debug_assert_eq!(&*token.ident.name, "warn");
         let expr = input.parse_component_values(
             /* allow_comma */ true, /* allow_semicolon */ false,
         )?;
@@ -914,7 +903,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWhileAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let at_keyword = expect!(input, AtKeyword);
-        debug_assert_eq!(&*at_keyword.ident.name, "while");
         let condition = input.parse()?;
         let body = input.parse::<SimpleBlock>()?;
         let span = Span {
