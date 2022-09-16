@@ -141,16 +141,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let exclamation = expect!(input, Exclamation);
-        let ident = expect!(input, Ident);
+        let ident: Ident = expect!(input, Ident).into();
         let span = Span {
             start: exclamation.span.start,
             end: ident.span.end,
         };
         if ident.name.eq_ignore_ascii_case("important") {
-            Ok(ImportantAnnotation {
-                ident: ident.into(),
-                span,
-            })
+            Ok(ImportantAnnotation { ident, span })
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectImportantAnnotation,
