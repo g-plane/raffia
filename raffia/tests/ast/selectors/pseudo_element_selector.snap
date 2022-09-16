@@ -4094,20 +4094,19 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        UrlPrefix(UrlPrefix(
-                          kind: "UrlPrefix",
-                          ident: Ident(
-                            kind: "Ident",
-                            name: "url",
-                            raw: "url",
-                            span: Span(
-                              start: 1019,
-                              end: 1022,
-                            ),
-                          ),
-                          isRaw: true,
+                        Ident(Ident(
+                          kind: "Ident",
+                          name: "url",
+                          raw: "url",
                           span: Span(
                             start: 1019,
+                            end: 1022,
+                          ),
+                        )),
+                        LParen(LParen(
+                          kind: "LParen",
+                          span: Span(
+                            start: 1022,
                             end: 1023,
                           ),
                         )),

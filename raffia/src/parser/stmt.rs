@@ -47,7 +47,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Eof(..) => break,
                             _ => {
                                 match peek!(parser) {
-                                    Token::LParen(..) | Token::UrlPrefix(..) => {
+                                    Token::LParen(..) => {
                                         pairs.push(PairedToken::Paren);
                                     }
                                     Token::RParen(..) => {

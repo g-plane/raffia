@@ -12,8 +12,8 @@ use crate::{
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let href = match peek!(input) {
-            Token::UrlPrefix(..) => input.parse().map(ImportPreludeHref::Url)?,
-            _ => input.parse().map(ImportPreludeHref::Str)?,
+            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(ImportPreludeHref::Str)?,
+            _ => input.parse().map(ImportPreludeHref::Url)?,
         };
         let mut span = href.span().clone();
 

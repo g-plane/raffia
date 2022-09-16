@@ -605,36 +605,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
+    #[inline]
     fn scan_ident_or_url(&mut self) -> PResult<Token<'s>> {
-        let ident = self.scan_ident_sequence()?;
-        if ident.name.eq_ignore_ascii_case("url") {
-            if let Some((_, '(')) = self.state.chars.peek() {
-                self.scan_url(ident).map(Token::UrlPrefix)
-            } else {
-                Ok(Token::Ident(ident))
-            }
-        } else {
-            Ok(Token::Ident(ident))
-        }
-    }
-
-    fn scan_url(&mut self, ident: Ident<'s>) -> PResult<UrlPrefix<'s>> {
-        let (i, c) = self.state.chars.next().unwrap();
-        debug_assert_eq!(c, '(');
-
-        self.skip_ws();
-        let span = Span {
-            start: ident.span.start,
-            end: i + 1,
-        };
-        Ok(UrlPrefix {
-            ident,
-            is_raw: !matches!(self.state.chars.peek(), Some((_, '\'' | '"'))),
-            span,
-        })
+        self.scan_ident_sequence().map(Token::Ident)
     }
 
     pub(crate) fn scan_url_raw_or_template(&mut self) -> PResult<Token<'s>> {
+        self.skip_ws();
         let start = self.current_offset();
         let end;
         let mut escaped = false;

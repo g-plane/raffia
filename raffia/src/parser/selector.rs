@@ -1204,7 +1204,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut pairs = Vec::with_capacity(1);
         loop {
             match peek!(self) {
-                Token::LParen(..) | Token::UrlPrefix(..) => {
+                Token::LParen(..) => {
                     pairs.push(PairedToken::Paren);
                 }
                 Token::RParen(..) => {

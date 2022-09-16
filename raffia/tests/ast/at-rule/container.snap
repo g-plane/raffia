@@ -27491,20 +27491,19 @@ Stylesheet(
                                 ),
                               ),
                               value: [
-                                UrlPrefix(UrlPrefix(
-                                  kind: "UrlPrefix",
-                                  ident: Ident(
-                                    kind: "Ident",
-                                    name: "url",
-                                    raw: "url",
-                                    span: Span(
-                                      start: 8805,
-                                      end: 8808,
-                                    ),
-                                  ),
-                                  isRaw: true,
+                                Ident(Ident(
+                                  kind: "Ident",
+                                  name: "url",
+                                  raw: "url",
                                   span: Span(
                                     start: 8805,
+                                    end: 8808,
+                                  ),
+                                )),
+                                LParen(LParen(
+                                  kind: "LParen",
+                                  span: Span(
+                                    start: 8808,
                                     end: 8809,
                                   ),
                                 )),
@@ -27753,20 +27752,19 @@ Stylesheet(
                                     ),
                                   ),
                                   value: [
-                                    UrlPrefix(UrlPrefix(
-                                      kind: "UrlPrefix",
-                                      ident: Ident(
-                                        kind: "Ident",
-                                        name: "url",
-                                        raw: "url",
-                                        span: Span(
-                                          start: 8886,
-                                          end: 8889,
-                                        ),
-                                      ),
-                                      isRaw: true,
+                                    Ident(Ident(
+                                      kind: "Ident",
+                                      name: "url",
+                                      raw: "url",
                                       span: Span(
                                         start: 8886,
+                                        end: 8889,
+                                      ),
+                                    )),
+                                    LParen(LParen(
+                                      kind: "LParen",
+                                      span: Span(
+                                        start: 8889,
                                         end: 8890,
                                       ),
                                     )),
@@ -27997,20 +27995,19 @@ Stylesheet(
                                             ),
                                           ),
                                           value: [
-                                            UrlPrefix(UrlPrefix(
-                                              kind: "UrlPrefix",
-                                              ident: Ident(
-                                                kind: "Ident",
-                                                name: "url",
-                                                raw: "url",
-                                                span: Span(
-                                                  start: 8957,
-                                                  end: 8960,
-                                                ),
-                                              ),
-                                              isRaw: true,
+                                            Ident(Ident(
+                                              kind: "Ident",
+                                              name: "url",
+                                              raw: "url",
                                               span: Span(
                                                 start: 8957,
+                                                end: 8960,
+                                              ),
+                                            )),
+                                            LParen(LParen(
+                                              kind: "LParen",
+                                              span: Span(
+                                                start: 8960,
                                                 end: 8961,
                                               ),
                                             )),

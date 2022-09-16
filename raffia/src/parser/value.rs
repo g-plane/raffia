@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, peek,
+    expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{handle_escape, token, Token},
     util::{CowStr, LastOfNonEmpty},
@@ -82,7 +82,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
         match peek!(self) {
-            Token::Ident(..) => {
+            Token::Ident(token) => {
+                if token.name.eq_ignore_ascii_case("url") {
+                    if let Ok(url) = self.try_parse(Url::parse) {
+                        return Ok(ComponentValue::Url(url));
+                    }
+                }
                 let ident = self.parse::<InterpolableIdent>()?;
                 let ident_end = ident.span().end;
                 match peek!(self) {
@@ -144,7 +149,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .parse()
                 .map(InterpolableStr::Literal)
                 .map(ComponentValue::InterpolableStr),
-            Token::UrlPrefix(..) => self.parse().map(ComponentValue::Url),
             Token::LBracket(..) => self.parse().map(ComponentValue::BracketBlock),
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse().map(ComponentValue::SassVariable)
@@ -745,39 +749,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let prefix = expect!(input, UrlPrefix);
-        if prefix.is_raw {
-            if let Ok(value) = input.try_parse(|parser| parser.parse::<UrlRaw>()) {
-                let span = Span {
-                    start: prefix.span.start,
-                    end: value.span.end + 1, // `)` is consumed, but span excludes it
-                };
-                Ok(Url {
-                    name: prefix.ident.into(),
-                    value: Some(UrlValue::Raw(value)),
-                    modifiers: vec![],
-                    span,
-                })
-            } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
-                let value = input.parse::<SassInterpolatedUrl>()?;
-                let span = Span {
-                    start: prefix.span.start,
-                    end: value.span.end + 1, // `)` is consumed, but span excludes it
-                };
-                Ok(Url {
-                    name: prefix.ident.into(),
-                    value: Some(UrlValue::SassInterpolated(value)),
-                    modifiers: vec![],
-                    span,
-                })
-            } else {
-                Err(Error {
-                    kind: ErrorKind::ExpectUrl,
-                    span: bump!(input).span().clone(),
-                })
-            }
-        } else {
-            let value = input.parse()?;
+        let prefix = expect!(input, Ident);
+        if !prefix.name.eq_ignore_ascii_case("url") {
+            return Err(Error {
+                kind: ErrorKind::ExpectUrl,
+                span: prefix.span,
+            });
+        }
+
+        expect_without_ws_or_comments!(input, LParen);
+        if let Ok(value) = input.try_parse(InterpolableStr::parse) {
             let modifiers = match peek!(input) {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     let mut modifiers = Vec::with_capacity(1);
@@ -797,10 +778,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end: r_paren.span.end,
             };
             Ok(Url {
-                name: prefix.ident.into(),
+                name: prefix.into(),
                 value: Some(UrlValue::Str(value)),
                 modifiers,
                 span,
+            })
+        } else if let Ok(value) = input.try_parse(|parser| parser.parse::<UrlRaw>()) {
+            let span = Span {
+                start: prefix.span.start,
+                end: value.span.end + 1, // `)` is consumed, but span excludes it
+            };
+            Ok(Url {
+                name: prefix.into(),
+                value: Some(UrlValue::Raw(value)),
+                modifiers: vec![],
+                span,
+            })
+        } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+            let value = input.parse::<SassInterpolatedUrl>()?;
+            let span = Span {
+                start: prefix.span.start,
+                end: value.span.end + 1, // `)` is consumed, but span excludes it
+            };
+            Ok(Url {
+                name: prefix.into(),
+                value: Some(UrlValue::SassInterpolated(value)),
+                modifiers: vec![],
+                span,
+            })
+        } else {
+            Err(Error {
+                kind: ErrorKind::ExpectUrl,
+                span: bump!(input).span().clone(),
             })
         }
     }

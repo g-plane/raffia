@@ -11,8 +11,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {
             _ => None,
         };
         let uri = match peek!(input) {
-            Token::UrlPrefix(..) => input.parse().map(NamespacePreludeUri::Url)?,
-            _ => input.parse().map(NamespacePreludeUri::Str)?,
+            Token::Str(..) | Token::StrTemplate(..) => {
+                input.parse().map(NamespacePreludeUri::Str)?
+            }
+            _ => input.parse().map(NamespacePreludeUri::Url)?,
         };
 
         let mut span = uri.span().clone();

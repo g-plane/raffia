@@ -389,13 +389,6 @@ impl TokenSymbol for TildeEqual {
     }
 }
 
-impl TokenSymbol for UrlPrefix<'_> {
-    #[inline]
-    fn symbol() -> &'static str {
-        "url("
-    }
-}
-
 impl TokenSymbol for UrlRaw<'_> {
     #[inline]
     fn symbol() -> &'static str {
@@ -469,7 +462,6 @@ impl Token<'_> {
             StrTemplate(..) => "<string template>",
             Tilde(..) => "~",
             TildeEqual(..) => "~=",
-            UrlPrefix(..) => "url(",
             UrlRaw(..) => "<url>",
             UrlTemplate(..) => "<url template>",
         }

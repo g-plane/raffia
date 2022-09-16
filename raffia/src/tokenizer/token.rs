@@ -85,7 +85,6 @@ pub enum Token<'s> {
     StrTemplate(StrTemplate<'s>),
     Tilde(Tilde),
     TildeEqual(TildeEqual),
-    UrlPrefix(UrlPrefix<'s>),
     UrlRaw(UrlRaw<'s>),
     UrlTemplate(UrlTemplate<'s>),
 }
@@ -495,16 +494,6 @@ pub struct Tilde {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct TildeEqual {
-    pub span: Span,
-}
-
-/// `url(` only
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct UrlPrefix<'s> {
-    pub ident: Ident<'s>,
-    pub is_raw: bool,
     pub span: Span,
 }
 
