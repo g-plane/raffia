@@ -20959,7 +20959,7 @@ Stylesheet(
                       tokens: [
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4035,
@@ -21035,7 +21035,7 @@ Stylesheet(
                       tokens: [
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4052,
@@ -21044,7 +21044,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4056,
@@ -21120,7 +21120,7 @@ Stylesheet(
                       tokens: [
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4073,
@@ -21136,7 +21136,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4078,
@@ -21219,7 +21219,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4096,
@@ -21309,7 +21309,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4115,
@@ -21318,7 +21318,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4119,
@@ -21415,7 +21415,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4139,
@@ -21424,7 +21424,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4143,
@@ -21521,7 +21521,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4163,
@@ -21537,7 +21537,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4168,
@@ -21634,7 +21634,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4188,
@@ -21650,7 +21650,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4193,
@@ -21747,7 +21747,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4213,
@@ -21763,7 +21763,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "bar",
+                          escaped: false,
                           raw: "bar",
                           span: Span(
                             start: 4218,
@@ -21779,7 +21779,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "important",
+                          escaped: false,
                           raw: "important",
                           span: Span(
                             start: 4223,
@@ -21954,7 +21954,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4279,
@@ -22106,7 +22106,7 @@ Stylesheet(
                       tokens: [
                         Ident(Ident(
                           kind: "Ident",
-                          name: "url",
+                          escaped: false,
                           raw: "url",
                           span: Span(
                             start: 4318,
@@ -22122,7 +22122,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "foo",
+                          escaped: false,
                           raw: "foo",
                           span: Span(
                             start: 4322,
@@ -22138,7 +22138,7 @@ Stylesheet(
                         )),
                         Ident(Ident(
                           kind: "Ident",
-                          name: "png",
+                          escaped: false,
                           raw: "png",
                           span: Span(
                             start: 4326,

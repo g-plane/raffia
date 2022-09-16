@@ -18,7 +18,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
         let mut span = href.span().clone();
 
         let layer = match peek!(input) {
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("layer") => {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("layer") => {
                 let ident = input.parse::<Ident>()?;
                 let layer = match peek!(input) {
                     Token::LParen(l_paren) if l_paren.span.start == ident.span.end => {
@@ -45,7 +45,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
 
         let supports = input.try_parse(|parser| {
             let ident = expect!(parser, Ident);
-            if !ident.name.eq_ignore_ascii_case("supports") {
+            if !ident.name().eq_ignore_ascii_case("supports") {
                 return Err(Error {
                     kind: ErrorKind::TryParseError,
                     span: ident.span,

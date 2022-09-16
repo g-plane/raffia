@@ -5,8 +5,8 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::{handle_escape, token, Token},
-    util::{CowStr, LastOfNonEmpty, PairedToken},
+    tokenizer::{token, Token},
+    util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
 use raffia_macro::Spanned;
@@ -17,17 +17,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
             Token::Dimension(..) => {
-                let token::Dimension {
-                    value,
-                    unit:
-                        token::Ident {
-                            name,
-                            span: unit_span,
-                            ..
-                        },
-                    span,
-                } = expect!(input, Dimension);
-                if name.eq_ignore_ascii_case("n") {
+                let token::Dimension { value, unit, span } = expect!(input, Dimension);
+                let unit_name = unit.name();
+                let unit_span = &unit.span;
+                if unit_name.eq_ignore_ascii_case("n") {
                     match peek!(input) {
                         // syntax: <n-dimension> ['+' | '-'] <signless-integer>
                         // examples: '1n + 1', '1n - 1', '1n+ 1'
@@ -69,7 +62,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             span,
                         }),
                     }
-                } else if name.eq_ignore_ascii_case("n-") {
+                } else if unit_name.eq_ignore_ascii_case("n-") {
                     // syntax: <ndash-dimension> <signless-integer>
                     // examples: '1n- 1'
                     let number = expect_unsigned_int(input)?;
@@ -82,7 +75,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         b: -i32::try_from(number)?,
                         span,
                     })
-                } else if let Some(digits) = name.strip_prefix("n-") {
+                } else if let Some(digits) = unit_name.strip_prefix("n-") {
                     // syntax: <ndashdigit-dimension>
                     // examples: '1n-1'
                     if digits.chars().any(|c| !c.is_ascii_digit()) {
@@ -117,7 +110,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
             Token::Plus(..) => {
                 let plus = expect!(input, Plus);
                 let ident = expect_without_ws_or_comments!(input, Ident);
-                if ident.name.eq_ignore_ascii_case("n") {
+                let ident_name = ident.name();
+                if ident_name.eq_ignore_ascii_case("n") {
                     match peek!(input) {
                         // syntax: +n ['+' | '-'] <signless-integer>
                         // examples: '+n + 1', '+n - 1', '+n+ 1'
@@ -161,7 +155,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             },
                         }),
                     }
-                } else if ident.name.eq_ignore_ascii_case("n-") {
+                } else if ident_name.eq_ignore_ascii_case("n-") {
                     // syntax: +n- <signless-integer>
                     // examples: '+n- 1'
                     let number = expect_unsigned_int(input)?;
@@ -174,7 +168,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         b: -i32::try_from(number)?,
                         span,
                     })
-                } else if let Some(digits) = ident.name.strip_prefix("n-") {
+                } else if let Some(digits) = ident_name.strip_prefix("n-") {
                     // syntax: +<ndashdigit-ident>
                     // examples: '+n-1'
                     if digits.chars().any(|c| !c.is_ascii_digit()) {
@@ -214,7 +208,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
 
             Token::Ident(..) => {
                 let ident = expect!(input, Ident);
-                if ident.name.eq_ignore_ascii_case("n") {
+                let ident_name = ident.name();
+                if ident_name.eq_ignore_ascii_case("n") {
                     match peek!(input) {
                         // syntax: n ['+' | '-'] <signless-integer>
                         // examples: 'n + 1', 'n - 1', 'n+ 1'
@@ -255,7 +250,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             span: ident.span,
                         }),
                     }
-                } else if ident.name.eq_ignore_ascii_case("n-") {
+                } else if ident_name.eq_ignore_ascii_case("n-") {
                     // syntax: n- <signless-integer>
                     // examples: 'n- 1'
                     let number = expect_unsigned_int(input)?;
@@ -268,7 +263,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         b: -i32::try_from(number)?,
                         span,
                     })
-                } else if let Some(digits) = ident.name.strip_prefix("n-") {
+                } else if let Some(digits) = ident_name.strip_prefix("n-") {
                     // syntax: <ndashdigit-ident>
                     // examples: 'n-1'
                     if digits.chars().any(|c| !c.is_ascii_digit()) {
@@ -292,7 +287,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         b: -b,
                         span: ident.span,
                     })
-                } else if ident.name.eq_ignore_ascii_case("-n") {
+                } else if ident_name.eq_ignore_ascii_case("-n") {
                     match peek!(input) {
                         // syntax: -n ['+' | '-'] <signless-integer>
                         // examples: '-n + 1', '-n - 1', '-n+ 1'
@@ -333,7 +328,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                             span: ident.span,
                         }),
                     }
-                } else if ident.name.eq_ignore_ascii_case("-n-") {
+                } else if ident_name.eq_ignore_ascii_case("-n-") {
                     // syntax: -n- <signless-integer>
                     // examples: '-n- 1'
                     let number = expect_unsigned_int(input)?;
@@ -346,7 +341,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
                         b: -i32::try_from(number)?,
                         span,
                     })
-                } else if let Some(digits) = ident.name.strip_prefix("-n-") {
+                } else if let Some(digits) = ident_name.strip_prefix("-n-") {
                     // syntax: -n-<ndashdigit-ident>
                     // examples: '-n-1'
                     if digits.chars().any(|c| !c.is_ascii_digit()) {
@@ -693,10 +688,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     });
                 }
                 let value = if token.escaped {
-                    handle_escape(raw).map_err(|kind| Error {
-                        kind,
-                        span: token.span.clone(),
-                    })?
+                    handle_escape(raw)
                 } else {
                     CowStr::from(raw)
                 };
@@ -785,11 +777,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("odd") => {
-                Ok(Nth::Odd(input.parse()?))
-            }
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("even") => {
-                Ok(Nth::Even(input.parse()?))
+            Token::Ident(ident) => {
+                let name = ident.name();
+                if name.eq_ignore_ascii_case("odd") {
+                    input.parse().map(Nth::Odd)
+                } else if name.eq_ignore_ascii_case("even") {
+                    input.parse().map(Nth::Even)
+                } else {
+                    input.parse().map(Nth::AnPlusB)
+                }
             }
             Token::Number(..) => {
                 let number: Number = expect!(input, Number).try_into()?;
@@ -802,7 +798,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
                     })
                 }
             }
-            _ => Ok(Nth::AnPlusB(input.parse()?)),
+            _ => input.parse().map(Nth::AnPlusB),
         }
     }
 }

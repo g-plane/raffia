@@ -374,7 +374,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
         }
 
         let keyword_in = expect!(input, Ident);
-        if keyword_in.name != "in" {
+        if keyword_in.name() != "in" {
             return Err(Error {
                 kind: ErrorKind::ExpectSassKeyword("in"),
                 span: keyword_in.span,
@@ -418,7 +418,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
 
         let optional = if let Some(exclamation) = eat!(input, Exclamation) {
             let keyword = expect_without_ws_or_comments!(input, Ident);
-            if keyword.name.eq_ignore_ascii_case("optional") {
+            if keyword.name().eq_ignore_ascii_case("optional") {
                 let span = Span {
                     start: exclamation.span.start,
                     end: keyword.span.end,
@@ -459,7 +459,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
         let binding = input.parse()?;
 
         let keyword_from = expect!(input, Ident);
-        if keyword_from.name != "from" {
+        if keyword_from.name() != "from" {
             return Err(Error {
                 kind: ErrorKind::ExpectSassKeyword("from"),
                 span: keyword_from.span,
@@ -468,13 +468,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
         let start = input.parse()?;
 
         let keyword_to_or_through = expect!(input, Ident);
-        if keyword_to_or_through.name != "to" && keyword_to_or_through.name != "through" {
+        let keyword_to_or_through_name = keyword_to_or_through.name();
+        if keyword_to_or_through_name != "to" && keyword_to_or_through_name != "through" {
             return Err(Error {
                 kind: ErrorKind::ExpectSassKeyword("to"),
                 span: keyword_from.span,
             });
         }
-        let is_exclusive = keyword_to_or_through.name == "to";
+        let is_exclusive = keyword_to_or_through_name == "to";
         let end = input.parse()?;
 
         let body = input.parse::<SimpleBlock>()?;
@@ -588,10 +589,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
         let mut else_clause = None;
 
         while let Token::AtKeyword(at_keyword) = peek!(input) {
-            if at_keyword.ident.name == "else" {
+            if at_keyword.ident.name() == "else" {
                 bump!(input);
                 match peek!(input) {
-                    Token::Ident(ident) if ident.name == "if" => {
+                    Token::Ident(ident) if ident.name() == "if" => {
                         bump!(input);
                         else_if_clauses.push(input.parse()?);
                     }
@@ -620,7 +621,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
         let quote = first.raw.chars().next().unwrap();
         debug_assert!(quote == '\'' || quote == '"');
         let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedStrElement::Static(first.try_into()?)];
+        let mut elements = vec![SassInterpolatedStrElement::Static(first.into())];
 
         let mut is_parsing_static_part = false;
         loop {
@@ -628,7 +629,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
                 let token = input.tokenizer.scan_string_template(quote)?;
                 let tail = token.tail;
                 let end = token.span.end;
-                elements.push(SassInterpolatedStrElement::Static(token.try_into()?));
+                elements.push(SassInterpolatedStrElement::Static(token.into()));
                 if tail {
                     span.end = end;
                     break;
@@ -664,7 +665,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
             }
         };
         let mut span = first.span.clone();
-        let mut elements = vec![SassInterpolatedUrlElement::Static(first.try_into()?)];
+        let mut elements = vec![SassInterpolatedUrlElement::Static(first.into())];
 
         let mut is_parsing_static_part = false;
         loop {
@@ -672,7 +673,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
                 let token = input.tokenizer.scan_url_template()?;
                 let tail = token.tail;
                 let end = token.span.end;
-                elements.push(SassInterpolatedUrlElement::Static(token.try_into()?));
+                elements.push(SassInterpolatedUrlElement::Static(token.into()));
                 if tail {
                     span.end = end;
                     break;
@@ -788,7 +789,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
 
         let path = input.parse()?;
         let namespace = match peek!(input) {
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("as") => {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("as") => {
                 bump!(input);
                 input.parse().map(Some)?
             }
@@ -797,7 +798,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
 
         let mut config = vec![];
         match peek!(input) {
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("with") => {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
                 bump!(input);
                 expect!(input, LParen);
                 loop {

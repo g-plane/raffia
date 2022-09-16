@@ -5,8 +5,8 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::{handle_escape, token, Token},
-    util::{CowStr, LastOfNonEmpty},
+    tokenizer::{token, Token},
+    util::{handle_escape, CowStr, LastOfNonEmpty},
     Parse, Syntax,
 };
 
@@ -83,7 +83,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
         match peek!(self) {
             Token::Ident(token) => {
-                if token.name.eq_ignore_ascii_case("url") {
+                if token.name().eq_ignore_ascii_case("url") {
                     if let Ok(url) = self.try_parse(Url::parse) {
                         return Ok(ComponentValue::Url(url));
                     }
@@ -664,10 +664,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
         let token = expect!(input, Hash);
         let raw = token.raw;
         let value = if token.escaped {
-            handle_escape(raw).map_err(|kind| Error {
-                kind,
-                span: token.span.clone(),
-            })?
+            handle_escape(raw)
         } else {
             CowStr::from(raw)
         };
@@ -743,14 +740,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        expect!(input, Str).try_into()
+        Ok(expect!(input, Str).into())
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let prefix = expect!(input, Ident);
-        if !prefix.name.eq_ignore_ascii_case("url") {
+        if !prefix.name().eq_ignore_ascii_case("url") {
             return Err(Error {
                 kind: ErrorKind::ExpectUrl,
                 span: prefix.span,
@@ -832,10 +829,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
         match input.tokenizer.scan_url_raw_or_template()? {
             Token::UrlRaw(url) => {
                 let value = if url.escaped {
-                    handle_escape(url.raw).map_err(|kind| Error {
-                        kind,
-                        span: url.span.clone(),
-                    })?
+                    handle_escape(url.raw)
                 } else {
                     CowStr::from(url.raw)
                 };

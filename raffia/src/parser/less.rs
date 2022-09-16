@@ -59,7 +59,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
         let quote = first.raw.chars().next().unwrap();
         debug_assert!(quote == '\'' || quote == '"');
         let mut span = first.span.clone();
-        let mut elements = vec![LessInterpolatedStrElement::Static(first.try_into()?)];
+        let mut elements = vec![LessInterpolatedStrElement::Static(first.into())];
 
         let mut is_parsing_static_part = false;
         loop {
@@ -67,7 +67,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
                 let token = input.tokenizer.scan_string_template(quote)?;
                 let tail = token.tail;
                 let end = token.span.end;
-                elements.push(LessInterpolatedStrElement::Static(token.try_into()?));
+                elements.push(LessInterpolatedStrElement::Static(token.into()));
                 if tail {
                     span.end = end;
                     break;

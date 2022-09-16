@@ -12,7 +12,7 @@ use crate::{
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::Ident(token) if token.name.eq_ignore_ascii_case("not") => {
+            Token::Ident(token) if token.name().eq_ignore_ascii_case("not") => {
                 let keyword = input.parse::<Ident>()?;
                 let condition = input.parse::<SupportsInParens>()?;
                 let span = Span {
@@ -32,35 +32,34 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
                 let first = input.parse::<SupportsInParens>()?;
                 let mut span = first.span().clone();
                 let mut conditions = vec![SupportsConditionKind::SupportsInParens(first)];
-                loop {
-                    match peek!(input) {
-                        Token::Ident(token) if token.name.eq_ignore_ascii_case("and") => {
-                            let ident = input.parse::<Ident>()?;
-                            let condition = input.parse::<SupportsInParens>()?;
-                            let span = Span {
-                                start: ident.span.start,
-                                end: condition.span().end,
-                            };
-                            conditions.push(SupportsConditionKind::And(SupportsAnd {
-                                keyword: ident,
-                                condition,
-                                span,
-                            }));
-                        }
-                        Token::Ident(token) if token.name.eq_ignore_ascii_case("or") => {
-                            let ident = input.parse::<Ident>()?;
-                            let condition = input.parse::<SupportsInParens>()?;
-                            let span = Span {
-                                start: ident.span.start,
-                                end: condition.span().end,
-                            };
-                            conditions.push(SupportsConditionKind::Or(SupportsOr {
-                                keyword: ident,
-                                condition,
-                                span,
-                            }));
-                        }
-                        _ => break,
+                while let Token::Ident(ident) = peek!(input) {
+                    let name = ident.name();
+                    if name.eq_ignore_ascii_case("and") {
+                        let ident = input.parse::<Ident>()?;
+                        let condition = input.parse::<SupportsInParens>()?;
+                        let span = Span {
+                            start: ident.span.start,
+                            end: condition.span().end,
+                        };
+                        conditions.push(SupportsConditionKind::And(SupportsAnd {
+                            keyword: ident,
+                            condition,
+                            span,
+                        }));
+                    } else if name.eq_ignore_ascii_case("or") {
+                        let ident = input.parse::<Ident>()?;
+                        let condition = input.parse::<SupportsInParens>()?;
+                        let span = Span {
+                            start: ident.span.start,
+                            end: condition.span().end,
+                        };
+                        conditions.push(SupportsConditionKind::Or(SupportsOr {
+                            keyword: ident,
+                            condition,
+                            span,
+                        }));
+                    } else {
+                        break;
                     }
                 }
                 if let Some(last) = conditions.last() {

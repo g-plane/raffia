@@ -24,11 +24,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMedia<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMediaValue<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("true") => {
-                input.parse().map(CustomMediaValue::True)
-            }
-            Token::Ident(ident) if ident.name.eq_ignore_ascii_case("false") => {
-                input.parse().map(CustomMediaValue::False)
+            Token::Ident(ident) => {
+                let name = ident.name();
+                if name.eq_ignore_ascii_case("true") {
+                    input.parse().map(CustomMediaValue::True)
+                } else if name.eq_ignore_ascii_case("false") {
+                    input.parse().map(CustomMediaValue::False)
+                } else {
+                    input.parse().map(CustomMediaValue::MediaQueryList)
+                }
             }
             _ => input.parse().map(CustomMediaValue::MediaQueryList),
         }

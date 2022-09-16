@@ -27,7 +27,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let at_keyword = expect!(input, AtKeyword);
 
-        let at_rule_name = &at_keyword.ident.name;
+        let at_rule_name = at_keyword.ident.name();
         let (prelude, block, end) = if at_rule_name.eq_ignore_ascii_case("media") {
             let prelude = input
                 .try_parse(MediaQueryList::parse)

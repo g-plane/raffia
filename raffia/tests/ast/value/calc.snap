@@ -221,7 +221,7 @@ Stylesheet(
             value: [
               Ident(Ident(
                 kind: "Ident",
-                name: "calc",
+                escaped: false,
                 raw: "calc",
                 span: Span(
                   start: 59,
@@ -269,7 +269,7 @@ Stylesheet(
                 ),
                 unit: Ident(
                   kind: "Ident",
-                  name: "px",
+                  escaped: false,
                   raw: "px",
                   span: Span(
                     start: 72,

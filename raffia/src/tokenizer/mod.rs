@@ -2,7 +2,7 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     pos::Span,
-    util::CowStr,
+    util::handle_escape,
 };
 use std::{cmp::Ordering, iter::Peekable, str::CharIndices};
 pub(crate) use symbol::TokenSymbol;
@@ -10,6 +10,7 @@ pub use token::Token;
 use token::*;
 
 mod convert;
+mod misc;
 mod symbol;
 pub mod token;
 
@@ -345,18 +346,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         debug_assert!(start < end);
         let raw = unsafe { self.source.get_unchecked(start..end) };
         let span = Span { start, end };
-        Ok(Ident {
-            name: if escaped {
-                handle_escape(raw).map_err(|kind| Error {
-                    kind,
-                    span: span.clone(),
-                })?
-            } else {
-                CowStr::from(raw)
-            },
-            raw,
-            span,
-        })
+        Ok(Ident { raw, escaped, span })
     }
 
     fn scan_escape(&mut self, backslash_consumed: bool) -> PResult<usize> {
@@ -1202,43 +1192,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             _ => false,
         }
     }
-}
-
-pub(crate) fn handle_escape(s: &str) -> Result<CowStr, ErrorKind> {
-    let mut escaped = String::with_capacity(s.len());
-    let mut chars = s.char_indices().peekable();
-    while let Some((_, c)) = chars.next() {
-        if c == '\\' {
-            match chars.next() {
-                Some((start, c)) if c.is_ascii_hexdigit() => {
-                    let mut count: usize = 1;
-                    while let Some((_, c)) = chars.peek() {
-                        if c.is_ascii_hexdigit() && count < 6 {
-                            count += 1;
-                            chars.next();
-                        } else {
-                            // according to https://www.w3.org/TR/css-syntax-3/#hex-digit,
-                            // consume a whitespace
-                            if c.is_ascii_whitespace() {
-                                chars.next();
-                            }
-                            break;
-                        }
-                    }
-                    let unicode = s
-                        .get(start..start + count)
-                        .and_then(|hexdigits| u32::from_str_radix(hexdigits, 16).ok())
-                        .ok_or(ErrorKind::InvalidEscape)?;
-                    escaped.push(char::from_u32(unicode).unwrap_or(char::REPLACEMENT_CHARACTER));
-                }
-                Some((_, c)) => escaped.push(c),
-                None => return Err(ErrorKind::InvalidEscape),
-            }
-        } else {
-            escaped.push(c);
-        }
-    }
-    Ok(CowStr::from(escaped))
 }
 
 #[inline]

@@ -311,7 +311,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         statements.push(Statement::AtRule(at_rule));
                     }
                     Syntax::Scss | Syntax::Sass => {
-                        let at_keyword_name = at_keyword.ident.name.clone();
+                        let at_keyword_name = at_keyword.ident.name();
                         if let Some(statement) = self.parse_sass_at_rule(&at_keyword_name)? {
                             statements.push(statement);
                         } else {

@@ -8,24 +8,19 @@ use crate::{
     util::CowStr,
 };
 
-impl<'a> TryFrom<token::Str<'a>> for Str<'a> {
-    type Error = Error;
-
-    fn try_from(str: token::Str<'a>) -> PResult<Self> {
+impl<'a> From<token::Str<'a>> for Str<'a> {
+    fn from(str: token::Str<'a>) -> Self {
         let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
         let value = if str.escaped {
-            handle_escape(raw_without_quotes).map_err(|kind| Error {
-                kind,
-                span: str.span.clone(),
-            })?
+            handle_escape(raw_without_quotes)
         } else {
             CowStr::from(raw_without_quotes)
         };
-        Ok(Self {
+        Self {
             value,
             raw: str.raw,
             span: str.span,
-        })
+        }
     }
 }
 
@@ -71,7 +66,7 @@ impl TryFrom<token::Number<'_>> for i32 {
 impl<'a> From<token::Ident<'a>> for Ident<'a> {
     fn from(ident: token::Ident<'a>) -> Self {
         Self {
-            name: ident.name,
+            name: ident.name(),
             raw: ident.raw,
             span: ident.span,
         }
@@ -81,17 +76,15 @@ impl<'a> From<token::Ident<'a>> for Ident<'a> {
 impl<'a> From<token::Ident<'a>> for InterpolableIdentStaticPart<'a> {
     fn from(ident: token::Ident<'a>) -> Self {
         Self {
-            value: ident.name,
+            value: ident.name(),
             raw: ident.raw,
             span: ident.span,
         }
     }
 }
 
-impl<'s> TryFrom<token::StrTemplate<'s>> for InterpolableStrStaticPart<'s> {
-    type Error = Error;
-
-    fn try_from(token: token::StrTemplate<'s>) -> PResult<Self> {
+impl<'s> From<token::StrTemplate<'s>> for InterpolableStrStaticPart<'s> {
+    fn from(token: token::StrTemplate<'s>) -> Self {
         let raw_without_quotes = if token.tail {
             unsafe { token.raw.get_unchecked(0..token.raw.len() - 1) }
         } else if token.head {
@@ -100,37 +93,29 @@ impl<'s> TryFrom<token::StrTemplate<'s>> for InterpolableStrStaticPart<'s> {
             token.raw
         };
         let value = if token.escaped {
-            handle_escape(raw_without_quotes).map_err(|kind| Error {
-                kind,
-                span: token.span.clone(),
-            })?
+            handle_escape(raw_without_quotes)
         } else {
             CowStr::from(raw_without_quotes)
         };
-        Ok(Self {
+        Self {
             value,
             raw: token.raw,
             span: token.span,
-        })
+        }
     }
 }
 
-impl<'s> TryFrom<token::UrlTemplate<'s>> for InterpolableUrlStaticPart<'s> {
-    type Error = Error;
-
-    fn try_from(token: token::UrlTemplate<'s>) -> PResult<Self> {
+impl<'s> From<token::UrlTemplate<'s>> for InterpolableUrlStaticPart<'s> {
+    fn from(token: token::UrlTemplate<'s>) -> Self {
         let value = if token.escaped {
-            handle_escape(token.raw).map_err(|kind| Error {
-                kind,
-                span: token.span.clone(),
-            })?
+            handle_escape(token.raw)
         } else {
             CowStr::from(token.raw)
         };
-        Ok(Self {
+        Self {
             value,
             raw: token.raw,
             span: token.span,
-        })
+        }
     }
 }
