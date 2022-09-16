@@ -108,3 +108,13 @@ where
         }
     }
 }
+
+impl<T> SpanIgnoredEq for Box<T>
+where
+    T: SpanIgnoredEq,
+{
+    #[inline]
+    fn span_ignored_eq(&self, other: &Self) -> bool {
+        self.as_ref().span_ignored_eq(other.as_ref())
+    }
+}
