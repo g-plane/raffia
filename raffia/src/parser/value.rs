@@ -1,5 +1,3 @@
-use token::TokenWithSpan;
-
 use super::{state::QualifiedRuleContext, Parser};
 use crate::{
     ast::*,
@@ -7,7 +5,7 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::{token, Token},
+    tokenizer::{Token, TokenWithSpan},
     util::{handle_escape, CowStr, LastOfNonEmpty},
     Parse, Syntax,
 };
@@ -71,7 +69,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
-        match &peek!(self).token {
+        let token_with_span = peek!(self);
+        match &token_with_span.token {
             Token::Ident(token) => {
                 if token.name().eq_ignore_ascii_case("url") {
                     if let Ok(url) = self.try_parse(Url::parse) {
@@ -179,7 +178,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .map(ComponentValue::InterpolableStr),
             _ => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
-                span: peek!(self).span.clone(),
+                span: token_with_span.span.clone(),
             }),
         }
     }
@@ -615,7 +614,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
             end: span.end,
         };
         let value = Number::try_from_token(dimension_token.value, value_span)?;
-        let unit = dimension_token.unit.into_with_span(unit_span);
+        let unit = Ident::from_token(dimension_token.unit, unit_span);
         let unit_name = &unit.name;
         if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
@@ -701,7 +700,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Ident<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (token, span) = expect!(input, Ident);
-        Ok(token.into_with_span(span))
+        Ok(Ident::from_token(token, span))
     }
 }
 
@@ -833,7 +832,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end,
             };
             Ok(Url {
-                name: prefix.into_with_span(prefix_span),
+                name: Ident::from_token(prefix, prefix_span),
                 value: Some(UrlValue::Str(value)),
                 modifiers,
                 span,
@@ -844,7 +843,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: prefix.into_with_span(prefix_span),
+                name: Ident::from_token(prefix, prefix_span),
                 value: Some(UrlValue::Raw(value)),
                 modifiers: vec![],
                 span,
@@ -856,7 +855,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: prefix.into_with_span(prefix_span),
+                name: Ident::from_token(prefix, prefix_span),
                 value: Some(UrlValue::SassInterpolated(value)),
                 modifiers: vec![],
                 span,

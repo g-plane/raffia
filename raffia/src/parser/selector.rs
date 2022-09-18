@@ -5,12 +5,11 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::{token, Token},
+    tokenizer::{token, Token, TokenWithSpan},
     util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
 use smallvec::SmallVec;
-use token::TokenWithSpan;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
@@ -492,7 +491,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 token: Token::Asterisk(..),
                 ..
             } => {
-                let asterisk_span = expect!(input, Asterisk).1;
+                let asterisk_span = bump!(input).span;
                 let bar_token_span = expect!(input, Bar).1;
                 let name = input.parse::<InterpolableIdent>()?;
 
@@ -516,7 +515,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 token: Token::Bar(..),
                 ..
             } => {
-                let (_, bar_token_span) = expect!(input, Bar);
+                let bar_token_span = bump!(input).span;
                 let name = input.parse::<InterpolableIdent>()?;
 
                 let start = bar_token_span.start;
@@ -1154,14 +1153,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         enum IdentOrAsterisk<'s> {
             Ident(InterpolableIdent<'s>),
-            Asterisk((token::Asterisk, Span)),
+            Asterisk(Span),
         }
 
         let ident_or_asterisk = match &peek!(input).token {
             Token::Ident(..) | Token::HashLBrace(..) => {
                 input.parse().map(IdentOrAsterisk::Ident).map(Some)?
             }
-            Token::Asterisk(..) => Some(IdentOrAsterisk::Asterisk(expect!(input, Asterisk))),
+            Token::Asterisk(..) => Some(IdentOrAsterisk::Asterisk(bump!(input).span)),
             Token::Bar(..) => None,
             _ => unreachable!(),
         };
@@ -1174,9 +1173,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                 .as_ref()
                 .map(|t| match t {
                     IdentOrAsterisk::Ident(ident) => ident.span().end == span.start,
-                    IdentOrAsterisk::Asterisk((_, asterisk_span)) => {
-                        asterisk_span.end == span.start
-                    }
+                    IdentOrAsterisk::Asterisk(asterisk_span) => asterisk_span.end == span.start,
                 })
                 .unwrap_or(true) =>
             {
@@ -1191,12 +1188,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                             span,
                         }
                     }
-                    Some(IdentOrAsterisk::Asterisk(asterisk)) => {
-                        let mut span = asterisk.1.clone();
+                    Some(IdentOrAsterisk::Asterisk(asterisk_span)) => {
+                        let mut span = asterisk_span.clone();
                         span.end = bar_token_span.end;
                         NsPrefix {
                             kind: Some(NsPrefixKind::Universal(NsPrefixUniversal {
-                                span: asterisk.1,
+                                span: asterisk_span,
                             })),
                             span,
                         }
@@ -1262,10 +1259,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                         span,
                     }))
                 }
-                Some(IdentOrAsterisk::Asterisk(asterisk)) => {
+                Some(IdentOrAsterisk::Asterisk(span)) => {
                     Ok(TypeSelector::Universal(UniversalSelector {
                         prefix: None,
-                        span: asterisk.1,
+                        span,
                     }))
                 }
                 None => unreachable!(),

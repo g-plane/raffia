@@ -1,8 +1,7 @@
 use super::{token::Ident, TokenWithSpan};
 use crate::{
-    ast,
     util::{handle_escape, CowStr},
-    Span, SpanIgnoredEq,
+    SpanIgnoredEq,
 };
 
 impl<'s> Ident<'s> {
@@ -12,14 +11,6 @@ impl<'s> Ident<'s> {
             handle_escape(self.raw)
         } else {
             CowStr::from(self.raw)
-        }
-    }
-
-    pub(crate) fn into_with_span(self, span: Span) -> ast::Ident<'s> {
-        ast::Ident {
-            name: self.name(),
-            raw: self.raw,
-            span,
         }
     }
 }

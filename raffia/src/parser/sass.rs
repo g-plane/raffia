@@ -70,88 +70,64 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         loop {
             let operator = match &peek!(self).token {
-                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => {
-                    let token_with_span = expect!(self, Asterisk);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::Multiply,
-                        span: token_with_span.1,
-                    }
-                }
-                Token::Percent(..) if precedence == PRECEDENCE_MULTIPLY => {
-                    let token_with_span = expect!(self, Percent);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::Modulo,
-                        span: token_with_span.1,
-                    }
-                }
-                Token::Plus(..) if precedence == PRECEDENCE_PLUS => {
-                    let token_with_span = expect!(self, Plus);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::Plus,
-                        span: token_with_span.1,
-                    }
-                }
-                Token::Minus(..) if precedence == PRECEDENCE_PLUS => {
-                    let token_with_span = expect!(self, Minus);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::Minus,
-                        span: token_with_span.1,
-                    }
-                }
+                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::Multiply,
+                    span: bump!(self).span,
+                },
+                Token::Percent(..) if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::Modulo,
+                    span: bump!(self).span,
+                },
+                Token::Plus(..) if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::Plus,
+                    span: bump!(self).span,
+                },
+                Token::Minus(..) if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::Minus,
+                    span: bump!(self).span,
+                },
                 Token::GreaterThan(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    let token_with_span = expect!(self, GreaterThan);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::GreaterThan,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
                 Token::GreaterThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    let token_with_span = expect!(self, GreaterThanEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::GreaterThanOrEqual,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
-                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    let token_with_span = expect!(self, LessThan);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::LessThan,
-                        span: token_with_span.1,
-                    }
-                }
+                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::LessThan,
+                    span: bump!(self).span,
+                },
                 Token::LessThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    let token_with_span = expect!(self, LessThanEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::LessThanOrEqual,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
-                Token::EqualEqual(..) if precedence == PRECEDENCE_EQUALITY => {
-                    let token_with_span = expect!(self, EqualEqual);
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::EqualsEquals,
-                        span: token_with_span.1,
-                    }
-                }
+                Token::EqualEqual(..) if precedence == PRECEDENCE_EQUALITY => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::EqualsEquals,
+                    span: bump!(self).span,
+                },
                 Token::ExclamationEqual(..) if precedence == PRECEDENCE_EQUALITY => {
-                    let token_with_span = expect!(self, ExclamationEqual);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::ExclamationEquals,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
                 Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
-                    let token_with_span = expect!(self, Ident);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::And,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
                 Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
-                    let token_with_span = expect!(self, Ident);
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Or,
-                        span: token_with_span.1,
+                        span: bump!(self).span,
                     }
                 }
                 _ => break,
@@ -292,27 +268,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match &peek!(self).token {
-            Token::Plus(..) => {
-                let span = bump!(self).span;
-                SassUnaryOperator {
-                    kind: SassUnaryOperatorKind::Plus,
-                    span,
-                }
-            }
-            Token::Minus(..) => {
-                let span = bump!(self).span;
-                SassUnaryOperator {
-                    kind: SassUnaryOperatorKind::Minus,
-                    span,
-                }
-            }
-            Token::Ident(token) if token.raw == "not" => {
-                let span = bump!(self).span;
-                SassUnaryOperator {
-                    kind: SassUnaryOperatorKind::Not,
-                    span,
-                }
-            }
+            Token::Plus(..) => SassUnaryOperator {
+                kind: SassUnaryOperatorKind::Plus,
+                span: bump!(self).span,
+            },
+            Token::Minus(..) => SassUnaryOperator {
+                kind: SassUnaryOperatorKind::Minus,
+                span: bump!(self).span,
+            },
+            Token::Ident(token) if token.raw == "not" => SassUnaryOperator {
+                kind: SassUnaryOperatorKind::Not,
+                span: bump!(self).span,
+            },
             _ => return self.parse_component_value_atom(),
         };
 
@@ -751,11 +718,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
             }
             match &peek!(input).token {
                 Token::RBrace(..) if input.syntax == Syntax::Scss => {
-                    end = expect!(input, RBrace).1.end;
+                    end = bump!(input).span.end;
                     break;
                 }
                 Token::Dedent(..) if input.syntax == Syntax::Sass => {
-                    end = expect!(input, Dedent).1.end;
+                    end = bump!(input).span.end;
                     break;
                 }
                 _ => decls.push(input.parse::<Declaration>()?),

@@ -1,5 +1,3 @@
-use token::TokenWithSpan;
-
 use super::{
     state::{ParserState, QualifiedRuleContext},
     Parser,
@@ -10,7 +8,7 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
-    tokenizer::{token, Token},
+    tokenizer::{Token, TokenWithSpan},
     util::PairedToken,
     Parse, Syntax,
 };
