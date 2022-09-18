@@ -1,3 +1,5 @@
+use token::TokenWithSpan;
+
 use super::{
     state::{ParserState, QualifiedRuleContext},
     Parser,
@@ -28,7 +30,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             None
         };
 
-        let colon = expect!(input, Colon);
+        let (_, colon_span) = expect!(input, Colon);
         let value = {
             let mut parser = input.with_state(ParserState {
                 qualified_rule_ctx: Some(QualifiedRuleContext::DeclarationValue),
@@ -39,14 +41,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     let mut values = Vec::with_capacity(3);
                     let mut pairs = Vec::with_capacity(1);
                     loop {
-                        match peek!(parser) {
+                        match &peek!(parser).token {
                             Token::RBrace(..)
                             | Token::Semicolon(..)
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
                             _ => {
-                                match peek!(parser) {
+                                match &peek!(parser).token {
                                     Token::LParen(..) => {
                                         pairs.push(PairedToken::Paren);
                                     }
@@ -76,7 +78,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                     }
                                     _ => {}
                                 }
-                                values.push(ComponentValue::Token(bump!(parser)));
+                                values.push(ComponentValue::TokenWithSpan(bump!(parser)));
                             }
                         }
                     }
@@ -85,7 +87,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                 _ => {
                     let mut values = Vec::with_capacity(3);
                     loop {
-                        match peek!(parser) {
+                        match &peek!(parser).token {
                             Token::RBrace(..)
                             | Token::RParen(..)
                             | Token::Semicolon(..)
@@ -112,7 +114,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             }
         };
 
-        let important = if let Token::Exclamation(..) = peek!(input) {
+        let important = if let Token::Exclamation(..) = &peek!(input).token {
             input.parse::<ImportantAnnotation>().map(Some)?
         } else {
             None
@@ -125,7 +127,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             } else if let Some(last) = value.last() {
                 last.span().end
             } else {
-                colon.span.end
+                colon_span.end
             },
         };
         Ok(Declaration {
@@ -140,10 +142,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportantAnnotation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let exclamation = expect!(input, Exclamation);
-        let ident: Ident = expect!(input, Ident).into();
+        let (_, span) = expect!(input, Exclamation);
+        let ident: Ident = input.parse::<Ident>()?;
         let span = Span {
-            start: exclamation.span.start,
+            start: span.start,
             end: ident.span.end,
         };
         if ident.name.eq_ignore_ascii_case("important") {
@@ -211,10 +213,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     {
         let is_sass = self.syntax == Syntax::Sass;
         let start = if is_sass {
-            if let Some(token) = eat!(self, Indent) {
-                token.span.end
+            if let Some((_, span)) = eat!(self, Indent) {
+                span.end
             } else {
-                let offset = peek!(self).span().start;
+                let offset = peek!(self).span.start;
                 return Ok(SimpleBlock {
                     statements: vec![],
                     span: Span {
@@ -224,14 +226,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 });
             }
         } else {
-            expect!(self, LBrace).span.start
+            expect!(self, LBrace).1.start
         };
 
         let statements = f(self)?;
 
         if is_sass {
             match peek!(self) {
-                Token::Dedent(token::Dedent { span }) | Token::Eof(token::Eof { span }) => {
+                TokenWithSpan {
+                    token: Token::Dedent(..) | Token::Eof(..),
+                    span,
+                } => {
                     let end = span.start;
                     bump!(self);
                     Ok(SimpleBlock {
@@ -245,13 +250,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }),
             }
         } else {
-            let r_brace = expect!(self, RBrace);
+            let end = expect!(self, RBrace).1.end;
             Ok(SimpleBlock {
                 statements,
-                span: Span {
-                    start,
-                    end: r_brace.span.end,
-                },
+                span: Span { start, end },
             })
         }
     }
@@ -260,7 +262,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut statements = Vec::with_capacity(1);
         loop {
             let mut is_block_element = false;
-            match peek!(self) {
+            match &peek!(self).token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
@@ -340,7 +342,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {}
             };
-            match peek!(self) {
+            match &peek!(self).token {
                 Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
                 _ => {
                     if self.syntax == Syntax::Sass {

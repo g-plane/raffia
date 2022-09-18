@@ -4,13 +4,13 @@ use crate::{ast::*, error::PResult, peek, tokenizer::Token, Parse, Spanned};
 // https://www.w3.org/TR/css-namespaces-3/#syntax
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let prefix = match peek!(input) {
+        let prefix = match &peek!(input).token {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 input.parse::<InterpolableIdent>().map(Some)?
             }
             _ => None,
         };
-        let uri = match peek!(input) {
+        let uri = match &peek!(input).token {
             Token::Str(..) | Token::StrTemplate(..) => {
                 input.parse().map(NamespacePreludeUri::Str)?
             }

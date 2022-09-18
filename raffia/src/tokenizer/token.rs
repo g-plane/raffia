@@ -27,7 +27,7 @@ pub struct LineComment<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum Token<'s> {
     Eof(Eof),
@@ -89,390 +89,304 @@ pub enum Token<'s> {
     UrlTemplate(UrlTemplate<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Ampersand {
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct TokenWithSpan<'s> {
+    pub token: Token<'s>,
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Asterisk {
-    pub span: Span,
-}
+pub struct Ampersand {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct AsteriskEqual {
-    pub span: Span,
-}
+pub struct Asterisk {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct AsteriskEqual {}
+
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct AtKeyword<'s> {
     pub ident: Ident<'s>,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct AtLBraceVar<'s> {
     pub ident: Ident<'s>,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct BadStr<'s> {
     pub raw: &'s str,
     pub escaped: bool,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Bar {
-    pub span: Span,
-}
+pub struct Bar {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct BarBar {
-    pub span: Span,
-}
+pub struct BarBar {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct BarEqual {
-    pub span: Span,
-}
+pub struct BarEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct CaretEqual {
-    pub span: Span,
-}
+pub struct CaretEqual {}
 
 /// `-->`
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Cdc {
-    pub span: Span,
-}
+pub struct Cdc {}
 
 /// `<!--`
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Cdo {
-    pub span: Span,
-}
+pub struct Cdo {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Colon {
-    pub span: Span,
-}
+pub struct Colon {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct ColonColon {
-    pub span: Span,
-}
+pub struct ColonColon {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Comma {
-    pub span: Span,
-}
+pub struct Comma {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Dedent {
-    pub span: Span,
-}
+pub struct Dedent {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Dimension<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct DollarEqual {
-    pub span: Span,
-}
+pub struct DollarEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct DollarVar<'s> {
     pub ident: Ident<'s>,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Dot {
-    pub span: Span,
-}
+pub struct Dot {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct DotDotDot {
-    pub span: Span,
-}
+pub struct DotDotDot {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Eof {
-    pub span: Span,
-}
+pub struct Eof {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Equal {
-    pub span: Span,
-}
+pub struct Equal {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct EqualEqual {
-    pub span: Span,
-}
+pub struct EqualEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Exclamation {
-    pub span: Span,
-}
+pub struct Exclamation {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct ExclamationEqual {
-    pub span: Span,
-}
+pub struct ExclamationEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct GreaterThan {
-    pub span: Span,
-}
+pub struct GreaterThan {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct GreaterThanEqual {
-    pub span: Span,
-}
+pub struct GreaterThanEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Hash<'s> {
     /// raw string without beginning `#` char
     pub raw: &'s str,
     pub escaped: bool,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct HashLBrace {
-    pub span: Span,
-}
+pub struct HashLBrace {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Ident<'s> {
     pub escaped: bool,
     pub raw: &'s str,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Indent {
-    pub span: Span,
-}
+pub struct Indent {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct LBrace {
-    pub span: Span,
-}
+pub struct LBrace {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct LBracket {
-    pub span: Span,
-}
+pub struct LBracket {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct LessThan {
-    pub span: Span,
-}
+pub struct LessThan {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct LessThanEqual {
-    pub span: Span,
-}
+pub struct LessThanEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Linebreak {
-    pub span: Span,
-}
+pub struct Linebreak {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct LParen {
-    pub span: Span,
-}
+pub struct LParen {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Minus {
-    pub span: Span,
-}
+pub struct Minus {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Number<'s> {
     pub raw: &'s str,
-    pub span: Span,
 }
 
 /// U+0023 `#`
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct NumberSign {
-    pub span: Span,
-}
+pub struct NumberSign {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Percent {
-    pub span: Span,
-}
+pub struct Percent {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Percentage<'s> {
     pub value: Number<'s>,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Plus {
-    pub span: Span,
-}
+pub struct Plus {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct PlusUnderscore {
-    pub span: Span,
-}
+pub struct PlusUnderscore {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Question {
-    pub span: Span,
-}
+pub struct Question {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct RBrace {
-    pub span: Span,
-}
+pub struct RBrace {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct RBracket {
-    pub span: Span,
-}
+pub struct RBracket {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct RParen {
-    pub span: Span,
-}
+pub struct RParen {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Semicolon {
-    pub span: Span,
-}
+pub struct Semicolon {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Solidus {
-    pub span: Span,
-}
+pub struct Solidus {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct Str<'s> {
     pub raw: &'s str,
     pub escaped: bool,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct StrTemplate<'s> {
@@ -480,38 +394,31 @@ pub struct StrTemplate<'s> {
     pub escaped: bool,
     pub head: bool,
     pub tail: bool,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct Tilde {
-    pub span: Span,
-}
+pub struct Tilde {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct TildeEqual {
-    pub span: Span,
-}
+pub struct TildeEqual {}
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct UrlRaw<'s> {
     pub raw: &'s str,
     pub escaped: bool,
-    pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct UrlTemplate<'s> {
     pub raw: &'s str,
     pub escaped: bool,
     pub tail: bool,
-    pub span: Span,
 }

@@ -4,7 +4,7 @@ use crate::{ast::*, error::PResult, peek, tokenizer::Token, Parse, Spanned};
 // https://drafts.csswg.org/css-fonts/Overview.bs
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FontFamilyName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Str(..) | Token::StrTemplate(..) => input.parse().map(FontFamilyName::Str),
             _ => {
                 let first = input.parse::<InterpolableIdent>()?;
@@ -12,7 +12,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FontFamilyName<'s> {
 
                 let mut idents = vec![first];
                 while let Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) =
-                    peek!(input)
+                    &peek!(input).token
                 {
                     idents.push(input.parse()?);
                 }

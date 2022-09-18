@@ -1,6 +1,6 @@
 //! All kinds of AST nodes are here.
 
-use crate::{pos::Span, tokenizer::Token, util::CowStr};
+use crate::{pos::Span, tokenizer::TokenWithSpan, util::CowStr};
 use raffia_macro::{SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
@@ -227,7 +227,7 @@ pub enum ComponentValue<'s> {
     SassParentSelector(NestingSelector),
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
-    Token(Token<'s>),
+    TokenWithSpan(TokenWithSpan<'s>),
     UnicodeRange(UnicodeRange<'s>),
     Url(Url<'s>),
 }
@@ -1551,7 +1551,7 @@ pub struct TagNameSelector<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct TokenSeq<'s> {
-    pub tokens: Vec<Token<'s>>,
+    pub tokens: Vec<TokenWithSpan<'s>>,
     pub span: Span,
 }
 

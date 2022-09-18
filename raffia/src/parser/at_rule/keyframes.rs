@@ -37,7 +37,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Percentage(..) => Ok(KeyframeSelector::Percentage(input.parse()?)),
             _ => {
                 let ident = input.parse()?;
@@ -62,7 +62,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeSelector<'s> {
 // https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let ident = input.parse()?;
                 match &ident {
@@ -91,7 +91,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             while let Token::Percentage(..)
             | Token::Ident(..)
             | Token::HashLBrace(..)
-            | Token::AtLBraceVar(..) = peek!(parser)
+            | Token::AtLBraceVar(..) = &peek!(parser).token
             {
                 statements.push(Statement::KeyframeBlock(parser.parse()?));
             }

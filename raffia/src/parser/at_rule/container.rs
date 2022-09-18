@@ -5,13 +5,13 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{Token, TokenWithSpan},
     Parse,
 };
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("not") => {
                 let container_condition_not = input.parse::<ContainerConditionNot>()?;
                 let span = container_condition_not.span.clone();
@@ -24,12 +24,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {
                 let first = input.parse::<QueryInParens>()?;
                 let mut span = first.span().clone();
                 let mut conditions = vec![ContainerConditionKind::QueryInParens(first)];
-                if let Token::Ident(ident) = peek!(input) {
+                if let Token::Ident(ident) = &peek!(input).token {
                     let name = ident.name();
                     if name.eq_ignore_ascii_case("and") {
                         loop {
                             conditions.push(ContainerConditionKind::And(input.parse()?));
-                            match peek!(input) {
+                            match &peek!(input).token {
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("and") => {
                                 }
                                 _ => break,
@@ -38,7 +38,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {
                     } else if name.eq_ignore_ascii_case("or") {
                         loop {
                             conditions.push(ContainerConditionKind::Or(input.parse()?));
-                            match peek!(input) {
+                            match &peek!(input).token {
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("or") => {}
                                 _ => break,
                             }
@@ -136,11 +136,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
             expect!(input, RParen);
             Ok(query_in_parens)
         } else {
-            let style_keyword = expect!(input, Ident);
+            let (style_keyword, span) = expect!(input, Ident);
             if !style_keyword.name().eq_ignore_ascii_case("style") {
                 return Err(Error {
                     kind: ErrorKind::ExpectStyleQuery,
-                    span: style_keyword.span,
+                    span,
                 });
             }
             expect_without_ws_or_comments!(input, LParen);
@@ -153,7 +153,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("not") => {
                 let style_condition_not = input.parse::<StyleConditionNot>()?;
                 let span = style_condition_not.span.clone();
@@ -166,12 +166,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleCondition<'s> {
                 let first = input.parse::<StyleInParens>()?;
                 let mut span = first.span().clone();
                 let mut conditions = vec![StyleConditionKind::StyleInParens(first)];
-                if let Token::Ident(ident) = peek!(input) {
+                if let Token::Ident(ident) = &peek!(input).token {
                     let name = ident.name();
                     if name.eq_ignore_ascii_case("and") {
                         loop {
                             conditions.push(StyleConditionKind::And(input.parse()?));
-                            match peek!(input) {
+                            match &peek!(input).token {
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("and") => {
                                 }
                                 _ => break,
@@ -180,7 +180,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleCondition<'s> {
                     } else if name.eq_ignore_ascii_case("or") {
                         loop {
                             conditions.push(StyleConditionKind::Or(input.parse()?));
-                            match peek!(input) {
+                            match &peek!(input).token {
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("or") => {}
                                 _ => break,
                             }
@@ -304,7 +304,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerPrelude<'s> {
             }
             InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("style") => {
                 match peek!(parser) {
-                    Token::LParen(l_paren) if l_paren.span.start == ident.span.end => Err(Error {
+                    TokenWithSpan {
+                        token: Token::LParen(..),
+                        span,
+                    } if span.start == ident.span.end => Err(Error {
                         kind: ErrorKind::TryParseError,
                         span: ident.span,
                     }),

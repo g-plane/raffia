@@ -3,12 +3,13 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     pos::Span,
-    tokenizer::{Token, Tokenizer},
+    tokenizer::{token::TokenWithSpan, Tokenizer},
 };
 pub use builder::ParserBuilder;
 
 mod at_rule;
 mod builder;
+mod convert;
 mod less;
 mod macros;
 mod sass;
@@ -28,7 +29,7 @@ pub struct Parser<'cmt, 's: 'cmt> {
     tokenizer: Tokenizer<'cmt, 's>,
     state: ParserState,
     recoverable_errors: Vec<Error>,
-    cached_token: Option<Token<'s>>,
+    cached_token: Option<TokenWithSpan<'s>>,
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {

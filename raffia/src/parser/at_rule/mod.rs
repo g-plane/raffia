@@ -25,7 +25,7 @@ mod supports;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let at_keyword = expect!(input, AtKeyword);
+        let (at_keyword, at_keyword_span) = expect!(input, AtKeyword);
 
         let at_rule_name = at_keyword.ident.name();
         let (prelude, block, end) = if at_rule_name.eq_ignore_ascii_case("media") {
@@ -86,7 +86,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 .as_ref()
                 .map(|block| block.span.end)
                 .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end))
-                .unwrap_or(at_keyword.span.end);
+                .unwrap_or(at_keyword_span.end);
             (prelude, block, end)
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
             let namespace = input.parse::<NamespacePrelude>()?;
@@ -179,7 +179,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let prelude = input
                 .parse_unknown_at_rule_prelude()?
                 .map(AtRulePrelude::Unknown);
-            let block = match peek!(input) {
+            let block = match &peek!(input).token {
                 Token::LBrace(..) | Token::Indent(..) => Some(input.parse::<SimpleBlock>()?),
                 _ => None,
             };
@@ -187,16 +187,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 .as_ref()
                 .map(|block| block.span.end)
                 .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end))
-                .unwrap_or(at_keyword.span.end);
+                .unwrap_or(at_keyword_span.end);
             (prelude, block, end)
         };
 
         let span = Span {
-            start: at_keyword.span.start,
+            start: at_keyword_span.start,
             end,
         };
         Ok(AtRule {
-            name: at_keyword.ident.into(),
+            name: Ident::from_token(
+                at_keyword.ident,
+                Span {
+                    start: at_keyword_span.start + 1,
+                    end: at_keyword_span.end,
+                },
+            ),
             prelude,
             block,
             span,
@@ -208,7 +214,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<TokenSeq<'s>>> {
         let mut tokens = vec![];
         loop {
-            match peek!(self) {
+            match &peek!(self).token {
                 Token::LBrace(..)
                 | Token::Semicolon(..)
                 | Token::Indent(..)

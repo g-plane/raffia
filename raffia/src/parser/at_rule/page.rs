@@ -5,7 +5,7 @@ use crate::{
     error::PResult,
     expect, peek,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{Token, TokenWithSpan},
     Parse,
 };
 
@@ -17,7 +17,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelector<'s> {
         let start;
         let mut end;
 
-        if let Token::Colon(..) = peek!(input) {
+        if let Token::Colon(..) = &peek!(input).token {
             let first = input.parse::<PseudoPage>()?;
             start = first.span.start;
             end = first.span.end;
@@ -32,7 +32,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelector<'s> {
 
         loop {
             match peek!(input) {
-                Token::Colon(colon) if colon.span.start == end => {
+                TokenWithSpan {
+                    token: Token::Colon(..),
+                    span,
+                } if span.start == end => {
                     let item = input.parse::<PseudoPage>()?;
                     end = item.span.end;
                     pseudo.push(item);
@@ -68,14 +71,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelectorList<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoPage<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let colon = expect!(input, Colon);
+        let (_, colon_span) = expect!(input, Colon);
         let name = input.parse::<InterpolableIdent>()?;
 
         let name_span = name.span();
-        input.assert_no_ws_or_comment(&colon.span, name_span)?;
+        input.assert_no_ws_or_comment(&colon_span, name_span)?;
 
         let span = Span {
-            start: colon.span.start,
+            start: colon_span.start,
             end: name_span.end,
         };
         Ok(PseudoPage { name, span })

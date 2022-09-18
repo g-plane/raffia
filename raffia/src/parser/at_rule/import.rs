@@ -1,33 +1,37 @@
 use super::Parser;
 use crate::{
     ast::*,
+    bump,
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{Token, TokenWithSpan},
     Parse,
 };
 
 // https://www.w3.org/TR/css-cascade-5/#at-import
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let href = match peek!(input) {
+        let href = match &peek!(input).token {
             Token::Str(..) | Token::StrTemplate(..) => input.parse().map(ImportPreludeHref::Str)?,
             _ => input.parse().map(ImportPreludeHref::Url)?,
         };
         let mut span = href.span().clone();
 
-        let layer = match peek!(input) {
+        let layer = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("layer") => {
                 let ident = input.parse::<Ident>()?;
                 let layer = match peek!(input) {
-                    Token::LParen(l_paren) if l_paren.span.start == ident.span.end => {
-                        expect!(input, LParen);
+                    TokenWithSpan {
+                        token: Token::LParen(..),
+                        span,
+                    } if span.start == ident.span.end => {
+                        bump!(input);
                         let args = vec![input.parse().map(ComponentValue::LayerName)?];
-                        let r_paren = expect!(input, RParen);
+                        let end = expect!(input, RParen).1.end;
                         let span = Span {
                             start: ident.span.start,
-                            end: r_paren.span.end,
+                            end,
                         };
                         ImportPreludeLayer::WithName(Function {
                             name: InterpolableIdent::Literal(ident),
@@ -44,11 +48,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
         };
 
         let supports = input.try_parse(|parser| {
-            let ident = expect!(parser, Ident);
+            let (ident, span) = expect!(parser, Ident);
             if !ident.name().eq_ignore_ascii_case("supports") {
                 return Err(Error {
                     kind: ErrorKind::TryParseError,
-                    span: ident.span,
+                    span,
                 });
             }
 
@@ -67,7 +71,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
             span.end = supports.span().end;
         }
 
-        let media = match peek!(input) {
+        let media = match &peek!(input).token {
             Token::Semicolon(..) => None,
             _ => {
                 let media = input.parse::<MediaQueryList>()?;

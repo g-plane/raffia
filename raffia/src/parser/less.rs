@@ -1,11 +1,12 @@
 use super::Parser;
 use crate::{
     ast::*,
+    bump,
     config::Syntax,
     error::PResult,
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{Token, TokenWithSpan},
     Parse,
 };
 
@@ -13,14 +14,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        let first = match peek!(self) {
+        let first = match &peek!(self).token {
             Token::Ident(..) => {
-                let ident = expect!(self, Ident);
+                let (ident, ident_span) = expect!(self, Ident);
                 match peek!(self) {
-                    Token::AtLBraceVar(token) if ident.span.end == token.span.start => {
-                        LessInterpolatedIdentElement::Static(ident.into())
+                    TokenWithSpan {
+                        token: Token::AtLBraceVar(..),
+                        span,
+                    } if ident_span.end == span.start => LessInterpolatedIdentElement::Static(
+                        InterpolableIdentStaticPart::from_token(ident, ident_span),
+                    ),
+                    _ => {
+                        return Ok(InterpolableIdent::Literal(Ident::from_token(
+                            ident, ident_span,
+                        )))
                     }
-                    _ => return Ok(InterpolableIdent::Literal(ident.into())),
                 }
             }
             Token::AtLBraceVar(..) => self.parse().map(LessInterpolatedIdentElement::Variable)?,
@@ -32,12 +40,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         elements.push(first);
         loop {
             match peek!(self) {
-                Token::Ident(token) if span.end == token.span.start => {
-                    let ident = expect!(self, Ident);
-                    span.end = ident.span.end;
-                    elements.push(LessInterpolatedIdentElement::Static(ident.into()));
+                TokenWithSpan {
+                    token: Token::Ident(..),
+                    span: ident_span,
+                } if span.end == ident_span.start => {
+                    let (ident, ident_span) = expect!(self, Ident);
+                    span.end = ident_span.end;
+                    elements.push(LessInterpolatedIdentElement::Static(
+                        InterpolableIdentStaticPart::from_token(ident, ident_span),
+                    ));
                 }
-                Token::AtLBraceVar(token) if span.end == token.span.start => {
+                TokenWithSpan {
+                    token: Token::AtLBraceVar(..),
+                    span: at_brace_var_span,
+                } if span.end == at_brace_var_span.start => {
                     let variable = self.parse::<LessVariableInterpolation>()?;
                     span.end = variable.span.end;
                     elements.push(LessInterpolatedIdentElement::Variable(variable));
@@ -55,36 +71,37 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let first = expect!(input, StrTemplate);
+        let (first, first_span) = expect!(input, StrTemplate);
         let quote = first.raw.chars().next().unwrap();
         debug_assert!(quote == '\'' || quote == '"');
-        let mut span = first.span.clone();
-        let mut elements = vec![LessInterpolatedStrElement::Static(first.into())];
+        let mut span = first_span.clone();
+        let mut elements = vec![LessInterpolatedStrElement::Static(
+            InterpolableStrStaticPart::from_token(first, first_span),
+        )];
 
         let mut is_parsing_static_part = false;
         loop {
             if is_parsing_static_part {
-                let token = input.tokenizer.scan_string_template(quote)?;
+                let (token, str_tpl_span) = input.tokenizer.scan_string_template(quote)?;
                 let tail = token.tail;
-                let end = token.span.end;
-                elements.push(LessInterpolatedStrElement::Static(token.into()));
+                let end = str_tpl_span.end;
+                elements.push(LessInterpolatedStrElement::Static(
+                    InterpolableStrStaticPart::from_token(token, str_tpl_span),
+                ));
                 if tail {
                     span.end = end;
                     break;
                 }
             } else {
                 // '@' is consumed, so '{' left only
-                let l_brace = expect!(input, LBrace);
-                let name = expect_without_ws_or_comments!(input, Ident).into();
+                let start = expect!(input, LBrace).1.start - 1;
+                let (name, name_span) = expect_without_ws_or_comments!(input, Ident);
 
-                let r_brace = expect!(input, RBrace);
+                let end = expect!(input, RBrace).1.end;
                 elements.push(LessInterpolatedStrElement::Variable(
                     LessVariableInterpolation {
-                        name,
-                        span: Span {
-                            start: l_brace.span.start - 1,
-                            end: r_brace.span.end,
-                        },
+                        name: Ident::from_token(name, name_span),
+                        span: Span { start, end },
                     },
                 ));
             }
@@ -99,21 +116,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);
 
-        match peek!(input) {
-            Token::Plus(..) => {
-                let token = expect!(input, Plus);
-                Ok(Some(LessPropertyMerge {
-                    kind: LessPropertyMergeKind::Comma,
-                    span: token.span,
-                }))
-            }
-            Token::PlusUnderscore(..) => {
-                let token = expect!(input, PlusUnderscore);
-                Ok(Some(LessPropertyMerge {
-                    kind: LessPropertyMergeKind::Space,
-                    span: token.span,
-                }))
-            }
+        match &peek!(input).token {
+            Token::Plus(..) => Ok(Some(LessPropertyMerge {
+                kind: LessPropertyMergeKind::Comma,
+                span: bump!(input).span,
+            })),
+            Token::PlusUnderscore(..) => Ok(Some(LessPropertyMerge {
+                kind: LessPropertyMergeKind::Space,
+                span: bump!(input).span,
+            })),
             _ => Ok(None),
         }
     }
@@ -121,10 +132,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariable<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let at_keyword = expect!(input, AtKeyword);
+        let (at_keyword, span) = expect!(input, AtKeyword);
         Ok(LessVariable {
-            name: at_keyword.ident.into(),
-            span: at_keyword.span,
+            name: Ident::from_token(
+                at_keyword.ident,
+                Span {
+                    start: span.start + 1,
+                    end: span.end,
+                },
+            ),
+            span,
         })
     }
 }
@@ -149,10 +166,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableInterpolation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let at_lbrace_var = expect!(input, AtLBraceVar);
+        let (at_lbrace_var, span) = expect!(input, AtLBraceVar);
         Ok(LessVariableInterpolation {
-            name: at_lbrace_var.ident.into(),
-            span: at_lbrace_var.span,
+            name: Ident::from_token(
+                at_lbrace_var.ident,
+                Span {
+                    start: span.start + 2,
+                    end: span.end - 1,
+                },
+            ),
+            span,
         })
     }
 }

@@ -1,3 +1,5 @@
+use token::TokenWithSpan;
+
 use super::{state::QualifiedRuleContext, Parser};
 use crate::{
     ast::*,
@@ -32,35 +34,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         loop {
-            let operator = match peek!(self) {
-                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => {
-                    let token = expect!(self, Asterisk);
-                    CalcOperator {
-                        kind: CalcOperatorKind::Multiply,
-                        span: token.span,
-                    }
-                }
-                Token::Solidus(..) if precedence == PRECEDENCE_MULTIPLY => {
-                    let token = expect!(self, Solidus);
-                    CalcOperator {
-                        kind: CalcOperatorKind::Division,
-                        span: token.span,
-                    }
-                }
-                Token::Plus(..) if precedence == PRECEDENCE_PLUS => {
-                    let token = expect!(self, Plus);
-                    CalcOperator {
-                        kind: CalcOperatorKind::Plus,
-                        span: token.span,
-                    }
-                }
-                Token::Minus(..) if precedence == PRECEDENCE_PLUS => {
-                    let token = expect!(self, Minus);
-                    CalcOperator {
-                        kind: CalcOperatorKind::Minus,
-                        span: token.span,
-                    }
-                }
+            let operator = match &peek!(self).token {
+                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => CalcOperator {
+                    kind: CalcOperatorKind::Multiply,
+                    span: bump!(self).span,
+                },
+                Token::Solidus(..) if precedence == PRECEDENCE_MULTIPLY => CalcOperator {
+                    kind: CalcOperatorKind::Division,
+                    span: bump!(self).span,
+                },
+                Token::Plus(..) if precedence == PRECEDENCE_PLUS => CalcOperator {
+                    kind: CalcOperatorKind::Plus,
+                    span: bump!(self).span,
+                },
+                Token::Minus(..) if precedence == PRECEDENCE_PLUS => CalcOperator {
+                    kind: CalcOperatorKind::Minus,
+                    span: bump!(self).span,
+                },
                 _ => break,
             };
 
@@ -81,7 +71,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_component_value_atom(&mut self) -> PResult<ComponentValue<'s>> {
-        match peek!(self) {
+        match &peek!(self).token {
             Token::Ident(token) => {
                 if token.name().eq_ignore_ascii_case("url") {
                     if let Ok(url) = self.try_parse(Url::parse) {
@@ -91,7 +81,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 let ident = self.parse::<InterpolableIdent>()?;
                 let ident_end = ident.span().end;
                 match peek!(self) {
-                    Token::LParen(token) if token.span.start == ident_end => {
+                    TokenWithSpan {
+                        token: Token::LParen(..),
+                        span,
+                    } if span.start == ident_end => {
                         return match ident {
                             InterpolableIdent::Literal(ident)
                                 if ident.name.eq_ignore_ascii_case("src") =>
@@ -101,9 +94,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             ident => self.parse_function(ident).map(ComponentValue::Function),
                         };
                     }
-                    Token::Dot(token)
-                        if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
-                            && token.span.start == ident_end =>
+                    TokenWithSpan {
+                        token: Token::Dot(..),
+                        span,
+                    } if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                        && span.start == ident_end =>
                     {
                         if let InterpolableIdent::Literal(namespace) = ident {
                             return self
@@ -116,19 +111,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 match ident {
                     InterpolableIdent::Literal(ident) if ident.raw.eq_ignore_ascii_case("u") => {
                         match peek!(self) {
-                            Token::Plus(token) if token.span.start == ident_end => self
+                            TokenWithSpan {
+                                token: Token::Plus(..),
+                                span,
+                            } if span.start == ident_end => self
                                 .parse_unicode_range(ident)
                                 .map(ComponentValue::UnicodeRange),
-                            Token::Number(token)
-                                if token.raw.starts_with('+') && token.span.start == ident_end =>
-                            {
-                                self.parse_unicode_range(ident)
-                                    .map(ComponentValue::UnicodeRange)
-                            }
-                            Token::Dimension(token)
-                                if token.value.raw.starts_with('+')
-                                    && token.span.start == ident_end =>
-                            {
+                            TokenWithSpan {
+                                token: Token::Number(token),
+                                span,
+                            } if token.raw.starts_with('+') && span.start == ident_end => self
+                                .parse_unicode_range(ident)
+                                .map(ComponentValue::UnicodeRange),
+                            TokenWithSpan {
+                                token: Token::Dimension(token),
+                                span,
+                            } if token.value.raw.starts_with('+') && span.start == ident_end => {
                                 self.parse_unicode_range(ident)
                                     .map(ComponentValue::UnicodeRange)
                             }
@@ -179,9 +177,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .parse()
                 .map(InterpolableStr::LessInterpolated)
                 .map(ComponentValue::InterpolableStr),
-            token => Err(Error {
+            _ => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
-                span: token.span().clone(),
+                span: peek!(self).span.clone(),
             }),
         }
     }
@@ -197,7 +195,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut values = Vec::with_capacity(4);
         values.push(first);
         loop {
-            match peek!(self) {
+            match &peek!(self).token {
                 Token::RBrace(..)
                 | Token::RParen(..)
                 | Token::Dedent(..)
@@ -242,9 +240,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
         expect!(self, LParen);
-        let values = match peek!(self) {
-            Token::RParen(..) => vec![],
-            _ => match &name {
+        let values = if let Token::RParen(..) = &peek!(self).token {
+            vec![]
+        } else {
+            match &name {
                 InterpolableIdent::Literal(ident)
                     if ident.name.eq_ignore_ascii_case("calc")
                         || ident.name.eq_ignore_ascii_case("-webkit-calc")
@@ -272,7 +271,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 {
                     let mut values = Vec::with_capacity(1);
                     loop {
-                        match peek!(self) {
+                        match &peek!(self).token {
                             Token::RParen(..) => break,
                             Token::Comma(..) => {
                                 values.push(ComponentValue::Delimiter(self.parse()?));
@@ -291,12 +290,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     )?
                     .values
                 }
-            },
+            }
         };
-        let r_paren = expect!(self, RParen);
+        let end = expect!(self, RParen).1.end;
         let span = Span {
             start: name.span().start,
-            end: r_paren.span.end,
+            end,
         };
         Ok(Function {
             name,
@@ -329,18 +328,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_src_url(&mut self, name: Ident<'s>) -> PResult<Url<'s>> {
         // caller of `parse_src_url` should make sure there're no whitespaces before paren
         expect!(self, LParen);
-        let value = match peek!(self) {
+        let value = match &peek!(self).token {
             Token::Str(..) | Token::StrTemplate(..) => {
                 Some(UrlValue::Str(self.parse::<InterpolableStr>()?))
             }
             _ => None,
         };
-        let modifiers = match peek!(self) {
+        let modifiers = match &peek!(self).token {
             Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 let mut modifiers = Vec::with_capacity(1);
                 loop {
                     modifiers.push(self.parse()?);
-                    if let Token::RParen(..) = peek!(self) {
+                    if let Token::RParen(..) = &peek!(self).token {
                         break;
                     }
                 }
@@ -348,10 +347,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             _ => vec![],
         };
-        let r_paren = expect!(self, RParen);
+        let end = expect!(self, RParen).1.end;
         let span = Span {
             start: name.span.start,
-            end: r_paren.span.end,
+            end,
         };
         Ok(Url {
             name,
@@ -364,64 +363,78 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_unicode_range(&mut self, prefix_ident: Ident<'s>) -> PResult<UnicodeRange<'s>> {
         let prefix = prefix_ident.raw.chars().next().unwrap();
         let (span_start, span_end) = match bump!(self) {
-            Token::Plus(plus_token) => {
-                let start = plus_token.span.start;
+            TokenWithSpan {
+                token: Token::Plus(..),
+                span: plus_token_span,
+            } => {
+                let start = plus_token_span.start;
                 let mut end = match self.tokenizer.bump_without_ws_or_comments()? {
-                    Token::Ident(ident_token) => ident_token.span.end,
-                    Token::Question(question_token) => question_token.span.end,
-                    token => {
+                    TokenWithSpan {
+                        token: Token::Ident(..) | Token::Question(..),
+                        span,
+                    } => span.end,
+                    TokenWithSpan { token, span } => {
                         return Err(Error {
                             kind: ErrorKind::Unexpected("?", token.symbol()),
-                            span: token.span().clone(),
+                            span: span.clone(),
                         });
                     }
                 };
                 loop {
                     match peek!(self) {
-                        Token::Question(token) if token.span.start == end => {
-                            end = token.span.end;
-                            bump!(self);
+                        TokenWithSpan {
+                            token: Token::Question(..),
+                            span,
+                        } if span.start == end => {
+                            end = bump!(self).span.end;
                         }
                         _ => break,
                     }
                 }
                 (start, end)
             }
-            Token::Dimension(dimension_token) => {
-                let start = dimension_token.span.start;
-                let mut end = dimension_token.span.end;
+            TokenWithSpan {
+                token: Token::Dimension(..),
+                span: dimension_token_span,
+            } => {
+                let start = dimension_token_span.start;
+                let mut end = dimension_token_span.end;
                 loop {
                     match peek!(self) {
-                        Token::Question(token) if token.span.start == end => {
-                            end = token.span.end;
-                            bump!(self);
+                        TokenWithSpan {
+                            token: Token::Question(..),
+                            span,
+                        } if span.start == end => {
+                            end = bump!(self).span.end;
                         }
                         _ => break,
                     }
                 }
                 (start, end)
             }
-            Token::Number(number_token) => {
-                let start = number_token.span.start;
-                let mut end = number_token.span.end;
-                match peek!(self) {
-                    Token::Question(token) => {
-                        end = token.span.end;
-                        bump!(self);
+            TokenWithSpan {
+                token: Token::Number(..),
+                span: number_token_span,
+            } => {
+                let start = number_token_span.start;
+                let mut end = number_token_span.end;
+                match &peek!(self).token {
+                    Token::Question(..) => {
+                        end = bump!(self).span.end;
                         loop {
                             match peek!(self) {
-                                Token::Question(token) if token.span.start == end => {
-                                    end = token.span.end;
-                                    bump!(self);
+                                TokenWithSpan {
+                                    token: Token::Question(..),
+                                    span,
+                                } if span.start == end => {
+                                    end = bump!(self).span.end;
                                 }
                                 _ => break,
                             }
                         }
                     }
-                    Token::Dimension(token::Dimension { span, .. })
-                    | Token::Number(token::Number { span, .. }) => {
-                        end = span.end;
-                        bump!(self);
+                    Token::Dimension(..) | Token::Number(..) => {
+                        end = bump!(self).span.end;
                     }
                     _ => {}
                 }
@@ -527,21 +540,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for BracketBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let l_bracket = expect!(input, LBracket);
+        let start = expect!(input, LBracket).1.start;
         let mut value = Vec::with_capacity(3);
         loop {
-            match peek!(input) {
+            match &peek!(input).token {
                 Token::RBracket(..) => break,
                 _ => value.push(input.parse()?),
             }
         }
-        let r_bracket = expect!(input, RBracket);
+        let end = expect!(input, RBracket).1.end;
         Ok(BracketBlock {
             value,
-            span: Span {
-                start: l_bracket.span.start,
-                end: r_bracket.span.end,
-            },
+            span: Span { start, end },
         })
     }
 }
@@ -567,15 +577,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         use crate::tokenizer::token::*;
         match bump!(input) {
-            Token::Solidus(Solidus { span }) => Ok(Delimiter {
+            TokenWithSpan {
+                token: Token::Solidus(..),
+                span,
+            } => Ok(Delimiter {
                 kind: DelimiterKind::Solidus,
                 span,
             }),
-            Token::Comma(Comma { span }) => Ok(Delimiter {
+            TokenWithSpan {
+                token: Token::Comma(..),
+                span,
+            } => Ok(Delimiter {
                 kind: DelimiterKind::Comma,
                 span,
             }),
-            Token::Semicolon(Semicolon { span }) => Ok(Delimiter {
+            TokenWithSpan {
+                token: Token::Semicolon(..),
+                span,
+            } => Ok(Delimiter {
                 kind: DelimiterKind::Semicolon,
                 span,
             }),
@@ -586,11 +605,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let dimension_token = expect!(input, Dimension);
-        let value = dimension_token.value.try_into()?;
-        let unit: Ident = dimension_token.unit.into();
+        let (dimension_token, span) = expect!(input, Dimension);
+        let value_span = Span {
+            start: span.start,
+            end: span.start + dimension_token.value.raw.len(),
+        };
+        let unit_span = Span {
+            start: span.start + dimension_token.value.raw.len(),
+            end: span.end,
+        };
+        let value = Number::try_from_token(dimension_token.value, value_span)?;
+        let unit = dimension_token.unit.into_with_span(unit_span);
         let unit_name = &unit.name;
-        let span = dimension_token.span;
         if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
             || unit_name.eq_ignore_ascii_case("rem")
@@ -661,24 +687,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let token = expect!(input, Hash);
+        let (token, span) = expect!(input, Hash);
         let raw = token.raw;
         let value = if token.escaped {
             handle_escape(raw)
         } else {
             CowStr::from(raw)
         };
-        Ok(HexColor {
-            value,
-            raw,
-            span: token.span,
-        })
+        Ok(HexColor { value, raw, span })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Ident<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        Ok(expect!(input, Ident).into())
+        let (token, span) = expect!(input, Ident);
+        Ok(token.into_with_span(span))
     }
 }
 
@@ -705,18 +728,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableIdent<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::Str(..) => input.parse().map(InterpolableStr::Literal),
-            Token::StrTemplate(token) => match input.syntax {
+            TokenWithSpan {
+                token: Token::Str(..),
+                ..
+            } => input.parse().map(InterpolableStr::Literal),
+            TokenWithSpan {
+                token: Token::StrTemplate(..),
+                span,
+            } => match input.syntax {
                 Syntax::Scss | Syntax::Sass => input.parse().map(InterpolableStr::SassInterpolated),
                 Syntax::Less => input.parse().map(InterpolableStr::LessInterpolated),
                 Syntax::Css => Err(Error {
                     kind: ErrorKind::UnexpectedTemplateInCss,
-                    span: token.span.clone(),
+                    span: span.clone(),
                 }),
             },
-            token => Err(Error {
+            TokenWithSpan { span, .. } => Err(Error {
                 kind: ErrorKind::ExpectString,
-                span: token.span().clone(),
+                span: span.clone(),
             }),
         }
     }
@@ -724,44 +753,73 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableStr<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Number<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        expect!(input, Number).try_into()
+        let (number, span) = expect!(input, Number);
+        number
+            .raw
+            .parse()
+            .map_err(|_| Error {
+                kind: ErrorKind::InvalidNumber,
+                span: span.clone(),
+            })
+            .map(|value| Self {
+                value,
+                raw: number.raw,
+                span,
+            })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let token = expect!(input, Percentage);
+        let (token, span) = expect!(input, Percentage);
         Ok(Percentage {
-            value: token.value.try_into()?,
-            span: token.span,
+            value: Number::try_from_token(
+                token.value,
+                Span {
+                    start: span.start,
+                    end: span.end - 1,
+                },
+            )?,
+            span,
         })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        Ok(expect!(input, Str).into())
+        let (str, span) = expect!(input, Str);
+        let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
+        let value = if str.escaped {
+            handle_escape(raw_without_quotes)
+        } else {
+            CowStr::from(raw_without_quotes)
+        };
+        Ok(Str {
+            value,
+            raw: str.raw,
+            span,
+        })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let prefix = expect!(input, Ident);
+        let (prefix, prefix_span) = expect!(input, Ident);
         if !prefix.name().eq_ignore_ascii_case("url") {
             return Err(Error {
                 kind: ErrorKind::ExpectUrl,
-                span: prefix.span,
+                span: prefix_span,
             });
         }
 
         expect_without_ws_or_comments!(input, LParen);
         if let Ok(value) = input.try_parse(InterpolableStr::parse) {
-            let modifiers = match peek!(input) {
+            let modifiers = match &peek!(input).token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     let mut modifiers = Vec::with_capacity(1);
                     loop {
                         modifiers.push(input.parse()?);
-                        if let Token::RParen(..) = peek!(input) {
+                        if let Token::RParen(..) = &peek!(input).token {
                             break;
                         }
                     }
@@ -769,24 +827,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 }
                 _ => vec![],
             };
-            let r_paren = expect!(input, RParen);
+            let end = expect!(input, RParen).1.end;
             let span = Span {
-                start: prefix.span.start,
-                end: r_paren.span.end,
+                start: prefix_span.start,
+                end,
             };
             Ok(Url {
-                name: prefix.into(),
+                name: prefix.into_with_span(prefix_span),
                 value: Some(UrlValue::Str(value)),
                 modifiers,
                 span,
             })
         } else if let Ok(value) = input.try_parse(|parser| parser.parse::<UrlRaw>()) {
             let span = Span {
-                start: prefix.span.start,
+                start: prefix_span.start,
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: prefix.into(),
+                name: prefix.into_with_span(prefix_span),
                 value: Some(UrlValue::Raw(value)),
                 modifiers: vec![],
                 span,
@@ -794,11 +852,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
         } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
             let value = input.parse::<SassInterpolatedUrl>()?;
             let span = Span {
-                start: prefix.span.start,
+                start: prefix_span.start,
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: prefix.into(),
+                name: prefix.into_with_span(prefix_span),
                 value: Some(UrlValue::SassInterpolated(value)),
                 modifiers: vec![],
                 span,
@@ -816,7 +874,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlModifier<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let ident = input.parse::<InterpolableIdent>()?;
         match peek!(input) {
-            Token::LParen(l_paren) if ident.span().end == l_paren.span.start => {
+            TokenWithSpan {
+                token: Token::LParen(..),
+                span,
+            } if ident.span().end == span.start => {
                 input.parse_function(ident).map(UrlModifier::Function)
             }
             _ => Ok(UrlModifier::Ident(ident)),
@@ -827,7 +888,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlModifier<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match input.tokenizer.scan_url_raw_or_template()? {
-            Token::UrlRaw(url) => {
+            TokenWithSpan {
+                token: Token::UrlRaw(url),
+                span,
+            } => {
                 let value = if url.escaped {
                     handle_escape(url.raw)
                 } else {
@@ -836,12 +900,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
                 Ok(UrlRaw {
                     value,
                     raw: url.raw,
-                    span: url.span,
+                    span,
                 })
             }
-            token => Err(Error {
+            TokenWithSpan { token, span } => Err(Error {
                 kind: ErrorKind::Unexpected("<url>", token.symbol()),
-                span: token.span().clone(),
+                span: span.clone(),
             }),
         }
     }

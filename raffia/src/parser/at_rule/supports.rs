@@ -4,14 +4,14 @@ use crate::{
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
-    tokenizer::Token,
+    tokenizer::{Token, TokenWithSpan},
     Parse,
 };
 
 // https://drafts.csswg.org/css-conditional-3/#at-supports
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Ident(token) if token.name().eq_ignore_ascii_case("not") => {
                 let keyword = input.parse::<Ident>()?;
                 let condition = input.parse::<SupportsInParens>()?;
@@ -32,7 +32,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
                 let first = input.parse::<SupportsInParens>()?;
                 let mut span = first.span().clone();
                 let mut conditions = vec![SupportsConditionKind::SupportsInParens(first)];
-                while let Token::Ident(ident) = peek!(input) {
+                while let Token::Ident(ident) = &peek!(input).token {
                     let name = ident.name();
                     if name.eq_ignore_ascii_case("and") {
                         let ident = input.parse::<Ident>()?;
@@ -74,7 +74,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsCondition<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match peek!(input) {
-            Token::LParen(..) => input
+            TokenWithSpan {
+                token: Token::LParen(..),
+                ..
+            } => input
                 .try_parse(|parser| {
                     parser
                         .parse()
@@ -86,9 +89,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
                     expect!(input, RParen);
                     Ok(SupportsInParens::SupportsCondition(condition))
                 }),
-            token => Err(Error {
+            TokenWithSpan { token, span } => Err(Error {
                 kind: ErrorKind::Unexpected("'('", token.symbol()),
-                span: token.span().clone(),
+                span: span.clone(),
             }),
         }
     }
@@ -96,15 +99,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsDecl<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let l_paren = expect!(input, LParen);
+        let start = expect!(input, LParen).1.start;
         let decl = input.parse()?;
-        let r_paren = expect!(input, RParen);
+        let end = expect!(input, RParen).1.end;
         Ok(SupportsDecl {
             decl,
-            span: Span {
-                start: l_paren.span.start,
-                end: r_paren.span.end,
-            },
+            span: Span { start, end },
         })
     }
 }

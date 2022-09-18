@@ -23,7 +23,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMedia<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomMediaValue<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        match peek!(input) {
+        match &peek!(input).token {
             Token::Ident(ident) => {
                 let name = ident.name();
                 if name.eq_ignore_ascii_case("true") {
