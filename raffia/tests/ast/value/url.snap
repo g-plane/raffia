@@ -882,15 +882,18 @@ Stylesheet(
               ),
             ),
             value: [
-              Str(Str(
-                kind: "Str",
-                raw: "\"http://www.example.com/pinkish.gif\"",
-                escaped: false,
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Str(Str(
+                  kind: "Str",
+                  raw: "\"http://www.example.com/pinkish.gif\"",
+                  escaped: false,
+                )),
                 span: Span(
                   start: 796,
                   end: 832,
                 ),
-              )),
+              ),
             ],
             important: None,
             lessPropertyMerge: None,

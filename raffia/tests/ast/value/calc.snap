@@ -219,75 +219,81 @@ Stylesheet(
               ),
             ),
             value: [
-              Ident(Ident(
-                kind: "Ident",
-                escaped: false,
-                raw: "calc",
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "calc",
+                )),
                 span: Span(
                   start: 59,
                   end: 63,
                 ),
-              )),
-              LParen(LParen(
-                kind: "LParen",
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: LParen(LParen(
+                  kind: "LParen",
+                )),
                 span: Span(
                   start: 63,
                   end: 64,
                 ),
-              )),
-              Percentage(Percentage(
-                kind: "Percentage",
-                value: Number(
-                  kind: "Number",
-                  raw: "10",
-                  span: Span(
-                    start: 64,
-                    end: 66,
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Percentage(Percentage(
+                  kind: "Percentage",
+                  value: Number(
+                    kind: "Number",
+                    raw: "10",
                   ),
-                ),
+                )),
                 span: Span(
                   start: 64,
                   end: 67,
                 ),
-              )),
-              Plus(Plus(
-                kind: "Plus",
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Plus(Plus(
+                  kind: "Plus",
+                )),
                 span: Span(
                   start: 68,
                   end: 69,
                 ),
-              )),
-              Dimension(Dimension(
-                kind: "Dimension",
-                value: Number(
-                  kind: "Number",
-                  raw: "30",
-                  span: Span(
-                    start: 70,
-                    end: 72,
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Dimension(Dimension(
+                  kind: "Dimension",
+                  value: Number(
+                    kind: "Number",
+                    raw: "30",
                   ),
-                ),
-                unit: Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "px",
-                  span: Span(
-                    start: 72,
-                    end: 74,
+                  unit: Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "px",
                   ),
-                ),
+                )),
                 span: Span(
                   start: 70,
                   end: 74,
                 ),
-              )),
-              RParen(RParen(
-                kind: "RParen",
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RParen(RParen(
+                  kind: "RParen",
+                )),
                 span: Span(
                   start: 74,
                   end: 75,
                 ),
-              )),
+              ),
             ],
             important: None,
             lessPropertyMerge: None,

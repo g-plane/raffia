@@ -267,15 +267,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 89,
                         end: 93,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -644,15 +647,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 215,
                         end: 219,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -1021,15 +1027,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 341,
                         end: 345,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -1323,15 +1332,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 461,
                         end: 465,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -1700,15 +1712,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 608,
                         end: 612,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -2077,15 +2092,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 755,
                         end: 759,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -2406,15 +2424,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 902,
                         end: 906,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -2708,15 +2729,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1019,
                         end: 1023,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -3085,15 +3109,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1163,
                         end: 1167,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -3462,15 +3489,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1307,
                         end: 1311,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -3839,15 +3869,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1427,
                         end: 1431,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -4243,15 +4276,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1553,
                         end: 1557,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -4695,15 +4731,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1691,
                         end: 1695,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -5270,15 +5309,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 1877,
                         end: 1881,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -6043,15 +6085,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 2117,
                         end: 2121,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -6816,15 +6861,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 2360,
                         end: 2364,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -7589,15 +7637,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 2603,
                         end: 2607,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -8362,15 +8413,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 2840,
                         end: 2844,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -9012,15 +9066,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3044,
                         end: 3048,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -9413,15 +9470,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3167,
                         end: 3171,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -9814,15 +9874,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3293,
                         end: 3297,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -10215,15 +10278,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3416,
                         end: 3420,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -10616,15 +10682,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3539,
                         end: 3543,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -11017,15 +11086,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3665,
                         end: 3669,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -11418,15 +11490,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3788,
                         end: 3792,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -11819,15 +11894,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 3914,
                         end: 3918,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -12220,15 +12298,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4037,
                         end: 4041,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -12621,15 +12702,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4160,
                         end: 4164,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -13022,15 +13106,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4286,
                         end: 4290,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -13522,15 +13609,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4433,
                         end: 4437,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -14022,15 +14112,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4583,
                         end: 4587,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -14522,15 +14615,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4733,
                         end: 4737,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -15022,15 +15118,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 4880,
                         end: 4884,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -15522,15 +15621,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5030,
                         end: 5034,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -16022,15 +16124,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5180,
                         end: 5184,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -16453,15 +16558,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5315,
                         end: 5319,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -16884,15 +16992,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5450,
                         end: 5454,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -17435,15 +17546,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5606,
                         end: 5610,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -18010,15 +18124,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5765,
                         end: 5769,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -18564,15 +18681,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 5918,
                         end: 5922,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -19139,15 +19259,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6077,
                         end: 6081,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -19966,15 +20089,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6290,
                         end: 6294,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -20514,15 +20640,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6470,
                         end: 6474,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -21062,15 +21191,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6647,
                         end: 6651,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -21487,15 +21619,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6779,
                         end: 6783,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -21888,15 +22023,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 6920,
                         end: 6924,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -22265,15 +22403,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7058,
                         end: 7062,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -22567,15 +22708,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7157,
                         end: 7161,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -22896,15 +23040,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7277,
                         end: 7281,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -23249,15 +23396,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7409,
                         end: 7413,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -23551,15 +23701,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7505,
                         end: 7509,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -24051,15 +24204,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7652,
                         end: 7656,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -24551,15 +24707,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7799,
                         end: 7803,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -25051,15 +25210,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 7952,
                         end: 7956,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -25551,15 +25713,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 8102,
                         end: 8106,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -26051,15 +26216,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 8252,
                         end: 8256,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -26590,15 +26758,18 @@ Stylesheet(
                 ),
               ),
               value: [
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "foo",
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "foo",
+                  )),
                   span: Span(
                     start: 8463,
                     end: 8466,
                   ),
-                )),
+                ),
               ],
               important: None,
               lessPropertyMerge: None,
@@ -26671,15 +26842,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "foo",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "foo",
+                      )),
                       span: Span(
                         start: 8505,
                         end: 8508,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -26734,15 +26908,18 @@ Stylesheet(
                             ),
                           ),
                           value: [
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "foo",
+                              )),
                               span: Span(
                                 start: 8537,
                                 end: 8540,
                               ),
-                            )),
+                            ),
                           ],
                           important: None,
                           lessPropertyMerge: None,
@@ -26855,15 +27032,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 8561,
                         end: 8565,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -26931,45 +27111,60 @@ Stylesheet(
                 ),
               ),
               value: [
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "foo",
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "foo",
+                  )),
                   span: Span(
                     start: 8604,
                     end: 8607,
                   ),
-                )),
-                Minus(Minus(
-                  kind: "Minus",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Minus(Minus(
+                    kind: "Minus",
+                  )),
                   span: Span(
                     start: 8608,
                     end: 8609,
                   ),
-                )),
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "bar",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "bar",
+                  )),
                   span: Span(
                     start: 8610,
                     end: 8613,
                   ),
-                )),
-                LParen(LParen(
-                  kind: "LParen",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: LParen(LParen(
+                    kind: "LParen",
+                  )),
                   span: Span(
                     start: 8614,
                     end: 8615,
                   ),
-                )),
-                RParen(RParen(
-                  kind: "RParen",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: RParen(RParen(
+                    kind: "RParen",
+                  )),
                   span: Span(
                     start: 8615,
                     end: 8616,
                   ),
-                )),
+                ),
               ],
               important: None,
               lessPropertyMerge: None,
@@ -27042,45 +27237,60 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "foo",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "foo",
+                      )),
                       span: Span(
                         start: 8655,
                         end: 8658,
                       ),
-                    )),
-                    Minus(Minus(
-                      kind: "Minus",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Minus(Minus(
+                        kind: "Minus",
+                      )),
                       span: Span(
                         start: 8659,
                         end: 8660,
                       ),
-                    )),
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "bar",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "bar",
+                      )),
                       span: Span(
                         start: 8661,
                         end: 8664,
                       ),
-                    )),
-                    LParen(LParen(
-                      kind: "LParen",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: LParen(LParen(
+                        kind: "LParen",
+                      )),
                       span: Span(
                         start: 8665,
                         end: 8666,
                       ),
-                    )),
-                    RParen(RParen(
-                      kind: "RParen",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: RParen(RParen(
+                        kind: "RParen",
+                      )),
                       span: Span(
                         start: 8666,
                         end: 8667,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -27135,45 +27345,60 @@ Stylesheet(
                             ),
                           ),
                           value: [
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "foo",
+                              )),
                               span: Span(
                                 start: 8696,
                                 end: 8699,
                               ),
-                            )),
-                            Minus(Minus(
-                              kind: "Minus",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Minus(Minus(
+                                kind: "Minus",
+                              )),
                               span: Span(
                                 start: 8700,
                                 end: 8701,
                               ),
-                            )),
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "bar",
+                              )),
                               span: Span(
                                 start: 8702,
                                 end: 8705,
                               ),
-                            )),
-                            LParen(LParen(
-                              kind: "LParen",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: LParen(LParen(
+                                kind: "LParen",
+                              )),
                               span: Span(
                                 start: 8706,
                                 end: 8707,
                               ),
-                            )),
-                            RParen(RParen(
-                              kind: "RParen",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: RParen(RParen(
+                                kind: "RParen",
+                              )),
                               span: Span(
                                 start: 8707,
                                 end: 8708,
                               ),
-                            )),
+                            ),
                           ],
                           important: None,
                           lessPropertyMerge: None,
@@ -27286,15 +27511,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 8729,
                         end: 8733,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -27379,84 +27607,86 @@ Stylesheet(
                           ),
                         ),
                         value: [
-                          Ident(Ident(
-                            kind: "Ident",
-                            escaped: false,
-                            raw: "calc",
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "calc",
+                            )),
                             span: Span(
                               start: 8774,
                               end: 8778,
                             ),
-                          )),
-                          LParen(LParen(
-                            kind: "LParen",
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: LParen(LParen(
+                              kind: "LParen",
+                            )),
                             span: Span(
                               start: 8778,
                               end: 8779,
                             ),
-                          )),
-                          Dimension(Dimension(
-                            kind: "Dimension",
-                            value: Number(
-                              kind: "Number",
-                              raw: "10",
-                              span: Span(
-                                start: 8779,
-                                end: 8781,
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dimension(Dimension(
+                              kind: "Dimension",
+                              value: Number(
+                                kind: "Number",
+                                raw: "10",
                               ),
-                            ),
-                            unit: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "px",
-                              span: Span(
-                                start: 8781,
-                                end: 8783,
+                              unit: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "px",
                               ),
-                            ),
+                            )),
                             span: Span(
                               start: 8779,
                               end: 8783,
                             ),
-                          )),
-                          Plus(Plus(
-                            kind: "Plus",
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Plus(Plus(
+                              kind: "Plus",
+                            )),
                             span: Span(
                               start: 8784,
                               end: 8785,
                             ),
-                          )),
-                          Dimension(Dimension(
-                            kind: "Dimension",
-                            value: Number(
-                              kind: "Number",
-                              raw: "2",
-                              span: Span(
-                                start: 8786,
-                                end: 8787,
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dimension(Dimension(
+                              kind: "Dimension",
+                              value: Number(
+                                kind: "Number",
+                                raw: "2",
                               ),
-                            ),
-                            unit: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "em",
-                              span: Span(
-                                start: 8787,
-                                end: 8789,
+                              unit: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "em",
                               ),
-                            ),
+                            )),
                             span: Span(
                               start: 8786,
                               end: 8789,
                             ),
-                          )),
-                          RParen(RParen(
-                            kind: "RParen",
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RParen(RParen(
+                              kind: "RParen",
+                            )),
                             span: Span(
                               start: 8789,
                               end: 8790,
                             ),
-                          )),
+                          ),
                         ],
                         important: None,
                         lessPropertyMerge: None,
@@ -27491,38 +27721,50 @@ Stylesheet(
                                 ),
                               ),
                               value: [
-                                Ident(Ident(
-                                  kind: "Ident",
-                                  escaped: false,
-                                  raw: "url",
+                                TokenWithSpan(
+                                  type: "TokenWithSpan",
+                                  token: Ident(Ident(
+                                    kind: "Ident",
+                                    escaped: false,
+                                    raw: "url",
+                                  )),
                                   span: Span(
                                     start: 8805,
                                     end: 8808,
                                   ),
-                                )),
-                                LParen(LParen(
-                                  kind: "LParen",
+                                ),
+                                TokenWithSpan(
+                                  type: "TokenWithSpan",
+                                  token: LParen(LParen(
+                                    kind: "LParen",
+                                  )),
                                   span: Span(
                                     start: 8808,
                                     end: 8809,
                                   ),
-                                )),
-                                Ident(Ident(
-                                  kind: "Ident",
-                                  escaped: false,
-                                  raw: "x",
+                                ),
+                                TokenWithSpan(
+                                  type: "TokenWithSpan",
+                                  token: Ident(Ident(
+                                    kind: "Ident",
+                                    escaped: false,
+                                    raw: "x",
+                                  )),
                                   span: Span(
                                     start: 8809,
                                     end: 8810,
                                   ),
-                                )),
-                                RParen(RParen(
-                                  kind: "RParen",
+                                ),
+                                TokenWithSpan(
+                                  type: "TokenWithSpan",
+                                  token: RParen(RParen(
+                                    kind: "RParen",
+                                  )),
                                   span: Span(
                                     start: 8810,
                                     end: 8811,
                                   ),
-                                )),
+                                ),
                               ],
                               important: None,
                               lessPropertyMerge: None,
@@ -27640,84 +27882,86 @@ Stylesheet(
                               ),
                             ),
                             value: [
-                              Ident(Ident(
-                                kind: "Ident",
-                                escaped: false,
-                                raw: "calc",
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: Ident(Ident(
+                                  kind: "Ident",
+                                  escaped: false,
+                                  raw: "calc",
+                                )),
                                 span: Span(
                                   start: 8855,
                                   end: 8859,
                                 ),
-                              )),
-                              LParen(LParen(
-                                kind: "LParen",
+                              ),
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: LParen(LParen(
+                                  kind: "LParen",
+                                )),
                                 span: Span(
                                   start: 8859,
                                   end: 8860,
                                 ),
-                              )),
-                              Dimension(Dimension(
-                                kind: "Dimension",
-                                value: Number(
-                                  kind: "Number",
-                                  raw: "10",
-                                  span: Span(
-                                    start: 8860,
-                                    end: 8862,
+                              ),
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: Dimension(Dimension(
+                                  kind: "Dimension",
+                                  value: Number(
+                                    kind: "Number",
+                                    raw: "10",
                                   ),
-                                ),
-                                unit: Ident(
-                                  kind: "Ident",
-                                  escaped: false,
-                                  raw: "px",
-                                  span: Span(
-                                    start: 8862,
-                                    end: 8864,
+                                  unit: Ident(
+                                    kind: "Ident",
+                                    escaped: false,
+                                    raw: "px",
                                   ),
-                                ),
+                                )),
                                 span: Span(
                                   start: 8860,
                                   end: 8864,
                                 ),
-                              )),
-                              Plus(Plus(
-                                kind: "Plus",
+                              ),
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: Plus(Plus(
+                                  kind: "Plus",
+                                )),
                                 span: Span(
                                   start: 8865,
                                   end: 8866,
                                 ),
-                              )),
-                              Dimension(Dimension(
-                                kind: "Dimension",
-                                value: Number(
-                                  kind: "Number",
-                                  raw: "2",
-                                  span: Span(
-                                    start: 8867,
-                                    end: 8868,
+                              ),
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: Dimension(Dimension(
+                                  kind: "Dimension",
+                                  value: Number(
+                                    kind: "Number",
+                                    raw: "2",
                                   ),
-                                ),
-                                unit: Ident(
-                                  kind: "Ident",
-                                  escaped: false,
-                                  raw: "em",
-                                  span: Span(
-                                    start: 8868,
-                                    end: 8870,
+                                  unit: Ident(
+                                    kind: "Ident",
+                                    escaped: false,
+                                    raw: "em",
                                   ),
-                                ),
+                                )),
                                 span: Span(
                                   start: 8867,
                                   end: 8870,
                                 ),
-                              )),
-                              RParen(RParen(
-                                kind: "RParen",
+                              ),
+                              TokenWithSpan(
+                                type: "TokenWithSpan",
+                                token: RParen(RParen(
+                                  kind: "RParen",
+                                )),
                                 span: Span(
                                   start: 8870,
                                   end: 8871,
                                 ),
-                              )),
+                              ),
                             ],
                             important: None,
                             lessPropertyMerge: None,
@@ -27752,38 +27996,50 @@ Stylesheet(
                                     ),
                                   ),
                                   value: [
-                                    Ident(Ident(
-                                      kind: "Ident",
-                                      escaped: false,
-                                      raw: "url",
+                                    TokenWithSpan(
+                                      type: "TokenWithSpan",
+                                      token: Ident(Ident(
+                                        kind: "Ident",
+                                        escaped: false,
+                                        raw: "url",
+                                      )),
                                       span: Span(
                                         start: 8886,
                                         end: 8889,
                                       ),
-                                    )),
-                                    LParen(LParen(
-                                      kind: "LParen",
+                                    ),
+                                    TokenWithSpan(
+                                      type: "TokenWithSpan",
+                                      token: LParen(LParen(
+                                        kind: "LParen",
+                                      )),
                                       span: Span(
                                         start: 8889,
                                         end: 8890,
                                       ),
-                                    )),
-                                    Ident(Ident(
-                                      kind: "Ident",
-                                      escaped: false,
-                                      raw: "x",
+                                    ),
+                                    TokenWithSpan(
+                                      type: "TokenWithSpan",
+                                      token: Ident(Ident(
+                                        kind: "Ident",
+                                        escaped: false,
+                                        raw: "x",
+                                      )),
                                       span: Span(
                                         start: 8890,
                                         end: 8891,
                                       ),
-                                    )),
-                                    RParen(RParen(
-                                      kind: "RParen",
+                                    ),
+                                    TokenWithSpan(
+                                      type: "TokenWithSpan",
+                                      token: RParen(RParen(
+                                        kind: "RParen",
+                                      )),
                                       span: Span(
                                         start: 8891,
                                         end: 8892,
                                       ),
-                                    )),
+                                    ),
                                   ],
                                   important: None,
                                   lessPropertyMerge: None,
@@ -27883,84 +28139,86 @@ Stylesheet(
                                       ),
                                     ),
                                     value: [
-                                      Ident(Ident(
-                                        kind: "Ident",
-                                        escaped: false,
-                                        raw: "calc",
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: Ident(Ident(
+                                          kind: "Ident",
+                                          escaped: false,
+                                          raw: "calc",
+                                        )),
                                         span: Span(
                                           start: 8926,
                                           end: 8930,
                                         ),
-                                      )),
-                                      LParen(LParen(
-                                        kind: "LParen",
+                                      ),
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: LParen(LParen(
+                                          kind: "LParen",
+                                        )),
                                         span: Span(
                                           start: 8930,
                                           end: 8931,
                                         ),
-                                      )),
-                                      Dimension(Dimension(
-                                        kind: "Dimension",
-                                        value: Number(
-                                          kind: "Number",
-                                          raw: "10",
-                                          span: Span(
-                                            start: 8931,
-                                            end: 8933,
+                                      ),
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: Dimension(Dimension(
+                                          kind: "Dimension",
+                                          value: Number(
+                                            kind: "Number",
+                                            raw: "10",
                                           ),
-                                        ),
-                                        unit: Ident(
-                                          kind: "Ident",
-                                          escaped: false,
-                                          raw: "px",
-                                          span: Span(
-                                            start: 8933,
-                                            end: 8935,
+                                          unit: Ident(
+                                            kind: "Ident",
+                                            escaped: false,
+                                            raw: "px",
                                           ),
-                                        ),
+                                        )),
                                         span: Span(
                                           start: 8931,
                                           end: 8935,
                                         ),
-                                      )),
-                                      Plus(Plus(
-                                        kind: "Plus",
+                                      ),
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: Plus(Plus(
+                                          kind: "Plus",
+                                        )),
                                         span: Span(
                                           start: 8936,
                                           end: 8937,
                                         ),
-                                      )),
-                                      Dimension(Dimension(
-                                        kind: "Dimension",
-                                        value: Number(
-                                          kind: "Number",
-                                          raw: "2",
-                                          span: Span(
-                                            start: 8938,
-                                            end: 8939,
+                                      ),
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: Dimension(Dimension(
+                                          kind: "Dimension",
+                                          value: Number(
+                                            kind: "Number",
+                                            raw: "2",
                                           ),
-                                        ),
-                                        unit: Ident(
-                                          kind: "Ident",
-                                          escaped: false,
-                                          raw: "em",
-                                          span: Span(
-                                            start: 8939,
-                                            end: 8941,
+                                          unit: Ident(
+                                            kind: "Ident",
+                                            escaped: false,
+                                            raw: "em",
                                           ),
-                                        ),
+                                        )),
                                         span: Span(
                                           start: 8938,
                                           end: 8941,
                                         ),
-                                      )),
-                                      RParen(RParen(
-                                        kind: "RParen",
+                                      ),
+                                      TokenWithSpan(
+                                        type: "TokenWithSpan",
+                                        token: RParen(RParen(
+                                          kind: "RParen",
+                                        )),
                                         span: Span(
                                           start: 8941,
                                           end: 8942,
                                         ),
-                                      )),
+                                      ),
                                     ],
                                     important: None,
                                     lessPropertyMerge: None,
@@ -27995,38 +28253,50 @@ Stylesheet(
                                             ),
                                           ),
                                           value: [
-                                            Ident(Ident(
-                                              kind: "Ident",
-                                              escaped: false,
-                                              raw: "url",
+                                            TokenWithSpan(
+                                              type: "TokenWithSpan",
+                                              token: Ident(Ident(
+                                                kind: "Ident",
+                                                escaped: false,
+                                                raw: "url",
+                                              )),
                                               span: Span(
                                                 start: 8957,
                                                 end: 8960,
                                               ),
-                                            )),
-                                            LParen(LParen(
-                                              kind: "LParen",
+                                            ),
+                                            TokenWithSpan(
+                                              type: "TokenWithSpan",
+                                              token: LParen(LParen(
+                                                kind: "LParen",
+                                              )),
                                               span: Span(
                                                 start: 8960,
                                                 end: 8961,
                                               ),
-                                            )),
-                                            Ident(Ident(
-                                              kind: "Ident",
-                                              escaped: false,
-                                              raw: "x",
+                                            ),
+                                            TokenWithSpan(
+                                              type: "TokenWithSpan",
+                                              token: Ident(Ident(
+                                                kind: "Ident",
+                                                escaped: false,
+                                                raw: "x",
+                                              )),
                                               span: Span(
                                                 start: 8961,
                                                 end: 8962,
                                               ),
-                                            )),
-                                            RParen(RParen(
-                                              kind: "RParen",
+                                            ),
+                                            TokenWithSpan(
+                                              type: "TokenWithSpan",
+                                              token: RParen(RParen(
+                                                kind: "RParen",
+                                              )),
                                               span: Span(
                                                 start: 8962,
                                                 end: 8963,
                                               ),
-                                            )),
+                                            ),
                                           ],
                                           important: None,
                                           lessPropertyMerge: None,
@@ -28167,15 +28437,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 8987,
                         end: 8991,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -28246,15 +28519,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "bar",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "bar",
+                      )),
                       span: Span(
                         start: 9027,
                         end: 9030,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -28286,30 +28562,25 @@ Stylesheet(
                       ),
                     ),
                     value: [
-                      Dimension(Dimension(
-                        kind: "Dimension",
-                        value: Number(
-                          kind: "Number",
-                          raw: "10",
-                          span: Span(
-                            start: 9043,
-                            end: 9045,
+                      TokenWithSpan(
+                        type: "TokenWithSpan",
+                        token: Dimension(Dimension(
+                          kind: "Dimension",
+                          value: Number(
+                            kind: "Number",
+                            raw: "10",
                           ),
-                        ),
-                        unit: Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "px",
-                          span: Span(
-                            start: 9045,
-                            end: 9047,
+                          unit: Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "px",
                           ),
-                        ),
+                        )),
                         span: Span(
                           start: 9043,
                           end: 9047,
                         ),
-                      )),
+                      ),
                     ],
                     important: None,
                     lessPropertyMerge: None,
@@ -28396,15 +28667,18 @@ Stylesheet(
                         ),
                       ),
                       value: [
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 9084,
                             end: 9087,
                           ),
-                        )),
+                        ),
                       ],
                       important: None,
                       lessPropertyMerge: None,
@@ -28436,30 +28710,25 @@ Stylesheet(
                           ),
                         ),
                         value: [
-                          Dimension(Dimension(
-                            kind: "Dimension",
-                            value: Number(
-                              kind: "Number",
-                              raw: "10",
-                              span: Span(
-                                start: 9100,
-                                end: 9102,
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dimension(Dimension(
+                              kind: "Dimension",
+                              value: Number(
+                                kind: "Number",
+                                raw: "10",
                               ),
-                            ),
-                            unit: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "px",
-                              span: Span(
-                                start: 9102,
-                                end: 9104,
+                              unit: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "px",
                               ),
-                            ),
+                            )),
                             span: Span(
                               start: 9100,
                               end: 9104,
                             ),
-                          )),
+                          ),
                         ],
                         important: None,
                         lessPropertyMerge: None,
@@ -28528,15 +28797,18 @@ Stylesheet(
                                 ),
                               ),
                               value: [
-                                Ident(Ident(
-                                  kind: "Ident",
-                                  escaped: false,
-                                  raw: "bar",
+                                TokenWithSpan(
+                                  type: "TokenWithSpan",
+                                  token: Ident(Ident(
+                                    kind: "Ident",
+                                    escaped: false,
+                                    raw: "bar",
+                                  )),
                                   span: Span(
                                     start: 9131,
                                     end: 9134,
                                   ),
-                                )),
+                                ),
                               ],
                               important: None,
                               lessPropertyMerge: None,
@@ -28568,30 +28840,25 @@ Stylesheet(
                                   ),
                                 ),
                                 value: [
-                                  Dimension(Dimension(
-                                    kind: "Dimension",
-                                    value: Number(
-                                      kind: "Number",
-                                      raw: "10",
-                                      span: Span(
-                                        start: 9147,
-                                        end: 9149,
+                                  TokenWithSpan(
+                                    type: "TokenWithSpan",
+                                    token: Dimension(Dimension(
+                                      kind: "Dimension",
+                                      value: Number(
+                                        kind: "Number",
+                                        raw: "10",
                                       ),
-                                    ),
-                                    unit: Ident(
-                                      kind: "Ident",
-                                      escaped: false,
-                                      raw: "px",
-                                      span: Span(
-                                        start: 9149,
-                                        end: 9151,
+                                      unit: Ident(
+                                        kind: "Ident",
+                                        escaped: false,
+                                        raw: "px",
                                       ),
-                                    ),
+                                    )),
                                     span: Span(
                                       start: 9147,
                                       end: 9151,
                                     ),
-                                  )),
+                                  ),
                                 ],
                                 important: None,
                                 lessPropertyMerge: None,
@@ -28715,15 +28982,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 9173,
                         end: 9177,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29026,15 +29296,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 9302,
                         end: 9306,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29337,15 +29610,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 9434,
                         end: 9438,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29413,15 +29689,18 @@ Stylesheet(
                 ),
               ),
               value: [
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "bar",
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "bar",
+                  )),
                   span: Span(
                     start: 9473,
                     end: 9476,
                   ),
-                )),
+                ),
               ],
               important: None,
               lessPropertyMerge: None,
@@ -29494,15 +29773,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "bar",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "bar",
+                      )),
                       span: Span(
                         start: 9512,
                         end: 9515,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29557,15 +29839,18 @@ Stylesheet(
                             ),
                           ),
                           value: [
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "bar",
+                              )),
                               span: Span(
                                 start: 9541,
                                 end: 9544,
                               ),
-                            )),
+                            ),
                           ],
                           important: None,
                           lessPropertyMerge: None,
@@ -29678,15 +29963,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 9566,
                         end: 9570,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29754,31 +30042,40 @@ Stylesheet(
                 ),
               ),
               value: [
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "bar",
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "bar",
+                  )),
                   span: Span(
                     start: 9605,
                     end: 9608,
                   ),
-                )),
-                Exclamation(Exclamation(
-                  kind: "Exclamation",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Exclamation(Exclamation(
+                    kind: "Exclamation",
+                  )),
                   span: Span(
                     start: 9609,
                     end: 9610,
                   ),
-                )),
-                Ident(Ident(
-                  kind: "Ident",
-                  escaped: false,
-                  raw: "important",
+                ),
+                TokenWithSpan(
+                  type: "TokenWithSpan",
+                  token: Ident(Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "important",
+                  )),
                   span: Span(
                     start: 9610,
                     end: 9619,
                   ),
-                )),
+                ),
               ],
               important: None,
               lessPropertyMerge: None,
@@ -29851,31 +30148,40 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "bar",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "bar",
+                      )),
                       span: Span(
                         start: 9654,
                         end: 9657,
                       ),
-                    )),
-                    Exclamation(Exclamation(
-                      kind: "Exclamation",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Exclamation(Exclamation(
+                        kind: "Exclamation",
+                      )),
                       span: Span(
                         start: 9658,
                         end: 9659,
                       ),
-                    )),
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "important",
+                    ),
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "important",
+                      )),
                       span: Span(
                         start: 9659,
                         end: 9668,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
@@ -29930,31 +30236,40 @@ Stylesheet(
                             ),
                           ),
                           value: [
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "bar",
+                              )),
                               span: Span(
                                 start: 9693,
                                 end: 9696,
                               ),
-                            )),
-                            Exclamation(Exclamation(
-                              kind: "Exclamation",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Exclamation(Exclamation(
+                                kind: "Exclamation",
+                              )),
                               span: Span(
                                 start: 9697,
                                 end: 9698,
                               ),
-                            )),
-                            Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "important",
+                            ),
+                            TokenWithSpan(
+                              type: "TokenWithSpan",
+                              token: Ident(Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "important",
+                              )),
                               span: Span(
                                 start: 9698,
                                 end: 9707,
                               ),
-                            )),
+                            ),
                           ],
                           important: None,
                           lessPropertyMerge: None,
@@ -30067,15 +30382,18 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "true",
+                    TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Ident(Ident(
+                        kind: "Ident",
+                        escaped: false,
+                        raw: "true",
+                      )),
                       span: Span(
                         start: 9728,
                         end: 9732,
                       ),
-                    )),
+                    ),
                   ],
                   important: None,
                   lessPropertyMerge: None,

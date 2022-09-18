@@ -2947,15 +2947,18 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 724,
                             end: 727,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 724,
@@ -3023,24 +3026,30 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 742,
                             end: 745,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 746,
                             end: 749,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 742,
@@ -3108,31 +3117,40 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 764,
                             end: 767,
                           ),
-                        )),
-                        Comma(Comma(
-                          kind: "Comma",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Comma(Comma(
+                            kind: "Comma",
+                          )),
                           span: Span(
                             start: 767,
                             end: 768,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 769,
                             end: 772,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 764,
@@ -3200,29 +3218,38 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBracket(LBracket(
-                          kind: "LBracket",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBracket(LBracket(
+                            kind: "LBracket",
+                          )),
                           span: Span(
                             start: 787,
                             end: 788,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 788,
                             end: 791,
                           ),
-                        )),
-                        RBracket(RBracket(
-                          kind: "RBracket",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBracket(RBracket(
+                            kind: "RBracket",
+                          )),
                           span: Span(
                             start: 791,
                             end: 792,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 787,
@@ -3290,38 +3317,50 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LParen(LParen(
-                          kind: "LParen",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LParen(LParen(
+                            kind: "LParen",
+                          )),
                           span: Span(
                             start: 807,
                             end: 808,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 808,
                             end: 811,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 812,
                             end: 815,
                           ),
-                        )),
-                        RParen(RParen(
-                          kind: "RParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RParen(RParen(
+                            kind: "RParen",
+                          )),
                           span: Span(
                             start: 815,
                             end: 816,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 807,
@@ -3389,52 +3428,70 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LParen(LParen(
-                          kind: "LParen",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LParen(LParen(
+                            kind: "LParen",
+                          )),
                           span: Span(
                             start: 831,
                             end: 832,
                           ),
-                        )),
-                        LParen(LParen(
-                          kind: "LParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LParen(LParen(
+                            kind: "LParen",
+                          )),
                           span: Span(
                             start: 832,
                             end: 833,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 833,
                             end: 836,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 837,
                             end: 840,
                           ),
-                        )),
-                        RParen(RParen(
-                          kind: "RParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RParen(RParen(
+                            kind: "RParen",
+                          )),
                           span: Span(
                             start: 840,
                             end: 841,
                           ),
-                        )),
-                        RParen(RParen(
-                          kind: "RParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RParen(RParen(
+                            kind: "RParen",
+                          )),
                           span: Span(
                             start: 841,
                             end: 842,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 831,
@@ -3502,45 +3559,60 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 857,
                             end: 858,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 858,
                             end: 861,
                           ),
-                        )),
-                        Colon(Colon(
-                          kind: "Colon",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Colon(Colon(
+                            kind: "Colon",
+                          )),
                           span: Span(
                             start: 861,
                             end: 862,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 863,
                             end: 866,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 866,
                             end: 867,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 857,
@@ -3608,59 +3680,80 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 882,
                             end: 883,
                           ),
-                        )),
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 883,
                             end: 884,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 884,
                             end: 887,
                           ),
-                        )),
-                        Colon(Colon(
-                          kind: "Colon",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Colon(Colon(
+                            kind: "Colon",
+                          )),
                           span: Span(
                             start: 887,
                             end: 888,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 889,
                             end: 892,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 892,
                             end: 893,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 893,
                             end: 894,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 882,
@@ -3728,61 +3821,82 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 909,
                             end: 910,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 910,
                             end: 913,
                           ),
-                        )),
-                        Colon(Colon(
-                          kind: "Colon",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Colon(Colon(
+                            kind: "Colon",
+                          )),
                           span: Span(
                             start: 913,
                             end: 914,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "bar",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "bar",
+                          )),
                           span: Span(
                             start: 915,
                             end: 918,
                           ),
-                        )),
-                        Exclamation(Exclamation(
-                          kind: "Exclamation",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Exclamation(Exclamation(
+                            kind: "Exclamation",
+                          )),
                           span: Span(
                             start: 919,
                             end: 920,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "important",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "important",
+                          )),
                           span: Span(
                             start: 920,
                             end: 929,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 929,
                             end: 930,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 909,
@@ -3850,15 +3964,18 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Str(Str(
-                          kind: "Str",
-                          raw: "\"string\"",
-                          escaped: false,
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Str(Str(
+                            kind: "Str",
+                            raw: "\"string\"",
+                            escaped: false,
+                          )),
                           span: Span(
                             start: 945,
                             end: 953,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 945,
@@ -3926,31 +4043,40 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Str(Str(
-                          kind: "Str",
-                          raw: "\"string\"",
-                          escaped: false,
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Str(Str(
+                            kind: "Str",
+                            raw: "\"string\"",
+                            escaped: false,
+                          )),
                           span: Span(
                             start: 968,
                             end: 976,
                           ),
-                        )),
-                        Comma(Comma(
-                          kind: "Comma",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Comma(Comma(
+                            kind: "Comma",
+                          )),
                           span: Span(
                             start: 976,
                             end: 977,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 978,
                             end: 981,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 968,
@@ -4018,15 +4144,18 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Str(Str(
-                          kind: "Str",
-                          raw: "\'string\'",
-                          escaped: false,
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Str(Str(
+                            kind: "Str",
+                            raw: "\'string\'",
+                            escaped: false,
+                          )),
                           span: Span(
                             start: 996,
                             end: 1004,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 996,
@@ -4094,54 +4223,72 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "url",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "url",
+                          )),
                           span: Span(
                             start: 1019,
                             end: 1022,
                           ),
-                        )),
-                        LParen(LParen(
-                          kind: "LParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LParen(LParen(
+                            kind: "LParen",
+                          )),
                           span: Span(
                             start: 1022,
                             end: 1023,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "foo",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "foo",
+                          )),
                           span: Span(
                             start: 1023,
                             end: 1026,
                           ),
-                        )),
-                        Dot(Dot(
-                          kind: "Dot",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Dot(Dot(
+                            kind: "Dot",
+                          )),
                           span: Span(
                             start: 1026,
                             end: 1027,
                           ),
-                        )),
-                        Ident(Ident(
-                          kind: "Ident",
-                          escaped: false,
-                          raw: "png",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Ident(Ident(
+                            kind: "Ident",
+                            escaped: false,
+                            raw: "png",
+                          )),
                           span: Span(
                             start: 1027,
                             end: 1030,
                           ),
-                        )),
-                        RParen(RParen(
-                          kind: "RParen",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RParen(RParen(
+                            kind: "RParen",
+                          )),
                           span: Span(
                             start: 1030,
                             end: 1031,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 1019,
@@ -4209,27 +4356,36 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 1046,
                             end: 1047,
                           ),
-                        )),
-                        Exclamation(Exclamation(
-                          kind: "Exclamation",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Exclamation(Exclamation(
+                            kind: "Exclamation",
+                          )),
                           span: Span(
                             start: 1047,
                             end: 1048,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 1048,
                             end: 1049,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 1046,
@@ -4297,13 +4453,16 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Exclamation(Exclamation(
-                          kind: "Exclamation",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Exclamation(Exclamation(
+                            kind: "Exclamation",
+                          )),
                           span: Span(
                             start: 1064,
                             end: 1065,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 1064,
@@ -4371,27 +4530,36 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        LBrace(LBrace(
-                          kind: "LBrace",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: LBrace(LBrace(
+                            kind: "LBrace",
+                          )),
                           span: Span(
                             start: 1080,
                             end: 1081,
                           ),
-                        )),
-                        Semicolon(Semicolon(
-                          kind: "Semicolon",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Semicolon(Semicolon(
+                            kind: "Semicolon",
+                          )),
                           span: Span(
                             start: 1081,
                             end: 1082,
                           ),
-                        )),
-                        RBrace(RBrace(
-                          kind: "RBrace",
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
                           span: Span(
                             start: 1082,
                             end: 1083,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 1080,
@@ -4459,13 +4627,16 @@ Stylesheet(
                     arg: Some(TokenSeq(
                       type: "TokenSeq",
                       tokens: [
-                        Semicolon(Semicolon(
-                          kind: "Semicolon",
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: Semicolon(Semicolon(
+                            kind: "Semicolon",
+                          )),
                           span: Span(
                             start: 1098,
                             end: 1099,
                           ),
-                        )),
+                        ),
                       ],
                       span: Span(
                         start: 1098,
