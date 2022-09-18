@@ -103,7 +103,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeatureComparison {
             }),
             TokenWithSpan { span, .. } => Err(Error {
                 kind: ErrorKind::ExpectMediaFeatureComparison,
-                span: span.clone(),
+                span,
             }),
         }
     }

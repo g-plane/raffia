@@ -376,7 +376,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     TokenWithSpan { token, span } => {
                         return Err(Error {
                             kind: ErrorKind::Unexpected("?", token.symbol()),
-                            span: span.clone(),
+                            span,
                         });
                     }
                 };
@@ -905,7 +905,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
             }
             TokenWithSpan { token, span } => Err(Error {
                 kind: ErrorKind::Unexpected("<url>", token.symbol()),
-                span: span.clone(),
+                span,
             }),
         }
     }

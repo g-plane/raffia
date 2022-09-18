@@ -686,7 +686,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
             TokenWithSpan { token, span } => {
                 return Err(Error {
                     kind: ErrorKind::Unexpected("<url template>", token.symbol()),
-                    span: span.clone(),
+                    span,
                 });
             }
         };
