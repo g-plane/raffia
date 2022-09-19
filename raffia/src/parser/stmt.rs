@@ -297,13 +297,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     statements.push(Statement::QualifiedRule(self.parse()?));
                     is_block_element = true;
                 }
-                Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    statements.push(Statement::QualifiedRule(self.parse()?));
-                    is_block_element = true;
-                }
-                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    statements.push(Statement::SassVariableDeclaration(self.parse()?));
-                }
                 Token::AtKeyword(at_keyword) => match self.syntax {
                     Syntax::Css => {
                         let at_rule = self.parse::<AtRule>()?;
@@ -334,6 +327,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                     }
                 },
+                Token::Percent(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    statements.push(Statement::QualifiedRule(self.parse()?));
+                    is_block_element = true;
+                }
+                Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    statements.push(Statement::SassVariableDeclaration(self.parse()?));
+                }
                 Token::Cdo(..) | Token::Cdc(..) => {
                     bump!(self);
                     continue;
