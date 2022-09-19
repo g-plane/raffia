@@ -196,13 +196,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             end,
         };
         Ok(AtRule {
-            name: Ident::from_token(
-                at_keyword.ident,
-                Span {
+            // We don't use `Ident::from_token` here because `at_rule_name` is already
+            // type of `Cow<str>`, avoiding create it again.
+            name: Ident {
+                name: at_rule_name,
+                raw: at_keyword.ident.raw,
+                span: Span {
                     start: at_keyword_span.start + 1,
                     end: at_keyword_span.end,
                 },
-            ),
+            },
             prelude,
             block,
             span,
