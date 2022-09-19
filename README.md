@@ -32,8 +32,7 @@ You can run compare performance with other parsers with benchmark.
 
 First, you need to setup Rust and clone this repository. You also need to install `cargo-criterion` by running `cargo install cargo-criterion`.
 
-Then, copy some CSS files to this directory.
-Don't forget to rename those CSS files to make sure their names are prefixed with `bench.`. For example, you put a file called `bootstrap.css` in this directory, and you can rename it to `bench.bootstrap.css`.
+Then, copy some CSS files to `bench_data` directory. You need to create that directory by yourself.
 
 Now you can run benchmark by running `cargo criterion`.
 

@@ -41,14 +41,9 @@ fn bench_parsers(c: &mut Criterion) {
     let mut group = c.benchmark_group("parser_stylesheet");
     group.measurement_time(Duration::from_secs(12));
 
-    fs::read_dir(".")
+    fs::read_dir("bench_data")
         .unwrap()
         .filter_map(|entry| entry.ok())
-        .filter(|entry| {
-            let name = entry.file_name();
-            let name = name.to_string_lossy();
-            name.starts_with("bench.") && name.ends_with(".css")
-        })
         .for_each(|entry| {
             let path = &entry.path();
             let name = entry.file_name();
