@@ -118,6 +118,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 self.scan_hash()
             }
             (Some((_, '\'' | '"')), ..) => self.scan_string_or_template(),
+            (Some((_, '@')), Some((_, c))) if is_start_of_ident(c) => self.scan_at_keyword(),
             (Some((start, '-')), Some((_, '-'))) => {
                 if matches!(chars.peek(), Some((_, '>'))) {
                     self.scan_cdc(start)
@@ -135,7 +136,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 let (number, span) = self.scan_number()?;
                 self.scan_dimension_or_percentage(number, span)
             }
-            (Some((_, '@')), Some((_, c))) if is_start_of_ident(c) => self.scan_at_keyword(),
             (Some((_, '$')), Some((_, c)))
                 if matches!(self.syntax, Syntax::Scss | Syntax::Sass) && is_start_of_ident(c) =>
             {
