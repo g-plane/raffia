@@ -88,7 +88,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn next(&mut self) -> PResult<TokenWithSpan<'s>> {
         // detect frequent tokens here, but DO NOT add too many and don't forget to do profiling
         match self.state.chars.peek() {
-            Some((_, c)) if is_start_of_ident(*c) && c != &'-' => return self.scan_ident_or_url(),
+            Some((_, c)) if is_start_of_ident(*c) && c != &'-' => return self.scan_ident(),
             Some((_, c)) if c.is_ascii_digit() => {
                 let (number, span) = self.scan_number()?;
                 return self.scan_dimension_or_percentage(number, span);
@@ -122,10 +122,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 if matches!(chars.peek(), Some((_, '>'))) {
                     self.scan_cdc(start)
                 } else {
-                    self.scan_ident_or_url()
+                    self.scan_ident()
                 }
             }
-            (Some((_, '-')), Some((_, c))) if is_start_of_ident(c) => self.scan_ident_or_url(),
+            (Some((_, '-')), Some((_, c))) if is_start_of_ident(c) => self.scan_ident(),
             (Some((_, '.' | '+' | '-')), Some((_, c))) if c.is_ascii_digit() => {
                 let (number, span) = self.scan_number()?;
                 self.scan_dimension_or_percentage(number, span)
@@ -630,7 +630,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     #[inline]
-    fn scan_ident_or_url(&mut self) -> PResult<TokenWithSpan<'s>> {
+    fn scan_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
         self.scan_ident_sequence()
             .map(|(ident, span)| TokenWithSpan {
                 token: Token::Ident(ident),
