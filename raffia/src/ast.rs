@@ -1022,6 +1022,14 @@ pub struct Resolution<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassArbitraryArgument<'s> {
+    pub name: SassVariable<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassArbitraryParameter<'s> {
     pub name: SassVariable<'s>,
     pub span: Span,
@@ -1152,6 +1160,28 @@ pub struct SassIfAtRule<'s> {
     pub if_clause: SassConditionalClause<'s>,
     pub else_if_clauses: Vec<SassConditionalClause<'s>>,
     pub else_clause: Option<SimpleBlock<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassIncludeAtRule<'s> {
+    pub name: Ident<'s>,
+    pub arguments: Option<Vec<SassIncludeAtRuleArgument<'s>>>,
+    pub arbitrary_argument: Option<SassArbitraryArgument<'s>>,
+    pub content_block_params: Option<Vec<SassParameter<'s>>>,
+    pub content_block_arbitrary_param: Option<SassArbitraryParameter<'s>>,
+    pub block: Option<SimpleBlock<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassIncludeAtRuleArgument<'s> {
+    pub name: Option<SassVariable<'s>>,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1404,6 +1434,7 @@ pub enum Statement<'s> {
     SassForAtRule(SassForAtRule<'s>),
     SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
+    SassIncludeAtRule(SassIncludeAtRule<'s>),
     SassMixinAtRule(SassMixinAtRule<'s>),
     SassReturnAtRule(SassReturnAtRule<'s>),
     SassUseAtRule(SassUseAtRule<'s>),
