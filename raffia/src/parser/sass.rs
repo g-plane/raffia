@@ -22,23 +22,30 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_at_rule(
         &mut self,
         at_keyword_name: &str,
-    ) -> PResult<Option<Statement<'s>>> {
+    ) -> PResult<Option<(Statement<'s>, bool)>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         match at_keyword_name {
-            "each" => Ok(Some(Statement::SassEachAtRule(self.parse()?))),
-            "for" => Ok(Some(Statement::SassForAtRule(self.parse()?))),
-            "if" => Ok(Some(Statement::SassIfAtRule(self.parse()?))),
-            "while" => Ok(Some(Statement::SassWhileAtRule(self.parse()?))),
-            "mixin" => Ok(Some(Statement::SassMixinAtRule(self.parse()?))),
-            "include" => Ok(Some(Statement::SassIncludeAtRule(self.parse()?))),
-            "content" => Ok(Some(Statement::SassContentAtRule(self.parse()?))),
-            "use" => Ok(Some(Statement::SassUseAtRule(self.parse()?))),
-            "function" => Ok(Some(Statement::SassFunctionAtRule(
-                self.with_state(ParserState {
-                    in_sass_function: true,
-                    ..self.state.clone()
-                })
-                .parse()?,
+            "each" => Ok(Some((Statement::SassEachAtRule(self.parse()?), true))),
+            "for" => Ok(Some((Statement::SassForAtRule(self.parse()?), true))),
+            "if" => Ok(Some((Statement::SassIfAtRule(self.parse()?), true))),
+            "while" => Ok(Some((Statement::SassWhileAtRule(self.parse()?), true))),
+            "mixin" => Ok(Some((Statement::SassMixinAtRule(self.parse()?), true))),
+            "include" => {
+                let at_rule = self.parse::<SassIncludeAtRule>()?;
+                let is_block = at_rule.block.is_some();
+                Ok(Some((Statement::SassIncludeAtRule(at_rule), is_block)))
+            }
+            "content" => Ok(Some((Statement::SassContentAtRule(self.parse()?), false))),
+            "use" => Ok(Some((Statement::SassUseAtRule(self.parse()?), false))),
+            "function" => Ok(Some((
+                Statement::SassFunctionAtRule(
+                    self.with_state(ParserState {
+                        in_sass_function: true,
+                        ..self.state.clone()
+                    })
+                    .parse()?,
+                ),
+                true,
             ))),
             "return" => {
                 let rule = self.parse::<SassReturnAtRule>()?;
@@ -48,12 +55,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         span: rule.span.clone(),
                     });
                 }
-                Ok(Some(Statement::SassReturnAtRule(rule)))
+                Ok(Some((Statement::SassReturnAtRule(rule), false)))
             }
-            "extend" => Ok(Some(Statement::SassExtendAtRule(self.parse()?))),
-            "warn" => Ok(Some(Statement::SassWarnAtRule(self.parse()?))),
-            "error" => Ok(Some(Statement::SassErrorAtRule(self.parse()?))),
-            "debug" => Ok(Some(Statement::SassDebugAtRule(self.parse()?))),
+            "extend" => Ok(Some((Statement::SassExtendAtRule(self.parse()?), false))),
+            "warn" => Ok(Some((Statement::SassWarnAtRule(self.parse()?), false))),
+            "error" => Ok(Some((Statement::SassErrorAtRule(self.parse()?), false))),
+            "debug" => Ok(Some((Statement::SassDebugAtRule(self.parse()?), false))),
             _ => Ok(None),
         }
     }

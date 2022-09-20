@@ -305,8 +305,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     Syntax::Scss | Syntax::Sass => {
                         let at_keyword_name = at_keyword.ident.name();
-                        if let Some(statement) = self.parse_sass_at_rule(&at_keyword_name)? {
+                        if let Some((statement, is_block)) =
+                            self.parse_sass_at_rule(&at_keyword_name)?
+                        {
                             statements.push(statement);
+                            is_block_element = is_block;
                         } else {
                             let at_rule = self.parse::<AtRule>()?;
                             is_block_element = at_rule.block.is_some();
