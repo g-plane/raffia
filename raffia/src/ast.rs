@@ -1206,6 +1206,17 @@ pub enum SassInterpolatedUrlElement<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassMixinAtRule<'s> {
+    pub name: Ident<'s>,
+    pub parameters: Option<Vec<SassParameter<'s>>>,
+    pub arbitrary_parameter: Option<SassArbitraryParameter<'s>>,
+    pub body: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassNamespacedExpression<'s> {
     pub namespace: Ident<'s>,
     pub expr: Box<ComponentValue<'s>>,
@@ -1393,6 +1404,7 @@ pub enum Statement<'s> {
     SassForAtRule(SassForAtRule<'s>),
     SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
+    SassMixinAtRule(SassMixinAtRule<'s>),
     SassReturnAtRule(SassReturnAtRule<'s>),
     SassUseAtRule(SassUseAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),

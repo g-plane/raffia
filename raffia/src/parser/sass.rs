@@ -29,6 +29,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "for" => Ok(Some(Statement::SassForAtRule(self.parse()?))),
             "if" => Ok(Some(Statement::SassIfAtRule(self.parse()?))),
             "while" => Ok(Some(Statement::SassWhileAtRule(self.parse()?))),
+            "mixin" => Ok(Some(Statement::SassMixinAtRule(self.parse()?))),
             "content" => Ok(Some(Statement::SassContentAtRule(self.parse()?))),
             "use" => Ok(Some(Statement::SassUseAtRule(self.parse()?))),
             "function" => Ok(Some(Statement::SassFunctionAtRule(
@@ -266,6 +267,73 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         })
     }
 
+    /// This method will consume `)` token.
+    fn parse_sass_params(
+        &mut self,
+    ) -> PResult<(Vec<SassParameter<'s>>, Option<SassArbitraryParameter<'s>>)> {
+        let mut parameters = vec![];
+        let mut arbitrary_parameter = None;
+        while eat!(self, RParen).is_none() {
+            let name = self.parse::<SassVariable>()?;
+            let token_with_span = bump!(self);
+            match token_with_span.token {
+                Token::Comma(..) => {
+                    let span = name.span.clone();
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: None,
+                        span,
+                    });
+                    continue;
+                }
+                Token::Colon(..) => {
+                    let default_value = self.parse::<ComponentValue>()?;
+                    let span = Span {
+                        start: name.span.start,
+                        end: default_value.span().end,
+                    };
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: Some(default_value),
+                        span,
+                    });
+                }
+                Token::DotDotDot(..) => {
+                    let span = Span {
+                        start: name.span().start,
+                        end: token_with_span.span.end,
+                    };
+                    arbitrary_parameter = Some(SassArbitraryParameter { name, span });
+                    eat!(self, Comma);
+                    expect!(self, RParen);
+                    break;
+                }
+                Token::RParen(..) => {
+                    let span = name.span.clone();
+                    parameters.push(SassParameter {
+                        name,
+                        default_value: None,
+                        span,
+                    });
+                    break;
+                }
+                token => {
+                    return Err(Error {
+                        kind: ErrorKind::Unexpected(")", token.symbol()),
+                        span: token_with_span.span,
+                    });
+                }
+            }
+            if eat!(self, RParen).is_some() {
+                break;
+            } else {
+                expect!(self, Comma);
+            }
+        }
+
+        Ok((parameters, arbitrary_parameter))
+    }
+
     fn parse_sass_unary_expression(&mut self) -> PResult<ComponentValue<'s>> {
         let op = match &peek!(self).token {
             Token::Plus(..) => SassUnaryOperator {
@@ -488,65 +556,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
         let name = input.parse()?;
 
         expect!(input, LParen);
-        let mut parameters = vec![];
-        let mut arbitrary_parameter = None;
-        while eat!(input, RParen).is_none() {
-            let name = input.parse::<SassVariable>()?;
-            let token_with_span = bump!(input);
-            match token_with_span.token {
-                Token::Comma(..) => {
-                    let span = name.span.clone();
-                    parameters.push(SassParameter {
-                        name,
-                        default_value: None,
-                        span,
-                    });
-                    continue;
-                }
-                Token::Colon(..) => {
-                    let default_value = input.parse::<ComponentValue>()?;
-                    let span = Span {
-                        start: name.span.start,
-                        end: default_value.span().end,
-                    };
-                    parameters.push(SassParameter {
-                        name,
-                        default_value: Some(default_value),
-                        span,
-                    });
-                }
-                Token::DotDotDot(..) => {
-                    let span = Span {
-                        start: name.span().start,
-                        end: token_with_span.span.end,
-                    };
-                    arbitrary_parameter = Some(SassArbitraryParameter { name, span });
-                    eat!(input, Comma);
-                    expect!(input, RParen);
-                    break;
-                }
-                Token::RParen(..) => {
-                    let span = name.span.clone();
-                    parameters.push(SassParameter {
-                        name,
-                        default_value: None,
-                        span,
-                    });
-                    break;
-                }
-                token => {
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected(")", token.symbol()),
-                        span: token_with_span.span,
-                    });
-                }
-            }
-            if eat!(input, RParen).is_some() {
-                break;
-            } else {
-                expect!(input, Comma);
-            }
-        }
+        let (parameters, arbitrary_parameter) = input.parse_sass_params()?;
 
         let body = input.parse::<SimpleBlock>()?;
 
@@ -689,6 +699,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
         }
 
         Ok(SassInterpolatedUrl { elements, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixinAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let start = expect!(input, AtKeyword).1.start;
+
+        let name = input.parse()?;
+
+        let mut parameters = None;
+        let mut arbitrary_parameter = None;
+        if eat!(input, LParen).is_some() {
+            let (params, arbitrary_param) = input.parse_sass_params()?;
+            parameters = Some(params);
+            arbitrary_parameter = arbitrary_param;
+        }
+
+        let body = input.parse::<SimpleBlock>()?;
+
+        let span = Span {
+            start,
+            end: body.span.end,
+        };
+        Ok(SassMixinAtRule {
+            name,
+            parameters,
+            arbitrary_parameter,
+            body,
+            span,
+        })
     }
 }
 
