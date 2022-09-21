@@ -150,9 +150,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse().map(ComponentValue::SassVariable)
             }
-            Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
-                .parse()
-                .map(ComponentValue::SassParenthesizedExpression),
+            Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                if let Ok(expr) = self.try_parse(SassParenthesizedExpression::parse) {
+                    Ok(ComponentValue::SassParenthesizedExpression(expr))
+                } else {
+                    self.parse().map(ComponentValue::SassMap)
+                }
+            }
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse_sass_interpolated_ident()
                 .map(ComponentValue::InterpolableIdent),

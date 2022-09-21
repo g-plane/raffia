@@ -817,6 +817,39 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let start = expect!(input, LParen).1.start;
+
+        let mut items = vec![];
+        while !matches!(&peek!(input).token, Token::RParen(..)) {
+            items.push(input.parse()?);
+            if !matches!(&peek!(input).token, Token::RParen(..)) {
+                expect!(input, Comma);
+            }
+        }
+
+        let end = expect!(input, RParen).1.end;
+        Ok(SassMap {
+            items,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMapItem<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let key = input.parse::<ComponentValue>()?;
+        expect!(input, Colon);
+        let value = input.parse::<ComponentValue>()?;
+        let span = Span {
+            start: key.span().start,
+            end: value.span().end,
+        };
+        Ok(SassMapItem { key, value, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixinAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
