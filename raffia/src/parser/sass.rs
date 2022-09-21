@@ -857,22 +857,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
             expect!(input, Indent).1.start
         };
 
+        // eat leading semicolons/linebreaks
+        if input.syntax == Syntax::Scss {
+            while eat!(input, Semicolon).is_some() {}
+        } else {
+            while eat!(input, Linebreak).is_some() {}
+        }
+
         let mut decls = Vec::with_capacity(3);
         let end;
         loop {
-            match &peek!(input).token {
-                Token::RBrace(..) if input.syntax == Syntax::Scss => {}
-                Token::Dedent(..) if input.syntax == Syntax::Sass => {}
-                _ => {
-                    if input.syntax == Syntax::Scss {
-                        expect!(input, Semicolon);
-                        while eat!(input, Semicolon).is_some() {}
-                    } else {
-                        expect!(input, Linebreak);
-                        while eat!(input, Linebreak).is_some() {}
-                    }
-                }
-            }
             match &peek!(input).token {
                 Token::RBrace(..) if input.syntax == Syntax::Scss => {
                     end = bump!(input).span.end;
@@ -882,7 +876,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
                     end = bump!(input).span.end;
                     break;
                 }
-                _ => decls.push(input.parse::<Declaration>()?),
+                _ => {}
+            }
+
+            decls.push(input.parse::<Declaration>()?);
+            if input.syntax == Syntax::Scss {
+                if let Some((_, span)) = eat!(input, RBrace) {
+                    end = span.end;
+                    break;
+                } else {
+                    expect!(input, Semicolon);
+                    while eat!(input, Semicolon).is_some() {}
+                }
+            } else {
+                if let Some((_, span)) = eat!(input, Dedent) {
+                    end = span.end;
+                    break;
+                } else {
+                    expect!(input, Linebreak);
+                    while eat!(input, Linebreak).is_some() {}
+                }
             }
         }
 
