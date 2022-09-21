@@ -283,6 +283,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("element") => {
                     vec![self.parse().map(ComponentValue::IdSelector)?]
                 }
+                // for IE-specific function `alpha`
+                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("alpha") => {
+                    let mut args = Vec::with_capacity(3);
+                    loop {
+                        match &peek!(self).token {
+                            Token::RParen(..) => break,
+                            _ => args.push(ComponentValue::TokenWithSpan(bump!(self))),
+                        }
+                    }
+                    args
+                }
                 _ => {
                     self.parse_component_values(
                         /* allow_comma */ true, /* allow_semicolon */ true,
