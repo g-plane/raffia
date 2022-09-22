@@ -81,6 +81,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         result
     }
 
+    #[must_use]
     fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
         debug_assert!(left.end <= right.start);
         if left.end == right.start {
