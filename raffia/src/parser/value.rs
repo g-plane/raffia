@@ -180,6 +180,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 .parse()
                 .map(InterpolableStr::LessInterpolated)
                 .map(ComponentValue::InterpolableStr),
+            Token::At(..) if self.syntax == Syntax::Less => {
+                self.parse().map(ComponentValue::LessVariableVariable)
+            }
             _ => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
                 span: token_with_span.span.clone(),

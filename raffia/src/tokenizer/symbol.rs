@@ -32,6 +32,13 @@ impl TokenSymbol for AsteriskEqual {
     }
 }
 
+impl TokenSymbol for At {
+    #[inline]
+    fn symbol() -> &'static str {
+        "@"
+    }
+}
+
 impl TokenSymbol for AtKeyword<'_> {
     #[inline]
     fn symbol() -> &'static str {
@@ -411,6 +418,7 @@ impl Token<'_> {
             Ampersand(..) => "&",
             Asterisk(..) => "*",
             AsteriskEqual(..) => "*=",
+            At(..) => "@",
             AtKeyword(..) => "<at-keyword>",
             AtLBraceVar(..) => "@{",
             BadStr(..) => "<bad string>",

@@ -179,3 +179,17 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableInterpolation<'s> {
         })
     }
 }
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableVariable<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, at_span) = expect!(input, At);
+        let variable = input.parse::<LessVariable>()?;
+        input.assert_no_ws_or_comment(&at_span, &variable.span)?;
+
+        let span = Span {
+            start: at_span.start,
+            end: variable.span.end,
+        };
+        Ok(LessVariableVariable { variable, span })
+    }
+}

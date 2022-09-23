@@ -34,6 +34,7 @@ pub enum Token<'s> {
     Ampersand(Ampersand),
     Asterisk(Asterisk),
     AsteriskEqual(AsteriskEqual),
+    At(At),
     AtKeyword(AtKeyword<'s>),
     AtLBraceVar(AtLBraceVar<'s>),
     BadStr(BadStr<'s>),
@@ -111,6 +112,11 @@ pub struct Asterisk {}
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct AsteriskEqual {}
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct At {}
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

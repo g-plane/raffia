@@ -217,6 +217,7 @@ pub enum ComponentValue<'s> {
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
     LessVariable(LessVariable<'s>),
+    LessVariableVariable(LessVariableVariable<'s>),
     Number(Number<'s>),
     Percentage(Percentage<'s>),
     Ratio(Ratio<'s>),
@@ -661,6 +662,14 @@ pub struct LessVariableDeclaration<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableInterpolation<'s> {
     pub name: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessVariableVariable<'s> {
+    pub variable: LessVariable<'s>,
     pub span: Span,
 }
 
