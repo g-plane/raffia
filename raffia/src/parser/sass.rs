@@ -58,6 +58,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Ok(Some((Statement::SassReturnAtRule(rule), false)))
             }
             "extend" => Ok(Some((Statement::SassExtendAtRule(self.parse()?), false))),
+            "forward" => Ok(Some((Statement::SassForwardAtRule(self.parse()?), false))),
             "warn" => Ok(Some((Statement::SassWarnAtRule(self.parse()?), false))),
             "error" => Ok(Some((Statement::SassErrorAtRule(self.parse()?), false))),
             "debug" => Ok(Some((Statement::SassDebugAtRule(self.parse()?), false))),
@@ -243,6 +244,26 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             SassInterpolatedIdentElement::Expression(expr),
             Span { start, end },
         ))
+    }
+
+    fn parse_sass_module_config(&mut self) -> PResult<Option<Vec<SassModuleConfigItem<'s>>>> {
+        match &peek!(self).token {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
+                bump!(self);
+                let mut config = vec![];
+                expect!(self, LParen);
+                loop {
+                    config.push(self.parse::<SassModuleConfigItem>()?);
+                    if eat!(self, RParen).is_some() {
+                        break;
+                    } else {
+                        expect!(self, Comma);
+                    }
+                }
+                Ok(Some(config))
+            }
+            _ => Ok(None),
+        }
     }
 
     pub(super) fn parse_sass_namespaced_expression(
@@ -580,6 +601,97 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
             is_exclusive,
             body,
             span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let start = expect!(input, AtKeyword).1.start;
+
+        let path = input.parse()?;
+
+        let prefix = match &peek!(input).token {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("as") => {
+                bump!(input);
+                let prefix = input.parse()?;
+                expect_without_ws_or_comments!(input, Asterisk);
+                Some(prefix)
+            }
+            _ => None,
+        };
+
+        let visibility = if let TokenWithSpan {
+            token: Token::Ident(keyword),
+            span: keyword_span,
+        } = peek!(input)
+        {
+            let start = keyword_span.start;
+            let name = keyword.name();
+            if name.eq_ignore_ascii_case("hide") {
+                bump!(input);
+                let mut members = vec![];
+                loop {
+                    match &peek!(input).token {
+                        Token::Ident(..) => {
+                            members.push(input.parse().map(SassForwardMember::Ident)?)
+                        }
+                        _ => members.push(input.parse().map(SassForwardMember::Variable)?),
+                    }
+                    if eat!(input, Comma).is_none() {
+                        break;
+                    }
+                }
+                Some(SassForwardVisibility {
+                    kind: SassForwardVisibilityKind::Hide,
+                    members,
+                    span: Span {
+                        start,
+                        end: input.tokenizer.current_offset(),
+                    },
+                })
+            } else if name.eq_ignore_ascii_case("show") {
+                bump!(input);
+                let mut members = vec![];
+                loop {
+                    match &peek!(input).token {
+                        Token::Ident(..) => {
+                            members.push(input.parse().map(SassForwardMember::Ident)?)
+                        }
+                        _ => members.push(input.parse().map(SassForwardMember::Variable)?),
+                    }
+                    if eat!(input, Comma).is_none() {
+                        break;
+                    }
+                }
+                Some(SassForwardVisibility {
+                    kind: SassForwardVisibilityKind::Show,
+                    members,
+                    span: Span {
+                        start,
+                        end: input.tokenizer.current_offset(),
+                    },
+                })
+            } else {
+                None
+            }
+        } else {
+            None
+        };
+
+        let config = input.parse_sass_module_config()?;
+
+        Ok(SassForwardAtRule {
+            path,
+            prefix,
+            visibility,
+            config,
+            span: Span {
+                start,
+                end: input.tokenizer.current_offset(),
+            },
         })
     }
 }
@@ -1010,22 +1122,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
             _ => None,
         };
 
-        let mut config = vec![];
-        match &peek!(input).token {
-            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
-                bump!(input);
-                expect!(input, LParen);
-                loop {
-                    config.push(input.parse::<SassUseConfigItem>()?);
-                    if eat!(input, RParen).is_some() {
-                        break;
-                    } else {
-                        expect!(input, Comma);
-                    }
-                }
-            }
-            _ => {}
-        }
+        let config = input.parse_sass_module_config()?;
 
         Ok(SassUseAtRule {
             path,
@@ -1039,7 +1136,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassModuleConfigItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let variable = input.parse::<SassVariable>()?;
         expect!(input, Colon);
@@ -1053,7 +1150,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
             start: variable.span.start,
             end: input.tokenizer.current_offset(),
         };
-        Ok(SassUseConfigItem {
+        Ok(SassModuleConfigItem {
             variable,
             value,
             important,
