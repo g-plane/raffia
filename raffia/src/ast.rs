@@ -1360,6 +1360,8 @@ pub struct SassUseAtRule<'s> {
 pub struct SassUseConfigItem<'s> {
     pub variable: SassVariable<'s>,
     pub value: ComponentValue<'s>,
+    pub important: Option<ImportantAnnotation<'s>>,
+    pub overridable: bool,
     pub span: Span,
 }
 
@@ -1385,6 +1387,8 @@ pub struct SassVariable<'s> {
 pub struct SassVariableDeclaration<'s> {
     pub name: SassVariable<'s>,
     pub value: ComponentValues<'s>,
+    pub important: Option<ImportantAnnotation<'s>>,
+    pub overridable: bool,
     pub span: Span,
 }
 

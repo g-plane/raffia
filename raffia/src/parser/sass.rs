@@ -275,6 +275,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         })
     }
 
+    fn parse_sass_overridable_flag(&mut self) -> PResult<bool> {
+        if let Some((_, exclamation_span)) = eat!(self, Exclamation) {
+            let keyword = self.parse::<Ident>()?;
+            self.assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
+            if keyword.name == "default" {
+                Ok(true)
+            } else {
+                Err(Error {
+                    kind: ErrorKind::ExpectSassKeyword("default"),
+                    span: keyword.span,
+                })
+            }
+        } else {
+            Ok(false)
+        }
+    }
+
     /// This method will consume `)` token.
     fn parse_sass_params(
         &mut self,
@@ -1027,13 +1044,20 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseConfigItem<'s> {
         let variable = input.parse::<SassVariable>()?;
         expect!(input, Colon);
         let value = input.parse::<ComponentValue>()?;
+
+        let important = input.try_parse(ImportantAnnotation::parse).ok();
+
+        let overridable = input.parse_sass_overridable_flag()?;
+
         let span = Span {
             start: variable.span.start,
-            end: value.span().end,
+            end: input.tokenizer.current_offset(),
         };
         Ok(SassUseConfigItem {
             variable,
             value,
+            important,
+            overridable,
             span,
         })
     }
@@ -1086,11 +1110,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             /* allow_comma */ true, /* allow_semicolon */ false,
         )?;
 
+        let important = input.try_parse(ImportantAnnotation::parse).ok();
+
+        let overridable = input.parse_sass_overridable_flag()?;
+
         let span = Span {
             start: name.span.start,
-            end: value.span.end,
+            end: input.tokenizer.current_offset(),
         };
-        Ok(SassVariableDeclaration { name, value, span })
+        Ok(SassVariableDeclaration {
+            name,
+            value,
+            important,
+            overridable,
+            span,
+        })
     }
 }
 
