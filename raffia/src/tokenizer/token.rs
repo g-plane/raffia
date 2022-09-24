@@ -1,9 +1,9 @@
 use crate::pos::Span;
-use raffia_macro::{SpanIgnoredEq, Spanned};
+use raffia_macro::{EnumAsIs, SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum Comment<'s> {
@@ -27,7 +27,7 @@ pub struct LineComment<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum Token<'s> {
     Eof(Eof),

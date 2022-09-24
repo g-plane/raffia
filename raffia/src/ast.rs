@@ -1,7 +1,7 @@
 //! All kinds of AST nodes are here.
 
 use crate::{pos::Span, tokenizer::TokenWithSpan, util::CowStr};
-use raffia_macro::{SpanIgnoredEq, Spanned};
+use raffia_macro::{EnumAsIs, SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 use smallvec::SmallVec;
@@ -34,7 +34,7 @@ pub struct AtRule<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum AtRulePrelude<'s> {
@@ -79,7 +79,7 @@ pub struct AttributeSelectorMatcher {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum AttributeSelectorMatcherKind {
     /// `=`
@@ -104,7 +104,7 @@ pub struct AttributeSelectorModifier<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum AttributeSelectorValue<'s> {
@@ -138,7 +138,7 @@ pub struct CalcOperator {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum CalcOperatorKind {
     Plus,
@@ -155,7 +155,7 @@ pub struct ClassSelector<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ColorProfilePrelude<'s> {
@@ -171,7 +171,7 @@ pub struct Combinator {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum CombinatorKind {
     /// ` `
@@ -194,7 +194,7 @@ pub struct ComplexSelector<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ComplexSelectorChild<'s> {
@@ -202,7 +202,7 @@ pub enum ComplexSelectorChild<'s> {
     Combinator(Combinator),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ComponentValue<'s> {
@@ -266,7 +266,7 @@ pub struct ContainerCondition<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ContainerConditionKind<'s> {
@@ -321,7 +321,7 @@ pub struct CustomMedia<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum CustomMediaValue<'s> {
@@ -349,7 +349,7 @@ pub struct Delimiter {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum DelimiterKind {
     Comma,
@@ -357,7 +357,7 @@ pub enum DelimiterKind {
     Semicolon,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum Dimension<'s> {
@@ -378,7 +378,7 @@ pub struct DocumentPrelude<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum DocumentPreludeMatcher<'s> {
@@ -404,7 +404,7 @@ pub struct Flex<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum FontFamilyName<'s> {
@@ -459,7 +459,7 @@ pub struct ImportPrelude<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ImportPreludeHref<'s> {
@@ -467,7 +467,7 @@ pub enum ImportPreludeHref<'s> {
     Url(Url<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ImportPreludeLayer<'s> {
@@ -475,7 +475,7 @@ pub enum ImportPreludeLayer<'s> {
     WithName(Function<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum ImportPreludeSupports<'s> {
@@ -483,7 +483,7 @@ pub enum ImportPreludeSupports<'s> {
     Declaration(Declaration<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum InterpolableIdent<'s> {
@@ -501,7 +501,7 @@ pub struct InterpolableIdentStaticPart<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum InterpolableStr<'s> {
@@ -553,7 +553,7 @@ pub struct KeyframeBlock<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum KeyframeSelector<'s> {
@@ -561,7 +561,7 @@ pub enum KeyframeSelector<'s> {
     Percentage(Percentage<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum KeyframesName<'s> {
@@ -569,7 +569,7 @@ pub enum KeyframesName<'s> {
     Str(InterpolableStr<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LanguageRange<'s> {
@@ -601,7 +601,7 @@ pub struct LessInterpolatedIdent<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LessInterpolatedIdentElement<'s> {
@@ -617,7 +617,7 @@ pub struct LessInterpolatedStr<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LessInterpolatedStrElement<'s> {
@@ -633,7 +633,7 @@ pub struct LessPropertyMerge {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum LessPropertyMergeKind {
     Comma,
@@ -699,7 +699,7 @@ pub struct MediaCondition<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaConditionKind<'s> {
@@ -709,7 +709,7 @@ pub enum MediaConditionKind<'s> {
     Not(MediaNot<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaFeature<'s> {
@@ -727,7 +727,7 @@ pub struct MediaFeatureComparison {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum MediaFeatureComparisonKind {
     LessThan,
@@ -737,7 +737,7 @@ pub enum MediaFeatureComparisonKind {
     Equal,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaFeatureName<'s> {
@@ -783,7 +783,7 @@ pub struct MediaFeatureRangeInterval<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaInParens<'s> {
@@ -809,7 +809,7 @@ pub struct MediaOr<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaQuery<'s> {
@@ -844,7 +844,7 @@ pub struct NamespacePrelude<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum NamespacePreludeUri<'s> {
@@ -867,7 +867,7 @@ pub struct NsPrefix<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum NsPrefixKind<'s> {
@@ -882,7 +882,7 @@ pub struct NsPrefixUniversal {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum Nth<'s> {
@@ -935,7 +935,7 @@ pub struct PseudoClassSelector<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum PseudoClassSelectorArg<'s> {
@@ -959,7 +959,7 @@ pub struct PseudoElementSelector<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum PseudoElementSelectorArg<'s> {
@@ -985,7 +985,7 @@ pub struct QualifiedRule<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum QueryInParens<'s> {
@@ -1063,7 +1063,7 @@ pub struct SassBinaryOperator {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum SassBinaryOperatorKind {
     Multiply,
@@ -1163,7 +1163,7 @@ pub struct SassForwardAtRule<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassForwardMember<'s> {
@@ -1180,7 +1180,7 @@ pub struct SassForwardVisibility<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassForwardVisibilityKind {
@@ -1239,7 +1239,7 @@ pub struct SassInterpolatedIdent<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedIdentElement<'s> {
@@ -1255,7 +1255,7 @@ pub struct SassInterpolatedStr<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedStrElement<'s> {
@@ -1271,7 +1271,7 @@ pub struct SassInterpolatedUrl<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedUrlElement<'s> {
@@ -1385,7 +1385,7 @@ pub struct SassUnaryOperator {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum SassUnaryOperatorKind {
     Plus,
@@ -1410,7 +1410,7 @@ pub struct SassUseAtRule<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassUseNamespace<'s> {
@@ -1470,7 +1470,7 @@ pub struct SimpleBlock<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SimpleSelector<'s> {
@@ -1484,7 +1484,7 @@ pub enum SimpleSelector<'s> {
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum Statement<'s> {
@@ -1528,7 +1528,7 @@ pub struct StyleCondition<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum StyleConditionKind<'s> {
@@ -1565,7 +1565,7 @@ pub struct StyleConditionOr<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum StyleInParens<'s> {
@@ -1573,7 +1573,7 @@ pub enum StyleInParens<'s> {
     Feature(Declaration<'s>),
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum StyleQuery<'s> {
@@ -1606,7 +1606,7 @@ pub struct SupportsCondition<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SupportsConditionKind<'s> {
@@ -1624,7 +1624,7 @@ pub struct SupportsDecl<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SupportsInParens<'s> {
@@ -1666,7 +1666,7 @@ pub struct TokenSeq<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum TypeSelector<'s> {
@@ -1721,7 +1721,7 @@ pub struct Url<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum UrlModifier<'s> {
@@ -1739,7 +1739,7 @@ pub struct UrlRaw<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum UrlValue<'s> {
