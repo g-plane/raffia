@@ -26,3 +26,41 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
       - run: cargo test --all-features
+
+  playground:
+    name: playground
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Cache Cargo Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      - name: Cache Deno Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/deno
+            ~/.cache/wasmbuild
+          key: ${{ runner.os }}-deno-${{ hashFiles('deno.json') }}
+      - run: deno task wasmbuild
+      - run: yarn global add netlify-cli
+      - name: Deploy Production
+        if: ${{ github.event_name == 'push' }}
+        run: netlify deploy --site=raffia --dir=wasm/pkg --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      - name: Deploy Preview
+        if: ${{ github.event_name == 'pull_request' }}
+        run: netlify deploy --site=raffia --dir=wasm/pkg --alias=pr-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
