@@ -104,7 +104,7 @@ pub use config::Syntax;
 pub use parser::{Parse, Parser, ParserBuilder};
 pub use pos::{Span, Spanned};
 pub use span_ignored_eq::SpanIgnoredEq;
-pub use tokenizer::token::Token;
+pub use tokenizer::token;
 
 pub mod ast;
 mod config;

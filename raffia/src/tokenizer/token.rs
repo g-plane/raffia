@@ -1,3 +1,5 @@
+//! All supported tokens, and with comments.
+
 use crate::pos::Span;
 use raffia_macro::{EnumAsIs, SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
