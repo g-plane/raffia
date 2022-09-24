@@ -53,7 +53,6 @@ jobs:
             ~/.cache/wasmbuild
           key: ${{ runner.os }}-deno-${{ hashFiles('deno.json') }}
       - run: deno task wasmbuild
-      - run: yarn global add netlify-cli
       - name: Deploy Production
         if: ${{ github.event_name == 'push' }}
         run: netlify deploy --site=raffia --dir=wasm/pkg --prod
