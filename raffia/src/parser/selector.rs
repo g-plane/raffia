@@ -607,8 +607,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 } => Some(AttributeSelectorValue::Str(input.parse()?)),
                 TokenWithSpan {
                     token: Token::RBracket(..),
-                    ..
-                } => None,
+                    span,
+                } => {
+                    input.recoverable_errors.push(Error {
+                        kind: ErrorKind::ExpectAttributeSelectorValue,
+                        span: span.clone(),
+                    });
+                    None
+                }
                 token_with_span => {
                     return Err(Error {
                         kind: ErrorKind::ExpectAttributeSelectorValue,
