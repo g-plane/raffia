@@ -23,7 +23,7 @@ For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 ## 🏗️ Current Status
 
 -   CSS: Almost completed.
--   SCSS/Sass: Partially implemented. Some features are still in progress.
+-   SCSS/Sass: Mostly implemented. Some features are still in progress.
 -   Less: Only a few features are implemented.
 
 ## ⌛ Benchmark
