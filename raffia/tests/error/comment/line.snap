@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but `/` received
+  ┌─ line.css:1:1
+  │
+1 │ // comment
+  │ ^
+
+

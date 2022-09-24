@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<linebreak>`, but `{` received
+  ┌─ scss-as-sass.sass:1:22
+  │
+1 │ @mixin button-base() {
+  │                      ^
+
+

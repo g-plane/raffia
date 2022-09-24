@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: attribute selector matcher is expected
+  ┌─ invalid-attr-4.css:1:8
+  │
+1 │ a[title%="title"] {}
+  │        ^
+
+

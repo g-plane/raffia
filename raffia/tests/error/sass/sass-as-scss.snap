@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but `<at-keyword>` received
+  ┌─ sass-as-scss.scss:2:3
+  │
+2 │   @include typography(button)
+  │   ^^^^^^^^
+
+
