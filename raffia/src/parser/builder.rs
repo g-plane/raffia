@@ -7,7 +7,7 @@ use crate::{
 /// Parser builder is for building a parser while allowing us
 /// to control advanced behaviors.
 ///
-/// Unlike [`Parser`], syntax isn't required when creating a parser builder,
+/// Unlike [Parser], syntax isn't required when creating a parser builder,
 /// and the default syntax will be CSS. If you need to parse with another syntax,
 /// use the [`syntax`](ParserBuilder::syntax) to modify it.
 pub struct ParserBuilder<'cmt, 's: 'cmt> {
@@ -51,7 +51,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
     pub fn build(self) -> Parser<'cmt, 's> {
         Parser {
             source: self.source,
-            syntax: self.syntax.clone(),
+            syntax: self.syntax,
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),
             state: Default::default(),
             recoverable_errors: vec![],
