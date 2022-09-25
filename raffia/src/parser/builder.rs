@@ -7,7 +7,7 @@ use crate::{
 /// Parser builder is for building a parser while allowing us
 /// to control advanced behaviors.
 ///
-/// Unlike [Parser], syntax isn't required when creating a parser builder,
+/// Unlike [`Parser`], syntax isn't required when creating a parser builder,
 /// and the default syntax will be CSS. If you need to parse with another syntax,
 /// use the [`syntax`](ParserBuilder::syntax) to modify it.
 pub struct ParserBuilder<'cmt, 's: 'cmt> {
