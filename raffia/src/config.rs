@@ -2,7 +2,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Supported syntax.
-#[derive(Clone, Debug, Default, PartialEq, Eq, Copy)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 #[cfg_attr(feature = "serialize", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "serialize", serde(rename_all = "camelCase"))]
 pub enum Syntax {
