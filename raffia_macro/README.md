@@ -1,4 +1,4 @@
-# raffia-derive
+# raffia_macro
 
 This crate provides proc macros for Raffia, and it should only be used internally in Raffia.
 
