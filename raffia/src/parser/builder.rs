@@ -51,7 +51,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
     pub fn build(self) -> Parser<'cmt, 's> {
         Parser {
             source: self.source,
-            syntax: self.syntax.clone(),
+            syntax: self.syntax,
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),
             state: Default::default(),
             recoverable_errors: vec![],
