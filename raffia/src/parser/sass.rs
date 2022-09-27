@@ -527,8 +527,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let selector = input.parse::<SelectorList>()?;
-        let mut end = selector.span.end;
+
+        let mut selectors = vec![input.parse()?];
+        while eat!(input, Comma).is_some() {
+            selectors.push(input.parse()?);
+        }
 
         let optional = if let Some((_, exclamation_span)) = eat!(input, Exclamation) {
             let (keyword, keyword_span) = expect_without_ws_or_comments!(input, Ident);
@@ -537,7 +540,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
                     start: exclamation_span.start,
                     end: keyword_span.end,
                 };
-                end = keyword_span.end;
                 Some(SassFlag {
                     keyword: Ident::from_token(keyword, keyword_span),
                     span,
@@ -553,8 +555,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
             None
         };
 
+        let end = input.tokenizer.current_offset();
         Ok(SassExtendAtRule {
-            selector,
+            selectors,
             optional,
             span: Span { start, end },
         })
