@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unexpected whitespace
+  ┌─ wrong-indent-level.sass:3:4
+  │
+3 │  d: e
+  │    ^
+
+

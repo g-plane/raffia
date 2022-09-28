@@ -1,0 +1,271 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "a",
+                              raw: "a",
+                              span: Span(
+                                start: 8,
+                                end: 9,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 8,
+                              end: 9,
+                            ),
+                          ),
+                          span: Span(
+                            start: 8,
+                            end: 9,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8,
+                        end: 9,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 8,
+                    end: 9,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 8,
+                end: 9,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 18,
+                      end: 23,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 25,
+                        end: 28,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 18,
+                    end: 28,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 18,
+                end: 29,
+              ),
+            ),
+            span: Span(
+              start: 8,
+              end: 29,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "li",
+                              raw: "li",
+                              span: Span(
+                                start: 33,
+                                end: 35,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 33,
+                              end: 35,
+                            ),
+                          ),
+                          span: Span(
+                            start: 33,
+                            end: 35,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 33,
+                        end: 35,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 33,
+                    end: 35,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 33,
+                end: 35,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 44,
+                      end: 49,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 51,
+                        end: 56,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 44,
+                    end: 56,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 44,
+                end: 57,
+              ),
+            ),
+            span: Span(
+              start: 33,
+              end: 57,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8,
+          end: 57,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 57,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 57,
+  ),
+)

@@ -1,0 +1,444 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "grid-width",
+          raw: "grid-width",
+          span: Span(
+            start: 1,
+            end: 11,
+          ),
+        ),
+        span: Span(
+          start: 0,
+          end: 11,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Length(
+            type: "Length",
+            value: Number(
+              type: "Number",
+              value: 40.0,
+              raw: "40",
+              span: Span(
+                start: 13,
+                end: 15,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 15,
+                end: 17,
+              ),
+            ),
+            span: Span(
+              start: 13,
+              end: 17,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 13,
+          end: 17,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      span: Span(
+        start: 0,
+        end: 18,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "gutter-width",
+          raw: "gutter-width",
+          span: Span(
+            start: 19,
+            end: 31,
+          ),
+        ),
+        span: Span(
+          start: 18,
+          end: 31,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Length(
+            type: "Length",
+            value: Number(
+              type: "Number",
+              value: 10.0,
+              raw: "10",
+              span: Span(
+                start: 33,
+                end: 35,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 35,
+                end: 37,
+              ),
+            ),
+            span: Span(
+              start: 33,
+              end: 37,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 33,
+          end: 37,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      span: Span(
+        start: 18,
+        end: 39,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "grid-width",
+        raw: "grid-width",
+        span: Span(
+          start: 49,
+          end: 59,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "n",
+              raw: "n",
+              span: Span(
+                start: 61,
+                end: 62,
+              ),
+            ),
+            span: Span(
+              start: 60,
+              end: 62,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 60,
+            end: 62,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                SassBinaryExpression(
+                  type: "SassBinaryExpression",
+                  left: SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "n",
+                        raw: "n",
+                        span: Span(
+                          start: 75,
+                          end: 76,
+                        ),
+                      ),
+                      span: Span(
+                        start: 74,
+                        end: 76,
+                      ),
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Multiply,
+                      span: Span(
+                        start: 77,
+                        end: 78,
+                      ),
+                    ),
+                    right: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "grid-width",
+                        raw: "grid-width",
+                        span: Span(
+                          start: 80,
+                          end: 90,
+                        ),
+                      ),
+                      span: Span(
+                        start: 79,
+                        end: 90,
+                      ),
+                    ),
+                    span: Span(
+                      start: 74,
+                      end: 90,
+                    ),
+                  ),
+                  op: SassBinaryOperator(
+                    type: "SassBinaryOperator",
+                    kind: Plus,
+                    span: Span(
+                      start: 91,
+                      end: 92,
+                    ),
+                  ),
+                  right: SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: SassParenthesizedExpression(
+                      type: "SassParenthesizedExpression",
+                      expr: SassBinaryExpression(
+                        type: "SassBinaryExpression",
+                        left: SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "n",
+                            raw: "n",
+                            span: Span(
+                              start: 95,
+                              end: 96,
+                            ),
+                          ),
+                          span: Span(
+                            start: 94,
+                            end: 96,
+                          ),
+                        ),
+                        op: SassBinaryOperator(
+                          type: "SassBinaryOperator",
+                          kind: Minus,
+                          span: Span(
+                            start: 97,
+                            end: 98,
+                          ),
+                        ),
+                        right: Number(
+                          type: "Number",
+                          value: 1.0,
+                          raw: "1",
+                          span: Span(
+                            start: 99,
+                            end: 100,
+                          ),
+                        ),
+                        span: Span(
+                          start: 94,
+                          end: 100,
+                        ),
+                      ),
+                      span: Span(
+                        start: 93,
+                        end: 101,
+                      ),
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Multiply,
+                      span: Span(
+                        start: 102,
+                        end: 103,
+                      ),
+                    ),
+                    right: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "gutter-width",
+                        raw: "gutter-width",
+                        span: Span(
+                          start: 105,
+                          end: 117,
+                        ),
+                      ),
+                      span: Span(
+                        start: 104,
+                        end: 117,
+                      ),
+                    ),
+                    span: Span(
+                      start: 93,
+                      end: 117,
+                    ),
+                  ),
+                  span: Span(
+                    start: 74,
+                    end: 117,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 74,
+                end: 117,
+              ),
+            ),
+            span: Span(
+              start: 66,
+              end: 117,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 66,
+          end: 119,
+        ),
+      ),
+      span: Span(
+        start: 39,
+        end: 119,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "sidebar",
+                      raw: "sidebar",
+                      span: Span(
+                        start: 120,
+                        end: 127,
+                      ),
+                    ),
+                    span: Span(
+                      start: 119,
+                      end: 127,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 119,
+                  end: 127,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 119,
+              end: 127,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 119,
+          end: 127,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 130,
+                end: 135,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "grid-width",
+                  raw: "grid-width",
+                  span: Span(
+                    start: 137,
+                    end: 147,
+                  ),
+                ),
+                args: [
+                  Number(
+                    type: "Number",
+                    value: 5.0,
+                    raw: "5",
+                    span: Span(
+                      start: 148,
+                      end: 149,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 137,
+                  end: 150,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 130,
+              end: 150,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 130,
+          end: 151,
+        ),
+      ),
+      span: Span(
+        start: 119,
+        end: 151,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 151,
+  ),
+)
