@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ expression.scss:1:7
+  │
+1 │ a {a: .}
+  │       ^
+
+
