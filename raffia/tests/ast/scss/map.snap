@@ -1,0 +1,176 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "foo",
+              raw: "foo",
+              span: Span(
+                start: 8,
+                end: 11,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "map-values",
+                  raw: "map-values",
+                  span: Span(
+                    start: 13,
+                    end: 23,
+                  ),
+                ),
+                args: [
+                  SassMap(
+                    type: "SassMap",
+                    items: [
+                      SassMapItem(
+                        type: "SassMapItem",
+                        key: Ident(
+                          type: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 25,
+                            end: 28,
+                          ),
+                        ),
+                        value: Number(
+                          type: "Number",
+                          value: 1.0,
+                          raw: "1",
+                          span: Span(
+                            start: 30,
+                            end: 31,
+                          ),
+                        ),
+                        span: Span(
+                          start: 25,
+                          end: 31,
+                        ),
+                      ),
+                      SassMapItem(
+                        type: "SassMapItem",
+                        key: Ident(
+                          type: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 33,
+                            end: 36,
+                          ),
+                        ),
+                        value: Number(
+                          type: "Number",
+                          value: 2.0,
+                          raw: "2",
+                          span: Span(
+                            start: 38,
+                            end: 39,
+                          ),
+                        ),
+                        span: Span(
+                          start: 33,
+                          end: 39,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 24,
+                      end: 40,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 13,
+                  end: 41,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 41,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 44,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 44,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 45,
+  ),
+)
