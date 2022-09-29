@@ -250,9 +250,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         match &peek!(self).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
                 bump!(self);
-                let mut config = vec![];
                 expect!(self, LParen);
-                loop {
+                let mut config = vec![self.parse::<SassModuleConfigItem>()?];
+                if !matches!(&peek!(self).token, Token::RParen(..)) {
+                    expect!(self, Comma);
+                }
+
+                while eat!(self, RParen).is_none() {
                     config.push(self.parse::<SassModuleConfigItem>()?);
                     if eat!(self, RParen).is_some() {
                         break;
@@ -1143,7 +1147,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassModuleConfigItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let variable = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse::<ComponentValue>()?;
+        let value = input.parse_component_values(
+            /* allow_comma */ false, /* allow_semicolon */ false,
+        )?;
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 

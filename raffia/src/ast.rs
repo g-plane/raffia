@@ -1182,7 +1182,6 @@ pub struct SassForwardVisibility<'s> {
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassForwardVisibilityKind {
     Hide,
     Show,
@@ -1312,7 +1311,7 @@ pub struct SassMixinAtRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassModuleConfigItem<'s> {
     pub variable: SassVariable<'s>,
-    pub value: ComponentValue<'s>,
+    pub value: ComponentValues<'s>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
     pub span: Span,
