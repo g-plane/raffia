@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `<ident>` received
+  ┌─ with-namespace-variable.scss:1:24
+  │
+1 │ @forward "other" with (a.$b: c);
+  │                        ^
+
+

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<ident>`, but `;` received
+  ┌─ as-nothing.scss:1:16
+  │
+1 │ @forward "a" as;
+  │                ^
+
+

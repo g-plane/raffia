@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<ident>`, but `<number>` received
+  ┌─ as-invalid.scss:1:17
+  │
+1 │ @forward "a" as 1-*;
+  │                 ^
+
+

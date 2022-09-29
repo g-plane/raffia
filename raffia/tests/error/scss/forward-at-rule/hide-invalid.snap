@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `<number>` received
+  ┌─ hide-invalid.scss:1:19
+  │
+1 │ @forward "a" hide 1;
+  │                   ^
+
+

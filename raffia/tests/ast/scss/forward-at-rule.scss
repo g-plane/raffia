@@ -1,0 +1,29 @@
+@forward "upstream";
+
+@forward "upstream" as d-*;
+
+@forward "upstream" hide b;
+@forward "upstream" hide $a;
+@forward "upstream" show a;
+@forward "upstream" show $a, get-a;
+@forward "upstream" show $c;
+
+@fo\72ward "other";
+
+@forward "upstream" with ($c: e);
+@forward "upstream" with ($a: configured !default);
+@forward "upstream" with (
+  $a: configured a,
+  $b: configured b,
+  $c: configured c
+);
+@forward "upstream" with (
+  $a: configured a !default,
+  $b: configured b !default,
+  $c: configured c !default
+);
+
+@forward "upstream" with ($a: configured,);
+@forward "upstream" with ($a: configured !default,);
+
+@forward "midstream1" as m1-* with ($a: overridden 1);

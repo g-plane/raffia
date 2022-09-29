@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `(`, but `;` received
+  ┌─ with-no-arguments.scss:1:22
+  │
+1 │ @forward "other" with;
+  │                      ^
+
+

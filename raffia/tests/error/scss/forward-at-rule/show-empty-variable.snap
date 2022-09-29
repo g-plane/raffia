@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unknown token
+  ┌─ show-empty-variable.scss:1:19
+  │
+1 │ @forward "a" show $;
+  │                   ^
+
+

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `;` received
+  ┌─ hide-trailing-comma.scss:1:21
+  │
+1 │ @forward "a" hide b,;
+  │                     ^
+
+

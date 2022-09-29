@@ -1,0 +1,976 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 9,
+          end: 19,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: None,
+      span: Span(
+        start: 0,
+        end: 20,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 31,
+          end: 41,
+        ),
+      ),
+      prefix: Some(Ident(
+        type: "Ident",
+        name: "d-",
+        raw: "d-",
+        span: Span(
+          start: 45,
+          end: 47,
+        ),
+      )),
+      visibility: None,
+      config: None,
+      span: Span(
+        start: 22,
+        end: 49,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 60,
+          end: 70,
+        ),
+      ),
+      prefix: None,
+      visibility: Some(SassForwardVisibility(
+        type: "SassForwardVisibility",
+        kind: Hide,
+        members: [
+          Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 76,
+              end: 77,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 71,
+          end: 78,
+        ),
+      )),
+      config: None,
+      span: Span(
+        start: 51,
+        end: 78,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 88,
+          end: 98,
+        ),
+      ),
+      prefix: None,
+      visibility: Some(SassForwardVisibility(
+        type: "SassForwardVisibility",
+        kind: Hide,
+        members: [
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 105,
+                end: 106,
+              ),
+            ),
+            span: Span(
+              start: 104,
+              end: 106,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 99,
+          end: 107,
+        ),
+      )),
+      config: None,
+      span: Span(
+        start: 79,
+        end: 107,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 117,
+          end: 127,
+        ),
+      ),
+      prefix: None,
+      visibility: Some(SassForwardVisibility(
+        type: "SassForwardVisibility",
+        kind: Show,
+        members: [
+          Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 133,
+              end: 134,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 128,
+          end: 135,
+        ),
+      )),
+      config: None,
+      span: Span(
+        start: 108,
+        end: 135,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 145,
+          end: 155,
+        ),
+      ),
+      prefix: None,
+      visibility: Some(SassForwardVisibility(
+        type: "SassForwardVisibility",
+        kind: Show,
+        members: [
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 162,
+                end: 163,
+              ),
+            ),
+            span: Span(
+              start: 161,
+              end: 163,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "get-a",
+            raw: "get-a",
+            span: Span(
+              start: 165,
+              end: 170,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 156,
+          end: 171,
+        ),
+      )),
+      config: None,
+      span: Span(
+        start: 136,
+        end: 171,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 181,
+          end: 191,
+        ),
+      ),
+      prefix: None,
+      visibility: Some(SassForwardVisibility(
+        type: "SassForwardVisibility",
+        kind: Show,
+        members: [
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 198,
+                end: 199,
+              ),
+            ),
+            span: Span(
+              start: 197,
+              end: 199,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 192,
+          end: 200,
+        ),
+      )),
+      config: None,
+      span: Span(
+        start: 172,
+        end: 200,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "other",
+        raw: "\"other\"",
+        span: Span(
+          start: 213,
+          end: 220,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: None,
+      span: Span(
+        start: 202,
+        end: 221,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 232,
+          end: 242,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 250,
+                end: 251,
+              ),
+            ),
+            span: Span(
+              start: 249,
+              end: 251,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "e",
+                raw: "e",
+                span: Span(
+                  start: 253,
+                  end: 254,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 253,
+              end: 254,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 249,
+            end: 255,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 223,
+        end: 255,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 266,
+          end: 276,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 284,
+                end: 285,
+              ),
+            ),
+            span: Span(
+              start: 283,
+              end: 285,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 287,
+                  end: 297,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 287,
+              end: 297,
+            ),
+          ),
+          important: None,
+          overridable: true,
+          span: Span(
+            start: 283,
+            end: 306,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 257,
+        end: 307,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 318,
+          end: 328,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 339,
+                end: 340,
+              ),
+            ),
+            span: Span(
+              start: 338,
+              end: 340,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 342,
+                  end: 352,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 353,
+                  end: 354,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 342,
+              end: 354,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 338,
+            end: 355,
+          ),
+        ),
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 359,
+                end: 360,
+              ),
+            ),
+            span: Span(
+              start: 358,
+              end: 360,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 362,
+                  end: 372,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 373,
+                  end: 374,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 362,
+              end: 374,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 358,
+            end: 375,
+          ),
+        ),
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 379,
+                end: 380,
+              ),
+            ),
+            span: Span(
+              start: 378,
+              end: 380,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 382,
+                  end: 392,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 393,
+                  end: 394,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 382,
+              end: 394,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 378,
+            end: 396,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 309,
+        end: 396,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 407,
+          end: 417,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 428,
+                end: 429,
+              ),
+            ),
+            span: Span(
+              start: 427,
+              end: 429,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 431,
+                  end: 441,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 442,
+                  end: 443,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 431,
+              end: 443,
+            ),
+          ),
+          important: None,
+          overridable: true,
+          span: Span(
+            start: 427,
+            end: 452,
+          ),
+        ),
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 457,
+                end: 458,
+              ),
+            ),
+            span: Span(
+              start: 456,
+              end: 458,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 460,
+                  end: 470,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 471,
+                  end: 472,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 460,
+              end: 472,
+            ),
+          ),
+          important: None,
+          overridable: true,
+          span: Span(
+            start: 456,
+            end: 481,
+          ),
+        ),
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 486,
+                end: 487,
+              ),
+            ),
+            span: Span(
+              start: 485,
+              end: 487,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 489,
+                  end: 499,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 500,
+                  end: 501,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 489,
+              end: 501,
+            ),
+          ),
+          important: None,
+          overridable: true,
+          span: Span(
+            start: 485,
+            end: 510,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 398,
+        end: 512,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 524,
+          end: 534,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 542,
+                end: 543,
+              ),
+            ),
+            span: Span(
+              start: 541,
+              end: 543,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 545,
+                  end: 555,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 545,
+              end: 555,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 541,
+            end: 556,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 515,
+        end: 557,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 568,
+          end: 578,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 586,
+                end: 587,
+              ),
+            ),
+            span: Span(
+              start: 585,
+              end: 587,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 589,
+                  end: 599,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 589,
+              end: 599,
+            ),
+          ),
+          important: None,
+          overridable: true,
+          span: Span(
+            start: 585,
+            end: 608,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 559,
+        end: 610,
+      ),
+    ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "midstream1",
+        raw: "\"midstream1\"",
+        span: Span(
+          start: 622,
+          end: 634,
+        ),
+      ),
+      prefix: Some(Ident(
+        type: "Ident",
+        name: "m1-",
+        raw: "m1-",
+        span: Span(
+          start: 638,
+          end: 641,
+        ),
+      )),
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 650,
+                end: 651,
+              ),
+            ),
+            span: Span(
+              start: 649,
+              end: 651,
+            ),
+          ),
+          value: ComponentValues(
+            type: "ComponentValues",
+            values: [
+              Ident(
+                type: "Ident",
+                name: "overridden",
+                raw: "overridden",
+                span: Span(
+                  start: 653,
+                  end: 663,
+                ),
+              ),
+              Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 664,
+                  end: 665,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 653,
+              end: 665,
+            ),
+          ),
+          important: None,
+          overridable: false,
+          span: Span(
+            start: 649,
+            end: 666,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 613,
+        end: 666,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 668,
+  ),
+)

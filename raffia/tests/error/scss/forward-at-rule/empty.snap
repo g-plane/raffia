@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: string is expected
+  ┌─ empty.scss:1:9
+  │
+1 │ @forward;
+  │         ^
+
+

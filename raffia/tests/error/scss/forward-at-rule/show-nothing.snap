@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `;` received
+  ┌─ show-nothing.scss:1:18
+  │
+1 │ @forward "a" show;
+  │                  ^
+
+

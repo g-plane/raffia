@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<ident>`, but `*` received
+  ┌─ as-asterisk.scss:1:17
+  │
+1 │ @forward "a" as *;
+  │                 ^
+
+
