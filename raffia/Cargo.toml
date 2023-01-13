@@ -10,17 +10,17 @@ license = "MIT"
 [dependencies]
 raffia_macro = { path = "../raffia_macro", version = "0.1" }
 serde = { version = "1.0", features = ["derive"], optional = true }
-smallvec = { version = "1.9", features = ["const_generics", "serde"] }
+smallvec = { version = "1.10", features = ["const_generics", "serde"] }
 
 [dev-dependencies]
 codespan-reporting = "0.11"
-criterion = "0.3"
+criterion = "0.4"
 insta = { version = "1.19", features = ["glob", "ron"] }
-lightningcss = "1.0.0-alpha.35"
+lightningcss = "1.0.0-alpha.39"
 serde_json = "1.0"
-swc_common = "0.29.0"
-swc_css_ast = "0.114.0"
-swc_css_parser = "0.123.0"
+swc_common = "0.29.27"
+swc_css_ast = "0.134.0"
+swc_css_parser = "0.143.0"
 
 [features]
 serialize = ["serde"]
