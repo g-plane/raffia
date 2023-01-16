@@ -44,6 +44,12 @@ fn bench_parsers(c: &mut Criterion) {
     fs::read_dir("bench_data")
         .unwrap()
         .filter_map(|entry| entry.ok())
+        .filter(|entry| {
+            entry
+                .file_type()
+                .map(|file_type| file_type.is_file())
+                .unwrap_or_default()
+        })
         .for_each(|entry| {
             let path = &entry.path();
             let name = entry.file_name();
