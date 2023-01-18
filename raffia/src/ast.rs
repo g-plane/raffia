@@ -1629,6 +1629,8 @@ pub struct SupportsDecl<'s> {
 pub enum SupportsInParens<'s> {
     SupportsCondition(SupportsCondition<'s>),
     Feature(Box<SupportsDecl<'s>>),
+    Selector(SelectorList<'s>),
+    Function(Function<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

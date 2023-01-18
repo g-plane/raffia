@@ -89,6 +89,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
                     expect!(input, RParen);
                     Ok(SupportsInParens::SupportsCondition(condition))
                 }),
+            TokenWithSpan {
+                token: Token::Ident(..),
+                ..
+            } => {
+                let function_ident = input.parse::<Ident>()?;
+                if function_ident.name.eq_ignore_ascii_case("selector") {
+                    expect!(input, LParen);
+                    let selector_list = input.parse()?;
+                    expect!(input, RParen);
+                    Ok(SupportsInParens::Selector(selector_list))
+                } else {
+                    Ok(SupportsInParens::Function(input.parse_function(
+                        InterpolableIdent::Literal(function_ident),
+                    )?))
+                }
+            }
             TokenWithSpan { token, span } => Err(Error {
                 kind: ErrorKind::Unexpected("'('", token.symbol()),
                 span: span.clone(),
