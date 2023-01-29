@@ -28,13 +28,13 @@ For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 
 ## ⌛ Benchmark
 
-You can run compare performance with other parsers with benchmark.
+You can compare performance with other parsers in benchmark.
 
 First, you need to setup Rust and clone this repository. You also need to install `cargo-criterion` by running `cargo install cargo-criterion`.
 
 Then, copy some CSS files to `bench_data` directory. You need to create that directory by yourself.
 
-Now you can run benchmark by running `cargo criterion`.
+Now you can run benchmark by running `cargo +nightly criterion`.
 
 ## ✨ Credit
 
