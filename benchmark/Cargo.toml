@@ -1,0 +1,26 @@
+[package]
+name = "benchmark"
+version = "0.0.0"
+edition = "2021"
+authors = ["Pig Fang <g-plane@hotmail.com>"]
+license = "MIT"
+publish = false
+
+[dependencies]
+raffia = { path = "../raffia" }
+
+[dev-dependencies]
+criterion = "0.4"
+lightningcss = "1.0.0-alpha.39"
+serde_json = "1.0"
+swc_common = "0.29.27"
+swc_css_ast = "0.134.0"
+swc_css_parser = "0.143.0"
+
+[[bench]]
+name = "parse_selector"
+harness = false
+
+[[bench]]
+name = "parse_stylesheet"
+harness = false
