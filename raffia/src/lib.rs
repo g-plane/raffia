@@ -71,12 +71,12 @@
 //! ```
 //!
 //! Not all AST nodes support the usage above;
-//! technically, those nodes that implements [`Parse`] trait are supported.
+//! technically, those nodes that implement [`Parse`] trait are supported.
 //!
 //! ### Retrieve Recoverable Errors
 //!
 //! There may be some recoverable errors which doesn't affect on producing AST.
-//! To retrieve those errors, using [`recoverable_errors`](Parser::recoverable_errors).
+//! To retrieve those errors, use [`recoverable_errors`](Parser::recoverable_errors).
 //!
 //! ```rust
 //! use raffia::{ast::Stylesheet, Parser, Syntax};
