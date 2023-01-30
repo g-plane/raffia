@@ -855,7 +855,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 modifiers,
                 span,
             })
-        } else if let Ok(value) = input.try_parse(|parser| parser.parse::<UrlRaw>()) {
+        } else if let Ok(value) = input.try_parse(UrlRaw::parse) {
             let span = Span {
                 start: prefix_span.start,
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
