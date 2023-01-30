@@ -1,3 +1,7 @@
+_This changelog only relates to the `raffia` crate._
+
+## Unreleased
+
 ## v0.2.0
 
 - Added impl `Copy` trait for `Syntax`.
