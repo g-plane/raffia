@@ -49,6 +49,11 @@ fn bench_parsers(c: &mut Criterion) {
                 .file_type()
                 .map(|file_type| file_type.is_file())
                 .unwrap_or_default()
+                && entry
+                    .path()
+                    .extension()
+                    .map(|ext| ext == "css")
+                    .unwrap_or_default()
         })
         .for_each(|entry| {
             let path = &entry.path();
