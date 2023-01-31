@@ -2,7 +2,7 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
-- Fixed multiple `@else` at-rules in Sass.
+- Reject unexpected `@else` at-rule in Sass.
 
 ## v0.2.0
 
