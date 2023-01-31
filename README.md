@@ -1,5 +1,8 @@
 # Raffia
 
+[![Crates.io](https://img.shields.io/crates/v/raffia?style=flat-square)](https://crates.io/crates/raffia)
+[![docs.rs](https://img.shields.io/docsrs/raffia?style=flat-square)](https://docs.rs/raffia)
+
 Raffia is a parser which can parse CSS, SCSS, Sass (indented syntax) and Less. However, it won't compile SCSS, Sass or Less to CSS.
 
 ## 🧪 Playground
