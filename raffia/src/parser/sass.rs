@@ -748,7 +748,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
                         bump!(input);
                         else_if_clauses.push(input.parse()?);
                     }
-                    _ => else_clause = Some(input.parse()?),
+                    _ => {
+                        else_clause = Some(input.parse()?);
+                        break;
+                    }
                 }
             } else {
                 break;

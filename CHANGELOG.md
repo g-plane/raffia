@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Fixed multiple `@else` at-rules in Sass.
+
 ## v0.2.0
 
 - Added impl `Copy` trait for `Syntax`.
