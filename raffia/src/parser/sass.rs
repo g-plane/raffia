@@ -1064,14 +1064,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
                     expect!(input, Semicolon);
                     while eat!(input, Semicolon).is_some() {}
                 }
+            } else if let Some((_, span)) = eat!(input, Dedent) {
+                end = span.end;
+                break;
             } else {
-                if let Some((_, span)) = eat!(input, Dedent) {
-                    end = span.end;
-                    break;
-                } else {
-                    expect!(input, Linebreak);
-                    while eat!(input, Linebreak).is_some() {}
-                }
+                expect!(input, Linebreak);
+                while eat!(input, Linebreak).is_some() {}
             }
         }
 

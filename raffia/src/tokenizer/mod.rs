@@ -213,14 +213,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let span = Span { start, end };
                     match len.cmp(&self.state.indent_size) {
                         Ordering::Greater => {
-                            self.state.indent_size = len as u16;
+                            self.state.indent_size = len;
                             TokenWithSpan {
                                 token: Token::Indent(Indent {}),
                                 span,
                             }
                         }
                         Ordering::Less => {
-                            self.state.indent_size = len as u16;
+                            self.state.indent_size = len;
                             TokenWithSpan {
                                 token: Token::Dedent(Dedent {}),
                                 span,

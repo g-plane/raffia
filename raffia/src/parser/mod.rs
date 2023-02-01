@@ -38,7 +38,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub fn new(source: &'s str, syntax: Syntax) -> Self {
         Parser {
             source,
-            syntax: syntax.clone(),
+            syntax,
             tokenizer: Tokenizer::new(source, syntax, None),
             state: Default::default(),
             recoverable_errors: vec![],
@@ -81,7 +81,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         result
     }
 
-    #[must_use]
     fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
         debug_assert!(left.end <= right.start);
         if left.end == right.start {
