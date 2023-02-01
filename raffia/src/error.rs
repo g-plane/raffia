@@ -61,6 +61,7 @@ pub enum ErrorKind {
     ExpectSassUseNamespace,
     InvalidUnicodeRange,
     UnexpectedSassElseAtRule,
+    ExpectSassAtRootWithOrWithout,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -126,6 +127,9 @@ impl Display for ErrorKind {
             }
             Self::InvalidUnicodeRange => write!(f, "invalid unicode range"),
             Self::UnexpectedSassElseAtRule => write!(f, "Sass `@else` at-rule is disallowed here"),
+            Self::ExpectSassAtRootWithOrWithout => {
+                write!(f, "Sass identifier `with` or `without` is expected")
+            }
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {

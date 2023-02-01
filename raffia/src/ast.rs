@@ -1059,9 +1059,25 @@ pub struct SassAtRootAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassAtRootQuery<'s> {
-    pub control: InterpolableIdent<'s>,
-    pub rule: InterpolableIdent<'s>,
+    pub kind: SassAtRootQueryKind,
+    /// space-separated rule names
+    pub rules: Vec<SassAtRootQueryRule<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum SassAtRootQueryKind {
+    With,
+    Without,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum SassAtRootQueryRule<'s> {
+    Ident(InterpolableIdent<'s>),
+    Str(InterpolableStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

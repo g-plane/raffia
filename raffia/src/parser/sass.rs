@@ -467,15 +467,39 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootQuery<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, LParen).1.start;
 
-        let control = input.parse()?;
+        let kind = {
+            let (token, span) = expect!(input, Ident);
+            let ident_name = token.name();
+            if ident_name.eq_ignore_ascii_case("with") {
+                SassAtRootQueryKind::With
+            } else if ident_name.eq_ignore_ascii_case("without") {
+                SassAtRootQueryKind::Without
+            } else {
+                return Err(Error {
+                    kind: ErrorKind::ExpectSassAtRootWithOrWithout,
+                    span,
+                });
+            }
+        };
         expect!(input, Colon);
-        let rule = input.parse()?;
 
+        let mut rules = Vec::with_capacity(1);
+        loop {
+            match &peek!(input).token {
+                Token::Ident(..) | Token::HashLBrace(..) => {
+                    rules.push(SassAtRootQueryRule::Ident(input.parse()?));
+                }
+                Token::Str(..) | Token::StrTemplate(..) => {
+                    rules.push(SassAtRootQueryRule::Str(input.parse()?));
+                }
+                _ => break,
+            }
+        }
         let end = expect!(input, RParen).1.end;
 
         Ok(SassAtRootQuery {
-            control,
-            rule,
+            kind,
+            rules,
             span: Span { start, end },
         })
     }
