@@ -260,8 +260,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut statements = Vec::with_capacity(1);
         loop {
             let mut is_block_element = false;
-            let TokenWithSpan { token, span } = &peek!(self);
-            match token {
+            match &peek!(self).token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
@@ -307,7 +306,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     Syntax::Scss | Syntax::Sass => {
                         let at_keyword_name = at_keyword.ident.name();
                         if let Some((statement, is_block)) =
-                            self.parse_sass_at_rule(&at_keyword_name, span.clone())?
+                            self.parse_sass_at_rule(&at_keyword_name)?
                         {
                             statements.push(statement);
                             is_block_element = is_block;

@@ -22,7 +22,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_at_rule(
         &mut self,
         at_keyword_name: &str,
-        span: Span,
     ) -> PResult<Option<(Statement<'s>, bool)>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         match at_keyword_name {
@@ -65,7 +64,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "debug" => Ok(Some((Statement::SassDebugAtRule(self.parse()?), false))),
             "else" => Err(Error {
                 kind: ErrorKind::UnexpectedSassElseAtRule,
-                span,
+                span: bump!(self).span,
             }),
             _ => Ok(None),
         }
