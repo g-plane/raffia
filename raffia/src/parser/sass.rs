@@ -59,6 +59,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             "extend" => Ok(Some((Statement::SassExtendAtRule(self.parse()?), false))),
             "forward" => Ok(Some((Statement::SassForwardAtRule(self.parse()?), false))),
+            "at-root" => Ok(Some((Statement::SassAtRootAtRule(self.parse()?), true))),
             "warn" => Ok(Some((Statement::SassWarnAtRule(self.parse()?), false))),
             "error" => Ok(Some((Statement::SassErrorAtRule(self.parse()?), false))),
             "debug" => Ok(Some((Statement::SassDebugAtRule(self.parse()?), false))),
@@ -427,6 +428,56 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassArbitraryArgument<'s> {
             end,
         };
         Ok(SassArbitraryArgument { name, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let start = expect!(input, AtKeyword).1.start;
+        let mut selector = None;
+        let mut query = None;
+        let block: SimpleBlock;
+
+        match &peek!(input).token {
+            Token::LBrace(..) => block = input.parse()?,
+            Token::LParen(..) => {
+                query = Some(input.parse()?);
+                block = input.parse()?;
+            }
+            _ => {
+                selector = Some(input.parse()?);
+                block = input.parse()?;
+            }
+        }
+
+        let span = Span {
+            start,
+            end: block.span.end,
+        };
+        Ok(SassAtRootAtRule {
+            selector,
+            query,
+            block,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootQuery<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let start = expect!(input, LParen).1.start;
+
+        let control = input.parse()?;
+        expect!(input, Colon);
+        let rule = input.parse()?;
+
+        let end = expect!(input, RParen).1.end;
+
+        Ok(SassAtRootQuery {
+            control,
+            rule,
+            span: Span { start, end },
+        })
     }
 }
 

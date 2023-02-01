@@ -1048,6 +1048,25 @@ pub struct SassArbitraryParameter<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassAtRootAtRule<'s> {
+    pub selector: Option<SelectorList<'s>>,
+    pub query: Option<SassAtRootQuery<'s>>,
+    pub block: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassAtRootQuery<'s> {
+    pub control: InterpolableIdent<'s>,
+    pub rule: InterpolableIdent<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassBinaryExpression<'s> {
     pub left: Box<ComponentValue<'s>>,
     pub op: SassBinaryOperator,
@@ -1492,6 +1511,7 @@ pub enum Statement<'s> {
     KeyframeBlock(KeyframeBlock<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
+    SassAtRootAtRule(SassAtRootAtRule<'s>),
     SassContentAtRule(SassContentAtRule<'s>),
     SassDebugAtRule(SassDebugAtRule<'s>),
     SassEachAtRule(SassEachAtRule<'s>),
