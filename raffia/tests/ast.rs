@@ -20,7 +20,15 @@ fn ast_snapshot() {
         };
         let mut parser = Parser::new(&code, syntax);
         let ast = match parser.parse::<Stylesheet>() {
-            Ok(ast) => ast,
+            Ok(ast) => {
+                let recoverable_errors = parser.recoverable_errors();
+                assert!(
+                    recoverable_errors.is_empty(),
+                    "'{}' has recoverable errors: {recoverable_errors:?}",
+                    path.file_name().unwrap().to_str().unwrap(),
+                );
+                ast
+            }
             Err(error) => {
                 let file = SimpleFile::new(path.file_name().unwrap().to_str().unwrap(), &code);
                 let diagnostic = Diagnostic::error()
