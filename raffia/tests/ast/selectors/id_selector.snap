@@ -2370,10 +2370,18 @@ Stylesheet(
                         end: 722,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 723,
+                          end: 727,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 723,
                         end: 727,

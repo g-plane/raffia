@@ -26,10 +26,18 @@ Stylesheet(
                         end: 10,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 11,
+                          end: 15,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 11,
                         end: 15,
@@ -93,10 +101,18 @@ Stylesheet(
                         end: 30,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 31,
+                          end: 32,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 31,
                         end: 32,
@@ -160,10 +176,18 @@ Stylesheet(
                         end: 47,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 48,
+                          end: 51,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 48,
                         end: 51,
@@ -227,10 +251,18 @@ Stylesheet(
                         end: 66,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 67,
+                          end: 71,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 67,
                         end: 71,
@@ -294,10 +326,18 @@ Stylesheet(
                         end: 86,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 87,
+                          end: 89,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 87,
                         end: 89,
@@ -361,10 +401,18 @@ Stylesheet(
                         end: 104,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 105,
+                          end: 106,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 105,
                         end: 106,
@@ -428,10 +476,18 @@ Stylesheet(
                         end: 121,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 122,
+                          end: 126,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 122,
                         end: 126,
@@ -495,10 +551,18 @@ Stylesheet(
                         end: 141,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 142,
+                          end: 145,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 142,
                         end: 145,
@@ -562,10 +626,18 @@ Stylesheet(
                         end: 160,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 162,
+                          end: 168,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 162,
                         end: 168,
@@ -629,10 +701,18 @@ Stylesheet(
                         end: 184,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 187,
+                          end: 192,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 187,
                         end: 192,
@@ -696,10 +776,18 @@ Stylesheet(
                         end: 207,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 208,
+                          end: 212,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 208,
                         end: 212,
@@ -763,10 +851,18 @@ Stylesheet(
                         end: 227,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 228,
+                          end: 233,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 228,
                         end: 233,
@@ -830,10 +926,18 @@ Stylesheet(
                         end: 248,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 249,
+                          end: 255,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 249,
                         end: 255,
@@ -897,10 +1001,18 @@ Stylesheet(
                         end: 270,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 271,
+                          end: 275,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 271,
                         end: 275,
@@ -964,10 +1076,18 @@ Stylesheet(
                         end: 290,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 292,
+                          end: 303,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 292,
                         end: 303,
@@ -1031,10 +1151,18 @@ Stylesheet(
                         end: 319,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 320,
+                          end: 327,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 320,
                         end: 327,
@@ -1098,10 +1226,18 @@ Stylesheet(
                         end: 348,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 349,
+                          end: 353,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 349,
                         end: 353,
@@ -1165,10 +1301,18 @@ Stylesheet(
                         end: 373,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 374,
+                          end: 375,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 374,
                         end: 375,
@@ -1232,10 +1376,18 @@ Stylesheet(
                         end: 395,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 396,
+                          end: 399,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 396,
                         end: 399,
@@ -1299,10 +1451,18 @@ Stylesheet(
                         end: 419,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 420,
+                          end: 424,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 420,
                         end: 424,
@@ -1366,10 +1526,18 @@ Stylesheet(
                         end: 444,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 445,
+                          end: 447,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 445,
                         end: 447,
@@ -1433,10 +1601,18 @@ Stylesheet(
                         end: 467,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 468,
+                          end: 469,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 468,
                         end: 469,
@@ -1500,10 +1676,18 @@ Stylesheet(
                         end: 489,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 490,
+                          end: 494,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 490,
                         end: 494,
@@ -1567,10 +1751,18 @@ Stylesheet(
                         end: 514,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 515,
+                          end: 518,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 515,
                         end: 518,
@@ -1634,10 +1826,18 @@ Stylesheet(
                         end: 538,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 540,
+                          end: 546,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 540,
                         end: 546,
@@ -1701,10 +1901,18 @@ Stylesheet(
                         end: 567,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 570,
+                          end: 575,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 570,
                         end: 575,
@@ -1768,10 +1976,18 @@ Stylesheet(
                         end: 595,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 596,
+                          end: 600,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 596,
                         end: 600,
@@ -1835,10 +2051,18 @@ Stylesheet(
                         end: 620,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 621,
+                          end: 626,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 621,
                         end: 626,
@@ -1902,10 +2126,18 @@ Stylesheet(
                         end: 646,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 647,
+                          end: 653,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 647,
                         end: 653,
@@ -1969,10 +2201,18 @@ Stylesheet(
                         end: 673,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 674,
+                          end: 678,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 674,
                         end: 678,
@@ -2036,10 +2276,18 @@ Stylesheet(
                         end: 698,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 700,
+                          end: 711,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 700,
                         end: 711,
@@ -2103,10 +2351,18 @@ Stylesheet(
                         end: 732,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 733,
+                          end: 740,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 733,
                         end: 740,
@@ -2170,10 +2426,18 @@ Stylesheet(
                         end: 758,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 759,
+                          end: 763,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 759,
                         end: 763,
@@ -2237,10 +2501,18 @@ Stylesheet(
                         end: 780,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 781,
+                          end: 782,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 781,
                         end: 782,
@@ -2304,10 +2576,18 @@ Stylesheet(
                         end: 799,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 800,
+                          end: 803,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 800,
                         end: 803,
@@ -2371,10 +2651,18 @@ Stylesheet(
                         end: 820,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 821,
+                          end: 825,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 821,
                         end: 825,
@@ -2438,10 +2726,18 @@ Stylesheet(
                         end: 842,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 843,
+                          end: 845,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 843,
                         end: 845,
@@ -2505,10 +2801,18 @@ Stylesheet(
                         end: 862,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 863,
+                          end: 864,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 863,
                         end: 864,
@@ -2572,10 +2876,18 @@ Stylesheet(
                         end: 881,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 882,
+                          end: 886,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 882,
                         end: 886,
@@ -2639,10 +2951,18 @@ Stylesheet(
                         end: 903,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 904,
+                          end: 907,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 904,
                         end: 907,
@@ -2706,10 +3026,18 @@ Stylesheet(
                         end: 924,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 926,
+                          end: 932,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 926,
                         end: 932,
@@ -2773,10 +3101,18 @@ Stylesheet(
                         end: 950,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 953,
+                          end: 958,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 953,
                         end: 958,
@@ -2840,10 +3176,18 @@ Stylesheet(
                         end: 975,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 976,
+                          end: 980,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 976,
                         end: 980,
@@ -2907,10 +3251,18 @@ Stylesheet(
                         end: 997,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 998,
+                          end: 1003,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 998,
                         end: 1003,
@@ -2974,10 +3326,18 @@ Stylesheet(
                         end: 1020,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1021,
+                          end: 1027,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1021,
                         end: 1027,
@@ -3041,10 +3401,18 @@ Stylesheet(
                         end: 1044,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1045,
+                          end: 1049,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1045,
                         end: 1049,
@@ -3108,10 +3476,18 @@ Stylesheet(
                         end: 1066,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1068,
+                          end: 1079,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1068,
                         end: 1079,
@@ -3175,10 +3551,18 @@ Stylesheet(
                         end: 1097,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1098,
+                          end: 1105,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1098,
                         end: 1105,
@@ -3242,10 +3626,18 @@ Stylesheet(
                         end: 1128,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1129,
+                          end: 1133,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1129,
                         end: 1133,
@@ -3309,10 +3701,18 @@ Stylesheet(
                         end: 1155,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1156,
+                          end: 1157,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1156,
                         end: 1157,
@@ -3376,10 +3776,18 @@ Stylesheet(
                         end: 1179,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1180,
+                          end: 1183,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1180,
                         end: 1183,
@@ -3443,10 +3851,18 @@ Stylesheet(
                         end: 1205,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1206,
+                          end: 1210,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1206,
                         end: 1210,
@@ -3510,10 +3926,18 @@ Stylesheet(
                         end: 1232,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1233,
+                          end: 1235,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1233,
                         end: 1235,
@@ -3577,10 +4001,18 @@ Stylesheet(
                         end: 1257,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1258,
+                          end: 1259,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1258,
                         end: 1259,
@@ -3644,10 +4076,18 @@ Stylesheet(
                         end: 1281,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1282,
+                          end: 1286,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1282,
                         end: 1286,
@@ -3711,10 +4151,18 @@ Stylesheet(
                         end: 1308,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1309,
+                          end: 1312,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1309,
                         end: 1312,
@@ -3778,10 +4226,18 @@ Stylesheet(
                         end: 1334,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1336,
+                          end: 1342,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1336,
                         end: 1342,
@@ -3845,10 +4301,18 @@ Stylesheet(
                         end: 1365,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1368,
+                          end: 1373,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1368,
                         end: 1373,
@@ -3912,10 +4376,18 @@ Stylesheet(
                         end: 1395,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1396,
+                          end: 1400,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1396,
                         end: 1400,
@@ -3979,10 +4451,18 @@ Stylesheet(
                         end: 1422,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1423,
+                          end: 1428,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1423,
                         end: 1428,
@@ -4046,10 +4526,18 @@ Stylesheet(
                         end: 1450,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1451,
+                          end: 1457,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1451,
                         end: 1457,
@@ -4113,10 +4601,18 @@ Stylesheet(
                         end: 1479,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1480,
+                          end: 1484,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1480,
                         end: 1484,
@@ -4180,10 +4676,18 @@ Stylesheet(
                         end: 1506,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1508,
+                          end: 1519,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1508,
                         end: 1519,
@@ -4247,10 +4751,18 @@ Stylesheet(
                         end: 1542,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1543,
+                          end: 1550,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1543,
                         end: 1550,
@@ -4314,10 +4826,18 @@ Stylesheet(
                         end: 1564,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1565,
+                          end: 1569,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1565,
                         end: 1569,
@@ -4381,10 +4901,18 @@ Stylesheet(
                         end: 1582,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1583,
+                          end: 1584,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1583,
                         end: 1584,
@@ -4448,10 +4976,18 @@ Stylesheet(
                         end: 1597,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1598,
+                          end: 1601,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1598,
                         end: 1601,
@@ -4515,10 +5051,18 @@ Stylesheet(
                         end: 1614,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1615,
+                          end: 1619,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1615,
                         end: 1619,
@@ -4582,10 +5126,18 @@ Stylesheet(
                         end: 1632,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1633,
+                          end: 1635,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1633,
                         end: 1635,
@@ -4649,10 +5201,18 @@ Stylesheet(
                         end: 1648,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1649,
+                          end: 1650,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1649,
                         end: 1650,
@@ -4716,10 +5276,18 @@ Stylesheet(
                         end: 1663,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1664,
+                          end: 1668,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1664,
                         end: 1668,
@@ -4783,10 +5351,18 @@ Stylesheet(
                         end: 1681,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1682,
+                          end: 1685,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1682,
                         end: 1685,
@@ -4850,10 +5426,18 @@ Stylesheet(
                         end: 1698,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 1700,
+                          end: 1706,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1700,
                         end: 1706,
@@ -4917,10 +5501,18 @@ Stylesheet(
                         end: 1720,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1723,
+                          end: 1728,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1723,
                         end: 1728,
@@ -4984,10 +5576,18 @@ Stylesheet(
                         end: 1741,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1742,
+                          end: 1746,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1742,
                         end: 1746,
@@ -5051,10 +5651,18 @@ Stylesheet(
                         end: 1759,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 1760,
+                          end: 1765,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1760,
                         end: 1765,
@@ -5118,10 +5726,18 @@ Stylesheet(
                         end: 1778,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1779,
+                          end: 1785,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1779,
                         end: 1785,
@@ -5185,10 +5801,18 @@ Stylesheet(
                         end: 1798,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 1799,
+                          end: 1803,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1799,
                         end: 1803,
@@ -5252,10 +5876,18 @@ Stylesheet(
                         end: 1816,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1818,
+                          end: 1829,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1818,
                         end: 1829,
@@ -5319,10 +5951,18 @@ Stylesheet(
                         end: 1843,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 1844,
+                          end: 1851,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1844,
                         end: 1851,
@@ -5386,10 +6026,18 @@ Stylesheet(
                         end: 1870,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1871,
+                          end: 1875,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1871,
                         end: 1875,
@@ -5453,10 +6101,18 @@ Stylesheet(
                         end: 1893,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1894,
+                          end: 1895,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1894,
                         end: 1895,
@@ -5520,10 +6176,18 @@ Stylesheet(
                         end: 1913,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1914,
+                          end: 1917,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1914,
                         end: 1917,
@@ -5587,10 +6251,18 @@ Stylesheet(
                         end: 1935,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1936,
+                          end: 1940,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1936,
                         end: 1940,
@@ -5654,10 +6326,18 @@ Stylesheet(
                         end: 1958,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 1959,
+                          end: 1961,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1959,
                         end: 1961,
@@ -5721,10 +6401,18 @@ Stylesheet(
                         end: 1979,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 1980,
+                          end: 1981,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 1980,
                         end: 1981,
@@ -5788,10 +6476,18 @@ Stylesheet(
                         end: 1999,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 2000,
+                          end: 2004,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2000,
                         end: 2004,
@@ -5855,10 +6551,18 @@ Stylesheet(
                         end: 2022,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 2023,
+                          end: 2026,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2023,
                         end: 2026,
@@ -5922,10 +6626,18 @@ Stylesheet(
                         end: 2044,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 3,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 3,
+                        span: Span(
+                          start: 2046,
+                          end: 2052,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2046,
                         end: 2052,
@@ -5989,10 +6701,18 @@ Stylesheet(
                         end: 2071,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 2074,
+                          end: 2079,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2074,
                         end: 2079,
@@ -6056,10 +6776,18 @@ Stylesheet(
                         end: 2097,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 2098,
+                          end: 2102,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2098,
                         end: 2102,
@@ -6123,10 +6851,18 @@ Stylesheet(
                         end: 2120,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -10,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -10,
+                        span: Span(
+                          start: 2121,
+                          end: 2126,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2121,
                         end: 2126,
@@ -6190,10 +6926,18 @@ Stylesheet(
                         end: 2144,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 2145,
+                          end: 2151,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2145,
                         end: 2151,
@@ -6257,10 +7001,18 @@ Stylesheet(
                         end: 2169,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 2170,
+                          end: 2174,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2170,
                         end: 2174,
@@ -6324,10 +7076,18 @@ Stylesheet(
                         end: 2192,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 2194,
+                          end: 2205,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2194,
                         end: 2205,
@@ -6391,10 +7151,18 @@ Stylesheet(
                         end: 2224,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 23,
-                      b: 123,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 23,
+                        b: 123,
+                        span: Span(
+                          start: 2225,
+                          end: 2232,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2225,
                         end: 2232,
@@ -6458,10 +7226,18 @@ Stylesheet(
                         end: 2248,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2249,
+                          end: 2253,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2249,
                         end: 2253,
@@ -6525,10 +7301,18 @@ Stylesheet(
                         end: 2268,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2269,
+                          end: 2274,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2269,
                         end: 2274,
@@ -6592,10 +7376,18 @@ Stylesheet(
                         end: 2289,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2290,
+                          end: 2296,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2290,
                         end: 2296,
@@ -6659,10 +7451,18 @@ Stylesheet(
                         end: 2311,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2312,
+                          end: 2317,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2312,
                         end: 2317,
@@ -6726,10 +7526,18 @@ Stylesheet(
                         end: 2332,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2333,
+                          end: 2337,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2333,
                         end: 2337,
@@ -6793,10 +7601,18 @@ Stylesheet(
                         end: 2352,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2353,
+                          end: 2358,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2353,
                         end: 2358,
@@ -6860,10 +7676,18 @@ Stylesheet(
                         end: 2373,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2374,
+                          end: 2379,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2374,
                         end: 2379,
@@ -6927,10 +7751,18 @@ Stylesheet(
                         end: 2394,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2395,
+                          end: 2401,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2395,
                         end: 2401,
@@ -6994,10 +7826,18 @@ Stylesheet(
                         end: 2416,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 1,
+                        span: Span(
+                          start: 2417,
+                          end: 2422,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2417,
                         end: 2422,
@@ -7061,10 +7901,18 @@ Stylesheet(
                         end: 2437,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 1,
+                        span: Span(
+                          start: 2438,
+                          end: 2444,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2438,
                         end: 2444,
@@ -7128,10 +7976,18 @@ Stylesheet(
                         end: 2459,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 1,
+                        span: Span(
+                          start: 2460,
+                          end: 2467,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2460,
                         end: 2467,
@@ -7195,10 +8051,18 @@ Stylesheet(
                         end: 2482,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 1,
+                        span: Span(
+                          start: 2483,
+                          end: 2489,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2483,
                         end: 2489,
@@ -7262,10 +8126,18 @@ Stylesheet(
                         end: 2504,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: -1,
+                        span: Span(
+                          start: 2505,
+                          end: 2510,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2505,
                         end: 2510,
@@ -7329,10 +8201,18 @@ Stylesheet(
                         end: 2525,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: -1,
+                        span: Span(
+                          start: 2526,
+                          end: 2532,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2526,
                         end: 2532,
@@ -7396,10 +8276,18 @@ Stylesheet(
                         end: 2547,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: -1,
+                        span: Span(
+                          start: 2548,
+                          end: 2555,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2548,
                         end: 2555,
@@ -7463,10 +8351,18 @@ Stylesheet(
                         end: 2570,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2571,
+                          end: 2576,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2571,
                         end: 2576,
@@ -7530,10 +8426,18 @@ Stylesheet(
                         end: 2591,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2592,
+                          end: 2598,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2592,
                         end: 2598,
@@ -7597,10 +8501,18 @@ Stylesheet(
                         end: 2613,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2614,
+                          end: 2621,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2614,
                         end: 2621,
@@ -7664,10 +8576,18 @@ Stylesheet(
                         end: 2636,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 2637,
+                          end: 2643,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2637,
                         end: 2643,
@@ -7731,10 +8651,18 @@ Stylesheet(
                         end: 2658,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2659,
+                          end: 2664,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2659,
                         end: 2664,
@@ -7798,10 +8726,18 @@ Stylesheet(
                         end: 2679,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2680,
+                          end: 2686,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2680,
                         end: 2686,
@@ -7865,10 +8801,18 @@ Stylesheet(
                         end: 2701,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2702,
+                          end: 2708,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2702,
                         end: 2708,
@@ -7932,10 +8876,18 @@ Stylesheet(
                         end: 2723,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: -1,
+                        span: Span(
+                          start: 2724,
+                          end: 2731,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2724,
                         end: 2731,
@@ -7999,10 +8951,18 @@ Stylesheet(
                         end: 2746,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 2747,
+                          end: 2750,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2747,
                         end: 2750,
@@ -8066,10 +9026,18 @@ Stylesheet(
                         end: 2765,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 2766,
+                          end: 2770,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2766,
                         end: 2770,
@@ -8133,10 +9101,18 @@ Stylesheet(
                         end: 2785,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 2786,
+                          end: 2791,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2786,
                         end: 2791,
@@ -8200,10 +9176,18 @@ Stylesheet(
                         end: 2806,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 2807,
+                          end: 2811,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2807,
                         end: 2811,
@@ -8267,10 +9251,18 @@ Stylesheet(
                         end: 2826,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 2827,
+                          end: 2830,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2827,
                         end: 2830,
@@ -8334,10 +9326,18 @@ Stylesheet(
                         end: 2845,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 2846,
+                          end: 2850,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2846,
                         end: 2850,
@@ -8401,10 +9401,18 @@ Stylesheet(
                         end: 2865,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 2866,
+                          end: 2870,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2866,
                         end: 2870,
@@ -8468,10 +9476,18 @@ Stylesheet(
                         end: 2885,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 2886,
+                          end: 2891,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2886,
                         end: 2891,
@@ -8535,10 +9551,18 @@ Stylesheet(
                         end: 2906,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 1,
+                        span: Span(
+                          start: 2907,
+                          end: 2911,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2907,
                         end: 2911,
@@ -8602,10 +9626,18 @@ Stylesheet(
                         end: 2926,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 1,
+                        span: Span(
+                          start: 2927,
+                          end: 2932,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2927,
                         end: 2932,
@@ -8669,10 +9701,18 @@ Stylesheet(
                         end: 2947,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 1,
+                        span: Span(
+                          start: 2948,
+                          end: 2954,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2948,
                         end: 2954,
@@ -8736,10 +9776,18 @@ Stylesheet(
                         end: 2969,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 1,
+                        span: Span(
+                          start: 2970,
+                          end: 2975,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2970,
                         end: 2975,
@@ -8803,10 +9851,18 @@ Stylesheet(
                         end: 2990,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 2991,
+                          end: 2995,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 2991,
                         end: 2995,
@@ -8870,10 +9926,18 @@ Stylesheet(
                         end: 3010,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 3011,
+                          end: 3016,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3011,
                         end: 3016,
@@ -8937,10 +10001,18 @@ Stylesheet(
                         end: 3031,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 3032,
+                          end: 3037,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3032,
                         end: 3037,
@@ -9004,10 +10076,18 @@ Stylesheet(
                         end: 3052,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: -1,
+                        span: Span(
+                          start: 3053,
+                          end: 3059,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3053,
                         end: 3059,
@@ -9071,10 +10151,18 @@ Stylesheet(
                         end: 3074,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 3075,
+                          end: 3079,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3075,
                         end: 3079,
@@ -9138,10 +10226,18 @@ Stylesheet(
                         end: 3094,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 3095,
+                          end: 3100,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3095,
                         end: 3100,
@@ -9205,10 +10301,18 @@ Stylesheet(
                         end: 3115,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 3116,
+                          end: 3122,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3116,
                         end: 3122,
@@ -9272,10 +10376,18 @@ Stylesheet(
                         end: 3137,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 1,
+                        span: Span(
+                          start: 3138,
+                          end: 3143,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3138,
                         end: 3143,
@@ -9339,10 +10451,18 @@ Stylesheet(
                         end: 3158,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 3159,
+                          end: 3163,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3159,
                         end: 3163,
@@ -9406,10 +10526,18 @@ Stylesheet(
                         end: 3178,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 3179,
+                          end: 3184,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3179,
                         end: 3184,
@@ -9473,10 +10601,18 @@ Stylesheet(
                         end: 3199,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 3200,
+                          end: 3205,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3200,
                         end: 3205,
@@ -9540,10 +10676,18 @@ Stylesheet(
                         end: 3220,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: -1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: -1,
+                        span: Span(
+                          start: 3221,
+                          end: 3227,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3221,
                         end: 3227,
@@ -9607,10 +10751,18 @@ Stylesheet(
                         end: 3242,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 3243,
+                          end: 3244,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3243,
                         end: 3244,
@@ -9674,10 +10826,18 @@ Stylesheet(
                         end: 3259,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 3260,
+                          end: 3262,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3260,
                         end: 3262,
@@ -9741,10 +10901,18 @@ Stylesheet(
                         end: 3277,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 3278,
+                          end: 3280,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3278,
                         end: 3280,
@@ -9808,10 +10976,18 @@ Stylesheet(
                         end: 3295,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 0,
+                        span: Span(
+                          start: 3296,
+                          end: 3298,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3296,
                         end: 3298,
@@ -9875,10 +11051,18 @@ Stylesheet(
                         end: 3313,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 0,
+                        span: Span(
+                          start: 3314,
+                          end: 3317,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3314,
                         end: 3317,
@@ -9942,10 +11126,18 @@ Stylesheet(
                         end: 3332,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 0,
+                        span: Span(
+                          start: 3333,
+                          end: 3336,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3333,
                         end: 3336,
@@ -10009,10 +11201,18 @@ Stylesheet(
                         end: 3351,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 3352,
+                          end: 3353,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3352,
                         end: 3353,
@@ -10076,10 +11276,18 @@ Stylesheet(
                         end: 3368,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -1,
+                        b: 0,
+                        span: Span(
+                          start: 3369,
+                          end: 3371,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3369,
                         end: 3371,
@@ -10143,10 +11351,18 @@ Stylesheet(
                         end: 3386,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 1,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 1,
+                        b: 0,
+                        span: Span(
+                          start: 3387,
+                          end: 3389,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3387,
                         end: 3389,
@@ -10210,10 +11426,18 @@ Stylesheet(
                         end: 3404,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 0,
+                        span: Span(
+                          start: 3405,
+                          end: 3407,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3405,
                         end: 3407,
@@ -10277,10 +11501,18 @@ Stylesheet(
                         end: 3422,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: -2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: -2,
+                        b: 0,
+                        span: Span(
+                          start: 3423,
+                          end: 3426,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3423,
                         end: 3426,
@@ -10344,10 +11576,18 @@ Stylesheet(
                         end: 3441,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 0,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 0,
+                        span: Span(
+                          start: 3442,
+                          end: 3445,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3442,
                         end: 3445,
@@ -10411,10 +11651,18 @@ Stylesheet(
                         end: 3460,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 123456,
-                      b: -12345678,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 123456,
+                        b: -12345678,
+                        span: Span(
+                          start: 3461,
+                          end: 3477,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3461,
                         end: 3477,
@@ -10478,10 +11726,18 @@ Stylesheet(
                         end: 3493,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 3494,
+                          end: 3498,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3494,
                         end: 3498,
@@ -10545,10 +11801,18 @@ Stylesheet(
                         end: 3513,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 3514,
+                          end: 3518,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3514,
                         end: 3518,
@@ -10612,10 +11876,18 @@ Stylesheet(
                         end: 3534,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 2,
-                      b: 1,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 2,
+                        b: 1,
+                        span: Span(
+                          start: 3543,
+                          end: 3563,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3543,
                         end: 3563,
@@ -10679,10 +11951,18 @@ Stylesheet(
                         end: 3591,
                       ),
                     ),
-                    arg: Some(AnPlusB(
-                      type: "AnPlusB",
-                      a: 3,
-                      b: -2,
+                    arg: Some(Nth(
+                      type: "Nth",
+                      index: AnPlusB(
+                        type: "AnPlusB",
+                        a: 3,
+                        b: -2,
+                        span: Span(
+                          start: 3600,
+                          end: 3621,
+                        ),
+                      ),
+                      matcher: None,
                       span: Span(
                         start: 3600,
                         end: 3621,
