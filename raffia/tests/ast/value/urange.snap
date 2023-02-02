@@ -446,13 +446,13 @@ Stylesheet(
               UnicodeRange(
                 type: "UnicodeRange",
                 prefix: 'U',
-                start: 0,
-                startRaw: "??????",
-                end: 16777215,
+                start: 18,
+                startRaw: "12",
+                end: 18,
                 endRaw: None,
                 span: Span(
                   start: 479,
-                  end: 487,
+                  end: 483,
                 ),
               ),
             ],
@@ -460,7 +460,7 @@ Stylesheet(
             lessPropertyMerge: None,
             span: Span(
               start: 464,
-              end: 487,
+              end: 483,
             ),
           ),
           Declaration(
@@ -470,168 +470,8 @@ Stylesheet(
               name: "unicode-range",
               raw: "unicode-range",
               span: Span(
-                start: 491,
-                end: 504,
-              ),
-            ),
-            value: [
-              UnicodeRange(
-                type: "UnicodeRange",
-                prefix: 'U',
-                start: 18,
-                startRaw: "12",
-                end: 18,
-                endRaw: None,
-                span: Span(
-                  start: 506,
-                  end: 510,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 491,
-              end: 510,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "unicode-range",
-              raw: "unicode-range",
-              span: Span(
-                start: 514,
-                end: 527,
-              ),
-            ),
-            value: [
-              UnicodeRange(
-                type: "UnicodeRange",
-                prefix: 'U',
-                start: 1237266,
-                startRaw: "12e112",
-                end: 1237266,
-                endRaw: None,
-                span: Span(
-                  start: 529,
-                  end: 537,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 514,
-              end: 537,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "unicode-range",
-              raw: "unicode-range",
-              span: Span(
-                start: 541,
-                end: 554,
-              ),
-            ),
-            value: [
-              UnicodeRange(
-                type: "UnicodeRange",
-                prefix: 'U',
-                start: 1973985,
-                startRaw: "1e1ee1",
-                end: 1973985,
-                endRaw: None,
-                span: Span(
-                  start: 556,
-                  end: 564,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 541,
-              end: 564,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "unicode-range",
-              raw: "unicode-range",
-              span: Span(
-                start: 568,
-                end: 581,
-              ),
-            ),
-            value: [
-              UnicodeRange(
-                type: "UnicodeRange",
-                prefix: 'U',
-                start: 1973985,
-                startRaw: "1e1ee1",
-                end: 16777215,
-                endRaw: Some("FFFFFF"),
-                span: Span(
-                  start: 583,
-                  end: 598,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 568,
-              end: 598,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "unicode-range",
-              raw: "unicode-range",
-              span: Span(
-                start: 602,
-                end: 615,
-              ),
-            ),
-            value: [
-              UnicodeRange(
-                type: "UnicodeRange",
-                prefix: 'U',
-                start: 1973984,
-                startRaw: "1e1ee?",
-                end: 1973999,
-                endRaw: None,
-                span: Span(
-                  start: 617,
-                  end: 625,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 602,
-              end: 625,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "unicode-range",
-              raw: "unicode-range",
-              span: Span(
-                start: 629,
-                end: 642,
+                start: 487,
+                end: 500,
               ),
             ),
             value: [
@@ -643,32 +483,32 @@ Stylesheet(
                 end: 19,
                 endRaw: Some("13"),
                 span: Span(
-                  start: 644,
-                  end: 651,
+                  start: 502,
+                  end: 509,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 629,
-              end: 651,
+              start: 487,
+              end: 509,
             ),
           ),
         ],
         span: Span(
           start: 11,
-          end: 654,
+          end: 512,
         ),
       )),
       span: Span(
         start: 0,
-        end: 654,
+        end: 512,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 655,
+    end: 513,
   ),
 )
