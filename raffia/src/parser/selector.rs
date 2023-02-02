@@ -871,6 +871,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
     }
 }
 
+// https://drafts.csswg.org/selectors-4/#the-nth-child-pseudo
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let index = input.parse::<NthIndex>()?;
