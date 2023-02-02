@@ -963,7 +963,7 @@ pub enum PseudoClassSelectorArg<'s> {
     Nth(Nth<'s>),
     Number(Number<'s>),
     RelativeSelectorList(RelativeSelectorList<'s>),
-    SelectorList(Box<SelectorList<'s>>),
+    SelectorList(SelectorList<'s>),
     TokenSeq(TokenSeq<'s>),
 }
 
@@ -1509,7 +1509,7 @@ pub struct SassWhileAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SelectorList<'s> {
-    pub selectors: SmallVec<[ComplexSelector<'s>; 2]>,
+    pub selectors: Vec<ComplexSelector<'s>>,
     pub span: Span,
 }
 

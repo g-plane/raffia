@@ -994,7 +994,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             || name.eq_ignore_ascii_case("where")
                             || name.eq_ignore_ascii_case("matches") =>
                     {
-                        PseudoClassSelectorArg::SelectorList(Box::new(input.parse()?))
+                        input.parse().map(PseudoClassSelectorArg::SelectorList)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("has") =>
@@ -1152,7 +1152,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
         let first = input.parse::<ComplexSelector>()?;
         let mut span = first.span.clone();
 
-        let mut selectors = SmallVec::with_capacity(2);
+        let mut selectors = Vec::with_capacity(2);
         selectors.push(first);
         while eat!(input, Comma).is_some() {
             selectors.push(input.parse()?);
