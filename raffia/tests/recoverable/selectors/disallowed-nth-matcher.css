@@ -1,0 +1,19 @@
+:nth-of-type(even of a) {}
+:nth-of-type(odd of a) {}
+:nth-of-type(2 of a) {}
+:nth-of-type(2n+1 of a) {}
+
+:nth-last-of-type(even of a) {}
+:nth-last-of-type(odd of a) {}
+:nth-last-of-type(2 of a) {}
+:nth-last-of-type(2n+1 of a) {}
+
+:nth-col(even of a) {}
+:nth-col(odd of a) {}
+:nth-col(2 of a) {}
+:nth-col(2n+1 of a) {}
+
+:nth-last-col(even of a) {}
+:nth-last-col(odd of a) {}
+:nth-last-col(2 of a) {}
+:nth-last-col(2n+1 of a) {}

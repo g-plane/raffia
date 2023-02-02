@@ -1,0 +1,100 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:1:19
+  │
+1 │ :nth-of-type(even of a) {}
+  │                   ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:2:18
+  │
+2 │ :nth-of-type(odd of a) {}
+  │                  ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:3:16
+  │
+3 │ :nth-of-type(2 of a) {}
+  │                ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:4:19
+  │
+4 │ :nth-of-type(2n+1 of a) {}
+  │                   ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:6:24
+  │
+6 │ :nth-last-of-type(even of a) {}
+  │                        ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:7:23
+  │
+7 │ :nth-last-of-type(odd of a) {}
+  │                       ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:8:21
+  │
+8 │ :nth-last-of-type(2 of a) {}
+  │                     ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+  ┌─ disallowed-nth-matcher.css:9:24
+  │
+9 │ :nth-last-of-type(2n+1 of a) {}
+  │                        ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:11:15
+   │
+11 │ :nth-col(even of a) {}
+   │               ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:12:14
+   │
+12 │ :nth-col(odd of a) {}
+   │              ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:13:12
+   │
+13 │ :nth-col(2 of a) {}
+   │            ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:14:15
+   │
+14 │ :nth-col(2n+1 of a) {}
+   │               ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:16:20
+   │
+16 │ :nth-last-col(even of a) {}
+   │                    ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:17:19
+   │
+17 │ :nth-last-col(odd of a) {}
+   │                   ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:18:17
+   │
+18 │ :nth-last-col(2 of a) {}
+   │                 ^^^^
+
+error: elements matcher is allowed in `:nth-child` and `:nth-last-child` only
+   ┌─ disallowed-nth-matcher.css:19:20
+   │
+19 │ :nth-last-col(2n+1 of a) {}
+   │                    ^^^^
+
+
