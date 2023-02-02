@@ -882,14 +882,31 @@ pub struct NsPrefixUniversal {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct Nth<'s> {
+    pub index: NthIndex<'s>,
+    pub matcher: Option<NthMatcher<'s>>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum Nth<'s> {
+pub enum NthIndex<'s> {
     Odd(Ident<'s>),
     Even(Ident<'s>),
     Integer(Number<'s>),
     AnPlusB(AnPlusB),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct NthMatcher<'s> {
+    pub selector: Option<SelectorList<'s>>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

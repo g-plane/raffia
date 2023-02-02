@@ -62,6 +62,7 @@ pub enum ErrorKind {
     InvalidUnicodeRange,
     UnexpectedSassElseAtRule,
     ExpectSassAtRootWithOrWithout,
+    ExpectNthOf,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -74,6 +75,7 @@ pub enum ErrorKind {
     ReturnOutsideFunction,
     MaxCodePointExceeded,
     UnicodeRangeStartGreaterThanEnd,
+    UnexpectedNthMatcher,
 }
 
 impl Display for ErrorKind {
@@ -130,6 +132,7 @@ impl Display for ErrorKind {
             Self::ExpectSassAtRootWithOrWithout => {
                 write!(f, "Sass identifier `with` or `without` is expected")
             }
+            Self::ExpectNthOf => write!(f, "`of` is expected"),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {
@@ -150,6 +153,10 @@ impl Display for ErrorKind {
             Self::UnicodeRangeStartGreaterThanEnd => {
                 write!(f, "unicode range start value can't greater than end value")
             }
+            Self::UnexpectedNthMatcher => write!(
+                f,
+                "elements matcher is allowed in `:nth-child` and `:nth-last-child` only"
+            ),
         }
     }
 }

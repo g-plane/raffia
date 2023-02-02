@@ -873,21 +873,42 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let index = input.parse::<NthIndex>()?;
+        let mut span = index.span().clone();
+        let matcher = match &peek!(input).token {
+            Token::Ident(ident) if ident.name().eq_ignore_ascii_case("of") => {
+                let matcher = input.parse::<NthMatcher>()?;
+                span.end = matcher.span.end;
+                Some(matcher)
+            }
+            _ => None,
+        };
+
+        Ok(Nth {
+            index,
+            matcher,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NthIndex<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match &peek!(input).token {
             Token::Ident(ident) => {
                 let name = ident.name();
                 if name.eq_ignore_ascii_case("odd") {
-                    input.parse().map(Nth::Odd)
+                    input.parse().map(NthIndex::Odd)
                 } else if name.eq_ignore_ascii_case("even") {
-                    input.parse().map(Nth::Even)
+                    input.parse().map(NthIndex::Even)
                 } else {
-                    input.parse().map(Nth::AnPlusB)
+                    input.parse().map(NthIndex::AnPlusB)
                 }
             }
             Token::Number(..) => {
                 let number = input.parse::<Number>()?;
                 if number.value.fract() == 0.0 {
-                    Ok(Nth::Integer(number))
+                    Ok(NthIndex::Integer(number))
                 } else {
                     Err(Error {
                         kind: ErrorKind::ExpectInteger,
@@ -895,8 +916,30 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Nth<'s> {
                     })
                 }
             }
-            _ => input.parse().map(Nth::AnPlusB),
+            _ => input.parse().map(NthIndex::AnPlusB),
         }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NthMatcher<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (ident, mut span) = expect!(input, Ident);
+        if !ident.name().eq_ignore_ascii_case("of") {
+            return Err(Error {
+                kind: ErrorKind::ExpectNthOf,
+                span,
+            });
+        }
+
+        let selector = if matches!(&peek!(input).token, Token::RParen(..)) {
+            None
+        } else {
+            let selector = input.parse::<SelectorList>()?;
+            span.end = selector.span.end;
+            Some(selector)
+        };
+
+        Ok(NthMatcher { selector, span })
     }
 }
 
@@ -925,13 +968,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("nth-child")
-                            || name.eq_ignore_ascii_case("nth-last-child")
-                            || name.eq_ignore_ascii_case("nth-of-type")
+                            || name.eq_ignore_ascii_case("nth-last-child") =>
+                    {
+                        input.parse().map(PseudoClassSelectorArg::Nth)?
+                    }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if name.eq_ignore_ascii_case("nth-of-type")
                             || name.eq_ignore_ascii_case("nth-last-of-type")
                             || name.eq_ignore_ascii_case("nth-col")
                             || name.eq_ignore_ascii_case("nth-last-col") =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::Nth)?
+                        let nth = input.parse::<Nth>()?;
+                        if let Some(NthMatcher { span, .. }) = &nth.matcher {
+                            input.recoverable_errors.push(Error {
+                                kind: ErrorKind::UnexpectedNthMatcher,
+                                span: span.clone(),
+                            });
+                        }
+                        PseudoClassSelectorArg::Nth(nth)
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("not")
