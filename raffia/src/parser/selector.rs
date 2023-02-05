@@ -720,7 +720,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
                         | Token::Asterisk(..)
                         | Token::HashLBrace(..)
                         | Token::Bar(..)
-                        | Token::Ampersand(..),
+                        | Token::Ampersand(..)
+                        | Token::AtLBraceVar(..),
                     span,
                 } if end == span.start => {
                     let child = input.parse::<SimpleSelector>()?;
@@ -1189,7 +1190,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleSelector<'s> {
             } => input.parse().map(SimpleSelector::PseudoElement),
             TokenWithSpan {
                 token:
-                    Token::Ident(..) | Token::Asterisk(..) | Token::HashLBrace(..) | Token::Bar(..),
+                    Token::Ident(..)
+                    | Token::Asterisk(..)
+                    | Token::HashLBrace(..)
+                    | Token::Bar(..)
+                    | Token::AtLBraceVar(..),
                 ..
             } => input.parse().map(SimpleSelector::Type),
             TokenWithSpan {
@@ -1218,7 +1223,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
         }
 
         let ident_or_asterisk = match &peek!(input).token {
-            Token::Ident(..) | Token::HashLBrace(..) => {
+            Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 input.parse().map(IdentOrAsterisk::Ident).map(Some)?
             }
             Token::Asterisk(..) => Some(IdentOrAsterisk::Asterisk(bump!(input).span)),
@@ -1345,7 +1350,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     | Token::LBracket(..)
                     | Token::Asterisk(..)
                     | Token::Ampersand(..)
-                    | Token::Bar(..), // selector like `|type` (with <ns-prefix>)
+                    | Token::Bar(..) // selector like `|type` (with <ns-prefix>)
+                    | Token::AtLBraceVar(..)
+                    | Token::NumberSign(..),
                 span,
             } if pos < span.start => Ok(Some(Combinator {
                 kind: CombinatorKind::Descendant,

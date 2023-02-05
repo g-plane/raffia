@@ -293,7 +293,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::Colon(..)
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
-                | Token::Bar(..) => {
+                | Token::Bar(..)
+                | Token::NumberSign(..) => {
                     statements.push(Statement::QualifiedRule(self.parse()?));
                     is_block_element = true;
                 }
