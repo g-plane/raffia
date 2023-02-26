@@ -241,9 +241,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let start = expect!(self, HashLBrace).1.start;
-        let expr = self.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let expr = self.parse_component_values(/* allow_comma */ true)?;
         let end = expect!(self, RBrace).1.end;
         Ok((
             SassInterpolatedIdentElement::Expression(expr),
@@ -528,9 +526,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
 
         let arguments = if eat!(input, LParen).is_some() {
             let arguments = input
-                .parse_component_values(
-                    /* allow_comma */ false, /* allow_semicolon */ false,
-                )?
+                .parse_component_values(/* allow_comma */ false)?
                 .values;
             end = expect!(input, RParen).1.end;
             Some(arguments)
@@ -550,9 +546,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start,
             end: expr.span.end,
@@ -596,9 +590,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start,
             end: expr.span.end,
@@ -971,9 +963,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedStrElement::Expression(
-                    input.parse_component_values(
-                        /* allow_comma */ true, /* allow_semicolon */ false,
-                    )?,
+                    input.parse_component_values(/* allow_comma */ true)?,
                 ));
                 expect!(input, RBrace);
             }
@@ -1022,9 +1012,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedUrlElement::Expression(
-                    input.parse_component_values(
-                        /* allow_comma */ true, /* allow_semicolon */ false,
-                    )?,
+                    input.parse_component_values(/* allow_comma */ true)?,
                 ));
                 expect!(input, RBrace);
             }
@@ -1185,9 +1173,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start,
             end: expr.span.end,
@@ -1227,9 +1213,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassModuleConfigItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let variable = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(
-            /* allow_comma */ false, /* allow_semicolon */ false,
-        )?;
+        let value = input.parse_component_values(/* allow_comma */ false)?;
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 
@@ -1292,9 +1276,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let name = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let value = input.parse_component_values(/* allow_comma */ true)?;
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 
@@ -1317,9 +1299,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(
-            /* allow_comma */ true, /* allow_semicolon */ false,
-        )?;
+        let expr = input.parse_component_values(/* allow_comma */ true)?;
         let span = Span {
             start,
             end: expr.span.end,

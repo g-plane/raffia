@@ -193,7 +193,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(in crate::parser) fn parse_component_values(
         &mut self,
         allow_comma: bool,
-        allow_semicolon: bool,
     ) -> PResult<ComponentValues<'s>> {
         let first = self.parse::<ComponentValue>()?;
         let mut span = first.span().clone();
@@ -204,17 +203,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match &peek!(self).token {
                 Token::RBrace(..)
                 | Token::RParen(..)
+                | Token::Semicolon(..)
                 | Token::Dedent(..)
                 | Token::Linebreak(..)
                 | Token::Exclamation(..)
                 | Token::Eof(..) => break,
-                Token::Semicolon(..) => {
-                    if allow_semicolon {
-                        values.push(self.parse().map(ComponentValue::Delimiter)?);
-                    } else {
-                        break;
-                    }
-                }
                 Token::Comma(..) => {
                     if allow_comma {
                         values.push(self.parse().map(ComponentValue::Delimiter)?);
@@ -301,12 +294,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     args
                 }
-                _ => {
-                    self.parse_component_values(
-                        /* allow_comma */ true, /* allow_semicolon */ true,
-                    )?
-                    .values
-                }
+                _ => self.parse_function_args()?,
             }
         };
         let end = expect!(self, RParen).1.end;
@@ -319,6 +307,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             args: values,
             span,
         })
+    }
+
+    pub(super) fn parse_function_args(&mut self) -> PResult<Vec<ComponentValue<'s>>> {
+        let mut values = Vec::with_capacity(4);
+        loop {
+            match &peek!(self).token {
+                Token::RParen(..) | Token::Eof(..) => break,
+                Token::Semicolon(..) => {
+                    values.push(self.parse().map(ComponentValue::Delimiter)?);
+                }
+                _ => values.push(self.parse()?),
+            }
+        }
+        Ok(values)
     }
 
     pub(super) fn parse_ratio(&mut self, numerator: Number<'s>) -> PResult<Ratio<'s>> {
@@ -586,7 +588,25 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValues<'s> {
     /// This is for public-use only. For internal code of Raffia, **DO NOT** use.
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        input.parse_component_values(/* allow_comma */ true, /* allow_semicolon */ true)
+        let first = input.parse::<ComponentValue>()?;
+        let mut span = first.span().clone();
+
+        let mut values = Vec::with_capacity(4);
+        values.push(first);
+        loop {
+            match &peek!(input).token {
+                Token::Eof(..) => break,
+                Token::Semicolon(..) => {
+                    values.push(input.parse().map(ComponentValue::Delimiter)?);
+                }
+                _ => values.push(input.parse()?),
+            }
+        }
+
+        if values.len() > 1 {
+            span.end = values.last_of_non_empty().span().end;
+        }
+        Ok(ComponentValues { values, span })
     }
 }
 
