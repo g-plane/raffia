@@ -222,6 +222,7 @@ pub enum ComponentValue<'s> {
     Percentage(Percentage<'s>),
     Ratio(Ratio<'s>),
     SassBinaryExpression(SassBinaryExpression<'s>),
+    SassKeywordArgument(SassKeywordArgument<'s>),
     SassMap(SassMap<'s>),
     SassNamespacedExpression(SassNamespacedExpression<'s>),
     SassNestingDeclaration(SassNestingDeclaration<'s>),
@@ -1328,6 +1329,15 @@ pub struct SassInterpolatedUrl<'s> {
 pub enum SassInterpolatedUrlElement<'s> {
     Expression(ComponentValues<'s>),
     Static(InterpolableUrlStaticPart<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassKeywordArgument<'s> {
+    pub name: SassVariable<'s>,
+    pub value: Box<ComponentValue<'s>>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

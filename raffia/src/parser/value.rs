@@ -317,7 +317,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::Semicolon(..) => {
                     values.push(self.parse().map(ComponentValue::Delimiter)?);
                 }
-                _ => values.push(self.parse()?),
+                _ => {
+                    let value = self.parse()?;
+                    if let ComponentValue::SassVariable(sass_var) = value {
+                        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+                        if eat!(self, Colon).is_some() {
+                            let value = self.parse::<ComponentValue>()?;
+                            let span = Span {
+                                start: sass_var.span.start,
+                                end: value.span().end,
+                            };
+                            values.push(ComponentValue::SassKeywordArgument(SassKeywordArgument {
+                                name: sass_var,
+                                value: Box::new(value),
+                                span,
+                            }));
+                        } else {
+                            values.push(ComponentValue::SassVariable(sass_var));
+                        }
+                    } else {
+                        values.push(value);
+                    }
+                }
             }
         }
         Ok(values)
