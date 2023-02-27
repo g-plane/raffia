@@ -318,22 +318,35 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     values.push(self.parse().map(ComponentValue::Delimiter)?);
                 }
                 _ => {
-                    let value = self.parse()?;
-                    if let ComponentValue::SassVariable(sass_var) = value {
-                        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-                        if eat!(self, Colon).is_some() {
-                            let value = self.parse::<ComponentValue>()?;
-                            let span = Span {
-                                start: sass_var.span.start,
-                                end: value.span().end,
-                            };
-                            values.push(ComponentValue::SassKeywordArgument(SassKeywordArgument {
-                                name: sass_var,
-                                value: Box::new(value),
-                                span,
-                            }));
+                    let value = self.parse::<ComponentValue>()?;
+                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
+                        if let Some((_, mut span)) = eat!(self, DotDotDot) {
+                            span.start = value.span().start;
+                            values.push(ComponentValue::SassArbitraryArgument(
+                                SassArbitraryArgument {
+                                    value: Box::new(value),
+                                    span,
+                                },
+                            ));
+                        } else if let ComponentValue::SassVariable(sass_var) = value {
+                            if eat!(self, Colon).is_some() {
+                                let value = self.parse::<ComponentValue>()?;
+                                let span = Span {
+                                    start: sass_var.span.start,
+                                    end: value.span().end,
+                                };
+                                values.push(ComponentValue::SassKeywordArgument(
+                                    SassKeywordArgument {
+                                        name: sass_var,
+                                        value: Box::new(value),
+                                        span,
+                                    },
+                                ));
+                            } else {
+                                values.push(ComponentValue::SassVariable(sass_var));
+                            }
                         } else {
-                            values.push(ComponentValue::SassVariable(sass_var));
+                            values.push(value);
                         }
                     } else {
                         values.push(value);

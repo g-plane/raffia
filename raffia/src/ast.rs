@@ -221,6 +221,7 @@ pub enum ComponentValue<'s> {
     Number(Number<'s>),
     Percentage(Percentage<'s>),
     Ratio(Ratio<'s>),
+    SassArbitraryArgument(SassArbitraryArgument<'s>),
     SassBinaryExpression(SassBinaryExpression<'s>),
     SassKeywordArgument(SassKeywordArgument<'s>),
     SassMap(SassMap<'s>),
@@ -1051,7 +1052,7 @@ pub struct Resolution<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassArbitraryArgument<'s> {
-    pub name: SassVariable<'s>,
+    pub value: Box<ComponentValue<'s>>,
     pub span: Span,
 }
 

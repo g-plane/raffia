@@ -425,7 +425,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassArbitraryArgument<'s> {
             start: name.span.start,
             end,
         };
-        Ok(SassArbitraryArgument { name, span })
+        Ok(SassArbitraryArgument {
+            value: Box::new(ComponentValue::SassVariable(name)),
+            span,
+        })
     }
 }
 
