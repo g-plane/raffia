@@ -1267,20 +1267,10 @@ pub struct SassIfAtRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassIncludeAtRule<'s> {
     pub name: Ident<'s>,
-    pub arguments: Option<Vec<SassIncludeAtRuleArgument<'s>>>,
-    pub arbitrary_argument: Option<SassArbitraryArgument<'s>>,
+    pub arguments: Option<Vec<ComponentValue<'s>>>,
     pub content_block_params: Option<Vec<SassParameter<'s>>>,
     pub content_block_arbitrary_param: Option<SassArbitraryParameter<'s>>,
     pub block: Option<SimpleBlock<'s>>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassIncludeAtRuleArgument<'s> {
-    pub name: Option<SassVariable<'s>>,
-    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 

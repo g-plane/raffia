@@ -417,21 +417,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassArbitraryArgument<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let name = input.parse::<SassVariable>()?;
-        let (_, Span { end, .. }) = expect!(input, DotDotDot);
-        let span = Span {
-            start: name.span.start,
-            end,
-        };
-        Ok(SassArbitraryArgument {
-            value: Box::new(ComponentValue::SassVariable(name)),
-            span,
-        })
-    }
-}
-
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
@@ -852,62 +837,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
 
         let name = input.parse()?;
 
-        let mut arguments = None;
-        let mut arbitrary_argument = None;
-        if eat!(input, LParen).is_some() {
-            let mut args = vec![];
-            while eat!(input, RParen).is_none() {
-                match &peek!(input).token {
-                    Token::DollarVar(..) => {
-                        if let Ok(arg) = input.try_parse(|parser| {
-                            let name = parser.parse::<SassVariable>()?;
-                            expect!(parser, Colon);
-                            let value = parser.parse::<ComponentValue>()?;
-                            let span = Span {
-                                start: name.span.start,
-                                end: value.span().end,
-                            };
-                            Ok(SassIncludeAtRuleArgument {
-                                name: Some(name),
-                                value,
-                                span,
-                            })
-                        }) {
-                            args.push(arg);
-                        } else if let Ok(arbitrary_arg) =
-                            input.try_parse(SassArbitraryArgument::parse)
-                        {
-                            arbitrary_argument = Some(arbitrary_arg);
-                            expect!(input, RParen);
-                            break;
-                        } else {
-                            let value = input.parse::<ComponentValue>()?;
-                            let span = value.span().clone();
-                            args.push(SassIncludeAtRuleArgument {
-                                name: None,
-                                value,
-                                span,
-                            });
-                        }
-                    }
-                    _ => {
-                        let value = input.parse::<ComponentValue>()?;
-                        let span = value.span().clone();
-                        args.push(SassIncludeAtRuleArgument {
-                            name: None,
-                            value,
-                            span,
-                        });
-                    }
-                }
-                if eat!(input, RParen).is_some() {
-                    break;
-                } else {
-                    expect!(input, Comma);
-                }
-            }
-            arguments = Some(args);
-        }
+        let arguments = if eat!(input, LParen).is_some() {
+            let arguments = input.parse_function_args()?;
+            expect!(input, RParen);
+            Some(arguments)
+        } else {
+            None
+        };
 
         let (content_block_params, content_block_arbitrary_params) = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("using") => {
@@ -927,7 +863,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
         Ok(SassIncludeAtRule {
             name,
             arguments,
-            arbitrary_argument,
             content_block_params,
             content_block_arbitrary_param: content_block_arbitrary_params,
             block,
