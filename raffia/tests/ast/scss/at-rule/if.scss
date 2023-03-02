@@ -1,0 +1,36 @@
+@if "foo" != "foo" {foo {a: b}}
+@else {bar {a: b}}
+
+@if false {
+  div {
+    color: red;
+  }
+}
+@else if true {
+  span {
+    color: blue;
+  }
+}
+
+div {
+  @if true {
+    color: green;
+  }
+  @if false {
+    height: 10px;
+  }
+  @else if false {
+    height: 20px;
+  }
+  @else if false {
+    height: 30px;
+  }
+  @else {
+    height: 40px;
+  }
+}
+
+@\69 f true {a {b: c}}
+
+@if false {}
+@\65lse {a {b: c}}
