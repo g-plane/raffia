@@ -1,0 +1,260 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassWarnAtRule(
+      type: "SassWarnAtRule",
+      expr: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Str(
+            type: "Str",
+            value: "w",
+            raw: "\"w\"",
+            span: Span(
+              start: 6,
+              end: 9,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 6,
+          end: 9,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 9,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 12,
+                          end: 13,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 12,
+                        end: 13,
+                      ),
+                    ),
+                    span: Span(
+                      start: 12,
+                      end: 13,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 12,
+                  end: 13,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 12,
+              end: 13,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 12,
+          end: 13,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassWarnAtRule(
+            type: "SassWarnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Str(
+                  type: "Str",
+                  value: "w",
+                  raw: "\"w\"",
+                  span: Span(
+                    start: 24,
+                    end: 27,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 24,
+                end: 27,
+              ),
+            ),
+            span: Span(
+              start: 18,
+              end: 27,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 31,
+                end: 32,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 34,
+                  end: 35,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 31,
+              end: 35,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 14,
+          end: 38,
+        ),
+      ),
+      span: Span(
+        start: 12,
+        end: 38,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "c",
+        raw: "c",
+        span: Span(
+          start: 50,
+          end: 51,
+        ),
+      ),
+      parameters: [],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassWarnAtRule(
+            type: "SassWarnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "test",
+                  raw: "test",
+                  span: Span(
+                    start: 64,
+                    end: 68,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 64,
+                end: 68,
+              ),
+            ),
+            span: Span(
+              start: 58,
+              end: 68,
+            ),
+          ),
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 80,
+                    end: 81,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 80,
+                end: 81,
+              ),
+            ),
+            span: Span(
+              start: 72,
+              end: 81,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 54,
+          end: 84,
+        ),
+      ),
+      span: Span(
+        start: 40,
+        end: 84,
+      ),
+    ),
+    SassWarnAtRule(
+      type: "SassWarnAtRule",
+      expr: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Ident(
+            type: "Ident",
+            name: "warning",
+            raw: "warning",
+            span: Span(
+              start: 94,
+              end: 101,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 94,
+          end: 101,
+        ),
+      ),
+      span: Span(
+        start: 86,
+        end: 101,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 103,
+  ),
+)

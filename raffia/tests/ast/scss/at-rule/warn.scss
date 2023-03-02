@@ -1,0 +1,13 @@
+@warn "w";
+
+a {
+  @warn "w";
+  b: c;
+}
+
+@function c() {
+  @warn test;
+  @return d;
+}
+
+@w\61rn warning;
