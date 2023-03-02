@@ -1,0 +1,7 @@
+a {
+  @for $i from 1 through 5 {b: $i;}
+}
+
+a {
+  @for $i from 1 to 5 {b: $i;}
+}
