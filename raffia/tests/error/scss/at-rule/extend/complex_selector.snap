@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but `<ident>` received
+  ┌─ complex_selector.scss:2:13
+  │
+2 │   @extend a b;
+  │             ^
+
+

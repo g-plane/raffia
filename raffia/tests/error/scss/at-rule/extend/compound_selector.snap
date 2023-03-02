@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but `:` received
+  ┌─ compound_selector.scss:2:12
+  │
+2 │   @extend a:hover;
+  │            ^
+
+
