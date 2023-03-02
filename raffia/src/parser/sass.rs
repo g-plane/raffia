@@ -838,7 +838,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
         let name = input.parse()?;
 
         let arguments = if eat!(input, LParen).is_some() {
-            let arguments = input.parse_function_args()?;
+            let mut arguments = input.parse_function_args()?;
+            arguments.retain(|arg| {
+                !matches!(
+                    arg,
+                    ComponentValue::Delimiter(Delimiter {
+                        kind: DelimiterKind::Comma,
+                        ..
+                    })
+                )
+            });
             expect!(input, RParen);
             Some(arguments)
         } else {
