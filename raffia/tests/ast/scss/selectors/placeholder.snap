@@ -1,0 +1,390 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  SassPlaceholderSelector(
+                    type: "SassPlaceholderSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "x",
+                      raw: "x",
+                      span: Span(
+                        start: 1,
+                        end: 2,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 2,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 2,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 2,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 2,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 7,
+                end: 12,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 100.0,
+                  raw: "100",
+                  span: Span(
+                    start: 14,
+                    end: 17,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 17,
+                    end: 19,
+                  ),
+                ),
+                span: Span(
+                  start: 14,
+                  end: 19,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 7,
+              end: 19,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        SassPlaceholderSelector(
+                          type: "SassPlaceholderSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "y",
+                            raw: "y",
+                            span: Span(
+                              start: 24,
+                              end: 25,
+                            ),
+                          ),
+                          span: Span(
+                            start: 23,
+                            end: 25,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 23,
+                        end: 25,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 23,
+                    end: 25,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 23,
+                end: 25,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "height",
+                    raw: "height",
+                    span: Span(
+                      start: 32,
+                      end: 38,
+                    ),
+                  ),
+                  value: [
+                    Length(
+                      type: "Length",
+                      value: Number(
+                        type: "Number",
+                        value: 100.0,
+                        raw: "100",
+                        span: Span(
+                          start: 40,
+                          end: 43,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 43,
+                          end: 45,
+                        ),
+                      ),
+                      span: Span(
+                        start: 40,
+                        end: 45,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 32,
+                    end: 45,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 26,
+                end: 50,
+              ),
+            ),
+            span: Span(
+              start: 23,
+              end: 50,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3,
+          end: 52,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 52,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 55,
+                        end: 58,
+                      ),
+                    ),
+                    span: Span(
+                      start: 54,
+                      end: 58,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 54,
+                  end: 58,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 54,
+              end: 58,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 54,
+          end: 58,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassExtendAtRule(
+            type: "SassExtendAtRule",
+            selectors: [
+              SassPlaceholderSelector(
+                type: "SassPlaceholderSelector",
+                name: Ident(
+                  type: "Ident",
+                  name: "x",
+                  raw: "x",
+                  span: Span(
+                    start: 72,
+                    end: 73,
+                  ),
+                ),
+                span: Span(
+                  start: 71,
+                  end: 73,
+                ),
+              ),
+            ],
+            optional: None,
+            span: Span(
+              start: 63,
+              end: 74,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "bar",
+                            raw: "bar",
+                            span: Span(
+                              start: 78,
+                              end: 81,
+                            ),
+                          ),
+                          span: Span(
+                            start: 77,
+                            end: 81,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 77,
+                        end: 81,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 77,
+                    end: 81,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 77,
+                end: 81,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassExtendAtRule(
+                  type: "SassExtendAtRule",
+                  selectors: [
+                    SassPlaceholderSelector(
+                      type: "SassPlaceholderSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "y",
+                        raw: "y",
+                        span: Span(
+                          start: 93,
+                          end: 94,
+                        ),
+                      ),
+                      span: Span(
+                        start: 92,
+                        end: 94,
+                      ),
+                    ),
+                  ],
+                  optional: None,
+                  span: Span(
+                    start: 84,
+                    end: 96,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 82,
+                end: 96,
+              ),
+            ),
+            span: Span(
+              start: 77,
+              end: 96,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 59,
+          end: 98,
+        ),
+      ),
+      span: Span(
+        start: 54,
+        end: 98,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 99,
+  ),
+)

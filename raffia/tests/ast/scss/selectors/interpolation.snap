@@ -1,0 +1,210 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "val",
+                        raw: "val",
+                        span: Span(
+                          start: 4,
+                          end: 7,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 4,
+                        end: 7,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 7,
+                        end: 8,
+                      ),
+                    )),
+                    value: Some(SassInterpolatedStr(
+                      type: "SassInterpolatedStr",
+                      elements: [
+                        InterpolableStrStaticPart(
+                          type: "InterpolableStrStaticPart",
+                          value: "bar ",
+                          raw: "\"bar ",
+                          span: Span(
+                            start: 8,
+                            end: 13,
+                          ),
+                        ),
+                        ComponentValues(
+                          type: "ComponentValues",
+                          values: [
+                            SassBinaryExpression(
+                              type: "SassBinaryExpression",
+                              left: Str(
+                                type: "Str",
+                                value: "foo",
+                                raw: "\"foo\"",
+                                span: Span(
+                                  start: 15,
+                                  end: 20,
+                                ),
+                              ),
+                              op: SassBinaryOperator(
+                                type: "SassBinaryOperator",
+                                kind: Plus,
+                                span: Span(
+                                  start: 21,
+                                  end: 22,
+                                ),
+                              ),
+                              right: Str(
+                                type: "Str",
+                                value: " bar",
+                                raw: "\" bar\"",
+                                span: Span(
+                                  start: 23,
+                                  end: 29,
+                                ),
+                              ),
+                              span: Span(
+                                start: 15,
+                                end: 29,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 15,
+                            end: 29,
+                          ),
+                        ),
+                        InterpolableStrStaticPart(
+                          type: "InterpolableStrStaticPart",
+                          value: " baz",
+                          raw: " baz\"",
+                          span: Span(
+                            start: 30,
+                            end: 35,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 8,
+                        end: 35,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 3,
+                      end: 36,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 36,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 36,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 36,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 38,
+                end: 39,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 41,
+                  end: 42,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 38,
+              end: 42,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 37,
+          end: 43,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 43,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 44,
+  ),
+)

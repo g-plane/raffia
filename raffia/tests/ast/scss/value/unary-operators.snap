@@ -1,0 +1,588 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 8,
+                end: 9,
+              ),
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: -10.0,
+                raw: "-10",
+                span: Span(
+                  start: 11,
+                  end: 14,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 14,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 18,
+                end: 19,
+              ),
+            ),
+            value: [
+              SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: Length(
+                  type: "Length",
+                  value: Number(
+                    type: "Number",
+                    value: -10.0,
+                    raw: "-10",
+                    span: Span(
+                      start: 21,
+                      end: 24,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 24,
+                      end: 26,
+                    ),
+                  ),
+                  span: Span(
+                    start: 21,
+                    end: 26,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 27,
+                    end: 28,
+                  ),
+                ),
+                right: Length(
+                  type: "Length",
+                  value: Number(
+                    type: "Number",
+                    value: 10.0,
+                    raw: "10",
+                    span: Span(
+                      start: 29,
+                      end: 31,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 31,
+                      end: 33,
+                    ),
+                  ),
+                  span: Span(
+                    start: 29,
+                    end: 33,
+                  ),
+                ),
+                span: Span(
+                  start: 21,
+                  end: 33,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 18,
+              end: 33,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 37,
+                end: 38,
+              ),
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: 10.0,
+                raw: "+10",
+                span: Span(
+                  start: 40,
+                  end: 43,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 37,
+              end: 43,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "d",
+              raw: "d",
+              span: Span(
+                start: 47,
+                end: 48,
+              ),
+            ),
+            value: [
+              SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: Length(
+                  type: "Length",
+                  value: Number(
+                    type: "Number",
+                    value: 10.0,
+                    raw: "+10",
+                    span: Span(
+                      start: 50,
+                      end: 53,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 53,
+                      end: 55,
+                    ),
+                  ),
+                  span: Span(
+                    start: 50,
+                    end: 55,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 56,
+                    end: 57,
+                  ),
+                ),
+                right: Length(
+                  type: "Length",
+                  value: Number(
+                    type: "Number",
+                    value: -10.0,
+                    raw: "-10",
+                    span: Span(
+                      start: 58,
+                      end: 61,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 61,
+                      end: 63,
+                    ),
+                  ),
+                  span: Span(
+                    start: 58,
+                    end: 63,
+                  ),
+                ),
+                span: Span(
+                  start: 50,
+                  end: 63,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 47,
+              end: 63,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "e",
+              raw: "e",
+              span: Span(
+                start: 67,
+                end: 68,
+              ),
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Minus,
+                  span: Span(
+                    start: 70,
+                    end: 71,
+                  ),
+                ),
+                expr: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "x",
+                    raw: "x",
+                    span: Span(
+                      start: 72,
+                      end: 73,
+                    ),
+                  ),
+                  span: Span(
+                    start: 71,
+                    end: 73,
+                  ),
+                ),
+                span: Span(
+                  start: 70,
+                  end: 73,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 67,
+              end: 73,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "f",
+              raw: "f",
+              span: Span(
+                start: 77,
+                end: 78,
+              ),
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 80,
+                    end: 81,
+                  ),
+                ),
+                expr: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "x",
+                    raw: "x",
+                    span: Span(
+                      start: 82,
+                      end: 83,
+                    ),
+                  ),
+                  span: Span(
+                    start: 81,
+                    end: 83,
+                  ),
+                ),
+                span: Span(
+                  start: 80,
+                  end: 83,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 77,
+              end: 83,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "g",
+              raw: "g",
+              span: Span(
+                start: 87,
+                end: 88,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "-hello",
+                raw: "-hello",
+                span: Span(
+                  start: 90,
+                  end: 96,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 87,
+              end: 96,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "h",
+              raw: "h",
+              span: Span(
+                start: 100,
+                end: 101,
+              ),
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 103,
+                    end: 104,
+                  ),
+                ),
+                expr: Ident(
+                  type: "Ident",
+                  name: "hello",
+                  raw: "hello",
+                  span: Span(
+                    start: 104,
+                    end: 109,
+                  ),
+                ),
+                span: Span(
+                  start: 103,
+                  end: 109,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 100,
+              end: 109,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "i",
+              raw: "i",
+              span: Span(
+                start: 113,
+                end: 114,
+              ),
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 116,
+                    end: 117,
+                  ),
+                ),
+                expr: Ident(
+                  type: "Ident",
+                  name: "hello",
+                  raw: "hello",
+                  span: Span(
+                    start: 118,
+                    end: 123,
+                  ),
+                ),
+                span: Span(
+                  start: 116,
+                  end: 123,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 113,
+              end: 123,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "j",
+              raw: "j",
+              span: Span(
+                start: 127,
+                end: 128,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "type-of",
+                  raw: "type-of",
+                  span: Span(
+                    start: 130,
+                    end: 137,
+                  ),
+                ),
+                args: [
+                  SassUnaryExpression(
+                    type: "SassUnaryExpression",
+                    op: SassUnaryOperator(
+                      type: "SassUnaryOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 138,
+                        end: 139,
+                      ),
+                    ),
+                    expr: Ident(
+                      type: "Ident",
+                      name: "hello",
+                      raw: "hello",
+                      span: Span(
+                        start: 140,
+                        end: 145,
+                      ),
+                    ),
+                    span: Span(
+                      start: 138,
+                      end: 145,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 130,
+                  end: 146,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 127,
+              end: 146,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 149,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 149,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 150,
+  ),
+)
