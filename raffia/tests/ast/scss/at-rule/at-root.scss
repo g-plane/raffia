@@ -1,0 +1,297 @@
+.foo {
+  @at-root {
+    .bar {a: b}
+  }
+}
+
+.foo {
+  @at-root .bar {a: b}
+}
+
+@mixin bar {
+  @at-root .bar {a: b}
+}
+
+@media screen {
+  .foo {
+    @at-root .bar {a: b}
+  }
+}
+
+@fblthp {
+  .foo {
+    @at-root .bar {a: b}
+  }
+}
+
+.foo {
+  @at-root & {
+    a: b;
+  }
+}
+
+.foo {
+  @at-root & {
+    .bar {
+      @at-root & {
+        a: b;
+      }
+    }
+  }
+}
+
+.foo {
+  @at-root .bar {
+    @at-root & {
+      a: b;
+    }
+  }
+}
+
+foo {
+  @at-root {
+    & {
+      color: blue;
+    }
+
+    &--modifier {
+      color: red;
+    }
+  }
+}
+
+foo {
+  color: blue;
+
+  @at-root {
+    bar {
+      color: red;
+    }
+  }
+}
+
+foo {
+  color: blue;
+
+  @at-root bar {
+    color: red;
+  }
+}
+
+@media (min-width: 1337px) {
+  .foo {
+    content: baz;
+  }
+
+  @at-root (without: media) {
+    .foo {
+      content: bar;
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  .foo {
+    content: baz;
+  }
+
+  @at-root (without: all) {
+    .foo {
+      content: bar;
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: all) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: media supports) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: supports) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: all) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: media supports) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: media) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@supports (color: red) {
+  .foo {
+    content: baz;
+  }
+
+  @at-root (without: "supports") {
+    .foo {
+      content: bar;
+    }
+  }
+}
+
+@supports (color: red) {
+  .foo {
+    content: baz;
+  }
+
+  @at-root (without: "all") {
+    .foo {
+      content: bar;
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: "all") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: "media" "supports") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: "media" supports) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: media "supports") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (without: "media") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: "all") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: "media" "supports") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: "media" supports) {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: media "supports") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
+
+@media (min-width: 1337px) {
+  @supports (color: red) {
+    @at-root (with: "media") {
+      .foo {
+        content: bar;
+      }
+    }
+  }
+}
