@@ -1,0 +1,168 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 8,
+                end: 13,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: SassInterpolatedIdent(
+                  type: "SassInterpolatedIdent",
+                  elements: [
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "f",
+                            raw: "f",
+                            span: Span(
+                              start: 18,
+                              end: 19,
+                            ),
+                          ),
+                          span: Span(
+                            start: 17,
+                            end: 19,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 17,
+                        end: 19,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 15,
+                    end: 20,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 21,
+                      end: 22,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 22,
+                      end: 23,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 24,
+                      end: 25,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 15,
+                  end: 26,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 26,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 29,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 29,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 30,
+  ),
+)

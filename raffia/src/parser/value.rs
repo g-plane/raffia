@@ -157,9 +157,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     self.parse().map(ComponentValue::SassMap)
                 }
             }
-            Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
-                .parse_sass_interpolated_ident()
-                .map(ComponentValue::InterpolableIdent),
+            Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                let ident = self.parse_sass_interpolated_ident()?;
+                match peek!(self) {
+                    TokenWithSpan {
+                        token: Token::LParen(..),
+                        span,
+                    } if span.start == ident.span().end => {
+                        self.parse_function(ident).map(ComponentValue::Function)
+                    }
+                    _ => Ok(ComponentValue::InterpolableIdent(ident)),
+                }
+            }
             Token::StrTemplate(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => self
                 .parse()
                 .map(InterpolableStr::SassInterpolated)
