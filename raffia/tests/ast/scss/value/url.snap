@@ -744,6 +744,7 @@ Stylesheet(
             ),
             important: None,
             overridable: false,
+            forceGlobal: false,
             span: Span(
               start: 293,
               end: 310,

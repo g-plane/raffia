@@ -18,6 +18,9 @@ const PRECEDENCE_EQUALITY: u8 = 3;
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
+const FLAG_DEFAULT: u8 = 1;
+const FLAG_GLOBAL: u8 = 2;
+
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_sass_at_rule(
         &mut self,
@@ -164,6 +167,27 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
+    fn parse_sass_flags_into_bits(&mut self) -> PResult<(u8, usize)> {
+        let mut flags = 0;
+        let mut end = self.tokenizer.current_offset();
+        while let Some((_, exclamation_span)) = eat!(self, Exclamation) {
+            let keyword = self.parse::<Ident>()?;
+            self.assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
+            end = keyword.span.end;
+
+            match &*keyword.name {
+                "default" => flags |= FLAG_DEFAULT,
+                "global" => flags |= FLAG_GLOBAL,
+                _ => self.recoverable_errors.push(Error {
+                    kind: ErrorKind::InvalidSassFlagName(keyword.name.to_string()),
+                    span: keyword.span,
+                }),
+            }
+        }
+
+        Ok((flags, end))
+    }
+
     pub(super) fn parse_sass_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         let (first, mut span) = match peek!(self) {
@@ -301,23 +325,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             expr: Box::new(expr),
             span,
         })
-    }
-
-    fn parse_sass_overridable_flag(&mut self) -> PResult<bool> {
-        if let Some((_, exclamation_span)) = eat!(self, Exclamation) {
-            let keyword = self.parse::<Ident>()?;
-            self.assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
-            if keyword.name == "default" {
-                Ok(true)
-            } else {
-                Err(Error {
-                    kind: ErrorKind::ExpectSassKeyword("default"),
-                    span: keyword.span,
-                })
-            }
-        } else {
-            Ok(false)
-        }
     }
 
     /// This method will consume `)` token.
@@ -1164,11 +1171,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassModuleConfigItem<'s> {
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 
-        let overridable = input.parse_sass_overridable_flag()?;
+        let (flags, end) = input.parse_sass_flags_into_bits()?;
+        let overridable = flags & FLAG_DEFAULT != 0;
 
         let span = Span {
             start: variable.span.start,
-            end: input.tokenizer.current_offset(),
+            end,
         };
         Ok(SassModuleConfigItem {
             variable,
@@ -1227,17 +1235,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 
-        let overridable = input.parse_sass_overridable_flag()?;
+        let (flags, end) = input.parse_sass_flags_into_bits()?;
 
         let span = Span {
             start: name.span.start,
-            end: input.tokenizer.current_offset(),
+            end,
         };
         Ok(SassVariableDeclaration {
             name,
             value,
             important,
-            overridable,
+            overridable: flags & FLAG_DEFAULT != 0,
+            force_global: flags & FLAG_GLOBAL != 0,
             span,
         })
     }

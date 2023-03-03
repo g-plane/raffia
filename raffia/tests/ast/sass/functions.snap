@@ -58,6 +58,7 @@ Stylesheet(
       ),
       important: None,
       overridable: false,
+      forceGlobal: false,
       span: Span(
         start: 0,
         end: 18,
@@ -117,6 +118,7 @@ Stylesheet(
       ),
       important: None,
       overridable: false,
+      forceGlobal: false,
       span: Span(
         start: 18,
         end: 39,

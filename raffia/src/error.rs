@@ -76,6 +76,7 @@ pub enum ErrorKind {
     MaxCodePointExceeded,
     UnicodeRangeStartGreaterThanEnd,
     UnexpectedNthMatcher,
+    InvalidSassFlagName(String),
 }
 
 impl Display for ErrorKind {
@@ -157,6 +158,7 @@ impl Display for ErrorKind {
                 f,
                 "elements matcher is allowed in `:nth-child` and `:nth-last-child` only"
             ),
+            Self::InvalidSassFlagName(flag) => write!(f, "invalid Sass flag name `{flag}`"),
         }
     }
 }

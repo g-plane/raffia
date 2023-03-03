@@ -1486,6 +1486,7 @@ pub struct SassVariableDeclaration<'s> {
     pub value: ComponentValues<'s>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
+    pub force_global: bool,
     pub span: Span,
 }
 
