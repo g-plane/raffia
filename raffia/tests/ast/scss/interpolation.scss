@@ -1,0 +1,5 @@
+foo[val="bar #{"foo" + " bar"} baz"] {a: b}
+
+@foo #{"directive"} {
+  .#{"foo"} { #{"foo-prop"}: #{"foo-val"}; }
+}
