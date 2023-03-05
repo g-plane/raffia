@@ -224,6 +224,7 @@ pub enum ComponentValue<'s> {
     SassArbitraryArgument(SassArbitraryArgument<'s>),
     SassBinaryExpression(SassBinaryExpression<'s>),
     SassKeywordArgument(SassKeywordArgument<'s>),
+    SassList(SassList<'s>),
     SassMap(SassMap<'s>),
     SassNamespacedExpression(SassNamespacedExpression<'s>),
     SassNestingDeclaration(SassNestingDeclaration<'s>),
@@ -1328,6 +1329,14 @@ pub enum SassInterpolatedUrlElement<'s> {
 pub struct SassKeywordArgument<'s> {
     pub name: SassVariable<'s>,
     pub value: Box<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassList<'s> {
+    pub items: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 

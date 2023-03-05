@@ -153,8 +153,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 if let Ok(expr) = self.try_parse(SassParenthesizedExpression::parse) {
                     Ok(ComponentValue::SassParenthesizedExpression(expr))
+                } else if let Ok(map) = self.try_parse(SassMap::parse) {
+                    Ok(ComponentValue::SassMap(map))
                 } else {
-                    self.parse().map(ComponentValue::SassMap)
+                    self.parse().map(ComponentValue::SassList)
                 }
             }
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {

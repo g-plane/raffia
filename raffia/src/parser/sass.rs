@@ -977,6 +977,51 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (start, has_paren) = if let Some((_, span)) = eat!(input, LParen) {
+            (span.start, true)
+        } else {
+            (input.tokenizer.current_offset(), false)
+        };
+
+        let mut items = vec![];
+        let mut end = input.tokenizer.current_offset();
+        while !matches!(peek!(input).token, Token::RParen(..)) {
+            let value = input.parse::<ComponentValue>()?;
+            end = value.span().end;
+            items.push(value);
+
+            match peek!(input) {
+                TokenWithSpan {
+                    token: Token::RParen(..),
+                    ..
+                } => break,
+                TokenWithSpan {
+                    token: Token::Comma(..),
+                    ..
+                } => {
+                    bump!(input);
+                }
+                TokenWithSpan { span, .. } if end < span.start => {}
+                _ => {
+                    expect!(input, RParen);
+                }
+            }
+        }
+
+        let span = if has_paren {
+            Span {
+                start,
+                end: expect!(input, RParen).1.end,
+            }
+        } else {
+            Span { start, end }
+        };
+        Ok(SassList { items, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, LParen).1.start;
