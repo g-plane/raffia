@@ -28,7 +28,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             tokenizer::TokenSymbol,
         };
 
-        values.windows(2).for_each(|pair| {
+        let errors = values.windows(2).filter_map(|pair| {
             if let [ComponentValue::Delimiter(Delimiter {
                 kind: DelimiterKind::Comma,
                 ..
@@ -37,12 +37,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 span,
             })] = pair
             {
-                self.recoverable_errors.push(Error {
+                Some(Error {
                     kind: ErrorKind::Unexpected(RParen::symbol(), Comma::symbol()),
                     span: span.clone(),
-                });
+                })
+            } else {
+                None
             }
         });
+        self.recoverable_errors.extend(errors);
     }
 
     pub(super) fn parse_sass_at_rule(
