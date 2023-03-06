@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: Sass `@else` at-rule is disallowed here
+  ┌─ else-only.scss:1:1
+  │
+1 │ @else {}
+  │ ^^^^^
+
+
