@@ -1,0 +1,149 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 12,
+                          end: 15,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 12,
+                        end: 15,
+                      ),
+                    ),
+                    span: Span(
+                      start: 12,
+                      end: 15,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 12,
+                  end: 15,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 15,
+                  end: 26,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "baz",
+                        raw: "baz",
+                        span: Span(
+                          start: 26,
+                          end: 29,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 26,
+                        end: 29,
+                      ),
+                    ),
+                    span: Span(
+                      start: 26,
+                      end: 29,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 26,
+                  end: 29,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 12,
+              end: 29,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 12,
+          end: 29,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 59,
+                end: 65,
+              ),
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 83,
+                  end: 84,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 59,
+              end: 84,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 40,
+          end: 105,
+        ),
+      ),
+      span: Span(
+        start: 12,
+        end: 105,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 116,
+  ),
+)
