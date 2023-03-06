@@ -520,9 +520,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
         let mut end = span.end;
 
         let arguments = if eat!(input, LParen).is_some() {
-            let arguments = input
-                .parse_component_values(/* allow_comma */ false)?
-                .values;
+            let mut arguments = input.parse_function_args()?;
+            arguments.retain(|arg| {
+                !matches!(
+                    arg,
+                    ComponentValue::Delimiter(Delimiter {
+                        kind: DelimiterKind::Comma,
+                        ..
+                    })
+                )
+            });
             end = expect!(input, RParen).1.end;
             Some(arguments)
         } else {

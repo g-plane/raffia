@@ -1,0 +1,35 @@
+@mixin mixin {
+  @content;
+}
+
+@mixin mixin {
+  @content();
+}
+
+@mixin mixin {
+  @content(value1, value2);
+}
+
+@mixin mixin {
+  @content($arg1: value1, $arg2: value2);
+}
+
+@mixin mixin {
+  @content((value1 value2)...);
+}
+
+@mixin mixin {
+  @content((arg1: value1, arg2: value2)...);
+}
+
+@mixin mixin {
+  @content((value1,)..., (arg2: value2)...);
+}
+
+@mixin mixin {
+  @content(value1, $arg2: value2);
+}
+
+@mixin mixin {
+  @content (value1, value2);
+}
