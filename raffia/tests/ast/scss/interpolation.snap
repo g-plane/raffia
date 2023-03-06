@@ -634,9 +634,238 @@ Stylesheet(
         end: 175,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 177,
+                          end: 180,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 177,
+                        end: 180,
+                      ),
+                    ),
+                    span: Span(
+                      start: 177,
+                      end: 180,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 177,
+                  end: 180,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 177,
+              end: 180,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 177,
+          end: 180,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "blah",
+              raw: "blah",
+              span: Span(
+                start: 185,
+                end: 189,
+              ),
+            ),
+            value: [
+              SassInterpolatedStr(
+                type: "SassInterpolatedStr",
+                elements: [
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: "hello ",
+                    raw: "\"hello ",
+                    span: Span(
+                      start: 191,
+                      end: 198,
+                    ),
+                  ),
+                  ComponentValues(
+                    type: "ComponentValues",
+                    values: [
+                      Number(
+                        type: "Number",
+                        value: 2.0,
+                        raw: "2",
+                        span: Span(
+                          start: 200,
+                          end: 201,
+                        ),
+                      ),
+                      Number(
+                        type: "Number",
+                        value: 2.0,
+                        raw: "+2",
+                        span: Span(
+                          start: 201,
+                          end: 203,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 200,
+                      end: 203,
+                    ),
+                  ),
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: " world ",
+                    raw: " world ",
+                    span: Span(
+                      start: 204,
+                      end: 211,
+                    ),
+                  ),
+                  ComponentValues(
+                    type: "ComponentValues",
+                    values: [
+                      Function(
+                        type: "Function",
+                        name: Ident(
+                          type: "Ident",
+                          name: "unit",
+                          raw: "unit",
+                          span: Span(
+                            start: 213,
+                            end: 217,
+                          ),
+                        ),
+                        args: [
+                          Length(
+                            type: "Length",
+                            value: Number(
+                              type: "Number",
+                              value: 23.0,
+                              raw: "23",
+                              span: Span(
+                                start: 218,
+                                end: 220,
+                              ),
+                            ),
+                            unit: Ident(
+                              type: "Ident",
+                              name: "px",
+                              raw: "px",
+                              span: Span(
+                                start: 220,
+                                end: 222,
+                              ),
+                            ),
+                            span: Span(
+                              start: 218,
+                              end: 222,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 213,
+                          end: 223,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 213,
+                      end: 223,
+                    ),
+                  ),
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: " ",
+                    raw: " ",
+                    span: Span(
+                      start: 224,
+                      end: 225,
+                    ),
+                  ),
+                  ComponentValues(
+                    type: "ComponentValues",
+                    values: [
+                      Str(
+                        type: "Str",
+                        value: "bloon",
+                        raw: "\'bloo\\n\'",
+                        span: Span(
+                          start: 227,
+                          end: 235,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 227,
+                      end: 235,
+                    ),
+                  ),
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: " blah",
+                    raw: " blah\"",
+                    span: Span(
+                      start: 236,
+                      end: 242,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 191,
+                  end: 242,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 185,
+              end: 242,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 181,
+          end: 245,
+        ),
+      ),
+      span: Span(
+        start: 177,
+        end: 245,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 176,
+    end: 246,
   ),
 )

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ unterminated.scss:3:1
+  │
+3 │ }
+  │ ^
+
+

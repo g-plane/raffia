@@ -1,0 +1,674 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "one-positional-arg",
+        raw: "one-positional-arg",
+        span: Span(
+          start: 10,
+          end: 28,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 30,
+                end: 31,
+              ),
+            ),
+            span: Span(
+              start: 29,
+              end: 31,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 29,
+            end: 31,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "positional",
+                  raw: "positional",
+                  span: Span(
+                    start: 46,
+                    end: 56,
+                  ),
+                ),
+                Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 57,
+                    end: 58,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 60,
+                      end: 61,
+                    ),
+                  ),
+                  span: Span(
+                    start: 59,
+                    end: 61,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 46,
+                end: 61,
+              ),
+            ),
+            span: Span(
+              start: 38,
+              end: 61,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 34,
+          end: 64,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 64,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "two-positional-args",
+        raw: "two-positional-args",
+        span: Span(
+          start: 76,
+          end: 95,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 97,
+                end: 98,
+              ),
+            ),
+            span: Span(
+              start: 96,
+              end: 98,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 96,
+            end: 98,
+          ),
+        ),
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 101,
+                end: 102,
+              ),
+            ),
+            span: Span(
+              start: 100,
+              end: 102,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 100,
+            end: 102,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "positional",
+                  raw: "positional",
+                  span: Span(
+                    start: 117,
+                    end: 127,
+                  ),
+                ),
+                Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 128,
+                    end: 129,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 131,
+                      end: 132,
+                    ),
+                  ),
+                  span: Span(
+                    start: 130,
+                    end: 132,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 134,
+                      end: 135,
+                    ),
+                  ),
+                  span: Span(
+                    start: 133,
+                    end: 135,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 117,
+                end: 135,
+              ),
+            ),
+            span: Span(
+              start: 109,
+              end: 135,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 105,
+          end: 138,
+        ),
+      ),
+      span: Span(
+        start: 66,
+        end: 138,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "one-keyword-arg",
+        raw: "one-keyword-arg",
+        span: Span(
+          start: 150,
+          end: 165,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 167,
+                end: 168,
+              ),
+            ),
+            span: Span(
+              start: 166,
+              end: 168,
+            ),
+          ),
+          defaultValue: Some(Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 170,
+              end: 171,
+            ),
+          )),
+          span: Span(
+            start: 166,
+            end: 171,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "keyword",
+                  raw: "keyword",
+                  span: Span(
+                    start: 186,
+                    end: 193,
+                  ),
+                ),
+                Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 194,
+                    end: 195,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 197,
+                      end: 198,
+                    ),
+                  ),
+                  span: Span(
+                    start: 196,
+                    end: 198,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 186,
+                end: 198,
+              ),
+            ),
+            span: Span(
+              start: 178,
+              end: 198,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 174,
+          end: 201,
+        ),
+      ),
+      span: Span(
+        start: 140,
+        end: 201,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "two-keyword-args",
+        raw: "two-keyword-args",
+        span: Span(
+          start: 213,
+          end: 229,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 231,
+                end: 232,
+              ),
+            ),
+            span: Span(
+              start: 230,
+              end: 232,
+            ),
+          ),
+          defaultValue: Some(Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 234,
+              end: 235,
+            ),
+          )),
+          span: Span(
+            start: 230,
+            end: 235,
+          ),
+        ),
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 238,
+                end: 239,
+              ),
+            ),
+            span: Span(
+              start: 237,
+              end: 239,
+            ),
+          ),
+          defaultValue: Some(Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 241,
+              end: 242,
+            ),
+          )),
+          span: Span(
+            start: 237,
+            end: 242,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "keyword",
+                  raw: "keyword",
+                  span: Span(
+                    start: 257,
+                    end: 264,
+                  ),
+                ),
+                Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 265,
+                    end: 266,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 268,
+                      end: 269,
+                    ),
+                  ),
+                  span: Span(
+                    start: 267,
+                    end: 269,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 271,
+                      end: 272,
+                    ),
+                  ),
+                  span: Span(
+                    start: 270,
+                    end: 272,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 257,
+                end: 272,
+              ),
+            ),
+            span: Span(
+              start: 249,
+              end: 272,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 245,
+          end: 275,
+        ),
+      ),
+      span: Span(
+        start: 203,
+        end: 275,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "mixed-args",
+        raw: "mixed-args",
+        span: Span(
+          start: 287,
+          end: 297,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 299,
+                end: 300,
+              ),
+            ),
+            span: Span(
+              start: 298,
+              end: 300,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 298,
+            end: 300,
+          ),
+        ),
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 303,
+                end: 304,
+              ),
+            ),
+            span: Span(
+              start: 302,
+              end: 304,
+            ),
+          ),
+          defaultValue: Some(Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 306,
+              end: 307,
+            ),
+          )),
+          span: Span(
+            start: 302,
+            end: 307,
+          ),
+        ),
+      ],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "keyword",
+                  raw: "keyword",
+                  span: Span(
+                    start: 322,
+                    end: 329,
+                  ),
+                ),
+                Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 330,
+                    end: 331,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 333,
+                      end: 334,
+                    ),
+                  ),
+                  span: Span(
+                    start: 332,
+                    end: 334,
+                  ),
+                ),
+                SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 336,
+                      end: 337,
+                    ),
+                  ),
+                  span: Span(
+                    start: 335,
+                    end: 337,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 322,
+                end: 337,
+              ),
+            ),
+            span: Span(
+              start: 314,
+              end: 337,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 310,
+          end: 340,
+        ),
+      ),
+      span: Span(
+        start: 277,
+        end: 340,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 341,
+  ),
+)

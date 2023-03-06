@@ -1,0 +1,19 @@
+@function one-positional-arg($a,) {
+  @return positional 1 $a;
+}
+
+@function two-positional-args($a, $b,) {
+  @return positional 2 $a $b;
+}
+
+@function one-keyword-arg($a: a,) {
+  @return keyword 1 $a;
+}
+
+@function two-keyword-args($a: a, $b: b,) {
+  @return keyword 2 $a $b;
+}
+
+@function mixed-args($a, $b: b,) {
+  @return keyword 2 $a $b;
+}

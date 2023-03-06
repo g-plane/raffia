@@ -1,0 +1,13 @@
+a {
+  b: {
+    @debug "debug";
+    foo: bar;
+  }
+}
+
+a {
+  @debug "debug";
+  foo: bar;
+}
+
+@debug "debug";

@@ -1,0 +1,315 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 0,
+                          end: 1,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 1,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 1,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 1,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 1,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 1,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 6,
+                end: 7,
+              ),
+            ),
+            value: [
+              SassNestingDeclaration(
+                type: "SassNestingDeclaration",
+                block: SimpleBlock(
+                  type: "SimpleBlock",
+                  statements: [
+                    SassDebugAtRule(
+                      type: "SassDebugAtRule",
+                      expr: ComponentValues(
+                        type: "ComponentValues",
+                        values: [
+                          Str(
+                            type: "Str",
+                            value: "debug",
+                            raw: "\"debug\"",
+                            span: Span(
+                              start: 22,
+                              end: 29,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 22,
+                          end: 29,
+                        ),
+                      ),
+                      span: Span(
+                        start: 15,
+                        end: 29,
+                      ),
+                    ),
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 35,
+                          end: 38,
+                        ),
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 40,
+                            end: 43,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 35,
+                        end: 43,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 9,
+                    end: 48,
+                  ),
+                ),
+                span: Span(
+                  start: 9,
+                  end: 48,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 6,
+              end: 48,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2,
+          end: 50,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 50,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 52,
+                          end: 53,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 52,
+                        end: 53,
+                      ),
+                    ),
+                    span: Span(
+                      start: 52,
+                      end: 53,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 52,
+                  end: 53,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 52,
+              end: 53,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 52,
+          end: 53,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassDebugAtRule(
+            type: "SassDebugAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Str(
+                  type: "Str",
+                  value: "debug",
+                  raw: "\"debug\"",
+                  span: Span(
+                    start: 65,
+                    end: 72,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 65,
+                end: 72,
+              ),
+            ),
+            span: Span(
+              start: 58,
+              end: 72,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "foo",
+              raw: "foo",
+              span: Span(
+                start: 76,
+                end: 79,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "bar",
+                raw: "bar",
+                span: Span(
+                  start: 81,
+                  end: 84,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 76,
+              end: 84,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 54,
+          end: 87,
+        ),
+      ),
+      span: Span(
+        start: 52,
+        end: 87,
+      ),
+    ),
+    SassDebugAtRule(
+      type: "SassDebugAtRule",
+      expr: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Str(
+            type: "Str",
+            value: "debug",
+            raw: "\"debug\"",
+            span: Span(
+              start: 96,
+              end: 103,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 96,
+          end: 103,
+        ),
+      ),
+      span: Span(
+        start: 89,
+        end: 103,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 105,
+  ),
+)

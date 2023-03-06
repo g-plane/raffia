@@ -1,0 +1,21 @@
+@mixin one-positional-arg($a,) {
+  one-positional-arg: positional 1 $a;
+}
+
+@mixin two-positional-args($a, $b,) {
+  two-positional-args: positional 2 $a $b;
+}
+
+@mixin one-keyword-arg($a: a,) {
+  one-keyword-arg: keyword 1 $a;
+}
+
+@mixin two-keyword-args($a: a, $b: b,) {
+  two-keyword-args: keyword 2 $a $b;
+}
+
+@mixin mixed-args($a, $b: b,) {
+  mixed-args: keyword 2 $a $b;
+}
+
+@mixin foo($args...) {}

@@ -1,0 +1,33 @@
+@include mixin using () {
+  x: y;
+}
+
+@include mixin using ($arg1: value1, $arg2: value2) {
+  arg1: $arg1;
+  arg2: $arg2;
+}
+
+@include mixin {
+  x: y;
+}
+
+
+@include mixin using ($arg1, $arg2) {
+  arg1: $arg1;
+  arg2: $arg2;
+}
+
+@include mixin using ($args...) {
+  positional: inspect($args);
+  keywords: inspect(keywords($args));
+}
+
+@include mixin()using ($arg1, $arg2) {}
+@include mixin using($arg1, $arg2) {}
+@include mixin using($arg1, $arg2){}
+
+@include one-positional-arg(a,);
+@include two-positional-args(a,b,);
+@include one-keyword-arg($a: z,);
+@include two-keyword-args($a: y,$b: z,);
+@include mixed-args(y, $b: z,);

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `(`, but `{` received
+  ┌─ missing-arglist.scss:1:22
+  │
+1 │ @include mixin using {}
+  │                      ^
+
+

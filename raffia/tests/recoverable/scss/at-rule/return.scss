@@ -1,0 +1,9 @@
+@mixin mix() {
+  @return 42;
+}
+
+@return 42;
+
+ruleset {
+  @return 42;
+}

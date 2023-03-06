@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ no-argument.scss:1:6
+  │
+1 │ @warn;
+  │      ^
+
+

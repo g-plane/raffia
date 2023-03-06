@@ -1,0 +1,22 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: `@return` is disallowed outside function
+  ┌─ return.scss:2:3
+  │
+2 │   @return 42;
+  │   ^^^^^^^^^^
+
+error: `@return` is disallowed outside function
+  ┌─ return.scss:5:1
+  │
+5 │ @return 42;
+  │ ^^^^^^^^^^
+
+error: `@return` is disallowed outside function
+  ┌─ return.scss:8:3
+  │
+8 │   @return 42;
+  │   ^^^^^^^^^^
+
+

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `)`, but `;` received
+  ┌─ incomplete-expression.scss:1:12
+  │
+1 │ @warn("foo";
+  │            ^
+
+

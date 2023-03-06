@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `,` received
+  ┌─ double-commas-in-middle.scss:1:33
+  │
+1 │ @function double-comma-error($a,,$b) {
+  │                                 ^
+
+

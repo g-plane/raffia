@@ -1,0 +1,13 @@
+a {
+  b: {
+    @error "error";
+    foo: bar;
+  }
+}
+
+a {
+  @error "error";
+  foo: bar;
+}
+
+@error "error";

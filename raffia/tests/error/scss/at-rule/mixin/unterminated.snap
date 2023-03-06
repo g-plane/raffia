@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `{` received
+  ┌─ unterminated.scss:1:35
+  │
+1 │ @mixin missing-paren-error($a,$b, {
+  │                                   ^
+
+
