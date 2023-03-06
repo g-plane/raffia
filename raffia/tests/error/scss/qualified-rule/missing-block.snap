@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but `<eof>` received
+  ┌─ missing-block.scss:2:1
+  │
+2 │ 
+  │ ^
+
+

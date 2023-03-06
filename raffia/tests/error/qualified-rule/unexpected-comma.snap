@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but `,` received
+  ┌─ unexpected-comma.css:4:4
+  │
+4 │   },
+  │    ^
+
+
