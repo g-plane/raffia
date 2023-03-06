@@ -176,20 +176,168 @@ Stylesheet(
               end: 69,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "opacity",
+              raw: "opacity",
+              span: Span(
+                start: 73,
+                end: 80,
+              ),
+            ),
+            value: [
+              UnknownDimension(
+                type: "UnknownDimension",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 82,
+                    end: 83,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "\t",
+                  raw: "\\9",
+                  span: Span(
+                    start: 83,
+                    end: 85,
+                  ),
+                ),
+                span: Span(
+                  start: 82,
+                  end: 85,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 73,
+              end: 85,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 89,
+                end: 94,
+              ),
+            ),
+            value: [
+              UnknownDimension(
+                type: "UnknownDimension",
+                value: Number(
+                  type: "Number",
+                  value: 500.0,
+                  raw: "500",
+                  span: Span(
+                    start: 96,
+                    end: 99,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px\t",
+                  raw: "px\\9",
+                  span: Span(
+                    start: 99,
+                    end: 103,
+                  ),
+                ),
+                span: Span(
+                  start: 96,
+                  end: 103,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 89,
+              end: 103,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 107,
+                end: 112,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00000\t\0",
+                raw: "f00000\\9\\0",
+                span: Span(
+                  start: 114,
+                  end: 125,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 107,
+              end: 125,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 129,
+                end: 134,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "f00000\t\0;",
+                raw: "f00000\\9\\0\\;",
+                span: Span(
+                  start: 136,
+                  end: 149,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 129,
+              end: 149,
+            ),
+          ),
         ],
         span: Span(
           start: 2,
-          end: 71,
+          end: 151,
         ),
       ),
       span: Span(
         start: 0,
-        end: 71,
+        end: 151,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 72,
+    end: 152,
   ),
 )
