@@ -1,0 +1,195 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "el",
+                        raw: "el",
+                        span: Span(
+                          start: 0,
+                          end: 2,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 2,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 2,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 2,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 2,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 2,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassIfAtRule(
+            type: "SassIfAtRule",
+            ifClause: SassConditionalClause(
+              type: "SassConditionalClause",
+              condition: SassParenthesizedExpression(
+                type: "SassParenthesizedExpression",
+                expr: SassBinaryExpression(
+                  type: "SassBinaryExpression",
+                  left: SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: NestingSelector(
+                      type: "NestingSelector",
+                      span: Span(
+                        start: 12,
+                        end: 13,
+                      ),
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 14,
+                        end: 15,
+                      ),
+                    ),
+                    right: Str(
+                      type: "Str",
+                      value: "",
+                      raw: "\'\'",
+                      span: Span(
+                        start: 16,
+                        end: 18,
+                      ),
+                    ),
+                    span: Span(
+                      start: 12,
+                      end: 18,
+                    ),
+                  ),
+                  op: SassBinaryOperator(
+                    type: "SassBinaryOperator",
+                    kind: EqualsEquals,
+                    span: Span(
+                      start: 19,
+                      end: 21,
+                    ),
+                  ),
+                  right: Str(
+                    type: "Str",
+                    value: "el",
+                    raw: "\'el\'",
+                    span: Span(
+                      start: 22,
+                      end: 26,
+                    ),
+                  ),
+                  span: Span(
+                    start: 12,
+                    end: 26,
+                  ),
+                ),
+                span: Span(
+                  start: 11,
+                  end: 27,
+                ),
+              ),
+              block: SimpleBlock(
+                type: "SimpleBlock",
+                statements: [
+                  Declaration(
+                    type: "Declaration",
+                    name: Ident(
+                      type: "Ident",
+                      name: "content",
+                      raw: "content",
+                      span: Span(
+                        start: 34,
+                        end: 41,
+                      ),
+                    ),
+                    value: [
+                      Str(
+                        type: "Str",
+                        value: "It works!",
+                        raw: "\"It works!\"",
+                        span: Span(
+                          start: 43,
+                          end: 54,
+                        ),
+                      ),
+                    ],
+                    important: None,
+                    lessPropertyMerge: None,
+                    span: Span(
+                      start: 34,
+                      end: 54,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 28,
+                  end: 59,
+                ),
+              ),
+              span: Span(
+                start: 11,
+                end: 59,
+              ),
+            ),
+            elseIfClauses: [],
+            elseClause: None,
+            span: Span(
+              start: 7,
+              end: 61,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3,
+          end: 61,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 61,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 62,
+  ),
+)
