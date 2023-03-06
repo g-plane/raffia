@@ -171,9 +171,135 @@ Stylesheet(
         end: 38,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "test",
+                      raw: "test",
+                      span: Span(
+                        start: 41,
+                        end: 45,
+                      ),
+                    ),
+                    span: Span(
+                      start: 40,
+                      end: 45,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 40,
+                  end: 45,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 40,
+              end: 45,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 40,
+          end: 45,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassExtendAtRule(
+            type: "SassExtendAtRule",
+            selectors: [
+              TagNameSelector(
+                type: "TagNameSelector",
+                name: WqName(
+                  type: "WqName",
+                  name: SassInterpolatedIdent(
+                    type: "SassInterpolatedIdent",
+                    elements: [
+                      ComponentValues(
+                        type: "ComponentValues",
+                        values: [
+                          Str(
+                            type: "Str",
+                            value: "%test",
+                            raw: "\'%test\'",
+                            span: Span(
+                              start: 60,
+                              end: 67,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 60,
+                          end: 67,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 58,
+                      end: 68,
+                    ),
+                  ),
+                  prefix: None,
+                  span: Span(
+                    start: 58,
+                    end: 68,
+                  ),
+                ),
+                span: Span(
+                  start: 58,
+                  end: 68,
+                ),
+              ),
+            ],
+            optional: Some(SassFlag(
+              type: "SassFlag",
+              keyword: Ident(
+                type: "Ident",
+                name: "optional",
+                raw: "optional",
+                span: Span(
+                  start: 70,
+                  end: 78,
+                ),
+              ),
+              span: Span(
+                start: 69,
+                end: 78,
+              ),
+            )),
+            span: Span(
+              start: 50,
+              end: 78,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 46,
+          end: 80,
+        ),
+      ),
+      span: Span(
+        start: 40,
+        end: 80,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 39,
+    end: 81,
   ),
 )
