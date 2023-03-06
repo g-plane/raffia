@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: invalid An+B syntax
+  ┌─ missing-an-plus-b.css:1:13
+  │
+1 │ a:nth-child() {
+  │             ^
+
+
