@@ -1577,9 +1577,62 @@ Stylesheet(
         end: 1398,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 1401,
+          end: 1407,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 1408,
+              end: 1411,
+            ),
+          ),
+          value: Some(UrlRaw(
+            type: "UrlRaw",
+            value: "//xyz.cöm/ürl",
+            raw: "//xyz.cöm/ürl",
+            span: Span(
+              start: 1412,
+              end: 1427,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 1408,
+            end: 1428,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: None,
+        span: Span(
+          start: 1408,
+          end: 1428,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 1400,
+        end: 1428,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 1399,
+    end: 1430,
   ),
 )
