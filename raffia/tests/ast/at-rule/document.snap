@@ -1,0 +1,152 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "document",
+        raw: "document",
+        span: Span(
+          start: 1,
+          end: 9,
+        ),
+      ),
+      prelude: Some(DocumentPrelude(
+        type: "DocumentPrelude",
+        matchers: [
+          Url(
+            type: "Url",
+            name: Ident(
+              type: "Ident",
+              name: "url",
+              raw: "url",
+              span: Span(
+                start: 10,
+                end: 13,
+              ),
+            ),
+            value: Some(UrlRaw(
+              type: "UrlRaw",
+              value: "http://www.w3.org/",
+              raw: "http://www.w3.org/",
+              span: Span(
+                start: 14,
+                end: 32,
+              ),
+            )),
+            modifiers: [],
+            span: Span(
+              start: 10,
+              end: 33,
+            ),
+          ),
+          Function(
+            type: "Function",
+            name: Ident(
+              type: "Ident",
+              name: "url-prefix",
+              raw: "url-prefix",
+              span: Span(
+                start: 37,
+                end: 47,
+              ),
+            ),
+            args: [
+              Str(
+                type: "Str",
+                value: "http://www.w3.org/Style/",
+                raw: "\"http://www.w3.org/Style/\"",
+                span: Span(
+                  start: 48,
+                  end: 74,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 37,
+              end: 75,
+            ),
+          ),
+          Function(
+            type: "Function",
+            name: Ident(
+              type: "Ident",
+              name: "domain",
+              raw: "domain",
+              span: Span(
+                start: 79,
+                end: 85,
+              ),
+            ),
+            args: [
+              Str(
+                type: "Str",
+                value: "mozilla.org",
+                raw: "\'mozilla.org\'",
+                span: Span(
+                  start: 86,
+                  end: 99,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 79,
+              end: 100,
+            ),
+          ),
+          Function(
+            type: "Function",
+            name: Ident(
+              type: "Ident",
+              name: "regexp",
+              raw: "regexp",
+              span: Span(
+                start: 104,
+                end: 110,
+              ),
+            ),
+            args: [
+              Str(
+                type: "Str",
+                value: "https:.*",
+                raw: "\"https:.*\"",
+                span: Span(
+                  start: 111,
+                  end: 121,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 104,
+              end: 122,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 10,
+          end: 122,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 123,
+          end: 125,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 125,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 126,
+  ),
+)

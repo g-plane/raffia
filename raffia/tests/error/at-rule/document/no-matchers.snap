@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<ident>`, but `{` received
+  ┌─ no-matchers.css:1:11
+  │
+1 │ @document {}
+  │           ^
+
+
