@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `}`, but `<eof>` received
+  ┌─ unterminated.scss:4:1
+  │
+4 │ 
+  │ ^
+
+
