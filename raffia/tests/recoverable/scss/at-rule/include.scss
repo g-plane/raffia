@@ -1,0 +1,4 @@
+.error {
+  @include double-comma-error($a,,$b);
+  @include double-comma-error($a,$b,,);
+}

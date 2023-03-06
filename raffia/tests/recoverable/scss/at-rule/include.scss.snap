@@ -1,0 +1,16 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: expect token `)`, but `,` received
+  ┌─ include.scss:2:34
+  │
+2 │   @include double-comma-error($a,,$b);
+  │                                  ^
+
+error: expect token `)`, but `,` received
+  ┌─ include.scss:3:37
+  │
+3 │   @include double-comma-error($a,$b,,);
+  │                                     ^
+
+

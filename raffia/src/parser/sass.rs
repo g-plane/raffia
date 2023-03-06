@@ -22,6 +22,29 @@ const FLAG_DEFAULT: u8 = 1;
 const FLAG_GLOBAL: u8 = 2;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    fn check_double_commas(&mut self, values: &[ComponentValue<'s>]) {
+        use crate::{
+            token::{Comma, RParen},
+            tokenizer::TokenSymbol,
+        };
+
+        values.windows(2).for_each(|pair| {
+            if let [ComponentValue::Delimiter(Delimiter {
+                kind: DelimiterKind::Comma,
+                ..
+            }), ComponentValue::Delimiter(Delimiter {
+                kind: DelimiterKind::Comma,
+                span,
+            })] = pair
+            {
+                self.recoverable_errors.push(Error {
+                    kind: ErrorKind::Unexpected(RParen::symbol(), Comma::symbol()),
+                    span: span.clone(),
+                });
+            }
+        });
+    }
+
     pub(super) fn parse_sass_at_rule(
         &mut self,
         at_keyword_name: &str,
@@ -521,6 +544,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
 
         let arguments = if eat!(input, LParen).is_some() {
             let mut arguments = input.parse_function_args()?;
+            input.check_double_commas(&arguments);
             arguments.retain(|arg| {
                 !matches!(
                     arg,
@@ -853,6 +877,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
 
         let arguments = if eat!(input, LParen).is_some() {
             let mut arguments = input.parse_function_args()?;
+            input.check_double_commas(&arguments);
             arguments.retain(|arg| {
                 !matches!(
                     arg,
