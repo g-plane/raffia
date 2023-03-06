@@ -1392,7 +1392,7 @@ pub struct SassNamespacedExpression<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassNestingDeclaration<'s> {
-    pub decls: Vec<Declaration<'s>>,
+    pub block: SimpleBlock<'s>,
     pub span: Span,
 }
 

@@ -1089,56 +1089,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixinAtRule<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = if input.syntax == Syntax::Scss {
-            expect!(input, LBrace).1.start
-        } else {
-            expect!(input, Indent).1.start
-        };
+        let block = input.parse::<SimpleBlock>()?;
+        let span = block.span.clone();
 
-        // eat leading semicolons/linebreaks
-        if input.syntax == Syntax::Scss {
-            while eat!(input, Semicolon).is_some() {}
-        } else {
-            while eat!(input, Linebreak).is_some() {}
-        }
-
-        let mut decls = Vec::with_capacity(3);
-        let end;
-        loop {
-            match &peek!(input).token {
-                Token::RBrace(..) if input.syntax == Syntax::Scss => {
-                    end = bump!(input).span.end;
-                    break;
-                }
-                Token::Dedent(..) if input.syntax == Syntax::Sass => {
-                    end = bump!(input).span.end;
-                    break;
-                }
-                _ => {}
-            }
-
-            decls.push(input.parse::<Declaration>()?);
-            if input.syntax == Syntax::Scss {
-                if let Some((_, span)) = eat!(input, RBrace) {
-                    end = span.end;
-                    break;
-                } else {
-                    expect!(input, Semicolon);
-                    while eat!(input, Semicolon).is_some() {}
-                }
-            } else if let Some((_, span)) = eat!(input, Dedent) {
-                end = span.end;
-                break;
-            } else {
-                expect!(input, Linebreak);
-                while eat!(input, Linebreak).is_some() {}
-            }
-        }
-
-        Ok(SassNestingDeclaration {
-            decls,
-            span: Span { start, end },
-        })
+        Ok(SassNestingDeclaration { block, span })
     }
 }
 

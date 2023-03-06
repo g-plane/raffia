@@ -83,39 +83,46 @@ Stylesheet(
               ),
               SassNestingDeclaration(
                 type: "SassNestingDeclaration",
-                decls: [
-                  Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "d",
-                      raw: "d",
-                      span: Span(
-                        start: 12,
-                        end: 13,
-                      ),
-                    ),
-                    value: [
-                      Ident(
+                block: SimpleBlock(
+                  type: "SimpleBlock",
+                  statements: [
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "e",
-                        raw: "e",
+                        name: "d",
+                        raw: "d",
                         span: Span(
-                          start: 15,
-                          end: 16,
+                          start: 12,
+                          end: 13,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
-                    span: Span(
-                      start: 12,
-                      end: 16,
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "e",
+                          raw: "e",
+                          span: Span(
+                            start: 15,
+                            end: 16,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 12,
+                        end: 16,
+                      ),
                     ),
+                  ],
+                  span: Span(
+                    start: 12,
+                    end: 18,
                   ),
-                ],
+                ),
                 span: Span(
-                  start: 8,
+                  start: 12,
                   end: 18,
                 ),
               ),

@@ -1,0 +1,14 @@
+div {
+  a: {
+    p1: q;
+    b: {
+      p2: q;
+    }
+    p3: q;
+  }
+}
+
+foo {
+  bar: baz + bang {
+    bip: bop;
+    bing: bop; }}
