@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: `*` or ident for Sass namespace is expected
+  ┌─ as-nothing.scss:1:14
+  │
+1 │ @use "foo" as;
+  │              ^
+
+

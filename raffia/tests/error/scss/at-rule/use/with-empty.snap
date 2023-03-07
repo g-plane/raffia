@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `$var`, but `)` received
+  ┌─ with-empty.scss:1:20
+  │
+1 │ @use "other" with ();
+  │                    ^
+
+

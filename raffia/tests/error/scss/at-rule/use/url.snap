@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: string is expected
+  ┌─ url.scss:1:6
+  │
+1 │ @use foo;
+  │      ^^^
+
+

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unknown token
+  ┌─ with-space-after-dollar.scss:1:20
+  │
+1 │ @use "other" with ($ a: b);
+  │                    ^
+
+

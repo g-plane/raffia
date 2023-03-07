@@ -1,0 +1,17 @@
+@use "used";
+@use "other" as o1;
+@use "other" as *;
+@use "other" with ($c: e);
+@use 'module' with (
+  $a: 'a',
+  $b: 'b',
+);
+@use "other" with ($a: $a);
+@use "other" with (
+  $a: configured a,
+  $b: configured b,
+  $c: configured c
+);
+@use "other" with ($a: configured,);
+@u\73 e "other";
+@use "other" as o1 with ($a: b);
