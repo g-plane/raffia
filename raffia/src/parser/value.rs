@@ -178,10 +178,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Ampersand(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                 self.parse().map(ComponentValue::SassParentSelector)
             }
-            Token::LBrace(..) if self.syntax == Syntax::Scss => {
+            Token::LBrace(..)
+                if self.syntax == Syntax::Scss
+                    && matches!(
+                        self.state.qualified_rule_ctx,
+                        Some(QualifiedRuleContext::DeclarationValue)
+                    ) =>
+            {
                 self.parse().map(ComponentValue::SassNestingDeclaration)
             }
-            Token::Indent(..) if self.syntax == Syntax::Sass => {
+            Token::Indent(..)
+                if self.syntax == Syntax::Sass
+                    && matches!(
+                        self.state.qualified_rule_ctx,
+                        Some(QualifiedRuleContext::DeclarationValue)
+                    ) =>
+            {
                 self.parse().map(ComponentValue::SassNestingDeclaration)
             }
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
