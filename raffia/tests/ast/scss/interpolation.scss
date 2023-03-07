@@ -15,3 +15,10 @@ a /*#{#{*/ {
 div {
   blah: "hello #{2+2} world #{unit(23px)} #{'bloo\n'} blah";
 }
+
+a { --#{"foo"}-bar: b; }
+
+[#{$zzz}=foo] { a: b; }
+.#{$zzz} { a: b; }
+##{$zzz} { a: b; }
+:#{$zzz}::#{$zzz} { a: b; }

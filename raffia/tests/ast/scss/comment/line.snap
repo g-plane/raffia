@@ -1,0 +1,303 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 5,
+                end: 6,
+              ),
+            ),
+            value: [
+              SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 8,
+                    end: 9,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 10,
+                    end: 11,
+                  ),
+                ),
+                right: Ident(
+                  type: "Ident",
+                  name: "blang",
+                  raw: "blang",
+                  span: Span(
+                    start: 25,
+                    end: 30,
+                  ),
+                ),
+                span: Span(
+                  start: 8,
+                  end: 30,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 5,
+              end: 30,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 32,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 32,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 35,
+                        end: 38,
+                      ),
+                    ),
+                    span: Span(
+                      start: 34,
+                      end: 38,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 34,
+                  end: 38,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 38,
+                  end: 39,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bar",
+                        raw: "bar",
+                        span: Span(
+                          start: 39,
+                          end: 42,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 39,
+                        end: 42,
+                      ),
+                    ),
+                    span: Span(
+                      start: 39,
+                      end: 42,
+                    ),
+                  ),
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "val",
+                        raw: "val",
+                        span: Span(
+                          start: 43,
+                          end: 46,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 43,
+                        end: 46,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 46,
+                        end: 47,
+                      ),
+                    )),
+                    value: Some(Str(
+                      type: "Str",
+                      value: "//",
+                      raw: "\"//\"",
+                      span: Span(
+                        start: 47,
+                        end: 51,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 42,
+                      end: 52,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 39,
+                  end: 52,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 34,
+              end: 52,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 34,
+          end: 52,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "baz",
+              raw: "baz",
+              span: Span(
+                start: 57,
+                end: 60,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "bang",
+                raw: "bang",
+                span: Span(
+                  start: 62,
+                  end: 66,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 57,
+              end: 66,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 53,
+          end: 73,
+        ),
+      ),
+      span: Span(
+        start: 34,
+        end: 73,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 74,
+  ),
+)

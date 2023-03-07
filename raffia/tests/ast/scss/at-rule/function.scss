@@ -17,3 +17,9 @@
 @function mixed-args($a, $b: b,) {
   @return keyword 2 $a $b;
 }
+
+@function foo($a, $b...) {
+  @return "a: #{$a}, b: #{$b}";
+}
+
+@function no-params() {}

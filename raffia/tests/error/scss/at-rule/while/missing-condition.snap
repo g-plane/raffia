@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ missing-condition.scss:1:8
+  │
+1 │ @while {}
+  │        ^
+
+

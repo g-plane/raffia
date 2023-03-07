@@ -19,3 +19,6 @@
 }
 
 @mixin foo($args...) {}
+@mixin foo($a, $b: b, $args...) {}
+
+@mixin no-params() {}

@@ -12,3 +12,10 @@ foo {
   bar: baz + bang {
     bip: bop;
     bing: bop; }}
+
+foo {
+  bar: baz;
+  bang: {
+    bip: 1px;
+    bop: bar;
+    blat:{baf:bort}}}

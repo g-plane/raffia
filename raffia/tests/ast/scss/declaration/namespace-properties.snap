@@ -424,9 +424,280 @@ Stylesheet(
         end: 127,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 129,
+                          end: 132,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 129,
+                        end: 132,
+                      ),
+                    ),
+                    span: Span(
+                      start: 129,
+                      end: 132,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 129,
+                  end: 132,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 129,
+              end: 132,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 129,
+          end: 132,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "bar",
+              raw: "bar",
+              span: Span(
+                start: 137,
+                end: 140,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "baz",
+                raw: "baz",
+                span: Span(
+                  start: 142,
+                  end: 145,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 137,
+              end: 145,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "bang",
+              raw: "bang",
+              span: Span(
+                start: 149,
+                end: 153,
+              ),
+            ),
+            value: [
+              SassNestingDeclaration(
+                type: "SassNestingDeclaration",
+                block: SimpleBlock(
+                  type: "SimpleBlock",
+                  statements: [
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bip",
+                        raw: "bip",
+                        span: Span(
+                          start: 161,
+                          end: 164,
+                        ),
+                      ),
+                      value: [
+                        Length(
+                          type: "Length",
+                          value: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 166,
+                              end: 167,
+                            ),
+                          ),
+                          unit: Ident(
+                            type: "Ident",
+                            name: "px",
+                            raw: "px",
+                            span: Span(
+                              start: 167,
+                              end: 169,
+                            ),
+                          ),
+                          span: Span(
+                            start: 166,
+                            end: 169,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 161,
+                        end: 169,
+                      ),
+                    ),
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bop",
+                        raw: "bop",
+                        span: Span(
+                          start: 175,
+                          end: 178,
+                        ),
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "bar",
+                          raw: "bar",
+                          span: Span(
+                            start: 180,
+                            end: 183,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 175,
+                        end: 183,
+                      ),
+                    ),
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "blat",
+                        raw: "blat",
+                        span: Span(
+                          start: 189,
+                          end: 193,
+                        ),
+                      ),
+                      value: [
+                        SassNestingDeclaration(
+                          type: "SassNestingDeclaration",
+                          block: SimpleBlock(
+                            type: "SimpleBlock",
+                            statements: [
+                              Declaration(
+                                type: "Declaration",
+                                name: Ident(
+                                  type: "Ident",
+                                  name: "baf",
+                                  raw: "baf",
+                                  span: Span(
+                                    start: 195,
+                                    end: 198,
+                                  ),
+                                ),
+                                value: [
+                                  Ident(
+                                    type: "Ident",
+                                    name: "bort",
+                                    raw: "bort",
+                                    span: Span(
+                                      start: 199,
+                                      end: 203,
+                                    ),
+                                  ),
+                                ],
+                                important: None,
+                                lessPropertyMerge: None,
+                                span: Span(
+                                  start: 195,
+                                  end: 203,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 194,
+                              end: 204,
+                            ),
+                          ),
+                          span: Span(
+                            start: 194,
+                            end: 204,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 189,
+                        end: 204,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 155,
+                    end: 205,
+                  ),
+                ),
+                span: Span(
+                  start: 155,
+                  end: 205,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 149,
+              end: 205,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 133,
+          end: 206,
+        ),
+      ),
+      span: Span(
+        start: 129,
+        end: 206,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 128,
+    end: 207,
   ),
 )

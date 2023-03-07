@@ -1,0 +1,11 @@
+a {
+  b: 1.2 % 4.7;
+}
+
+div {
+  a: (false and "hey");
+  b: ("hey" and "ho");
+  b: ("hey" or "ho");
+  a: false and "hey";
+  b: "hey" and "ho";
+}

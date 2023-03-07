@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ minus-trailing-dot.scss:1:8
+  │
+1 │ a {b: -.}
+  │        ^
+
+

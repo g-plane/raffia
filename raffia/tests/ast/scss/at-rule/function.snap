@@ -666,9 +666,211 @@ Stylesheet(
         end: 340,
       ),
     ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "foo",
+        raw: "foo",
+        span: Span(
+          start: 352,
+          end: 355,
+        ),
+      ),
+      parameters: [
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 357,
+                end: 358,
+              ),
+            ),
+            span: Span(
+              start: 356,
+              end: 358,
+            ),
+          ),
+          defaultValue: None,
+          span: Span(
+            start: 356,
+            end: 358,
+          ),
+        ),
+      ],
+      arbitraryParameter: Some(SassArbitraryParameter(
+        type: "SassArbitraryParameter",
+        name: SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 361,
+              end: 362,
+            ),
+          ),
+          span: Span(
+            start: 360,
+            end: 362,
+          ),
+        ),
+        span: Span(
+          start: 360,
+          end: 365,
+        ),
+      )),
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                SassInterpolatedStr(
+                  type: "SassInterpolatedStr",
+                  elements: [
+                    InterpolableStrStaticPart(
+                      type: "InterpolableStrStaticPart",
+                      value: "a: ",
+                      raw: "\"a: ",
+                      span: Span(
+                        start: 379,
+                        end: 383,
+                      ),
+                    ),
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "a",
+                            raw: "a",
+                            span: Span(
+                              start: 386,
+                              end: 387,
+                            ),
+                          ),
+                          span: Span(
+                            start: 385,
+                            end: 387,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 385,
+                        end: 387,
+                      ),
+                    ),
+                    InterpolableStrStaticPart(
+                      type: "InterpolableStrStaticPart",
+                      value: ", b: ",
+                      raw: ", b: ",
+                      span: Span(
+                        start: 388,
+                        end: 393,
+                      ),
+                    ),
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "b",
+                            raw: "b",
+                            span: Span(
+                              start: 396,
+                              end: 397,
+                            ),
+                          ),
+                          span: Span(
+                            start: 395,
+                            end: 397,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 395,
+                        end: 397,
+                      ),
+                    ),
+                    InterpolableStrStaticPart(
+                      type: "InterpolableStrStaticPart",
+                      value: "",
+                      raw: "\"",
+                      span: Span(
+                        start: 398,
+                        end: 399,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 379,
+                    end: 399,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 379,
+                end: 399,
+              ),
+            ),
+            span: Span(
+              start: 371,
+              end: 399,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 367,
+          end: 402,
+        ),
+      ),
+      span: Span(
+        start: 342,
+        end: 402,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "no-params",
+        raw: "no-params",
+        span: Span(
+          start: 414,
+          end: 423,
+        ),
+      ),
+      parameters: [],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 426,
+          end: 428,
+        ),
+      ),
+      span: Span(
+        start: 404,
+        end: 428,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 341,
+    end: 429,
   ),
 )

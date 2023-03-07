@@ -1,0 +1,5 @@
+@each $name in (a, b, c) {
+  .#{$name} {}
+}
+
+@each $key, $value in (a: a, b: b) {}

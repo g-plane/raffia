@@ -1,0 +1,273 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassEachAtRule(
+      type: "SassEachAtRule",
+      bindings: [
+        SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "name",
+            raw: "name",
+            span: Span(
+              start: 7,
+              end: 11,
+            ),
+          ),
+          span: Span(
+            start: 6,
+            end: 11,
+          ),
+        ),
+      ],
+      expr: SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 16,
+              end: 17,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 19,
+              end: 20,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "c",
+            raw: "c",
+            span: Span(
+              start: 22,
+              end: 23,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 15,
+          end: 24,
+        ),
+      ),
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: SassInterpolatedIdent(
+                            type: "SassInterpolatedIdent",
+                            elements: [
+                              ComponentValues(
+                                type: "ComponentValues",
+                                values: [
+                                  SassVariable(
+                                    type: "SassVariable",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "name",
+                                      raw: "name",
+                                      span: Span(
+                                        start: 33,
+                                        end: 37,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 32,
+                                      end: 37,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 32,
+                                  end: 37,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 30,
+                              end: 38,
+                            ),
+                          ),
+                          span: Span(
+                            start: 29,
+                            end: 38,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 29,
+                        end: 38,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 29,
+                    end: 38,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 29,
+                end: 38,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 39,
+                end: 41,
+              ),
+            ),
+            span: Span(
+              start: 29,
+              end: 41,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 25,
+          end: 43,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 43,
+      ),
+    ),
+    SassEachAtRule(
+      type: "SassEachAtRule",
+      bindings: [
+        SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "key",
+            raw: "key",
+            span: Span(
+              start: 52,
+              end: 55,
+            ),
+          ),
+          span: Span(
+            start: 51,
+            end: 55,
+          ),
+        ),
+        SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "value",
+            raw: "value",
+            span: Span(
+              start: 58,
+              end: 63,
+            ),
+          ),
+          span: Span(
+            start: 57,
+            end: 63,
+          ),
+        ),
+      ],
+      expr: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 68,
+                end: 69,
+              ),
+            ),
+            value: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 71,
+                end: 72,
+              ),
+            ),
+            span: Span(
+              start: 68,
+              end: 72,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 74,
+                end: 75,
+              ),
+            ),
+            value: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 77,
+                end: 78,
+              ),
+            ),
+            span: Span(
+              start: 74,
+              end: 78,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 67,
+          end: 79,
+        ),
+      ),
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 80,
+          end: 82,
+        ),
+      ),
+      span: Span(
+        start: 45,
+        end: 82,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 83,
+  ),
+)

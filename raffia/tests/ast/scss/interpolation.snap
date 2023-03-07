@@ -863,9 +863,662 @@ Stylesheet(
         end: 245,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 247,
+                          end: 248,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 247,
+                        end: 248,
+                      ),
+                    ),
+                    span: Span(
+                      start: 247,
+                      end: 248,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 247,
+                  end: 248,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 247,
+              end: 248,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 247,
+          end: 248,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: SassInterpolatedIdent(
+              type: "SassInterpolatedIdent",
+              elements: [
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "--",
+                  raw: "--",
+                  span: Span(
+                    start: 251,
+                    end: 253,
+                  ),
+                ),
+                ComponentValues(
+                  type: "ComponentValues",
+                  values: [
+                    Str(
+                      type: "Str",
+                      value: "foo",
+                      raw: "\"foo\"",
+                      span: Span(
+                        start: 255,
+                        end: 260,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 255,
+                    end: 260,
+                  ),
+                ),
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "-bar",
+                  raw: "-bar",
+                  span: Span(
+                    start: 261,
+                    end: 265,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 251,
+                end: 265,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 267,
+                  end: 268,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 251,
+              end: 268,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 249,
+          end: 271,
+        ),
+      ),
+      span: Span(
+        start: 247,
+        end: 271,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: SassInterpolatedIdent(
+                        type: "SassInterpolatedIdent",
+                        elements: [
+                          ComponentValues(
+                            type: "ComponentValues",
+                            values: [
+                              SassVariable(
+                                type: "SassVariable",
+                                name: Ident(
+                                  type: "Ident",
+                                  name: "zzz",
+                                  raw: "zzz",
+                                  span: Span(
+                                    start: 277,
+                                    end: 280,
+                                  ),
+                                ),
+                                span: Span(
+                                  start: 276,
+                                  end: 280,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 276,
+                              end: 280,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 274,
+                          end: 281,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 274,
+                        end: 281,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 281,
+                        end: 282,
+                      ),
+                    )),
+                    value: Some(Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 282,
+                        end: 285,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 273,
+                      end: 286,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 273,
+                  end: 286,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 273,
+              end: 286,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 273,
+          end: 286,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 289,
+                end: 290,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 292,
+                  end: 293,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 289,
+              end: 293,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 287,
+          end: 296,
+        ),
+      ),
+      span: Span(
+        start: 273,
+        end: 296,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: SassInterpolatedIdent(
+                      type: "SassInterpolatedIdent",
+                      elements: [
+                        ComponentValues(
+                          type: "ComponentValues",
+                          values: [
+                            SassVariable(
+                              type: "SassVariable",
+                              name: Ident(
+                                type: "Ident",
+                                name: "zzz",
+                                raw: "zzz",
+                                span: Span(
+                                  start: 301,
+                                  end: 304,
+                                ),
+                              ),
+                              span: Span(
+                                start: 300,
+                                end: 304,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 300,
+                            end: 304,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 298,
+                        end: 305,
+                      ),
+                    ),
+                    span: Span(
+                      start: 297,
+                      end: 305,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 297,
+                  end: 305,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 297,
+              end: 305,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 297,
+          end: 305,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 308,
+                end: 309,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 311,
+                  end: 312,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 308,
+              end: 312,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 306,
+          end: 315,
+        ),
+      ),
+      span: Span(
+        start: 297,
+        end: 315,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: SassInterpolatedIdent(
+                      type: "SassInterpolatedIdent",
+                      elements: [
+                        ComponentValues(
+                          type: "ComponentValues",
+                          values: [
+                            SassVariable(
+                              type: "SassVariable",
+                              name: Ident(
+                                type: "Ident",
+                                name: "zzz",
+                                raw: "zzz",
+                                span: Span(
+                                  start: 320,
+                                  end: 323,
+                                ),
+                              ),
+                              span: Span(
+                                start: 319,
+                                end: 323,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 319,
+                            end: 323,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 317,
+                        end: 324,
+                      ),
+                    ),
+                    span: Span(
+                      start: 316,
+                      end: 324,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 316,
+                  end: 324,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 316,
+              end: 324,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 316,
+          end: 324,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 327,
+                end: 328,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 330,
+                  end: 331,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 327,
+              end: 331,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 325,
+          end: 334,
+        ),
+      ),
+      span: Span(
+        start: 316,
+        end: 334,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: SassInterpolatedIdent(
+                      type: "SassInterpolatedIdent",
+                      elements: [
+                        ComponentValues(
+                          type: "ComponentValues",
+                          values: [
+                            SassVariable(
+                              type: "SassVariable",
+                              name: Ident(
+                                type: "Ident",
+                                name: "zzz",
+                                raw: "zzz",
+                                span: Span(
+                                  start: 339,
+                                  end: 342,
+                                ),
+                              ),
+                              span: Span(
+                                start: 338,
+                                end: 342,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 338,
+                            end: 342,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 336,
+                        end: 343,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 335,
+                      end: 343,
+                    ),
+                  ),
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: SassInterpolatedIdent(
+                      type: "SassInterpolatedIdent",
+                      elements: [
+                        ComponentValues(
+                          type: "ComponentValues",
+                          values: [
+                            SassVariable(
+                              type: "SassVariable",
+                              name: Ident(
+                                type: "Ident",
+                                name: "zzz",
+                                raw: "zzz",
+                                span: Span(
+                                  start: 348,
+                                  end: 351,
+                                ),
+                              ),
+                              span: Span(
+                                start: 347,
+                                end: 351,
+                              ),
+                            ),
+                          ],
+                          span: Span(
+                            start: 347,
+                            end: 351,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 345,
+                        end: 352,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 343,
+                      end: 352,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 335,
+                  end: 352,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 335,
+              end: 352,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 335,
+          end: 352,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 355,
+                end: 356,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 358,
+                  end: 359,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 355,
+              end: 359,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 353,
+          end: 362,
+        ),
+      ),
+      span: Span(
+        start: 335,
+        end: 362,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 246,
+    end: 363,
   ),
 )

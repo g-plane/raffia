@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unexpected whitespace
+  ┌─ empty-placeholder.scss:1:2
+  │
+1 │ % {
+  │  ^
+
+

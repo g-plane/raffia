@@ -15,46 +15,38 @@ Stylesheet(
               CompoundSelector(
                 type: "CompoundSelector",
                 children: [
-                  TagNameSelector(
-                    type: "TagNameSelector",
-                    name: WqName(
-                      type: "WqName",
-                      name: Ident(
-                        type: "Ident",
-                        name: "div",
-                        raw: "div",
-                        span: Span(
-                          start: 0,
-                          end: 3,
-                        ),
-                      ),
-                      prefix: None,
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "calls",
+                      raw: "calls",
                       span: Span(
-                        start: 0,
-                        end: 3,
+                        start: 1,
+                        end: 6,
                       ),
                     ),
                     span: Span(
                       start: 0,
-                      end: 3,
+                      end: 6,
                     ),
                   ),
                 ],
                 span: Span(
                   start: 0,
-                  end: 3,
+                  end: 6,
                 ),
               ),
             ],
             span: Span(
               start: 0,
-              end: 3,
+              end: 6,
             ),
           ),
         ],
         span: Span(
           start: 0,
-          end: 3,
+          end: 6,
         ),
       ),
       block: SimpleBlock(
@@ -64,48 +56,23 @@ Stylesheet(
             type: "Declaration",
             name: Ident(
               type: "Ident",
-              name: "color",
-              raw: "color",
+              name: "one-positional-arg",
+              raw: "one-positional-arg",
               span: Span(
-                start: 8,
-                end: 13,
+                start: 11,
+                end: 29,
               ),
             ),
             value: [
               Function(
                 type: "Function",
-                name: SassInterpolatedIdent(
-                  type: "SassInterpolatedIdent",
-                  elements: [
-                    ComponentValues(
-                      type: "ComponentValues",
-                      values: [
-                        SassVariable(
-                          type: "SassVariable",
-                          name: Ident(
-                            type: "Ident",
-                            name: "f",
-                            raw: "f",
-                            span: Span(
-                              start: 18,
-                              end: 19,
-                            ),
-                          ),
-                          span: Span(
-                            start: 17,
-                            end: 19,
-                          ),
-                        ),
-                      ],
-                      span: Span(
-                        start: 17,
-                        end: 19,
-                      ),
-                    ),
-                  ],
+                name: Ident(
+                  type: "Ident",
+                  name: "one-positional-arg",
+                  raw: "one-positional-arg",
                   span: Span(
-                    start: 15,
-                    end: 20,
+                    start: 31,
+                    end: 49,
                   ),
                 ),
                 args: [
@@ -114,16 +81,71 @@ Stylesheet(
                     name: "a",
                     raw: "a",
                     span: Span(
-                      start: 21,
-                      end: 22,
+                      start: 50,
+                      end: 51,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 22,
-                      end: 23,
+                      start: 51,
+                      end: 52,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 31,
+                  end: 53,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 11,
+              end: 53,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "two-positional-args",
+              raw: "two-positional-args",
+              span: Span(
+                start: 57,
+                end: 76,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "two-positional-args",
+                  raw: "two-positional-args",
+                  span: Span(
+                    start: 78,
+                    end: 97,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 98,
+                      end: 99,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 99,
+                      end: 100,
                     ),
                   ),
                   Ident(
@@ -131,33 +153,332 @@ Stylesheet(
                     name: "b",
                     raw: "b",
                     span: Span(
-                      start: 24,
-                      end: 25,
+                      start: 100,
+                      end: 101,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 101,
+                      end: 102,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 15,
-                  end: 26,
+                  start: 78,
+                  end: 103,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 8,
-              end: 26,
+              start: 57,
+              end: 103,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "one-keyword-arg",
+              raw: "one-keyword-arg",
+              span: Span(
+                start: 107,
+                end: 122,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "one-keyword-arg",
+                  raw: "one-keyword-arg",
+                  span: Span(
+                    start: 124,
+                    end: 139,
+                  ),
+                ),
+                args: [
+                  SassKeywordArgument(
+                    type: "SassKeywordArgument",
+                    name: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 141,
+                          end: 142,
+                        ),
+                      ),
+                      span: Span(
+                        start: 140,
+                        end: 142,
+                      ),
+                    ),
+                    value: Ident(
+                      type: "Ident",
+                      name: "z",
+                      raw: "z",
+                      span: Span(
+                        start: 144,
+                        end: 145,
+                      ),
+                    ),
+                    span: Span(
+                      start: 140,
+                      end: 145,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 145,
+                      end: 146,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 124,
+                  end: 147,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 107,
+              end: 147,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "two-keyword-args",
+              raw: "two-keyword-args",
+              span: Span(
+                start: 151,
+                end: 167,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "two-keyword-args",
+                  raw: "two-keyword-args",
+                  span: Span(
+                    start: 169,
+                    end: 185,
+                  ),
+                ),
+                args: [
+                  SassKeywordArgument(
+                    type: "SassKeywordArgument",
+                    name: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 187,
+                          end: 188,
+                        ),
+                      ),
+                      span: Span(
+                        start: 186,
+                        end: 188,
+                      ),
+                    ),
+                    value: Ident(
+                      type: "Ident",
+                      name: "y",
+                      raw: "y",
+                      span: Span(
+                        start: 190,
+                        end: 191,
+                      ),
+                    ),
+                    span: Span(
+                      start: 186,
+                      end: 191,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 191,
+                      end: 192,
+                    ),
+                  ),
+                  SassKeywordArgument(
+                    type: "SassKeywordArgument",
+                    name: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 193,
+                          end: 194,
+                        ),
+                      ),
+                      span: Span(
+                        start: 192,
+                        end: 194,
+                      ),
+                    ),
+                    value: Ident(
+                      type: "Ident",
+                      name: "z",
+                      raw: "z",
+                      span: Span(
+                        start: 196,
+                        end: 197,
+                      ),
+                    ),
+                    span: Span(
+                      start: 192,
+                      end: 197,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 197,
+                      end: 198,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 169,
+                  end: 199,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 151,
+              end: 199,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "mixed-args",
+              raw: "mixed-args",
+              span: Span(
+                start: 203,
+                end: 213,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "mixed-args",
+                  raw: "mixed-args",
+                  span: Span(
+                    start: 215,
+                    end: 225,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "y",
+                    raw: "y",
+                    span: Span(
+                      start: 226,
+                      end: 227,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 227,
+                      end: 228,
+                    ),
+                  ),
+                  SassKeywordArgument(
+                    type: "SassKeywordArgument",
+                    name: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 230,
+                          end: 231,
+                        ),
+                      ),
+                      span: Span(
+                        start: 229,
+                        end: 231,
+                      ),
+                    ),
+                    value: Ident(
+                      type: "Ident",
+                      name: "z",
+                      raw: "z",
+                      span: Span(
+                        start: 233,
+                        end: 234,
+                      ),
+                    ),
+                    span: Span(
+                      start: 229,
+                      end: 234,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 234,
+                      end: 235,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 215,
+                  end: 236,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 203,
+              end: 236,
             ),
           ),
         ],
         span: Span(
-          start: 4,
-          end: 29,
+          start: 7,
+          end: 239,
         ),
       ),
       span: Span(
         start: 0,
-        end: 29,
+        end: 239,
       ),
     ),
     QualifiedRule(
@@ -175,34 +496,34 @@ Stylesheet(
                     type: "ClassSelector",
                     name: Ident(
                       type: "Ident",
-                      name: "calls",
-                      raw: "calls",
+                      name: "function-name",
+                      raw: "function-name",
                       span: Span(
-                        start: 32,
-                        end: 37,
+                        start: 242,
+                        end: 255,
                       ),
                     ),
                     span: Span(
-                      start: 31,
-                      end: 37,
+                      start: 241,
+                      end: 255,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 31,
-                  end: 37,
+                  start: 241,
+                  end: 255,
                 ),
               ),
             ],
             span: Span(
-              start: 31,
-              end: 37,
+              start: 241,
+              end: 255,
             ),
           ),
         ],
         span: Span(
-          start: 31,
-          end: 37,
+          start: 241,
+          end: 255,
         ),
       ),
       block: SimpleBlock(
@@ -212,434 +533,384 @@ Stylesheet(
             type: "Declaration",
             name: Ident(
               type: "Ident",
-              name: "one-positional-arg",
-              raw: "one-positional-arg",
+              name: "start",
+              raw: "start",
               span: Span(
-                start: 42,
-                end: 60,
+                start: 260,
+                end: 265,
               ),
             ),
             value: [
               Function(
                 type: "Function",
-                name: Ident(
-                  type: "Ident",
-                  name: "one-positional-arg",
-                  raw: "one-positional-arg",
+                name: SassInterpolatedIdent(
+                  type: "SassInterpolatedIdent",
+                  elements: [
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 269,
+                              end: 270,
+                            ),
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 271,
+                              end: 272,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 273,
+                              end: 274,
+                            ),
+                          ),
+                          span: Span(
+                            start: 269,
+                            end: 274,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 269,
+                        end: 274,
+                      ),
+                    ),
+                    InterpolableIdentStaticPart(
+                      type: "InterpolableIdentStaticPart",
+                      value: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 275,
+                        end: 278,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 62,
-                    end: 80,
+                    start: 267,
+                    end: 278,
                   ),
                 ),
                 args: [
                   Ident(
                     type: "Ident",
-                    name: "a",
-                    raw: "a",
+                    name: "arg",
+                    raw: "arg",
                     span: Span(
-                      start: 81,
-                      end: 82,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 82,
-                      end: 83,
+                      start: 279,
+                      end: 282,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 62,
-                  end: 84,
+                  start: 267,
+                  end: 283,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 42,
-              end: 84,
+              start: 260,
+              end: 283,
             ),
           ),
           Declaration(
             type: "Declaration",
             name: Ident(
               type: "Ident",
-              name: "two-positional-args",
-              raw: "two-positional-args",
+              name: "mid",
+              raw: "mid",
               span: Span(
-                start: 88,
-                end: 107,
+                start: 287,
+                end: 290,
               ),
             ),
             value: [
               Function(
                 type: "Function",
-                name: Ident(
-                  type: "Ident",
-                  name: "two-positional-args",
-                  raw: "two-positional-args",
+                name: SassInterpolatedIdent(
+                  type: "SassInterpolatedIdent",
+                  elements: [
+                    InterpolableIdentStaticPart(
+                      type: "InterpolableIdentStaticPart",
+                      value: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 292,
+                        end: 295,
+                      ),
+                    ),
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 297,
+                              end: 298,
+                            ),
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 299,
+                              end: 300,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 301,
+                              end: 302,
+                            ),
+                          ),
+                          span: Span(
+                            start: 297,
+                            end: 302,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 297,
+                        end: 302,
+                      ),
+                    ),
+                    InterpolableIdentStaticPart(
+                      type: "InterpolableIdentStaticPart",
+                      value: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 303,
+                        end: 306,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 109,
-                    end: 128,
+                    start: 292,
+                    end: 306,
                   ),
                 ),
                 args: [
                   Ident(
                     type: "Ident",
-                    name: "a",
-                    raw: "a",
+                    name: "arg",
+                    raw: "arg",
                     span: Span(
-                      start: 129,
-                      end: 130,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 130,
-                      end: 131,
-                    ),
-                  ),
-                  Ident(
-                    type: "Ident",
-                    name: "b",
-                    raw: "b",
-                    span: Span(
-                      start: 131,
-                      end: 132,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 132,
-                      end: 133,
+                      start: 307,
+                      end: 310,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 109,
-                  end: 134,
+                  start: 292,
+                  end: 311,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 88,
-              end: 134,
+              start: 287,
+              end: 311,
             ),
           ),
           Declaration(
             type: "Declaration",
             name: Ident(
               type: "Ident",
-              name: "one-keyword-arg",
-              raw: "one-keyword-arg",
+              name: "end",
+              raw: "end",
               span: Span(
-                start: 138,
-                end: 153,
+                start: 315,
+                end: 318,
               ),
             ),
             value: [
               Function(
                 type: "Function",
-                name: Ident(
-                  type: "Ident",
-                  name: "one-keyword-arg",
-                  raw: "one-keyword-arg",
-                  span: Span(
-                    start: 155,
-                    end: 170,
-                  ),
-                ),
-                args: [
-                  SassKeywordArgument(
-                    type: "SassKeywordArgument",
-                    name: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "a",
-                        raw: "a",
-                        span: Span(
-                          start: 172,
-                          end: 173,
+                name: SassInterpolatedIdent(
+                  type: "SassInterpolatedIdent",
+                  elements: [
+                    InterpolableIdentStaticPart(
+                      type: "InterpolableIdentStaticPart",
+                      value: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 320,
+                        end: 323,
+                      ),
+                    ),
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 325,
+                              end: 326,
+                            ),
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 327,
+                              end: 328,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 329,
+                              end: 330,
+                            ),
+                          ),
+                          span: Span(
+                            start: 325,
+                            end: 330,
+                          ),
                         ),
-                      ),
+                      ],
                       span: Span(
-                        start: 171,
-                        end: 173,
+                        start: 325,
+                        end: 330,
                       ),
                     ),
-                    value: Ident(
-                      type: "Ident",
-                      name: "z",
-                      raw: "z",
-                      span: Span(
-                        start: 175,
-                        end: 176,
-                      ),
-                    ),
-                    span: Span(
-                      start: 171,
-                      end: 176,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 176,
-                      end: 177,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 155,
-                  end: 178,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 138,
-              end: 178,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "two-keyword-args",
-              raw: "two-keyword-args",
-              span: Span(
-                start: 182,
-                end: 198,
-              ),
-            ),
-            value: [
-              Function(
-                type: "Function",
-                name: Ident(
-                  type: "Ident",
-                  name: "two-keyword-args",
-                  raw: "two-keyword-args",
+                  ],
                   span: Span(
-                    start: 200,
-                    end: 216,
-                  ),
-                ),
-                args: [
-                  SassKeywordArgument(
-                    type: "SassKeywordArgument",
-                    name: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "a",
-                        raw: "a",
-                        span: Span(
-                          start: 218,
-                          end: 219,
-                        ),
-                      ),
-                      span: Span(
-                        start: 217,
-                        end: 219,
-                      ),
-                    ),
-                    value: Ident(
-                      type: "Ident",
-                      name: "y",
-                      raw: "y",
-                      span: Span(
-                        start: 221,
-                        end: 222,
-                      ),
-                    ),
-                    span: Span(
-                      start: 217,
-                      end: 222,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 222,
-                      end: 223,
-                    ),
-                  ),
-                  SassKeywordArgument(
-                    type: "SassKeywordArgument",
-                    name: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "b",
-                        raw: "b",
-                        span: Span(
-                          start: 224,
-                          end: 225,
-                        ),
-                      ),
-                      span: Span(
-                        start: 223,
-                        end: 225,
-                      ),
-                    ),
-                    value: Ident(
-                      type: "Ident",
-                      name: "z",
-                      raw: "z",
-                      span: Span(
-                        start: 227,
-                        end: 228,
-                      ),
-                    ),
-                    span: Span(
-                      start: 223,
-                      end: 228,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 228,
-                      end: 229,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 200,
-                  end: 230,
-                ),
-              ),
-            ],
-            important: None,
-            lessPropertyMerge: None,
-            span: Span(
-              start: 182,
-              end: 230,
-            ),
-          ),
-          Declaration(
-            type: "Declaration",
-            name: Ident(
-              type: "Ident",
-              name: "mixed-args",
-              raw: "mixed-args",
-              span: Span(
-                start: 234,
-                end: 244,
-              ),
-            ),
-            value: [
-              Function(
-                type: "Function",
-                name: Ident(
-                  type: "Ident",
-                  name: "mixed-args",
-                  raw: "mixed-args",
-                  span: Span(
-                    start: 246,
-                    end: 256,
+                    start: 320,
+                    end: 331,
                   ),
                 ),
                 args: [
                   Ident(
                     type: "Ident",
-                    name: "y",
-                    raw: "y",
+                    name: "arg",
+                    raw: "arg",
                     span: Span(
-                      start: 257,
-                      end: 258,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 258,
-                      end: 259,
-                    ),
-                  ),
-                  SassKeywordArgument(
-                    type: "SassKeywordArgument",
-                    name: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "b",
-                        raw: "b",
-                        span: Span(
-                          start: 261,
-                          end: 262,
-                        ),
-                      ),
-                      span: Span(
-                        start: 260,
-                        end: 262,
-                      ),
-                    ),
-                    value: Ident(
-                      type: "Ident",
-                      name: "z",
-                      raw: "z",
-                      span: Span(
-                        start: 264,
-                        end: 265,
-                      ),
-                    ),
-                    span: Span(
-                      start: 260,
-                      end: 265,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Comma,
-                    span: Span(
-                      start: 265,
-                      end: 266,
+                      start: 332,
+                      end: 335,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 246,
-                  end: 267,
+                  start: 320,
+                  end: 336,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 234,
-              end: 267,
+              start: 315,
+              end: 336,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "full",
+              raw: "full",
+              span: Span(
+                start: 340,
+                end: 344,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: SassInterpolatedIdent(
+                  type: "SassInterpolatedIdent",
+                  elements: [
+                    ComponentValues(
+                      type: "ComponentValues",
+                      values: [
+                        Ident(
+                          type: "Ident",
+                          name: "foo",
+                          raw: "foo",
+                          span: Span(
+                            start: 348,
+                            end: 351,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 348,
+                        end: 351,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 346,
+                    end: 352,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "arg",
+                    raw: "arg",
+                    span: Span(
+                      start: 353,
+                      end: 356,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 346,
+                  end: 357,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 340,
+              end: 357,
             ),
           ),
         ],
         span: Span(
-          start: 38,
-          end: 270,
+          start: 256,
+          end: 360,
         ),
       ),
       span: Span(
-        start: 31,
-        end: 270,
+        start: 241,
+        end: 360,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 271,
+    end: 361,
   ),
 )
