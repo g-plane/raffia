@@ -266,23 +266,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         statements.push(Statement::QualifiedRule(self.parse()?));
                         is_block_element = true;
                     } else {
-                        match self.try_parse(Declaration::parse) {
-                            Ok(declaration) => {
-                                is_block_element = matches!(
-                                    declaration.value.last(),
-                                    Some(ComponentValue::SassNestingDeclaration(..))
-                                );
-                                statements.push(Statement::Declaration(declaration));
-                            }
-                            Err(e) => {
-                                if let Ok(rule) = self.parse() {
-                                    statements.push(Statement::QualifiedRule(rule));
-                                    is_block_element = true;
-                                } else {
-                                    // using the error from parsing declaration for better error message
-                                    return Err(e);
-                                }
-                            }
+                        if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
+                            statements.push(Statement::QualifiedRule(rule));
+                            is_block_element = true;
+                        } else {
+                            let decl = self.parse::<Declaration>()?;
+                            is_block_element = matches!(
+                                decl.value.last(),
+                                Some(ComponentValue::SassNestingDeclaration(..))
+                            );
+                            statements.push(Statement::Declaration(decl));
                         }
                     }
                 }
