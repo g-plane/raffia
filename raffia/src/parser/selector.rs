@@ -774,7 +774,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     end: span.end,
                 };
                 let raw = token.raw;
-                if raw.starts_with(|c: char| c.is_ascii_digit()) {
+                if raw.starts_with(|c: char| c.is_ascii_digit())
+                    || matches!(raw.as_bytes(), [b'-', c, ..] if *c != b'-')
+                {
                     input.recoverable_errors.push(Error {
                         kind: ErrorKind::InvalidIdSelectorName,
                         span: span.clone(),

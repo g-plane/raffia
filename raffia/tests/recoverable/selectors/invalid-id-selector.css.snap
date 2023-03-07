@@ -1,0 +1,28 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: invalid ID selector name
+  ┌─ invalid-id-selector.css:1:1
+  │
+1 │ #2b {
+  │ ^^^
+
+error: invalid ID selector name
+  ┌─ invalid-id-selector.css:4:1
+  │
+4 │ #2 {
+  │ ^^
+
+error: invalid ID selector name
+  ┌─ invalid-id-selector.css:7:1
+  │
+7 │ #-2b {
+  │ ^^^^
+
+error: invalid ID selector name
+   ┌─ invalid-id-selector.css:10:1
+   │
+10 │ #-2 {
+   │ ^^^
+
+
