@@ -141,9 +141,537 @@ Stylesheet(
         end: 105,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "one",
+                      raw: "one",
+                      span: Span(
+                        start: 147,
+                        end: 150,
+                      ),
+                    ),
+                    span: Span(
+                      start: 146,
+                      end: 150,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 146,
+                  end: 150,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 146,
+              end: 150,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 146,
+          end: 150,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 155,
+                end: 160,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 162,
+                  end: 167,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 155,
+              end: 167,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 151,
+          end: 170,
+        ),
+      ),
+      span: Span(
+        start: 146,
+        end: 170,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "three",
+                      raw: "three",
+                      span: Span(
+                        start: 254,
+                        end: 259,
+                      ),
+                    ),
+                    span: Span(
+                      start: 253,
+                      end: 259,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 253,
+                  end: 259,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 253,
+              end: 259,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 253,
+          end: 259,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 264,
+                end: 269,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 271,
+                  end: 276,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 264,
+              end: 276,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 260,
+          end: 299,
+        ),
+      ),
+      span: Span(
+        start: 253,
+        end: 299,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "five",
+                      raw: "five",
+                      span: Span(
+                        start: 329,
+                        end: 333,
+                      ),
+                    ),
+                    span: Span(
+                      start: 328,
+                      end: 333,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 328,
+                  end: 333,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 328,
+              end: 333,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 328,
+          end: 333,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 338,
+                end: 343,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 345,
+                  end: 350,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 338,
+              end: 350,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 334,
+          end: 353,
+        ),
+      ),
+      span: Span(
+        start: 328,
+        end: 353,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "six",
+                      raw: "six",
+                      span: Span(
+                        start: 361,
+                        end: 364,
+                      ),
+                    ),
+                    span: Span(
+                      start: 360,
+                      end: 364,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 360,
+                  end: 364,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 360,
+              end: 364,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 360,
+          end: 364,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 369,
+                end: 374,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 376,
+                  end: 381,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 369,
+              end: 381,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 365,
+          end: 384,
+        ),
+      ),
+      span: Span(
+        start: 360,
+        end: 384,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "seven",
+                      raw: "seven",
+                      span: Span(
+                        start: 399,
+                        end: 404,
+                      ),
+                    ),
+                    span: Span(
+                      start: 398,
+                      end: 404,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 398,
+                  end: 404,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 398,
+              end: 404,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 398,
+          end: 404,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 409,
+                end: 414,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 416,
+                  end: 421,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 409,
+              end: 421,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 405,
+          end: 424,
+        ),
+      ),
+      span: Span(
+        start: 398,
+        end: 424,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "eight",
+                      raw: "eight",
+                      span: Span(
+                        start: 444,
+                        end: 449,
+                      ),
+                    ),
+                    span: Span(
+                      start: 443,
+                      end: 449,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 443,
+                  end: 449,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 443,
+              end: 449,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 443,
+          end: 449,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 454,
+                end: 459,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 461,
+                  end: 466,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 454,
+              end: 466,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 450,
+          end: 469,
+        ),
+      ),
+      span: Span(
+        start: 443,
+        end: 469,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 116,
+    end: 470,
   ),
 )

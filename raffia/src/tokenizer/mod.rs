@@ -255,9 +255,10 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         loop {
             match self.state.chars.next() {
                 Some((_, '*')) => {
-                    if let Some((i, '/')) = self.state.chars.next() {
+                    if let Some((i, '/')) = self.state.chars.peek() {
                         content_end = i - 1;
                         end = i + 1;
+                        self.state.chars.next();
                         break;
                     }
                 }
