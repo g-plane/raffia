@@ -29,6 +29,7 @@ pub enum ErrorKind {
     UnexpectedLinebreak,
     UnexpectedEof,
 
+    ExpectRule,
     UnexpectedWhitespace,
     ExpectSimpleSelector,
     ExpectTypeSelector,
@@ -94,6 +95,7 @@ impl Display for ErrorKind {
             Self::UnexpectedLinebreak => write!(f, "unexpected linebreak"),
             Self::UnexpectedEof => write!(f, "unexpected end of file"),
 
+            Self::ExpectRule => write!(f, "CSS rule is expected"),
             Self::UnexpectedWhitespace => write!(f, "unexpected whitespace"),
             Self::ExpectSimpleSelector => write!(f, "simple selector is expected"),
             Self::ExpectTypeSelector => write!(f, "type selector is expected"),

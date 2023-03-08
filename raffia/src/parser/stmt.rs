@@ -260,7 +260,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut statements = Vec::with_capacity(1);
         loop {
             let mut is_block_element = false;
-            match &peek!(self).token {
+            let TokenWithSpan { token, span } = peek!(self);
+            match token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
@@ -335,7 +336,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     bump!(self);
                     continue;
                 }
-                _ => {}
+                Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
+                Token::Semicolon(..) | Token::Linebreak(..) => {
+                    bump!(self);
+                    continue;
+                }
+                _ => {
+                    return Err(Error {
+                        kind: ErrorKind::ExpectRule,
+                        span: span.clone(),
+                    });
+                }
             };
             match &peek!(self).token {
                 Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
