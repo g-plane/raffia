@@ -8,7 +8,6 @@ use crate::{
     tokenizer::Token,
     util, Parse,
 };
-use smallvec::SmallVec;
 
 // https://drafts.csswg.org/css-animations/#keyframes
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
@@ -16,7 +15,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
         let first_selector = input.parse::<KeyframeSelector>()?;
         let start = first_selector.span().start;
 
-        let mut selectors = SmallVec::with_capacity(3);
+        let mut selectors = Vec::with_capacity(2);
         selectors.push(first_selector);
         while eat!(input, Comma).is_some() {
             selectors.push(input.parse()?);
