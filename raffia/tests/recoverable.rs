@@ -27,9 +27,15 @@ fn recoverable_errors_snapshot() {
 
         let errors = match parser.parse::<Stylesheet>() {
             Ok(..) => {
+                let recoverable_errors = parser.recoverable_errors();
+                assert!(
+                    !recoverable_errors.is_empty(),
+                    "'{}' should contain recoverable errors",
+                    path.display()
+                );
+
                 let mut buffer = Buffer::no_color();
-                parser
-                    .recoverable_errors()
+                recoverable_errors
                     .iter()
                     .map(|error| {
                         Diagnostic::error()
