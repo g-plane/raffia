@@ -45,8 +45,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
-                            _ => {
-                                match &peek!(parser).token {
+                            token => {
+                                match token {
                                     Token::LParen(..) => {
                                         pairs.push(PairedToken::Paren);
                                     }
