@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `,`, but `!` received
+  ┌─ default.scss:1:26
+  │
+1 │ @use "other" with ($a: b !default);
+  │                          ^
+
+

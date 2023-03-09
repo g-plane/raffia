@@ -299,18 +299,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         ))
     }
 
-    fn parse_sass_module_config(&mut self) -> PResult<Option<Vec<SassModuleConfigItem<'s>>>> {
+    fn parse_sass_module_config(
+        &mut self,
+        allow_overridable: bool,
+    ) -> PResult<Option<Vec<SassModuleConfigItem<'s>>>> {
         match &peek!(self).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
                 bump!(self);
                 expect!(self, LParen);
-                let mut config = vec![self.parse::<SassModuleConfigItem>()?];
+                let mut config = vec![self.parse_sass_module_config_item(allow_overridable)?];
                 if !matches!(&peek!(self).token, Token::RParen(..)) {
                     expect!(self, Comma);
                 }
 
                 while eat!(self, RParen).is_none() {
-                    config.push(self.parse::<SassModuleConfigItem>()?);
+                    config.push(self.parse_sass_module_config_item(allow_overridable)?);
                     if eat!(self, RParen).is_some() {
                         break;
                     } else {
@@ -321,6 +324,42 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             _ => Ok(None),
         }
+    }
+
+    fn parse_sass_module_config_item(
+        &mut self,
+        allow_overridable: bool,
+    ) -> PResult<SassModuleConfigItem<'s>> {
+        let variable = self.parse::<SassVariable>()?;
+        expect!(self, Colon);
+        let value = self.parse_component_values(/* allow_comma */ false)?;
+
+        let important = self.try_parse(ImportantAnnotation::parse).ok();
+
+        let (overridable, end) = if allow_overridable {
+            let (flags, end) = self.parse_sass_flags_into_bits()?;
+            (flags & FLAG_DEFAULT != 0, end)
+        } else {
+            (
+                false,
+                important
+                    .as_ref()
+                    .map(|important| important.span.end)
+                    .unwrap_or(value.span.end),
+            )
+        };
+
+        let span = Span {
+            start: variable.span.start,
+            end,
+        };
+        Ok(SassModuleConfigItem {
+            variable,
+            value,
+            important,
+            overridable,
+            span,
+        })
     }
 
     pub(super) fn parse_sass_namespaced_expression(
@@ -788,7 +827,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
             None
         };
 
-        let config = input.parse_sass_module_config()?;
+        let config = input.parse_sass_module_config(/* allow_overridable */ true)?;
 
         Ok(SassForwardAtRule {
             path,
@@ -1183,7 +1222,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
             _ => None,
         };
 
-        let config = input.parse_sass_module_config()?;
+        let config = input.parse_sass_module_config(/* allow_overridable */ false)?;
 
         Ok(SassUseAtRule {
             path,
@@ -1193,31 +1232,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
                 start,
                 end: input.tokenizer.current_offset(),
             },
-        })
-    }
-}
-
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassModuleConfigItem<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let variable = input.parse::<SassVariable>()?;
-        expect!(input, Colon);
-        let value = input.parse_component_values(/* allow_comma */ false)?;
-
-        let important = input.try_parse(ImportantAnnotation::parse).ok();
-
-        let (flags, end) = input.parse_sass_flags_into_bits()?;
-        let overridable = flags & FLAG_DEFAULT != 0;
-
-        let span = Span {
-            start: variable.span.start,
-            end,
-        };
-        Ok(SassModuleConfigItem {
-            variable,
-            value,
-            important,
-            overridable,
-            span,
         })
     }
 }
