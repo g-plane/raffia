@@ -266,18 +266,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
                         is_block_element = true;
+                    } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
+                        statements.push(Statement::QualifiedRule(rule));
+                        is_block_element = true;
                     } else {
-                        if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
-                            statements.push(Statement::QualifiedRule(rule));
-                            is_block_element = true;
-                        } else {
-                            let decl = self.parse::<Declaration>()?;
-                            is_block_element = matches!(
-                                decl.value.last(),
-                                Some(ComponentValue::SassNestingDeclaration(..))
-                            );
-                            statements.push(Statement::Declaration(decl));
-                        }
+                        let decl = self.parse::<Declaration>()?;
+                        is_block_element = matches!(
+                            decl.value.last(),
+                            Some(ComponentValue::SassNestingDeclaration(..))
+                        );
+                        statements.push(Statement::Declaration(decl));
                     }
                 }
                 Token::Dot(..)
