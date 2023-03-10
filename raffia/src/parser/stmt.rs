@@ -230,21 +230,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let statements = f(self)?;
 
         if is_sass {
-            match peek!(self) {
+            match bump!(self) {
                 TokenWithSpan {
                     token: Token::Dedent(..) | Token::Eof(..),
                     span,
                 } => {
                     let end = span.start;
-                    bump!(self);
                     Ok(SimpleBlock {
                         statements,
                         span: Span { start, end },
                     })
                 }
-                token => Err(Error {
+                TokenWithSpan { span, .. } => Err(Error {
                     kind: ErrorKind::ExpectDedentOrEof,
-                    span: token.span().clone(),
+                    span,
                 }),
             }
         } else {

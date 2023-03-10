@@ -516,10 +516,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 (start, end)
             }
-            token => {
+            TokenWithSpan { span, .. } => {
                 return Err(Error {
                     kind: ErrorKind::InvalidUnicodeRange,
-                    span: token.span().clone(),
+                    span,
                 });
             }
         };
@@ -958,7 +958,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
         } else {
             Err(Error {
                 kind: ErrorKind::ExpectUrl,
-                span: bump!(input).span().clone(),
+                span: bump!(input).span,
             })
         }
     }

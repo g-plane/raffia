@@ -835,9 +835,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                 };
                 Ok(IdSelector { name, span })
             }
-            token => Err(Error {
+            TokenWithSpan { span, .. } => Err(Error {
                 kind: ErrorKind::ExpectIdSelector,
-                span: token.span().clone(),
+                span,
             }),
         }
     }
@@ -1434,12 +1434,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let span = Span {
             start: tokens
                 .first()
-                .map(|token| token.span().start)
+                .map(|token| token.span.start)
                 .unwrap_or(start),
             end: if let Some(last) = tokens.last() {
-                last.span().end
+                last.span.end
             } else {
-                peek!(self).span().start
+                peek!(self).span.start
             },
         };
         Ok(TokenSeq { tokens, span })
