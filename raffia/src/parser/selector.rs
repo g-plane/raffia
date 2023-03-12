@@ -1397,7 +1397,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     | Token::Ampersand(..)
                     | Token::Bar(..) // selector like `|type` (with <ns-prefix>)
                     | Token::AtLBraceVar(..)
-                    | Token::NumberSign(..),
+                    | Token::NumberSign(..)
+                    | Token::HashLBrace(..),
                 span,
             } if pos < span.start => Ok(Some(Combinator {
                 kind: CombinatorKind::Descendant,

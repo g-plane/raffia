@@ -22,3 +22,5 @@ a { --#{"foo"}-bar: b; }
 .#{$zzz} { a: b; }
 ##{$zzz} { a: b; }
 :#{$zzz}::#{$zzz} { a: b; }
+
+.js:root #{if(&, '&', '')} {}

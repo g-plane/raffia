@@ -1516,9 +1516,193 @@ Stylesheet(
         end: 362,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "js",
+                      raw: "js",
+                      span: Span(
+                        start: 365,
+                        end: 367,
+                      ),
+                    ),
+                    span: Span(
+                      start: 364,
+                      end: 367,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "root",
+                      raw: "root",
+                      span: Span(
+                        start: 368,
+                        end: 372,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 367,
+                      end: 372,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 364,
+                  end: 372,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 372,
+                  end: 373,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: SassInterpolatedIdent(
+                        type: "SassInterpolatedIdent",
+                        elements: [
+                          ComponentValues(
+                            type: "ComponentValues",
+                            values: [
+                              Function(
+                                type: "Function",
+                                name: Ident(
+                                  type: "Ident",
+                                  name: "if",
+                                  raw: "if",
+                                  span: Span(
+                                    start: 375,
+                                    end: 377,
+                                  ),
+                                ),
+                                args: [
+                                  NestingSelector(
+                                    type: "NestingSelector",
+                                    span: Span(
+                                      start: 378,
+                                      end: 379,
+                                    ),
+                                  ),
+                                  Delimiter(
+                                    type: "Delimiter",
+                                    kind: Comma,
+                                    span: Span(
+                                      start: 379,
+                                      end: 380,
+                                    ),
+                                  ),
+                                  Str(
+                                    type: "Str",
+                                    value: "&",
+                                    raw: "\'&\'",
+                                    span: Span(
+                                      start: 381,
+                                      end: 384,
+                                    ),
+                                  ),
+                                  Delimiter(
+                                    type: "Delimiter",
+                                    kind: Comma,
+                                    span: Span(
+                                      start: 384,
+                                      end: 385,
+                                    ),
+                                  ),
+                                  Str(
+                                    type: "Str",
+                                    value: "",
+                                    raw: "\'\'",
+                                    span: Span(
+                                      start: 386,
+                                      end: 388,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 375,
+                                  end: 389,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 375,
+                              end: 389,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 373,
+                          end: 390,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 373,
+                        end: 390,
+                      ),
+                    ),
+                    span: Span(
+                      start: 373,
+                      end: 390,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 373,
+                  end: 390,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 364,
+              end: 390,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 364,
+          end: 390,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 391,
+          end: 393,
+        ),
+      ),
+      span: Span(
+        start: 364,
+        end: 393,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 363,
+    end: 394,
   ),
 )
