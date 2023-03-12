@@ -329,6 +329,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     statements.push(Statement::SassVariableDeclaration(self.parse()?));
                 }
+                Token::GreaterThan(..) | Token::Plus(..) | Token::Tilde(..) | Token::BarBar(..)
+                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
+                {
+                    statements.push(Statement::QualifiedRule(self.parse()?));
+                    is_block_element = true;
+                }
                 Token::Cdo(..) | Token::Cdc(..) => {
                     bump!(self);
                     continue;
