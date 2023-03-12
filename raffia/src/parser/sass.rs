@@ -1184,16 +1184,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, Percent).1.start;
-        let (name, name_span) = expect_without_ws_or_comments!(input, Ident);
+        let (_, percent_span) = expect!(input, Percent);
+        let name = input.parse::<InterpolableIdent>()?;
+        let name_span = name.span();
+        input.assert_no_ws_or_comment(&percent_span, name_span)?;
         let span = Span {
-            start,
+            start: percent_span.start,
             end: name_span.end,
         };
-        Ok(SassPlaceholderSelector {
-            name: InterpolableIdent::Literal(Ident::from_token(name, name_span)),
-            span,
-        })
+        Ok(SassPlaceholderSelector { name, span })
     }
 }
 

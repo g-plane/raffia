@@ -9,3 +9,7 @@
   @extend %x;
   .bar { @extend %y }
 }
+
+%#{"foo--#{$foo}"} {
+  foo: bar;
+}
