@@ -213,6 +213,7 @@ pub enum ComponentValue<'s> {
     Function(Function<'s>),
     HexColor(HexColor<'s>),
     IdSelector(IdSelector<'s>),
+    ImportantAnnotation(ImportantAnnotation<'s>),
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),

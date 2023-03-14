@@ -340,6 +340,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::Semicolon(..) => {
                     values.push(self.parse().map(ComponentValue::Delimiter)?);
                 }
+                Token::Exclamation(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
+                    // while this syntax is weird, Bootstrap is actually using it
+                    values.push(self.parse().map(ComponentValue::ImportantAnnotation)?);
+                }
                 _ => {
                     let value = self.parse::<ComponentValue>()?;
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
