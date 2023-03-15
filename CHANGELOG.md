@@ -6,6 +6,19 @@ _This changelog only relates to the `raffia` crate._
 - Added Sass `@at-root` at-rule support.
 - Added CSS `An+B of S` syntax support.
 - Fixed parsing selector with Less interpolation.
+- Added Sass keyword arguments and arbitrary argument support in functions.
+- Added Sass-interpolated function name support.
+- Added `!global` flag support in Sass variable declaration.
+- Added empty arguments support in Sass `@content` at-rule.
+- Fixed ambiguous nested rules.
+- Fixed parsing comments with `*` char.
+- Fixed incorrect Sass nesting declaration parsing.
+- Fixed checking invalid ID selector.
+- Reject `!default` flag in Sass `@use` at-rule.
+- Added qualified rule begins with combinator support in Sass.
+- Fixed parsing Sass placeholder selector with interpolation.
+- Fixed parsing selector with Sass interpolation.
+- Added `!important` in Sass functions support.
 
 ## v0.2.0
 
