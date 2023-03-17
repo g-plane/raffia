@@ -1059,7 +1059,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
         let mut items = vec![];
         let mut end = input.tokenizer.current_offset();
         while !matches!(peek!(input).token, Token::RParen(..)) {
-            let value = input.parse::<ComponentValue>()?;
+            let value = input.parse_sass_bin_expr()?;
             end = value.span().end;
             items.push(value);
 
