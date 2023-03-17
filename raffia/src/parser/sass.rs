@@ -369,13 +369,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let (_, dot_span) = expect!(self, Dot);
-        let expr = match &peek!(self).token {
-            Token::DollarVar(..) => self.parse().map(ComponentValue::SassVariable)?,
-            _ => {
-                let (ident, ident_span) = expect!(self, Ident);
-                let name = InterpolableIdent::Literal(Ident::from_token(ident, ident_span));
-                self.parse_function(name).map(ComponentValue::Function)?
-            }
+        let expr = if let Token::DollarVar(..) = peek!(self).token {
+            self.parse().map(ComponentValue::SassVariable)?
+        } else {
+            self.parse().map(ComponentValue::Function)?
         };
 
         let expr_span = expr.span();

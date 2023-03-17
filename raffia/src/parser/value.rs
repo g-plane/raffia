@@ -783,6 +783,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let name = input.parse::<InterpolableIdent>()?;
+        match peek!(input) {
+            TokenWithSpan {
+                token: Token::LParen(..),
+                span,
+            } => {
+                input.assert_no_ws_or_comment(name.span(), span)?;
+                input.parse_function(name)
+            }
+            TokenWithSpan { token, span } => {
+                use crate::{token::LParen, tokenizer::TokenSymbol};
+                Err(Error {
+                    kind: ErrorKind::Unexpected(LParen::symbol(), token.symbol()),
+                    span: span.clone(),
+                })
+            }
+        }
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (token, span) = expect!(input, Hash);
