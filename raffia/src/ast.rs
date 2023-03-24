@@ -1338,7 +1338,18 @@ pub struct SassKeywordArgument<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassList<'s> {
     pub items: Vec<ComponentValue<'s>>,
+    pub has_parens: bool,
+    pub separator: SassListSeparatorKind,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum SassListSeparatorKind {
+    #[doc(hidden)]
+    Unknown,
+    Comma,
+    Space,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

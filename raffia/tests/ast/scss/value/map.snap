@@ -173,6 +173,8 @@ Stylesheet(
                       ),
                     ),
                   ],
+                  hasParens: true,
+                  separator: Comma,
                   span: Span(
                     start: 81,
                     end: 114,
@@ -341,6 +343,8 @@ Stylesheet(
                       ),
                     ),
                   ],
+                  hasParens: true,
+                  separator: Comma,
                   span: Span(
                     start: 194,
                     end: 221,
@@ -377,6 +381,8 @@ Stylesheet(
                       ),
                     ),
                   ],
+                  hasParens: true,
+                  separator: Comma,
                   span: Span(
                     start: 223,
                     end: 256,
@@ -1121,6 +1127,8 @@ Stylesheet(
                         ),
                       ),
                     ],
+                    hasParens: true,
+                    separator: Space,
                     span: Span(
                       start: 505,
                       end: 530,

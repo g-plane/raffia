@@ -55,6 +55,8 @@ Stylesheet(
             ),
           ),
         ],
+        hasParens: true,
+        separator: Comma,
         span: Span(
           start: 15,
           end: 24,

@@ -1050,16 +1050,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (start, has_paren) = if let Some((_, span)) = eat!(input, LParen) {
+        let (start, has_parens) = if let Some((_, span)) = eat!(input, LParen) {
             (span.start, true)
         } else {
             (input.tokenizer.current_offset(), false)
         };
 
         let mut items = vec![];
+        let mut separator = SassListSeparatorKind::Unknown;
         let mut end = input.tokenizer.current_offset();
-        while !matches!(peek!(input).token, Token::RParen(..)) {
-            let value = input.parse_sass_bin_expr()?;
+        while let Ok(value) = input.try_parse(Parser::parse_sass_bin_expr) {
             end = value.span().end;
             items.push(value);
 
@@ -1072,16 +1072,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
                     token: Token::Comma(..),
                     ..
                 } => {
+                    match separator {
+                        SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
+                        SassListSeparatorKind::Comma => {}
+                        SassListSeparatorKind::Space => break,
+                    }
                     bump!(input);
+                    if let Token::RParen(..) = peek!(input).token {
+                        break;
+                    }
                 }
-                TokenWithSpan { span, .. } if end < span.start => {}
+                TokenWithSpan { span, .. } if end < span.start => match separator {
+                    SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Space,
+                    SassListSeparatorKind::Comma => break,
+                    SassListSeparatorKind::Space => {}
+                },
                 _ => {
                     expect!(input, RParen);
                 }
             }
         }
 
-        let span = if has_paren {
+        let span = if has_parens {
             Span {
                 start,
                 end: expect!(input, RParen).1.end,
@@ -1089,7 +1101,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
         } else {
             Span { start, end }
         };
-        Ok(SassList { items, span })
+        Ok(SassList {
+            items,
+            has_parens,
+            separator,
+            span,
+        })
     }
 }
 
