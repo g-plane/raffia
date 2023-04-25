@@ -44,40 +44,36 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
-                            token => {
-                                match token {
-                                    Token::LParen(..) => {
-                                        pairs.push(PairedToken::Paren);
-                                    }
-                                    Token::RParen(..) => {
-                                        if let Some(PairedToken::Paren) = pairs.pop() {
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                    Token::LBracket(..) => {
-                                        pairs.push(PairedToken::Bracket);
-                                    }
-                                    Token::RBracket(..) => {
-                                        if let Some(PairedToken::Bracket) = pairs.pop() {
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                    Token::LBrace(..) | Token::HashLBrace(..) => {
-                                        pairs.push(PairedToken::Brace);
-                                    }
-                                    Token::RBrace(..) => {
-                                        if let Some(PairedToken::Brace) = pairs.pop() {
-                                        } else {
-                                            break;
-                                        }
-                                    }
-                                    _ => {}
-                                }
-                                values.push(ComponentValue::TokenWithSpan(bump!(parser)));
+                            Token::LParen(..) => {
+                                pairs.push(PairedToken::Paren);
                             }
+                            Token::RParen(..) => {
+                                if let Some(PairedToken::Paren) = pairs.pop() {
+                                } else {
+                                    break;
+                                }
+                            }
+                            Token::LBracket(..) => {
+                                pairs.push(PairedToken::Bracket);
+                            }
+                            Token::RBracket(..) => {
+                                if let Some(PairedToken::Bracket) = pairs.pop() {
+                                } else {
+                                    break;
+                                }
+                            }
+                            Token::LBrace(..) | Token::HashLBrace(..) => {
+                                pairs.push(PairedToken::Brace);
+                            }
+                            Token::RBrace(..) => {
+                                if let Some(PairedToken::Brace) = pairs.pop() {
+                                } else {
+                                    break;
+                                }
+                            }
+                            _ => {}
                         }
+                        values.push(ComponentValue::TokenWithSpan(bump!(parser)));
                     }
                     values
                 }
