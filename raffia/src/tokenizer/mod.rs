@@ -141,6 +141,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_dollar_var()
             }
+            (Some((_, '-')), Some((_, '#')))
+                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                    && matches!(chars.peek(), Some((_, '{'))) =>
+            {
+                self.scan_sass_single_hyphen_as_ident()
+            }
             (Some((_, '@')), Some((_, '{')))
                 if self.syntax == Syntax::Less
                     && matches!(chars.peek(), Some((_, c)) if is_start_of_ident(*c)) =>
@@ -637,6 +643,25 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 token: Token::Ident(ident),
                 span,
             })
+    }
+
+    fn scan_sass_single_hyphen_as_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
+        match self.state.chars.next() {
+            Some((start, c)) => {
+                debug_assert_eq!(c, '-');
+                Ok(TokenWithSpan {
+                    token: Token::Ident(Ident {
+                        escaped: false,
+                        raw: "-",
+                    }),
+                    span: Span {
+                        start,
+                        end: start + 1,
+                    },
+                })
+            }
+            None => Err(self.build_eof_error()),
+        }
     }
 
     pub(crate) fn scan_url_raw_or_template(&mut self) -> PResult<TokenWithSpan<'s>> {

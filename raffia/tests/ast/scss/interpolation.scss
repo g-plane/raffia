@@ -24,3 +24,5 @@ a { --#{"foo"}-bar: b; }
 :#{$zzz}::#{$zzz} { a: b; }
 
 .js:root #{if(&, '&', '')} {}
+
+.col#{$infix}-#{$i} {}
