@@ -646,6 +646,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn scan_sass_single_hyphen_as_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
         match self.state.chars.next() {
             Some((start, c)) => {
                 debug_assert_eq!(c, '-');

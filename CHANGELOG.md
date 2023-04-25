@@ -19,6 +19,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed parsing Sass placeholder selector with interpolation.
 - Fixed parsing selector with Sass interpolation.
 - Added `!important` in Sass functions support.
+- Fixed single hyphen in Sass interpolation.
 
 ## v0.2.0
 
