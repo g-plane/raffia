@@ -40,8 +40,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     let mut pairs = Vec::with_capacity(1);
                     loop {
                         match &peek!(parser).token {
-                            Token::RBrace(..)
-                            | Token::Semicolon(..)
+                            Token::Semicolon(..)
                             | Token::Dedent(..)
                             | Token::Linebreak(..)
                             | Token::Eof(..) => break,
@@ -65,7 +64,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                             break;
                                         }
                                     }
-                                    Token::LBrace(..) => {
+                                    Token::LBrace(..) | Token::HashLBrace(..) => {
                                         pairs.push(PairedToken::Brace);
                                     }
                                     Token::RBrace(..) => {

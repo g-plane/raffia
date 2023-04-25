@@ -1,0 +1,246 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "root",
+                      raw: "root",
+                      span: Span(
+                        start: 1,
+                        end: 5,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 0,
+                      end: 5,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 5,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 5,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 5,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "--font-family-sans-serif",
+              raw: "--font-family-sans-serif",
+              span: Span(
+                start: 10,
+                end: 34,
+              ),
+            ),
+            value: [
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: HashLBrace(HashLBrace(
+                  kind: "HashLBrace",
+                )),
+                span: Span(
+                  start: 36,
+                  end: 38,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "inspect",
+                )),
+                span: Span(
+                  start: 38,
+                  end: 45,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: LParen(LParen(
+                  kind: "LParen",
+                )),
+                span: Span(
+                  start: 45,
+                  end: 46,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: DollarVar(DollarVar(
+                  kind: "DollarVar",
+                  ident: Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "font-family-sans-serif",
+                  ),
+                )),
+                span: Span(
+                  start: 46,
+                  end: 69,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RParen(RParen(
+                  kind: "RParen",
+                )),
+                span: Span(
+                  start: 69,
+                  end: 70,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RBrace(RBrace(
+                  kind: "RBrace",
+                )),
+                span: Span(
+                  start: 70,
+                  end: 71,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 10,
+              end: 71,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "--font-family-monospace",
+              raw: "--font-family-monospace",
+              span: Span(
+                start: 75,
+                end: 98,
+              ),
+            ),
+            value: [
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: HashLBrace(HashLBrace(
+                  kind: "HashLBrace",
+                )),
+                span: Span(
+                  start: 100,
+                  end: 102,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "inspect",
+                )),
+                span: Span(
+                  start: 102,
+                  end: 109,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: LParen(LParen(
+                  kind: "LParen",
+                )),
+                span: Span(
+                  start: 109,
+                  end: 110,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: DollarVar(DollarVar(
+                  kind: "DollarVar",
+                  ident: Ident(
+                    kind: "Ident",
+                    escaped: false,
+                    raw: "font-family-monospace",
+                  ),
+                )),
+                span: Span(
+                  start: 110,
+                  end: 132,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RParen(RParen(
+                  kind: "RParen",
+                )),
+                span: Span(
+                  start: 132,
+                  end: 133,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RBrace(RBrace(
+                  kind: "RBrace",
+                )),
+                span: Span(
+                  start: 133,
+                  end: 134,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 75,
+              end: 134,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 6,
+          end: 137,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 137,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 138,
+  ),
+)
