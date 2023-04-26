@@ -1826,9 +1826,261 @@ Stylesheet(
         end: 417,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "tr",
+                        raw: "tr",
+                        span: Span(
+                          start: 419,
+                          end: 421,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 419,
+                        end: 421,
+                      ),
+                    ),
+                    span: Span(
+                      start: 419,
+                      end: 421,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-child",
+                      raw: "nth-child",
+                      span: Span(
+                        start: 422,
+                        end: 431,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: HashLBrace(HashLBrace(
+                            kind: "HashLBrace",
+                          )),
+                          span: Span(
+                            start: 432,
+                            end: 434,
+                          ),
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: DollarVar(DollarVar(
+                            kind: "DollarVar",
+                            ident: Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "table-striped-order",
+                            ),
+                          )),
+                          span: Span(
+                            start: 434,
+                            end: 454,
+                          ),
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
+                          span: Span(
+                            start: 454,
+                            end: 455,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 432,
+                        end: 455,
+                      ),
+                    )),
+                    span: Span(
+                      start: 421,
+                      end: 456,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 419,
+                  end: 456,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 419,
+              end: 456,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 419,
+          end: 456,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 457,
+          end: 459,
+        ),
+      ),
+      span: Span(
+        start: 419,
+        end: 459,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "tr",
+                        raw: "tr",
+                        span: Span(
+                          start: 460,
+                          end: 462,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 460,
+                        end: 462,
+                      ),
+                    ),
+                    span: Span(
+                      start: 460,
+                      end: 462,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nth-of-type",
+                      raw: "nth-of-type",
+                      span: Span(
+                        start: 463,
+                        end: 474,
+                      ),
+                    ),
+                    arg: Some(TokenSeq(
+                      type: "TokenSeq",
+                      tokens: [
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: HashLBrace(HashLBrace(
+                            kind: "HashLBrace",
+                          )),
+                          span: Span(
+                            start: 475,
+                            end: 477,
+                          ),
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: DollarVar(DollarVar(
+                            kind: "DollarVar",
+                            ident: Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "table-striped-order",
+                            ),
+                          )),
+                          span: Span(
+                            start: 477,
+                            end: 497,
+                          ),
+                        ),
+                        TokenWithSpan(
+                          type: "TokenWithSpan",
+                          token: RBrace(RBrace(
+                            kind: "RBrace",
+                          )),
+                          span: Span(
+                            start: 497,
+                            end: 498,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 475,
+                        end: 498,
+                      ),
+                    )),
+                    span: Span(
+                      start: 462,
+                      end: 499,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 460,
+                  end: 499,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 460,
+              end: 499,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 460,
+          end: 499,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 500,
+          end: 502,
+        ),
+      ),
+      span: Span(
+        start: 460,
+        end: 502,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 418,
+    end: 503,
   ),
 )

@@ -1017,15 +1017,35 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                         if name.eq_ignore_ascii_case("nth-child")
                             || name.eq_ignore_ascii_case("nth-last-child") =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::Nth)?
+                        if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+                            if let Ok(nth) = input.try_parse(Nth::parse) {
+                                PseudoClassSelectorArg::Nth(nth)
+                            } else {
+                                input
+                                    .parse_pseudo_arg_tokens(span.end)
+                                    .map(PseudoClassSelectorArg::TokenSeq)?
+                            }
+                        } else {
+                            input.parse().map(PseudoClassSelectorArg::Nth)?
+                        }
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("nth-of-type")
                             || name.eq_ignore_ascii_case("nth-last-of-type")
                             || name.eq_ignore_ascii_case("nth-col")
                             || name.eq_ignore_ascii_case("nth-last-col") =>
-                    {
-                        let nth = input.parse::<Nth>()?;
+                    'pseudo_arg: {
+                        let nth = if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+                            if let Ok(nth) = input.try_parse(Nth::parse) {
+                                nth
+                            } else {
+                                break 'pseudo_arg input
+                                    .parse_pseudo_arg_tokens(span.end)
+                                    .map(PseudoClassSelectorArg::TokenSeq)?;
+                            }
+                        } else {
+                            input.parse()?
+                        };
                         if let Some(NthMatcher { span, .. }) = &nth.matcher {
                             input.recoverable_errors.push(Error {
                                 kind: ErrorKind::UnexpectedNthMatcher,
@@ -1462,7 +1482,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         break;
                     }
                 }
-                Token::LBrace(..) => {
+                Token::LBrace(..) | Token::HashLBrace(..) => {
                     pairs.push(PairedToken::Brace);
                 }
                 Token::RBrace(..) => {

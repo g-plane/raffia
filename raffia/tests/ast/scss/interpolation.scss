@@ -26,3 +26,6 @@ a { --#{"foo"}-bar: b; }
 .js:root #{if(&, '&', '')} {}
 
 .col#{$infix}-#{$i} {}
+
+tr:nth-child(#{$table-striped-order}) {}
+tr:nth-of-type(#{$table-striped-order}) {}
