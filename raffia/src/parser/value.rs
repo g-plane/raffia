@@ -99,10 +99,29 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     } if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
                         && span.start == ident_end =>
                     {
-                        if let InterpolableIdent::Literal(namespace) = ident {
-                            return self
-                                .parse_sass_namespaced_expression(namespace)
-                                .map(ComponentValue::SassNamespacedExpression);
+                        if let InterpolableIdent::Literal(module) = ident {
+                            let name = self.parse_sass_qualified_name(module)?;
+                            return if let SassQualifiedName {
+                                member: SassModuleMemberName::Ident(..),
+                                ..
+                            } = name
+                            {
+                                let (_, lparen_span) = expect!(self, LParen);
+                                self.assert_no_ws_or_comment(&name.span, &lparen_span)?;
+                                let args = self.parse_function_args()?;
+                                let (_, Span { end, .. }) = expect!(self, RParen);
+                                let span = Span {
+                                    start: name.span.start,
+                                    end,
+                                };
+                                Ok(ComponentValue::Function(Function {
+                                    name: FunctionName::SassQualifiedName(name),
+                                    args,
+                                    span,
+                                }))
+                            } else {
+                                Ok(ComponentValue::SassQualifiedName(name))
+                            };
                         }
                     }
                     _ => {}
@@ -262,7 +281,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     pub(super) fn parse_function(&mut self, name: InterpolableIdent<'s>) -> PResult<Function<'s>> {
         expect!(self, LParen);
-        let values = if let Token::RParen(..) = &peek!(self).token {
+        let args = if let Token::RParen(..) = &peek!(self).token {
             vec![]
         } else {
             match &name {
@@ -326,8 +345,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             end,
         };
         Ok(Function {
-            name,
-            args: values,
+            name: FunctionName::Ident(name),
+            args,
             span,
         })
     }

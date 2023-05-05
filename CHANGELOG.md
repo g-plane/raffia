@@ -22,6 +22,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed single hyphen in Sass interpolation.
 - Fixed Sass interpolation in custom properties.
 - Fixed Sass interpolation in `:nth-*` selector.
+- Changed Sass function call AST.
 
 ## v0.2.0
 

@@ -897,20 +897,107 @@ Stylesheet(
               end: 357,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 361,
+                end: 371,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: SassQualifiedName(
+                  type: "SassQualifiedName",
+                  module: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 373,
+                      end: 378,
+                    ),
+                  ),
+                  member: Ident(
+                    type: "Ident",
+                    name: "lighten",
+                    raw: "lighten",
+                    span: Span(
+                      start: 379,
+                      end: 386,
+                    ),
+                  ),
+                  span: Span(
+                    start: 373,
+                    end: 386,
+                  ),
+                ),
+                args: [
+                  HexColor(
+                    type: "HexColor",
+                    value: "036",
+                    raw: "036",
+                    span: Span(
+                      start: 387,
+                      end: 391,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 391,
+                      end: 392,
+                    ),
+                  ),
+                  Percentage(
+                    type: "Percentage",
+                    value: Number(
+                      type: "Number",
+                      value: 60.0,
+                      raw: "60",
+                      span: Span(
+                        start: 393,
+                        end: 395,
+                      ),
+                    ),
+                    span: Span(
+                      start: 393,
+                      end: 396,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 373,
+                  end: 397,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 361,
+              end: 397,
+            ),
+          ),
         ],
         span: Span(
           start: 256,
-          end: 360,
+          end: 400,
         ),
       ),
       span: Span(
         start: 241,
-        end: 360,
+        end: 400,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 361,
+    end: 401,
   ),
 )

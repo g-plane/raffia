@@ -34,7 +34,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
                             end,
                         };
                         ImportPreludeLayer::WithName(Function {
-                            name: InterpolableIdent::Literal(ident),
+                            name: FunctionName::Ident(InterpolableIdent::Literal(ident)),
                             args,
                             span,
                         })

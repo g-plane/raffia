@@ -227,7 +227,7 @@ pub enum ComponentValue<'s> {
     SassKeywordArgument(SassKeywordArgument<'s>),
     SassList(SassList<'s>),
     SassMap(SassMap<'s>),
-    SassNamespacedExpression(SassNamespacedExpression<'s>),
+    SassQualifiedName(SassQualifiedName<'s>),
     SassNestingDeclaration(SassNestingDeclaration<'s>),
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
     SassParentSelector(NestingSelector),
@@ -420,9 +420,17 @@ pub enum FontFamilyName<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Function<'s> {
-    pub name: InterpolableIdent<'s>,
+    pub name: FunctionName<'s>,
     pub args: Vec<ComponentValue<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum FunctionName<'s> {
+    Ident(InterpolableIdent<'s>),
+    SassQualifiedName(SassQualifiedName<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -1391,13 +1399,12 @@ pub struct SassModuleConfigItem<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassNamespacedExpression<'s> {
-    pub namespace: Ident<'s>,
-    pub expr: Box<ComponentValue<'s>>,
-    pub span: Span,
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum SassModuleMemberName<'s> {
+    Ident(Ident<'s>),
+    Variable(SassVariable<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -1430,6 +1437,15 @@ pub struct SassParenthesizedExpression<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassPlaceholderSelector<'s> {
     pub name: InterpolableIdent<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassQualifiedName<'s> {
+    pub module: Ident<'s>,
+    pub member: SassModuleMemberName<'s>,
     pub span: Span,
 }
 
