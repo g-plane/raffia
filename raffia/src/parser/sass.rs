@@ -285,7 +285,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }))
     }
 
-    pub(super) fn parse_sass_interpolated_ident_expr(
+    fn parse_sass_interpolated_ident_expr(
         &mut self,
     ) -> PResult<(SassInterpolatedIdentElement<'s>, Span)> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
