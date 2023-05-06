@@ -31,3 +31,6 @@
 @include one-keyword-arg($a: z,);
 @include two-keyword-args($a: y,$b: z,);
 @include mixed-args(y, $b: z,);
+
+@include module.mixin;
+@include module.mixin();

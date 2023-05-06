@@ -1276,7 +1276,7 @@ pub struct SassIfAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassIncludeAtRule<'s> {
-    pub name: Ident<'s>,
+    pub name: FunctionName<'s>,
     pub arguments: Option<Vec<ComponentValue<'s>>>,
     pub content_block_params: Option<Vec<SassParameter<'s>>>,
     pub content_block_arbitrary_param: Option<SassArbitraryParameter<'s>>,

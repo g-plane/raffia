@@ -824,6 +824,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FunctionName<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let ident = input.parse::<Ident>()?;
+        match (&peek!(input).token, input.syntax) {
+            (Token::Dot(..), Syntax::Scss | Syntax::Sass) => {
+                bump!(input);
+                let member = input.parse::<Ident>()?;
+                let span = Span {
+                    start: ident.span.start,
+                    end: member.span.end,
+                };
+                Ok(FunctionName::SassQualifiedName(SassQualifiedName {
+                    module: ident,
+                    member: SassModuleMemberName::Ident(member),
+                    span,
+                }))
+            }
+            _ => Ok(FunctionName::Ident(InterpolableIdent::Literal(ident))),
+        }
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (token, span) = expect!(input, Hash);

@@ -23,6 +23,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed Sass interpolation in custom properties.
 - Fixed Sass interpolation in `:nth-*` selector.
 - Changed Sass function call AST.
+- Fixed parsing Sass `@include` with module name.
 
 ## v0.2.0
 

@@ -1105,9 +1105,81 @@ Stylesheet(
         end: 620,
       ),
     ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: SassQualifiedName(
+        type: "SassQualifiedName",
+        module: Ident(
+          type: "Ident",
+          name: "module",
+          raw: "module",
+          span: Span(
+            start: 631,
+            end: 637,
+          ),
+        ),
+        member: Ident(
+          type: "Ident",
+          name: "mixin",
+          raw: "mixin",
+          span: Span(
+            start: 638,
+            end: 643,
+          ),
+        ),
+        span: Span(
+          start: 631,
+          end: 643,
+        ),
+      ),
+      arguments: None,
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 622,
+        end: 644,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: SassQualifiedName(
+        type: "SassQualifiedName",
+        module: Ident(
+          type: "Ident",
+          name: "module",
+          raw: "module",
+          span: Span(
+            start: 654,
+            end: 660,
+          ),
+        ),
+        member: Ident(
+          type: "Ident",
+          name: "mixin",
+          raw: "mixin",
+          span: Span(
+            start: 661,
+            end: 666,
+          ),
+        ),
+        span: Span(
+          start: 654,
+          end: 666,
+        ),
+      ),
+      arguments: Some([]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 645,
+        end: 669,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 621,
+    end: 670,
   ),
 )
