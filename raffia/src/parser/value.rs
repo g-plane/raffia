@@ -683,8 +683,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValues<'s> {
             }
         }
 
-        if values.len() > 1 {
-            span.end = values.last_of_non_empty().span().end;
+        if let Some(value) = values.last() {
+            span.end = value.span().end;
         }
         Ok(ComponentValues { values, span })
     }
