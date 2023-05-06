@@ -804,14 +804,30 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let name = input.parse::<InterpolableIdent>()?;
+        let name = input.parse::<FunctionName>()?;
         match peek!(input) {
             TokenWithSpan {
                 token: Token::LParen(..),
                 span,
             } => {
                 input.assert_no_ws_or_comment(name.span(), span)?;
-                input.parse_function(name)
+                match name {
+                    FunctionName::Ident(name) => input.parse_function(name),
+                    FunctionName::SassQualifiedName(name) => {
+                        bump!(input);
+                        let args = input.parse_function_args()?;
+                        let (_, Span { end, .. }) = expect!(input, RParen);
+                        let span = Span {
+                            start: name.span.start,
+                            end,
+                        };
+                        Ok(Function {
+                            name: FunctionName::SassQualifiedName(name),
+                            args,
+                            span,
+                        })
+                    }
+                }
             }
             TokenWithSpan { token, span } => {
                 use crate::{token::LParen, tokenizer::TokenSymbol};
