@@ -78,43 +78,34 @@ Stylesheet(
                 end: 13,
               ),
             ),
-            value: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                SassBinaryExpression(
-                  type: "SassBinaryExpression",
-                  left: Number(
-                    type: "Number",
-                    value: 1.0,
-                    raw: "1",
-                    span: Span(
-                      start: 15,
-                      end: 16,
-                    ),
-                  ),
-                  op: SassBinaryOperator(
-                    type: "SassBinaryOperator",
-                    kind: Plus,
-                    span: Span(
-                      start: 17,
-                      end: 18,
-                    ),
-                  ),
-                  right: Number(
-                    type: "Number",
-                    value: 2.0,
-                    raw: "2",
-                    span: Span(
-                      start: 23,
-                      end: 24,
-                    ),
-                  ),
-                  span: Span(
-                    start: 15,
-                    end: 24,
-                  ),
+            value: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 15,
+                  end: 16,
                 ),
-              ],
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: Plus,
+                span: Span(
+                  start: 17,
+                  end: 18,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 23,
+                  end: 24,
+                ),
+              ),
               span: Span(
                 start: 15,
                 end: 24,
@@ -146,43 +137,34 @@ Stylesheet(
                 end: 33,
               ),
             ),
-            value: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                SassBinaryExpression(
-                  type: "SassBinaryExpression",
-                  left: Ident(
-                    type: "Ident",
-                    name: "true",
-                    raw: "true",
-                    span: Span(
-                      start: 35,
-                      end: 39,
-                    ),
-                  ),
-                  op: SassBinaryOperator(
-                    type: "SassBinaryOperator",
-                    kind: And,
-                    span: Span(
-                      start: 40,
-                      end: 43,
-                    ),
-                  ),
-                  right: Ident(
-                    type: "Ident",
-                    name: "false",
-                    raw: "false",
-                    span: Span(
-                      start: 48,
-                      end: 53,
-                    ),
-                  ),
-                  span: Span(
-                    start: 35,
-                    end: 53,
-                  ),
+            value: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: Ident(
+                type: "Ident",
+                name: "true",
+                raw: "true",
+                span: Span(
+                  start: 35,
+                  end: 39,
                 ),
-              ],
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: And,
+                span: Span(
+                  start: 40,
+                  end: 43,
+                ),
+              ),
+              right: Ident(
+                type: "Ident",
+                name: "false",
+                raw: "false",
+                span: Span(
+                  start: 48,
+                  end: 53,
+                ),
+              ),
               span: Span(
                 start: 35,
                 end: 53,
@@ -214,9 +196,9 @@ Stylesheet(
                 end: 62,
               ),
             ),
-            value: ComponentValues(
-              type: "ComponentValues",
-              values: [
+            value: SassList(
+              type: "SassList",
+              items: [
                 Ident(
                   type: "Ident",
                   name: "a",
@@ -245,6 +227,8 @@ Stylesheet(
                   ),
                 ),
               ],
+              hasParens: false,
+              separator: Space,
               span: Span(
                 start: 64,
                 end: 73,
@@ -395,19 +379,10 @@ Stylesheet(
           end: 120,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Ident(
-            type: "Ident",
-            name: "bip",
-            raw: "bip",
-            span: Span(
-              start: 123,
-              end: 126,
-            ),
-          ),
-        ],
+      value: Ident(
+        type: "Ident",
+        name: "bip",
+        raw: "bip",
         span: Span(
           start: 123,
           end: 126,
@@ -439,19 +414,10 @@ Stylesheet(
           end: 134,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Ident(
-            type: "Ident",
-            name: "foo",
-            raw: "foo",
-            span: Span(
-              start: 136,
-              end: 139,
-            ),
-          ),
-        ],
+      value: Ident(
+        type: "Ident",
+        name: "foo",
+        raw: "foo",
         span: Span(
           start: 136,
           end: 139,
@@ -483,19 +449,10 @@ Stylesheet(
           end: 146,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Number(
-            type: "Number",
-            value: 2.0,
-            raw: "2",
-            span: Span(
-              start: 148,
-              end: 149,
-            ),
-          ),
-        ],
+      value: Number(
+        type: "Number",
+        value: 2.0,
+        raw: "2",
         span: Span(
           start: 148,
           end: 149,

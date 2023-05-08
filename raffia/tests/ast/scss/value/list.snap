@@ -22,48 +22,39 @@ Stylesheet(
           end: 7,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          SassList(
-            type: "SassList",
-            items: [
-              Ident(
-                type: "Ident",
-                name: "alpha",
-                raw: "alpha",
-                span: Span(
-                  start: 10,
-                  end: 15,
-                ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "beta",
-                raw: "beta",
-                span: Span(
-                  start: 17,
-                  end: 21,
-                ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "gamma",
-                raw: "gamma",
-                span: Span(
-                  start: 23,
-                  end: 28,
-                ),
-              ),
-            ],
-            hasParens: true,
-            separator: Comma,
+      value: SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "alpha",
+            raw: "alpha",
             span: Span(
-              start: 9,
-              end: 31,
+              start: 10,
+              end: 15,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "beta",
+            raw: "beta",
+            span: Span(
+              start: 17,
+              end: 21,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "gamma",
+            raw: "gamma",
+            span: Span(
+              start: 23,
+              end: 28,
             ),
           ),
         ],
+        hasParens: true,
+        separator: Comma,
         span: Span(
           start: 9,
           end: 31,
@@ -95,30 +86,21 @@ Stylesheet(
           end: 53,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          SassList(
-            type: "SassList",
-            items: [
-              Ident(
-                type: "Ident",
-                name: "alpha",
-                raw: "alpha",
-                span: Span(
-                  start: 56,
-                  end: 61,
-                ),
-              ),
-            ],
-            hasParens: true,
-            separator: Comma,
+      value: SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "alpha",
+            raw: "alpha",
             span: Span(
-              start: 55,
-              end: 63,
+              start: 56,
+              end: 61,
             ),
           ),
         ],
+        hasParens: true,
+        separator: Comma,
         span: Span(
           start: 55,
           end: 63,

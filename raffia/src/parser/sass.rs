@@ -48,6 +48,68 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         self.recoverable_errors.extend(errors);
     }
 
+    fn parse_maybe_sass_list(&mut self, allow_comma: bool) -> PResult<ComponentValue<'s>> {
+        let single_value = self.parse_sass_bin_expr()?;
+
+        let mut items = vec![];
+        let mut separator = SassListSeparatorKind::Unknown;
+        let mut end = self.tokenizer.current_offset();
+        loop {
+            match peek!(self) {
+                TokenWithSpan {
+                    token:
+                        Token::RBrace(..)
+                        | Token::RParen(..)
+                        | Token::Semicolon(..)
+                        | Token::Colon(..)
+                        | Token::Dedent(..)
+                        | Token::Linebreak(..)
+                        | Token::Exclamation(..)
+                        | Token::Eof(..),
+                    ..
+                } => break,
+                TokenWithSpan {
+                    token: Token::Comma(..),
+                    ..
+                } => {
+                    if !allow_comma {
+                        break;
+                    }
+                    match separator {
+                        SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
+                        SassListSeparatorKind::Comma => {}
+                        SassListSeparatorKind::Space => unreachable!(),
+                    }
+                    bump!(self);
+                }
+                TokenWithSpan { span, .. } => {
+                    if end < span.start && matches!(separator, SassListSeparatorKind::Unknown) {
+                        separator = SassListSeparatorKind::Space;
+                    }
+                    let item = self.parse_sass_bin_expr()?;
+                    end = item.span().end;
+                    items.push(item);
+                }
+            }
+        }
+
+        if items.is_empty() {
+            Ok(single_value)
+        } else {
+            let span = Span {
+                start: single_value.span().start,
+                end,
+            };
+            items.insert(0, single_value);
+            Ok(ComponentValue::SassList(SassList {
+                items,
+                has_parens: false,
+                separator,
+                span,
+            }))
+        }
+    }
+
     pub(super) fn parse_sass_at_rule(
         &mut self,
         at_keyword_name: &str,
@@ -1075,7 +1137,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
                     match separator {
                         SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
                         SassListSeparatorKind::Comma => {}
-                        SassListSeparatorKind::Space => break,
+                        SassListSeparatorKind::Space => unreachable!(),
                     }
                     bump!(input);
                     if let Token::RParen(..) = peek!(input).token {
@@ -1084,7 +1146,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
                 }
                 TokenWithSpan { span, .. } if end < span.start => match separator {
                     SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Space,
-                    SassListSeparatorKind::Comma => break,
+                    SassListSeparatorKind::Comma => {}
                     SassListSeparatorKind::Space => {}
                 },
                 _ => {
@@ -1132,9 +1194,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMapItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let key = input.parse::<ComponentValue>()?;
+        let key = input.parse_maybe_sass_list(/* allow_comma */ false)?;
         expect!(input, Colon);
-        let value = input.parse::<ComponentValue>()?;
+        let value = input.parse_maybe_sass_list(/* allow_comma */ false)?;
         let span = Span {
             start: key.span().start,
             end: value.span().end,
@@ -1292,7 +1354,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let name = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(/* allow_comma */ true)?;
+        let value = input.parse_maybe_sass_list(/* allow_comma */ true)?;
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 

@@ -724,19 +724,10 @@ Stylesheet(
                 end: 296,
               ),
             ),
-            value: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                Str(
-                  type: "Str",
-                  value: "image.png",
-                  raw: "\"image.png\"",
-                  span: Span(
-                    start: 298,
-                    end: 309,
-                  ),
-                ),
-              ],
+            value: Str(
+              type: "Str",
+              value: "image.png",
+              raw: "\"image.png\"",
               span: Span(
                 start: 298,
                 end: 309,

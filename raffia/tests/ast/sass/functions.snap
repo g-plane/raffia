@@ -22,35 +22,26 @@ Stylesheet(
           end: 11,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Length(
-            type: "Length",
-            value: Number(
-              type: "Number",
-              value: 40.0,
-              raw: "40",
-              span: Span(
-                start: 13,
-                end: 15,
-              ),
-            ),
-            unit: Ident(
-              type: "Ident",
-              name: "px",
-              raw: "px",
-              span: Span(
-                start: 15,
-                end: 17,
-              ),
-            ),
-            span: Span(
-              start: 13,
-              end: 17,
-            ),
+      value: Length(
+        type: "Length",
+        value: Number(
+          type: "Number",
+          value: 40.0,
+          raw: "40",
+          span: Span(
+            start: 13,
+            end: 15,
           ),
-        ],
+        ),
+        unit: Ident(
+          type: "Ident",
+          name: "px",
+          raw: "px",
+          span: Span(
+            start: 15,
+            end: 17,
+          ),
+        ),
         span: Span(
           start: 13,
           end: 17,
@@ -82,35 +73,26 @@ Stylesheet(
           end: 31,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Length(
-            type: "Length",
-            value: Number(
-              type: "Number",
-              value: 10.0,
-              raw: "10",
-              span: Span(
-                start: 33,
-                end: 35,
-              ),
-            ),
-            unit: Ident(
-              type: "Ident",
-              name: "px",
-              raw: "px",
-              span: Span(
-                start: 35,
-                end: 37,
-              ),
-            ),
-            span: Span(
-              start: 33,
-              end: 37,
-            ),
+      value: Length(
+        type: "Length",
+        value: Number(
+          type: "Number",
+          value: 10.0,
+          raw: "10",
+          span: Span(
+            start: 33,
+            end: 35,
           ),
-        ],
+        ),
+        unit: Ident(
+          type: "Ident",
+          name: "px",
+          raw: "px",
+          span: Span(
+            start: 35,
+            end: 37,
+          ),
+        ),
         span: Span(
           start: 33,
           end: 37,

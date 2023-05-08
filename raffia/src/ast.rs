@@ -1520,7 +1520,7 @@ pub struct SassVariable<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassVariableDeclaration<'s> {
     pub name: SassVariable<'s>,
-    pub value: ComponentValues<'s>,
+    pub value: ComponentValue<'s>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
     pub force_global: bool,

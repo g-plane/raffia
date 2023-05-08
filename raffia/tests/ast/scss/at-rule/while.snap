@@ -103,50 +103,41 @@ Stylesheet(
                 end: 30,
               ),
             ),
-            value: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                SassBinaryExpression(
-                  type: "SassBinaryExpression",
-                  left: SassVariable(
-                    type: "SassVariable",
-                    name: Ident(
-                      type: "Ident",
-                      name: "i",
-                      raw: "i",
-                      span: Span(
-                        start: 33,
-                        end: 34,
-                      ),
-                    ),
-                    span: Span(
-                      start: 32,
-                      end: 34,
-                    ),
-                  ),
-                  op: SassBinaryOperator(
-                    type: "SassBinaryOperator",
-                    kind: Plus,
-                    span: Span(
-                      start: 35,
-                      end: 36,
-                    ),
-                  ),
-                  right: Number(
-                    type: "Number",
-                    value: 1.0,
-                    raw: "1",
-                    span: Span(
-                      start: 37,
-                      end: 38,
-                    ),
-                  ),
+            value: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "i",
+                  raw: "i",
                   span: Span(
-                    start: 32,
-                    end: 38,
+                    start: 33,
+                    end: 34,
                   ),
                 ),
-              ],
+                span: Span(
+                  start: 32,
+                  end: 34,
+                ),
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: Plus,
+                span: Span(
+                  start: 35,
+                  end: 36,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 37,
+                  end: 38,
+                ),
+              ),
               span: Span(
                 start: 32,
                 end: 38,

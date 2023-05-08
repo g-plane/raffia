@@ -22,387 +22,461 @@ Stylesheet(
           end: 4,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          SassMap(
-            type: "SassMap",
-            items: [
-              SassMapItem(
-                type: "SassMapItem",
-                key: SassParenthesizedExpression(
-                  type: "SassParenthesizedExpression",
-                  expr: Ident(
-                    type: "Ident",
-                    name: "key1",
-                    raw: "key1",
-                    span: Span(
-                      start: 11,
-                      end: 15,
-                    ),
-                  ),
-                  span: Span(
-                    start: 10,
-                    end: 16,
-                  ),
-                ),
-                value: SassParenthesizedExpression(
-                  type: "SassParenthesizedExpression",
-                  expr: Ident(
-                    type: "Ident",
-                    name: "value-1-0",
-                    raw: "value-1-0",
-                    span: Span(
-                      start: 19,
-                      end: 28,
-                    ),
-                  ),
-                  span: Span(
-                    start: 18,
-                    end: 29,
-                  ),
-                ),
+      value: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: Ident(
+                type: "Ident",
+                name: "key1",
+                raw: "key1",
                 span: Span(
-                  start: 10,
-                  end: 29,
+                  start: 11,
+                  end: 15,
                 ),
               ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: Ident(
-                  type: "Ident",
-                  name: "key2",
-                  raw: "key2",
-                  span: Span(
-                    start: 33,
-                    end: 37,
-                  ),
-                ),
-                value: Ident(
-                  type: "Ident",
-                  name: "value-2-0",
-                  raw: "value-2-0",
-                  span: Span(
-                    start: 39,
-                    end: 48,
-                  ),
-                ),
+              span: Span(
+                start: 10,
+                end: 16,
+              ),
+            ),
+            value: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: Ident(
+                type: "Ident",
+                name: "value-1-0",
+                raw: "value-1-0",
                 span: Span(
-                  start: 33,
-                  end: 48,
+                  start: 19,
+                  end: 28,
                 ),
               ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: SassParenthesizedExpression(
-                  type: "SassParenthesizedExpression",
-                  expr: Ident(
-                    type: "Ident",
-                    name: "key6",
-                    raw: "key6",
-                    span: Span(
-                      start: 53,
-                      end: 57,
-                    ),
-                  ),
-                  span: Span(
-                    start: 52,
-                    end: 58,
-                  ),
-                ),
-                value: SassParenthesizedExpression(
-                  type: "SassParenthesizedExpression",
-                  expr: Ident(
-                    type: "Ident",
-                    name: "value-6-0",
-                    raw: "value-6-0",
-                    span: Span(
-                      start: 61,
-                      end: 70,
-                    ),
-                  ),
-                  span: Span(
-                    start: 60,
-                    end: 71,
-                  ),
-                ),
+              span: Span(
+                start: 18,
+                end: 29,
+              ),
+            ),
+            span: Span(
+              start: 10,
+              end: 29,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "key2",
+              raw: "key2",
+              span: Span(
+                start: 33,
+                end: 37,
+              ),
+            ),
+            value: Ident(
+              type: "Ident",
+              name: "value-2-0",
+              raw: "value-2-0",
+              span: Span(
+                start: 39,
+                end: 48,
+              ),
+            ),
+            span: Span(
+              start: 33,
+              end: 48,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: Ident(
+                type: "Ident",
+                name: "key6",
+                raw: "key6",
                 span: Span(
-                  start: 52,
-                  end: 71,
+                  start: 53,
+                  end: 57,
                 ),
               ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: Ident(
+              span: Span(
+                start: 52,
+                end: 58,
+              ),
+            ),
+            value: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: Ident(
+                type: "Ident",
+                name: "value-6-0",
+                raw: "value-6-0",
+                span: Span(
+                  start: 61,
+                  end: 70,
+                ),
+              ),
+              span: Span(
+                start: 60,
+                end: 71,
+              ),
+            ),
+            span: Span(
+              start: 52,
+              end: 71,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: SassList(
+              type: "SassList",
+              items: [
+                Ident(
                   type: "Ident",
-                  name: "key4",
-                  raw: "key4",
+                  name: "key-3-0",
+                  raw: "key-3-0",
                   span: Span(
                     start: 75,
-                    end: 79,
+                    end: 82,
                   ),
                 ),
-                value: SassList(
-                  type: "SassList",
-                  items: [
-                    Ident(
-                      type: "Ident",
-                      name: "value-4-0",
-                      raw: "value-4-0",
-                      span: Span(
-                        start: 82,
-                        end: 91,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "value-4-1",
-                      raw: "value-4-1",
-                      span: Span(
-                        start: 93,
-                        end: 102,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "value-4-2",
-                      raw: "value-4-2",
-                      span: Span(
-                        start: 104,
-                        end: 113,
-                      ),
-                    ),
-                  ],
-                  hasParens: true,
-                  separator: Comma,
-                  span: Span(
-                    start: 81,
-                    end: 114,
-                  ),
-                ),
-                span: Span(
-                  start: 75,
-                  end: 114,
-                ),
-              ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: Ident(
+                Ident(
                   type: "Ident",
-                  name: "key5",
-                  raw: "key5",
+                  name: "key-3-1",
+                  raw: "key-3-1",
                   span: Span(
-                    start: 118,
-                    end: 122,
+                    start: 83,
+                    end: 90,
                   ),
                 ),
-                value: SassMap(
-                  type: "SassMap",
-                  items: [
-                    SassMapItem(
-                      type: "SassMapItem",
-                      key: Ident(
-                        type: "Ident",
-                        name: "key-5-0",
-                        raw: "key-5-0",
-                        span: Span(
-                          start: 125,
-                          end: 132,
-                        ),
-                      ),
-                      value: Ident(
-                        type: "Ident",
-                        name: "value-5-1",
-                        raw: "value-5-1",
-                        span: Span(
-                          start: 134,
-                          end: 143,
-                        ),
-                      ),
-                      span: Span(
-                        start: 125,
-                        end: 143,
-                      ),
-                    ),
-                  ],
+                Ident(
+                  type: "Ident",
+                  name: "key-3-2",
+                  raw: "key-3-2",
                   span: Span(
-                    start: 124,
-                    end: 144,
+                    start: 91,
+                    end: 98,
                   ),
                 ),
-                span: Span(
-                  start: 118,
-                  end: 144,
-                ),
+              ],
+              hasParens: false,
+              separator: Space,
+              span: Span(
+                start: 75,
+                end: 98,
               ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: SassMap(
-                  type: "SassMap",
-                  items: [
-                    SassMapItem(
-                      type: "SassMapItem",
-                      key: Ident(
-                        type: "Ident",
-                        name: "key-7-0",
-                        raw: "key-7-0",
-                        span: Span(
-                          start: 149,
-                          end: 156,
-                        ),
-                      ),
-                      value: Ident(
-                        type: "Ident",
-                        name: "key-7-1",
-                        raw: "key-7-1",
-                        span: Span(
-                          start: 158,
-                          end: 165,
-                        ),
-                      ),
-                      span: Span(
-                        start: 149,
-                        end: 165,
-                      ),
-                    ),
-                  ],
+            ),
+            value: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "value-3-0",
+                  raw: "value-3-0",
                   span: Span(
-                    start: 148,
-                    end: 166,
+                    start: 100,
+                    end: 109,
                   ),
                 ),
-                value: SassMap(
-                  type: "SassMap",
-                  items: [
-                    SassMapItem(
-                      type: "SassMapItem",
-                      key: Ident(
-                        type: "Ident",
-                        name: "value-7-0",
-                        raw: "value-7-0",
-                        span: Span(
-                          start: 169,
-                          end: 178,
-                        ),
-                      ),
-                      value: Ident(
-                        type: "Ident",
-                        name: "value-7-1",
-                        raw: "value-7-1",
-                        span: Span(
-                          start: 180,
-                          end: 189,
-                        ),
-                      ),
-                      span: Span(
-                        start: 169,
-                        end: 189,
-                      ),
-                    ),
-                  ],
+                Ident(
+                  type: "Ident",
+                  name: "value-3-1",
+                  raw: "value-3-1",
                   span: Span(
-                    start: 168,
-                    end: 190,
+                    start: 110,
+                    end: 119,
                   ),
                 ),
-                span: Span(
-                  start: 148,
-                  end: 190,
+                Ident(
+                  type: "Ident",
+                  name: "value-3-2",
+                  raw: "value-3-2",
+                  span: Span(
+                    start: 120,
+                    end: 129,
+                  ),
                 ),
+              ],
+              hasParens: false,
+              separator: Space,
+              span: Span(
+                start: 100,
+                end: 129,
               ),
-              SassMapItem(
-                type: "SassMapItem",
-                key: SassList(
-                  type: "SassList",
-                  items: [
-                    Ident(
-                      type: "Ident",
-                      name: "key-8-0",
-                      raw: "key-8-0",
-                      span: Span(
-                        start: 195,
-                        end: 202,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "key-8-1",
-                      raw: "key-8-1",
-                      span: Span(
-                        start: 204,
-                        end: 211,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "key-8-2",
-                      raw: "key-8-2",
-                      span: Span(
-                        start: 213,
-                        end: 220,
-                      ),
-                    ),
-                  ],
-                  hasParens: true,
-                  separator: Comma,
-                  span: Span(
-                    start: 194,
-                    end: 221,
-                  ),
-                ),
-                value: SassList(
-                  type: "SassList",
-                  items: [
-                    Ident(
-                      type: "Ident",
-                      name: "value-8-0",
-                      raw: "value-8-0",
-                      span: Span(
-                        start: 224,
-                        end: 233,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "value-8-1",
-                      raw: "value-8-1",
-                      span: Span(
-                        start: 235,
-                        end: 244,
-                      ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "value-8-2",
-                      raw: "value-8-2",
-                      span: Span(
-                        start: 246,
-                        end: 255,
-                      ),
-                    ),
-                  ],
-                  hasParens: true,
-                  separator: Comma,
-                  span: Span(
-                    start: 223,
-                    end: 256,
-                  ),
-                ),
-                span: Span(
-                  start: 194,
-                  end: 256,
-                ),
-              ),
-            ],
+            ),
             span: Span(
-              start: 6,
-              end: 259,
+              start: 75,
+              end: 129,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "key4",
+              raw: "key4",
+              span: Span(
+                start: 133,
+                end: 137,
+              ),
+            ),
+            value: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "value-4-0",
+                  raw: "value-4-0",
+                  span: Span(
+                    start: 140,
+                    end: 149,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "value-4-1",
+                  raw: "value-4-1",
+                  span: Span(
+                    start: 151,
+                    end: 160,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "value-4-2",
+                  raw: "value-4-2",
+                  span: Span(
+                    start: 162,
+                    end: 171,
+                  ),
+                ),
+              ],
+              hasParens: true,
+              separator: Comma,
+              span: Span(
+                start: 139,
+                end: 172,
+              ),
+            ),
+            span: Span(
+              start: 133,
+              end: 172,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "key5",
+              raw: "key5",
+              span: Span(
+                start: 176,
+                end: 180,
+              ),
+            ),
+            value: SassMap(
+              type: "SassMap",
+              items: [
+                SassMapItem(
+                  type: "SassMapItem",
+                  key: Ident(
+                    type: "Ident",
+                    name: "key-5-0",
+                    raw: "key-5-0",
+                    span: Span(
+                      start: 183,
+                      end: 190,
+                    ),
+                  ),
+                  value: Ident(
+                    type: "Ident",
+                    name: "value-5-1",
+                    raw: "value-5-1",
+                    span: Span(
+                      start: 192,
+                      end: 201,
+                    ),
+                  ),
+                  span: Span(
+                    start: 183,
+                    end: 201,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 182,
+                end: 202,
+              ),
+            ),
+            span: Span(
+              start: 176,
+              end: 202,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: SassMap(
+              type: "SassMap",
+              items: [
+                SassMapItem(
+                  type: "SassMapItem",
+                  key: Ident(
+                    type: "Ident",
+                    name: "key-7-0",
+                    raw: "key-7-0",
+                    span: Span(
+                      start: 207,
+                      end: 214,
+                    ),
+                  ),
+                  value: Ident(
+                    type: "Ident",
+                    name: "key-7-1",
+                    raw: "key-7-1",
+                    span: Span(
+                      start: 216,
+                      end: 223,
+                    ),
+                  ),
+                  span: Span(
+                    start: 207,
+                    end: 223,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 206,
+                end: 224,
+              ),
+            ),
+            value: SassMap(
+              type: "SassMap",
+              items: [
+                SassMapItem(
+                  type: "SassMapItem",
+                  key: Ident(
+                    type: "Ident",
+                    name: "value-7-0",
+                    raw: "value-7-0",
+                    span: Span(
+                      start: 227,
+                      end: 236,
+                    ),
+                  ),
+                  value: Ident(
+                    type: "Ident",
+                    name: "value-7-1",
+                    raw: "value-7-1",
+                    span: Span(
+                      start: 238,
+                      end: 247,
+                    ),
+                  ),
+                  span: Span(
+                    start: 227,
+                    end: 247,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 226,
+                end: 248,
+              ),
+            ),
+            span: Span(
+              start: 206,
+              end: 248,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "key-8-0",
+                  raw: "key-8-0",
+                  span: Span(
+                    start: 253,
+                    end: 260,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "key-8-1",
+                  raw: "key-8-1",
+                  span: Span(
+                    start: 262,
+                    end: 269,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "key-8-2",
+                  raw: "key-8-2",
+                  span: Span(
+                    start: 271,
+                    end: 278,
+                  ),
+                ),
+              ],
+              hasParens: true,
+              separator: Comma,
+              span: Span(
+                start: 252,
+                end: 279,
+              ),
+            ),
+            value: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "value-8-0",
+                  raw: "value-8-0",
+                  span: Span(
+                    start: 282,
+                    end: 291,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "value-8-1",
+                  raw: "value-8-1",
+                  span: Span(
+                    start: 293,
+                    end: 302,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "value-8-2",
+                  raw: "value-8-2",
+                  span: Span(
+                    start: 304,
+                    end: 313,
+                  ),
+                ),
+              ],
+              hasParens: true,
+              separator: Comma,
+              span: Span(
+                start: 281,
+                end: 314,
+              ),
+            ),
+            span: Span(
+              start: 252,
+              end: 314,
             ),
           ),
         ],
         span: Span(
           start: 6,
-          end: 259,
+          end: 317,
         ),
       ),
       important: None,
@@ -410,7 +484,7 @@ Stylesheet(
       forceGlobal: false,
       span: Span(
         start: 0,
-        end: 260,
+        end: 318,
       ),
     ),
     QualifiedRule(
@@ -433,37 +507,37 @@ Stylesheet(
                         name: "div",
                         raw: "div",
                         span: Span(
-                          start: 262,
-                          end: 265,
+                          start: 320,
+                          end: 323,
                         ),
                       ),
                       prefix: None,
                       span: Span(
-                        start: 262,
-                        end: 265,
+                        start: 320,
+                        end: 323,
                       ),
                     ),
                     span: Span(
-                      start: 262,
-                      end: 265,
+                      start: 320,
+                      end: 323,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 262,
-                  end: 265,
+                  start: 320,
+                  end: 323,
                 ),
               ),
             ],
             span: Span(
-              start: 262,
-              end: 265,
+              start: 320,
+              end: 323,
             ),
           ),
         ],
         span: Span(
-          start: 262,
-          end: 265,
+          start: 320,
+          end: 323,
         ),
       ),
       block: SimpleBlock(
@@ -476,8 +550,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 270,
-                end: 273,
+                start: 328,
+                end: 331,
               ),
             ),
             value: [
@@ -488,8 +562,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 275,
-                    end: 282,
+                    start: 333,
+                    end: 340,
                   ),
                 ),
                 args: [
@@ -503,8 +577,8 @@ Stylesheet(
                           name: "foo",
                           raw: "foo",
                           span: Span(
-                            start: 284,
-                            end: 287,
+                            start: 342,
+                            end: 345,
                           ),
                         ),
                         value: Number(
@@ -512,13 +586,13 @@ Stylesheet(
                           value: 1.0,
                           raw: "1",
                           span: Span(
-                            start: 289,
-                            end: 290,
+                            start: 347,
+                            end: 348,
                           ),
                         ),
                         span: Span(
-                          start: 284,
-                          end: 290,
+                          start: 342,
+                          end: 348,
                         ),
                       ),
                       SassMapItem(
@@ -528,8 +602,8 @@ Stylesheet(
                           name: "bar",
                           raw: "bar",
                           span: Span(
-                            start: 292,
-                            end: 295,
+                            start: 350,
+                            end: 353,
                           ),
                         ),
                         value: Number(
@@ -537,27 +611,27 @@ Stylesheet(
                           value: 2.0,
                           raw: "2",
                           span: Span(
-                            start: 297,
-                            end: 298,
+                            start: 355,
+                            end: 356,
                           ),
                         ),
                         span: Span(
-                          start: 292,
-                          end: 298,
+                          start: 350,
+                          end: 356,
                         ),
                       ),
                     ],
                     span: Span(
-                      start: 283,
-                      end: 299,
+                      start: 341,
+                      end: 357,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 299,
-                      end: 300,
+                      start: 357,
+                      end: 358,
                     ),
                   ),
                   Ident(
@@ -565,22 +639,22 @@ Stylesheet(
                     name: "foo",
                     raw: "foo",
                     span: Span(
-                      start: 301,
-                      end: 304,
+                      start: 359,
+                      end: 362,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 275,
-                  end: 305,
+                  start: 333,
+                  end: 363,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 270,
-              end: 305,
+              start: 328,
+              end: 363,
             ),
           ),
           Declaration(
@@ -590,8 +664,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 309,
-                end: 312,
+                start: 367,
+                end: 370,
               ),
             ),
             value: [
@@ -602,8 +676,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 314,
-                    end: 321,
+                    start: 372,
+                    end: 379,
                   ),
                 ),
                 args: [
@@ -617,8 +691,8 @@ Stylesheet(
                           name: "foo",
                           raw: "foo",
                           span: Span(
-                            start: 323,
-                            end: 326,
+                            start: 381,
+                            end: 384,
                           ),
                         ),
                         value: Number(
@@ -626,13 +700,13 @@ Stylesheet(
                           value: 1.0,
                           raw: "1",
                           span: Span(
-                            start: 328,
-                            end: 329,
+                            start: 386,
+                            end: 387,
                           ),
                         ),
                         span: Span(
-                          start: 323,
-                          end: 329,
+                          start: 381,
+                          end: 387,
                         ),
                       ),
                       SassMapItem(
@@ -642,8 +716,8 @@ Stylesheet(
                           name: "bar",
                           raw: "bar",
                           span: Span(
-                            start: 331,
-                            end: 334,
+                            start: 389,
+                            end: 392,
                           ),
                         ),
                         value: Number(
@@ -651,27 +725,27 @@ Stylesheet(
                           value: 2.0,
                           raw: "2",
                           span: Span(
-                            start: 336,
-                            end: 337,
+                            start: 394,
+                            end: 395,
                           ),
                         ),
                         span: Span(
-                          start: 331,
-                          end: 337,
+                          start: 389,
+                          end: 395,
                         ),
                       ),
                     ],
                     span: Span(
-                      start: 322,
-                      end: 338,
+                      start: 380,
+                      end: 396,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 338,
-                      end: 339,
+                      start: 396,
+                      end: 397,
                     ),
                   ),
                   Ident(
@@ -679,22 +753,22 @@ Stylesheet(
                     name: "bar",
                     raw: "bar",
                     span: Span(
-                      start: 340,
-                      end: 343,
+                      start: 398,
+                      end: 401,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 314,
-                  end: 344,
+                  start: 372,
+                  end: 402,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 309,
-              end: 344,
+              start: 367,
+              end: 402,
             ),
           ),
           Declaration(
@@ -704,8 +778,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 348,
-                end: 351,
+                start: 406,
+                end: 409,
               ),
             ),
             value: [
@@ -716,8 +790,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 353,
-                    end: 360,
+                    start: 411,
+                    end: 418,
                   ),
                 ),
                 args: [
@@ -731,8 +805,8 @@ Stylesheet(
                           name: "foo",
                           raw: "foo",
                           span: Span(
-                            start: 362,
-                            end: 365,
+                            start: 420,
+                            end: 423,
                           ),
                         ),
                         value: Number(
@@ -740,13 +814,13 @@ Stylesheet(
                           value: 1.0,
                           raw: "1",
                           span: Span(
-                            start: 367,
-                            end: 368,
+                            start: 425,
+                            end: 426,
                           ),
                         ),
                         span: Span(
-                          start: 362,
-                          end: 368,
+                          start: 420,
+                          end: 426,
                         ),
                       ),
                       SassMapItem(
@@ -756,8 +830,8 @@ Stylesheet(
                           name: "bar",
                           raw: "bar",
                           span: Span(
-                            start: 370,
-                            end: 373,
+                            start: 428,
+                            end: 431,
                           ),
                         ),
                         value: Number(
@@ -765,27 +839,27 @@ Stylesheet(
                           value: 2.0,
                           raw: "2",
                           span: Span(
-                            start: 375,
-                            end: 376,
+                            start: 433,
+                            end: 434,
                           ),
                         ),
                         span: Span(
-                          start: 370,
-                          end: 376,
+                          start: 428,
+                          end: 434,
                         ),
                       ),
                     ],
                     span: Span(
-                      start: 361,
-                      end: 377,
+                      start: 419,
+                      end: 435,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 377,
-                      end: 378,
+                      start: 435,
+                      end: 436,
                     ),
                   ),
                   Ident(
@@ -793,22 +867,22 @@ Stylesheet(
                     name: "baz",
                     raw: "baz",
                     span: Span(
-                      start: 379,
-                      end: 382,
+                      start: 437,
+                      end: 440,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 353,
-                  end: 383,
+                  start: 411,
+                  end: 441,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 348,
-              end: 383,
+              start: 406,
+              end: 441,
             ),
           ),
           Declaration(
@@ -818,8 +892,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 387,
-                end: 390,
+                start: 445,
+                end: 448,
               ),
             ),
             value: [
@@ -830,8 +904,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 392,
-                    end: 399,
+                    start: 450,
+                    end: 457,
                   ),
                 ),
                 args: [
@@ -839,16 +913,16 @@ Stylesheet(
                     type: "SassMap",
                     items: [],
                     span: Span(
-                      start: 400,
-                      end: 402,
+                      start: 458,
+                      end: 460,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 402,
-                      end: 403,
+                      start: 460,
+                      end: 461,
                     ),
                   ),
                   Ident(
@@ -856,22 +930,22 @@ Stylesheet(
                     name: "foo",
                     raw: "foo",
                     span: Span(
-                      start: 404,
-                      end: 407,
+                      start: 462,
+                      end: 465,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 392,
-                  end: 408,
+                  start: 450,
+                  end: 466,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 387,
-              end: 408,
+              start: 445,
+              end: 466,
             ),
           ),
           Declaration(
@@ -881,8 +955,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 412,
-                end: 415,
+                start: 470,
+                end: 473,
               ),
             ),
             value: [
@@ -893,8 +967,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 417,
-                    end: 424,
+                    start: 475,
+                    end: 482,
                   ),
                 ),
                 args: [
@@ -905,21 +979,21 @@ Stylesheet(
                       name: "foo",
                       raw: "foo",
                       span: Span(
-                        start: 426,
-                        end: 429,
+                        start: 484,
+                        end: 487,
                       ),
                     ),
                     span: Span(
-                      start: 425,
-                      end: 429,
+                      start: 483,
+                      end: 487,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 429,
-                      end: 430,
+                      start: 487,
+                      end: 488,
                     ),
                   ),
                   SassMap(
@@ -932,8 +1006,8 @@ Stylesheet(
                           name: "key-5-0",
                           raw: "key-5-0",
                           span: Span(
-                            start: 432,
-                            end: 439,
+                            start: 490,
+                            end: 497,
                           ),
                         ),
                         value: Ident(
@@ -941,33 +1015,33 @@ Stylesheet(
                           name: "value-5-1",
                           raw: "value-5-1",
                           span: Span(
-                            start: 441,
-                            end: 450,
+                            start: 499,
+                            end: 508,
                           ),
                         ),
                         span: Span(
-                          start: 432,
-                          end: 450,
+                          start: 490,
+                          end: 508,
                         ),
                       ),
                     ],
                     span: Span(
-                      start: 431,
-                      end: 451,
+                      start: 489,
+                      end: 509,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 417,
-                  end: 452,
+                  start: 475,
+                  end: 510,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 412,
-              end: 452,
+              start: 470,
+              end: 510,
             ),
           ),
           Declaration(
@@ -977,8 +1051,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 456,
-                end: 459,
+                start: 514,
+                end: 517,
               ),
             ),
             value: [
@@ -989,8 +1063,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 461,
-                    end: 468,
+                    start: 519,
+                    end: 526,
                   ),
                 ),
                 args: [
@@ -1001,21 +1075,21 @@ Stylesheet(
                       name: "foo",
                       raw: "foo",
                       span: Span(
-                        start: 470,
-                        end: 473,
+                        start: 528,
+                        end: 531,
                       ),
                     ),
                     span: Span(
-                      start: 469,
-                      end: 473,
+                      start: 527,
+                      end: 531,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 473,
-                      end: 474,
+                      start: 531,
+                      end: 532,
                     ),
                   ),
                   SassParenthesizedExpression(
@@ -1025,27 +1099,27 @@ Stylesheet(
                       name: "key2",
                       raw: "key2",
                       span: Span(
-                        start: 476,
-                        end: 480,
+                        start: 534,
+                        end: 538,
                       ),
                     ),
                     span: Span(
-                      start: 475,
-                      end: 481,
+                      start: 533,
+                      end: 539,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 461,
-                  end: 482,
+                  start: 519,
+                  end: 540,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 456,
-              end: 482,
+              start: 514,
+              end: 540,
             ),
           ),
           Declaration(
@@ -1055,8 +1129,8 @@ Stylesheet(
               name: "foo",
               raw: "foo",
               span: Span(
-                start: 486,
-                end: 489,
+                start: 544,
+                end: 547,
               ),
             ),
             value: [
@@ -1067,8 +1141,8 @@ Stylesheet(
                   name: "map-get",
                   raw: "map-get",
                   span: Span(
-                    start: 491,
-                    end: 498,
+                    start: 549,
+                    end: 556,
                   ),
                 ),
                 args: [
@@ -1079,21 +1153,21 @@ Stylesheet(
                       name: "foo",
                       raw: "foo",
                       span: Span(
-                        start: 500,
-                        end: 503,
+                        start: 558,
+                        end: 561,
                       ),
                     ),
                     span: Span(
-                      start: 499,
-                      end: 503,
+                      start: 557,
+                      end: 561,
                     ),
                   ),
                   Delimiter(
                     type: "Delimiter",
                     kind: Comma,
                     span: Span(
-                      start: 503,
-                      end: 504,
+                      start: 561,
+                      end: 562,
                     ),
                   ),
                   SassList(
@@ -1104,8 +1178,8 @@ Stylesheet(
                         name: "key-3-0",
                         raw: "key-3-0",
                         span: Span(
-                          start: 506,
-                          end: 513,
+                          start: 564,
+                          end: 571,
                         ),
                       ),
                       Ident(
@@ -1113,8 +1187,8 @@ Stylesheet(
                         name: "key-3-1",
                         raw: "key-3-1",
                         span: Span(
-                          start: 514,
-                          end: 521,
+                          start: 572,
+                          end: 579,
                         ),
                       ),
                       Ident(
@@ -1122,46 +1196,46 @@ Stylesheet(
                         name: "key-3-2",
                         raw: "key-3-2",
                         span: Span(
-                          start: 522,
-                          end: 529,
+                          start: 580,
+                          end: 587,
                         ),
                       ),
                     ],
                     hasParens: true,
                     separator: Space,
                     span: Span(
-                      start: 505,
-                      end: 530,
+                      start: 563,
+                      end: 588,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 491,
-                  end: 531,
+                  start: 549,
+                  end: 589,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 486,
-              end: 531,
+              start: 544,
+              end: 589,
             ),
           ),
         ],
         span: Span(
-          start: 266,
-          end: 534,
+          start: 324,
+          end: 592,
         ),
       ),
       span: Span(
-        start: 262,
-        end: 534,
+        start: 320,
+        end: 592,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 535,
+    end: 593,
   ),
 )

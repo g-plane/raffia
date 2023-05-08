@@ -24,6 +24,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed Sass interpolation in `:nth-*` selector.
 - Changed Sass function call AST.
 - Fixed parsing Sass `@include` with module name.
+- Added support of Sass list without parens.
 
 ## v0.2.0
 
