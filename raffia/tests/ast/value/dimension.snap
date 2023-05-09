@@ -1684,9 +1684,121 @@ Stylesheet(
         end: 306,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 307,
+                          end: 308,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 307,
+                        end: 308,
+                      ),
+                    ),
+                    span: Span(
+                      start: 307,
+                      end: 308,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 307,
+                  end: 308,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 307,
+              end: 308,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 307,
+          end: 308,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 311,
+                end: 316,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: -0.0,
+                  raw: "-.0",
+                  span: Span(
+                    start: 317,
+                    end: 320,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "em",
+                  raw: "em",
+                  span: Span(
+                    start: 320,
+                    end: 322,
+                  ),
+                ),
+                span: Span(
+                  start: 317,
+                  end: 322,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 311,
+              end: 322,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 309,
+          end: 324,
+        ),
+      ),
+      span: Span(
+        start: 307,
+        end: 324,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 307,
+    end: 325,
   ),
 )

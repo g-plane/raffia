@@ -993,18 +993,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NthMatcher<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, colon_span) = expect!(input, Colon);
-        let mut end;
-        let name = if input.syntax == Syntax::Css {
-            let (ident, ident_span) = expect_without_ws_or_comments!(input, Ident);
-            end = ident_span.end;
-            InterpolableIdent::Literal(Ident::from_token(ident, ident_span))
-        } else {
-            let name = input.parse::<InterpolableIdent>()?;
-            let name_span = name.span();
-            end = name_span.end;
-            input.assert_no_ws_or_comment(&colon_span, name_span)?;
-            name
-        };
+        let name = input.parse::<InterpolableIdent>()?;
+        let name_span = name.span();
+        input.assert_no_ws_or_comment(&colon_span, name_span)?;
+
+        let mut end = name_span.end;
 
         let arg = match peek!(input) {
             TokenWithSpan {
