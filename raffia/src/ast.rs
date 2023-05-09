@@ -28,7 +28,7 @@ pub struct AnPlusB {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct AtRule<'s> {
-    pub name: Ident<'s>,
+    pub name: InterpolableIdent<'s>,
     pub prelude: Option<AtRulePrelude<'s>>,
     pub block: Option<SimpleBlock<'s>>,
     pub span: Span,

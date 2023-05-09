@@ -2078,9 +2078,206 @@ Stylesheet(
         end: 502,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: SassInterpolatedIdent(
+        type: "SassInterpolatedIdent",
+        elements: [
+          ComponentValues(
+            type: "ComponentValues",
+            values: [
+              SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "ar-name",
+                  raw: "ar-name",
+                  span: Span(
+                    start: 508,
+                    end: 515,
+                  ),
+                ),
+                span: Span(
+                  start: 507,
+                  end: 515,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 507,
+              end: 515,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 505,
+          end: 516,
+        ),
+      ),
+      prelude: Some(TokenSeq(
+        type: "TokenSeq",
+        tokens: [
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: HashLBrace(HashLBrace(
+              kind: "HashLBrace",
+            )),
+            span: Span(
+              start: 517,
+              end: 519,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Ident(Ident(
+              kind: "Ident",
+              escaped: false,
+              raw: "meta",
+            )),
+            span: Span(
+              start: 519,
+              end: 523,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Dot(Dot(
+              kind: "Dot",
+            )),
+            span: Span(
+              start: 523,
+              end: 524,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Ident(Ident(
+              kind: "Ident",
+              escaped: false,
+              raw: "call",
+            )),
+            span: Span(
+              start: 524,
+              end: 528,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: LParen(LParen(
+              kind: "LParen",
+            )),
+            span: Span(
+              start: 528,
+              end: 529,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: DollarVar(DollarVar(
+              kind: "DollarVar",
+              ident: Ident(
+                kind: "Ident",
+                escaped: false,
+                raw: "converter",
+              ),
+            )),
+            span: Span(
+              start: 529,
+              end: 539,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Comma(Comma(
+              kind: "Comma",
+            )),
+            span: Span(
+              start: 539,
+              end: 540,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: DollarVar(DollarVar(
+              kind: "DollarVar",
+              ident: Ident(
+                kind: "Ident",
+                escaped: false,
+                raw: "ar-str",
+              ),
+            )),
+            span: Span(
+              start: 541,
+              end: 548,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Comma(Comma(
+              kind: "Comma",
+            )),
+            span: Span(
+              start: 548,
+              end: 549,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: DollarVar(DollarVar(
+              kind: "DollarVar",
+              ident: Ident(
+                kind: "Ident",
+                escaped: false,
+                raw: "this-util",
+              ),
+            )),
+            span: Span(
+              start: 550,
+              end: 560,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: RParen(RParen(
+              kind: "RParen",
+            )),
+            span: Span(
+              start: 560,
+              end: 561,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: RBrace(RBrace(
+              kind: "RBrace",
+            )),
+            span: Span(
+              start: 561,
+              end: 562,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 517,
+          end: 562,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 563,
+          end: 565,
+        ),
+      )),
+      span: Span(
+        start: 504,
+        end: 565,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 503,
+    end: 566,
   ),
 )

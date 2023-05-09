@@ -29,3 +29,5 @@ a { --#{"foo"}-bar: b; }
 
 tr:nth-child(#{$table-striped-order}) {}
 tr:nth-of-type(#{$table-striped-order}) {}
+
+@#{$ar-name} #{meta.call($converter, $ar-str, $this-util)} {}

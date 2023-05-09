@@ -1260,7 +1260,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: start + 1,
                 },
             }),
-            Some((start, '@')) if self.syntax == Syntax::Less => Ok(TokenWithSpan {
+            Some((start, '@')) if self.syntax != Syntax::Css => Ok(TokenWithSpan {
                 token: Token::At(At {}),
                 span: Span {
                     start,
