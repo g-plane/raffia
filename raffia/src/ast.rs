@@ -1519,6 +1519,7 @@ pub struct SassVariable<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassVariableDeclaration<'s> {
+    pub namespace: Option<Ident<'s>>,
     pub name: SassVariable<'s>,
     pub value: ComponentValue<'s>,
     pub important: Option<ImportantAnnotation<'s>>,

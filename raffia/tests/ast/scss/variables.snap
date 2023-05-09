@@ -62,6 +62,7 @@ Stylesheet(
         statements: [
           SassVariableDeclaration(
             type: "SassVariableDeclaration",
+            namespace: None,
             name: SassVariable(
               type: "SassVariable",
               name: Ident(
@@ -121,6 +122,7 @@ Stylesheet(
           ),
           SassVariableDeclaration(
             type: "SassVariableDeclaration",
+            namespace: None,
             name: SassVariable(
               type: "SassVariable",
               name: Ident(
@@ -180,6 +182,7 @@ Stylesheet(
           ),
           SassVariableDeclaration(
             type: "SassVariableDeclaration",
+            namespace: None,
             name: SassVariable(
               type: "SassVariable",
               name: Ident(
@@ -363,6 +366,7 @@ Stylesheet(
     ),
     SassVariableDeclaration(
       type: "SassVariableDeclaration",
+      namespace: None,
       name: SassVariable(
         type: "SassVariable",
         name: Ident(
@@ -398,6 +402,7 @@ Stylesheet(
     ),
     SassVariableDeclaration(
       type: "SassVariableDeclaration",
+      namespace: None,
       name: SassVariable(
         type: "SassVariable",
         name: Ident(
@@ -433,6 +438,7 @@ Stylesheet(
     ),
     SassVariableDeclaration(
       type: "SassVariableDeclaration",
+      namespace: None,
       name: SassVariable(
         type: "SassVariable",
         name: Ident(
@@ -466,9 +472,117 @@ Stylesheet(
         end: 158,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: Some(Ident(
+        type: "Ident",
+        name: "midstream",
+        raw: "midstream",
+        span: Span(
+          start: 161,
+          end: 170,
+        ),
+      )),
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "member",
+          raw: "member",
+          span: Span(
+            start: 172,
+            end: 178,
+          ),
+        ),
+        span: Span(
+          start: 171,
+          end: 178,
+        ),
+      ),
+      value: SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "new",
+            raw: "new",
+            span: Span(
+              start: 180,
+              end: 183,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "value",
+            raw: "value",
+            span: Span(
+              start: 184,
+              end: 189,
+            ),
+          ),
+        ],
+        hasParens: false,
+        separator: Unknown,
+        span: Span(
+          start: 180,
+          end: 189,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      forceGlobal: false,
+      span: Span(
+        start: 161,
+        end: 190,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: Some(Ident(
+        type: "Ident",
+        name: "upstream",
+        raw: "upstream",
+        span: Span(
+          start: 191,
+          end: 199,
+        ),
+      )),
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "a",
+          raw: "a",
+          span: Span(
+            start: 201,
+            end: 202,
+          ),
+        ),
+        span: Span(
+          start: 200,
+          end: 202,
+        ),
+      ),
+      value: Ident(
+        type: "Ident",
+        name: "c",
+        raw: "c",
+        span: Span(
+          start: 204,
+          end: 205,
+        ),
+      ),
+      important: None,
+      overridable: true,
+      forceGlobal: false,
+      span: Span(
+        start: 191,
+        end: 214,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 160,
+    end: 216,
   ),
 )

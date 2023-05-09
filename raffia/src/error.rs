@@ -78,6 +78,7 @@ pub enum ErrorKind {
     UnicodeRangeStartGreaterThanEnd,
     UnexpectedNthMatcher,
     InvalidSassFlagName(String),
+    UnexpectedSassFlag(&'static str),
 }
 
 impl Display for ErrorKind {
@@ -161,6 +162,7 @@ impl Display for ErrorKind {
                 "elements matcher is allowed in `:nth-child` and `:nth-last-child` only"
             ),
             Self::InvalidSassFlagName(flag) => write!(f, "invalid Sass flag name `{flag}`"),
+            Self::UnexpectedSassFlag(flag) => write!(f, "Sass flag `!{flag}` is disallowed"),
         }
     }
 }

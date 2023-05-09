@@ -25,6 +25,7 @@ _This changelog only relates to the `raffia` crate._
 - Changed Sass function call AST.
 - Fixed parsing Sass `@include` with module name.
 - Added support of Sass list without parens.
+- Added support of Sass variable declaration with namespace.
 
 ## v0.2.0
 

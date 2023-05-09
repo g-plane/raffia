@@ -257,6 +257,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             let TokenWithSpan { token, span } = peek!(self);
             match token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
+                    let is_scss_or_sass = matches!(self.syntax, Syntax::Scss | Syntax::Sass);
+                    if is_scss_or_sass {
+                        if let Ok(sass_var_decl) = self.try_parse(SassVariableDeclaration::parse) {
+                            statements.push(Statement::SassVariableDeclaration(sass_var_decl));
+                            continue;
+                        }
+                    }
+
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
                         is_block_element = true;
@@ -265,10 +273,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         is_block_element = true;
                     } else {
                         let decl = self.parse::<Declaration>()?;
-                        is_block_element = matches!(
-                            decl.value.last(),
-                            Some(ComponentValue::SassNestingDeclaration(..))
-                        );
+                        is_block_element = is_scss_or_sass
+                            && matches!(
+                                decl.value.last(),
+                                Some(ComponentValue::SassNestingDeclaration(..))
+                            );
                         statements.push(Statement::Declaration(decl));
                     }
                 }

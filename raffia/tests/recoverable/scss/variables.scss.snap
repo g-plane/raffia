@@ -1,0 +1,10 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: Sass flag `!global` is disallowed
+  ┌─ variables.scss:1:1
+  │
+1 │ namespace.$member: value !global;
+  │ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+

@@ -87,6 +87,7 @@ Stylesheet(
           ),
           SassVariableDeclaration(
             type: "SassVariableDeclaration",
+            namespace: None,
             name: SassVariable(
               type: "SassVariable",
               name: Ident(

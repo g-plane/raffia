@@ -1352,6 +1352,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
+        let namespace = if let Some((ident_token, span)) = eat!(input, Ident) {
+            let (_, dot_span) = expect!(input, Dot);
+            input.assert_no_ws_or_comment(&span, &dot_span)?;
+            let TokenWithSpan {
+                span: next_span, ..
+            } = peek!(input);
+            input.assert_no_ws_or_comment(&dot_span, &next_span)?;
+            Some(Ident::from_token(ident_token, span))
+        } else {
+            None
+        };
+
         let name = input.parse::<SassVariable>()?;
         expect!(input, Colon);
         let value = input.parse_maybe_sass_list(/* allow_comma */ true)?;
@@ -1361,15 +1373,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
         let (flags, end) = input.parse_sass_flags_into_bits()?;
 
         let span = Span {
-            start: name.span.start,
+            start: namespace
+                .as_ref()
+                .map(|namespace| namespace.span.start)
+                .unwrap_or(name.span.start),
             end,
         };
+
+        let force_global = flags & FLAG_GLOBAL != 0;
+        if namespace.is_some() && force_global {
+            input.recoverable_errors.push(Error {
+                kind: ErrorKind::UnexpectedSassFlag("global"),
+                span: span.clone(),
+            });
+        }
+
         Ok(SassVariableDeclaration {
+            namespace,
             name,
             value,
             important,
             overridable: flags & FLAG_DEFAULT != 0,
-            force_global: flags & FLAG_GLOBAL != 0,
+            force_global,
             span,
         })
     }

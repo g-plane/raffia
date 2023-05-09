@@ -6,6 +6,7 @@ Stylesheet(
   statements: [
     SassVariableDeclaration(
       type: "SassVariableDeclaration",
+      namespace: None,
       name: SassVariable(
         type: "SassVariable",
         name: Ident(
@@ -70,6 +71,7 @@ Stylesheet(
     ),
     SassVariableDeclaration(
       type: "SassVariableDeclaration",
+      namespace: None,
       name: SassVariable(
         type: "SassVariable",
         name: Ident(
