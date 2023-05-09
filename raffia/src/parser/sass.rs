@@ -78,7 +78,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     match separator {
                         SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
                         SassListSeparatorKind::Comma => {}
-                        SassListSeparatorKind::Space => unreachable!(),
+                        SassListSeparatorKind::Space => break,
                     }
                     bump!(self);
                 }
@@ -1137,7 +1137,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
                     match separator {
                         SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
                         SassListSeparatorKind::Comma => {}
-                        SassListSeparatorKind::Space => unreachable!(),
+                        SassListSeparatorKind::Space => break,
                     }
                     bump!(input);
                     if let Token::RParen(..) = peek!(input).token {
