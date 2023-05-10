@@ -1428,3 +1428,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWhileAtRule<'s> {
         })
     }
 }
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UnknownSassAtRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
+
+        let (_, at_span) = expect!(input, At);
+        let name = input.parse_sass_interpolated_ident()?;
+        let name_span = name.span();
+        input.assert_no_ws_or_comment(&at_span, name_span)?;
+
+        let (prelude, block, end) = input.parse_unknown_at_rule()?;
+        let span = Span {
+            start: at_span.start,
+            end: end.unwrap_or(name_span.end),
+        };
+        Ok(UnknownSassAtRule {
+            name,
+            prelude,
+            block,
+            span,
+        })
+    }
+}

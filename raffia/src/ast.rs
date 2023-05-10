@@ -28,7 +28,7 @@ pub struct AnPlusB {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct AtRule<'s> {
-    pub name: InterpolableIdent<'s>,
+    pub name: Ident<'s>,
     pub prelude: Option<AtRulePrelude<'s>>,
     pub block: Option<SimpleBlock<'s>>,
     pub span: Span,
@@ -1601,6 +1601,7 @@ pub enum Statement<'s> {
     SassVariableDeclaration(SassVariableDeclaration<'s>),
     SassWarnAtRule(SassWarnAtRule<'s>),
     SassWhileAtRule(SassWhileAtRule<'s>),
+    UnknownSassAtRule(UnknownSassAtRule<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -1794,6 +1795,16 @@ pub struct UniversalSelector<'s> {
 pub struct UnknownDimension<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct UnknownSassAtRule<'s> {
+    pub name: InterpolableIdent<'s>,
+    pub prelude: Option<TokenSeq<'s>>,
+    pub block: Option<SimpleBlock<'s>>,
     pub span: Span,
 }
 

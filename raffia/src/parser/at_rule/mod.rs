@@ -176,7 +176,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let end = block.span.end;
             (None, Some(block), end)
         } else {
-            input.parse_unknown_at_rule(&at_keyword_span)?
+            let (prelude, block, end) = input.parse_unknown_at_rule()?;
+            (
+                prelude.map(AtRulePrelude::Unknown),
+                block,
+                end.unwrap_or(at_keyword_span.end),
+            )
         };
 
         let span = Span {
@@ -186,14 +191,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         Ok(AtRule {
             // We don't use `Ident::from_token` here because `at_rule_name` is already
             // type of `Cow<str>`, avoiding creating it again.
-            name: InterpolableIdent::Literal(Ident {
+            name: Ident {
                 name: at_rule_name,
                 raw: at_keyword.ident.raw,
                 span: Span {
                     start: at_keyword_span.start + 1,
                     end: at_keyword_span.end,
                 },
-            }),
+            },
             prelude,
             block,
             span,
@@ -204,11 +209,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_unknown_at_rule(
         &mut self,
-        name_span: &Span,
-    ) -> PResult<(Option<AtRulePrelude<'s>>, Option<SimpleBlock<'s>>, usize)> {
-        let prelude = self
-            .parse_unknown_at_rule_prelude()?
-            .map(AtRulePrelude::Unknown);
+    ) -> PResult<(Option<TokenSeq<'s>>, Option<SimpleBlock<'s>>, Option<usize>)> {
+        let prelude = self.parse_unknown_at_rule_prelude()?;
         let block = match &peek!(self).token {
             Token::LBrace(..) | Token::Indent(..) => Some(self.parse::<SimpleBlock>()?),
             _ => None,
@@ -216,8 +218,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let end = block
             .as_ref()
             .map(|block| block.span.end)
-            .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end))
-            .unwrap_or(name_span.end);
+            .or_else(|| prelude.as_ref().map(|prelude| prelude.span().end));
         Ok((prelude, block, end))
     }
 

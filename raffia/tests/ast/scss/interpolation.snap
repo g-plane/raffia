@@ -2078,8 +2078,8 @@ Stylesheet(
         end: 502,
       ),
     ),
-    AtRule(
-      type: "AtRule",
+    UnknownSassAtRule(
+      type: "UnknownSassAtRule",
       name: SassInterpolatedIdent(
         type: "SassInterpolatedIdent",
         elements: [

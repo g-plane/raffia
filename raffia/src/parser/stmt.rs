@@ -344,19 +344,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     continue;
                 }
                 Token::At(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                    let TokenWithSpan {
-                        span: Span { start, .. },
-                        ..
-                    } = bump!(self);
-                    let name = self.parse::<InterpolableIdent>()?;
-                    let (prelude, block, end) = self.parse_unknown_at_rule(name.span())?;
-                    is_block_element = block.is_some();
-                    statements.push(Statement::AtRule(AtRule {
-                        name,
-                        prelude,
-                        block,
-                        span: Span { start, end },
-                    }));
+                    let unknown_sass_at_rule = self.parse::<UnknownSassAtRule>()?;
+                    is_block_element = unknown_sass_at_rule.block.is_some();
+                    statements.push(Statement::UnknownSassAtRule(unknown_sass_at_rule));
                 }
                 Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
                 Token::Semicolon(..) | Token::Linebreak(..) => {
