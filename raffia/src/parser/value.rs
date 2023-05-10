@@ -317,6 +317,27 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             Token::Comma(..) => {
                                 values.push(ComponentValue::Delimiter(self.parse()?));
                             }
+                            Token::DotDotDot(..)
+                                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                                    && values.len() == 1 =>
+                            {
+                                let TokenWithSpan {
+                                    span: Span { end, .. },
+                                    ..
+                                } = bump!(self);
+                                let value = values.remove(0);
+                                let span = Span {
+                                    start: value.span().start,
+                                    end,
+                                };
+                                values.push(ComponentValue::SassArbitraryArgument(
+                                    SassArbitraryArgument {
+                                        value: Box::new(value),
+                                        span,
+                                    },
+                                ));
+                                break;
+                            }
                             _ => values.push(self.parse_calc_expr()?),
                         }
                     }

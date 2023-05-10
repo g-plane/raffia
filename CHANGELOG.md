@@ -27,6 +27,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of Sass list without parens.
 - Added support of Sass variable declaration with namespace.
 - Added support of Sass interpolation in at-rule name.
+- Added support of Sass arbitrary argument in CSS math functions.
 
 ## v0.2.0
 

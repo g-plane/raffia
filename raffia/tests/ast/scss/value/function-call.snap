@@ -984,20 +984,81 @@ Stylesheet(
               end: 397,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 401,
+                end: 406,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "max",
+                  raw: "max",
+                  span: Span(
+                    start: 408,
+                    end: 411,
+                  ),
+                ),
+                args: [
+                  SassArbitraryArgument(
+                    type: "SassArbitraryArgument",
+                    value: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "numbers",
+                        raw: "numbers",
+                        span: Span(
+                          start: 413,
+                          end: 420,
+                        ),
+                      ),
+                      span: Span(
+                        start: 412,
+                        end: 420,
+                      ),
+                    ),
+                    span: Span(
+                      start: 412,
+                      end: 423,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 408,
+                  end: 424,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 401,
+              end: 424,
+            ),
+          ),
         ],
         span: Span(
           start: 256,
-          end: 400,
+          end: 427,
         ),
       ),
       span: Span(
         start: 241,
-        end: 400,
+        end: 427,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 401,
+    end: 428,
   ),
 )
