@@ -116,9 +116,169 @@ Stylesheet(
         end: 64,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "box-shadow-first-two",
+          raw: "box-shadow-first-two",
+          span: Span(
+            start: 66,
+            end: 86,
+          ),
+        ),
+        span: Span(
+          start: 65,
+          end: 86,
+        ),
+      ),
+      value: SassList(
+        type: "SassList",
+        items: [
+          SassList(
+            type: "SassList",
+            items: [
+              Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 88,
+                  end: 89,
+                ),
+              ),
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 0.5,
+                  raw: "0.5",
+                  span: Span(
+                    start: 90,
+                    end: 93,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "em",
+                  raw: "em",
+                  span: Span(
+                    start: 93,
+                    end: 95,
+                  ),
+                ),
+                span: Span(
+                  start: 90,
+                  end: 95,
+                ),
+              ),
+              SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "background",
+                  raw: "background",
+                  span: Span(
+                    start: 97,
+                    end: 107,
+                  ),
+                ),
+                span: Span(
+                  start: 96,
+                  end: 107,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 88,
+              end: 107,
+            ),
+          ),
+          SassList(
+            type: "SassList",
+            items: [
+              Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 109,
+                  end: 110,
+                ),
+              ),
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: -0.5,
+                  raw: "-0.5",
+                  span: Span(
+                    start: 111,
+                    end: 115,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "em",
+                  raw: "em",
+                  span: Span(
+                    start: 115,
+                    end: 117,
+                  ),
+                ),
+                span: Span(
+                  start: 111,
+                  end: 117,
+                ),
+              ),
+              SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "background",
+                  raw: "background",
+                  span: Span(
+                    start: 119,
+                    end: 129,
+                  ),
+                ),
+                span: Span(
+                  start: 118,
+                  end: 129,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 109,
+              end: 129,
+            ),
+          ),
+        ],
+        hasParens: false,
+        separator: Comma,
+        span: Span(
+          start: 88,
+          end: 129,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      forceGlobal: false,
+      span: Span(
+        start: 65,
+        end: 130,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 65,
+    end: 131,
   ),
 )

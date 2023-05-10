@@ -49,7 +49,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_maybe_sass_list(&mut self, allow_comma: bool) -> PResult<ComponentValue<'s>> {
-        let single_value = self.parse_sass_bin_expr()?;
+        let single_value = if allow_comma {
+            self.parse_maybe_sass_list(false)?
+        } else {
+            self.parse_sass_bin_expr()?
+        };
 
         let mut items = vec![];
         let mut separator = SassListSeparatorKind::Unknown;
@@ -86,7 +90,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if end < span.start && matches!(separator, SassListSeparatorKind::Unknown) {
                         separator = SassListSeparatorKind::Space;
                     }
-                    let item = self.parse_sass_bin_expr()?;
+                    let item = if allow_comma {
+                        self.parse_maybe_sass_list(false)?
+                    } else {
+                        self.parse_sass_bin_expr()?
+                    };
                     end = item.span().end;
                     items.push(item);
                 }
