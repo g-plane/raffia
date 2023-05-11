@@ -57,7 +57,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         let mut items = vec![];
         let mut separator = SassListSeparatorKind::Unknown;
-        let mut end = self.tokenizer.current_offset();
+        let mut end = single_value.span().end;
         loop {
             match peek!(self) {
                 TokenWithSpan {
