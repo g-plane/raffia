@@ -276,9 +276,92 @@ Stylesheet(
         end: 130,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "list2",
+          raw: "list2",
+          span: Span(
+            start: 132,
+            end: 137,
+          ),
+        ),
+        span: Span(
+          start: 131,
+          end: 137,
+        ),
+      ),
+      value: SassList(
+        type: "SassList",
+        items: [
+          SassList(
+            type: "SassList",
+            items: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 140,
+                    end: 141,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 141,
+                    end: 143,
+                  ),
+                ),
+                span: Span(
+                  start: 140,
+                  end: 143,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "solid",
+                raw: "solid",
+                span: Span(
+                  start: 144,
+                  end: 149,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 140,
+              end: 149,
+            ),
+          ),
+        ],
+        hasParens: true,
+        separator: Comma,
+        span: Span(
+          start: 139,
+          end: 151,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      forceGlobal: false,
+      span: Span(
+        start: 131,
+        end: 152,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 131,
+    end: 153,
   ),
 )

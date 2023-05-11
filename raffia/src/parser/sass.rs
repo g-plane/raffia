@@ -101,7 +101,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         }
 
-        if items.is_empty() {
+        if items.is_empty() && !matches!(separator, SassListSeparatorKind::Comma) {
+            // If there is a trailing comma it can be a Sass list,
+            // though there is only one element.
             Ok(single_value)
         } else {
             let span = Span {
@@ -1120,63 +1122,40 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (start, has_parens) = if let Some((_, span)) = eat!(input, LParen) {
-            (span.start, true)
+        let paren_start = eat!(input, LParen).map(|(_, span)| span.start);
+
+        let mut list = if let ComponentValue::SassList(list) =
+            input.parse_maybe_sass_list(/* allow_comma */ true)?
+        {
+            list
         } else {
-            (input.tokenizer.current_offset(), false)
+            use crate::{
+                token::{Comma, RParen},
+                tokenizer::TokenSymbol,
+            };
+            let TokenWithSpan { token, span } = bump!(input);
+            return Err(Error {
+                kind: ErrorKind::Unexpected(
+                    if paren_start.is_some() {
+                        RParen::symbol()
+                    } else {
+                        Comma::symbol()
+                    },
+                    token.symbol(),
+                ),
+                span,
+            });
         };
 
-        let mut items = vec![];
-        let mut separator = SassListSeparatorKind::Unknown;
-        let mut end = input.tokenizer.current_offset();
-        while let Ok(value) = input.try_parse(Parser::parse_sass_bin_expr) {
-            end = value.span().end;
-            items.push(value);
-
-            match peek!(input) {
-                TokenWithSpan {
-                    token: Token::RParen(..),
-                    ..
-                } => break,
-                TokenWithSpan {
-                    token: Token::Comma(..),
-                    ..
-                } => {
-                    match separator {
-                        SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
-                        SassListSeparatorKind::Comma => {}
-                        SassListSeparatorKind::Space => break,
-                    }
-                    bump!(input);
-                    if let Token::RParen(..) = peek!(input).token {
-                        break;
-                    }
-                }
-                TokenWithSpan { span, .. } if end < span.start => match separator {
-                    SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Space,
-                    SassListSeparatorKind::Comma => {}
-                    SassListSeparatorKind::Space => {}
-                },
-                _ => {
-                    expect!(input, RParen);
-                }
-            }
-        }
-
-        let span = if has_parens {
-            Span {
+        if let Some(start) = paren_start {
+            list.span = Span {
                 start,
                 end: expect!(input, RParen).1.end,
-            }
-        } else {
-            Span { start, end }
-        };
-        Ok(SassList {
-            items,
-            has_parens,
-            separator,
-            span,
-        })
+            };
+            list.has_parens = true;
+        }
+
+        Ok(list)
     }
 }
 
