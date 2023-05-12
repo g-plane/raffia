@@ -1,0 +1,126 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 1,
+          end: 6,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          MediaCondition(
+            type: "MediaCondition",
+            conditions: [
+              MediaFeaturePlain(
+                type: "MediaFeaturePlain",
+                name: Ident(
+                  type: "Ident",
+                  name: "max-width",
+                  raw: "max-width",
+                  span: Span(
+                    start: 8,
+                    end: 17,
+                  ),
+                ),
+                value: SassBinaryExpression(
+                  type: "SassBinaryExpression",
+                  left: SassVariable(
+                    type: "SassVariable",
+                    name: Ident(
+                      type: "Ident",
+                      name: "area-width",
+                      raw: "area-width",
+                      span: Span(
+                        start: 20,
+                        end: 30,
+                      ),
+                    ),
+                    span: Span(
+                      start: 19,
+                      end: 30,
+                    ),
+                  ),
+                  op: SassBinaryOperator(
+                    type: "SassBinaryOperator",
+                    kind: Plus,
+                    span: Span(
+                      start: 31,
+                      end: 32,
+                    ),
+                  ),
+                  right: Length(
+                    type: "Length",
+                    value: Number(
+                      type: "Number",
+                      value: 32.0,
+                      raw: "32",
+                      span: Span(
+                        start: 33,
+                        end: 35,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 35,
+                        end: 37,
+                      ),
+                    ),
+                    span: Span(
+                      start: 33,
+                      end: 37,
+                    ),
+                  ),
+                  span: Span(
+                    start: 19,
+                    end: 37,
+                  ),
+                ),
+                span: Span(
+                  start: 8,
+                  end: 37,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 8,
+              end: 37,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8,
+          end: 37,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 39,
+          end: 41,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 41,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 42,
+  ),
+)
