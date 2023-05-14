@@ -949,20 +949,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
         let mut else_clause = None;
 
         while let Token::AtKeyword(at_keyword) = &peek!(input).token {
-            if at_keyword.ident.name() == "else" {
-                bump!(input);
-                match &peek!(input).token {
-                    Token::Ident(ident) if ident.name() == "if" => {
-                        bump!(input);
-                        else_if_clauses.push(input.parse()?);
-                    }
-                    _ => {
-                        else_clause = Some(input.parse()?);
-                        break;
+            match &*at_keyword.ident.name() {
+                "else" => {
+                    bump!(input);
+                    match &peek!(input).token {
+                        Token::Ident(ident) if ident.name() == "if" => {
+                            bump!(input);
+                            else_if_clauses.push(input.parse()?);
+                        }
+                        _ => {
+                            else_clause = Some(input.parse()?);
+                            break;
+                        }
                     }
                 }
-            } else {
-                break;
+                // `elseif` is deprecated by Sass
+                "elseif" => {
+                    bump!(input);
+                    else_if_clauses.push(input.parse()?);
+                }
+                _ => break,
             }
         }
 

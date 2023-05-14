@@ -1184,9 +1184,231 @@ Stylesheet(
         end: 392,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 394,
+                          end: 397,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 394,
+                        end: 397,
+                      ),
+                    ),
+                    span: Span(
+                      start: 394,
+                      end: 397,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 394,
+                  end: 397,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 394,
+              end: 397,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 394,
+          end: 397,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassIfAtRule(
+            type: "SassIfAtRule",
+            ifClause: SassConditionalClause(
+              type: "SassConditionalClause",
+              condition: Ident(
+                type: "Ident",
+                name: "true",
+                raw: "true",
+                span: Span(
+                  start: 406,
+                  end: 410,
+                ),
+              ),
+              block: SimpleBlock(
+                type: "SimpleBlock",
+                statements: [
+                  Declaration(
+                    type: "Declaration",
+                    name: Ident(
+                      type: "Ident",
+                      name: "foo",
+                      raw: "foo",
+                      span: Span(
+                        start: 417,
+                        end: 420,
+                      ),
+                    ),
+                    value: [
+                      Ident(
+                        type: "Ident",
+                        name: "true",
+                        raw: "true",
+                        span: Span(
+                          start: 422,
+                          end: 426,
+                        ),
+                      ),
+                    ],
+                    important: None,
+                    lessPropertyMerge: None,
+                    span: Span(
+                      start: 417,
+                      end: 426,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 411,
+                  end: 431,
+                ),
+              ),
+              span: Span(
+                start: 406,
+                end: 431,
+              ),
+            ),
+            elseIfClauses: [
+              SassConditionalClause(
+                type: "SassConditionalClause",
+                condition: Ident(
+                  type: "Ident",
+                  name: "true",
+                  raw: "true",
+                  span: Span(
+                    start: 440,
+                    end: 444,
+                  ),
+                ),
+                block: SimpleBlock(
+                  type: "SimpleBlock",
+                  statements: [
+                    Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 451,
+                          end: 454,
+                        ),
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "false",
+                          raw: "false",
+                          span: Span(
+                            start: 456,
+                            end: 461,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 451,
+                        end: 461,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 445,
+                    end: 466,
+                  ),
+                ),
+                span: Span(
+                  start: 440,
+                  end: 466,
+                ),
+              ),
+            ],
+            elseClause: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
+                    span: Span(
+                      start: 479,
+                      end: 482,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "false",
+                      raw: "false",
+                      span: Span(
+                        start: 484,
+                        end: 489,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 479,
+                    end: 489,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 473,
+                end: 494,
+              ),
+            )),
+            span: Span(
+              start: 402,
+              end: 494,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 398,
+          end: 496,
+        ),
+      ),
+      span: Span(
+        start: 394,
+        end: 496,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 393,
+    end: 497,
   ),
 )

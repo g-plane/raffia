@@ -34,3 +34,13 @@ div {
 
 @if false {}
 @\65lse {a {b: c}}
+
+foo {
+  @if true {
+    foo: true;
+  } @elseif true {
+    foo: false;
+  } @else {
+    foo: false;
+  }
+}
