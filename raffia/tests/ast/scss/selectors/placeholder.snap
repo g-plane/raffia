@@ -262,24 +262,40 @@ Stylesheet(
         statements: [
           SassExtendAtRule(
             type: "SassExtendAtRule",
-            selectors: [
-              SassPlaceholderSelector(
-                type: "SassPlaceholderSelector",
-                name: Ident(
-                  type: "Ident",
-                  name: "x",
-                  raw: "x",
+            selectors: CompoundSelectorList(
+              type: "CompoundSelectorList",
+              selectors: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    SassPlaceholderSelector(
+                      type: "SassPlaceholderSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "x",
+                        raw: "x",
+                        span: Span(
+                          start: 72,
+                          end: 73,
+                        ),
+                      ),
+                      span: Span(
+                        start: 71,
+                        end: 73,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 72,
+                    start: 71,
                     end: 73,
                   ),
                 ),
-                span: Span(
-                  start: 71,
-                  end: 73,
-                ),
+              ],
+              span: Span(
+                start: 71,
+                end: 73,
               ),
-            ],
+            ),
             optional: None,
             span: Span(
               start: 63,
@@ -336,24 +352,40 @@ Stylesheet(
               statements: [
                 SassExtendAtRule(
                   type: "SassExtendAtRule",
-                  selectors: [
-                    SassPlaceholderSelector(
-                      type: "SassPlaceholderSelector",
-                      name: Ident(
-                        type: "Ident",
-                        name: "y",
-                        raw: "y",
+                  selectors: CompoundSelectorList(
+                    type: "CompoundSelectorList",
+                    selectors: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          SassPlaceholderSelector(
+                            type: "SassPlaceholderSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "y",
+                              raw: "y",
+                              span: Span(
+                                start: 93,
+                                end: 94,
+                              ),
+                            ),
+                            span: Span(
+                              start: 92,
+                              end: 94,
+                            ),
+                          ),
+                        ],
                         span: Span(
-                          start: 93,
+                          start: 92,
                           end: 94,
                         ),
                       ),
-                      span: Span(
-                        start: 92,
-                        end: 94,
-                      ),
+                    ],
+                    span: Span(
+                      start: 92,
+                      end: 94,
                     ),
-                  ],
+                  ),
                   optional: None,
                   span: Span(
                     start: 84,

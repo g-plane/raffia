@@ -763,10 +763,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
 
-        let mut selectors = vec![input.parse()?];
-        while eat!(input, Comma).is_some() {
-            selectors.push(input.parse()?);
-        }
+        let selectors = input.parse()?;
 
         let optional = if let Some((_, exclamation_span)) = eat!(input, Exclamation) {
             let (keyword, keyword_span) = expect_without_ws_or_comments!(input, Ident);

@@ -32,6 +32,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of Sass deprecated `@elseif` syntax.
 - Fixed parsing Sass `@include` and `@content` arguments.
 - Fixed parsing Sass `@mixin` parameters.
+- Fixed parsing Sass `@extend` at-rule.
 
 ## v0.2.0
 

@@ -1191,7 +1191,7 @@ pub struct SassErrorAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassExtendAtRule<'s> {
-    pub selectors: Vec<SimpleSelector<'s>>,
+    pub selectors: CompoundSelectorList<'s>,
     pub optional: Option<SassFlag<'s>>,
     pub span: Span,
 }

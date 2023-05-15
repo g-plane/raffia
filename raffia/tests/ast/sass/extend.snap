@@ -196,24 +196,40 @@ Stylesheet(
         statements: [
           SassExtendAtRule(
             type: "SassExtendAtRule",
-            selectors: [
-              ClassSelector(
-                type: "ClassSelector",
-                name: Ident(
-                  type: "Ident",
-                  name: "error",
-                  raw: "error",
+            selectors: CompoundSelectorList(
+              type: "CompoundSelectorList",
+              selectors: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "error",
+                        raw: "error",
+                        span: Span(
+                          start: 77,
+                          end: 82,
+                        ),
+                      ),
+                      span: Span(
+                        start: 76,
+                        end: 82,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 77,
+                    start: 76,
                     end: 82,
                   ),
                 ),
-                span: Span(
-                  start: 76,
-                  end: 82,
-                ),
+              ],
+              span: Span(
+                start: 76,
+                end: 82,
               ),
-            ],
+            ),
             optional: None,
             span: Span(
               start: 68,

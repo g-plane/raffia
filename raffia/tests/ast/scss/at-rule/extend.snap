@@ -120,40 +120,65 @@ Stylesheet(
         statements: [
           SassExtendAtRule(
             type: "SassExtendAtRule",
-            selectors: [
-              ClassSelector(
-                type: "ClassSelector",
-                name: Ident(
-                  type: "Ident",
-                  name: "a",
-                  raw: "a",
+            selectors: CompoundSelectorList(
+              type: "CompoundSelectorList",
+              selectors: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 30,
+                          end: 31,
+                        ),
+                      ),
+                      span: Span(
+                        start: 29,
+                        end: 31,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 30,
+                    start: 29,
                     end: 31,
                   ),
                 ),
-                span: Span(
-                  start: 29,
-                  end: 31,
-                ),
-              ),
-              ClassSelector(
-                type: "ClassSelector",
-                name: Ident(
-                  type: "Ident",
-                  name: "b",
-                  raw: "b",
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 34,
+                          end: 35,
+                        ),
+                      ),
+                      span: Span(
+                        start: 33,
+                        end: 35,
+                      ),
+                    ),
+                  ],
                   span: Span(
-                    start: 34,
+                    start: 33,
                     end: 35,
                   ),
                 ),
-                span: Span(
-                  start: 33,
-                  end: 35,
-                ),
+              ],
+              span: Span(
+                start: 29,
+                end: 35,
               ),
-            ],
+            ),
             optional: None,
             span: Span(
               start: 21,
@@ -221,50 +246,66 @@ Stylesheet(
         statements: [
           SassExtendAtRule(
             type: "SassExtendAtRule",
-            selectors: [
-              TagNameSelector(
-                type: "TagNameSelector",
-                name: WqName(
-                  type: "WqName",
-                  name: SassInterpolatedIdent(
-                    type: "SassInterpolatedIdent",
-                    elements: [
-                      ComponentValues(
-                        type: "ComponentValues",
-                        values: [
-                          Str(
-                            type: "Str",
-                            value: "%test",
-                            raw: "\'%test\'",
-                            span: Span(
-                              start: 60,
-                              end: 67,
+            selectors: CompoundSelectorList(
+              type: "CompoundSelectorList",
+              selectors: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    TagNameSelector(
+                      type: "TagNameSelector",
+                      name: WqName(
+                        type: "WqName",
+                        name: SassInterpolatedIdent(
+                          type: "SassInterpolatedIdent",
+                          elements: [
+                            ComponentValues(
+                              type: "ComponentValues",
+                              values: [
+                                Str(
+                                  type: "Str",
+                                  value: "%test",
+                                  raw: "\'%test\'",
+                                  span: Span(
+                                    start: 60,
+                                    end: 67,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 60,
+                                end: 67,
+                              ),
                             ),
+                          ],
+                          span: Span(
+                            start: 58,
+                            end: 68,
                           ),
-                        ],
+                        ),
+                        prefix: None,
                         span: Span(
-                          start: 60,
-                          end: 67,
+                          start: 58,
+                          end: 68,
                         ),
                       ),
-                    ],
-                    span: Span(
-                      start: 58,
-                      end: 68,
+                      span: Span(
+                        start: 58,
+                        end: 68,
+                      ),
                     ),
-                  ),
-                  prefix: None,
+                  ],
                   span: Span(
                     start: 58,
                     end: 68,
                   ),
                 ),
-                span: Span(
-                  start: 58,
-                  end: 68,
-                ),
+              ],
+              span: Span(
+                start: 58,
+                end: 68,
               ),
-            ],
+            ),
             optional: Some(SassFlag(
               type: "SassFlag",
               keyword: Ident(
@@ -297,9 +338,126 @@ Stylesheet(
         end: 80,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "compound",
+                      raw: "compound",
+                      span: Span(
+                        start: 83,
+                        end: 91,
+                      ),
+                    ),
+                    span: Span(
+                      start: 82,
+                      end: 91,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 82,
+                  end: 91,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 82,
+              end: 91,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 82,
+          end: 91,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassExtendAtRule(
+            type: "SassExtendAtRule",
+            selectors: CompoundSelectorList(
+              type: "CompoundSelectorList",
+              selectors: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "one",
+                        raw: "one",
+                        span: Span(
+                          start: 105,
+                          end: 108,
+                        ),
+                      ),
+                      span: Span(
+                        start: 104,
+                        end: 108,
+                      ),
+                    ),
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "two",
+                        raw: "two",
+                        span: Span(
+                          start: 109,
+                          end: 112,
+                        ),
+                      ),
+                      span: Span(
+                        start: 108,
+                        end: 112,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 104,
+                    end: 112,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 104,
+                end: 112,
+              ),
+            ),
+            optional: None,
+            span: Span(
+              start: 96,
+              end: 113,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 92,
+          end: 115,
+        ),
+      ),
+      span: Span(
+        start: 82,
+        end: 115,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 81,
+    end: 116,
   ),
 )
