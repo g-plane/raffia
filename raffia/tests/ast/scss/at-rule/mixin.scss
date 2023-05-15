@@ -22,3 +22,5 @@
 @mixin foo($a, $b: b, $args...) {}
 
 @mixin no-params() {}
+
+@mixin list($lst: a b) {}

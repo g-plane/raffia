@@ -379,7 +379,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         ));
                     } else if let ComponentValue::SassVariable(sass_var) = value {
                         if eat!(self, Colon).is_some() {
-                            let value = self.parse::<ComponentValue>()?;
+                            let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
                             let span = Span {
                                 start: sass_var.span.start,
                                 end: value.span().end,
@@ -487,7 +487,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     continue;
                 }
                 Token::Colon(..) => {
-                    let default_value = self.parse::<ComponentValue>()?;
+                    let default_value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
                     let span = Span {
                         start: name.span.start,
                         end: default_value.span().end,

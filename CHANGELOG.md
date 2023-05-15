@@ -31,6 +31,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed Sass expression in media query.
 - Added support of Sass deprecated `@elseif` syntax.
 - Fixed parsing Sass `@include` and `@content` arguments.
+- Fixed parsing Sass `@mixin` parameters.
 
 ## v0.2.0
 

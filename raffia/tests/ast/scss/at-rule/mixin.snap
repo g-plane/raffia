@@ -865,9 +865,88 @@ Stylesheet(
         end: 456,
       ),
     ),
+    SassMixinAtRule(
+      type: "SassMixinAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "list",
+        raw: "list",
+        span: Span(
+          start: 465,
+          end: 469,
+        ),
+      ),
+      parameters: Some([
+        SassParameter(
+          type: "SassParameter",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "lst",
+              raw: "lst",
+              span: Span(
+                start: 471,
+                end: 474,
+              ),
+            ),
+            span: Span(
+              start: 470,
+              end: 474,
+            ),
+          ),
+          defaultValue: Some(SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 476,
+                  end: 477,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 478,
+                  end: 479,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 476,
+              end: 479,
+            ),
+          )),
+          span: Span(
+            start: 470,
+            end: 479,
+          ),
+        ),
+      ]),
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 481,
+          end: 483,
+        ),
+      ),
+      span: Span(
+        start: 458,
+        end: 483,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 457,
+    end: 484,
   ),
 )
