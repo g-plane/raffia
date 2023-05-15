@@ -1,13 +1,13 @@
 ---
 source: raffia/tests/recoverable.rs
 ---
-error: expect token `)`, but `,` received
+error: component value is expected
   ┌─ include.scss:2:34
   │
 2 │   @include double-comma-error($a,,$b);
   │                                  ^
 
-error: expect token `)`, but `,` received
+error: component value is expected
   ┌─ include.scss:3:37
   │
 3 │   @include double-comma-error($a,$b,,);

@@ -22,32 +22,6 @@ const FLAG_DEFAULT: u8 = 1;
 const FLAG_GLOBAL: u8 = 2;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn check_double_commas(&mut self, values: &[ComponentValue<'s>]) {
-        use crate::{
-            token::{Comma, RParen},
-            tokenizer::TokenSymbol,
-        };
-
-        let errors = values.windows(2).filter_map(|pair| {
-            if let [ComponentValue::Delimiter(Delimiter {
-                kind: DelimiterKind::Comma,
-                ..
-            }), ComponentValue::Delimiter(Delimiter {
-                kind: DelimiterKind::Comma,
-                span,
-            })] = pair
-            {
-                Some(Error {
-                    kind: ErrorKind::Unexpected(RParen::symbol(), Comma::symbol()),
-                    span: span.clone(),
-                })
-            } else {
-                None
-            }
-        });
-        self.recoverable_errors.extend(errors);
-    }
-
     fn parse_maybe_sass_list(&mut self, allow_comma: bool) -> PResult<ComponentValue<'s>> {
         let single_value = if allow_comma {
             self.parse_maybe_sass_list(false)?
@@ -69,6 +43,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         | Token::Dedent(..)
                         | Token::Linebreak(..)
                         | Token::Exclamation(..)
+                        | Token::DotDotDot(..)
                         | Token::Eof(..),
                     ..
                 } => break,
@@ -371,6 +346,64 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         ))
     }
 
+    fn parse_sass_invocation_args(&mut self) -> PResult<Vec<ComponentValue<'s>>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+
+        let mut values = Vec::with_capacity(4);
+        while !matches!(peek!(self).token, Token::RParen(..) | Token::Eof(..)) {
+            match peek!(self).token {
+                Token::Exclamation(..) => {
+                    // while this syntax is weird, Bootstrap is actually using it
+                    values.push(self.parse().map(ComponentValue::ImportantAnnotation)?);
+                }
+                Token::Comma(..) => {
+                    let TokenWithSpan { span, .. } = bump!(self);
+                    self.recoverable_errors.push(Error {
+                        kind: ErrorKind::ExpectComponentValue,
+                        span,
+                    });
+                    continue;
+                }
+                _ => {
+                    let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
+                    if let Some((_, span)) = eat!(self, DotDotDot) {
+                        let span = Span {
+                            start: value.span().start,
+                            end: span.end,
+                        };
+                        values.push(ComponentValue::SassArbitraryArgument(
+                            SassArbitraryArgument {
+                                value: Box::new(value),
+                                span,
+                            },
+                        ));
+                    } else if let ComponentValue::SassVariable(sass_var) = value {
+                        if eat!(self, Colon).is_some() {
+                            let value = self.parse::<ComponentValue>()?;
+                            let span = Span {
+                                start: sass_var.span.start,
+                                end: value.span().end,
+                            };
+                            values.push(ComponentValue::SassKeywordArgument(SassKeywordArgument {
+                                name: sass_var,
+                                value: Box::new(value),
+                                span,
+                            }));
+                        } else {
+                            values.push(ComponentValue::SassVariable(sass_var));
+                        }
+                    } else {
+                        values.push(value);
+                    }
+                }
+            }
+            if !matches!(peek!(self).token, Token::RParen(..) | Token::Eof(..)) {
+                expect!(self, Comma);
+            }
+        }
+        Ok(values)
+    }
+
     fn parse_sass_module_config(
         &mut self,
         allow_overridable: bool,
@@ -654,17 +687,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
         let mut end = span.end;
 
         let arguments = if eat!(input, LParen).is_some() {
-            let mut arguments = input.parse_function_args()?;
-            input.check_double_commas(&arguments);
-            arguments.retain(|arg| {
-                !matches!(
-                    arg,
-                    ComponentValue::Delimiter(Delimiter {
-                        kind: DelimiterKind::Comma,
-                        ..
-                    })
-                )
-            });
+            let arguments = input.parse_sass_invocation_args()?;
             end = expect!(input, RParen).1.end;
             Some(arguments)
         } else {
@@ -993,17 +1016,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
         let name = input.parse()?;
 
         let arguments = if eat!(input, LParen).is_some() {
-            let mut arguments = input.parse_function_args()?;
-            input.check_double_commas(&arguments);
-            arguments.retain(|arg| {
-                !matches!(
-                    arg,
-                    ComponentValue::Delimiter(Delimiter {
-                        kind: DelimiterKind::Comma,
-                        ..
-                    })
-                )
-            });
+            let arguments = input.parse_sass_invocation_args()?;
             expect!(input, RParen);
             Some(arguments)
         } else {

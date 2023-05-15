@@ -1177,9 +1177,882 @@ Stylesheet(
         end: 669,
       ),
     ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 680,
+          end: 691,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 692,
+                  end: 693,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 694,
+                  end: 695,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 696,
+                  end: 697,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "d",
+                raw: "d",
+                span: Span(
+                  start: 698,
+                  end: 699,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 692,
+              end: 699,
+            ),
+          ),
+          span: Span(
+            start: 692,
+            end: 702,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 671,
+        end: 704,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 714,
+          end: 725,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 727,
+                  end: 728,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 729,
+                  end: 730,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 731,
+                  end: 732,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "d",
+                raw: "d",
+                span: Span(
+                  start: 733,
+                  end: 734,
+                ),
+              ),
+            ],
+            hasParens: true,
+            separator: Space,
+            span: Span(
+              start: 726,
+              end: 735,
+            ),
+          ),
+          span: Span(
+            start: 726,
+            end: 738,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 705,
+        end: 740,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 750,
+          end: 761,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 763,
+                  end: 764,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 766,
+                  end: 767,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 769,
+                  end: 770,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "d",
+                raw: "d",
+                span: Span(
+                  start: 772,
+                  end: 773,
+                ),
+              ),
+            ],
+            hasParens: true,
+            separator: Comma,
+            span: Span(
+              start: 762,
+              end: 774,
+            ),
+          ),
+          span: Span(
+            start: 762,
+            end: 777,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 741,
+        end: 779,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 789,
+          end: 800,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassMap(
+            type: "SassMap",
+            items: [
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 802,
+                    end: 803,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 805,
+                    end: 806,
+                  ),
+                ),
+                span: Span(
+                  start: 802,
+                  end: 806,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 808,
+                    end: 809,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 811,
+                    end: 812,
+                  ),
+                ),
+                span: Span(
+                  start: 808,
+                  end: 812,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 814,
+                    end: 815,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 817,
+                    end: 818,
+                  ),
+                ),
+                span: Span(
+                  start: 814,
+                  end: 818,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 820,
+                    end: 821,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 823,
+                    end: 824,
+                  ),
+                ),
+                span: Span(
+                  start: 820,
+                  end: 824,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 801,
+              end: 825,
+            ),
+          ),
+          span: Span(
+            start: 801,
+            end: 828,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 780,
+        end: 830,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 840,
+          end: 851,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassMap(
+            type: "SassMap",
+            items: [
+              SassMapItem(
+                type: "SassMapItem",
+                key: Str(
+                  type: "Str",
+                  value: "a",
+                  raw: "\"a\"",
+                  span: Span(
+                    start: 853,
+                    end: 856,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 858,
+                    end: 859,
+                  ),
+                ),
+                span: Span(
+                  start: 853,
+                  end: 859,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Str(
+                  type: "Str",
+                  value: "b",
+                  raw: "\"b\"",
+                  span: Span(
+                    start: 861,
+                    end: 864,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 866,
+                    end: 867,
+                  ),
+                ),
+                span: Span(
+                  start: 861,
+                  end: 867,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Str(
+                  type: "Str",
+                  value: "c",
+                  raw: "\"c\"",
+                  span: Span(
+                    start: 869,
+                    end: 872,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 874,
+                    end: 875,
+                  ),
+                ),
+                span: Span(
+                  start: 869,
+                  end: 875,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Str(
+                  type: "Str",
+                  value: "d",
+                  raw: "\"d\"",
+                  span: Span(
+                    start: 877,
+                    end: 880,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 882,
+                    end: 883,
+                  ),
+                ),
+                span: Span(
+                  start: 877,
+                  end: 883,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 852,
+              end: 884,
+            ),
+          ),
+          span: Span(
+            start: 852,
+            end: 887,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 831,
+        end: 889,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 899,
+          end: 910,
+        ),
+      ),
+      arguments: Some([
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 911,
+                  end: 912,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 913,
+                  end: 914,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 911,
+              end: 914,
+            ),
+          ),
+          span: Span(
+            start: 911,
+            end: 917,
+          ),
+        ),
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassMap(
+            type: "SassMap",
+            items: [
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 920,
+                    end: 921,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 923,
+                    end: 924,
+                  ),
+                ),
+                span: Span(
+                  start: 920,
+                  end: 924,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 925,
+                    end: 926,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 928,
+                    end: 929,
+                  ),
+                ),
+                span: Span(
+                  start: 925,
+                  end: 929,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 919,
+              end: 930,
+            ),
+          ),
+          span: Span(
+            start: 919,
+            end: 933,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 890,
+        end: 935,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 945,
+          end: 956,
+        ),
+      ),
+      arguments: Some([
+        Ident(
+          type: "Ident",
+          name: "a",
+          raw: "a",
+          span: Span(
+            start: 957,
+            end: 958,
+          ),
+        ),
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 960,
+                  end: 961,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 962,
+                  end: 963,
+                ),
+              ),
+            ],
+            hasParens: false,
+            separator: Space,
+            span: Span(
+              start: 960,
+              end: 963,
+            ),
+          ),
+          span: Span(
+            start: 960,
+            end: 966,
+          ),
+        ),
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassMap(
+            type: "SassMap",
+            items: [
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 969,
+                    end: 970,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 971,
+                    end: 972,
+                  ),
+                ),
+                span: Span(
+                  start: 969,
+                  end: 972,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 968,
+              end: 973,
+            ),
+          ),
+          span: Span(
+            start: 968,
+            end: 976,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 936,
+        end: 978,
+      ),
+    ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "vararg-test",
+        raw: "vararg-test",
+        span: Span(
+          start: 988,
+          end: 999,
+        ),
+      ),
+      arguments: Some([
+        SassKeywordArgument(
+          type: "SassKeywordArgument",
+          name: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 1001,
+                end: 1002,
+              ),
+            ),
+            span: Span(
+              start: 1000,
+              end: 1002,
+            ),
+          ),
+          value: Ident(
+            type: "Ident",
+            name: "c",
+            raw: "c",
+            span: Span(
+              start: 1004,
+              end: 1005,
+            ),
+          ),
+          span: Span(
+            start: 1000,
+            end: 1005,
+          ),
+        ),
+        SassArbitraryArgument(
+          type: "SassArbitraryArgument",
+          value: SassMap(
+            type: "SassMap",
+            items: [
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 1008,
+                    end: 1009,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 1011,
+                    end: 1012,
+                  ),
+                ),
+                span: Span(
+                  start: 1008,
+                  end: 1012,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 1014,
+                    end: 1015,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 1017,
+                    end: 1018,
+                  ),
+                ),
+                span: Span(
+                  start: 1014,
+                  end: 1018,
+                ),
+              ),
+              SassMapItem(
+                type: "SassMapItem",
+                key: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 1020,
+                    end: 1021,
+                  ),
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 1023,
+                    end: 1024,
+                  ),
+                ),
+                span: Span(
+                  start: 1020,
+                  end: 1024,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1007,
+              end: 1025,
+            ),
+          ),
+          span: Span(
+            start: 1007,
+            end: 1028,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: None,
+      span: Span(
+        start: 979,
+        end: 1030,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 670,
+    end: 1031,
   ),
 )

@@ -637,9 +637,90 @@ Stylesheet(
         end: 442,
       ),
     ),
+    SassMixinAtRule(
+      type: "SassMixinAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "mixin",
+        raw: "mixin",
+        span: Span(
+          start: 451,
+          end: 456,
+        ),
+      ),
+      parameters: None,
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassContentAtRule(
+            type: "SassContentAtRule",
+            arguments: Some([
+              SassArbitraryArgument(
+                type: "SassArbitraryArgument",
+                value: SassList(
+                  type: "SassList",
+                  items: [
+                    Ident(
+                      type: "Ident",
+                      name: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 470,
+                        end: 471,
+                      ),
+                    ),
+                    Ident(
+                      type: "Ident",
+                      name: "b",
+                      raw: "b",
+                      span: Span(
+                        start: 472,
+                        end: 473,
+                      ),
+                    ),
+                    Ident(
+                      type: "Ident",
+                      name: "c",
+                      raw: "c",
+                      span: Span(
+                        start: 474,
+                        end: 475,
+                      ),
+                    ),
+                  ],
+                  hasParens: false,
+                  separator: Space,
+                  span: Span(
+                    start: 470,
+                    end: 475,
+                  ),
+                ),
+                span: Span(
+                  start: 470,
+                  end: 478,
+                ),
+              ),
+            ]),
+            span: Span(
+              start: 461,
+              end: 479,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 457,
+          end: 482,
+        ),
+      ),
+      span: Span(
+        start: 444,
+        end: 482,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 443,
+    end: 483,
   ),
 )

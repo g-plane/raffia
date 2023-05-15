@@ -33,3 +33,7 @@
 @mixin mixin {
   @content (value1, value2);
 }
+
+@mixin mixin {
+  @content(a b c...);
+}

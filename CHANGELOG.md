@@ -30,6 +30,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of Sass arbitrary argument in CSS math functions.
 - Fixed Sass expression in media query.
 - Added support of Sass deprecated `@elseif` syntax.
+- Fixed parsing Sass `@include` and `@content` arguments.
 
 ## v0.2.0
 

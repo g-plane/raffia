@@ -34,3 +34,12 @@
 
 @include module.mixin;
 @include module.mixin();
+
+@include vararg-test(a b c d...);
+@include vararg-test((a b c d)...);
+@include vararg-test((a, b, c, d)...);
+@include vararg-test((a: a, b: b, c: c, d: d)...);
+@include vararg-test(("a": a, "b": b, "c": c, "d": d)...);
+@include vararg-test(a b..., (c: c,d: d)...);
+@include vararg-test(a, b c..., (d:d)...);
+@include vararg-test($c: c, (a: a, b: b, d: d)...);
