@@ -33,6 +33,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed parsing Sass `@include` and `@content` arguments.
 - Fixed parsing Sass `@mixin` parameters.
 - Fixed parsing Sass `@extend` at-rule.
+- Fixed trailing comma in selector in Sass.
 
 ## v0.2.0
 

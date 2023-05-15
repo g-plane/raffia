@@ -1213,7 +1213,17 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
 
         let mut selectors = Vec::with_capacity(2);
         selectors.push(first);
+
+        let is_scss_or_sass = matches!(input.syntax, Syntax::Scss | Syntax::Sass);
         while eat!(input, Comma).is_some() {
+            if is_scss_or_sass
+                && matches!(
+                    peek!(input).token,
+                    Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
+                )
+            {
+                break;
+            }
             selectors.push(input.parse()?);
         }
 
