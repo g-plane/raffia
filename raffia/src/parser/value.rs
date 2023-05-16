@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::{handle_escape, CowStr, LastOfNonEmpty},
+    util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
     Parse, Syntax,
 };
 
@@ -348,14 +348,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 // for IE-specific function `alpha`
                 InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("alpha") => {
-                    let mut args = Vec::with_capacity(3);
-                    loop {
-                        match &peek!(self).token {
-                            Token::RParen(..) => break,
-                            _ => args.push(ComponentValue::TokenWithSpan(bump!(self))),
-                        }
-                    }
-                    args
+                    self.parse_tokens_in_parens()?
+                        .tokens
+                        .into_iter()
+                        .map(ComponentValue::TokenWithSpan)
+                        .collect()
                 }
                 _ => self.parse_function_args()?,
             }
@@ -478,6 +475,57 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             modifiers,
             span,
         })
+    }
+
+    pub(super) fn parse_tokens_in_parens(&mut self) -> PResult<TokenSeq<'s>> {
+        let start = self.tokenizer.current_offset();
+        let mut tokens = Vec::with_capacity(1);
+        let mut pairs = Vec::with_capacity(1);
+        loop {
+            match &peek!(self).token {
+                Token::LParen(..) => {
+                    pairs.push(PairedToken::Paren);
+                }
+                Token::RParen(..) => {
+                    if let Some(PairedToken::Paren) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                Token::LBracket(..) => {
+                    pairs.push(PairedToken::Bracket);
+                }
+                Token::RBracket(..) => {
+                    if let Some(PairedToken::Bracket) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                Token::LBrace(..) | Token::HashLBrace(..) => {
+                    pairs.push(PairedToken::Brace);
+                }
+                Token::RBrace(..) => {
+                    if let Some(PairedToken::Brace) = pairs.pop() {
+                    } else {
+                        break;
+                    }
+                }
+                _ => {}
+            }
+            tokens.push(bump!(self));
+        }
+        let span = Span {
+            start: tokens
+                .first()
+                .map(|token| token.span.start)
+                .unwrap_or(start),
+            end: if let Some(last) = tokens.last() {
+                last.span.end
+            } else {
+                peek!(self).span.start
+            },
+        };
+        Ok(TokenSeq { tokens, span })
     }
 
     fn parse_unicode_range(&mut self, prefix_ident: Ident<'s>) -> PResult<UnicodeRange<'s>> {

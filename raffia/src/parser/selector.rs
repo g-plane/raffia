@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token, TokenWithSpan},
-    util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
+    util::{handle_escape, CowStr, LastOfNonEmpty},
     Parse, Syntax,
 };
 use smallvec::SmallVec;
@@ -1004,7 +1004,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                 token: Token::LParen(..),
                 span,
             } if span.start == end => {
-                let span = bump!(input).span;
+                bump!(input);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("nth-child")
@@ -1015,7 +1015,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                                 PseudoClassSelectorArg::Nth(nth)
                             } else {
                                 input
-                                    .parse_pseudo_arg_tokens(span.end)
+                                    .parse_tokens_in_parens()
                                     .map(PseudoClassSelectorArg::TokenSeq)?
                             }
                         } else {
@@ -1033,7 +1033,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                                 nth
                             } else {
                                 break 'pseudo_arg input
-                                    .parse_pseudo_arg_tokens(span.end)
+                                    .parse_tokens_in_parens()
                                     .map(PseudoClassSelectorArg::TokenSeq)?;
                             }
                         } else {
@@ -1094,7 +1094,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             .map(PseudoClassSelectorArg::CompoundSelector)?
                     }
                     _ => input
-                        .parse_pseudo_arg_tokens(span.end)
+                        .parse_tokens_in_parens()
                         .map(PseudoClassSelectorArg::TokenSeq)?,
                 };
 
@@ -1133,7 +1133,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                 token: Token::LParen(..),
                 span,
             } if span.start == end => {
-                let span = bump!(input).span;
+                bump!(input);
                 let arg = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("part") =>
@@ -1150,7 +1150,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                             .map(PseudoElementSelectorArg::CompoundSelector)?
                     }
                     _ => input
-                        .parse_pseudo_arg_tokens(span.end)
+                        .parse_tokens_in_parens()
                         .map(PseudoElementSelectorArg::TokenSeq)?,
                 };
 
@@ -1460,56 +1460,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             })),
             _ => Ok(None),
         }
-    }
-
-    fn parse_pseudo_arg_tokens(&mut self, start: usize) -> PResult<TokenSeq<'s>> {
-        let mut tokens = Vec::with_capacity(1);
-        let mut pairs = Vec::with_capacity(1);
-        loop {
-            match &peek!(self).token {
-                Token::LParen(..) => {
-                    pairs.push(PairedToken::Paren);
-                }
-                Token::RParen(..) => {
-                    if let Some(PairedToken::Paren) = pairs.pop() {
-                    } else {
-                        break;
-                    }
-                }
-                Token::LBracket(..) => {
-                    pairs.push(PairedToken::Bracket);
-                }
-                Token::RBracket(..) => {
-                    if let Some(PairedToken::Bracket) = pairs.pop() {
-                    } else {
-                        break;
-                    }
-                }
-                Token::LBrace(..) | Token::HashLBrace(..) => {
-                    pairs.push(PairedToken::Brace);
-                }
-                Token::RBrace(..) => {
-                    if let Some(PairedToken::Brace) = pairs.pop() {
-                    } else {
-                        break;
-                    }
-                }
-                _ => {}
-            }
-            tokens.push(bump!(self));
-        }
-        let span = Span {
-            start: tokens
-                .first()
-                .map(|token| token.span.start)
-                .unwrap_or(start),
-            end: if let Some(last) = tokens.last() {
-                last.span.end
-            } else {
-                peek!(self).span.start
-            },
-        };
-        Ok(TokenSeq { tokens, span })
     }
 }
 
