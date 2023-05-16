@@ -3,3 +3,11 @@
 }
 
 @each $key, $value in (a: a, b: b) {}
+
+@each $s,$as in ('', '-unchecked'),
+              (':hover', '-unchecked'),
+              (':active', '-checked') {
+    .view {
+        icon-shadow: none;
+    }
+}

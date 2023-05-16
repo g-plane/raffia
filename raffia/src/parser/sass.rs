@@ -36,7 +36,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             match peek!(self) {
                 TokenWithSpan {
                     token:
-                        Token::RBrace(..)
+                        Token::LBrace(..)
+                        | Token::RBrace(..)
                         | Token::RParen(..)
                         | Token::Semicolon(..)
                         | Token::Colon(..)
@@ -732,7 +733,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
             });
         }
 
-        let expr = input.parse()?;
+        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
         let body = input.parse::<SimpleBlock>()?;
         let span = Span {
             start,

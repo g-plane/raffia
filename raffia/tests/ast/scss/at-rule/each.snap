@@ -267,9 +267,245 @@ Stylesheet(
         end: 82,
       ),
     ),
+    SassEachAtRule(
+      type: "SassEachAtRule",
+      bindings: [
+        SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "s",
+            raw: "s",
+            span: Span(
+              start: 91,
+              end: 92,
+            ),
+          ),
+          span: Span(
+            start: 90,
+            end: 92,
+          ),
+        ),
+        SassVariable(
+          type: "SassVariable",
+          name: Ident(
+            type: "Ident",
+            name: "as",
+            raw: "as",
+            span: Span(
+              start: 94,
+              end: 96,
+            ),
+          ),
+          span: Span(
+            start: 93,
+            end: 96,
+          ),
+        ),
+      ],
+      expr: SassList(
+        type: "SassList",
+        items: [
+          SassList(
+            type: "SassList",
+            items: [
+              Str(
+                type: "Str",
+                value: "",
+                raw: "\'\'",
+                span: Span(
+                  start: 101,
+                  end: 103,
+                ),
+              ),
+              Str(
+                type: "Str",
+                value: "-unchecked",
+                raw: "\'-unchecked\'",
+                span: Span(
+                  start: 105,
+                  end: 117,
+                ),
+              ),
+            ],
+            hasParens: true,
+            separator: Comma,
+            span: Span(
+              start: 100,
+              end: 118,
+            ),
+          ),
+          SassList(
+            type: "SassList",
+            items: [
+              Str(
+                type: "Str",
+                value: ":hover",
+                raw: "\':hover\'",
+                span: Span(
+                  start: 135,
+                  end: 143,
+                ),
+              ),
+              Str(
+                type: "Str",
+                value: "-unchecked",
+                raw: "\'-unchecked\'",
+                span: Span(
+                  start: 145,
+                  end: 157,
+                ),
+              ),
+            ],
+            hasParens: true,
+            separator: Comma,
+            span: Span(
+              start: 134,
+              end: 158,
+            ),
+          ),
+          SassList(
+            type: "SassList",
+            items: [
+              Str(
+                type: "Str",
+                value: ":active",
+                raw: "\':active\'",
+                span: Span(
+                  start: 175,
+                  end: 184,
+                ),
+              ),
+              Str(
+                type: "Str",
+                value: "-checked",
+                raw: "\'-checked\'",
+                span: Span(
+                  start: 186,
+                  end: 196,
+                ),
+              ),
+            ],
+            hasParens: true,
+            separator: Comma,
+            span: Span(
+              start: 174,
+              end: 197,
+            ),
+          ),
+        ],
+        hasParens: false,
+        separator: Comma,
+        span: Span(
+          start: 100,
+          end: 197,
+        ),
+      ),
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "view",
+                            raw: "view",
+                            span: Span(
+                              start: 205,
+                              end: 209,
+                            ),
+                          ),
+                          span: Span(
+                            start: 204,
+                            end: 209,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 204,
+                        end: 209,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 204,
+                    end: 209,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 204,
+                end: 209,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "icon-shadow",
+                    raw: "icon-shadow",
+                    span: Span(
+                      start: 220,
+                      end: 231,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "none",
+                      raw: "none",
+                      span: Span(
+                        start: 233,
+                        end: 237,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 220,
+                    end: 237,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 210,
+                end: 244,
+              ),
+            ),
+            span: Span(
+              start: 204,
+              end: 244,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 198,
+          end: 246,
+        ),
+      ),
+      span: Span(
+        start: 84,
+        end: 246,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 83,
+    end: 247,
   ),
 )
