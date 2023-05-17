@@ -1,0 +1,230 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "img",
+                        raw: "img",
+                        span: Span(
+                          start: 0,
+                          end: 3,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "filter",
+              raw: "filter",
+              span: Span(
+                start: 8,
+                end: 14,
+              ),
+            ),
+            value: [
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "progid",
+                )),
+                span: Span(
+                  start: 16,
+                  end: 22,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Colon(Colon(
+                  kind: "Colon",
+                )),
+                span: Span(
+                  start: 22,
+                  end: 23,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "DXImageTransform",
+                )),
+                span: Span(
+                  start: 23,
+                  end: 39,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Dot(Dot(
+                  kind: "Dot",
+                )),
+                span: Span(
+                  start: 39,
+                  end: 40,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "Microsoft",
+                )),
+                span: Span(
+                  start: 40,
+                  end: 49,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Dot(Dot(
+                  kind: "Dot",
+                )),
+                span: Span(
+                  start: 49,
+                  end: 50,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "BasicImage",
+                )),
+                span: Span(
+                  start: 50,
+                  end: 60,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: LParen(LParen(
+                  kind: "LParen",
+                )),
+                span: Span(
+                  start: 60,
+                  end: 61,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Ident(Ident(
+                  kind: "Ident",
+                  escaped: false,
+                  raw: "rotation",
+                )),
+                span: Span(
+                  start: 61,
+                  end: 69,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Equal(Equal(
+                  kind: "Equal",
+                )),
+                span: Span(
+                  start: 69,
+                  end: 70,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: Number(Number(
+                  kind: "Number",
+                  raw: "2",
+                )),
+                span: Span(
+                  start: 70,
+                  end: 71,
+                ),
+              ),
+              TokenWithSpan(
+                type: "TokenWithSpan",
+                token: RParen(RParen(
+                  kind: "RParen",
+                )),
+                span: Span(
+                  start: 71,
+                  end: 72,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 72,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 75,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 75,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 76,
+  ),
+)

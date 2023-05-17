@@ -35,7 +35,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                 ..input.state
             });
             match &name {
-                InterpolableIdent::Literal(ident) if ident.name.starts_with("--") => {
+                InterpolableIdent::Literal(ident)
+                    if ident.name.starts_with("--")
+                        || ident.name.eq_ignore_ascii_case("filter")
+                            && matches!(
+                                &peek!(parser).token,
+                                // for IE-compatibility:
+                                // filter: progid:DXImageTransform.Microsoft...
+                                Token::Ident(ident) if ident.name().eq_ignore_ascii_case("progid")
+                            ) =>
+                {
                     let mut values = Vec::with_capacity(3);
                     let mut pairs = Vec::with_capacity(1);
                     loop {
