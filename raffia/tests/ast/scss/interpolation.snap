@@ -717,21 +717,36 @@ Stylesheet(
                   ComponentValues(
                     type: "ComponentValues",
                     values: [
-                      Number(
-                        type: "Number",
-                        value: 2.0,
-                        raw: "2",
+                      SassBinaryExpression(
+                        type: "SassBinaryExpression",
+                        left: Number(
+                          type: "Number",
+                          value: 2.0,
+                          raw: "2",
+                          span: Span(
+                            start: 200,
+                            end: 201,
+                          ),
+                        ),
+                        op: SassBinaryOperator(
+                          type: "SassBinaryOperator",
+                          kind: Plus,
+                          span: Span(
+                            start: 201,
+                            end: 202,
+                          ),
+                        ),
+                        right: Number(
+                          type: "Number",
+                          value: 2.0,
+                          raw: "2",
+                          span: Span(
+                            start: 202,
+                            end: 203,
+                          ),
+                        ),
                         span: Span(
                           start: 200,
-                          end: 201,
-                        ),
-                      ),
-                      Number(
-                        type: "Number",
-                        value: 2.0,
-                        raw: "+2",
-                        span: Span(
-                          start: 201,
                           end: 203,
                         ),
                       ),

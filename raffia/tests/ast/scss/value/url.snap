@@ -491,21 +491,36 @@ Stylesheet(
                     ComponentValues(
                       type: "ComponentValues",
                       values: [
-                        Number(
-                          type: "Number",
-                          value: 1.0,
-                          raw: "1",
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 207,
+                              end: 208,
+                            ),
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 208,
+                              end: 209,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 2.0,
+                            raw: "2",
+                            span: Span(
+                              start: 209,
+                              end: 210,
+                            ),
+                          ),
                           span: Span(
                             start: 207,
-                            end: 208,
-                          ),
-                        ),
-                        Number(
-                          type: "Number",
-                          value: 2.0,
-                          raw: "+2",
-                          span: Span(
-                            start: 208,
                             end: 210,
                           ),
                         ),
@@ -582,28 +597,43 @@ Stylesheet(
                     ComponentValues(
                       type: "ComponentValues",
                       values: [
-                        SassVariable(
-                          type: "SassVariable",
-                          name: Ident(
-                            type: "Ident",
-                            name: "y",
-                            raw: "y",
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: SassVariable(
+                            type: "SassVariable",
+                            name: Ident(
+                              type: "Ident",
+                              name: "y",
+                              raw: "y",
+                              span: Span(
+                                start: 241,
+                                end: 242,
+                              ),
+                            ),
                             span: Span(
-                              start: 241,
+                              start: 240,
                               end: 242,
+                            ),
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 242,
+                              end: 243,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 321.0,
+                            raw: "321",
+                            span: Span(
+                              start: 243,
+                              end: 246,
                             ),
                           ),
                           span: Span(
                             start: 240,
-                            end: 242,
-                          ),
-                        ),
-                        Number(
-                          type: "Number",
-                          value: 321.0,
-                          raw: "+321",
-                          span: Span(
-                            start: 242,
                             end: 246,
                           ),
                         ),

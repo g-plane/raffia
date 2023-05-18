@@ -161,66 +161,185 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         loop {
-            let operator = match &peek!(self).token {
-                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
+            let operator = match peek!(self) {
+                TokenWithSpan {
+                    token: Token::Asterisk(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::Multiply,
                     span: bump!(self).span,
                 },
-                Token::Percent(..) if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
+                TokenWithSpan {
+                    token: Token::Percent(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::Modulo,
                     span: bump!(self).span,
                 },
-                Token::Plus(..) if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
+                TokenWithSpan {
+                    token: Token::Plus(..),
+                    ..
+                } if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::Plus,
                     span: bump!(self).span,
                 },
-                Token::Minus(..) if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
+                TokenWithSpan {
+                    token: Token::Minus(..),
+                    ..
+                } if precedence == PRECEDENCE_PLUS => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::Minus,
                     span: bump!(self).span,
                 },
-                Token::GreaterThan(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::GreaterThan,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::GreaterThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::GreaterThanOrEqual,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
+                TokenWithSpan {
+                    token: Token::GreaterThan(..),
+                    ..
+                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::GreaterThan,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::GreaterThanEqual(..),
+                    ..
+                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::GreaterThanOrEqual,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::LessThan(..),
+                    ..
+                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::LessThan,
                     span: bump!(self).span,
                 },
-                Token::LessThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::LessThanOrEqual,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::EqualEqual(..) if precedence == PRECEDENCE_EQUALITY => SassBinaryOperator {
+                TokenWithSpan {
+                    token: Token::LessThanEqual(..),
+                    ..
+                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::LessThanOrEqual,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::EqualEqual(..),
+                    ..
+                } if precedence == PRECEDENCE_EQUALITY => SassBinaryOperator {
                     kind: SassBinaryOperatorKind::EqualsEquals,
                     span: bump!(self).span,
                 },
-                Token::ExclamationEqual(..) if precedence == PRECEDENCE_EQUALITY => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::ExclamationEquals,
-                        span: bump!(self).span,
-                    }
+                TokenWithSpan {
+                    token: Token::ExclamationEqual(..),
+                    ..
+                } if precedence == PRECEDENCE_EQUALITY => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::ExclamationEquals,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::Ident(token),
+                    ..
+                } if token.raw == "and" && precedence == PRECEDENCE_AND => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::And,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::Ident(token),
+                    ..
+                } if token.raw == "or" && precedence == PRECEDENCE_OR => SassBinaryOperator {
+                    kind: SassBinaryOperatorKind::Or,
+                    span: bump!(self).span,
+                },
+                TokenWithSpan {
+                    token: Token::Number(token),
+                    span,
+                } if precedence == PRECEDENCE_PLUS
+                    && (token.raw.starts_with('+')
+                        || token.raw.starts_with('-') && span.start == left.span().end) =>
+                {
+                    let (number, number_span) = expect!(self, Number);
+                    let op = SassBinaryOperator {
+                        kind: if number.raw.starts_with('+') {
+                            SassBinaryOperatorKind::Plus
+                        } else {
+                            SassBinaryOperatorKind::Minus
+                        },
+                        span: Span {
+                            start: number_span.start,
+                            end: number_span.start + 1,
+                        },
+                    };
+                    let span = Span {
+                        start: left.span().start,
+                        end: number_span.end,
+                    };
+                    let right = {
+                        let span = Span {
+                            start: number_span.start + 1,
+                            end: number_span.end,
+                        };
+                        let raw = unsafe { number.raw.get_unchecked(1..number.raw.len()) };
+                        raw.parse()
+                            .map_err(|_| Error {
+                                kind: ErrorKind::InvalidNumber,
+                                span: span.clone(),
+                            })
+                            .map(|value| ComponentValue::Number(Number { value, raw, span }))?
+                    };
+                    left = ComponentValue::SassBinaryExpression(SassBinaryExpression {
+                        left: Box::new(left),
+                        op,
+                        right: Box::new(right),
+                        span,
+                    });
+                    continue;
                 }
-                Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::And,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
-                    SassBinaryOperator {
-                        kind: SassBinaryOperatorKind::Or,
-                        span: bump!(self).span,
-                    }
+                TokenWithSpan {
+                    token: Token::Dimension(token),
+                    span,
+                } if precedence == PRECEDENCE_PLUS
+                    && (token.value.raw.starts_with('+')
+                        || token.value.raw.starts_with('-') && span.start == left.span().end) =>
+                {
+                    let (dimension, dimension_span) = expect!(self, Dimension);
+                    let op = SassBinaryOperator {
+                        kind: if dimension.value.raw.starts_with('+') {
+                            SassBinaryOperatorKind::Plus
+                        } else {
+                            SassBinaryOperatorKind::Minus
+                        },
+                        span: Span {
+                            start: dimension_span.start,
+                            end: dimension_span.start + 1,
+                        },
+                    };
+                    let span = Span {
+                        start: left.span().start,
+                        end: dimension_span.end,
+                    };
+                    let right = {
+                        Dimension::try_from_token(
+                            crate::token::Dimension {
+                                value: crate::token::Number {
+                                    raw: unsafe {
+                                        dimension
+                                            .value
+                                            .raw
+                                            .get_unchecked(1..dimension.value.raw.len())
+                                    },
+                                },
+                                unit: dimension.unit,
+                            },
+                            Span {
+                                start: dimension_span.start + 1,
+                                end: dimension_span.end,
+                            },
+                        )
+                        .map(ComponentValue::Dimension)?
+                    };
+                    left = ComponentValue::SassBinaryExpression(SassBinaryExpression {
+                        left: Box::new(left),
+                        op,
+                        right: Box::new(right),
+                        span,
+                    });
+                    continue;
                 }
                 _ => break,
             };

@@ -37,6 +37,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed parsing Sass list in `@each` at-rule.
 - Added support of IE `filter` property.
 - Fixed parsing Sass interpolation with trailing non-name start.
+- Fixed parsing Sass binary plus/minus expression.
 
 ## v0.2.0
 
