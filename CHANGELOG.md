@@ -36,6 +36,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed trailing comma in selector in Sass.
 - Fixed parsing Sass list in `@each` at-rule.
 - Added support of IE `filter` property.
+- Fixed parsing Sass interpolation with trailing non-name start.
 
 ## v0.2.0
 

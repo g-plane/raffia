@@ -636,13 +636,38 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    #[inline]
     fn scan_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
         self.scan_ident_sequence()
             .map(|(ident, span)| TokenWithSpan {
                 token: Token::Ident(ident),
                 span,
             })
+    }
+
+    pub(crate) fn scan_ident_template(&mut self) -> PResult<Option<(Ident<'s>, Span)>> {
+        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+
+        let start = self.current_offset();
+        let mut escaped = false;
+
+        while let Some((i, c)) = self.state.chars.peek() {
+            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
+                self.state.chars.next();
+            } else if c == &'\\' {
+                escaped = true;
+                self.scan_escape(/* backslash_consumed */ false)?;
+            } else {
+                let end = *i;
+                return if end > start {
+                    let raw = unsafe { self.source.get_unchecked(start..end) };
+                    Ok(Some((Ident { escaped, raw }, Span { start, end })))
+                } else {
+                    Ok(None)
+                };
+            }
+        }
+
+        Ok(None)
     }
 
     fn scan_sass_single_hyphen_as_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
