@@ -9,8 +9,10 @@ use crate::{
     Span,
 };
 
-impl<'s> Dimension<'s> {
-    pub(super) fn try_from_token(token: token::Dimension<'s>, span: Span) -> PResult<Self> {
+impl<'s> TryFrom<(token::Dimension<'s>, Span)> for Dimension<'s> {
+    type Error = Error;
+
+    fn try_from((token, span): (token::Dimension<'s>, Span)) -> PResult<Self> {
         use crate::ast::{Angle, Duration, Flex, Frequency, Length, Resolution, UnknownDimension};
 
         let value_span = Span {
@@ -21,8 +23,8 @@ impl<'s> Dimension<'s> {
             start: span.start + token.value.raw.len(),
             end: span.end,
         };
-        let value = Number::try_from_token(token.value, value_span)?;
-        let unit = Ident::from_token(token.unit, unit_span);
+        let value = (token.value, value_span).try_into()?;
+        let unit = Ident::from((token.unit, unit_span));
         let unit_name = &unit.name;
         if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
@@ -92,8 +94,8 @@ impl<'s> Dimension<'s> {
     }
 }
 
-impl<'s> Ident<'s> {
-    pub(super) fn from_token(token: token::Ident<'s>, span: Span) -> Self {
+impl<'s> From<(token::Ident<'s>, Span)> for Ident<'s> {
+    fn from((token, span): (token::Ident<'s>, Span)) -> Self {
         Ident {
             name: token.name(),
             raw: token.raw,
@@ -102,8 +104,8 @@ impl<'s> Ident<'s> {
     }
 }
 
-impl<'s> InterpolableIdentStaticPart<'s> {
-    pub(super) fn from_token(token: token::Ident<'s>, span: Span) -> Self {
+impl<'s> From<(token::Ident<'s>, Span)> for InterpolableIdentStaticPart<'s> {
+    fn from((token, span): (token::Ident<'s>, Span)) -> Self {
         InterpolableIdentStaticPart {
             value: token.name(),
             raw: token.raw,
@@ -112,8 +114,10 @@ impl<'s> InterpolableIdentStaticPart<'s> {
     }
 }
 
-impl<'s> Number<'s> {
-    pub(super) fn try_from_token(token: token::Number<'s>, span: Span) -> PResult<Self> {
+impl<'s> TryFrom<(token::Number<'s>, Span)> for Number<'s> {
+    type Error = Error;
+
+    fn try_from((token, span): (token::Number<'s>, Span)) -> PResult<Self> {
         token
             .raw
             .parse()
@@ -129,8 +133,8 @@ impl<'s> Number<'s> {
     }
 }
 
-impl<'s> InterpolableStrStaticPart<'s> {
-    pub(super) fn from_token(token: token::StrTemplate<'s>, span: Span) -> Self {
+impl<'s> From<(token::StrTemplate<'s>, Span)> for InterpolableStrStaticPart<'s> {
+    fn from((token, span): (token::StrTemplate<'s>, Span)) -> Self {
         let raw_without_quotes = if token.tail {
             unsafe { token.raw.get_unchecked(0..token.raw.len() - 1) }
         } else if token.head {
@@ -151,8 +155,8 @@ impl<'s> InterpolableStrStaticPart<'s> {
     }
 }
 
-impl<'s> InterpolableUrlStaticPart<'s> {
-    pub(super) fn from_token(token: token::UrlTemplate<'s>, span: Span) -> Self {
+impl<'s> From<(token::UrlTemplate<'s>, Span)> for InterpolableUrlStaticPart<'s> {
+    fn from((token, span): (token::UrlTemplate<'s>, Span)) -> Self {
         let value = if token.escaped {
             handle_escape(token.raw)
         } else {

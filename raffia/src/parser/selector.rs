@@ -658,7 +658,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
         let name = if input.syntax == Syntax::Css {
             let (ident, ident_span) = expect_without_ws_or_comments!(input, Ident);
             end = ident_span.end;
-            InterpolableIdent::Literal(Ident::from_token(ident, ident_span))
+            InterpolableIdent::Literal((ident, ident_span).into())
         } else {
             let ident = input.parse::<InterpolableIdent>()?;
             let ident_span = ident.span();
@@ -1119,7 +1119,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
         let name = if input.syntax == Syntax::Css {
             let (ident, ident_span) = expect_without_ws_or_comments!(input, Ident);
             end = ident_span.end;
-            InterpolableIdent::Literal(Ident::from_token(ident, ident_span))
+            InterpolableIdent::Literal((ident, ident_span).into())
         } else {
             let name = input.parse::<InterpolableIdent>()?;
             let name_span = name.span();

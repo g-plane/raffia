@@ -791,8 +791,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Delimiter {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Dimension<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (token, span) = expect!(input, Dimension);
-        Dimension::try_from_token(token, span)
+        expect!(input, Dimension).try_into()
     }
 }
 
@@ -871,8 +870,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Ident<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (token, span) = expect!(input, Ident);
-        Ok(Ident::from_token(token, span))
+        Ok(expect!(input, Ident).into())
     }
 }
 
@@ -944,13 +942,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (token, span) = expect!(input, Percentage);
         Ok(Percentage {
-            value: Number::try_from_token(
+            value: (
                 token.value,
                 Span {
                     start: span.start,
                     end: span.end - 1,
                 },
-            )?,
+            )
+                .try_into()?,
             span,
         })
     }
@@ -1004,7 +1003,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end,
             };
             Ok(Url {
-                name: Ident::from_token(prefix, prefix_span),
+                name: (prefix, prefix_span).into(),
                 value: Some(UrlValue::Str(value)),
                 modifiers,
                 span,
@@ -1015,7 +1014,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: Ident::from_token(prefix, prefix_span),
+                name: (prefix, prefix_span).into(),
                 value: Some(UrlValue::Raw(value)),
                 modifiers: vec![],
                 span,
@@ -1027,7 +1026,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 end: value.span.end + 1, // `)` is consumed, but span excludes it
             };
             Ok(Url {
-                name: Ident::from_token(prefix, prefix_span),
+                name: (prefix, prefix_span).into(),
                 value: Some(UrlValue::SassInterpolated(value)),
                 modifiers: vec![],
                 span,

@@ -316,7 +316,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         end: dimension_span.end,
                     };
                     let right = {
-                        Dimension::try_from_token(
+                        (
                             crate::token::Dimension {
                                 value: crate::token::Number {
                                     raw: unsafe {
@@ -333,7 +333,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 end: dimension_span.end,
                             },
                         )
-                        .map(ComponentValue::Dimension)?
+                            .try_into()
+                            .map(ComponentValue::Dimension)?
                     };
                     left = ComponentValue::SassBinaryExpression(SassBinaryExpression {
                         left: Box::new(left),
@@ -393,10 +394,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             } => {
                 let (ident, ident_span) = expect!(self, Ident);
                 (
-                    SassInterpolatedIdentElement::Static(InterpolableIdentStaticPart::from_token(
-                        ident,
-                        ident_span.clone(),
-                    )),
+                    SassInterpolatedIdentElement::Static((ident, ident_span.clone()).into()),
                     ident_span,
                 )
             }
@@ -416,9 +414,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         loop {
             if let Some((token, span)) = self.tokenizer.scan_ident_template()? {
                 end = span.end;
-                elements.push(SassInterpolatedIdentElement::Static(
-                    InterpolableIdentStaticPart::from_token(token, span),
-                ));
+                elements.push(SassInterpolatedIdentElement::Static((token, span).into()));
             } else if matches!(
                 peek!(self),
                 TokenWithSpan { token: Token::HashLBrace(..), span } if end == span.start
@@ -889,7 +885,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
                     end: keyword_span.end,
                 };
                 Some(SassFlag {
-                    keyword: Ident::from_token(keyword, keyword_span),
+                    keyword: (keyword, keyword_span).into(),
                     span,
                 })
             } else {
@@ -1172,7 +1168,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
         debug_assert!(quote == '\'' || quote == '"');
         let mut span = first_span.clone();
         let mut elements = vec![SassInterpolatedStrElement::Static(
-            InterpolableStrStaticPart::from_token(first, first_span),
+            (first, first_span).into(),
         )];
 
         let mut is_parsing_static_part = false;
@@ -1182,7 +1178,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
                 let tail = token.tail;
                 let end = str_tpl_span.end;
                 elements.push(SassInterpolatedStrElement::Static(
-                    InterpolableStrStaticPart::from_token(token, str_tpl_span),
+                    (token, str_tpl_span).into(),
                 ));
                 if tail {
                     span.end = end;
@@ -1221,7 +1217,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
         };
         let mut span = first_span.clone();
         let mut elements = vec![SassInterpolatedUrlElement::Static(
-            InterpolableUrlStaticPart::from_token(first, first_span),
+            (first, first_span).into(),
         )];
 
         let mut is_parsing_static_part = false;
@@ -1231,7 +1227,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
                     input.tokenizer.scan_url_template()?;
                 let tail = token.tail;
                 elements.push(SassInterpolatedUrlElement::Static(
-                    InterpolableUrlStaticPart::from_token(token, url_tpl_span),
+                    (token, url_tpl_span).into(),
                 ));
                 if tail {
                     span.end = end;
@@ -1437,10 +1433,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseNamespace<'s> {
             Token::Asterisk(..) => Ok(SassUseNamespace::Unnamed(SassUnnamedNamespace {
                 span: token_with_span.span,
             })),
-            Token::Ident(ident) => Ok(SassUseNamespace::Named(Ident::from_token(
-                ident,
-                token_with_span.span,
-            ))),
+            Token::Ident(ident) => Ok(SassUseNamespace::Named(
+                (ident, token_with_span.span).into(),
+            )),
             _ => Err(Error {
                 kind: ErrorKind::ExpectSassUseNamespace,
                 span: token_with_span.span,
@@ -1455,13 +1450,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariable<'s> {
 
         let (dollar_var, span) = expect!(input, DollarVar);
         Ok(SassVariable {
-            name: Ident::from_token(
+            name: (
                 dollar_var.ident,
                 Span {
                     start: span.start + 1,
                     end: span.end,
                 },
-            ),
+            )
+                .into(),
             span,
         })
     }
@@ -1478,7 +1474,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
                 span: next_span, ..
             } = peek!(input);
             input.assert_no_ws_or_comment(&dot_span, &next_span)?;
-            Some(Ident::from_token(ident_token, span))
+            Some(Ident::from((ident_token, span)))
         } else {
             None
         };

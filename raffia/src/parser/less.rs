@@ -21,14 +21,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     TokenWithSpan {
                         token: Token::AtLBraceVar(..),
                         span,
-                    } if ident_span.end == span.start => LessInterpolatedIdentElement::Static(
-                        InterpolableIdentStaticPart::from_token(ident, ident_span),
-                    ),
-                    _ => {
-                        return Ok(InterpolableIdent::Literal(Ident::from_token(
-                            ident, ident_span,
-                        )))
+                    } if ident_span.end == span.start => {
+                        LessInterpolatedIdentElement::Static((ident, ident_span).into())
                     }
+                    _ => return Ok(InterpolableIdent::Literal((ident, ident_span).into())),
                 }
             }
             Token::AtLBraceVar(..) => self.parse().map(LessInterpolatedIdentElement::Variable)?,
@@ -47,7 +43,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     let (ident, ident_span) = expect!(self, Ident);
                     span.end = ident_span.end;
                     elements.push(LessInterpolatedIdentElement::Static(
-                        InterpolableIdentStaticPart::from_token(ident, ident_span),
+                        (ident, ident_span).into(),
                     ));
                 }
                 TokenWithSpan {
@@ -76,7 +72,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
         debug_assert!(quote == '\'' || quote == '"');
         let mut span = first_span.clone();
         let mut elements = vec![LessInterpolatedStrElement::Static(
-            InterpolableStrStaticPart::from_token(first, first_span),
+            (first, first_span).into(),
         )];
 
         let mut is_parsing_static_part = false;
@@ -86,7 +82,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
                 let tail = token.tail;
                 let end = str_tpl_span.end;
                 elements.push(LessInterpolatedStrElement::Static(
-                    InterpolableStrStaticPart::from_token(token, str_tpl_span),
+                    (token, str_tpl_span).into(),
                 ));
                 if tail {
                     span.end = end;
@@ -100,7 +96,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
                 let end = expect!(input, RBrace).1.end;
                 elements.push(LessInterpolatedStrElement::Variable(
                     LessVariableInterpolation {
-                        name: Ident::from_token(name, name_span),
+                        name: (name, name_span).into(),
                         span: Span { start, end },
                     },
                 ));
@@ -134,13 +130,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariable<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (at_keyword, span) = expect!(input, AtKeyword);
         Ok(LessVariable {
-            name: Ident::from_token(
+            name: (
                 at_keyword.ident,
                 Span {
                     start: span.start + 1,
                     end: span.end,
                 },
-            ),
+            )
+                .into(),
             span,
         })
     }
@@ -166,13 +163,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableInterpolation<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (at_lbrace_var, span) = expect!(input, AtLBraceVar);
         Ok(LessVariableInterpolation {
-            name: Ident::from_token(
+            name: (
                 at_lbrace_var.ident,
                 Span {
                     start: span.start + 2,
                     end: span.end - 1,
                 },
-            ),
+            )
+                .into(),
             span,
         })
     }
