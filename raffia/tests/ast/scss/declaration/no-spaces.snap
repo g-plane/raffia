@@ -93,19 +93,10 @@ Stylesheet(
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
                 elements: [
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "baz",
-                        raw: "baz",
-                        span: Span(
-                          start: 23,
-                          end: 26,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "baz",
+                    raw: "baz",
                     span: Span(
                       start: 23,
                       end: 26,

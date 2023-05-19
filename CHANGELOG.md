@@ -38,6 +38,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of IE `filter` property.
 - Fixed parsing Sass interpolation with trailing non-name start.
 - Fixed parsing Sass binary plus/minus expression.
+- Changed Sass interpolation AST.
 
 ## v0.2.0
 

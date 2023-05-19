@@ -746,26 +746,17 @@ Stylesheet(
                         end: 383,
                       ),
                     ),
-                    ComponentValues(
-                      type: "ComponentValues",
-                      values: [
-                        SassVariable(
-                          type: "SassVariable",
-                          name: Ident(
-                            type: "Ident",
-                            name: "a",
-                            raw: "a",
-                            span: Span(
-                              start: 386,
-                              end: 387,
-                            ),
-                          ),
-                          span: Span(
-                            start: 385,
-                            end: 387,
-                          ),
+                    SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 386,
+                          end: 387,
                         ),
-                      ],
+                      ),
                       span: Span(
                         start: 385,
                         end: 387,
@@ -780,26 +771,17 @@ Stylesheet(
                         end: 393,
                       ),
                     ),
-                    ComponentValues(
-                      type: "ComponentValues",
-                      values: [
-                        SassVariable(
-                          type: "SassVariable",
-                          name: Ident(
-                            type: "Ident",
-                            name: "b",
-                            raw: "b",
-                            span: Span(
-                              start: 396,
-                              end: 397,
-                            ),
-                          ),
-                          span: Span(
-                            start: 395,
-                            end: 397,
-                          ),
+                    SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 396,
+                          end: 397,
                         ),
-                      ],
+                      ),
                       span: Span(
                         start: 395,
                         end: 397,

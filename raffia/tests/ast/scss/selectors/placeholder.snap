@@ -430,58 +430,40 @@ Stylesheet(
                     name: SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassInterpolatedStr(
-                              type: "SassInterpolatedStr",
-                              elements: [
-                                InterpolableStrStaticPart(
-                                  type: "InterpolableStrStaticPart",
-                                  value: "foo--",
-                                  raw: "\"foo--",
-                                  span: Span(
-                                    start: 103,
-                                    end: 109,
-                                  ),
-                                ),
-                                ComponentValues(
-                                  type: "ComponentValues",
-                                  values: [
-                                    SassVariable(
-                                      type: "SassVariable",
-                                      name: Ident(
-                                        type: "Ident",
-                                        name: "foo",
-                                        raw: "foo",
-                                        span: Span(
-                                          start: 112,
-                                          end: 115,
-                                        ),
-                                      ),
-                                      span: Span(
-                                        start: 111,
-                                        end: 115,
-                                      ),
-                                    ),
-                                  ],
-                                  span: Span(
-                                    start: 111,
-                                    end: 115,
-                                  ),
-                                ),
-                                InterpolableStrStaticPart(
-                                  type: "InterpolableStrStaticPart",
-                                  value: "",
-                                  raw: "\"",
-                                  span: Span(
-                                    start: 116,
-                                    end: 117,
-                                  ),
-                                ),
-                              ],
+                        SassInterpolatedStr(
+                          type: "SassInterpolatedStr",
+                          elements: [
+                            InterpolableStrStaticPart(
+                              type: "InterpolableStrStaticPart",
+                              value: "foo--",
+                              raw: "\"foo--",
                               span: Span(
                                 start: 103,
+                                end: 109,
+                              ),
+                            ),
+                            SassVariable(
+                              type: "SassVariable",
+                              name: Ident(
+                                type: "Ident",
+                                name: "foo",
+                                raw: "foo",
+                                span: Span(
+                                  start: 112,
+                                  end: 115,
+                                ),
+                              ),
+                              span: Span(
+                                start: 111,
+                                end: 115,
+                              ),
+                            ),
+                            InterpolableStrStaticPart(
+                              type: "InterpolableStrStaticPart",
+                              value: "",
+                              raw: "\"",
+                              span: Span(
+                                start: 116,
                                 end: 117,
                               ),
                             ),

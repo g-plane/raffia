@@ -78,43 +78,34 @@ Stylesheet(
                             end: 13,
                           ),
                         ),
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassBinaryExpression(
-                              type: "SassBinaryExpression",
-                              left: Str(
-                                type: "Str",
-                                value: "foo",
-                                raw: "\"foo\"",
-                                span: Span(
-                                  start: 15,
-                                  end: 20,
-                                ),
-                              ),
-                              op: SassBinaryOperator(
-                                type: "SassBinaryOperator",
-                                kind: Plus,
-                                span: Span(
-                                  start: 21,
-                                  end: 22,
-                                ),
-                              ),
-                              right: Str(
-                                type: "Str",
-                                value: " bar",
-                                raw: "\" bar\"",
-                                span: Span(
-                                  start: 23,
-                                  end: 29,
-                                ),
-                              ),
-                              span: Span(
-                                start: 15,
-                                end: 29,
-                              ),
+                        SassBinaryExpression(
+                          type: "SassBinaryExpression",
+                          left: Str(
+                            type: "Str",
+                            value: "foo",
+                            raw: "\"foo\"",
+                            span: Span(
+                              start: 15,
+                              end: 20,
                             ),
-                          ],
+                          ),
+                          op: SassBinaryOperator(
+                            type: "SassBinaryOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 21,
+                              end: 22,
+                            ),
+                          ),
+                          right: Str(
+                            type: "Str",
+                            value: " bar",
+                            raw: "\" bar\"",
+                            span: Span(
+                              start: 23,
+                              end: 29,
+                            ),
+                          ),
                           span: Span(
                             start: 15,
                             end: 29,
@@ -273,19 +264,10 @@ Stylesheet(
                           name: SassInterpolatedIdent(
                             type: "SassInterpolatedIdent",
                             elements: [
-                              ComponentValues(
-                                type: "ComponentValues",
-                                values: [
-                                  Str(
-                                    type: "Str",
-                                    value: "foo",
-                                    raw: "\"foo\"",
-                                    span: Span(
-                                      start: 72,
-                                      end: 77,
-                                    ),
-                                  ),
-                                ],
+                              Str(
+                                type: "Str",
+                                value: "foo",
+                                raw: "\"foo\"",
                                 span: Span(
                                   start: 72,
                                   end: 77,
@@ -328,19 +310,10 @@ Stylesheet(
                   name: SassInterpolatedIdent(
                     type: "SassInterpolatedIdent",
                     elements: [
-                      ComponentValues(
-                        type: "ComponentValues",
-                        values: [
-                          Str(
-                            type: "Str",
-                            value: "foo-prop",
-                            raw: "\"foo-prop\"",
-                            span: Span(
-                              start: 83,
-                              end: 93,
-                            ),
-                          ),
-                        ],
+                      Str(
+                        type: "Str",
+                        value: "foo-prop",
+                        raw: "\"foo-prop\"",
                         span: Span(
                           start: 83,
                           end: 93,
@@ -356,19 +329,10 @@ Stylesheet(
                     SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            Str(
-                              type: "Str",
-                              value: "foo-val",
-                              raw: "\"foo-val\"",
-                              span: Span(
-                                start: 98,
-                                end: 107,
-                              ),
-                            ),
-                          ],
+                        Str(
+                          type: "Str",
+                          value: "foo-val",
+                          raw: "\"foo-val\"",
                           span: Span(
                             start: 98,
                             end: 107,
@@ -714,43 +678,34 @@ Stylesheet(
                       end: 198,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      SassBinaryExpression(
-                        type: "SassBinaryExpression",
-                        left: Number(
-                          type: "Number",
-                          value: 2.0,
-                          raw: "2",
-                          span: Span(
-                            start: 200,
-                            end: 201,
-                          ),
-                        ),
-                        op: SassBinaryOperator(
-                          type: "SassBinaryOperator",
-                          kind: Plus,
-                          span: Span(
-                            start: 201,
-                            end: 202,
-                          ),
-                        ),
-                        right: Number(
-                          type: "Number",
-                          value: 2.0,
-                          raw: "2",
-                          span: Span(
-                            start: 202,
-                            end: 203,
-                          ),
-                        ),
-                        span: Span(
-                          start: 200,
-                          end: 203,
-                        ),
+                  SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 200,
+                        end: 201,
                       ),
-                    ],
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 201,
+                        end: 202,
+                      ),
+                    ),
+                    right: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 202,
+                        end: 203,
+                      ),
+                    ),
                     span: Span(
                       start: 200,
                       end: 203,
@@ -765,50 +720,41 @@ Stylesheet(
                       end: 211,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Function(
-                        type: "Function",
-                        name: Ident(
-                          type: "Ident",
-                          name: "unit",
-                          raw: "unit",
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unit",
+                      raw: "unit",
+                      span: Span(
+                        start: 213,
+                        end: 217,
+                      ),
+                    ),
+                    args: [
+                      Length(
+                        type: "Length",
+                        value: Number(
+                          type: "Number",
+                          value: 23.0,
+                          raw: "23",
                           span: Span(
-                            start: 213,
-                            end: 217,
+                            start: 218,
+                            end: 220,
                           ),
                         ),
-                        args: [
-                          Length(
-                            type: "Length",
-                            value: Number(
-                              type: "Number",
-                              value: 23.0,
-                              raw: "23",
-                              span: Span(
-                                start: 218,
-                                end: 220,
-                              ),
-                            ),
-                            unit: Ident(
-                              type: "Ident",
-                              name: "px",
-                              raw: "px",
-                              span: Span(
-                                start: 220,
-                                end: 222,
-                              ),
-                            ),
-                            span: Span(
-                              start: 218,
-                              end: 222,
-                            ),
+                        unit: Ident(
+                          type: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 220,
+                            end: 222,
                           ),
-                        ],
+                        ),
                         span: Span(
-                          start: 213,
-                          end: 223,
+                          start: 218,
+                          end: 222,
                         ),
                       ),
                     ],
@@ -826,19 +772,10 @@ Stylesheet(
                       end: 225,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Str(
-                        type: "Str",
-                        value: "bloon",
-                        raw: "\'bloo\\n\'",
-                        span: Span(
-                          start: 227,
-                          end: 235,
-                        ),
-                      ),
-                    ],
+                  Str(
+                    type: "Str",
+                    value: "bloon",
+                    raw: "\'bloo\\n\'",
                     span: Span(
                       start: 227,
                       end: 235,
@@ -948,19 +885,10 @@ Stylesheet(
                     end: 253,
                   ),
                 ),
-                ComponentValues(
-                  type: "ComponentValues",
-                  values: [
-                    Str(
-                      type: "Str",
-                      value: "foo",
-                      raw: "\"foo\"",
-                      span: Span(
-                        start: 255,
-                        end: 260,
-                      ),
-                    ),
-                  ],
+                Str(
+                  type: "Str",
+                  value: "foo",
+                  raw: "\"foo\"",
                   span: Span(
                     start: 255,
                     end: 260,
@@ -1028,26 +956,17 @@ Stylesheet(
                       name: SassInterpolatedIdent(
                         type: "SassInterpolatedIdent",
                         elements: [
-                          ComponentValues(
-                            type: "ComponentValues",
-                            values: [
-                              SassVariable(
-                                type: "SassVariable",
-                                name: Ident(
-                                  type: "Ident",
-                                  name: "zzz",
-                                  raw: "zzz",
-                                  span: Span(
-                                    start: 277,
-                                    end: 280,
-                                  ),
-                                ),
-                                span: Span(
-                                  start: 276,
-                                  end: 280,
-                                ),
+                          SassVariable(
+                            type: "SassVariable",
+                            name: Ident(
+                              type: "Ident",
+                              name: "zzz",
+                              raw: "zzz",
+                              span: Span(
+                                start: 277,
+                                end: 280,
                               ),
-                            ],
+                            ),
                             span: Span(
                               start: 276,
                               end: 280,
@@ -1165,26 +1084,17 @@ Stylesheet(
                     name: SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "zzz",
-                                raw: "zzz",
-                                span: Span(
-                                  start: 301,
-                                  end: 304,
-                                ),
-                              ),
-                              span: Span(
-                                start: 300,
-                                end: 304,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "zzz",
+                            raw: "zzz",
+                            span: Span(
+                              start: 301,
+                              end: 304,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 300,
                             end: 304,
@@ -1278,26 +1188,17 @@ Stylesheet(
                     name: SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "zzz",
-                                raw: "zzz",
-                                span: Span(
-                                  start: 320,
-                                  end: 323,
-                                ),
-                              ),
-                              span: Span(
-                                start: 319,
-                                end: 323,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "zzz",
+                            raw: "zzz",
+                            span: Span(
+                              start: 320,
+                              end: 323,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 319,
                             end: 323,
@@ -1391,26 +1292,17 @@ Stylesheet(
                     name: SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "zzz",
-                                raw: "zzz",
-                                span: Span(
-                                  start: 339,
-                                  end: 342,
-                                ),
-                              ),
-                              span: Span(
-                                start: 338,
-                                end: 342,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "zzz",
+                            raw: "zzz",
+                            span: Span(
+                              start: 339,
+                              end: 342,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 338,
                             end: 342,
@@ -1433,26 +1325,17 @@ Stylesheet(
                     name: SassInterpolatedIdent(
                       type: "SassInterpolatedIdent",
                       elements: [
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "zzz",
-                                raw: "zzz",
-                                span: Span(
-                                  start: 348,
-                                  end: 351,
-                                ),
-                              ),
-                              span: Span(
-                                start: 347,
-                                end: 351,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "zzz",
+                            raw: "zzz",
+                            span: Span(
+                              start: 348,
+                              end: 351,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 347,
                             end: 351,
@@ -1599,66 +1482,57 @@ Stylesheet(
                       name: SassInterpolatedIdent(
                         type: "SassInterpolatedIdent",
                         elements: [
-                          ComponentValues(
-                            type: "ComponentValues",
-                            values: [
-                              Function(
-                                type: "Function",
-                                name: Ident(
-                                  type: "Ident",
-                                  name: "if",
-                                  raw: "if",
-                                  span: Span(
-                                    start: 375,
-                                    end: 377,
-                                  ),
-                                ),
-                                args: [
-                                  NestingSelector(
-                                    type: "NestingSelector",
-                                    span: Span(
-                                      start: 378,
-                                      end: 379,
-                                    ),
-                                  ),
-                                  Delimiter(
-                                    type: "Delimiter",
-                                    kind: Comma,
-                                    span: Span(
-                                      start: 379,
-                                      end: 380,
-                                    ),
-                                  ),
-                                  Str(
-                                    type: "Str",
-                                    value: "&",
-                                    raw: "\'&\'",
-                                    span: Span(
-                                      start: 381,
-                                      end: 384,
-                                    ),
-                                  ),
-                                  Delimiter(
-                                    type: "Delimiter",
-                                    kind: Comma,
-                                    span: Span(
-                                      start: 384,
-                                      end: 385,
-                                    ),
-                                  ),
-                                  Str(
-                                    type: "Str",
-                                    value: "",
-                                    raw: "\'\'",
-                                    span: Span(
-                                      start: 386,
-                                      end: 388,
-                                    ),
-                                  ),
-                                ],
+                          Function(
+                            type: "Function",
+                            name: Ident(
+                              type: "Ident",
+                              name: "if",
+                              raw: "if",
+                              span: Span(
+                                start: 375,
+                                end: 377,
+                              ),
+                            ),
+                            args: [
+                              NestingSelector(
+                                type: "NestingSelector",
                                 span: Span(
-                                  start: 375,
-                                  end: 389,
+                                  start: 378,
+                                  end: 379,
+                                ),
+                              ),
+                              Delimiter(
+                                type: "Delimiter",
+                                kind: Comma,
+                                span: Span(
+                                  start: 379,
+                                  end: 380,
+                                ),
+                              ),
+                              Str(
+                                type: "Str",
+                                value: "&",
+                                raw: "\'&\'",
+                                span: Span(
+                                  start: 381,
+                                  end: 384,
+                                ),
+                              ),
+                              Delimiter(
+                                type: "Delimiter",
+                                kind: Comma,
+                                span: Span(
+                                  start: 384,
+                                  end: 385,
+                                ),
+                              ),
+                              Str(
+                                type: "Str",
+                                value: "",
+                                raw: "\'\'",
+                                span: Span(
+                                  start: 386,
+                                  end: 388,
                                 ),
                               ),
                             ],
@@ -1740,26 +1614,17 @@ Stylesheet(
                             end: 399,
                           ),
                         ),
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "infix",
-                                raw: "infix",
-                                span: Span(
-                                  start: 402,
-                                  end: 407,
-                                ),
-                              ),
-                              span: Span(
-                                start: 401,
-                                end: 407,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "infix",
+                            raw: "infix",
+                            span: Span(
+                              start: 402,
+                              end: 407,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 401,
                             end: 407,
@@ -1774,26 +1639,17 @@ Stylesheet(
                             end: 409,
                           ),
                         ),
-                        ComponentValues(
-                          type: "ComponentValues",
-                          values: [
-                            SassVariable(
-                              type: "SassVariable",
-                              name: Ident(
-                                type: "Ident",
-                                name: "i",
-                                raw: "i",
-                                span: Span(
-                                  start: 412,
-                                  end: 413,
-                                ),
-                              ),
-                              span: Span(
-                                start: 411,
-                                end: 413,
-                              ),
+                        SassVariable(
+                          type: "SassVariable",
+                          name: Ident(
+                            type: "Ident",
+                            name: "i",
+                            raw: "i",
+                            span: Span(
+                              start: 412,
+                              end: 413,
                             ),
-                          ],
+                          ),
                           span: Span(
                             start: 411,
                             end: 413,
@@ -2098,26 +1954,17 @@ Stylesheet(
       name: SassInterpolatedIdent(
         type: "SassInterpolatedIdent",
         elements: [
-          ComponentValues(
-            type: "ComponentValues",
-            values: [
-              SassVariable(
-                type: "SassVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "ar-name",
-                  raw: "ar-name",
-                  span: Span(
-                    start: 508,
-                    end: 515,
-                  ),
-                ),
-                span: Span(
-                  start: 507,
-                  end: 515,
-                ),
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "ar-name",
+              raw: "ar-name",
+              span: Span(
+                start: 508,
+                end: 515,
               ),
-            ],
+            ),
             span: Span(
               start: 507,
               end: 515,
@@ -2362,19 +2209,10 @@ Stylesheet(
                       end: 843,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "foo",
-                        raw: "foo",
-                        span: Span(
-                          start: 845,
-                          end: 848,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
                     span: Span(
                       start: 845,
                       end: 848,
@@ -2418,19 +2256,10 @@ Stylesheet(
                       end: 874,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "foo",
-                        raw: "foo",
-                        span: Span(
-                          start: 876,
-                          end: 879,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
                     span: Span(
                       start: 876,
                       end: 879,
@@ -2465,19 +2294,10 @@ Stylesheet(
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
                 elements: [
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "foo",
-                        raw: "foo",
-                        span: Span(
-                          start: 991,
-                          end: 994,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
                     span: Span(
                       start: 991,
                       end: 994,
@@ -2501,19 +2321,10 @@ Stylesheet(
                       end: 997,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "bar",
-                        raw: "bar",
-                        span: Span(
-                          start: 999,
-                          end: 1002,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
                     span: Span(
                       start: 999,
                       end: 1002,
@@ -2548,19 +2359,10 @@ Stylesheet(
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
                 elements: [
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "foo",
-                        raw: "foo",
-                        span: Span(
-                          start: 1026,
-                          end: 1029,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "foo",
+                    raw: "foo",
                     span: Span(
                       start: 1026,
                       end: 1029,
@@ -2584,19 +2386,10 @@ Stylesheet(
                       end: 1033,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "bar",
-                        raw: "bar",
-                        span: Span(
-                          start: 1035,
-                          end: 1038,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
                     span: Span(
                       start: 1035,
                       end: 1038,
@@ -2699,19 +2492,10 @@ Stylesheet(
                       end: 1502,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "bar",
-                        raw: "bar",
-                        span: Span(
-                          start: 1504,
-                          end: 1507,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
                     span: Span(
                       start: 1504,
                       end: 1507,
@@ -2764,19 +2548,10 @@ Stylesheet(
                       end: 1525,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "bar",
-                        raw: "bar",
-                        span: Span(
-                          start: 1527,
-                          end: 1530,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
                     span: Span(
                       start: 1527,
                       end: 1530,
@@ -2829,19 +2604,10 @@ Stylesheet(
                       end: 1556,
                     ),
                   ),
-                  ComponentValues(
-                    type: "ComponentValues",
-                    values: [
-                      Ident(
-                        type: "Ident",
-                        name: "bar",
-                        raw: "bar",
-                        span: Span(
-                          start: 1558,
-                          end: 1561,
-                        ),
-                      ),
-                    ],
+                  Ident(
+                    type: "Ident",
+                    name: "bar",
+                    raw: "bar",
                     span: Span(
                       start: 1558,
                       end: 1561,

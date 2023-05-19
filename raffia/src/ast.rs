@@ -1296,7 +1296,7 @@ pub struct SassInterpolatedIdent<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedIdentElement<'s> {
-    Expression(ComponentValues<'s>),
+    Expression(ComponentValue<'s>),
     Static(InterpolableIdentStaticPart<'s>),
 }
 
@@ -1312,7 +1312,7 @@ pub struct SassInterpolatedStr<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedStrElement<'s> {
-    Expression(ComponentValues<'s>),
+    Expression(ComponentValue<'s>),
     Static(InterpolableStrStaticPart<'s>),
 }
 
@@ -1328,7 +1328,7 @@ pub struct SassInterpolatedUrl<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum SassInterpolatedUrlElement<'s> {
-    Expression(ComponentValues<'s>),
+    Expression(ComponentValue<'s>),
     Static(InterpolableUrlStaticPart<'s>),
 }
 

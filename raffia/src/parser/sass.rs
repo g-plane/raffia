@@ -452,7 +452,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let start = expect!(self, HashLBrace).1.start;
-        let expr = self.parse_component_values(/* allow_comma */ true)?;
+        let expr = self.parse_maybe_sass_list(/* allow_comma */ true)?;
         let end = expect!(self, RBrace).1.end;
         Ok((
             SassInterpolatedIdentElement::Expression(expr),
@@ -1190,7 +1190,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedStr<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedStrElement::Expression(
-                    input.parse_component_values(/* allow_comma */ true)?,
+                    input.parse_maybe_sass_list(/* allow_comma */ true)?,
                 ));
                 expect!(input, RBrace);
             }
@@ -1239,7 +1239,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
                 // '#' is consumed, so '{' left only
                 expect!(input, LBrace);
                 elements.push(SassInterpolatedUrlElement::Expression(
-                    input.parse_component_values(/* allow_comma */ true)?,
+                    input.parse_maybe_sass_list(/* allow_comma */ true)?,
                 ));
                 expect!(input, RBrace);
             }
