@@ -1351,7 +1351,7 @@ pub struct SassList<'s> {
     pub span: Span,
 }
 
-#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[derive(Clone, Debug, PartialEq, Eq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum SassListSeparatorKind {
     #[doc(hidden)]

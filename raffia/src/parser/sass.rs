@@ -82,6 +82,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             // though there is only one element.
             Ok(single_value)
         } else {
+            debug_assert_ne!(separator, SassListSeparatorKind::Unknown);
+
             let span = Span {
                 start: single_value.span().start,
                 end,
