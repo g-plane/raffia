@@ -36,9 +36,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeature<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let left = input.parse_media_feature_value()?;
-        if let ComponentValue::InterpolableIdent(ident) = left {
-            match &peek!(input).token {
+        match input.parse_media_feature_value()? {
+            ComponentValue::InterpolableIdent(ident) => match &peek!(input).token {
                 Token::Colon(..) => input
                     .parse_media_feature_plain(ident)
                     .map(MediaFeature::Plain),
@@ -56,9 +55,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaFeature<'s> {
                         span,
                     }))
                 }
+            },
+            ComponentValue::SassVariable(variable) => {
+                let span = variable.span.clone();
+                Ok(MediaFeature::Boolean(MediaFeatureBoolean {
+                    name: MediaFeatureName::SassVariable(variable),
+                    span,
+                }))
             }
-        } else {
-            input.parse_media_feature_range_or_range_interval(left)
+            value => input.parse_media_feature_range_or_range_interval(value),
         }
     }
 }

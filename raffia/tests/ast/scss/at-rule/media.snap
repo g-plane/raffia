@@ -118,9 +118,74 @@ Stylesheet(
         end: 41,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 44,
+          end: 49,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          MediaCondition(
+            type: "MediaCondition",
+            conditions: [
+              MediaFeatureBoolean(
+                type: "MediaFeatureBoolean",
+                name: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "breakpoint",
+                    raw: "breakpoint",
+                    span: Span(
+                      start: 52,
+                      end: 62,
+                    ),
+                  ),
+                  span: Span(
+                    start: 51,
+                    end: 62,
+                  ),
+                ),
+                span: Span(
+                  start: 51,
+                  end: 62,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 51,
+              end: 62,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 51,
+          end: 62,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 64,
+          end: 66,
+        ),
+      )),
+      span: Span(
+        start: 43,
+        end: 66,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 42,
+    end: 67,
   ),
 )

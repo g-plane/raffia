@@ -754,6 +754,7 @@ pub enum MediaFeatureComparisonKind {
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum MediaFeatureName<'s> {
     Ident(InterpolableIdent<'s>),
+    SassVariable(SassVariable<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

@@ -39,6 +39,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed parsing Sass interpolation with trailing non-name start.
 - Fixed parsing Sass binary plus/minus expression.
 - Changed Sass interpolation AST.
+- Added support of Sass variable as media feature in `@media` at-rule.
 
 ## v0.2.0
 
