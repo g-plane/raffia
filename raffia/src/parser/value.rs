@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, expect_without_ws_or_comments, peek,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
     util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
@@ -73,8 +73,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         match &token_with_span.token {
             Token::Ident(token) => {
                 if token.name().eq_ignore_ascii_case("url") {
-                    if let Ok(url) = self.try_parse(Url::parse) {
-                        return Ok(ComponentValue::Url(url));
+                    match self.try_parse(Url::parse) {
+                        Err(Error {
+                            kind: ErrorKind::TryParseError,
+                            ..
+                        }) => {}
+                        result => return result.map(ComponentValue::Url),
                     }
                 }
                 let ident = self.parse::<InterpolableIdent>()?;
@@ -982,7 +986,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             });
         }
 
-        expect_without_ws_or_comments!(input, LParen);
+        match peek!(input) {
+            TokenWithSpan {
+                token: Token::LParen(..),
+                span,
+            } if prefix_span.end == span.start => {
+                bump!(input);
+            }
+            TokenWithSpan { span, .. } => {
+                return Err(Error {
+                    kind: ErrorKind::TryParseError,
+                    span: span.clone(),
+                });
+            }
+        }
+
         if let Ok(value) = input.try_parse(InterpolableStr::parse) {
             let modifiers = match &peek!(input).token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
@@ -1033,7 +1051,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             })
         } else {
             Err(Error {
-                kind: ErrorKind::ExpectUrl,
+                kind: ErrorKind::InvalidUrl,
                 span: bump!(input).span,
             })
         }

@@ -46,3 +46,9 @@ https://example.com/image.png
 }
 
 @import url(//xyz.cöm/ürl);
+
+.not-urls {
+  a: url[];
+  b: url#b;
+  c: url;
+}

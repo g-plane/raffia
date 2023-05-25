@@ -40,6 +40,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed parsing Sass binary plus/minus expression.
 - Changed Sass interpolation AST.
 - Added support of Sass variable as media feature in `@media` at-rule.
+- Fixed some edge cases of `url()`.
 
 ## v0.2.0
 

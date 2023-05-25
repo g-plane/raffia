@@ -726,7 +726,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         }
                         Some((i, c)) => {
                             return Err(Error {
-                                kind: ErrorKind::ExpectUrl,
+                                kind: ErrorKind::InvalidUrl,
                                 span: Span {
                                     start: i,
                                     end: i + c.len_utf8(),
