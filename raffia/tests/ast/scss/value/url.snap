@@ -936,20 +936,93 @@ Stylesheet(
               end: 1653,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "trailing-spaces",
+              raw: "trailing-spaces",
+              span: Span(
+                start: 1657,
+                end: 1672,
+              ),
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1674,
+                    end: 1677,
+                  ),
+                ),
+                value: Some(SassInterpolatedUrl(
+                  type: "SassInterpolatedUrl",
+                  elements: [
+                    InterpolableUrlStaticPart(
+                      type: "InterpolableUrlStaticPart",
+                      value: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 1678,
+                        end: 1679,
+                      ),
+                    ),
+                    Ident(
+                      type: "Ident",
+                      name: "b",
+                      raw: "b",
+                      span: Span(
+                        start: 1681,
+                        end: 1682,
+                      ),
+                    ),
+                    InterpolableUrlStaticPart(
+                      type: "InterpolableUrlStaticPart",
+                      value: "c",
+                      raw: "c",
+                      span: Span(
+                        start: 1683,
+                        end: 1684,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 1678,
+                    end: 1684,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 1674,
+                  end: 1685,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1657,
+              end: 1685,
+            ),
+          ),
         ],
         span: Span(
           start: 4,
-          end: 1656,
+          end: 1690,
         ),
       ),
       span: Span(
         start: 0,
-        end: 1656,
+        end: 1690,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 1657,
+    end: 1691,
   ),
 )

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: invalid URL
+  ┌─ parens.scss:2:32
+  │
+2 │   background: url(try-#{to}-get());
+  │                                ^
+
+

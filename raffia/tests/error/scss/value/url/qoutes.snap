@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: invalid URL
+  ┌─ qoutes.scss:2:24
+  │
+2 │   background: url(a#{b}"c"});
+  │                        ^
+
+

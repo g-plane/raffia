@@ -736,6 +736,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         None => return Err(self.build_eof_error()),
                     }
                 }
+                Some((i, '(' | '"' | '\'')) => {
+                    return Err(Error {
+                        kind: ErrorKind::InvalidUrl,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    });
+                }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
             }
@@ -755,15 +764,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let mut escaped = false;
         loop {
             match self.state.chars.next() {
-                Some((i, '\n')) => {
-                    return Err(Error {
-                        kind: ErrorKind::UnexpectedLinebreak,
-                        span: Span {
-                            start: i,
-                            end: i + 1,
-                        },
-                    })
-                }
                 Some((_, '\\')) => {
                     escaped = true;
                     self.scan_escape(/* backslash_consumed */ true)?;
@@ -793,6 +793,40 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                         span,
                     ));
+                }
+                Some((end, c)) if c.is_ascii_whitespace() => {
+                    self.skip_ws();
+                    match self.state.chars.next() {
+                        Some((_, ')')) => {
+                            return Ok((
+                                UrlTemplate {
+                                    raw: unsafe { self.source.get_unchecked(start..end) },
+                                    escaped,
+                                    tail: true,
+                                },
+                                Span { start, end },
+                            ));
+                        }
+                        Some((i, c)) => {
+                            return Err(Error {
+                                kind: ErrorKind::InvalidUrl,
+                                span: Span {
+                                    start: i,
+                                    end: i + c.len_utf8(),
+                                },
+                            });
+                        }
+                        None => return Err(self.build_eof_error()),
+                    }
+                }
+                Some((i, '(' | '"' | '\'')) => {
+                    return Err(Error {
+                        kind: ErrorKind::InvalidUrl,
+                        span: Span {
+                            start: i,
+                            end: i + 1,
+                        },
+                    });
                 }
                 Some(..) => {}
                 None => return Err(self.build_eof_error()),
