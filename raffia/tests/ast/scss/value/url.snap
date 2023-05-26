@@ -1009,20 +1009,247 @@ Stylesheet(
               end: 1685,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "expr1",
+              raw: "expr1",
+              span: Span(
+                start: 1691,
+                end: 1696,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1698,
+                    end: 1701,
+                  ),
+                ),
+                args: [
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "join-url",
+                      raw: "join-url",
+                      span: Span(
+                        start: 1702,
+                        end: 1710,
+                      ),
+                    ),
+                    args: [
+                      Str(
+                        type: "Str",
+                        value: "..",
+                        raw: "\"..\"",
+                        span: Span(
+                          start: 1711,
+                          end: 1715,
+                        ),
+                      ),
+                      Delimiter(
+                        type: "Delimiter",
+                        kind: Comma,
+                        span: Span(
+                          start: 1715,
+                          end: 1716,
+                        ),
+                      ),
+                      Str(
+                        type: "Str",
+                        value: "image.png",
+                        raw: "\"image.png\"",
+                        span: Span(
+                          start: 1717,
+                          end: 1728,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 1702,
+                      end: 1729,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1698,
+                  end: 1730,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1691,
+              end: 1730,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "expr2",
+              raw: "expr2",
+              span: Span(
+                start: 1734,
+                end: 1739,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1741,
+                    end: 1744,
+                  ),
+                ),
+                args: [
+                  SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: Number(
+                      type: "Number",
+                      value: 1.0,
+                      raw: "1",
+                      span: Span(
+                        start: 1745,
+                        end: 1746,
+                      ),
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 1747,
+                        end: 1748,
+                      ),
+                    ),
+                    right: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 1749,
+                        end: 1750,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1745,
+                      end: 1750,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1741,
+                  end: 1751,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1734,
+              end: 1751,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "expr3",
+              raw: "expr3",
+              span: Span(
+                start: 1755,
+                end: 1760,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 1762,
+                    end: 1765,
+                  ),
+                ),
+                args: [
+                  SassInterpolatedIdent(
+                    type: "SassInterpolatedIdent",
+                    elements: [
+                      InterpolableIdentStaticPart(
+                        type: "InterpolableIdentStaticPart",
+                        value: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 1766,
+                          end: 1767,
+                        ),
+                      ),
+                      Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 1769,
+                          end: 1770,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 1766,
+                      end: 1771,
+                    ),
+                  ),
+                  Str(
+                    type: "Str",
+                    value: "c",
+                    raw: "\"c\"",
+                    span: Span(
+                      start: 1771,
+                      end: 1774,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1762,
+                  end: 1775,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1755,
+              end: 1775,
+            ),
+          ),
         ],
         span: Span(
           start: 4,
-          end: 1690,
+          end: 1778,
         ),
       ),
       span: Span(
         start: 0,
-        end: 1690,
+        end: 1778,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 1691,
+    end: 1779,
   ),
 )

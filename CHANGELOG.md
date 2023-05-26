@@ -41,6 +41,7 @@ _This changelog only relates to the `raffia` crate._
 - Changed Sass interpolation AST.
 - Added support of Sass variable as media feature in `@media` at-rule.
 - Fixed some edge cases of `url()`.
+- Added support of treating `url()` as function in Sass.
 
 ## v0.2.0
 

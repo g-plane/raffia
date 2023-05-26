@@ -13,4 +13,7 @@ div {
   nudge: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGElEQVQYV2N4DwX/oYBhgARgDJjEAAkAAEC99wFuu0VFAAAAAElFTkSuQmCC);
   pudge: url(http://wiki.jbussdieker.name/skins/common/images/Checker-16x16.png?2012-05-02T13:40:00Z);
   trailing-spaces: url(a#{b}c  );
+  expr1: url(join-url("..", "image.png"));
+  expr2: url(1 + 2);
+  expr3: url(a#{b}"c");
 }

@@ -74,11 +74,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Ident(token) => {
                 if token.name().eq_ignore_ascii_case("url") {
                     match self.try_parse(Url::parse) {
+                        Ok(url) => return Ok(ComponentValue::Url(url)),
                         Err(Error {
                             kind: ErrorKind::TryParseError,
                             ..
                         }) => {}
-                        result => return result.map(ComponentValue::Url),
+                        Err(error) => {
+                            return if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
+                                let function_name = expect!(self, Ident).into();
+                                self.parse_function(InterpolableIdent::Literal(function_name))
+                                    .map(ComponentValue::Function)
+                                    .map_err(|_| error)
+                            } else {
+                                Err(error)
+                            };
+                        }
                     }
                 }
                 let ident = self.parse::<InterpolableIdent>()?;
