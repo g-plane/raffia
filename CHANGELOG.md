@@ -42,6 +42,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of Sass variable as media feature in `@media` at-rule.
 - Fixed some edge cases of `url()`.
 - Added support of treating `url()` as function in Sass.
+- Added support of single combinator only at selector in Sass.
 
 ## v0.2.0
 

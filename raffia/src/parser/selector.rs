@@ -701,7 +701,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
             let Span { start, mut end } = span;
 
             children.push(first);
-            loop {
+            while !matches!(
+                peek!(input).token,
+                Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
+            ) {
                 if is_previous_combinator {
                     let compound_selector = input.parse::<CompoundSelector>()?;
                     end = compound_selector.span.end;

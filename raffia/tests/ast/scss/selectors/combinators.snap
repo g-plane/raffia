@@ -420,9 +420,184 @@ Stylesheet(
         end: 44,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 84,
+                          end: 85,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 84,
+                        end: 85,
+                      ),
+                    ),
+                    span: Span(
+                      start: 84,
+                      end: 85,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 84,
+                  end: 85,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 84,
+              end: 85,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 84,
+          end: 85,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    Combinator(
+                      type: "Combinator",
+                      kind: Child,
+                      span: Span(
+                        start: 90,
+                        end: 91,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 90,
+                    end: 91,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 90,
+                end: 91,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                QualifiedRule(
+                  type: "QualifiedRule",
+                  selector: SelectorList(
+                    type: "SelectorList",
+                    selectors: [
+                      ComplexSelector(
+                        type: "ComplexSelector",
+                        children: [
+                          CompoundSelector(
+                            type: "CompoundSelector",
+                            children: [
+                              TagNameSelector(
+                                type: "TagNameSelector",
+                                name: WqName(
+                                  type: "WqName",
+                                  name: Ident(
+                                    type: "Ident",
+                                    name: "b",
+                                    raw: "b",
+                                    span: Span(
+                                      start: 98,
+                                      end: 99,
+                                    ),
+                                  ),
+                                  prefix: None,
+                                  span: Span(
+                                    start: 98,
+                                    end: 99,
+                                  ),
+                                ),
+                                span: Span(
+                                  start: 98,
+                                  end: 99,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 98,
+                              end: 99,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 98,
+                          end: 99,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 98,
+                      end: 99,
+                    ),
+                  ),
+                  block: SimpleBlock(
+                    type: "SimpleBlock",
+                    statements: [],
+                    span: Span(
+                      start: 100,
+                      end: 102,
+                    ),
+                  ),
+                  span: Span(
+                    start: 98,
+                    end: 102,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 92,
+                end: 106,
+              ),
+            ),
+            span: Span(
+              start: 90,
+              end: 106,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 86,
+          end: 108,
+        ),
+      ),
+      span: Span(
+        start: 84,
+        end: 108,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 45,
+    end: 109,
   ),
 )

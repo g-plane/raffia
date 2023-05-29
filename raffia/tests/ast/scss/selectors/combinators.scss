@@ -2,3 +2,10 @@
 + a {b: c}
 ~ a {b: c}
 || a {b: c}
+
+// This will be compiled to: a > b {}
+a {
+  > {
+    b {}
+  }
+}
