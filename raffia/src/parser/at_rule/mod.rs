@@ -209,7 +209,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_unknown_at_rule(
         &mut self,
-    ) -> PResult<(Option<TokenSeq<'s>>, Option<SimpleBlock<'s>>, Option<usize>)> {
+    ) -> PResult<(
+        Option<UnknownAtRulePrelude<'s>>,
+        Option<SimpleBlock<'s>>,
+        Option<usize>,
+    )> {
         let prelude = self.parse_unknown_at_rule_prelude()?;
         let block = match &peek!(self).token {
             Token::LBrace(..) | Token::Indent(..) => Some(self.parse::<SimpleBlock>()?),
@@ -222,7 +226,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok((prelude, block, end))
     }
 
-    fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<TokenSeq<'s>>> {
+    fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<UnknownAtRulePrelude<'s>>> {
+        if let Ok(value) = self.try_parse(ComponentValue::parse) {
+            return Ok(Some(UnknownAtRulePrelude::ComponentValue(value)));
+        }
+
         let mut tokens = vec![];
         loop {
             match &peek!(self).token {
@@ -241,7 +249,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 start: first.span().start,
                 end: last.span().end,
             };
-            Ok(Some(TokenSeq { tokens, span }))
+            Ok(Some(UnknownAtRulePrelude::TokenSeq(TokenSeq {
+                tokens,
+                span,
+            })))
         } else {
             Ok(None)
         }

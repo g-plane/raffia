@@ -43,6 +43,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed some edge cases of `url()`.
 - Added support of treating `url()` as function in Sass.
 - Added support of single combinator only at selector in Sass.
+- Try parsing unknown at-rule prelude as component value.
 
 ## v0.2.0
 

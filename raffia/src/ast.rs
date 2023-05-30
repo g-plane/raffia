@@ -57,7 +57,7 @@ pub enum AtRulePrelude<'s> {
     Property(InterpolableIdent<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
-    Unknown(TokenSeq<'s>),
+    Unknown(UnknownAtRulePrelude<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -1790,6 +1790,14 @@ pub struct UniversalSelector<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum UnknownAtRulePrelude<'s> {
+    ComponentValue(ComponentValue<'s>),
+    TokenSeq(TokenSeq<'s>),
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
@@ -1804,7 +1812,7 @@ pub struct UnknownDimension<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct UnknownSassAtRule<'s> {
     pub name: InterpolableIdent<'s>,
-    pub prelude: Option<TokenSeq<'s>>,
+    pub prelude: Option<UnknownAtRulePrelude<'s>>,
     pub block: Option<SimpleBlock<'s>>,
     pub span: Span,
 }
