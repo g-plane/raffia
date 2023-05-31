@@ -1,5 +1,8 @@
 use super::Parser;
-use std::ops::{Deref, DerefMut};
+use std::{
+    mem,
+    ops::{Deref, DerefMut},
+};
 
 #[derive(Clone, Debug, Default)]
 pub(super) struct ParserState {
@@ -16,8 +19,7 @@ pub(super) enum QualifiedRuleContext {
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn with_state(&mut self, state: ParserState) -> WithState<'cmt, 's, '_> {
-        let original_state = self.state.clone();
-        self.state = state;
+        let original_state = mem::replace(&mut self.state, state);
         WithState {
             parser: self,
             original_state,
@@ -46,6 +48,6 @@ impl<'cmt, 's: 'cmt, 'p> DerefMut for WithState<'cmt, 's, 'p> {
 
 impl<'cmt, 's: 'cmt, 'p> Drop for WithState<'cmt, 's, 'p> {
     fn drop(&mut self) {
-        self.state = self.original_state.clone();
+        mem::swap(&mut self.parser.state, &mut self.original_state);
     }
 }
