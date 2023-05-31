@@ -1054,7 +1054,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                         if name.eq_ignore_ascii_case("not")
                             || name.eq_ignore_ascii_case("is")
                             || name.eq_ignore_ascii_case("where")
-                            || name.eq_ignore_ascii_case("matches") =>
+                            || name.eq_ignore_ascii_case("matches")
+                            || name.eq_ignore_ascii_case("global") =>
                     {
                         input.parse().map(PseudoClassSelectorArg::SelectorList)?
                     }

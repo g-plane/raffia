@@ -44,6 +44,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of treating `url()` as function in Sass.
 - Added support of single combinator only at selector in Sass.
 - Try parsing unknown at-rule prelude as component value.
+- Added support of non-standard `:global` pseudo class selector.
 
 ## v0.2.0
 

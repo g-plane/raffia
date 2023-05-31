@@ -217,3 +217,8 @@ h1:-webkit-any(.h1class, #bar) {}
 :nth-last-child(odd of a > span) {}
 :nth-last-child(2 of a, span) {}
 :nth-last-child(2n+1 of#a.cls > span, [b]) {}
+
+:global {}
+:global(a) {}
+:global(a.active) {}
+:global(div > a, div + button) {}
