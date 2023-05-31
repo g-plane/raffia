@@ -1166,7 +1166,7 @@ pub struct SassContentAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassDebugAtRule<'s> {
-    pub expr: ComponentValues<'s>,
+    pub expr: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1184,7 +1184,7 @@ pub struct SassEachAtRule<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassErrorAtRule<'s> {
-    pub expr: ComponentValues<'s>,
+    pub expr: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1394,7 +1394,7 @@ pub struct SassMixinAtRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassModuleConfigItem<'s> {
     pub variable: SassVariable<'s>,
-    pub value: ComponentValues<'s>,
+    pub value: ComponentValue<'s>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
     pub span: Span,
@@ -1454,7 +1454,7 @@ pub struct SassQualifiedName<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassReturnAtRule<'s> {
-    pub expr: ComponentValues<'s>,
+    pub expr: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1533,7 +1533,7 @@ pub struct SassVariableDeclaration<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassWarnAtRule<'s> {
-    pub expr: ComponentValues<'s>,
+    pub expr: ComponentValue<'s>,
     pub span: Span,
 }
 

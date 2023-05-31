@@ -151,12 +151,68 @@ Stylesheet(
         statements: [
           SassReturnAtRule(
             type: "SassReturnAtRule",
-            expr: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                SassBinaryExpression(
-                  type: "SassBinaryExpression",
-                  left: SassBinaryExpression(
+            expr: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "n",
+                    raw: "n",
+                    span: Span(
+                      start: 75,
+                      end: 76,
+                    ),
+                  ),
+                  span: Span(
+                    start: 74,
+                    end: 76,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Multiply,
+                  span: Span(
+                    start: 77,
+                    end: 78,
+                  ),
+                ),
+                right: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "grid-width",
+                    raw: "grid-width",
+                    span: Span(
+                      start: 80,
+                      end: 90,
+                    ),
+                  ),
+                  span: Span(
+                    start: 79,
+                    end: 90,
+                  ),
+                ),
+                span: Span(
+                  start: 74,
+                  end: 90,
+                ),
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: Plus,
+                span: Span(
+                  start: 91,
+                  end: 92,
+                ),
+              ),
+              right: SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: SassParenthesizedExpression(
+                  type: "SassParenthesizedExpression",
+                  expr: SassBinaryExpression(
                     type: "SassBinaryExpression",
                     left: SassVariable(
                       type: "SassVariable",
@@ -165,136 +221,71 @@ Stylesheet(
                         name: "n",
                         raw: "n",
                         span: Span(
-                          start: 75,
-                          end: 76,
+                          start: 95,
+                          end: 96,
                         ),
                       ),
                       span: Span(
-                        start: 74,
-                        end: 76,
+                        start: 94,
+                        end: 96,
                       ),
                     ),
                     op: SassBinaryOperator(
                       type: "SassBinaryOperator",
-                      kind: Multiply,
+                      kind: Minus,
                       span: Span(
-                        start: 77,
-                        end: 78,
+                        start: 97,
+                        end: 98,
                       ),
                     ),
-                    right: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "grid-width",
-                        raw: "grid-width",
-                        span: Span(
-                          start: 80,
-                          end: 90,
-                        ),
-                      ),
+                    right: Number(
+                      type: "Number",
+                      value: 1.0,
+                      raw: "1",
                       span: Span(
-                        start: 79,
-                        end: 90,
+                        start: 99,
+                        end: 100,
                       ),
                     ),
                     span: Span(
-                      start: 74,
-                      end: 90,
+                      start: 94,
+                      end: 100,
                     ),
                   ),
-                  op: SassBinaryOperator(
-                    type: "SassBinaryOperator",
-                    kind: Plus,
-                    span: Span(
-                      start: 91,
-                      end: 92,
-                    ),
+                  span: Span(
+                    start: 93,
+                    end: 101,
                   ),
-                  right: SassBinaryExpression(
-                    type: "SassBinaryExpression",
-                    left: SassParenthesizedExpression(
-                      type: "SassParenthesizedExpression",
-                      expr: SassBinaryExpression(
-                        type: "SassBinaryExpression",
-                        left: SassVariable(
-                          type: "SassVariable",
-                          name: Ident(
-                            type: "Ident",
-                            name: "n",
-                            raw: "n",
-                            span: Span(
-                              start: 95,
-                              end: 96,
-                            ),
-                          ),
-                          span: Span(
-                            start: 94,
-                            end: 96,
-                          ),
-                        ),
-                        op: SassBinaryOperator(
-                          type: "SassBinaryOperator",
-                          kind: Minus,
-                          span: Span(
-                            start: 97,
-                            end: 98,
-                          ),
-                        ),
-                        right: Number(
-                          type: "Number",
-                          value: 1.0,
-                          raw: "1",
-                          span: Span(
-                            start: 99,
-                            end: 100,
-                          ),
-                        ),
-                        span: Span(
-                          start: 94,
-                          end: 100,
-                        ),
-                      ),
-                      span: Span(
-                        start: 93,
-                        end: 101,
-                      ),
-                    ),
-                    op: SassBinaryOperator(
-                      type: "SassBinaryOperator",
-                      kind: Multiply,
-                      span: Span(
-                        start: 102,
-                        end: 103,
-                      ),
-                    ),
-                    right: SassVariable(
-                      type: "SassVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "gutter-width",
-                        raw: "gutter-width",
-                        span: Span(
-                          start: 105,
-                          end: 117,
-                        ),
-                      ),
-                      span: Span(
-                        start: 104,
-                        end: 117,
-                      ),
-                    ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Multiply,
+                  span: Span(
+                    start: 102,
+                    end: 103,
+                  ),
+                ),
+                right: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "gutter-width",
+                    raw: "gutter-width",
                     span: Span(
-                      start: 93,
+                      start: 105,
                       end: 117,
                     ),
                   ),
                   span: Span(
-                    start: 74,
+                    start: 104,
                     end: 117,
                   ),
                 ),
-              ],
+                span: Span(
+                  start: 93,
+                  end: 117,
+                ),
+              ),
               span: Span(
                 start: 74,
                 end: 117,

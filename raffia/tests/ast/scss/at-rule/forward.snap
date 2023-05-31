@@ -316,19 +316,10 @@ Stylesheet(
               end: 251,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
-              Ident(
-                type: "Ident",
-                name: "e",
-                raw: "e",
-                span: Span(
-                  start: 253,
-                  end: 254,
-                ),
-              ),
-            ],
+          value: Ident(
+            type: "Ident",
+            name: "e",
+            raw: "e",
             span: Span(
               start: 253,
               end: 254,
@@ -379,19 +370,10 @@ Stylesheet(
               end: 285,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
-                span: Span(
-                  start: 287,
-                  end: 297,
-                ),
-              ),
-            ],
+          value: Ident(
+            type: "Ident",
+            name: "configured",
+            raw: "configured",
             span: Span(
               start: 287,
               end: 297,
@@ -442,9 +424,9 @@ Stylesheet(
               end: 340,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -464,6 +446,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 342,
               end: 354,
@@ -494,9 +478,9 @@ Stylesheet(
               end: 360,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -516,6 +500,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 362,
               end: 374,
@@ -546,9 +532,9 @@ Stylesheet(
               end: 380,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -568,6 +554,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 382,
               end: 394,
@@ -618,9 +606,9 @@ Stylesheet(
               end: 429,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -640,6 +628,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 431,
               end: 443,
@@ -670,9 +660,9 @@ Stylesheet(
               end: 458,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -692,6 +682,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 460,
               end: 472,
@@ -722,9 +714,9 @@ Stylesheet(
               end: 487,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -744,6 +736,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 489,
               end: 501,
@@ -794,19 +788,10 @@ Stylesheet(
               end: 543,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
-                span: Span(
-                  start: 545,
-                  end: 555,
-                ),
-              ),
-            ],
+          value: Ident(
+            type: "Ident",
+            name: "configured",
+            raw: "configured",
             span: Span(
               start: 545,
               end: 555,
@@ -857,19 +842,10 @@ Stylesheet(
               end: 587,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
-                span: Span(
-                  start: 589,
-                  end: 599,
-                ),
-              ),
-            ],
+          value: Ident(
+            type: "Ident",
+            name: "configured",
+            raw: "configured",
             span: Span(
               start: 589,
               end: 599,
@@ -928,9 +904,9 @@ Stylesheet(
               end: 651,
             ),
           ),
-          value: ComponentValues(
-            type: "ComponentValues",
-            values: [
+          value: SassList(
+            type: "SassList",
+            items: [
               Ident(
                 type: "Ident",
                 name: "overridden",
@@ -950,6 +926,8 @@ Stylesheet(
                 ),
               ),
             ],
+            hasParens: false,
+            separator: Space,
             span: Span(
               start: 653,
               end: 665,

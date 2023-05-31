@@ -79,19 +79,10 @@ Stylesheet(
                   statements: [
                     SassErrorAtRule(
                       type: "SassErrorAtRule",
-                      expr: ComponentValues(
-                        type: "ComponentValues",
-                        values: [
-                          Str(
-                            type: "Str",
-                            value: "error",
-                            raw: "\"error\"",
-                            span: Span(
-                              start: 22,
-                              end: 29,
-                            ),
-                          ),
-                        ],
+                      expr: Str(
+                        type: "Str",
+                        value: "error",
+                        raw: "\"error\"",
                         span: Span(
                           start: 22,
                           end: 29,
@@ -219,19 +210,10 @@ Stylesheet(
         statements: [
           SassErrorAtRule(
             type: "SassErrorAtRule",
-            expr: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                Str(
-                  type: "Str",
-                  value: "error",
-                  raw: "\"error\"",
-                  span: Span(
-                    start: 65,
-                    end: 72,
-                  ),
-                ),
-              ],
+            expr: Str(
+              type: "Str",
+              value: "error",
+              raw: "\"error\"",
               span: Span(
                 start: 65,
                 end: 72,
@@ -284,19 +266,10 @@ Stylesheet(
     ),
     SassErrorAtRule(
       type: "SassErrorAtRule",
-      expr: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Str(
-            type: "Str",
-            value: "error",
-            raw: "\"error\"",
-            span: Span(
-              start: 96,
-              end: 103,
-            ),
-          ),
-        ],
+      expr: Str(
+        type: "Str",
+        value: "error",
+        raw: "\"error\"",
         span: Span(
           start: 96,
           end: 103,

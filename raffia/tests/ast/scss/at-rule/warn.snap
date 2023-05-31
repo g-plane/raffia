@@ -6,19 +6,10 @@ Stylesheet(
   statements: [
     SassWarnAtRule(
       type: "SassWarnAtRule",
-      expr: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Str(
-            type: "Str",
-            value: "w",
-            raw: "\"w\"",
-            span: Span(
-              start: 6,
-              end: 9,
-            ),
-          ),
-        ],
+      expr: Str(
+        type: "Str",
+        value: "w",
+        raw: "\"w\"",
         span: Span(
           start: 6,
           end: 9,
@@ -87,19 +78,10 @@ Stylesheet(
         statements: [
           SassWarnAtRule(
             type: "SassWarnAtRule",
-            expr: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                Str(
-                  type: "Str",
-                  value: "w",
-                  raw: "\"w\"",
-                  span: Span(
-                    start: 24,
-                    end: 27,
-                  ),
-                ),
-              ],
+            expr: Str(
+              type: "Str",
+              value: "w",
+              raw: "\"w\"",
               span: Span(
                 start: 24,
                 end: 27,
@@ -168,19 +150,10 @@ Stylesheet(
         statements: [
           SassWarnAtRule(
             type: "SassWarnAtRule",
-            expr: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                Ident(
-                  type: "Ident",
-                  name: "test",
-                  raw: "test",
-                  span: Span(
-                    start: 64,
-                    end: 68,
-                  ),
-                ),
-              ],
+            expr: Ident(
+              type: "Ident",
+              name: "test",
+              raw: "test",
               span: Span(
                 start: 64,
                 end: 68,
@@ -193,19 +166,10 @@ Stylesheet(
           ),
           SassReturnAtRule(
             type: "SassReturnAtRule",
-            expr: ComponentValues(
-              type: "ComponentValues",
-              values: [
-                Ident(
-                  type: "Ident",
-                  name: "d",
-                  raw: "d",
-                  span: Span(
-                    start: 80,
-                    end: 81,
-                  ),
-                ),
-              ],
+            expr: Ident(
+              type: "Ident",
+              name: "d",
+              raw: "d",
               span: Span(
                 start: 80,
                 end: 81,
@@ -229,19 +193,10 @@ Stylesheet(
     ),
     SassWarnAtRule(
       type: "SassWarnAtRule",
-      expr: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          Ident(
-            type: "Ident",
-            name: "warning",
-            raw: "warning",
-            span: Span(
-              start: 94,
-              end: 101,
-            ),
-          ),
-        ],
+      expr: Ident(
+        type: "Ident",
+        name: "warning",
+        raw: "warning",
         span: Span(
           start: 94,
           end: 101,

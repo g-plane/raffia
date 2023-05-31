@@ -549,7 +549,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<SassModuleConfigItem<'s>> {
         let variable = self.parse::<SassVariable>()?;
         expect!(self, Colon);
-        let value = self.parse_component_values(/* allow_comma */ false)?;
+        let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
 
         let important = self.try_parse(ImportantAnnotation::parse).ok();
 
@@ -562,7 +562,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 important
                     .as_ref()
                     .map(|important| important.span.end)
-                    .unwrap_or(value.span.end),
+                    .unwrap_or_else(|| value.span().end),
             )
         };
 
@@ -818,10 +818,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
         let span = Span {
             start,
-            end: expr.span.end,
+            end: expr.span().end,
         };
         Ok(SassDebugAtRule { expr, span })
     }
@@ -862,10 +862,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
         let span = Span {
             start,
-            end: expr.span.end,
+            end: expr.span().end,
         };
         Ok(SassErrorAtRule { expr, span })
     }
@@ -1390,10 +1390,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
         let span = Span {
             start,
-            end: expr.span.end,
+            end: expr.span().end,
         };
         Ok(SassReturnAtRule { expr, span })
     }
@@ -1518,10 +1518,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_component_values(/* allow_comma */ true)?;
+        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
         let span = Span {
             start,
-            end: expr.span.end,
+            end: expr.span().end,
         };
         Ok(SassWarnAtRule { expr, span })
     }

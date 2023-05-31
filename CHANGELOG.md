@@ -45,6 +45,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of single combinator only at selector in Sass.
 - Try parsing unknown at-rule prelude as component value.
 - Added support of non-standard `:global` pseudo class selector.
+- Changed AST of expression in Sass `@return`, `@debug`, `@warn`, `@error` at-rule and module config.
 
 ## v0.2.0
 
