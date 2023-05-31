@@ -1473,7 +1473,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             let TokenWithSpan {
                 span: next_span, ..
             } = peek!(input);
-            input.assert_no_ws_or_comment(&dot_span, &next_span)?;
+            input.assert_no_ws_or_comment(&dot_span, next_span)?;
             Some(Ident::from((ident_token, span)))
         } else {
             None
