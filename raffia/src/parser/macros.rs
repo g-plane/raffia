@@ -17,28 +17,22 @@ macro_rules! bump {
 macro_rules! expect {
     ($parser:expr, $variant:ident) => {{
         use $crate::{
+            bump,
             error::{Error, ErrorKind},
             tokenizer::{Token, TokenSymbol, TokenWithSpan},
         };
-        let token_with_span = match $parser.cached_token.take() {
-            Some(token) => token,
-            None => {
-                let tokenizer = &mut $parser.tokenizer;
-                tokenizer.bump()?
-            }
-        };
-        match token_with_span {
+        match bump!($parser) {
             TokenWithSpan {
                 token: Token::$variant(token),
                 span,
             } => (token, span),
-            _ => {
+            TokenWithSpan { token, span } => {
                 return Err(Error {
                     kind: ErrorKind::Unexpected(
                         $crate::tokenizer::token::$variant::symbol(),
-                        token_with_span.token.symbol(),
+                        token.symbol(),
                     ),
-                    span: token_with_span.span,
+                    span,
                 });
             }
         }
