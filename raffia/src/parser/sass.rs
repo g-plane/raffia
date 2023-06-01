@@ -1,4 +1,7 @@
-use super::{state::ParserState, Parser};
+use super::{
+    state::{ParserState, SASS_CTX_IN_FUNCTION},
+    Parser,
+};
 use crate::{
     ast::*,
     bump,
@@ -119,7 +122,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "function" => Ok(Some((
                 Statement::SassFunctionAtRule(
                     self.with_state(ParserState {
-                        in_sass_function: true,
+                        sass_ctx: self.state.sass_ctx | SASS_CTX_IN_FUNCTION,
                         ..self.state.clone()
                     })
                     .parse()?,
@@ -128,7 +131,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             ))),
             "return" => {
                 let rule = self.parse::<SassReturnAtRule>()?;
-                if !self.state.in_sass_function {
+                if self.state.sass_ctx & SASS_CTX_IN_FUNCTION == 0 {
                     self.recoverable_errors.push(Error {
                         kind: ErrorKind::ReturnOutsideFunction,
                         span: rule.span.clone(),

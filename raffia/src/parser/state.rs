@@ -7,7 +7,7 @@ use std::{
 #[derive(Clone, Debug, Default)]
 pub(super) struct ParserState {
     pub(super) qualified_rule_ctx: Option<QualifiedRuleContext>,
-    pub(super) in_sass_function: bool,
+    pub(super) sass_ctx: u8,
 }
 
 #[derive(Clone, Debug)]
@@ -16,6 +16,8 @@ pub(super) enum QualifiedRuleContext {
     DeclarationName,
     DeclarationValue,
 }
+
+pub(super) const SASS_CTX_IN_FUNCTION: u8 = 1;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn with_state(&mut self, state: ParserState) -> WithState<'cmt, 's, '_> {
