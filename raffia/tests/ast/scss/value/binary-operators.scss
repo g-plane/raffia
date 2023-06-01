@@ -9,3 +9,14 @@ div {
   a: false and "hey";
   b: "hey" and "ho";
 }
+
+.division {
+  $var: a / b; // division
+  decl: a / b; // not division
+  with-parens: (a / b); // division
+}
+
+@function f() {
+  @return a / b; // division
+}
+@debug 15px / 30px; // not division

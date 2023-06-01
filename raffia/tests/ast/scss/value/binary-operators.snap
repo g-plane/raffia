@@ -477,9 +477,377 @@ Stylesheet(
         end: 142,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "division",
+                      raw: "division",
+                      span: Span(
+                        start: 145,
+                        end: 153,
+                      ),
+                    ),
+                    span: Span(
+                      start: 144,
+                      end: 153,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 144,
+                  end: 153,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 144,
+              end: 153,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 144,
+          end: 153,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassVariableDeclaration(
+            type: "SassVariableDeclaration",
+            namespace: None,
+            name: SassVariable(
+              type: "SassVariable",
+              name: Ident(
+                type: "Ident",
+                name: "var",
+                raw: "var",
+                span: Span(
+                  start: 159,
+                  end: 162,
+                ),
+              ),
+              span: Span(
+                start: 158,
+                end: 162,
+              ),
+            ),
+            value: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 164,
+                  end: 165,
+                ),
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: Division,
+                span: Span(
+                  start: 166,
+                  end: 167,
+                ),
+              ),
+              right: Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 168,
+                  end: 169,
+                ),
+              ),
+              span: Span(
+                start: 164,
+                end: 169,
+              ),
+            ),
+            important: None,
+            overridable: false,
+            forceGlobal: false,
+            span: Span(
+              start: 158,
+              end: 170,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "decl",
+              raw: "decl",
+              span: Span(
+                start: 185,
+                end: 189,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 191,
+                  end: 192,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Solidus,
+                span: Span(
+                  start: 193,
+                  end: 194,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 195,
+                  end: 196,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 185,
+              end: 196,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "with-parens",
+              raw: "with-parens",
+              span: Span(
+                start: 216,
+                end: 227,
+              ),
+            ),
+            value: [
+              SassParenthesizedExpression(
+                type: "SassParenthesizedExpression",
+                expr: SassBinaryExpression(
+                  type: "SassBinaryExpression",
+                  left: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 230,
+                      end: 231,
+                    ),
+                  ),
+                  op: SassBinaryOperator(
+                    type: "SassBinaryOperator",
+                    kind: Division,
+                    span: Span(
+                      start: 232,
+                      end: 233,
+                    ),
+                  ),
+                  right: Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 234,
+                      end: 235,
+                    ),
+                  ),
+                  span: Span(
+                    start: 230,
+                    end: 235,
+                  ),
+                ),
+                span: Span(
+                  start: 229,
+                  end: 236,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 216,
+              end: 236,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 154,
+          end: 251,
+        ),
+      ),
+      span: Span(
+        start: 144,
+        end: 251,
+      ),
+    ),
+    SassFunctionAtRule(
+      type: "SassFunctionAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "f",
+        raw: "f",
+        span: Span(
+          start: 263,
+          end: 264,
+        ),
+      ),
+      parameters: [],
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          SassReturnAtRule(
+            type: "SassReturnAtRule",
+            expr: SassBinaryExpression(
+              type: "SassBinaryExpression",
+              left: Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 279,
+                  end: 280,
+                ),
+              ),
+              op: SassBinaryOperator(
+                type: "SassBinaryOperator",
+                kind: Division,
+                span: Span(
+                  start: 281,
+                  end: 282,
+                ),
+              ),
+              right: Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 283,
+                  end: 284,
+                ),
+              ),
+              span: Span(
+                start: 279,
+                end: 284,
+              ),
+            ),
+            span: Span(
+              start: 271,
+              end: 284,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 267,
+          end: 299,
+        ),
+      ),
+      span: Span(
+        start: 253,
+        end: 299,
+      ),
+    ),
+    SassDebugAtRule(
+      type: "SassDebugAtRule",
+      expr: SassList(
+        type: "SassList",
+        items: [
+          Length(
+            type: "Length",
+            value: Number(
+              type: "Number",
+              value: 15.0,
+              raw: "15",
+              span: Span(
+                start: 307,
+                end: 309,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 309,
+                end: 311,
+              ),
+            ),
+            span: Span(
+              start: 307,
+              end: 311,
+            ),
+          ),
+          Delimiter(
+            type: "Delimiter",
+            kind: Solidus,
+            span: Span(
+              start: 312,
+              end: 313,
+            ),
+          ),
+          Length(
+            type: "Length",
+            value: Number(
+              type: "Number",
+              value: 30.0,
+              raw: "30",
+              span: Span(
+                start: 314,
+                end: 316,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 316,
+                end: 318,
+              ),
+            ),
+            span: Span(
+              start: 314,
+              end: 318,
+            ),
+          ),
+        ],
+        hasParens: false,
+        separator: Space,
+        span: Span(
+          start: 307,
+          end: 318,
+        ),
+      ),
+      span: Span(
+        start: 300,
+        end: 318,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 143,
+    end: 336,
   ),
 )

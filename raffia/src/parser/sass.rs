@@ -1,5 +1,5 @@
 use super::{
-    state::{ParserState, SASS_CTX_IN_FUNCTION},
+    state::{ParserState, SASS_CTX_ALLOW_DIV, SASS_CTX_IN_FUNCTION},
     Parser,
 };
 use crate::{
@@ -174,6 +174,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     kind: SassBinaryOperatorKind::Multiply,
                     span: bump!(self).span,
                 },
+                TokenWithSpan {
+                    token: Token::Solidus(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY
+                    && self.state.sass_ctx & SASS_CTX_ALLOW_DIV != 0 =>
+                {
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::Division,
+                        span: bump!(self).span,
+                    }
+                }
                 TokenWithSpan {
                     token: Token::Percent(..),
                     ..
@@ -1367,7 +1378,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, LParen).1.start;
-        let expr = Box::new(input.parse()?);
+        let expr = Box::new(
+            input
+                .with_state(ParserState {
+                    sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
+                    ..input.state.clone()
+                })
+                .parse_sass_bin_expr()?,
+        );
         let end = expect!(input, RParen).1.end;
         Ok(SassParenthesizedExpression {
             expr,
@@ -1393,7 +1411,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
+        let expr = input
+            .with_state(ParserState {
+                sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
+                ..input.state.clone()
+            })
+            .parse_maybe_sass_list(/* allow_comma */ true)?;
         let span = Span {
             start,
             end: expr.span().end,
@@ -1484,7 +1507,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let name = input.parse::<SassVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_maybe_sass_list(/* allow_comma */ true)?;
+        let value = input
+            .with_state(ParserState {
+                sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
+                ..input.state.clone()
+            })
+            .parse_maybe_sass_list(/* allow_comma */ true)?;
 
         let important = input.try_parse(ImportantAnnotation::parse).ok();
 

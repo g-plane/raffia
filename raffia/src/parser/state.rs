@@ -18,6 +18,7 @@ pub(super) enum QualifiedRuleContext {
 }
 
 pub(super) const SASS_CTX_IN_FUNCTION: u8 = 1;
+pub(super) const SASS_CTX_ALLOW_DIV: u8 = 2;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn with_state(&mut self, state: ParserState) -> WithState<'cmt, 's, '_> {

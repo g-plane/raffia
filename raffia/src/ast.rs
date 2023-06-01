@@ -1132,6 +1132,7 @@ pub struct SassBinaryOperator {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 pub enum SassBinaryOperatorKind {
     Multiply,
+    Division,
     Modulo,
     Plus,
     Minus,

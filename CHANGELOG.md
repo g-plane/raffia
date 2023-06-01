@@ -46,6 +46,7 @@ _This changelog only relates to the `raffia` crate._
 - Try parsing unknown at-rule prelude as component value.
 - Added support of non-standard `:global` pseudo class selector.
 - Changed AST of expression in Sass `@return`, `@debug`, `@warn`, `@error` at-rule and module config.
+- Added partial support of Sass division.
 
 ## v0.2.0
 
