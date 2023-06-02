@@ -162,7 +162,6 @@ Stylesheet(
                   ),
                 ),
               ],
-              hasParens: false,
               separator: Space,
               span: Span(
                 start: 75,
@@ -200,7 +199,6 @@ Stylesheet(
                   ),
                 ),
               ],
-              hasParens: false,
               separator: Space,
               span: Span(
                 start: 100,
@@ -223,39 +221,45 @@ Stylesheet(
                 end: 137,
               ),
             ),
-            value: SassList(
-              type: "SassList",
-              items: [
-                Ident(
-                  type: "Ident",
-                  name: "value-4-0",
-                  raw: "value-4-0",
-                  span: Span(
-                    start: 140,
-                    end: 149,
+            value: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: SassList(
+                type: "SassList",
+                items: [
+                  Ident(
+                    type: "Ident",
+                    name: "value-4-0",
+                    raw: "value-4-0",
+                    span: Span(
+                      start: 140,
+                      end: 149,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "value-4-1",
-                  raw: "value-4-1",
-                  span: Span(
-                    start: 151,
-                    end: 160,
+                  Ident(
+                    type: "Ident",
+                    name: "value-4-1",
+                    raw: "value-4-1",
+                    span: Span(
+                      start: 151,
+                      end: 160,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "value-4-2",
-                  raw: "value-4-2",
-                  span: Span(
-                    start: 162,
-                    end: 171,
+                  Ident(
+                    type: "Ident",
+                    name: "value-4-2",
+                    raw: "value-4-2",
+                    span: Span(
+                      start: 162,
+                      end: 171,
+                    ),
                   ),
+                ],
+                separator: Comma,
+                span: Span(
+                  start: 140,
+                  end: 171,
                 ),
-              ],
-              hasParens: true,
-              separator: Comma,
+              ),
               span: Span(
                 start: 139,
                 end: 172,
@@ -393,77 +397,89 @@ Stylesheet(
           ),
           SassMapItem(
             type: "SassMapItem",
-            key: SassList(
-              type: "SassList",
-              items: [
-                Ident(
-                  type: "Ident",
-                  name: "key-8-0",
-                  raw: "key-8-0",
-                  span: Span(
-                    start: 253,
-                    end: 260,
+            key: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: SassList(
+                type: "SassList",
+                items: [
+                  Ident(
+                    type: "Ident",
+                    name: "key-8-0",
+                    raw: "key-8-0",
+                    span: Span(
+                      start: 253,
+                      end: 260,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "key-8-1",
-                  raw: "key-8-1",
-                  span: Span(
-                    start: 262,
-                    end: 269,
+                  Ident(
+                    type: "Ident",
+                    name: "key-8-1",
+                    raw: "key-8-1",
+                    span: Span(
+                      start: 262,
+                      end: 269,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "key-8-2",
-                  raw: "key-8-2",
-                  span: Span(
-                    start: 271,
-                    end: 278,
+                  Ident(
+                    type: "Ident",
+                    name: "key-8-2",
+                    raw: "key-8-2",
+                    span: Span(
+                      start: 271,
+                      end: 278,
+                    ),
                   ),
+                ],
+                separator: Comma,
+                span: Span(
+                  start: 253,
+                  end: 278,
                 ),
-              ],
-              hasParens: true,
-              separator: Comma,
+              ),
               span: Span(
                 start: 252,
                 end: 279,
               ),
             ),
-            value: SassList(
-              type: "SassList",
-              items: [
-                Ident(
-                  type: "Ident",
-                  name: "value-8-0",
-                  raw: "value-8-0",
-                  span: Span(
-                    start: 282,
-                    end: 291,
+            value: SassParenthesizedExpression(
+              type: "SassParenthesizedExpression",
+              expr: SassList(
+                type: "SassList",
+                items: [
+                  Ident(
+                    type: "Ident",
+                    name: "value-8-0",
+                    raw: "value-8-0",
+                    span: Span(
+                      start: 282,
+                      end: 291,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "value-8-1",
-                  raw: "value-8-1",
-                  span: Span(
-                    start: 293,
-                    end: 302,
+                  Ident(
+                    type: "Ident",
+                    name: "value-8-1",
+                    raw: "value-8-1",
+                    span: Span(
+                      start: 293,
+                      end: 302,
+                    ),
                   ),
-                ),
-                Ident(
-                  type: "Ident",
-                  name: "value-8-2",
-                  raw: "value-8-2",
-                  span: Span(
-                    start: 304,
-                    end: 313,
+                  Ident(
+                    type: "Ident",
+                    name: "value-8-2",
+                    raw: "value-8-2",
+                    span: Span(
+                      start: 304,
+                      end: 313,
+                    ),
                   ),
+                ],
+                separator: Comma,
+                span: Span(
+                  start: 282,
+                  end: 313,
                 ),
-              ],
-              hasParens: true,
-              separator: Comma,
+              ),
               span: Span(
                 start: 281,
                 end: 314,
@@ -1171,39 +1187,45 @@ Stylesheet(
                       end: 562,
                     ),
                   ),
-                  SassList(
-                    type: "SassList",
-                    items: [
-                      Ident(
-                        type: "Ident",
-                        name: "key-3-0",
-                        raw: "key-3-0",
-                        span: Span(
-                          start: 564,
-                          end: 571,
+                  SassParenthesizedExpression(
+                    type: "SassParenthesizedExpression",
+                    expr: SassList(
+                      type: "SassList",
+                      items: [
+                        Ident(
+                          type: "Ident",
+                          name: "key-3-0",
+                          raw: "key-3-0",
+                          span: Span(
+                            start: 564,
+                            end: 571,
+                          ),
                         ),
-                      ),
-                      Ident(
-                        type: "Ident",
-                        name: "key-3-1",
-                        raw: "key-3-1",
-                        span: Span(
-                          start: 572,
-                          end: 579,
+                        Ident(
+                          type: "Ident",
+                          name: "key-3-1",
+                          raw: "key-3-1",
+                          span: Span(
+                            start: 572,
+                            end: 579,
+                          ),
                         ),
-                      ),
-                      Ident(
-                        type: "Ident",
-                        name: "key-3-2",
-                        raw: "key-3-2",
-                        span: Span(
-                          start: 580,
-                          end: 587,
+                        Ident(
+                          type: "Ident",
+                          name: "key-3-2",
+                          raw: "key-3-2",
+                          span: Span(
+                            start: 580,
+                            end: 587,
+                          ),
                         ),
+                      ],
+                      separator: Space,
+                      span: Span(
+                        start: 564,
+                        end: 587,
                       ),
-                    ],
-                    hasParens: true,
-                    separator: Space,
+                    ),
                     span: Span(
                       start: 563,
                       end: 588,

@@ -1348,7 +1348,6 @@ pub struct SassKeywordArgument<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassList<'s> {
     pub items: Vec<ComponentValue<'s>>,
-    pub has_parens: bool,
     pub separator: SassListSeparatorKind,
     pub span: Span,
 }

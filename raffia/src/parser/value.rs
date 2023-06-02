@@ -184,12 +184,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse().map(ComponentValue::SassVariable)
             }
             Token::LParen(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
-                if let Ok(expr) = self.try_parse(SassParenthesizedExpression::parse) {
-                    Ok(ComponentValue::SassParenthesizedExpression(expr))
-                } else if let Ok(map) = self.try_parse(SassMap::parse) {
-                    Ok(ComponentValue::SassMap(map))
-                } else {
-                    self.parse().map(ComponentValue::SassList)
+                match self.try_parse(SassParenthesizedExpression::parse) {
+                    Ok(expr) => Ok(ComponentValue::SassParenthesizedExpression(expr)),
+                    Err(err) => self.parse().map(ComponentValue::SassMap).map_err(|_| err),
                 }
             }
             Token::HashLBrace(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {

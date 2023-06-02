@@ -24,39 +24,45 @@ Stylesheet(
           ),
         ),
       ],
-      expr: SassList(
-        type: "SassList",
-        items: [
-          Ident(
-            type: "Ident",
-            name: "a",
-            raw: "a",
-            span: Span(
-              start: 16,
-              end: 17,
+      expr: SassParenthesizedExpression(
+        type: "SassParenthesizedExpression",
+        expr: SassList(
+          type: "SassList",
+          items: [
+            Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 16,
+                end: 17,
+              ),
             ),
-          ),
-          Ident(
-            type: "Ident",
-            name: "b",
-            raw: "b",
-            span: Span(
-              start: 19,
-              end: 20,
+            Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 19,
+                end: 20,
+              ),
             ),
-          ),
-          Ident(
-            type: "Ident",
-            name: "c",
-            raw: "c",
-            span: Span(
-              start: 22,
-              end: 23,
+            Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 22,
+                end: 23,
+              ),
             ),
+          ],
+          separator: Comma,
+          span: Span(
+            start: 16,
+            end: 23,
           ),
-        ],
-        hasParens: true,
-        separator: Comma,
+        ),
         span: Span(
           start: 15,
           end: 24,
@@ -297,95 +303,112 @@ Stylesheet(
       expr: SassList(
         type: "SassList",
         items: [
-          SassList(
-            type: "SassList",
-            items: [
-              Str(
-                type: "Str",
-                value: "",
-                raw: "\'\'",
-                span: Span(
-                  start: 101,
-                  end: 103,
+          SassParenthesizedExpression(
+            type: "SassParenthesizedExpression",
+            expr: SassList(
+              type: "SassList",
+              items: [
+                Str(
+                  type: "Str",
+                  value: "",
+                  raw: "\'\'",
+                  span: Span(
+                    start: 101,
+                    end: 103,
+                  ),
                 ),
-              ),
-              Str(
-                type: "Str",
-                value: "-unchecked",
-                raw: "\'-unchecked\'",
-                span: Span(
-                  start: 105,
-                  end: 117,
+                Str(
+                  type: "Str",
+                  value: "-unchecked",
+                  raw: "\'-unchecked\'",
+                  span: Span(
+                    start: 105,
+                    end: 117,
+                  ),
                 ),
+              ],
+              separator: Comma,
+              span: Span(
+                start: 101,
+                end: 117,
               ),
-            ],
-            hasParens: true,
-            separator: Comma,
+            ),
             span: Span(
               start: 100,
               end: 118,
             ),
           ),
-          SassList(
-            type: "SassList",
-            items: [
-              Str(
-                type: "Str",
-                value: ":hover",
-                raw: "\':hover\'",
-                span: Span(
-                  start: 135,
-                  end: 143,
+          SassParenthesizedExpression(
+            type: "SassParenthesizedExpression",
+            expr: SassList(
+              type: "SassList",
+              items: [
+                Str(
+                  type: "Str",
+                  value: ":hover",
+                  raw: "\':hover\'",
+                  span: Span(
+                    start: 135,
+                    end: 143,
+                  ),
                 ),
-              ),
-              Str(
-                type: "Str",
-                value: "-unchecked",
-                raw: "\'-unchecked\'",
-                span: Span(
-                  start: 145,
-                  end: 157,
+                Str(
+                  type: "Str",
+                  value: "-unchecked",
+                  raw: "\'-unchecked\'",
+                  span: Span(
+                    start: 145,
+                    end: 157,
+                  ),
                 ),
+              ],
+              separator: Comma,
+              span: Span(
+                start: 135,
+                end: 157,
               ),
-            ],
-            hasParens: true,
-            separator: Comma,
+            ),
             span: Span(
               start: 134,
               end: 158,
             ),
           ),
-          SassList(
-            type: "SassList",
-            items: [
-              Str(
-                type: "Str",
-                value: ":active",
-                raw: "\':active\'",
-                span: Span(
-                  start: 175,
-                  end: 184,
+          SassParenthesizedExpression(
+            type: "SassParenthesizedExpression",
+            expr: SassList(
+              type: "SassList",
+              items: [
+                Str(
+                  type: "Str",
+                  value: ":active",
+                  raw: "\':active\'",
+                  span: Span(
+                    start: 175,
+                    end: 184,
+                  ),
                 ),
-              ),
-              Str(
-                type: "Str",
-                value: "-checked",
-                raw: "\'-checked\'",
-                span: Span(
-                  start: 186,
-                  end: 196,
+                Str(
+                  type: "Str",
+                  value: "-checked",
+                  raw: "\'-checked\'",
+                  span: Span(
+                    start: 186,
+                    end: 196,
+                  ),
                 ),
+              ],
+              separator: Comma,
+              span: Span(
+                start: 175,
+                end: 196,
               ),
-            ],
-            hasParens: true,
-            separator: Comma,
+            ),
             span: Span(
               start: 174,
               end: 197,
             ),
           ),
         ],
-        hasParens: false,
         separator: Comma,
         span: Span(
           start: 100,

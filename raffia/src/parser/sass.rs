@@ -94,7 +94,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             items.insert(0, single_value);
             Ok(ComponentValue::SassList(SassList {
                 items,
-                has_parens: false,
                 separator,
                 span,
             }))
@@ -1264,40 +1263,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInterpolatedUrl<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassList<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let paren_start = eat!(input, LParen).map(|(_, span)| span.start);
-
-        let mut list = if let ComponentValue::SassList(list) =
+        if let ComponentValue::SassList(list) =
             input.parse_maybe_sass_list(/* allow_comma */ true)?
         {
-            list
+            Ok(list)
         } else {
-            use crate::{
-                token::{Comma, RParen},
-                tokenizer::TokenSymbol,
-            };
+            use crate::{token::Comma, tokenizer::TokenSymbol};
             let TokenWithSpan { token, span } = bump!(input);
-            return Err(Error {
-                kind: ErrorKind::Unexpected(
-                    if paren_start.is_some() {
-                        RParen::symbol()
-                    } else {
-                        Comma::symbol()
-                    },
-                    token.symbol(),
-                ),
+            Err(Error {
+                kind: ErrorKind::Unexpected(Comma::symbol(), token.symbol()),
                 span,
-            });
-        };
-
-        if let Some(start) = paren_start {
-            list.span = Span {
-                start,
-                end: expect!(input, RParen).1.end,
-            };
-            list.has_parens = true;
+            })
         }
-
-        Ok(list)
     }
 }
 
@@ -1384,7 +1361,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
                     sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
                     ..input.state.clone()
                 })
-                .parse_sass_bin_expr()?,
+                .parse_maybe_sass_list(/* allow_comma */ true)?,
         );
         let end = expect!(input, RParen).1.end;
         Ok(SassParenthesizedExpression {

@@ -249,30 +249,36 @@ Stylesheet(
             arguments: Some([
               SassArbitraryArgument(
                 type: "SassArbitraryArgument",
-                value: SassList(
-                  type: "SassList",
-                  items: [
-                    Ident(
-                      type: "Ident",
-                      name: "value1",
-                      raw: "value1",
-                      span: Span(
-                        start: 195,
-                        end: 201,
+                value: SassParenthesizedExpression(
+                  type: "SassParenthesizedExpression",
+                  expr: SassList(
+                    type: "SassList",
+                    items: [
+                      Ident(
+                        type: "Ident",
+                        name: "value1",
+                        raw: "value1",
+                        span: Span(
+                          start: 195,
+                          end: 201,
+                        ),
                       ),
-                    ),
-                    Ident(
-                      type: "Ident",
-                      name: "value2",
-                      raw: "value2",
-                      span: Span(
-                        start: 202,
-                        end: 208,
+                      Ident(
+                        type: "Ident",
+                        name: "value2",
+                        raw: "value2",
+                        span: Span(
+                          start: 202,
+                          end: 208,
+                        ),
                       ),
+                    ],
+                    separator: Space,
+                    span: Span(
+                      start: 195,
+                      end: 208,
                     ),
-                  ],
-                  hasParens: true,
-                  separator: Space,
+                  ),
                   span: Span(
                     start: 194,
                     end: 209,
@@ -423,21 +429,27 @@ Stylesheet(
             arguments: Some([
               SassArbitraryArgument(
                 type: "SassArbitraryArgument",
-                value: SassList(
-                  type: "SassList",
-                  items: [
-                    Ident(
-                      type: "Ident",
-                      name: "value1",
-                      raw: "value1",
-                      span: Span(
-                        start: 308,
-                        end: 314,
+                value: SassParenthesizedExpression(
+                  type: "SassParenthesizedExpression",
+                  expr: SassList(
+                    type: "SassList",
+                    items: [
+                      Ident(
+                        type: "Ident",
+                        name: "value1",
+                        raw: "value1",
+                        span: Span(
+                          start: 308,
+                          end: 314,
+                        ),
                       ),
+                    ],
+                    separator: Comma,
+                    span: Span(
+                      start: 308,
+                      end: 314,
                     ),
-                  ],
-                  hasParens: true,
-                  separator: Comma,
+                  ),
                   span: Span(
                     start: 307,
                     end: 316,
@@ -689,7 +701,6 @@ Stylesheet(
                       ),
                     ),
                   ],
-                  hasParens: false,
                   separator: Space,
                   span: Span(
                     start: 470,

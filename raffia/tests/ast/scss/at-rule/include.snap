@@ -1231,7 +1231,6 @@ Stylesheet(
                 ),
               ),
             ],
-            hasParens: false,
             separator: Space,
             span: Span(
               start: 692,
@@ -1266,48 +1265,54 @@ Stylesheet(
       arguments: Some([
         SassArbitraryArgument(
           type: "SassArbitraryArgument",
-          value: SassList(
-            type: "SassList",
-            items: [
-              Ident(
-                type: "Ident",
-                name: "a",
-                raw: "a",
-                span: Span(
-                  start: 727,
-                  end: 728,
+          value: SassParenthesizedExpression(
+            type: "SassParenthesizedExpression",
+            expr: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 727,
+                    end: 728,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
-                span: Span(
-                  start: 729,
-                  end: 730,
+                Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 729,
+                    end: 730,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "c",
-                raw: "c",
-                span: Span(
-                  start: 731,
-                  end: 732,
+                Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 731,
+                    end: 732,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "d",
-                raw: "d",
-                span: Span(
-                  start: 733,
-                  end: 734,
+                Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 733,
+                    end: 734,
+                  ),
                 ),
+              ],
+              separator: Space,
+              span: Span(
+                start: 727,
+                end: 734,
               ),
-            ],
-            hasParens: true,
-            separator: Space,
+            ),
             span: Span(
               start: 726,
               end: 735,
@@ -1341,48 +1346,54 @@ Stylesheet(
       arguments: Some([
         SassArbitraryArgument(
           type: "SassArbitraryArgument",
-          value: SassList(
-            type: "SassList",
-            items: [
-              Ident(
-                type: "Ident",
-                name: "a",
-                raw: "a",
-                span: Span(
-                  start: 763,
-                  end: 764,
+          value: SassParenthesizedExpression(
+            type: "SassParenthesizedExpression",
+            expr: SassList(
+              type: "SassList",
+              items: [
+                Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 763,
+                    end: 764,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
-                span: Span(
-                  start: 766,
-                  end: 767,
+                Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 766,
+                    end: 767,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "c",
-                raw: "c",
-                span: Span(
-                  start: 769,
-                  end: 770,
+                Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 769,
+                    end: 770,
+                  ),
                 ),
-              ),
-              Ident(
-                type: "Ident",
-                name: "d",
-                raw: "d",
-                span: Span(
-                  start: 772,
-                  end: 773,
+                Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 772,
+                    end: 773,
+                  ),
                 ),
+              ],
+              separator: Comma,
+              span: Span(
+                start: 763,
+                end: 773,
               ),
-            ],
-            hasParens: true,
-            separator: Comma,
+            ),
             span: Span(
               start: 762,
               end: 774,
@@ -1712,7 +1723,6 @@ Stylesheet(
                 ),
               ),
             ],
-            hasParens: false,
             separator: Space,
             span: Span(
               start: 911,
@@ -1844,7 +1854,6 @@ Stylesheet(
                 ),
               ),
             ],
-            hasParens: false,
             separator: Space,
             span: Span(
               start: 960,

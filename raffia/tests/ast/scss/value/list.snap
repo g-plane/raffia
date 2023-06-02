@@ -23,39 +23,45 @@ Stylesheet(
           end: 7,
         ),
       ),
-      value: SassList(
-        type: "SassList",
-        items: [
-          Ident(
-            type: "Ident",
-            name: "alpha",
-            raw: "alpha",
-            span: Span(
-              start: 10,
-              end: 15,
+      value: SassParenthesizedExpression(
+        type: "SassParenthesizedExpression",
+        expr: SassList(
+          type: "SassList",
+          items: [
+            Ident(
+              type: "Ident",
+              name: "alpha",
+              raw: "alpha",
+              span: Span(
+                start: 10,
+                end: 15,
+              ),
             ),
-          ),
-          Ident(
-            type: "Ident",
-            name: "beta",
-            raw: "beta",
-            span: Span(
-              start: 17,
-              end: 21,
+            Ident(
+              type: "Ident",
+              name: "beta",
+              raw: "beta",
+              span: Span(
+                start: 17,
+                end: 21,
+              ),
             ),
-          ),
-          Ident(
-            type: "Ident",
-            name: "gamma",
-            raw: "gamma",
-            span: Span(
-              start: 23,
-              end: 28,
+            Ident(
+              type: "Ident",
+              name: "gamma",
+              raw: "gamma",
+              span: Span(
+                start: 23,
+                end: 28,
+              ),
             ),
+          ],
+          separator: Comma,
+          span: Span(
+            start: 10,
+            end: 28,
           ),
-        ],
-        hasParens: true,
-        separator: Comma,
+        ),
         span: Span(
           start: 9,
           end: 31,
@@ -88,21 +94,27 @@ Stylesheet(
           end: 53,
         ),
       ),
-      value: SassList(
-        type: "SassList",
-        items: [
-          Ident(
-            type: "Ident",
-            name: "alpha",
-            raw: "alpha",
-            span: Span(
-              start: 56,
-              end: 61,
+      value: SassParenthesizedExpression(
+        type: "SassParenthesizedExpression",
+        expr: SassList(
+          type: "SassList",
+          items: [
+            Ident(
+              type: "Ident",
+              name: "alpha",
+              raw: "alpha",
+              span: Span(
+                start: 56,
+                end: 61,
+              ),
             ),
+          ],
+          separator: Comma,
+          span: Span(
+            start: 56,
+            end: 61,
           ),
-        ],
-        hasParens: true,
-        separator: Comma,
+        ),
         span: Span(
           start: 55,
           end: 63,
@@ -192,7 +204,6 @@ Stylesheet(
                 ),
               ),
             ],
-            hasParens: false,
             separator: Space,
             span: Span(
               start: 88,
@@ -253,7 +264,6 @@ Stylesheet(
                 ),
               ),
             ],
-            hasParens: false,
             separator: Space,
             span: Span(
               start: 109,
@@ -261,7 +271,6 @@ Stylesheet(
             ),
           ),
         ],
-        hasParens: false,
         separator: Comma,
         span: Span(
           start: 88,
@@ -295,57 +304,62 @@ Stylesheet(
           end: 137,
         ),
       ),
-      value: SassList(
-        type: "SassList",
-        items: [
-          SassList(
-            type: "SassList",
-            items: [
-              Length(
-                type: "Length",
-                value: Number(
-                  type: "Number",
-                  value: 1.0,
-                  raw: "1",
+      value: SassParenthesizedExpression(
+        type: "SassParenthesizedExpression",
+        expr: SassList(
+          type: "SassList",
+          items: [
+            SassList(
+              type: "SassList",
+              items: [
+                Length(
+                  type: "Length",
+                  value: Number(
+                    type: "Number",
+                    value: 1.0,
+                    raw: "1",
+                    span: Span(
+                      start: 140,
+                      end: 141,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 141,
+                      end: 143,
+                    ),
+                  ),
                   span: Span(
                     start: 140,
-                    end: 141,
-                  ),
-                ),
-                unit: Ident(
-                  type: "Ident",
-                  name: "px",
-                  raw: "px",
-                  span: Span(
-                    start: 141,
                     end: 143,
                   ),
                 ),
-                span: Span(
-                  start: 140,
-                  end: 143,
+                Ident(
+                  type: "Ident",
+                  name: "solid",
+                  raw: "solid",
+                  span: Span(
+                    start: 144,
+                    end: 149,
+                  ),
                 ),
+              ],
+              separator: Space,
+              span: Span(
+                start: 140,
+                end: 149,
               ),
-              Ident(
-                type: "Ident",
-                name: "solid",
-                raw: "solid",
-                span: Span(
-                  start: 144,
-                  end: 149,
-                ),
-              ),
-            ],
-            hasParens: false,
-            separator: Space,
-            span: Span(
-              start: 140,
-              end: 149,
             ),
+          ],
+          separator: Comma,
+          span: Span(
+            start: 140,
+            end: 149,
           ),
-        ],
-        hasParens: true,
-        separator: Comma,
+        ),
         span: Span(
           start: 139,
           end: 151,
