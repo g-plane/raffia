@@ -1,0 +1,17 @@
+@mixin my-keyframes() {
+  @-webkit-keyframes kf {
+    @content;
+  }
+  @-ms-keyframes kf {
+    @content;
+  }
+  @-moz-keyframes kf {
+    @content;
+  }
+  @-o-keyframes kf {
+    @content;
+  }
+  @keyframes kf {
+    @content;
+  }
+}

@@ -1,12 +1,12 @@
 use super::Parser;
 use crate::{
     ast::*,
-    eat,
+    bump, eat,
     error::{Error, ErrorKind, PResult},
     peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Parse,
+    util, Parse, Syntax,
 };
 
 // https://drafts.csswg.org/css-animations/#keyframes
@@ -87,12 +87,35 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
         self.parse_simple_block_with(|parser| {
             let mut statements = Vec::with_capacity(3);
-            while let Token::Percentage(..)
-            | Token::Ident(..)
-            | Token::HashLBrace(..)
-            | Token::AtLBraceVar(..) = &peek!(parser).token
-            {
-                statements.push(Statement::KeyframeBlock(parser.parse()?));
+            loop {
+                match &peek!(parser).token {
+                    Token::Percentage(..)
+                    | Token::Ident(..)
+                    | Token::HashLBrace(..)
+                    | Token::AtLBraceVar(..) => {
+                        statements.push(Statement::KeyframeBlock(parser.parse()?));
+                    }
+                    Token::AtKeyword(at_keyword)
+                        if matches!(parser.syntax, Syntax::Scss | Syntax::Sass) =>
+                    {
+                        let at_keyword_name = at_keyword.ident.name();
+                        if let Some((statement, is_block)) =
+                            parser.parse_sass_at_rule(&at_keyword_name)?
+                        {
+                            statements.push(statement);
+                            if !is_block {
+                                match (&peek!(parser).token, parser.syntax) {
+                                    (Token::Semicolon(..), Syntax::Scss)
+                                    | (Token::Linebreak(..), Syntax::Sass) => {
+                                        bump!(parser);
+                                    }
+                                    _ => break,
+                                }
+                            }
+                        }
+                    }
+                    _ => break,
+                }
             }
             Ok(statements)
         })

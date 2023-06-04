@@ -1,0 +1,249 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassMixinAtRule(
+      type: "SassMixinAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "my-keyframes",
+        raw: "my-keyframes",
+        span: Span(
+          start: 7,
+          end: 19,
+        ),
+      ),
+      parameters: Some([]),
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "-webkit-keyframes",
+              raw: "-webkit-keyframes",
+              span: Span(
+                start: 27,
+                end: 44,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "kf",
+              raw: "kf",
+              span: Span(
+                start: 45,
+                end: 47,
+              ),
+            )),
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassContentAtRule(
+                  type: "SassContentAtRule",
+                  arguments: None,
+                  span: Span(
+                    start: 54,
+                    end: 62,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 48,
+                end: 67,
+              ),
+            )),
+            span: Span(
+              start: 26,
+              end: 67,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "-ms-keyframes",
+              raw: "-ms-keyframes",
+              span: Span(
+                start: 71,
+                end: 84,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "kf",
+              raw: "kf",
+              span: Span(
+                start: 85,
+                end: 87,
+              ),
+            )),
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassContentAtRule(
+                  type: "SassContentAtRule",
+                  arguments: None,
+                  span: Span(
+                    start: 94,
+                    end: 102,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 88,
+                end: 107,
+              ),
+            )),
+            span: Span(
+              start: 70,
+              end: 107,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "-moz-keyframes",
+              raw: "-moz-keyframes",
+              span: Span(
+                start: 111,
+                end: 125,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "kf",
+              raw: "kf",
+              span: Span(
+                start: 126,
+                end: 128,
+              ),
+            )),
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassContentAtRule(
+                  type: "SassContentAtRule",
+                  arguments: None,
+                  span: Span(
+                    start: 135,
+                    end: 143,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 129,
+                end: 148,
+              ),
+            )),
+            span: Span(
+              start: 110,
+              end: 148,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "-o-keyframes",
+              raw: "-o-keyframes",
+              span: Span(
+                start: 152,
+                end: 164,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "kf",
+              raw: "kf",
+              span: Span(
+                start: 165,
+                end: 167,
+              ),
+            )),
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassContentAtRule(
+                  type: "SassContentAtRule",
+                  arguments: None,
+                  span: Span(
+                    start: 174,
+                    end: 182,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 168,
+                end: 187,
+              ),
+            )),
+            span: Span(
+              start: 151,
+              end: 187,
+            ),
+          ),
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "keyframes",
+              raw: "keyframes",
+              span: Span(
+                start: 191,
+                end: 200,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "kf",
+              raw: "kf",
+              span: Span(
+                start: 201,
+                end: 203,
+              ),
+            )),
+            block: Some(SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassContentAtRule(
+                  type: "SassContentAtRule",
+                  arguments: None,
+                  span: Span(
+                    start: 210,
+                    end: 218,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 204,
+                end: 223,
+              ),
+            )),
+            span: Span(
+              start: 190,
+              end: 223,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 22,
+          end: 225,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 225,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 226,
+  ),
+)
