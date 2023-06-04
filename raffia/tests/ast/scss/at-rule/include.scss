@@ -43,3 +43,9 @@
 @include vararg-test(a b..., (c: c,d: d)...);
 @include vararg-test(a, b c..., (d:d)...);
 @include vararg-test($c: c, (a: a, b: b, d: d)...);
+
+@include my-keyframes(#{$nameSpace}-bob) {
+  0% {
+    @include prefixed(transform, translateY(-8px));
+  }
+}

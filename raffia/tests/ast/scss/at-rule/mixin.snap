@@ -943,9 +943,143 @@ Stylesheet(
         end: 483,
       ),
     ),
+    SassMixinAtRule(
+      type: "SassMixinAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "my-keyframes",
+        raw: "my-keyframes",
+        span: Span(
+          start: 492,
+          end: 504,
+        ),
+      ),
+      parameters: Some([]),
+      arbitraryParameter: None,
+      body: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 511,
+                    end: 513,
+                  ),
+                ),
+                span: Span(
+                  start: 511,
+                  end: 514,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassIncludeAtRule(
+                  type: "SassIncludeAtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "prefixed",
+                    raw: "prefixed",
+                    span: Span(
+                      start: 530,
+                      end: 538,
+                    ),
+                  ),
+                  arguments: Some([
+                    Ident(
+                      type: "Ident",
+                      name: "transform",
+                      raw: "transform",
+                      span: Span(
+                        start: 539,
+                        end: 548,
+                      ),
+                    ),
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateY",
+                        raw: "translateY",
+                        span: Span(
+                          start: 550,
+                          end: 560,
+                        ),
+                      ),
+                      args: [
+                        Length(
+                          type: "Length",
+                          value: Number(
+                            type: "Number",
+                            value: -4.0,
+                            raw: "-4",
+                            span: Span(
+                              start: 561,
+                              end: 563,
+                            ),
+                          ),
+                          unit: Ident(
+                            type: "Ident",
+                            name: "px",
+                            raw: "px",
+                            span: Span(
+                              start: 563,
+                              end: 565,
+                            ),
+                          ),
+                          span: Span(
+                            start: 561,
+                            end: 565,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 550,
+                        end: 566,
+                      ),
+                    ),
+                  ]),
+                  contentBlockParams: None,
+                  contentBlockArbitraryParam: None,
+                  block: None,
+                  span: Span(
+                    start: 521,
+                    end: 568,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 515,
+                end: 572,
+              ),
+            ),
+            span: Span(
+              start: 511,
+              end: 572,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 507,
+          end: 574,
+        ),
+      ),
+      span: Span(
+        start: 485,
+        end: 574,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 484,
+    end: 575,
   ),
 )

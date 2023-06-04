@@ -1,5 +1,5 @@
 use super::{
-    state::{ParserState, SASS_CTX_ALLOW_DIV, SASS_CTX_IN_FUNCTION},
+    state::{ParserState, SASS_CTX_ALLOW_DIV, SASS_CTX_ALLOW_KEYFRAME_BLOCK, SASS_CTX_IN_FUNCTION},
     Parser,
 };
 use crate::{
@@ -110,9 +110,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             "for" => Ok(Some((Statement::SassForAtRule(self.parse()?), true))),
             "if" => Ok(Some((Statement::SassIfAtRule(self.parse()?), true))),
             "while" => Ok(Some((Statement::SassWhileAtRule(self.parse()?), true))),
-            "mixin" => Ok(Some((Statement::SassMixinAtRule(self.parse()?), true))),
+            "mixin" => Ok(Some((
+                Statement::SassMixinAtRule(
+                    self.with_state(ParserState {
+                        sass_ctx: self.state.sass_ctx | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
+                        ..self.state.clone()
+                    })
+                    .parse()?,
+                ),
+                true,
+            ))),
             "include" => {
-                let at_rule = self.parse::<SassIncludeAtRule>()?;
+                let at_rule = self
+                    .with_state(ParserState {
+                        sass_ctx: self.state.sass_ctx | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
+                        ..self.state.clone()
+                    })
+                    .parse::<SassIncludeAtRule>()?;
                 let is_block = at_rule.block.is_some();
                 Ok(Some((Statement::SassIncludeAtRule(at_rule), is_block)))
             }

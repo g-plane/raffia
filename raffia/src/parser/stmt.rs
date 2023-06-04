@@ -357,6 +357,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     is_block_element = unknown_sass_at_rule.block.is_some();
                     statements.push(Statement::UnknownSassAtRule(unknown_sass_at_rule));
                 }
+                Token::Percentage(..)
+                    if self.state.sass_ctx & super::state::SASS_CTX_ALLOW_KEYFRAME_BLOCK != 0 =>
+                {
+                    debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
+                    statements.push(Statement::KeyframeBlock(self.parse()?));
+                    is_block_element = true;
+                }
                 Token::RBrace(..) | Token::Eof(..) | Token::Dedent(..) => break,
                 Token::Semicolon(..) | Token::Linebreak(..) => {
                     bump!(self);

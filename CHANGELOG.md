@@ -47,6 +47,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of non-standard `:global` pseudo class selector.
 - Changed AST of expression in Sass `@return`, `@debug`, `@warn`, `@error` at-rule and module config.
 - Added partial support of Sass division.
+- Added support of allowing keyframe block in Sass `@mixin` and `@include` at-rule.
 
 ## v0.2.0
 

@@ -24,3 +24,9 @@
 @mixin no-params() {}
 
 @mixin list($lst: a b) {}
+
+@mixin my-keyframes() {
+  50% {
+    @include prefixed(transform, translateY(-4px));
+  }
+}

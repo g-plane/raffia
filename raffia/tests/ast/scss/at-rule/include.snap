@@ -2059,9 +2059,179 @@ Stylesheet(
         end: 1030,
       ),
     ),
+    SassIncludeAtRule(
+      type: "SassIncludeAtRule",
+      name: Ident(
+        type: "Ident",
+        name: "my-keyframes",
+        raw: "my-keyframes",
+        span: Span(
+          start: 1041,
+          end: 1053,
+        ),
+      ),
+      arguments: Some([
+        SassInterpolatedIdent(
+          type: "SassInterpolatedIdent",
+          elements: [
+            SassVariable(
+              type: "SassVariable",
+              name: Ident(
+                type: "Ident",
+                name: "nameSpace",
+                raw: "nameSpace",
+                span: Span(
+                  start: 1057,
+                  end: 1066,
+                ),
+              ),
+              span: Span(
+                start: 1056,
+                end: 1066,
+              ),
+            ),
+            InterpolableIdentStaticPart(
+              type: "InterpolableIdentStaticPart",
+              value: "-bob",
+              raw: "-bob",
+              span: Span(
+                start: 1067,
+                end: 1071,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 1054,
+            end: 1071,
+          ),
+        ),
+      ]),
+      contentBlockParams: None,
+      contentBlockArbitraryParam: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 0.0,
+                  raw: "0",
+                  span: Span(
+                    start: 1077,
+                    end: 1078,
+                  ),
+                ),
+                span: Span(
+                  start: 1077,
+                  end: 1079,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                SassIncludeAtRule(
+                  type: "SassIncludeAtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "prefixed",
+                    raw: "prefixed",
+                    span: Span(
+                      start: 1095,
+                      end: 1103,
+                    ),
+                  ),
+                  arguments: Some([
+                    Ident(
+                      type: "Ident",
+                      name: "transform",
+                      raw: "transform",
+                      span: Span(
+                        start: 1104,
+                        end: 1113,
+                      ),
+                    ),
+                    Function(
+                      type: "Function",
+                      name: Ident(
+                        type: "Ident",
+                        name: "translateY",
+                        raw: "translateY",
+                        span: Span(
+                          start: 1115,
+                          end: 1125,
+                        ),
+                      ),
+                      args: [
+                        Length(
+                          type: "Length",
+                          value: Number(
+                            type: "Number",
+                            value: -8.0,
+                            raw: "-8",
+                            span: Span(
+                              start: 1126,
+                              end: 1128,
+                            ),
+                          ),
+                          unit: Ident(
+                            type: "Ident",
+                            name: "px",
+                            raw: "px",
+                            span: Span(
+                              start: 1128,
+                              end: 1130,
+                            ),
+                          ),
+                          span: Span(
+                            start: 1126,
+                            end: 1130,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1115,
+                        end: 1131,
+                      ),
+                    ),
+                  ]),
+                  contentBlockParams: None,
+                  contentBlockArbitraryParam: None,
+                  block: None,
+                  span: Span(
+                    start: 1086,
+                    end: 1133,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1080,
+                end: 1137,
+              ),
+            ),
+            span: Span(
+              start: 1077,
+              end: 1137,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1073,
+          end: 1139,
+        ),
+      )),
+      span: Span(
+        start: 1032,
+        end: 1139,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 1031,
+    end: 1140,
   ),
 )
