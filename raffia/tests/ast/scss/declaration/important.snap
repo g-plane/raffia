@@ -157,20 +157,123 @@ Stylesheet(
               end: 43,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "padding",
+              raw: "padding",
+              span: Span(
+                start: 47,
+                end: 54,
+              ),
+            ),
+            value: [
+              Length(
+                type: "Length",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 56,
+                    end: 57,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 57,
+                    end: 59,
+                  ),
+                ),
+                span: Span(
+                  start: 56,
+                  end: 59,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 61,
+                  end: 70,
+                ),
+              ),
+              span: Span(
+                start: 60,
+                end: 70,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 47,
+              end: 70,
+            ),
+          ),
         ],
         span: Span(
           start: 2,
-          end: 46,
+          end: 73,
         ),
       ),
       span: Span(
         start: 0,
-        end: 46,
+        end: 73,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "important",
+          raw: "important",
+          span: Span(
+            start: 76,
+            end: 85,
+          ),
+        ),
+        span: Span(
+          start: 75,
+          end: 85,
+        ),
+      ),
+      value: ImportantAnnotation(
+        type: "ImportantAnnotation",
+        ident: Ident(
+          type: "Ident",
+          name: "important",
+          raw: "important",
+          span: Span(
+            start: 88,
+            end: 97,
+          ),
+        ),
+        span: Span(
+          start: 87,
+          end: 97,
+        ),
+      ),
+      important: None,
+      overridable: false,
+      forceGlobal: false,
+      span: Span(
+        start: 75,
+        end: 98,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 48,
+    end: 99,
   ),
 )

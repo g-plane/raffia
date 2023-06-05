@@ -28,6 +28,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_maybe_sass_list(&mut self, allow_comma: bool) -> PResult<ComponentValue<'s>> {
         let single_value = if allow_comma {
             self.parse_maybe_sass_list(false)?
+        } else if let Token::Exclamation(..) = peek!(self).token {
+            self.parse().map(ComponentValue::ImportantAnnotation)?
         } else {
             self.parse_sass_bin_expr()?
         };
@@ -46,7 +48,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         | Token::Colon(..)
                         | Token::Dedent(..)
                         | Token::Linebreak(..)
-                        | Token::Exclamation(..)
                         | Token::DotDotDot(..)
                         | Token::Eof(..),
                     ..
@@ -69,8 +70,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if end < span.start && matches!(separator, SassListSeparatorKind::Unknown) {
                         separator = SassListSeparatorKind::Space;
                     }
-                    let item = if allow_comma {
+                    let item = if allow_comma && matches!(separator, SassListSeparatorKind::Comma) {
                         self.parse_maybe_sass_list(false)?
+                    } else if let Token::Exclamation(..) = peek!(self).token {
+                        if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse)
+                        {
+                            ComponentValue::ImportantAnnotation(important_annotation)
+                        } else {
+                            break;
+                        }
                     } else {
                         self.parse_sass_bin_expr()?
                     };
@@ -491,10 +499,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut values = Vec::with_capacity(4);
         while !matches!(peek!(self).token, Token::RParen(..) | Token::Eof(..)) {
             match peek!(self).token {
-                Token::Exclamation(..) => {
-                    // while this syntax is weird, Bootstrap is actually using it
-                    values.push(self.parse().map(ComponentValue::ImportantAnnotation)?);
-                }
                 Token::Comma(..) => {
                     let TokenWithSpan { span, .. } = bump!(self);
                     self.recoverable_errors.push(Error {

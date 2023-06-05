@@ -1,4 +1,6 @@
 a {
   color: red if(true, !important, null);
+  padding: 1px !important;
 }
 
+$important: !important;
