@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
-    peek,
+    expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
     util, Parse, Syntax,
@@ -104,12 +104,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         {
                             statements.push(statement);
                             if !is_block {
-                                match (&peek!(parser).token, parser.syntax) {
-                                    (Token::Semicolon(..), Syntax::Scss)
-                                    | (Token::Linebreak(..), Syntax::Sass) => {
-                                        bump!(parser);
+                                match parser.syntax {
+                                    Syntax::Scss => {
+                                        expect!(parser, Semicolon);
                                     }
-                                    _ => break,
+                                    Syntax::Sass => {
+                                        if let Token::Dedent(..) = peek!(parser).token {
+                                            break;
+                                        } else {
+                                            expect!(parser, Linebreak);
+                                        }
+                                    }
+                                    _ => unreachable!(),
                                 }
                             }
                         }
