@@ -325,7 +325,6 @@ Stylesheet(
               end: 254,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 249,
@@ -379,7 +378,6 @@ Stylesheet(
               end: 297,
             ),
           ),
-          important: None,
           overridable: true,
           span: Span(
             start: 283,
@@ -452,7 +450,6 @@ Stylesheet(
               end: 354,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 338,
@@ -505,7 +502,6 @@ Stylesheet(
               end: 374,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 358,
@@ -558,7 +554,6 @@ Stylesheet(
               end: 394,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 378,
@@ -631,7 +626,6 @@ Stylesheet(
               end: 443,
             ),
           ),
-          important: None,
           overridable: true,
           span: Span(
             start: 427,
@@ -684,7 +678,6 @@ Stylesheet(
               end: 472,
             ),
           ),
-          important: None,
           overridable: true,
           span: Span(
             start: 456,
@@ -737,7 +730,6 @@ Stylesheet(
               end: 501,
             ),
           ),
-          important: None,
           overridable: true,
           span: Span(
             start: 485,
@@ -791,7 +783,6 @@ Stylesheet(
               end: 555,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 541,
@@ -845,7 +836,6 @@ Stylesheet(
               end: 599,
             ),
           ),
-          important: None,
           overridable: true,
           span: Span(
             start: 585,
@@ -926,7 +916,6 @@ Stylesheet(
               end: 665,
             ),
           ),
-          important: None,
           overridable: false,
           span: Span(
             start: 649,
@@ -939,9 +928,88 @@ Stylesheet(
         end: 666,
       ),
     ),
+    SassForwardAtRule(
+      type: "SassForwardAtRule",
+      path: Str(
+        type: "Str",
+        value: "upstream",
+        raw: "\"upstream\"",
+        span: Span(
+          start: 678,
+          end: 688,
+        ),
+      ),
+      prefix: None,
+      visibility: None,
+      config: Some([
+        SassModuleConfigItem(
+          type: "SassModuleConfigItem",
+          variable: SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 696,
+                end: 697,
+              ),
+            ),
+            span: Span(
+              start: 695,
+              end: 697,
+            ),
+          ),
+          value: SassList(
+            type: "SassList",
+            items: [
+              Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 699,
+                  end: 709,
+                ),
+              ),
+              ImportantAnnotation(
+                type: "ImportantAnnotation",
+                ident: Ident(
+                  type: "Ident",
+                  name: "important",
+                  raw: "important",
+                  span: Span(
+                    start: 711,
+                    end: 720,
+                  ),
+                ),
+                span: Span(
+                  start: 710,
+                  end: 720,
+                ),
+              ),
+            ],
+            separator: Space,
+            span: Span(
+              start: 699,
+              end: 720,
+            ),
+          ),
+          overridable: true,
+          span: Span(
+            start: 695,
+            end: 729,
+          ),
+        ),
+      ]),
+      span: Span(
+        start: 669,
+        end: 730,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 668,
+    end: 732,
   ),
 )

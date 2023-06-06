@@ -27,3 +27,5 @@
 @forward "upstream" with ($a: configured !default,);
 
 @forward "midstream1" as m1-* with ($a: overridden 1);
+
+@forward "upstream" with ($a: configured !important !default);

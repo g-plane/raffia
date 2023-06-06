@@ -263,7 +263,6 @@ Stylesheet(
           end: 97,
         ),
       ),
-      important: None,
       overridable: false,
       forceGlobal: false,
       span: Span(
@@ -271,9 +270,51 @@ Stylesheet(
         end: 98,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "flags",
+          raw: "flags",
+          span: Span(
+            start: 100,
+            end: 105,
+          ),
+        ),
+        span: Span(
+          start: 99,
+          end: 105,
+        ),
+      ),
+      value: ImportantAnnotation(
+        type: "ImportantAnnotation",
+        ident: Ident(
+          type: "Ident",
+          name: "important",
+          raw: "important",
+          span: Span(
+            start: 108,
+            end: 117,
+          ),
+        ),
+        span: Span(
+          start: 107,
+          end: 117,
+        ),
+      ),
+      overridable: true,
+      forceGlobal: false,
+      span: Span(
+        start: 99,
+        end: 126,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 99,
+    end: 128,
   ),
 )

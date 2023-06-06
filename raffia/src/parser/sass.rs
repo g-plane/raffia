@@ -591,19 +591,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         expect!(self, Colon);
         let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
 
-        let important = self.try_parse(ImportantAnnotation::parse).ok();
-
         let (overridable, end) = if allow_overridable {
             let (flags, end) = self.parse_sass_flags_into_bits()?;
             (flags & FLAG_DEFAULT != 0, end)
         } else {
-            (
-                false,
-                important
-                    .as_ref()
-                    .map(|important| important.span.end)
-                    .unwrap_or_else(|| value.span().end),
-            )
+            (false, value.span().end)
         };
 
         let span = Span {
@@ -613,7 +605,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(SassModuleConfigItem {
             variable,
             value,
-            important,
             overridable,
             span,
         })
@@ -1518,8 +1509,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             })
             .parse_maybe_sass_list(/* allow_comma */ true)?;
 
-        let important = input.try_parse(ImportantAnnotation::parse).ok();
-
         let (flags, end) = input.parse_sass_flags_into_bits()?;
 
         let span = Span {
@@ -1542,7 +1531,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             namespace,
             name,
             value,
-            important,
             overridable: flags & FLAG_DEFAULT != 0,
             force_global,
             span,

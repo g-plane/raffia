@@ -1395,7 +1395,6 @@ pub struct SassMixinAtRule<'s> {
 pub struct SassModuleConfigItem<'s> {
     pub variable: SassVariable<'s>,
     pub value: ComponentValue<'s>,
-    pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
     pub span: Span,
 }
@@ -1523,7 +1522,6 @@ pub struct SassVariableDeclaration<'s> {
     pub namespace: Option<Ident<'s>>,
     pub name: SassVariable<'s>,
     pub value: ComponentValue<'s>,
-    pub important: Option<ImportantAnnotation<'s>>,
     pub overridable: bool,
     pub force_global: bool,
     pub span: Span,
