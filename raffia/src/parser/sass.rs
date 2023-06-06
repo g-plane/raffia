@@ -85,8 +85,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         break;
                     }
                 }
-                TokenWithSpan { span, .. } => {
-                    if end < span.start && matches!(separator, SassListSeparatorKind::Unknown) {
+                TokenWithSpan { token, span } => {
+                    // Treating a list as it's separated by spaces without actual whitespaces
+                    // is possible syntax error, however we see there're real usage like:
+                    // `$variable#{something}`
+                    // (two elements: the first one is Sass variable, the second one is
+                    // interpolation)
+                    // so we allow this special case here.
+                    if (end < span.start || matches!(token, Token::HashLBrace(..)))
+                        && matches!(separator, SassListSeparatorKind::Unknown)
+                    {
                         separator = SassListSeparatorKind::Space;
                     }
                     let item = if matches!(separator, SassListSeparatorKind::Comma) {

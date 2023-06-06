@@ -369,9 +369,79 @@ Stylesheet(
         end: 152,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "no-whitespaces",
+          raw: "no-whitespaces",
+          span: Span(
+            start: 154,
+            end: 168,
+          ),
+        ),
+        span: Span(
+          start: 153,
+          end: 168,
+        ),
+      ),
+      value: SassList(
+        type: "SassList",
+        items: [
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "variable",
+              raw: "variable",
+              span: Span(
+                start: 171,
+                end: 179,
+              ),
+            ),
+            span: Span(
+              start: 170,
+              end: 179,
+            ),
+          ),
+          SassInterpolatedIdent(
+            type: "SassInterpolatedIdent",
+            elements: [
+              Ident(
+                type: "Ident",
+                name: "something",
+                raw: "something",
+                span: Span(
+                  start: 181,
+                  end: 190,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 179,
+              end: 191,
+            ),
+          ),
+        ],
+        separator: Space,
+        span: Span(
+          start: 170,
+          end: 191,
+        ),
+      ),
+      overridable: false,
+      forceGlobal: false,
+      span: Span(
+        start: 153,
+        end: 192,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 153,
+    end: 193,
   ),
 )
