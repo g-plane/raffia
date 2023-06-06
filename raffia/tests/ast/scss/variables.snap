@@ -578,9 +578,73 @@ Stylesheet(
         end: 214,
       ),
     ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "font-family",
+          raw: "font-family",
+          span: Span(
+            start: 217,
+            end: 228,
+          ),
+        ),
+        span: Span(
+          start: 216,
+          end: 228,
+        ),
+      ),
+      value: SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 230,
+              end: 231,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 233,
+              end: 234,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "c",
+            raw: "c",
+            span: Span(
+              start: 236,
+              end: 237,
+            ),
+          ),
+        ],
+        separator: Comma,
+        span: Span(
+          start: 230,
+          end: 237,
+        ),
+      ),
+      important: None,
+      overridable: true,
+      forceGlobal: false,
+      span: Span(
+        start: 216,
+        end: 246,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 216,
+    end: 248,
   ),
 )

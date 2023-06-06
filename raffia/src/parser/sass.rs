@@ -66,19 +66,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     bump!(self);
                 }
+                TokenWithSpan {
+                    token: Token::Exclamation(..),
+                    ..
+                } => {
+                    if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse) {
+                        if end < important_annotation.span.start
+                            && matches!(separator, SassListSeparatorKind::Unknown)
+                        {
+                            separator = SassListSeparatorKind::Space;
+                        }
+                        end = important_annotation.span.end;
+                        items.push(ComponentValue::ImportantAnnotation(important_annotation));
+                    } else {
+                        break;
+                    }
+                }
                 TokenWithSpan { span, .. } => {
                     if end < span.start && matches!(separator, SassListSeparatorKind::Unknown) {
                         separator = SassListSeparatorKind::Space;
                     }
-                    let item = if allow_comma && matches!(separator, SassListSeparatorKind::Comma) {
+                    let item = if matches!(separator, SassListSeparatorKind::Comma) {
                         self.parse_maybe_sass_list(false)?
-                    } else if let Token::Exclamation(..) = peek!(self).token {
-                        if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse)
-                        {
-                            ComponentValue::ImportantAnnotation(important_annotation)
-                        } else {
-                            break;
-                        }
                     } else {
                         self.parse_sass_bin_expr()?
                     };
