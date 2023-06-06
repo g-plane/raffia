@@ -1,0 +1,97 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "define-color",
+        raw: "define-color",
+        span: Span(
+          start: 1,
+          end: 13,
+        ),
+      ),
+      prelude: Some(SassList(
+        type: "SassList",
+        items: [
+          Ident(
+            type: "Ident",
+            name: "theme_fg_color",
+            raw: "theme_fg_color",
+            span: Span(
+              start: 14,
+              end: 28,
+            ),
+          ),
+          SassInterpolatedIdent(
+            type: "SassInterpolatedIdent",
+            elements: [
+              SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: Str(
+                  type: "Str",
+                  value: "",
+                  raw: "\"\"",
+                  span: Span(
+                    start: 31,
+                    end: 33,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 34,
+                    end: 35,
+                  ),
+                ),
+                right: SassVariable(
+                  type: "SassVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "fg_color",
+                    raw: "fg_color",
+                    span: Span(
+                      start: 37,
+                      end: 45,
+                    ),
+                  ),
+                  span: Span(
+                    start: 36,
+                    end: 45,
+                  ),
+                ),
+                span: Span(
+                  start: 31,
+                  end: 45,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 29,
+              end: 46,
+            ),
+          ),
+        ],
+        separator: Space,
+        span: Span(
+          start: 14,
+          end: 46,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 46,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 48,
+  ),
+)

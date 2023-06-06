@@ -25,7 +25,10 @@ const FLAG_DEFAULT: u8 = 1;
 const FLAG_GLOBAL: u8 = 2;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn parse_maybe_sass_list(&mut self, allow_comma: bool) -> PResult<ComponentValue<'s>> {
+    pub(super) fn parse_maybe_sass_list(
+        &mut self,
+        allow_comma: bool,
+    ) -> PResult<ComponentValue<'s>> {
         let single_value = if allow_comma {
             self.parse_maybe_sass_list(false)?
         } else if let Token::Exclamation(..) = peek!(self).token {
