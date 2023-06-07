@@ -843,9 +843,146 @@ Stylesheet(
         end: 318,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 337,
+                          end: 338,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 337,
+                        end: 338,
+                      ),
+                    ),
+                    span: Span(
+                      start: 337,
+                      end: 338,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 337,
+                  end: 338,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 337,
+              end: 338,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 337,
+          end: 338,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 343,
+                end: 347,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 349,
+                  end: 350,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 350,
+                  end: 351,
+                ),
+              ),
+              SassBinaryExpression(
+                type: "SassBinaryExpression",
+                left: Number(
+                  type: "Number",
+                  value: -1.0,
+                  raw: "-1",
+                  span: Span(
+                    start: 351,
+                    end: 353,
+                  ),
+                ),
+                op: SassBinaryOperator(
+                  type: "SassBinaryOperator",
+                  kind: Multiply,
+                  span: Span(
+                    start: 353,
+                    end: 354,
+                  ),
+                ),
+                right: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 354,
+                    end: 355,
+                  ),
+                ),
+                span: Span(
+                  start: 351,
+                  end: 355,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 343,
+              end: 355,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 339,
+          end: 358,
+        ),
+      ),
+      span: Span(
+        start: 337,
+        end: 358,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 336,
+    end: 359,
   ),
 )

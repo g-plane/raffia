@@ -49,6 +49,7 @@ _This changelog only relates to the `raffia` crate._
 - Added partial support of Sass division.
 - Added support of allowing keyframe block in Sass `@mixin` and `@include` at-rule.
 - Added support of allowing Sass at-rule in `@keyframes` at-rule.
+- Fixed delimiter being calculated in Sass binary expression.
 
 ## v0.2.0
 

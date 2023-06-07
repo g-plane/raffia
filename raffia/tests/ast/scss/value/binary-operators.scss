@@ -20,3 +20,7 @@ div {
   @return a / b; // division
 }
 @debug 15px / 30px; // not division
+
+a {
+  prop: a,-1*b;
+}

@@ -206,6 +206,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             self.parse_sass_bin_expr_recursively(precedence + 1)?
         };
 
+        // delimiter can't be calculated
+        if left.is_delimiter() {
+            return Ok(left);
+        }
+
         loop {
             let operator = match peek!(self) {
                 TokenWithSpan {
@@ -403,6 +408,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             };
 
             let right = self.parse_sass_bin_expr_recursively(precedence + 1)?;
+            // delimiter can't be calculated
+            if let ComponentValue::Delimiter(Delimiter { span, .. }) = right {
+                return Err(Error {
+                    kind: ErrorKind::ExpectSassExpression,
+                    span,
+                });
+            }
+
             let span = Span {
                 start: left.span().start,
                 end: right.span().end,

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: Sass expression is expected
+  ┌─ delimiter-in-calculation.scss:2:11
+  │
+2 │   prop: 1-,;
+  │           ^
+
+
