@@ -21,6 +21,7 @@ mod layer;
 mod media;
 mod namespace;
 mod page;
+mod sass_import;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
@@ -46,9 +47,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let end = block.span.end;
             (Some(prelude), Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("import") {
-            let prelude = input.parse::<ImportPrelude>()?;
-            let end = prelude.span.end;
-            (Some(AtRulePrelude::Import(Box::new(prelude))), None, end)
+            let (end, prelude) = if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+                if let Ok(prelude) = input.try_parse(ImportPrelude::parse) {
+                    (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
+                } else {
+                    let prelude = input.parse::<SassImportPrelude>()?;
+                    (prelude.span.end, AtRulePrelude::SassImport(prelude))
+                }
+            } else {
+                let prelude = input.parse::<ImportPrelude>()?;
+                (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
+            };
+            (Some(prelude), None, end)
         } else if at_rule_name.eq_ignore_ascii_case("charset") {
             // https://drafts.csswg.org/css2/#charset%E2%91%A0
             let prelude = input.parse::<Str>()?;

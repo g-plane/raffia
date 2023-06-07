@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `<string>`, but `;` received
+  ┌─ trailing-comma.scss:4:1
+  │
+4 │ ;
+  │ ^
+
+

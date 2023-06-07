@@ -1,0 +1,100 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 1,
+          end: 7,
+        ),
+      ),
+      prelude: Some(SassImportPrelude(
+        type: "SassImportPrelude",
+        paths: [
+          Str(
+            type: "Str",
+            value: "a",
+            raw: "\"a\"",
+            span: Span(
+              start: 8,
+              end: 11,
+            ),
+          ),
+          Str(
+            type: "Str",
+            value: "b",
+            raw: "\"b\"",
+            span: Span(
+              start: 13,
+              end: 16,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 8,
+          end: 16,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 16,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 19,
+          end: 25,
+        ),
+      ),
+      prelude: Some(SassImportPrelude(
+        type: "SassImportPrelude",
+        paths: [
+          Str(
+            type: "Str",
+            value: "c",
+            raw: "\"c\"",
+            span: Span(
+              start: 28,
+              end: 31,
+            ),
+          ),
+          Str(
+            type: "Str",
+            value: "d",
+            raw: "\"d\"",
+            span: Span(
+              start: 35,
+              end: 38,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 28,
+          end: 38,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 18,
+        end: 38,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 41,
+  ),
+)

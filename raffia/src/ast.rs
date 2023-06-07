@@ -55,6 +55,7 @@ pub enum AtRulePrelude<'s> {
     Page(PageSelectorList<'s>),
     PositionFallback(InterpolableIdent<'s>),
     Property(InterpolableIdent<'s>),
+    SassImport(SassImportPrelude<'s>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
     Unknown(UnknownAtRulePrelude<'s>),
@@ -1271,6 +1272,14 @@ pub struct SassIfAtRule<'s> {
     pub if_clause: SassConditionalClause<'s>,
     pub else_if_clauses: Vec<SassConditionalClause<'s>>,
     pub else_clause: Option<SimpleBlock<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassImportPrelude<'s> {
+    pub paths: Vec<Str<'s>>,
     pub span: Span,
 }
 

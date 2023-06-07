@@ -1,0 +1,143 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 1,
+          end: 7,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: Str(
+          type: "Str",
+          value: "mod",
+          raw: "\"mod\"",
+          span: Span(
+            start: 8,
+            end: 13,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: None,
+        span: Span(
+          start: 8,
+          end: 13,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 13,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 16,
+          end: 22,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: Str(
+          type: "Str",
+          value: "landscape",
+          raw: "\"landscape\"",
+          span: Span(
+            start: 23,
+            end: 34,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: Some(MediaQueryList(
+          type: "MediaQueryList",
+          queries: [
+            MediaQueryWithType(
+              type: "MediaQueryWithType",
+              modifier: None,
+              mediaType: Ident(
+                type: "Ident",
+                name: "screen",
+                raw: "screen",
+                span: Span(
+                  start: 35,
+                  end: 41,
+                ),
+              ),
+              condition: Some(MediaCondition(
+                type: "MediaCondition",
+                conditions: [
+                  MediaFeaturePlain(
+                    type: "MediaFeaturePlain",
+                    name: Ident(
+                      type: "Ident",
+                      name: "orientation",
+                      raw: "orientation",
+                      span: Span(
+                        start: 47,
+                        end: 58,
+                      ),
+                    ),
+                    value: Ident(
+                      type: "Ident",
+                      name: "landscape",
+                      raw: "landscape",
+                      span: Span(
+                        start: 60,
+                        end: 69,
+                      ),
+                    ),
+                    span: Span(
+                      start: 47,
+                      end: 69,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 47,
+                  end: 69,
+                ),
+              )),
+              span: Span(
+                start: 35,
+                end: 69,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 35,
+            end: 69,
+          ),
+        )),
+        span: Span(
+          start: 23,
+          end: 69,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 15,
+        end: 69,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 72,
+  ),
+)
