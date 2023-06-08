@@ -22,7 +22,10 @@ fn error_snapshot() {
         };
         let mut parser = Parser::new(&code, syntax);
         let error = match parser.parse::<Stylesheet>() {
-            Ok(..) => panic!("'{file_name}' should contain unrecoverable syntax error, but actually parsed successfully."),
+            Ok(..) => panic!(
+                "\"{}\" should contain unrecoverable syntax error, but actually parsed successfully.",
+                path.display()
+            ),
             Err(error) => {
                 let file = SimpleFile::new(file_name, &code);
                 let diagnostic = Diagnostic::error()
