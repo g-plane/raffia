@@ -224,7 +224,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     token: Token::Solidus(..),
                     ..
                 } if precedence == PRECEDENCE_MULTIPLY
-                    && self.state.sass_ctx & SASS_CTX_ALLOW_DIV != 0 =>
+                    && (self.state.sass_ctx & SASS_CTX_ALLOW_DIV != 0
+                        || matches!(
+                            left,
+                            ComponentValue::SassParenthesizedExpression(..)
+                                | ComponentValue::SassBinaryExpression(..)
+                                | ComponentValue::SassUnaryExpression(..)
+                        )) =>
                 {
                     SassBinaryOperator {
                         kind: SassBinaryOperatorKind::Division,

@@ -843,6 +843,141 @@ Stylesheet(
         end: 318,
       ),
     ),
+    SassDebugAtRule(
+      type: "SassDebugAtRule",
+      expr: SassBinaryExpression(
+        type: "SassBinaryExpression",
+        left: SassBinaryExpression(
+          type: "SassBinaryExpression",
+          left: Number(
+            type: "Number",
+            value: 1.0,
+            raw: "1",
+            span: Span(
+              start: 343,
+              end: 344,
+            ),
+          ),
+          op: SassBinaryOperator(
+            type: "SassBinaryOperator",
+            kind: Multiply,
+            span: Span(
+              start: 345,
+              end: 346,
+            ),
+          ),
+          right: Number(
+            type: "Number",
+            value: 2.0,
+            raw: "2",
+            span: Span(
+              start: 347,
+              end: 348,
+            ),
+          ),
+          span: Span(
+            start: 343,
+            end: 348,
+          ),
+        ),
+        op: SassBinaryOperator(
+          type: "SassBinaryOperator",
+          kind: Division,
+          span: Span(
+            start: 349,
+            end: 350,
+          ),
+        ),
+        right: Number(
+          type: "Number",
+          value: 3.0,
+          raw: "3",
+          span: Span(
+            start: 351,
+            end: 352,
+          ),
+        ),
+        span: Span(
+          start: 343,
+          end: 352,
+        ),
+      ),
+      span: Span(
+        start: 336,
+        end: 352,
+      ),
+    ),
+    SassDebugAtRule(
+      type: "SassDebugAtRule",
+      expr: SassBinaryExpression(
+        type: "SassBinaryExpression",
+        left: SassParenthesizedExpression(
+          type: "SassParenthesizedExpression",
+          expr: SassBinaryExpression(
+            type: "SassBinaryExpression",
+            left: Number(
+              type: "Number",
+              value: 1.0,
+              raw: "1",
+              span: Span(
+                start: 374,
+                end: 375,
+              ),
+            ),
+            op: SassBinaryOperator(
+              type: "SassBinaryOperator",
+              kind: Plus,
+              span: Span(
+                start: 376,
+                end: 377,
+              ),
+            ),
+            right: Number(
+              type: "Number",
+              value: 2.0,
+              raw: "2",
+              span: Span(
+                start: 378,
+                end: 379,
+              ),
+            ),
+            span: Span(
+              start: 374,
+              end: 379,
+            ),
+          ),
+          span: Span(
+            start: 373,
+            end: 380,
+          ),
+        ),
+        op: SassBinaryOperator(
+          type: "SassBinaryOperator",
+          kind: Division,
+          span: Span(
+            start: 381,
+            end: 382,
+          ),
+        ),
+        right: Number(
+          type: "Number",
+          value: 3.0,
+          raw: "3",
+          span: Span(
+            start: 383,
+            end: 384,
+          ),
+        ),
+        span: Span(
+          start: 373,
+          end: 384,
+        ),
+      ),
+      span: Span(
+        start: 366,
+        end: 384,
+      ),
+    ),
     QualifiedRule(
       type: "QualifiedRule",
       selector: SelectorList(
@@ -863,37 +998,37 @@ Stylesheet(
                         name: "a",
                         raw: "a",
                         span: Span(
-                          start: 337,
-                          end: 338,
+                          start: 399,
+                          end: 400,
                         ),
                       ),
                       prefix: None,
                       span: Span(
-                        start: 337,
-                        end: 338,
+                        start: 399,
+                        end: 400,
                       ),
                     ),
                     span: Span(
-                      start: 337,
-                      end: 338,
+                      start: 399,
+                      end: 400,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 337,
-                  end: 338,
+                  start: 399,
+                  end: 400,
                 ),
               ),
             ],
             span: Span(
-              start: 337,
-              end: 338,
+              start: 399,
+              end: 400,
             ),
           ),
         ],
         span: Span(
-          start: 337,
-          end: 338,
+          start: 399,
+          end: 400,
         ),
       ),
       block: SimpleBlock(
@@ -906,8 +1041,8 @@ Stylesheet(
               name: "prop",
               raw: "prop",
               span: Span(
-                start: 343,
-                end: 347,
+                start: 405,
+                end: 409,
               ),
             ),
             value: [
@@ -916,16 +1051,16 @@ Stylesheet(
                 name: "a",
                 raw: "a",
                 span: Span(
-                  start: 349,
-                  end: 350,
+                  start: 411,
+                  end: 412,
                 ),
               ),
               Delimiter(
                 type: "Delimiter",
                 kind: Comma,
                 span: Span(
-                  start: 350,
-                  end: 351,
+                  start: 412,
+                  end: 413,
                 ),
               ),
               SassBinaryExpression(
@@ -935,16 +1070,16 @@ Stylesheet(
                   value: -1.0,
                   raw: "-1",
                   span: Span(
-                    start: 351,
-                    end: 353,
+                    start: 413,
+                    end: 415,
                   ),
                 ),
                 op: SassBinaryOperator(
                   type: "SassBinaryOperator",
                   kind: Multiply,
                   span: Span(
-                    start: 353,
-                    end: 354,
+                    start: 415,
+                    end: 416,
                   ),
                 ),
                 right: Ident(
@@ -952,37 +1087,37 @@ Stylesheet(
                   name: "b",
                   raw: "b",
                   span: Span(
-                    start: 354,
-                    end: 355,
+                    start: 416,
+                    end: 417,
                   ),
                 ),
                 span: Span(
-                  start: 351,
-                  end: 355,
+                  start: 413,
+                  end: 417,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 343,
-              end: 355,
+              start: 405,
+              end: 417,
             ),
           ),
         ],
         span: Span(
-          start: 339,
-          end: 358,
+          start: 401,
+          end: 420,
         ),
       ),
       span: Span(
-        start: 337,
-        end: 358,
+        start: 399,
+        end: 420,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 359,
+    end: 421,
   ),
 )
