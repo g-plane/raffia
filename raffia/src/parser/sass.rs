@@ -230,6 +230,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             ComponentValue::SassParenthesizedExpression(..)
                                 | ComponentValue::SassBinaryExpression(..)
                                 | ComponentValue::SassUnaryExpression(..)
+                                | ComponentValue::SassVariable(..)
+                                | ComponentValue::Function(..)
+                                | ComponentValue::SassQualifiedName(..)
                         )) =>
                 {
                     SassBinaryOperator {

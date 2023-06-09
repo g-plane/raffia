@@ -22,6 +22,9 @@ div {
 @debug 15px / 30px; // not division
 @debug 1 * 2 / 3; // division
 @debug (1 + 2) / 3; // division
+@debug fn() / 3; // division
+@debug $var / 3; // division
+@debug mod.$var / 3; // division
 
 a {
   prop: a,-1*b;
