@@ -3,15 +3,33 @@
     @content;
   }
   @-ms-keyframes kf {
-    @content;
+    @content
   }
   @-moz-keyframes kf {
     @content;
   }
   @-o-keyframes kf {
-    @content;
+    @content
   }
   @keyframes kf {
     @content;
+  }
+  @keyframes kf {
+    $var: true;
+    @if $var {
+      0% {
+        color: red;
+      }
+      100% {
+        color: blue;
+      }
+    } @else {
+      from {
+        color: blue;
+      }
+      to {
+        color: red;
+      }
+    }
   }
 }

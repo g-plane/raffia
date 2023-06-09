@@ -1,0 +1,10 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: unknown keyframe selector
+  ┌─ keyframes.css:2:3
+  │
+2 │   form {}
+  │   ^^^^
+
+

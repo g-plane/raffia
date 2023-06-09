@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but `:` received
+  ┌─ declaration.css:2:8
+  │
+2 │   width: 100px;
+  │        ^
+
+

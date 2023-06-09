@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: keyframe block is expected
+  ┌─ qualified-rule.css:2:3
+  │
+2 │   .from {}
+  │   ^
+
+

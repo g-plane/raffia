@@ -65,6 +65,7 @@ pub enum ErrorKind {
     UnexpectedSassElseAtRule,
     ExpectSassAtRootWithOrWithout,
     ExpectNthOf,
+    ExpectKeyframeBlock,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -139,6 +140,7 @@ impl Display for ErrorKind {
                 write!(f, "Sass identifier `with` or `without` is expected")
             }
             Self::ExpectNthOf => write!(f, "`of` is expected"),
+            Self::ExpectKeyframeBlock => write!(f, "keyframe block is expected"),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {

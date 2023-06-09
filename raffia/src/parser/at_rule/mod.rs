@@ -1,4 +1,4 @@
-use super::Parser;
+use super::{state::ParserState, Parser};
 use crate::{
     ast::*,
     bump,
@@ -43,7 +43,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
         {
             let prelude = AtRulePrelude::Keyframes(input.parse()?);
-            let block = input.parse_keyframes_blocks()?;
+            let block = input
+                .with_state(ParserState {
+                    in_keyframes_at_rule: true,
+                    ..input.state.clone()
+                })
+                .parse::<SimpleBlock>()?;
             let end = block.span.end;
             (Some(prelude), Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("import") {

@@ -3,10 +3,11 @@ use crate::{
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
-    expect, peek,
+    parser::state::ParserState,
+    peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Parse, Syntax,
+    util, Parse,
 };
 
 // https://drafts.csswg.org/css-animations/#keyframes
@@ -21,7 +22,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
             selectors.push(input.parse()?);
         }
 
-        let block = input.parse::<SimpleBlock>()?;
+        let block = input
+            .with_state(ParserState {
+                in_keyframes_at_rule: false,
+                ..input.state.clone()
+            })
+            .parse::<SimpleBlock>()?;
         let span = Span {
             start,
             end: block.span.end,
@@ -80,50 +86,5 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
             }
             _ => input.parse().map(KeyframesName::Str),
         }
-    }
-}
-
-impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_keyframes_blocks(&mut self) -> PResult<SimpleBlock<'s>> {
-        self.parse_simple_block_with(|parser| {
-            let mut statements = Vec::with_capacity(3);
-            loop {
-                match &peek!(parser).token {
-                    Token::Percentage(..)
-                    | Token::Ident(..)
-                    | Token::HashLBrace(..)
-                    | Token::AtLBraceVar(..) => {
-                        statements.push(Statement::KeyframeBlock(parser.parse()?));
-                    }
-                    Token::AtKeyword(at_keyword)
-                        if matches!(parser.syntax, Syntax::Scss | Syntax::Sass) =>
-                    {
-                        let at_keyword_name = at_keyword.ident.name();
-                        if let Some((statement, is_block)) =
-                            parser.parse_sass_at_rule(&at_keyword_name)?
-                        {
-                            statements.push(statement);
-                            if !is_block {
-                                match parser.syntax {
-                                    Syntax::Scss => {
-                                        expect!(parser, Semicolon);
-                                    }
-                                    Syntax::Sass => {
-                                        if let Token::Dedent(..) = peek!(parser).token {
-                                            break;
-                                        } else {
-                                            expect!(parser, Linebreak);
-                                        }
-                                    }
-                                    _ => unreachable!(),
-                                }
-                            }
-                        }
-                    }
-                    _ => break,
-                }
-            }
-            Ok(statements)
-        })
     }
 }

@@ -184,9 +184,50 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QualifiedRule<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleBlock<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        input.parse_simple_block_with(|parser| {
-            parser.parse_statements(/* is_top_level */ false)
-        })
+        let is_sass = input.syntax == Syntax::Sass;
+        let start = if is_sass {
+            if let Some((_, span)) = eat!(input, Indent) {
+                span.end
+            } else {
+                let offset = peek!(input).span.start;
+                return Ok(SimpleBlock {
+                    statements: vec![],
+                    span: Span {
+                        start: offset,
+                        end: offset,
+                    },
+                });
+            }
+        } else {
+            expect!(input, LBrace).1.start
+        };
+
+        let statements = input.parse_statements(/* is_top_level */ false)?;
+
+        if is_sass {
+            match bump!(input) {
+                TokenWithSpan {
+                    token: Token::Dedent(..) | Token::Eof(..),
+                    span,
+                } => {
+                    let end = span.start;
+                    Ok(SimpleBlock {
+                        statements,
+                        span: Span { start, end },
+                    })
+                }
+                TokenWithSpan { span, .. } => Err(Error {
+                    kind: ErrorKind::ExpectDedentOrEof,
+                    span,
+                }),
+            }
+        } else {
+            let end = expect!(input, RBrace).1.end;
+            Ok(SimpleBlock {
+                statements,
+                span: Span { start, end },
+            })
+        }
     }
 }
 
@@ -209,56 +250,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Stylesheet<'s> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_simple_block_with<F>(&mut self, f: F) -> PResult<SimpleBlock<'s>>
-    where
-        F: Fn(&mut Self) -> PResult<Vec<Statement<'s>>>,
-    {
-        let is_sass = self.syntax == Syntax::Sass;
-        let start = if is_sass {
-            if let Some((_, span)) = eat!(self, Indent) {
-                span.end
-            } else {
-                let offset = peek!(self).span.start;
-                return Ok(SimpleBlock {
-                    statements: vec![],
-                    span: Span {
-                        start: offset,
-                        end: offset,
-                    },
-                });
-            }
-        } else {
-            expect!(self, LBrace).1.start
-        };
-
-        let statements = f(self)?;
-
-        if is_sass {
-            match bump!(self) {
-                TokenWithSpan {
-                    token: Token::Dedent(..) | Token::Eof(..),
-                    span,
-                } => {
-                    let end = span.start;
-                    Ok(SimpleBlock {
-                        statements,
-                        span: Span { start, end },
-                    })
-                }
-                TokenWithSpan { span, .. } => Err(Error {
-                    kind: ErrorKind::ExpectDedentOrEof,
-                    span,
-                }),
-            }
-        } else {
-            let end = expect!(self, RBrace).1.end;
-            Ok(SimpleBlock {
-                statements,
-                span: Span { start, end },
-            })
-        }
-    }
-
     fn parse_statements(&mut self, is_top_level: bool) -> PResult<Vec<Statement<'s>>> {
         let mut statements = Vec::with_capacity(1);
         loop {
@@ -276,6 +267,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
                     if is_top_level {
                         statements.push(Statement::QualifiedRule(self.parse()?));
+                        is_block_element = true;
+                    } else if self.state.in_keyframes_at_rule {
+                        statements.push(Statement::KeyframeBlock(self.parse()?));
                         is_block_element = true;
                     } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
                         statements.push(Statement::QualifiedRule(rule));
@@ -298,7 +292,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::ColonColon(..)
                 | Token::Asterisk(..)
                 | Token::Bar(..)
-                | Token::NumberSign(..) => {
+                | Token::NumberSign(..)
+                    if !self.state.in_keyframes_at_rule =>
+                {
                     statements.push(Statement::QualifiedRule(self.parse()?));
                     is_block_element = true;
                 }
@@ -358,9 +354,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     statements.push(Statement::UnknownSassAtRule(unknown_sass_at_rule));
                 }
                 Token::Percentage(..)
-                    if self.state.sass_ctx & super::state::SASS_CTX_ALLOW_KEYFRAME_BLOCK != 0 =>
+                    if self.state.in_keyframes_at_rule
+                        || self.state.sass_ctx & super::state::SASS_CTX_ALLOW_KEYFRAME_BLOCK
+                            != 0 =>
                 {
-                    debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
                     statements.push(Statement::KeyframeBlock(self.parse()?));
                     is_block_element = true;
                 }
@@ -371,7 +368,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {
                     return Err(Error {
-                        kind: ErrorKind::ExpectRule,
+                        kind: if self.state.in_keyframes_at_rule {
+                            ErrorKind::ExpectKeyframeBlock
+                        } else {
+                            ErrorKind::ExpectRule
+                        },
                         span: span.clone(),
                     });
                 }
