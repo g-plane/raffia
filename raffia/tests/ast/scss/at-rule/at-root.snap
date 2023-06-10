@@ -868,6 +868,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 241,
                             end: 242,
@@ -1007,6 +1008,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 280,
                             end: 281,
@@ -1095,6 +1097,7 @@ Stylesheet(
                                   children: [
                                     NestingSelector(
                                       type: "NestingSelector",
+                                      suffix: None,
                                       span: Span(
                                         start: 310,
                                         end: 311,
@@ -1305,6 +1308,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 387,
                                   end: 388,
@@ -1470,6 +1474,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 439,
                                   end: 440,
@@ -1549,32 +1554,26 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
-                                span: Span(
-                                  start: 473,
-                                  end: 474,
-                                ),
-                              ),
-                              TagNameSelector(
-                                type: "TagNameSelector",
-                                name: WqName(
-                                  type: "WqName",
-                                  name: Ident(
-                                    type: "Ident",
-                                    name: "--modifier",
-                                    raw: "--modifier",
-                                    span: Span(
-                                      start: 474,
-                                      end: 484,
+                                suffix: Some(SassInterpolatedIdent(
+                                  type: "SassInterpolatedIdent",
+                                  elements: [
+                                    InterpolableIdentStaticPart(
+                                      type: "InterpolableIdentStaticPart",
+                                      value: "--modifier",
+                                      raw: "--modifier",
+                                      span: Span(
+                                        start: 474,
+                                        end: 484,
+                                      ),
                                     ),
-                                  ),
-                                  prefix: None,
+                                  ],
                                   span: Span(
                                     start: 474,
                                     end: 484,
                                   ),
-                                ),
+                                )),
                                 span: Span(
-                                  start: 474,
+                                  start: 473,
                                   end: 484,
                                 ),
                               ),

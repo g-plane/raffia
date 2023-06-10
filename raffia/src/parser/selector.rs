@@ -921,10 +921,46 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRangeList<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NestingSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (_, span) = expect!(input, Ampersand);
-        Ok(NestingSelector { span })
+        let (_, mut span) = expect!(input, Ampersand);
+        let suffix = match input.syntax {
+            Syntax::Css => input.tokenizer.scan_ident_template()?.map(|token| {
+                span.end = token.1.end;
+                InterpolableIdent::Literal(token.into())
+            }),
+            Syntax::Scss | Syntax::Sass => {
+                let start = span.end;
+                let elements = input.parse_sass_interpolated_ident_rest(&mut span.end)?;
+                if elements.is_empty() {
+                    None
+                } else {
+                    Some(InterpolableIdent::SassInterpolated(SassInterpolatedIdent {
+                        elements,
+                        span: Span {
+                            start,
+                            end: span.end,
+                        },
+                    }))
+                }
+            }
+            Syntax::Less => {
+                let start = span.end;
+                let elements = input.parse_less_interpolated_ident_rest(&mut span.end)?;
+                if elements.is_empty() {
+                    None
+                } else {
+                    Some(InterpolableIdent::LessInterpolated(LessInterpolatedIdent {
+                        elements,
+                        span: Span {
+                            start,
+                            end: span.end,
+                        },
+                    }))
+                }
+            }
+        };
+        Ok(NestingSelector { suffix, span })
     }
 }
 

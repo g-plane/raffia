@@ -645,8 +645,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     pub(crate) fn scan_ident_template(&mut self) -> PResult<Option<(Ident<'s>, Span)>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-
         let start = self.current_offset();
         let mut escaped = false;
 

@@ -89,6 +89,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 21,
                             end: 22,
@@ -198,6 +199,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 56,
                                   end: 57,
@@ -293,6 +295,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 93,
                                   end: 94,
@@ -335,6 +338,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 108,
                                   end: 109,
@@ -517,6 +521,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 161,
                             end: 162,
@@ -783,6 +788,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 261,
                             end: 262,
@@ -983,6 +989,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 313,
                             end: 314,
@@ -1200,6 +1207,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 368,
                             end: 369,
@@ -1258,6 +1266,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 378,
                             end: 379,
@@ -1441,6 +1450,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 427,
                             end: 428,
@@ -1498,6 +1508,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 434,
                             end: 435,
@@ -1555,6 +1566,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 441,
                             end: 442,
@@ -1755,6 +1767,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 491,
                             end: 492,
@@ -1938,6 +1951,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 538,
                             end: 539,
@@ -1945,6 +1959,7 @@ Stylesheet(
                         ),
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 539,
                             end: 540,
@@ -2133,6 +2148,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 580,
                             end: 581,
@@ -2321,6 +2337,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 623,
                             end: 624,
@@ -2382,6 +2399,7 @@ Stylesheet(
                                     children: [
                                       NestingSelector(
                                         type: "NestingSelector",
+                                        suffix: None,
                                         span: Span(
                                           start: 634,
                                           end: 635,
@@ -2596,6 +2614,7 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
+                          suffix: None,
                           span: Span(
                             start: 685,
                             end: 686,
@@ -2779,6 +2798,7 @@ Stylesheet(
                             children: [
                               NestingSelector(
                                 type: "NestingSelector",
+                                suffix: None,
                                 span: Span(
                                   start: 743,
                                   end: 744,
@@ -3014,32 +3034,17 @@ Stylesheet(
                       children: [
                         NestingSelector(
                           type: "NestingSelector",
-                          span: Span(
-                            start: 812,
-                            end: 813,
-                          ),
-                        ),
-                        TagNameSelector(
-                          type: "TagNameSelector",
-                          name: WqName(
-                            type: "WqName",
-                            name: Ident(
-                              type: "Ident",
-                              name: "__bar",
-                              raw: "__bar",
-                              span: Span(
-                                start: 813,
-                                end: 818,
-                              ),
-                            ),
-                            prefix: None,
+                          suffix: Some(Ident(
+                            type: "Ident",
+                            name: "__bar",
+                            raw: "__bar",
                             span: Span(
                               start: 813,
                               end: 818,
                             ),
-                          ),
+                          )),
                           span: Span(
-                            start: 813,
+                            start: 812,
                             end: 818,
                           ),
                         ),
@@ -3115,9 +3120,101 @@ Stylesheet(
         end: 836,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  NestingSelector(
+                    type: "NestingSelector",
+                    suffix: Some(Ident(
+                      type: "Ident",
+                      name: "-1",
+                      raw: "-1",
+                      span: Span(
+                        start: 839,
+                        end: 841,
+                      ),
+                    )),
+                    span: Span(
+                      start: 838,
+                      end: 841,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 838,
+                  end: 841,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 838,
+              end: 841,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  NestingSelector(
+                    type: "NestingSelector",
+                    suffix: Some(Ident(
+                      type: "Ident",
+                      name: "2",
+                      raw: "2",
+                      span: Span(
+                        start: 844,
+                        end: 845,
+                      ),
+                    )),
+                    span: Span(
+                      start: 843,
+                      end: 845,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 843,
+                  end: 845,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 843,
+              end: 845,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 838,
+          end: 845,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 846,
+          end: 848,
+        ),
+      ),
+      span: Span(
+        start: 838,
+        end: 848,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 837,
+    end: 849,
   ),
 )

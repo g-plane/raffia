@@ -258,6 +258,7 @@ Stylesheet(
                 args: [
                   NestingSelector(
                     type: "NestingSelector",
+                    suffix: None,
                     span: Span(
                       start: 51,
                       end: 52,
@@ -315,6 +316,7 @@ Stylesheet(
                     args: [
                       NestingSelector(
                         type: "NestingSelector",
+                        suffix: None,
                         span: Span(
                           start: 76,
                           end: 77,
@@ -407,6 +409,7 @@ Stylesheet(
                         args: [
                           NestingSelector(
                             type: "NestingSelector",
+                            suffix: None,
                             span: Span(
                               start: 109,
                               end: 110,

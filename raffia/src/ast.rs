@@ -231,7 +231,7 @@ pub enum ComponentValue<'s> {
     SassQualifiedName(SassQualifiedName<'s>),
     SassNestingDeclaration(SassNestingDeclaration<'s>),
     SassParenthesizedExpression(SassParenthesizedExpression<'s>),
-    SassParentSelector(NestingSelector),
+    SassParentSelector(NestingSelector<'s>),
     SassUnaryExpression(SassUnaryExpression<'s>),
     SassVariable(SassVariable<'s>),
     TokenWithSpan(TokenWithSpan<'s>),
@@ -869,7 +869,8 @@ pub enum NamespacePreludeUri<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct NestingSelector {
+pub struct NestingSelector<'s> {
+    pub suffix: Option<InterpolableIdent<'s>>,
     pub span: Span,
 }
 
@@ -1579,7 +1580,7 @@ pub enum SimpleSelector<'s> {
     Attribute(AttributeSelector<'s>),
     PseudoClass(PseudoClassSelector<'s>),
     PseudoElement(PseudoElementSelector<'s>),
-    Nesting(NestingSelector),
+    Nesting(NestingSelector<'s>),
     SassPlaceholder(SassPlaceholderSelector<'s>),
 }
 

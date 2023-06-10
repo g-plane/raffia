@@ -32,16 +32,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         let mut span = first.span().clone();
 
-        let mut elements = Vec::with_capacity(4);
-        elements.push(first);
+        let mut elements = self.parse_less_interpolated_ident_rest(&mut span.end)?;
+        elements.insert(0, first);
+
+        Ok(InterpolableIdent::LessInterpolated(LessInterpolatedIdent {
+            elements,
+            span,
+        }))
+    }
+
+    pub(super) fn parse_less_interpolated_ident_rest(
+        &mut self,
+        end: &mut usize,
+    ) -> PResult<Vec<LessInterpolatedIdentElement<'s>>> {
+        let mut elements = vec![];
         loop {
             match peek!(self) {
                 TokenWithSpan {
                     token: Token::Ident(..),
                     span: ident_span,
-                } if span.end == ident_span.start => {
+                } if *end == ident_span.start => {
                     let (ident, ident_span) = expect!(self, Ident);
-                    span.end = ident_span.end;
+                    *end = ident_span.end;
                     elements.push(LessInterpolatedIdentElement::Static(
                         (ident, ident_span).into(),
                     ));
@@ -49,19 +61,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 TokenWithSpan {
                     token: Token::AtLBraceVar(..),
                     span: at_brace_var_span,
-                } if span.end == at_brace_var_span.start => {
+                } if *end == at_brace_var_span.start => {
                     let variable = self.parse::<LessVariableInterpolation>()?;
-                    span.end = variable.span.end;
+                    *end = variable.span.end;
                     elements.push(LessInterpolatedIdentElement::Variable(variable));
                 }
-                _ => break,
+                _ => return Ok(elements),
             }
         }
-
-        Ok(InterpolableIdent::LessInterpolated(LessInterpolatedIdent {
-            elements,
-            span,
-        }))
     }
 }
 

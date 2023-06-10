@@ -52,6 +52,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed delimiter being calculated in Sass binary expression.
 - Added support of deprecated Sass `@import` syntax.
 - Fixed Sass statements in `@keyframes` at-rule.
+- Changed AST of nesting selector.
 
 ## v0.2.0
 

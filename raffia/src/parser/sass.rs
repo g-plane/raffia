@@ -487,23 +487,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         };
 
-        let mut elements = vec![];
-        loop {
-            if let Some((token, span)) = self.tokenizer.scan_ident_template()? {
-                end = span.end;
-                elements.push(SassInterpolatedIdentElement::Static((token, span).into()));
-            } else if matches!(
-                peek!(self),
-                TokenWithSpan { token: Token::HashLBrace(..), span } if end == span.start
-            ) {
-                let (element, span) = self.parse_sass_interpolated_ident_expr()?;
-                end = span.end;
-                elements.push(element);
-            } else {
-                break;
-            }
-        }
-
+        let mut elements = self.parse_sass_interpolated_ident_rest(&mut end)?;
         if elements.is_empty() {
             if let SassInterpolatedIdentElement::Static(ident) = first {
                 return Ok(InterpolableIdent::Literal(Ident {
@@ -519,6 +503,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             elements,
             span: Span { start, end },
         }))
+    }
+
+    pub(super) fn parse_sass_interpolated_ident_rest(
+        &mut self,
+        end: &mut usize,
+    ) -> PResult<Vec<SassInterpolatedIdentElement<'s>>> {
+        let mut elements = vec![];
+        loop {
+            if let Some((token, span)) = self.tokenizer.scan_ident_template()? {
+                *end = span.end;
+                elements.push(SassInterpolatedIdentElement::Static((token, span).into()));
+            } else if matches!(
+                peek!(self),
+                TokenWithSpan { token: Token::HashLBrace(..), span } if *end == span.start
+            ) {
+                let (element, span) = self.parse_sass_interpolated_ident_expr()?;
+                *end = span.end;
+                elements.push(element);
+            } else {
+                return Ok(elements);
+            }
+        }
     }
 
     fn parse_sass_interpolated_ident_expr(
