@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::{handle_escape, CowStr, LastOfNonEmpty, PairedToken},
+    util::{handle_escape, CowStr, PairedToken},
     Parse, Syntax,
 };
 
@@ -272,7 +272,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
         }
 
-        span.end = values.last_of_non_empty().span().end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = values.len() - 1;
+            values.get_unchecked(index).span().end
+        };
         Ok(ComponentValues { values, span })
     }
 

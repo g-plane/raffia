@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token, TokenWithSpan},
-    util::{handle_escape, CowStr, LastOfNonEmpty},
+    util::{handle_escape, CowStr},
     Parse, Syntax,
 };
 use smallvec::SmallVec;
@@ -803,7 +803,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        span.end = selectors.last_of_non_empty().span.end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = selectors.len() - 1;
+            selectors.get_unchecked(index).span().end
+        };
         Ok(CompoundSelectorList { selectors, span })
     }
 }
@@ -908,7 +912,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRangeList<'s> {
             ranges.push(input.parse()?);
         }
 
-        span.end = ranges.last_of_non_empty().span().end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = ranges.len() - 1;
+            ranges.get_unchecked(index).span().end
+        };
         Ok(LanguageRangeList { ranges, span })
     }
 }
@@ -1205,7 +1213,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        span.end = selectors.last_of_non_empty().span.end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = selectors.len() - 1;
+            selectors.get_unchecked(index).span().end
+        };
         Ok(RelativeSelectorList { selectors, span })
     }
 }
@@ -1231,7 +1243,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        span.end = selectors.last_of_non_empty().span.end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = selectors.len() - 1;
+            selectors.get_unchecked(index).span().end
+        };
         Ok(SelectorList { selectors, span })
     }
 }

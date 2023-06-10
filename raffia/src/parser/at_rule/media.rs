@@ -6,10 +6,9 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::LastOfNonEmpty,
     Parse,
 };
-use smallvec::smallvec;
+use smallvec::{smallvec, SmallVec};
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
@@ -193,12 +192,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
         let first = input.parse::<MediaQuery>()?;
         let mut span = first.span().clone();
 
-        let mut queries = smallvec![first];
+        let mut queries: SmallVec<[MediaQuery; 1]> = smallvec![first];
         while eat!(input, Comma).is_some() {
             queries.push(input.parse()?);
         }
 
-        span.end = queries.last_of_non_empty().span().end;
+        // SAFETY: it has at least one element.
+        span.end = unsafe {
+            let index = queries.len() - 1;
+            queries.get_unchecked(index).span().end
+        };
         Ok(MediaQueryList { queries, span })
     }
 }
