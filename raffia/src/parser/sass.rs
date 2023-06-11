@@ -449,8 +449,30 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             end = keyword.span.end;
 
             match &*keyword.name {
-                "default" => flags |= FLAG_DEFAULT,
-                "global" => flags |= FLAG_GLOBAL,
+                "default" => {
+                    if flags & FLAG_DEFAULT != 0 {
+                        self.recoverable_errors.push(Error {
+                            kind: ErrorKind::DuplicatedSassFlag("default"),
+                            span: Span {
+                                start: exclamation_span.start,
+                                end: keyword.span.end,
+                            },
+                        });
+                    }
+                    flags |= FLAG_DEFAULT;
+                }
+                "global" => {
+                    if flags & FLAG_GLOBAL != 0 {
+                        self.recoverable_errors.push(Error {
+                            kind: ErrorKind::DuplicatedSassFlag("global"),
+                            span: Span {
+                                start: exclamation_span.start,
+                                end: keyword.span.end,
+                            },
+                        });
+                    }
+                    flags |= FLAG_GLOBAL;
+                }
                 _ => self.recoverable_errors.push(Error {
                     kind: ErrorKind::InvalidSassFlagName(keyword.name.to_string()),
                     span: keyword.span,

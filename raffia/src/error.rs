@@ -81,6 +81,7 @@ pub enum ErrorKind {
     UnexpectedNthMatcher,
     InvalidSassFlagName(String),
     UnexpectedSassFlag(&'static str),
+    DuplicatedSassFlag(&'static str),
 }
 
 impl Display for ErrorKind {
@@ -167,6 +168,7 @@ impl Display for ErrorKind {
             ),
             Self::InvalidSassFlagName(flag) => write!(f, "invalid Sass flag name `{flag}`"),
             Self::UnexpectedSassFlag(flag) => write!(f, "Sass flag `!{flag}` is disallowed"),
+            Self::DuplicatedSassFlag(flag) => write!(f, "duplicated Sass flag `!{flag}`"),
         }
     }
 }
