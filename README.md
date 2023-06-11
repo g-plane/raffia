@@ -26,7 +26,7 @@ For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 ## 🏗️ Current Status
 
 - CSS: Almost completed.
-- SCSS/Sass: Mostly implemented. Some features are still in progress.
+- SCSS/Sass: Almost completed.
 - Less: Only a few features are implemented.
 
 ## ⌛ Benchmark
