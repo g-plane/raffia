@@ -46,6 +46,7 @@ Tests come from:
 - [Web Platform Tests](https://github.com/web-platform-tests/wpt)
 - [SWC CSS parser](https://github.com/swc-project/swc/tree/main/crates/swc_css_parser/tests)
 - [ESBuild](https://github.com/evanw/esbuild/blob/master/internal/css_parser/css_parser_test.go)
+- [Sass Spec Suite](https://github.com/sass/sass-spec)
 
 ## 📜 License
 
