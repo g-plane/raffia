@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token, TokenWithSpan},
-    util::{handle_escape, CowStr},
+    util::{assert_no_ws_or_comment, handle_escape, CowStr},
     Parse, Syntax,
 };
 use smallvec::SmallVec;
@@ -459,11 +459,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 let ident = input.parse::<InterpolableIdent>()?;
                 let ident_span = ident.span();
                 if let Some((_, bar_token_span)) = eat!(input, Bar) {
-                    input.assert_no_ws_or_comment(ident_span, &bar_token_span)?;
+                    assert_no_ws_or_comment(ident_span, &bar_token_span)?;
 
                     let name = input.parse::<InterpolableIdent>()?;
                     let name_span = name.span();
-                    input.assert_no_ws_or_comment(&bar_token_span, name_span)?;
+                    assert_no_ws_or_comment(&bar_token_span, name_span)?;
 
                     let start = ident_span.start;
                     let end = name_span.end;
@@ -662,7 +662,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
         } else {
             let ident = input.parse::<InterpolableIdent>()?;
             let ident_span = ident.span();
-            input.assert_no_ws_or_comment(&dot_span, ident_span)?;
+            assert_no_ws_or_comment(&dot_span, ident_span)?;
             end = ident_span.end;
             ident
         };
@@ -1042,7 +1042,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
         let (_, colon_span) = expect!(input, Colon);
         let name = input.parse::<InterpolableIdent>()?;
         let name_span = name.span();
-        input.assert_no_ws_or_comment(&colon_span, name_span)?;
+        assert_no_ws_or_comment(&colon_span, name_span)?;
 
         let mut end = name_span.end;
 
@@ -1172,7 +1172,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
             let name = input.parse::<InterpolableIdent>()?;
             let name_span = name.span();
             end = name_span.end;
-            input.assert_no_ws_or_comment(&colon_colon_span, name_span)?;
+            assert_no_ws_or_comment(&colon_colon_span, name_span)?;
             name
         };
 
@@ -1401,7 +1401,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                     } => {
                         let name = input.parse::<InterpolableIdent>()?;
                         let name_span = name.span();
-                        input.assert_no_ws_or_comment(&prefix.span, name_span)?;
+                        assert_no_ws_or_comment(&prefix.span, name_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: name_span.end,
@@ -1420,7 +1420,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                         ..
                     } => {
                         let asterisk_span = bump!(input).span;
-                        input.assert_no_ws_or_comment(&prefix.span, &asterisk_span)?;
+                        assert_no_ws_or_comment(&prefix.span, &asterisk_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: asterisk_span.end,

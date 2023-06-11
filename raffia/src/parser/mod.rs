@@ -1,8 +1,7 @@
 use self::state::ParserState;
 use crate::{
     config::Syntax,
-    error::{Error, ErrorKind, PResult},
-    pos::Span,
+    error::{Error, PResult},
     tokenizer::{token::TokenWithSpan, Tokenizer},
 };
 pub use builder::ParserBuilder;
@@ -79,20 +78,5 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             self.cached_token = cached_token;
         }
         result
-    }
-
-    fn assert_no_ws_or_comment(&self, left: &Span, right: &Span) -> PResult<()> {
-        debug_assert!(left.end <= right.start);
-        if left.end == right.start {
-            Ok(())
-        } else {
-            Err(Error {
-                kind: ErrorKind::UnexpectedWhitespace,
-                span: Span {
-                    start: left.end,
-                    end: right.start,
-                },
-            })
-        }
     }
 }

@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::{handle_escape, CowStr, PairedToken},
+    util::{assert_no_ws_or_comment, handle_escape, CowStr, PairedToken},
     Parse, Syntax,
 };
 
@@ -121,7 +121,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             } = name
                             {
                                 let (_, lparen_span) = expect!(self, LParen);
-                                self.assert_no_ws_or_comment(&name.span, &lparen_span)?;
+                                assert_no_ws_or_comment(&name.span, &lparen_span)?;
                                 let args = self.parse_function_args()?;
                                 let (_, Span { end, .. }) = expect!(self, RParen);
                                 let span = Span {
@@ -818,7 +818,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
                 token: Token::LParen(..),
                 span,
             } => {
-                input.assert_no_ws_or_comment(name.span(), span)?;
+                assert_no_ws_or_comment(name.span(), span)?;
                 match name {
                     FunctionName::Ident(name) => input.parse_function(name),
                     FunctionName::SassQualifiedName(name) => {

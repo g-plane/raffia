@@ -11,7 +11,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
+    util, Parse,
 };
 
 const PRECEDENCE_MULTIPLY: u8 = 6;
@@ -445,7 +445,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut end = self.tokenizer.current_offset();
         while let Some((_, exclamation_span)) = eat!(self, Exclamation) {
             let keyword = self.parse::<Ident>()?;
-            self.assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
+            util::assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
             end = keyword.span.end;
 
             match &*keyword.name {
@@ -730,7 +730,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         let expr_span = member.span();
-        self.assert_no_ws_or_comment(&dot_span, expr_span)?;
+        util::assert_no_ws_or_comment(&dot_span, expr_span)?;
 
         let span = Span {
             start: module.span.start,
@@ -1433,7 +1433,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
         let (_, percent_span) = expect!(input, Percent);
         let name = input.parse::<InterpolableIdent>()?;
         let name_span = name.span();
-        input.assert_no_ws_or_comment(&percent_span, name_span)?;
+        util::assert_no_ws_or_comment(&percent_span, name_span)?;
         let span = Span {
             start: percent_span.start,
             end: name_span.end,
@@ -1529,11 +1529,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
 
         let namespace = if let Some((ident_token, span)) = eat!(input, Ident) {
             let (_, dot_span) = expect!(input, Dot);
-            input.assert_no_ws_or_comment(&span, &dot_span)?;
+            util::assert_no_ws_or_comment(&span, &dot_span)?;
             let TokenWithSpan {
                 span: next_span, ..
             } = peek!(input);
-            input.assert_no_ws_or_comment(&dot_span, next_span)?;
+            util::assert_no_ws_or_comment(&dot_span, next_span)?;
             Some(Ident::from((ident_token, span)))
         } else {
             None
@@ -1613,7 +1613,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UnknownSassAtRule<'s> {
         let (_, at_span) = expect!(input, At);
         let name = input.parse_sass_interpolated_ident()?;
         let name_span = name.span();
-        input.assert_no_ws_or_comment(&at_span, name_span)?;
+        util::assert_no_ws_or_comment(&at_span, name_span)?;
 
         let (prelude, block, end) = input.parse_unknown_at_rule()?;
         let span = Span {

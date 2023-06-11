@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
+    util, Parse,
 };
 
 // https://www.w3.org/TR/css-page-3/#syntax-page-selector
@@ -75,7 +75,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoPage<'s> {
         let name = input.parse::<InterpolableIdent>()?;
 
         let name_span = name.span();
-        input.assert_no_ws_or_comment(&colon_span, name_span)?;
+        util::assert_no_ws_or_comment(&colon_span, name_span)?;
 
         let span = Span {
             start: colon_span.start,

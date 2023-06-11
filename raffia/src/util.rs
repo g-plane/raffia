@@ -1,3 +1,7 @@
+use crate::{
+    error::{Error, ErrorKind, PResult},
+    Span,
+};
 use std::borrow::Cow;
 
 pub type CowStr<'s> = Cow<'s, str>;
@@ -52,4 +56,19 @@ pub fn handle_escape(s: &str) -> CowStr {
         }
     }
     CowStr::from(escaped)
+}
+
+pub(crate) fn assert_no_ws_or_comment(left: &Span, right: &Span) -> PResult<()> {
+    debug_assert!(left.end <= right.start);
+    if left.end == right.start {
+        Ok(())
+    } else {
+        Err(Error {
+            kind: ErrorKind::UnexpectedWhitespace,
+            span: Span {
+                start: left.end,
+                end: right.start,
+            },
+        })
+    }
 }

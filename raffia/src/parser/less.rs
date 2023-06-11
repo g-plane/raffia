@@ -7,7 +7,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
+    util, Parse,
 };
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
@@ -187,7 +187,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableVariable<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, at_span) = expect!(input, At);
         let variable = input.parse::<LessVariable>()?;
-        input.assert_no_ws_or_comment(&at_span, &variable.span)?;
+        util::assert_no_ws_or_comment(&at_span, &variable.span)?;
 
         let span = Span {
             start: at_span.start,

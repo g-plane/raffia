@@ -25,7 +25,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {
             if span.start == end {
                 let span = bump!(input).span;
                 let ident = input.parse::<InterpolableIdent>()?;
-                input.assert_no_ws_or_comment(&span, ident.span())?;
+                util::assert_no_ws_or_comment(&span, ident.span())?;
                 end = ident.span().end;
                 idents.push(ident);
             } else {
