@@ -119,9 +119,7 @@ macro_rules! peek {
             None => {
                 let tokenizer = &mut $parser.tokenizer;
                 let token = tokenizer.bump()?;
-                $parser.cached_token = Some(token);
-                // SAFETY: We've written `Some(..)` value to `cached_token`, so it won't be `None`.
-                unsafe { $parser.cached_token.as_ref().unwrap_unchecked() }
+                $parser.cached_token.insert(token)
             }
         }
     }};
