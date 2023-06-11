@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ leading-operator.css:1:12
+  │
+1 │ a {b: calc(+ 1px)}
+  │            ^
+
+

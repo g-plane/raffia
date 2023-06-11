@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unknown token
+  ┌─ dollar.scss:1:12
+  │
+1 │ a {b: calc($)}
+  │            ^
+
+
