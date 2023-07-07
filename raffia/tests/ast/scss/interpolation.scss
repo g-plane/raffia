@@ -58,3 +58,18 @@ tr:nth-of-type(#{$table-striped-order}) {}
   hyphen: foo#{bar}-12;
   double-hyphen: foo#{bar}--12;
 }
+
+.double-interpolation {
+  output: #{#{literal}};
+  output: #{"[#{literal}]"};
+  output: #{"#{literal}"};
+  output: #{'#{literal}'};
+  output: #{"['#{literal}']"};
+}
+
+.escape {
+  output: "[\#{literal}]";
+  output: "\#{literal}";
+  output: '\#{literal}';
+  output: "['\#{literal}']";
+}
