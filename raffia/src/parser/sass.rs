@@ -41,24 +41,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut separator = SassListSeparatorKind::Unknown;
         let mut end = single_value.span().end;
         loop {
-            match peek!(self) {
-                TokenWithSpan {
-                    token:
-                        Token::LBrace(..)
-                        | Token::RBrace(..)
-                        | Token::RParen(..)
-                        | Token::Semicolon(..)
-                        | Token::Colon(..)
-                        | Token::Dedent(..)
-                        | Token::Linebreak(..)
-                        | Token::DotDotDot(..)
-                        | Token::Eof(..),
-                    ..
-                } => break,
-                TokenWithSpan {
-                    token: Token::Comma(..),
-                    ..
-                } => {
+            match peek!(self).token {
+                Token::LBrace(..)
+                | Token::RBrace(..)
+                | Token::RParen(..)
+                | Token::Semicolon(..)
+                | Token::Colon(..)
+                | Token::Dedent(..)
+                | Token::Linebreak(..)
+                | Token::DotDotDot(..)
+                | Token::Eof(..) => break,
+                Token::Comma(..) => {
                     if !allow_comma {
                         break;
                     }
@@ -69,10 +62,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     bump!(self);
                 }
-                TokenWithSpan {
-                    token: Token::Exclamation(..),
-                    ..
-                } => {
+                Token::Exclamation(..) => {
                     if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse) {
                         if end < important_annotation.span.start
                             && matches!(separator, SassListSeparatorKind::Unknown)
@@ -85,16 +75,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         break;
                     }
                 }
-                TokenWithSpan { token, span } => {
-                    // Treating a list as it's separated by spaces without actual whitespaces
-                    // is possible syntax error, however we see there're real usage like:
-                    // `$variable#{something}`
-                    // (two elements: the first one is Sass variable, the second one is
-                    // interpolation)
-                    // so we allow this special case here.
-                    if (end < span.start || matches!(token, Token::HashLBrace(..)))
-                        && matches!(separator, SassListSeparatorKind::Unknown)
-                    {
+                _ => {
+                    if matches!(separator, SassListSeparatorKind::Unknown) {
                         separator = SassListSeparatorKind::Space;
                     }
                     let item = if matches!(separator, SassListSeparatorKind::Comma) {
