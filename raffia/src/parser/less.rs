@@ -3,7 +3,7 @@ use crate::{
     ast::*,
     bump,
     config::Syntax,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
@@ -14,8 +14,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        let first = match &peek!(self).token {
-            Token::Ident(..) => {
+        let first = match peek!(self) {
+            TokenWithSpan {
+                token: Token::Ident(..),
+                ..
+            } => {
                 let (ident, ident_span) = expect!(self, Ident);
                 match peek!(self) {
                     TokenWithSpan {
@@ -27,8 +30,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     _ => return Ok(InterpolableIdent::Literal((ident, ident_span).into())),
                 }
             }
-            Token::AtLBraceVar(..) => self.parse().map(LessInterpolatedIdentElement::Variable)?,
-            _ => unreachable!(),
+            TokenWithSpan {
+                token: Token::AtLBraceVar(..),
+                ..
+            } => self.parse().map(LessInterpolatedIdentElement::Variable)?,
+            TokenWithSpan { token, span } => {
+                use crate::{
+                    token::{AtLBraceVar, Ident},
+                    tokenizer::TokenSymbol,
+                };
+                return Err(Error {
+                    kind: ErrorKind::ExpectOneOf(
+                        vec![Ident::symbol(), AtLBraceVar::symbol()],
+                        token.symbol(),
+                    ),
+                    span: span.clone(),
+                });
+            }
         };
         let mut span = first.span().clone();
 
@@ -130,6 +148,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
             })),
             _ => Ok(None),
         }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPropertyVariable<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (dollar_var, span) = expect!(input, DollarVar);
+        Ok(LessPropertyVariable {
+            name: Ident::from((
+                dollar_var.ident,
+                Span {
+                    start: span.start + 1,
+                    end: span.end,
+                },
+            )),
+            span,
+        })
     }
 }
 

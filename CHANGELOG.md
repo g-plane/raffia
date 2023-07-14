@@ -54,6 +54,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed Sass statements in `@keyframes` at-rule.
 - Changed AST of nesting selector.
 - Reject duplicated Sass flag in variable declaration.
+- Added support of Less property variable.
 
 ## v0.2.0
 

@@ -218,6 +218,7 @@ pub enum ComponentValue<'s> {
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
+    LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
     Number(Number<'s>),
@@ -651,6 +652,14 @@ pub struct LessPropertyMerge {
 pub enum LessPropertyMergeKind {
     Comma,
     Space,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessPropertyVariable<'s> {
+    pub name: Ident<'s>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

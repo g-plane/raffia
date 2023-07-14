@@ -236,6 +236,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::At(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessVariableVariable)
             }
+            Token::DollarVar(..) if self.syntax == Syntax::Less => {
+                self.parse().map(ComponentValue::LessPropertyVariable)
+            }
             _ => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,
                 span: token_with_span.span.clone(),
