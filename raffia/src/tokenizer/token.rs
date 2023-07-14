@@ -39,6 +39,7 @@ pub enum Token<'s> {
     At(At),
     AtKeyword(AtKeyword<'s>),
     AtLBraceVar(AtLBraceVar<'s>),
+    Backtick(Backtick),
     BadStr(BadStr<'s>),
     Bar(Bar),
     BarBar(BarBar),
@@ -133,6 +134,11 @@ pub struct AtKeyword<'s> {
 pub struct AtLBraceVar<'s> {
     pub ident: Ident<'s>,
 }
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Backtick {}
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

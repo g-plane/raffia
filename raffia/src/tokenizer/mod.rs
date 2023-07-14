@@ -1324,6 +1324,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: start + 1,
                 },
             }),
+            Some((start, '`')) if self.syntax == Syntax::Less => Ok(TokenWithSpan {
+                token: Token::Backtick(Backtick {}),
+                span: Span {
+                    start,
+                    end: start + 1,
+                },
+            }),
             Some((i, c)) if c.is_ascii_whitespace() => Err(Error {
                 kind: ErrorKind::UnexpectedWhitespace,
                 span: Span {
