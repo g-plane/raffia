@@ -95,7 +95,7 @@ impl Display for ErrorKind {
                 write!(f, "expect token `{expected}`, but found `{actual}`")
             }
             Self::ExpectOneOf(expected, actual) => {
-                if let [ref init @ .., last] = expected[..] {
+                if let [init @ .., last] = &expected[..] {
                     let joined = init
                         .iter()
                         .map(|token| format!("`{token}`"))
