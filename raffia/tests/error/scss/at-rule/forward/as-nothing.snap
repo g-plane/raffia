@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `<ident>`, but `;` received
+error: expect token `<ident>`, but found `;`
   ┌─ as-nothing.scss:1:16
   │
 1 │ @forward "a" as;

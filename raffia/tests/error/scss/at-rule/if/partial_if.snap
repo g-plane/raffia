@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `{`, but `<ident>` received
+error: expect token `{`, but found `<ident>`
   ┌─ partial_if.scss:2:7
   │
 2 │ @else i

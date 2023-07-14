@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `)`, but `<ident>` received
+error: expect token `)`, but found `<ident>`
   ┌─ invalid-nth-matcher-1.css:1:17
   │
 1 │ :nth-child(even ofa) {}

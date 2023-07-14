@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `}`, but `;` received
+error: expect token `}`, but found `;`
   ┌─ semicolon.scss:1:14
   │
 1 │ $foo: #{bar();};

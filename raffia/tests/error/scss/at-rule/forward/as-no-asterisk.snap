@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `*`, but `;` received
+error: expect token `*`, but found `;`
   ┌─ as-no-asterisk.scss:1:20
   │
 1 │ @forward "a" as foo;

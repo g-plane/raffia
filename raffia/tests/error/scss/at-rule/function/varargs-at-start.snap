@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `)`, but `$var` received
+error: expect token `)`, but found `$var`
   ┌─ varargs-at-start.scss:1:25
   │
 1 │ @function test($rest...,$param) {}

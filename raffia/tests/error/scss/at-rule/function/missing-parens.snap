@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `(`, but `{` received
+error: expect token `(`, but found `{`
   ┌─ missing-parens.scss:1:16
   │
 1 │ @function test {}

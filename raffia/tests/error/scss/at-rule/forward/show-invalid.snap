@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `<number>` received
+error: expect token `$var`, but found `<number>`
   ┌─ show-invalid.scss:1:19
   │
 1 │ @forward "a" show 1;

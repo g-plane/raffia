@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `;`, but `<ident>` received
+error: expect token `;`, but found `<ident>`
   ┌─ with-before-hide.scss:1:31
   │
 1 │ @forward "other" with ($a: b) hide c;

@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `<linebreak>`, but `;` received
+error: expect token `<linebreak>`, but found `;`
   ┌─ semicolon.sass:2:7
   │
 2 │   b: c;

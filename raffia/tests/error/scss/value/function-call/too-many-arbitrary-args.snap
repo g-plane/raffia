@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `)`, but `,` received
+error: expect token `)`, but found `,`
   ┌─ too-many-arbitrary-args.scss:2:22
   │
 2 │   width: min($arr1..., $arr2...);

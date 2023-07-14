@@ -88,7 +88,7 @@ impl Display for ErrorKind {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Unexpected(expected, actual) => {
-                write!(f, "expect token `{expected}`, but `{actual}` received")
+                write!(f, "expect token `{expected}`, but found `{actual}`")
             }
 
             Self::UnknownToken => write!(f, "unknown token"),

@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `)` received
+error: expect token `$var`, but found `)`
   ┌─ with-empty.scss:1:24
   │
 1 │ @forward "other" with ();

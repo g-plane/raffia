@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `)`, but `;` received
+error: expect token `)`, but found `;`
   ┌─ incomplete-expression.scss:1:13
   │
 1 │ @error("foo";

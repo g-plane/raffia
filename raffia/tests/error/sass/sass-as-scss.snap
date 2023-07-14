@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `{`, but `<at-keyword>` received
+error: expect token `{`, but found `<at-keyword>`
   ┌─ sass-as-scss.scss:2:3
   │
 2 │   @include typography(button)

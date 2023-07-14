@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `;` received
+error: expect token `$var`, but found `;`
   ┌─ hide-trailing-comma.scss:1:21
   │
 1 │ @forward "a" hide b,;

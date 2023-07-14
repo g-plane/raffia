@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `{` received
+error: expect token `$var`, but found `{`
   ┌─ unterminated.scss:1:38
   │
 1 │ @function missing-paren-error($a,$b, {

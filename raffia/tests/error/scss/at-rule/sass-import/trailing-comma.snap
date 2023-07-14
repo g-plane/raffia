@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `<string>`, but `;` received
+error: expect token `<string>`, but found `;`
   ┌─ trailing-comma.scss:4:1
   │
 4 │ ;

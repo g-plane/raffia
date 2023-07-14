@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `<ident>` received
+error: expect token `$var`, but found `<ident>`
   ┌─ with-namespace-variable.scss:1:20
   │
 1 │ @use "other" with (a.$b: c);

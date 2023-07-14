@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `;`, but `<ident>` received
+error: expect token `;`, but found `<ident>`
   ┌─ complex_selector.scss:2:13
   │
 2 │   @extend a b;

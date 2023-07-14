@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `$var`, but `,` received
+error: expect token `$var`, but found `,`
   ┌─ double-commas-at-end.scss:1:33
   │
 1 │ @mixin double-comma-error($a,$b,,) {
