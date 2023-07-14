@@ -484,10 +484,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 ..
             } => self.parse_sass_interpolated_ident_expr()?,
             TokenWithSpan { token, span } => {
+                use crate::{
+                    token::{HashLBrace, Ident},
+                    tokenizer::TokenSymbol,
+                };
                 return Err(Error {
-                    kind: ErrorKind::Unexpected("<ident>` or `#{", token.symbol()),
+                    kind: ErrorKind::ExpectOneOf(
+                        vec![Ident::symbol(), HashLBrace::symbol()],
+                        token.symbol(),
+                    ),
                     span: span.clone(),
-                })
+                });
             }
         };
 

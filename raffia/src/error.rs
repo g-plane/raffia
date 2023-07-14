@@ -20,6 +20,10 @@ pub enum ErrorKind {
         /* expected */ &'static str,
         /* actual */ &'static str,
     ),
+    ExpectOneOf(
+        /* expected */ Vec<&'static str>,
+        /* actual */ &'static str,
+    ),
 
     UnknownToken,
     InvalidNumber,
@@ -89,6 +93,22 @@ impl Display for ErrorKind {
         match self {
             Self::Unexpected(expected, actual) => {
                 write!(f, "expect token `{expected}`, but found `{actual}`")
+            }
+            Self::ExpectOneOf(expected, actual) => {
+                if let [ref init @ .., last] = expected[..] {
+                    let joined = init
+                        .iter()
+                        .map(|token| format!("`{token}`"))
+                        .collect::<Vec<_>>()
+                        .join(", ");
+                    write!(
+                        f,
+                        "expect one of {} or `{last}`, but found `{actual}`",
+                        joined
+                    )
+                } else {
+                    panic!("the number of expected tokens must be at least 2")
+                }
             }
 
             Self::UnknownToken => write!(f, "unknown token"),
