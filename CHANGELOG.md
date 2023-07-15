@@ -56,6 +56,7 @@ _This changelog only relates to the `raffia` crate._
 - Reject duplicated Sass flag in variable declaration.
 - Added support of Less property variable.
 - Added support of Less escaped string.
+- Added support of Less JavaScript code snippet.
 
 ## v0.2.0
 

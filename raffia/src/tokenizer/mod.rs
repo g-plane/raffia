@@ -153,6 +153,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_at_lbrace_var()
             }
+            (Some((_, '`')), _) if self.syntax == Syntax::Less => self.scan_backtick_code(),
             (Some(..), ..) => self.scan_punc(),
             (None, ..) => {
                 let offset = self.current_offset();
@@ -935,6 +936,34 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         })
     }
 
+    fn scan_backtick_code(&mut self) -> PResult<TokenWithSpan<'s>> {
+        debug_assert!(self.syntax == Syntax::Less);
+
+        // '`' is checked (but not consumed) before
+        let (start, _) = self.state.chars.next().expect("expect char ```");
+
+        let end;
+        loop {
+            match self.state.chars.next() {
+                Some((i, '`')) => {
+                    end = i + 1;
+                    break;
+                }
+                Some(..) => {}
+                None => {
+                    return Err(self.build_eof_error());
+                }
+            }
+        }
+
+        debug_assert!(start + 1 < end);
+        let raw = unsafe { self.source.get_unchecked(start..end) };
+        Ok(TokenWithSpan {
+            token: Token::BacktickCode(BacktickCode { raw }),
+            span: Span { start, end },
+        })
+    }
+
     fn scan_punc(&mut self) -> PResult<TokenWithSpan<'s>> {
         match self.state.chars.next() {
             Some((start, '.')) => {
@@ -1319,13 +1348,6 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }),
             Some((start, '@')) if self.syntax != Syntax::Css => Ok(TokenWithSpan {
                 token: Token::At(At {}),
-                span: Span {
-                    start,
-                    end: start + 1,
-                },
-            }),
-            Some((start, '`')) if self.syntax == Syntax::Less => Ok(TokenWithSpan {
-                token: Token::Backtick(Backtick {}),
                 span: Span {
                     start,
                     end: start + 1,

@@ -3,6 +3,7 @@ use crate::{
     ast::*,
     bump,
     config::Syntax,
+    eat,
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
@@ -142,6 +143,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
         }
 
         Ok(LessInterpolatedStr { elements, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessJavaScriptSnippet<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let tilde = eat!(input, Tilde);
+        let (token, span) = expect!(input, BacktickCode);
+
+        Ok(LessJavaScriptSnippet {
+            code: &token.raw[1..token.raw.len() - 1],
+            raw: token.raw,
+            escaped: tilde.is_some(),
+            span: Span {
+                start: tilde.map(|(_, span)| span.start).unwrap_or(span.start),
+                end: span.end,
+            },
+        })
     }
 }
 

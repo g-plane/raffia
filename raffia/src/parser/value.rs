@@ -240,7 +240,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse().map(ComponentValue::LessPropertyVariable)
             }
             Token::Tilde(..) if self.syntax == Syntax::Less => {
-                self.parse().map(ComponentValue::LessEscapedStr)
+                if let Ok(less_escaped_str) = self.try_parse(LessEscapedStr::parse) {
+                    Ok(ComponentValue::LessEscapedStr(less_escaped_str))
+                } else {
+                    self.parse().map(ComponentValue::LessJavaScriptSnippet)
+                }
+            }
+            Token::BacktickCode(..) if self.syntax == Syntax::Less => {
+                self.parse().map(ComponentValue::LessJavaScriptSnippet)
             }
             _ => Err(Error {
                 kind: ErrorKind::ExpectComponentValue,

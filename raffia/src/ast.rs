@@ -219,6 +219,7 @@ pub enum ComponentValue<'s> {
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
+    LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
@@ -646,6 +647,16 @@ pub struct LessInterpolatedStr<'s> {
 pub enum LessInterpolatedStrElement<'s> {
     Variable(LessVariableInterpolation<'s>),
     Static(InterpolableStrStaticPart<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessJavaScriptSnippet<'s> {
+    pub code: &'s str,
+    pub raw: &'s str,
+    pub escaped: bool,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

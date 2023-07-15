@@ -53,10 +53,10 @@ impl TokenSymbol for AtLBraceVar<'_> {
     }
 }
 
-impl TokenSymbol for Backtick {
+impl TokenSymbol for BacktickCode<'_> {
     #[inline]
     fn symbol() -> &'static str {
-        "`"
+        "<backtick code>"
     }
 }
 
@@ -428,7 +428,7 @@ impl Token<'_> {
             At(..) => "@",
             AtKeyword(..) => "<at-keyword>",
             AtLBraceVar(..) => "@{",
-            Backtick(..) => "`",
+            BacktickCode(..) => "<backtick code>",
             BadStr(..) => "<bad string>",
             Bar(..) => "|",
             BarBar(..) => "||",
