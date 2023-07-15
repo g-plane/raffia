@@ -218,6 +218,7 @@ pub enum ComponentValue<'s> {
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
+    LessEscapedStr(LessEscapedStr<'s>),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
@@ -604,6 +605,14 @@ pub struct LanguageRangeList<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LayerName<'s> {
     pub idents: Vec<InterpolableIdent<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessEscapedStr<'s> {
+    pub str: Str<'s>,
     pub span: Span,
 }
 

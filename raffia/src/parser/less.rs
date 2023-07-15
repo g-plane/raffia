@@ -90,6 +90,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessEscapedStr<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, Span { start, .. }) = expect!(input, Tilde);
+        let str = input.parse::<Str>()?;
+        let span = Span {
+            start,
+            end: str.span.end,
+        };
+        Ok(LessEscapedStr { str, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (first, first_span) = expect!(input, StrTemplate);
