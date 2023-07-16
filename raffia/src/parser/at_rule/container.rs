@@ -128,7 +128,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         if eat!(input, LParen).is_some() {
             let query_in_parens =
-                if let Ok(container_condition) = input.try_parse(|parser| parser.parse()) {
+                if let Ok(container_condition) = input.try_parse(ContainerCondition::parse) {
                     QueryInParens::ContainerCondition(container_condition)
                 } else {
                     QueryInParens::SizeFeature(Box::new(input.parse()?))
@@ -269,8 +269,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionOr<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         expect!(input, LParen);
-        let style_in_parens = if let Ok(style_condition) = input.try_parse(|parser| parser.parse())
-        {
+        let style_in_parens = if let Ok(style_condition) = input.try_parse(StyleCondition::parse) {
             StyleInParens::Condition(style_condition)
         } else {
             StyleInParens::Feature(input.parse()?)
@@ -282,7 +281,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleInParens<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleQuery<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        if let Ok(condition) = input.try_parse(|parser| parser.parse()) {
+        if let Ok(condition) = input.try_parse(StyleCondition::parse) {
             Ok(StyleQuery::Condition(condition))
         } else {
             let feature = input.parse().map(StyleQuery::Feature);

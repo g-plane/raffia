@@ -58,12 +58,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
 
             expect_without_ws_or_comments!(parser, LParen);
 
-            let supports = if let Ok(supports_condition) = parser.try_parse(|parser| parser.parse())
-            {
-                Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
-            } else {
-                parser.parse().map(ImportPreludeSupports::Declaration)
-            };
+            let supports =
+                if let Ok(supports_condition) = parser.try_parse(SupportsCondition::parse) {
+                    Ok(ImportPreludeSupports::SupportsCondition(supports_condition))
+                } else {
+                    parser.parse().map(ImportPreludeSupports::Declaration)
+                };
             expect!(parser, RParen);
             supports
         });

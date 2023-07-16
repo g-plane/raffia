@@ -319,7 +319,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                     Syntax::Less => {
                         if let Ok(less_variable_declaration) =
-                            self.try_parse(|parser| parser.parse())
+                            self.try_parse(LessVariableDeclaration::parse)
                         {
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
