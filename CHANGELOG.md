@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.3.0
+
 - Reject unexpected `@else` at-rule in Sass.
 - Added Sass `@at-root` at-rule support.
 - Added CSS `An+B of S` syntax support.
