@@ -612,6 +612,15 @@ pub struct LayerName<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct Length<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessEscapedStr<'s> {
     pub str: Str<'s>,
     pub span: Span,
@@ -712,15 +721,6 @@ pub struct LessVariableInterpolation<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableVariable<'s> {
     pub variable: LessVariable<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Length<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
     pub span: Span,
 }
 
