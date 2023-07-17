@@ -678,7 +678,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let mut children = SmallVec::with_capacity(3);
 
-        if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+        if input.syntax == Syntax::Css {
+            let first = input.parse::<CompoundSelector>()?;
+            let start = first.span.start;
+            let mut end = first.span.end;
+
+            children.push(ComplexSelectorChild::CompoundSelector(first));
+            while let Some(combinator) = input.parse_combinator(end)? {
+                children.push(ComplexSelectorChild::Combinator(combinator));
+                let compound_selector = input.parse::<CompoundSelector>()?;
+                end = compound_selector.span.end;
+                children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
+            }
+
+            Ok(ComplexSelector {
+                children,
+                span: Span { start, end },
+            })
+        } else {
             let (span, first, mut is_previous_combinator) = if let Ok(compound_selector) =
                 input.try_parse(CompoundSelector::parse)
             {
@@ -715,23 +732,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
                     break;
                 }
                 is_previous_combinator = !is_previous_combinator;
-            }
-
-            Ok(ComplexSelector {
-                children,
-                span: Span { start, end },
-            })
-        } else {
-            let first = input.parse::<CompoundSelector>()?;
-            let start = first.span.start;
-            let mut end = first.span.end;
-
-            children.push(ComplexSelectorChild::CompoundSelector(first));
-            while let Some(combinator) = input.parse_combinator(end)? {
-                children.push(ComplexSelectorChild::Combinator(combinator));
-                let compound_selector = input.parse::<CompoundSelector>()?;
-                end = compound_selector.span.end;
-                children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
             }
 
             Ok(ComplexSelector {
