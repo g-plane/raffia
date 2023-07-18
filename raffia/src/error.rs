@@ -70,6 +70,7 @@ pub enum ErrorKind {
     ExpectSassAtRootWithOrWithout,
     ExpectNthOf,
     ExpectKeyframeBlock,
+    MixedDelimiterKindInLessMixin,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -162,6 +163,10 @@ impl Display for ErrorKind {
             }
             Self::ExpectNthOf => write!(f, "`of` is expected"),
             Self::ExpectKeyframeBlock => write!(f, "keyframe block is expected"),
+            Self::MixedDelimiterKindInLessMixin => write!(
+                f,
+                "using both `;` and `,` as delimiters in the same Less mixin is disallowed"
+            ),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {

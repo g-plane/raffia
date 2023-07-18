@@ -284,9 +284,19 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         statements.push(Statement::Declaration(decl));
                     }
                 }
-                Token::Dot(..)
-                | Token::Hash(..)
-                | Token::Ampersand(..)
+                Token::Dot(..) | Token::Hash(..) if !self.state.in_keyframes_at_rule => {
+                    if self.syntax == Syntax::Less {
+                        let stmt = self
+                            .try_parse(LessMixinDefinition::parse)
+                            .map(Statement::LessMixinDefinition)
+                            .or_else(|_| self.parse().map(Statement::QualifiedRule))?;
+                        statements.push(stmt);
+                    } else {
+                        statements.push(Statement::QualifiedRule(self.parse()?));
+                    }
+                    is_block_element = true;
+                }
+                Token::Ampersand(..)
                 | Token::LBracket(..)
                 | Token::Colon(..)
                 | Token::ColonColon(..)

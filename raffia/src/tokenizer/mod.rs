@@ -967,7 +967,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     fn scan_punc(&mut self) -> PResult<TokenWithSpan<'s>> {
         match self.state.chars.next() {
             Some((start, '.')) => {
-                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                if self.syntax != Syntax::Css
                     && matches!(
                         {
                             let mut chars = self.state.chars.clone();

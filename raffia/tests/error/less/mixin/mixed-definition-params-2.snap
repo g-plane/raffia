@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but found `(`
+  ┌─ mixed-definition-params-2.less:1:7
+  │
+1 │ .mixin(@a: 5, @b: 6; @c: 7) {}
+  │       ^
+
+

@@ -220,6 +220,7 @@ pub enum ComponentValue<'s> {
     LayerName(LayerName<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
+    LessList(LessList<'s>),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
@@ -671,6 +672,42 @@ pub struct LessJavaScriptSnippet<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessList<'s> {
+    pub elements: Vec<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinDefinition<'s> {
+    pub name: String,
+    pub params: Vec<LessParameter<'s>>,
+    pub block: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessNamedParameter<'s> {
+    pub name: String,
+    pub value: Option<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessParameter<'s> {
+    Named(LessNamedParameter<'s>),
+    Unnamed(LessUnnamedParameter<'s>),
+    Variadic(LessVariadicParameter),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessPropertyMerge {
     pub kind: LessPropertyMergeKind,
     pub span: Span,
@@ -688,6 +725,14 @@ pub enum LessPropertyMergeKind {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessPropertyVariable<'s> {
     pub name: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessUnnamedParameter<'s> {
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -721,6 +766,14 @@ pub struct LessVariableInterpolation<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableVariable<'s> {
     pub variable: LessVariable<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessVariadicParameter {
+    pub name: Option<String>,
     pub span: Span,
 }
 
@@ -1620,6 +1673,7 @@ pub enum Statement<'s> {
     AtRule(AtRule<'s>),
     Declaration(Declaration<'s>),
     KeyframeBlock(KeyframeBlock<'s>),
+    LessMixinDefinition(LessMixinDefinition<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
     SassAtRootAtRule(SassAtRootAtRule<'s>),

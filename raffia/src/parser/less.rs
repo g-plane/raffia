@@ -163,6 +163,171 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessJavaScriptSnippet<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (name, start) = match bump!(input) {
+            TokenWithSpan {
+                token: Token::Dot(..),
+                span,
+            } => {
+                let (ident, _) = expect_without_ws_or_comments!(input, Ident);
+                (
+                    if ident.escaped {
+                        format!("#{}", util::handle_escape(ident.raw))
+                    } else {
+                        format!("#{}", ident.raw)
+                    },
+                    span.start,
+                )
+            }
+            TokenWithSpan {
+                token: Token::Hash(hash),
+                span,
+            } => (
+                if hash.escaped {
+                    format!("#{}", util::handle_escape(hash.raw))
+                } else {
+                    format!("#{}", hash.raw)
+                },
+                span.start,
+            ),
+            TokenWithSpan { token, span } => {
+                use crate::{
+                    token::{Dot, Hash},
+                    tokenizer::TokenSymbol,
+                };
+                return Err(Error {
+                    kind: ErrorKind::ExpectOneOf(
+                        vec![Dot::symbol(), Hash::symbol()],
+                        token.symbol(),
+                    ),
+                    span,
+                });
+            }
+        };
+
+        expect!(input, LParen);
+        let mut semicolon_comes_at = 0;
+        let mut params = vec![];
+        loop {
+            if let Some((_, span)) = eat!(input, DotDotDot) {
+                params.push(LessParameter::Variadic(LessVariadicParameter {
+                    name: None,
+                    span,
+                }));
+                eat!(input, Semicolon);
+                expect!(input, RParen);
+                break;
+            } else {
+                match input.parse()? {
+                    value @ ComponentValue::LessVariable(..)
+                    | value @ ComponentValue::LessPropertyVariable(..) => {
+                        let (name, name_span) = match value {
+                            ComponentValue::LessVariable(LessVariable { name, span }) => {
+                                (format!("@{}", name.name), span)
+                            }
+                            ComponentValue::LessPropertyVariable(LessPropertyVariable {
+                                name,
+                                span,
+                            }) => (format!("${}", name.name), span),
+                            _ => unreachable!(),
+                        };
+                        if eat!(input, Colon).is_some() {
+                            let value = input.parse::<ComponentValue>()?;
+                            let span = Span {
+                                start,
+                                end: value.span().end,
+                            };
+                            params.push(LessParameter::Named(LessNamedParameter {
+                                name,
+                                value: Some(value),
+                                span,
+                            }));
+                        } else if let Some((_, Span { end, .. })) = eat!(input, DotDotDot) {
+                            params.push(LessParameter::Variadic(LessVariadicParameter {
+                                name: Some(name),
+                                span: Span { start, end },
+                            }));
+                            eat!(input, Semicolon);
+                            expect!(input, RParen);
+                            break;
+                        } else {
+                            params.push(LessParameter::Named(LessNamedParameter {
+                                name,
+                                value: None,
+                                span: name_span,
+                            }));
+                        }
+                    }
+                    value => {
+                        let span = value.span().clone();
+                        params.push(LessParameter::Unnamed(LessUnnamedParameter { value, span }));
+                    }
+                }
+
+                match bump!(input) {
+                    TokenWithSpan {
+                        token: Token::RParen(..),
+                        ..
+                    } => {
+                        if semicolon_comes_at > 0 {
+                            wrap_less_params_into_less_list(&mut params, semicolon_comes_at)
+                                .map_err(|kind| Error {
+                                    kind,
+                                    span: Span {
+                                        // We've checked `semicolon_comes_at` must be greater than 0,
+                                        // so `params` won't be empty.
+                                        start: params.first().unwrap().span().start,
+                                        end: params.last().unwrap().span().end,
+                                    },
+                                })?;
+                        }
+                        break;
+                    }
+                    TokenWithSpan {
+                        token: Token::Comma(..),
+                        ..
+                    } => {}
+                    TokenWithSpan {
+                        token: Token::Semicolon(..),
+                        span,
+                    } => {
+                        wrap_less_params_into_less_list(&mut params, semicolon_comes_at)
+                            .map_err(|kind| Error { kind, span })?;
+                        semicolon_comes_at = params.len();
+                    }
+                    TokenWithSpan { token, span } => {
+                        use crate::{token::RParen, tokenizer::TokenSymbol};
+                        return Err(Error {
+                            kind: ErrorKind::Unexpected(RParen::symbol(), token.symbol()),
+                            span,
+                        });
+                    }
+                }
+            }
+        }
+
+        match &peek!(input).token {
+            Token::Ident(ident) if ident.raw == "when" => todo!("mixin guard"),
+            _ => {}
+        };
+
+        let block = input.parse::<SimpleBlock>()?;
+
+        let span = Span {
+            start,
+            end: block.span.end,
+        };
+
+        Ok(LessMixinDefinition {
+            name,
+            params,
+            block,
+            span,
+        })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Option<LessPropertyMerge> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);
@@ -259,4 +424,37 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableVariable<'s> {
         };
         Ok(LessVariableVariable { variable, span })
     }
+}
+
+fn wrap_less_params_into_less_list(
+    params: &mut Vec<LessParameter<'_>>,
+    index: usize,
+) -> Result<(), ErrorKind> {
+    if let [first, .., last] = &params[index..] {
+        let span = Span {
+            start: first.span().start,
+            end: last.span().end,
+        };
+        let elements = params
+            .drain(index..)
+            .map(|param| {
+                if let LessParameter::Unnamed(LessUnnamedParameter { value, .. }) = param {
+                    Ok(value)
+                } else {
+                    // reject code like this:
+                    // .mixin(@a: 5, @b: 6; @c: 7) {}
+                    // .mixin(@a: 5; @b: 6, @c: 7) {}
+                    Err(ErrorKind::MixedDelimiterKindInLessMixin)
+                }
+            })
+            .collect::<Result<_, _>>()?;
+        params.push(LessParameter::Unnamed(LessUnnamedParameter {
+            value: ComponentValue::LessList(LessList {
+                elements,
+                span: span.clone(),
+            }),
+            span,
+        }));
+    }
+    Ok(())
 }

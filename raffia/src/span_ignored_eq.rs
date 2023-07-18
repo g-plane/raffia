@@ -25,6 +25,13 @@ impl SpanIgnoredEq for &str {
     }
 }
 
+impl SpanIgnoredEq for String {
+    #[inline]
+    fn span_ignored_eq(&self, other: &Self) -> bool {
+        self == other
+    }
+}
+
 impl SpanIgnoredEq for CowStr<'_> {
     #[inline]
     fn span_ignored_eq(&self, other: &Self) -> bool {
