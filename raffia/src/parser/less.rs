@@ -91,6 +91,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessDetachedRuleset<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let block = input.parse::<SimpleBlock>()?;
+        let span = block.span.clone();
+        Ok(LessDetachedRuleset { block, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessEscapedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, Span { start, .. }) = expect!(input, Tilde);
@@ -233,7 +241,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                             _ => unreachable!(),
                         };
                         if eat!(input, Colon).is_some() {
-                            let value = input.parse::<ComponentValue>()?;
+                            let value = if matches!(peek!(input).token, Token::LBrace(..)) {
+                                input.parse().map(ComponentValue::LessDetachedRuleset)?
+                            } else {
+                                input.parse::<ComponentValue>()?
+                            };
                             let span = Span {
                                 start,
                                 end: value.span().end,
@@ -385,7 +397,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
 
         let name = input.parse::<LessVariable>()?;
         expect!(input, Colon);
-        let value = input.parse_component_values(/* allow_comma */ true)?;
+        let value = if matches!(peek!(input).token, Token::LBrace(..)) {
+            let detached_ruleset = input.parse::<LessDetachedRuleset>()?;
+            let span = detached_ruleset.span.clone();
+            ComponentValues {
+                values: vec![ComponentValue::LessDetachedRuleset(detached_ruleset)],
+                span,
+            }
+        } else {
+            input.parse_component_values(/* allow_comma */ true)?
+        };
 
         let span = Span {
             start: name.span.start,

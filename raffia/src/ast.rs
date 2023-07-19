@@ -218,6 +218,7 @@ pub enum ComponentValue<'s> {
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
+    LessDetachedRuleset(LessDetachedRuleset<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
@@ -616,6 +617,14 @@ pub struct LayerName<'s> {
 pub struct Length<'s> {
     pub value: Number<'s>,
     pub unit: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessDetachedRuleset<'s> {
+    pub block: SimpleBlock<'s>,
     pub span: Span,
 }
 
