@@ -217,7 +217,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         expect!(input, LParen);
         let mut semicolon_comes_at = 0;
         let mut params = vec![];
-        loop {
+        while eat!(input, RParen).is_none() {
             if let Some((_, span)) = eat!(input, DotDotDot) {
                 params.push(LessParameter::Variadic(LessVariadicParameter {
                     name: None,
