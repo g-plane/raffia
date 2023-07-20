@@ -181,9 +181,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                 let (ident, _) = expect_without_ws_or_comments!(input, Ident);
                 (
                     if ident.escaped {
-                        format!("#{}", util::handle_escape(ident.raw))
+                        format!(".{}", util::handle_escape(ident.raw))
                     } else {
-                        format!("#{}", ident.raw)
+                        format!(".{}", ident.raw)
                     },
                     span.start,
                 )
