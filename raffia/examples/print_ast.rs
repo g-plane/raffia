@@ -6,7 +6,7 @@ use codespan_reporting::{
         termcolor::{ColorChoice, StandardStream},
     },
 };
-use raffia::{ast::Stylesheet, Parser, Syntax};
+use raffia::{ast::Stylesheet, error::Error, Parser, Syntax};
 use std::{env, fs, path::Path};
 
 fn main() {
@@ -24,15 +24,26 @@ fn main() {
     let mut parser = Parser::new(&code, syntax);
     let result = parser.parse::<Stylesheet>();
     match result {
-        Ok(ast) => println!("{:#?}", ast.span),
-        Err(error) => {
-            let file = SimpleFile::new(path.file_name().unwrap().to_str().unwrap(), &code);
-            let diagnostic = Diagnostic::error()
-                .with_message(error.kind.to_string())
-                .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
-            let writer = StandardStream::stderr(ColorChoice::Always);
-            let config = term::Config::default();
-            term::emit(&mut writer.lock(), &config, &file, &diagnostic).unwrap();
+        Ok(ast) => {
+            println!("{:#?}", ast);
+            let recoverable_errors = parser.recoverable_errors();
+            if !recoverable_errors.is_empty() {
+                println!("========");
+                recoverable_errors
+                    .iter()
+                    .for_each(|error| print_error(path, &code, error));
+            }
         }
+        Err(error) => print_error(path, &code, &error),
     }
+}
+
+fn print_error(path: &Path, code: &str, error: &Error) {
+    let file = SimpleFile::new(path.file_name().unwrap().to_str().unwrap(), &code);
+    let diagnostic = Diagnostic::error()
+        .with_message(error.kind.to_string())
+        .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
+    let writer = StandardStream::stderr(ColorChoice::Always);
+    let config = term::Config::default();
+    term::emit(&mut writer.lock(), &config, &file, &diagnostic).unwrap();
 }
