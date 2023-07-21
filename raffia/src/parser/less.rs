@@ -19,7 +19,10 @@ const PRECEDENCE_MULTIPLY: u8 = 2;
 const PRECEDENCE_PLUS: u8 = 1;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    fn parse_less_condition(&mut self, needs_parens: bool) -> PResult<LessCondition<'s>> {
+    pub(super) fn parse_less_condition(
+        &mut self,
+        needs_parens: bool,
+    ) -> PResult<LessCondition<'s>> {
         self.parse_less_condition_recursively(needs_parens, 0)
     }
 

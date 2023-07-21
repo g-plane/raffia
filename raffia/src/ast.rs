@@ -218,6 +218,7 @@ pub enum ComponentValue<'s> {
     InterpolableIdent(InterpolableIdent<'s>),
     InterpolableStr(InterpolableStr<'s>),
     LayerName(LayerName<'s>),
+    LessCondition(Box<LessCondition<'s>>),
     LessDetachedRuleset(LessDetachedRuleset<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),

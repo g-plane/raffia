@@ -382,6 +382,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         .map(ComponentValue::TokenWithSpan)
                         .collect()
                 }
+                InterpolableIdent::Literal(Ident {
+                    raw: "boolean" | "if",
+                    ..
+                }) if self.syntax == Syntax::Less => {
+                    vec![ComponentValue::LessCondition(Box::new(
+                        self.parse_less_condition(false)?,
+                    ))]
+                }
                 _ => self.parse_function_args()?,
             }
         };
