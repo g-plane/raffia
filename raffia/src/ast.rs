@@ -222,6 +222,7 @@ pub enum ComponentValue<'s> {
     LessEscapedStr(LessEscapedStr<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
+    LessOperation(LessOperation<'s>),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
@@ -623,6 +624,56 @@ pub struct Length<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessBinaryCondition<'s> {
+    pub left: Box<LessCondition<'s>>,
+    pub op: LessBinaryConditionOperator,
+    pub right: Box<LessCondition<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessBinaryConditionOperator {
+    pub kind: LessBinaryConditionOperatorKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum LessBinaryConditionOperatorKind {
+    GreaterThan,
+    GreaterThanOrEqual,
+    LessThan,
+    LessThanOrEqual,
+    Equal,
+    EqualOrGreaterThan,
+    EqualOrLessThan,
+    And,
+    Or,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessCondition<'s> {
+    Binary(LessBinaryCondition<'s>),
+    Negated(LessNegatedCondition<'s>),
+    Parenthesized(LessParenthesizedCondition<'s>),
+    Value(ComponentValue<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessConditions<'s> {
+    pub conditions: Vec<LessCondition<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessDetachedRuleset<'s> {
     pub block: SimpleBlock<'s>,
     pub span: Span,
@@ -692,6 +743,7 @@ pub struct LessList<'s> {
 pub struct LessMixinDefinition<'s> {
     pub name: String,
     pub params: Vec<LessParameter<'s>>,
+    pub guard: Option<LessConditions<'s>>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
 }
@@ -705,6 +757,41 @@ pub struct LessNamedParameter<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessNegatedCondition<'s> {
+    pub condition: Box<LessCondition<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessOperation<'s> {
+    pub left: Box<ComponentValue<'s>>,
+    pub op: LessOperationOperator,
+    pub right: Box<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessOperationOperator {
+    pub kind: LessOperationOperatorKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum LessOperationOperatorKind {
+    Multiply,
+    Division,
+    Plus,
+    Minus,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -712,6 +799,14 @@ pub enum LessParameter<'s> {
     Named(LessNamedParameter<'s>),
     Unnamed(LessUnnamedParameter<'s>),
     Variadic(LessVariadicParameter),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessParenthesizedCondition<'s> {
+    pub condition: Box<LessCondition<'s>>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

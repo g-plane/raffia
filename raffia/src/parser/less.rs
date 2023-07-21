@@ -11,7 +11,154 @@ use crate::{
     util, Parse,
 };
 
+const PRECEDENCE_RELATIONAL: u8 = 3;
+const PRECEDENCE_AND: u8 = 2;
+const PRECEDENCE_OR: u8 = 1;
+
+const PRECEDENCE_MULTIPLY: u8 = 2;
+const PRECEDENCE_PLUS: u8 = 1;
+
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    fn parse_less_condition(&mut self, needs_parens: bool) -> PResult<LessCondition<'s>> {
+        self.parse_less_condition_recursively(needs_parens, 0)
+    }
+
+    fn parse_less_condition_atom(&mut self, needs_parens: bool) -> PResult<LessCondition<'s>> {
+        self.try_parse(|parser| parser.parse_less_condition(needs_parens))
+            .or_else(|_| self.parse_less_operation().map(LessCondition::Value))
+    }
+
+    fn parse_less_condition_recursively(
+        &mut self,
+        needs_parens: bool,
+        precedence: u8,
+    ) -> PResult<LessCondition<'s>> {
+        let mut left = if precedence >= PRECEDENCE_RELATIONAL {
+            match &peek!(self).token {
+                Token::LParen(..) => {
+                    let Span { start, .. } = bump!(self).span;
+                    let condition = self.parse_less_condition_atom(needs_parens)?;
+                    let (_, Span { end, .. }) = expect!(self, RParen);
+                    LessCondition::Parenthesized(LessParenthesizedCondition {
+                        condition: Box::new(condition),
+                        span: Span { start, end },
+                    })
+                }
+                Token::Ident(ident) if ident.raw == "not" => {
+                    let Span { start, .. } = bump!(self).span;
+                    expect!(self, LParen);
+                    let condition = self.parse_less_condition_atom(needs_parens)?;
+                    let (_, Span { end, .. }) = expect!(self, RParen);
+                    LessCondition::Negated(LessNegatedCondition {
+                        condition: Box::new(condition),
+                        span: Span { start, end },
+                    })
+                }
+                _ => {
+                    if needs_parens {
+                        use crate::{token::LParen, tokenizer::TokenSymbol};
+                        let TokenWithSpan { token, span } = bump!(self);
+                        return Err(Error {
+                            kind: ErrorKind::Unexpected(LParen::symbol(), token.symbol()),
+                            span,
+                        });
+                    } else {
+                        self.parse_less_operation().map(LessCondition::Value)?
+                    }
+                }
+            }
+        } else {
+            self.parse_less_condition_recursively(needs_parens, precedence + 1)?
+        };
+
+        loop {
+            let op = match &peek!(self).token {
+                Token::GreaterThan(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::GreaterThan,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::GreaterThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::GreaterThanOrEqual,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::LessThan,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::LessThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::LessThanOrEqual,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::Equal(..) if precedence == PRECEDENCE_RELATIONAL => {
+                    let eq_span = bump!(self).span;
+                    match peek!(self) {
+                        TokenWithSpan {
+                            token: Token::GreaterThan(..),
+                            span: gt_span,
+                        } if eq_span.end == gt_span.start => LessBinaryConditionOperator {
+                            kind: LessBinaryConditionOperatorKind::EqualOrGreaterThan,
+                            span: Span {
+                                start: eq_span.start,
+                                end: bump!(self).span.end,
+                            },
+                        },
+                        TokenWithSpan {
+                            token: Token::LessThan(..),
+                            span: lt_span,
+                        } if eq_span.end == lt_span.start => LessBinaryConditionOperator {
+                            kind: LessBinaryConditionOperatorKind::EqualOrLessThan,
+                            span: Span {
+                                start: eq_span.start,
+                                end: bump!(self).span.end,
+                            },
+                        },
+                        _ => LessBinaryConditionOperator {
+                            kind: LessBinaryConditionOperatorKind::Equal,
+                            span: eq_span,
+                        },
+                    }
+                }
+                Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::And,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::Ident(token) if token.raw == "or" && precedence == PRECEDENCE_OR => {
+                    LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::Or,
+                        span: bump!(self).span,
+                    }
+                }
+                _ => break,
+            };
+
+            // multiple conditions in Less is right-associated
+            let right = self.parse_less_condition_recursively(needs_parens, precedence)?;
+
+            let span = Span {
+                start: left.span().start,
+                end: right.span().end,
+            };
+            left = LessCondition::Binary(LessBinaryCondition {
+                left: Box::new(left),
+                op,
+                right: Box::new(right),
+                span,
+            });
+        }
+
+        Ok(left)
+    }
+
     pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
@@ -88,6 +235,86 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => return Ok(elements),
             }
         }
+    }
+
+    fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
+        self.parse_less_operation_recursively(0)
+    }
+
+    fn parse_less_operation_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'s>> {
+        let mut left = if precedence >= PRECEDENCE_MULTIPLY {
+            if eat!(self, LParen).is_some() {
+                let operation = self.parse_less_operation()?;
+                expect!(self, RParen);
+                operation
+            } else {
+                self.parse_component_value_atom()?
+            }
+        } else {
+            self.parse_less_operation_recursively(precedence + 1)?
+        };
+
+        loop {
+            let op = match peek!(self).token {
+                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => LessOperationOperator {
+                    kind: LessOperationOperatorKind::Multiply,
+                    span: bump!(self).span,
+                },
+                Token::Solidus(..) if precedence == PRECEDENCE_MULTIPLY => LessOperationOperator {
+                    kind: LessOperationOperatorKind::Division,
+                    span: bump!(self).span,
+                },
+                Token::Dot(..) if precedence == PRECEDENCE_MULTIPLY => {
+                    // `./` is also division
+                    let Span { start, .. } = bump!(self).span;
+                    let (_, Span { end, .. }) = expect_without_ws_or_comments!(self, Solidus);
+                    LessOperationOperator {
+                        kind: LessOperationOperatorKind::Division,
+                        span: Span { start, end },
+                    }
+                }
+                Token::Plus(..) if precedence == PRECEDENCE_PLUS => LessOperationOperator {
+                    kind: LessOperationOperatorKind::Plus,
+                    span: bump!(self).span,
+                },
+                Token::Minus(..) if precedence == PRECEDENCE_PLUS => LessOperationOperator {
+                    kind: LessOperationOperatorKind::Minus,
+                    span: bump!(self).span,
+                },
+                _ => break,
+            };
+
+            let right = self.parse_less_operation_recursively(precedence + 1)?;
+            let span = Span {
+                start: left.span().start,
+                end: right.span().end,
+            };
+            left = ComponentValue::LessOperation(LessOperation {
+                left: Box::new(left),
+                op,
+                right: Box::new(right),
+                span,
+            });
+        }
+
+        Ok(left)
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessConditions<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse_less_condition(true)?;
+        let mut span = first.span().clone();
+
+        let mut conditions = vec![first];
+        while eat!(input, Comma).is_some() {
+            conditions.push(input.parse_less_condition(true)?);
+        }
+
+        if let Some(last) = conditions.last() {
+            span.end = last.span().end;
+        }
+        Ok(LessConditions { conditions, span })
     }
 }
 
@@ -173,6 +400,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessJavaScriptSnippet<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
+
         let (name, start) = match bump!(input) {
             TokenWithSpan {
                 token: Token::Dot(..),
@@ -319,9 +548,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
             }
         }
 
-        match &peek!(input).token {
-            Token::Ident(ident) if ident.raw == "when" => todo!("mixin guard"),
-            _ => {}
+        let guard = match &peek!(input).token {
+            Token::Ident(ident) if ident.raw == "when" => {
+                bump!(input);
+                Some(input.parse()?)
+            }
+            _ => None,
         };
 
         let block = input.parse::<SimpleBlock>()?;
@@ -334,6 +566,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         Ok(LessMixinDefinition {
             name,
             params,
+            guard,
             block,
             span,
         })
