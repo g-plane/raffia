@@ -451,7 +451,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         let mut params = vec![];
         while eat!(input, RParen).is_none() {
             if let Some((_, span)) = eat!(input, DotDotDot) {
-                params.push(LessParameter::Variadic(LessVariadicParameter {
+                params.push(LessMixinParameter::Variadic(LessMixinVariadicParameter {
                     name: None,
                     span,
                 }));
@@ -482,13 +482,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                                 start,
                                 end: value.span().end,
                             };
-                            params.push(LessParameter::Named(LessNamedParameter {
+                            params.push(LessMixinParameter::Named(LessMixinNamedParameter {
                                 name,
                                 value: Some(value),
                                 span,
                             }));
                         } else if let Some((_, Span { end, .. })) = eat!(input, DotDotDot) {
-                            params.push(LessParameter::Variadic(LessVariadicParameter {
+                            params.push(LessMixinParameter::Variadic(LessMixinVariadicParameter {
                                 name: Some(name),
                                 span: Span { start, end },
                             }));
@@ -496,7 +496,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                             expect!(input, RParen);
                             break;
                         } else {
-                            params.push(LessParameter::Named(LessNamedParameter {
+                            params.push(LessMixinParameter::Named(LessMixinNamedParameter {
                                 name,
                                 value: None,
                                 span: name_span,
@@ -505,7 +505,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                     }
                     value => {
                         let span = value.span().clone();
-                        params.push(LessParameter::Unnamed(LessUnnamedParameter { value, span }));
+                        params.push(LessMixinParameter::Unnamed(LessMixinUnnamedParameter {
+                            value,
+                            span,
+                        }));
                     }
                 }
 
@@ -515,7 +518,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                         ..
                     } => {
                         if semicolon_comes_at > 0 {
-                            wrap_less_params_into_less_list(&mut params, semicolon_comes_at)
+                            wrap_less_mixin_params_into_less_list(&mut params, semicolon_comes_at)
                                 .map_err(|kind| Error {
                                     kind,
                                     span: Span {
@@ -536,7 +539,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                         token: Token::Semicolon(..),
                         span,
                     } => {
-                        wrap_less_params_into_less_list(&mut params, semicolon_comes_at)
+                        wrap_less_mixin_params_into_less_list(&mut params, semicolon_comes_at)
                             .map_err(|kind| Error { kind, span })?;
                         semicolon_comes_at = params.len();
                     }
@@ -683,8 +686,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableVariable<'s> {
     }
 }
 
-fn wrap_less_params_into_less_list(
-    params: &mut Vec<LessParameter<'_>>,
+fn wrap_less_mixin_params_into_less_list(
+    params: &mut Vec<LessMixinParameter<'_>>,
     index: usize,
 ) -> Result<(), ErrorKind> {
     if let [first, .., last] = &params[index..] {
@@ -695,7 +698,8 @@ fn wrap_less_params_into_less_list(
         let elements = params
             .drain(index..)
             .map(|param| {
-                if let LessParameter::Unnamed(LessUnnamedParameter { value, .. }) = param {
+                if let LessMixinParameter::Unnamed(LessMixinUnnamedParameter { value, .. }) = param
+                {
                     Ok(value)
                 } else {
                     // reject code like this:
@@ -705,7 +709,7 @@ fn wrap_less_params_into_less_list(
                 }
             })
             .collect::<Result<_, _>>()?;
-        params.push(LessParameter::Unnamed(LessUnnamedParameter {
+        params.push(LessMixinParameter::Unnamed(LessMixinUnnamedParameter {
             value: ComponentValue::LessList(LessList {
                 elements,
                 span: span.clone(),

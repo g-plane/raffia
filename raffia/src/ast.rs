@@ -743,7 +743,7 @@ pub struct LessList<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinDefinition<'s> {
     pub name: String,
-    pub params: Vec<LessParameter<'s>>,
+    pub params: Vec<LessMixinParameter<'s>>,
     pub guard: Option<LessConditions<'s>>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
@@ -752,9 +752,34 @@ pub struct LessMixinDefinition<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessNamedParameter<'s> {
+pub struct LessMixinNamedParameter<'s> {
     pub name: String,
     pub value: Option<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessMixinParameter<'s> {
+    Named(LessMixinNamedParameter<'s>),
+    Unnamed(LessMixinUnnamedParameter<'s>),
+    Variadic(LessMixinVariadicParameter),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinUnnamedParameter<'s> {
+    pub value: ComponentValue<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinVariadicParameter {
+    pub name: Option<String>,
     pub span: Span,
 }
 
@@ -793,15 +818,6 @@ pub enum LessOperationOperatorKind {
     Minus,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum LessParameter<'s> {
-    Named(LessNamedParameter<'s>),
-    Unnamed(LessUnnamedParameter<'s>),
-    Variadic(LessVariadicParameter),
-}
-
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
@@ -836,14 +852,6 @@ pub struct LessPropertyVariable<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessUnnamedParameter<'s> {
-    pub value: ComponentValue<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariable<'s> {
     pub name: Ident<'s>,
     pub span: Span,
@@ -871,14 +879,6 @@ pub struct LessVariableInterpolation<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableVariable<'s> {
     pub variable: LessVariable<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessVariadicParameter {
-    pub name: Option<String>,
     pub span: Span,
 }
 
