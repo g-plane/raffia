@@ -289,7 +289,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         let stmt = self
                             .try_parse(LessMixinDefinition::parse)
                             .map(Statement::LessMixinDefinition)
-                            .or_else(|_| self.parse().map(Statement::QualifiedRule))?;
+                            .or_else(|_| {
+                                self.try_parse(QualifiedRule::parse)
+                                    .map(Statement::QualifiedRule)
+                            })
+                            .or_else(|_| self.parse().map(Statement::LessMixinCall))?;
                         statements.push(stmt);
                     } else {
                         statements.push(Statement::QualifiedRule(self.parse()?));

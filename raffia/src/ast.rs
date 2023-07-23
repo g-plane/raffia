@@ -738,14 +738,67 @@ pub struct LessList<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessMixinArgument<'s> {
+    Named(LessMixinNamedArgument<'s>),
+    Value(ComponentValue<'s>),
+    Variadic(LessMixinVariadicArgument<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinCall<'s> {
+    pub callee: LessMixinCallee,
+    pub args: Vec<LessMixinArgument<'s>>,
+    pub important: Option<ImportantAnnotation<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinCallee {
+    pub children: Vec<LessMixinCalleeChild>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinCalleeChild {
+    pub name: LessMixinName,
+    pub combinator: Option<Combinator>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinDefinition<'s> {
-    pub name: String,
+    pub name: LessMixinName,
     pub params: Vec<LessMixinParameter<'s>>,
     pub guard: Option<LessConditions<'s>>,
     pub block: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinName {
+    pub name: String,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinNamedArgument<'s> {
+    pub name: LessMixinParameterName<'s>,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -767,11 +820,27 @@ pub enum LessMixinParameter<'s> {
     Variadic(LessMixinVariadicParameter),
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessMixinParameterName<'s> {
+    Variable(LessVariable<'s>),
+    PropertyVariable(LessPropertyVariable<'s>),
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinUnnamedParameter<'s> {
     pub value: ComponentValue<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinVariadicArgument<'s> {
+    pub name: LessMixinParameterName<'s>,
     pub span: Span,
 }
 
@@ -1778,6 +1847,7 @@ pub enum Statement<'s> {
     AtRule(AtRule<'s>),
     Declaration(Declaration<'s>),
     KeyframeBlock(KeyframeBlock<'s>),
+    LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
