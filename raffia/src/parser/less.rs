@@ -476,24 +476,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                 _ => args.push(LessMixinArgument::Value(input.parse()?)),
             };
 
-            match bump!(input) {
-                TokenWithSpan {
-                    token: Token::RParen(..),
-                    ..
-                } => {}
-                TokenWithSpan {
-                    token: Token::Comma(..),
-                    ..
-                } => {}
-                TokenWithSpan {
-                    token: Token::Semicolon(..),
-                    span,
-                } => {
+            match peek!(input).token {
+                Token::RParen(..) => {}
+                Token::Comma(..) => {
+                    bump!(input);
+                }
+                Token::Semicolon(..) => {
+                    let TokenWithSpan { span, .. } = bump!(input);
                     wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
                         .map_err(|kind| Error { kind, span })?;
                     semicolon_comes_at = args.len();
                 }
-                TokenWithSpan { token, span } => {
+                _ => {
+                    let TokenWithSpan { token, span } = bump!(input);
                     use crate::{token::RParen, tokenizer::TokenSymbol};
                     return Err(Error {
                         kind: ErrorKind::Unexpected(RParen::symbol(), token.symbol()),
