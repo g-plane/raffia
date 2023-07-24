@@ -473,6 +473,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                 Token::LBrace(..) => args.push(LessMixinArgument::Value(
                     ComponentValue::LessDetachedRuleset(input.parse()?),
                 )),
+                Token::Comma(..) => {
+                    return Err(Error {
+                        kind: ErrorKind::ExpectComponentValue,
+                        span: bump!(input).span,
+                    });
+                }
                 _ => args.push(LessMixinArgument::Value(input.parse()?)),
             };
 
@@ -624,6 +630,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                     eat!(input, Semicolon);
                     expect!(input, RParen);
                     break;
+                }
+                Token::Comma(..) => {
+                    return Err(Error {
+                        kind: ErrorKind::ExpectComponentValue,
+                        span: bump!(input).span,
+                    });
                 }
                 _ => {
                     let value = input.parse::<ComponentValue>()?;
