@@ -806,7 +806,7 @@ pub struct LessMixinNamedArgument<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinNamedParameter<'s> {
-    pub name: String,
+    pub name: LessMixinParameterName<'s>,
     pub value: Option<ComponentValue<'s>>,
     pub span: Span,
 }
@@ -817,7 +817,7 @@ pub struct LessMixinNamedParameter<'s> {
 pub enum LessMixinParameter<'s> {
     Named(LessMixinNamedParameter<'s>),
     Unnamed(LessMixinUnnamedParameter<'s>),
-    Variadic(LessMixinVariadicParameter),
+    Variadic(LessMixinVariadicParameter<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
@@ -847,8 +847,8 @@ pub struct LessMixinVariadicArgument<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessMixinVariadicParameter {
-    pub name: Option<String>,
+pub struct LessMixinVariadicParameter<'s> {
+    pub name: Option<LessMixinParameterName<'s>>,
     pub span: Span,
 }
 
