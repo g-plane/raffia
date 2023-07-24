@@ -413,6 +413,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
         let mut args = vec![];
         loop {
             match peek!(input).token {
+                Token::RParen(..) => {
+                    let TokenWithSpan { span, .. } = bump!(input);
+                    if semicolon_comes_at > 0 {
+                        wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
+                            .map_err(|kind| Error {
+                                kind,
+                                span: Span {
+                                    // We've checked `semicolon_comes_at` must be greater than 0,
+                                    // so `args` won't be empty.
+                                    start: args.first().unwrap().span().start,
+                                    end: args.last().unwrap().span().end,
+                                },
+                            })?;
+                    }
+                    end = span.end;
+                    break;
+                }
                 Token::AtKeyword(..) | Token::DollarVar(..) => {
                     let name = input.parse::<LessMixinParameterName>()?;
                     if eat!(input, Colon).is_some() {
@@ -462,23 +479,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
             match bump!(input) {
                 TokenWithSpan {
                     token: Token::RParen(..),
-                    span,
-                } => {
-                    if semicolon_comes_at > 0 {
-                        wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
-                            .map_err(|kind| Error {
-                                kind,
-                                span: Span {
-                                    // We've checked `semicolon_comes_at` must be greater than 0,
-                                    // so `args` won't be empty.
-                                    start: args.first().unwrap().span().start,
-                                    end: args.last().unwrap().span().end,
-                                },
-                            })?;
-                    }
-                    end = span.end;
-                    break;
-                }
+                    ..
+                } => {}
                 TokenWithSpan {
                     token: Token::Comma(..),
                     ..
