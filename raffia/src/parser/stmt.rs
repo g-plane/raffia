@@ -285,6 +285,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     }
                 }
                 Token::Dot(..) | Token::Hash(..) if !self.state.in_keyframes_at_rule => {
+                    is_block_element = true;
                     if self.syntax == Syntax::Less {
                         let stmt = self
                             .try_parse(LessMixinDefinition::parse)
@@ -293,12 +294,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 self.try_parse(QualifiedRule::parse)
                                     .map(Statement::QualifiedRule)
                             })
-                            .or_else(|_| self.parse().map(Statement::LessMixinCall))?;
+                            .or_else(|_| {
+                                is_block_element = false;
+                                self.parse().map(Statement::LessMixinCall)
+                            })?;
                         statements.push(stmt);
                     } else {
                         statements.push(Statement::QualifiedRule(self.parse()?));
                     }
-                    is_block_element = true;
                 }
                 Token::Ampersand(..)
                 | Token::LBracket(..)
