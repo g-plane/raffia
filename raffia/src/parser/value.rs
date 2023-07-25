@@ -417,6 +417,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     // while this syntax is weird, Bootstrap is actually using it
                     values.push(self.parse().map(ComponentValue::ImportantAnnotation)?);
                 }
+                Token::LBrace(..) if self.syntax == Syntax::Less => {
+                    values.push(self.parse().map(ComponentValue::LessDetachedRuleset)?);
+                }
                 _ => {
                     let value = self.parse::<ComponentValue>()?;
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
