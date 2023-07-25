@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ definition-commas.less:1:13
+  │
+1 │ .mixin(@arg,,) {}
+  │             ^
+
+
