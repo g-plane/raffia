@@ -15,6 +15,7 @@ mod sass;
 mod selector;
 mod state;
 mod stmt;
+mod token_seq;
 mod value;
 
 pub trait Parse<'cmt, 's: 'cmt>: Sized {
