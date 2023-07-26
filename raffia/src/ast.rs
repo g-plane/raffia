@@ -898,6 +898,23 @@ pub struct LessParenthesizedCondition<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessPluginAtRule<'s> {
+    pub path: LessPluginPath<'s>,
+    pub args: Option<TokenSeq<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessPluginPath<'s> {
+    Str(Str<'s>),
+    Url(Url<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessPropertyMerge {
     pub kind: LessPropertyMergeKind,
     pub span: Span,
@@ -1849,6 +1866,7 @@ pub enum Statement<'s> {
     KeyframeBlock(KeyframeBlock<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
+    LessPluginAtRule(LessPluginAtRule<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
     SassAtRootAtRule(SassAtRootAtRule<'s>),

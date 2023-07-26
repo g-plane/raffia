@@ -335,12 +335,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                     }
                     Syntax::Less => {
+                        let at_keyword_name = at_keyword.ident.name();
                         if let Ok(less_variable_declaration) =
                             self.try_parse(LessVariableDeclaration::parse)
                         {
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));
+                        } else if let Some((statement, is_block)) =
+                            self.parse_less_at_rule(&at_keyword_name)?
+                        {
+                            statements.push(statement);
+                            is_block_element = is_block;
                         } else {
                             let at_rule = self.parse::<AtRule>()?;
                             is_block_element = at_rule.block.is_some();
