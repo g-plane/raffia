@@ -1147,6 +1147,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             .parse()
                             .map(PseudoClassSelectorArg::CompoundSelector)?
                     }
+                    InterpolableIdent::Literal(Ident { name, .. })
+                        if input.syntax == Syntax::Less && name == "extend" =>
+                    {
+                        input.parse().map(PseudoClassSelectorArg::SelectorList)?
+                    }
                     _ => input
                         .parse_tokens_in_parens()
                         .map(PseudoClassSelectorArg::TokenSeq)?,
