@@ -598,7 +598,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
         let value = if matcher.is_some() {
             match peek!(input) {
                 TokenWithSpan {
-                    token: Token::Ident(..) | Token::HashLBrace(..),
+                    token: Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..),
                     ..
                 } => Some(AttributeSelectorValue::Ident(input.parse()?)),
                 TokenWithSpan {
