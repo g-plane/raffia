@@ -606,6 +606,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                     ..
                 } => Some(AttributeSelectorValue::Str(input.parse()?)),
                 TokenWithSpan {
+                    token: Token::Percentage(..),
+                    ..
+                } if input.syntax == Syntax::Less => {
+                    Some(AttributeSelectorValue::Percentage(input.parse()?))
+                }
+                TokenWithSpan {
                     token: Token::RBracket(..),
                     span,
                 } => {
