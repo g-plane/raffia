@@ -357,7 +357,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let mut selector = input.parse::<ComplexSelector>()?;
 
-        let mut span = selector.span.clone();
+        let span = selector.span.clone();
         let mut all = false;
 
         if let [.., complex_child, ComplexSelectorChild::Combinator(Combinator {
@@ -369,12 +369,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
             if let [SimpleSelector::Type(TypeSelector::TagName(TagNameSelector {
                 name:
                     WqName {
-                        name:
-                            InterpolableIdent::Literal(Ident {
-                                raw: "all",
-                                span: all_span,
-                                ..
-                            }),
+                        name: InterpolableIdent::Literal(Ident { raw: "all", .. }),
                         prefix: None,
                         ..
                     },
@@ -382,7 +377,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
             }))] = &children[..]
             {
                 all = true;
-                span.end = all_span.end;
                 selector.span.end = complex_child.span().end;
                 selector.children.truncate(selector.children.len() - 2);
             }
