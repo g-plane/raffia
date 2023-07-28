@@ -353,6 +353,68 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessEscapedStr<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let mut selector = input.parse::<ComplexSelector>()?;
+
+        let mut span = selector.span.clone();
+        let mut all = false;
+
+        if let [.., complex_child, ComplexSelectorChild::Combinator(Combinator {
+            kind: CombinatorKind::Descendant,
+            ..
+        }), ComplexSelectorChild::CompoundSelector(CompoundSelector { children, .. })] =
+            &selector.children[..]
+        {
+            if let [SimpleSelector::Type(TypeSelector::TagName(TagNameSelector {
+                name:
+                    WqName {
+                        name:
+                            InterpolableIdent::Literal(Ident {
+                                raw: "all",
+                                span: all_span,
+                                ..
+                            }),
+                        prefix: None,
+                        ..
+                    },
+                ..
+            }))] = &children[..]
+            {
+                all = true;
+                span.end = all_span.end;
+                selector.span.end = complex_child.span().end;
+                selector.children.truncate(selector.children.len() - 2);
+            }
+        }
+
+        Ok(LessExtend {
+            selector,
+            all,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendList<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
+
+        let first = input.parse::<LessExtend>()?;
+        let mut span = first.span.clone();
+
+        let mut elements = vec![first];
+        while eat!(input, Comma).is_some() {
+            elements.push(input.parse()?);
+        }
+
+        if let Some(last) = elements.last() {
+            span.end = last.span.end;
+        }
+        Ok(LessExtendList { elements, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (first, first_span) = expect!(input, StrTemplate);

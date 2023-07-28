@@ -692,6 +692,23 @@ pub struct LessEscapedStr<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessExtend<'s> {
+    pub selector: ComplexSelector<'s>,
+    pub all: bool,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessExtendList<'s> {
+    pub elements: Vec<LessExtend<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessInterpolatedIdent<'s> {
     pub elements: Vec<LessInterpolatedIdentElement<'s>>,
     pub span: Span,
@@ -1253,6 +1270,7 @@ pub enum PseudoClassSelectorArg<'s> {
     Number(Number<'s>),
     RelativeSelectorList(RelativeSelectorList<'s>),
     SelectorList(SelectorList<'s>),
+    LessExtendList(LessExtendList<'s>),
     TokenSeq(TokenSeq<'s>),
 }
 
