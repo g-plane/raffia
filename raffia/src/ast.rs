@@ -668,6 +668,16 @@ pub enum LessCondition<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessConditionalQualifiedRule<'s> {
+    pub selector: SelectorList<'s>,
+    pub guard: LessConditions<'s>,
+    pub block: SimpleBlock<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessConditions<'s> {
     pub conditions: Vec<LessCondition<'s>>,
     pub span: Span,
@@ -703,6 +713,16 @@ pub struct LessExtend<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessExtendList<'s> {
     pub elements: Vec<LessExtend<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessExtendRule<'s> {
+    pub nesting_selector: NestingSelector<'s>,
+    pub name_of_extend: Ident<'s>,
+    pub extend: LessExtendList<'s>,
     pub span: Span,
 }
 
@@ -1883,6 +1903,8 @@ pub enum Statement<'s> {
     AtRule(AtRule<'s>),
     Declaration(Declaration<'s>),
     KeyframeBlock(KeyframeBlock<'s>),
+    LessConditionalQualifiedRule(LessConditionalQualifiedRule<'s>),
+    LessExtendRule(LessExtendRule<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
     LessPluginAtRule(LessPluginAtRule<'s>),

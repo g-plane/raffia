@@ -257,50 +257,79 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             let TokenWithSpan { token, span } = peek!(self);
             match token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
-                    let is_scss_or_sass = matches!(self.syntax, Syntax::Scss | Syntax::Sass);
-                    if is_scss_or_sass {
-                        if let Ok(sass_var_decl) = self.try_parse(SassVariableDeclaration::parse) {
-                            statements.push(Statement::SassVariableDeclaration(sass_var_decl));
-                            continue;
+                    match self.syntax {
+                        Syntax::Css => {
+                            if is_top_level {
+                                statements.push(Statement::QualifiedRule(self.parse()?));
+                                is_block_element = true;
+                            } else if self.state.in_keyframes_at_rule {
+                                statements.push(Statement::KeyframeBlock(self.parse()?));
+                                is_block_element = true;
+                            } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
+                                statements.push(Statement::QualifiedRule(rule));
+                                is_block_element = true;
+                            } else {
+                                statements.push(Statement::Declaration(self.parse()?));
+                            }
                         }
-                    }
-
-                    if is_top_level {
-                        statements.push(Statement::QualifiedRule(self.parse()?));
-                        is_block_element = true;
-                    } else if self.state.in_keyframes_at_rule {
-                        statements.push(Statement::KeyframeBlock(self.parse()?));
-                        is_block_element = true;
-                    } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
-                        statements.push(Statement::QualifiedRule(rule));
-                        is_block_element = true;
-                    } else {
-                        let decl = self.parse::<Declaration>()?;
-                        is_block_element = is_scss_or_sass
-                            && matches!(
-                                decl.value.last(),
-                                Some(ComponentValue::SassNestingDeclaration(..))
-                            );
-                        statements.push(Statement::Declaration(decl));
+                        Syntax::Scss | Syntax::Sass => {
+                            if let Ok(sass_var_decl) =
+                                self.try_parse(SassVariableDeclaration::parse)
+                            {
+                                statements.push(Statement::SassVariableDeclaration(sass_var_decl));
+                            } else if is_top_level {
+                                statements.push(Statement::QualifiedRule(self.parse()?));
+                                is_block_element = true;
+                            } else if self.state.in_keyframes_at_rule {
+                                statements.push(Statement::KeyframeBlock(self.parse()?));
+                                is_block_element = true;
+                            } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
+                                statements.push(Statement::QualifiedRule(rule));
+                                is_block_element = true;
+                            } else {
+                                let decl = self.parse::<Declaration>()?;
+                                is_block_element = matches!(
+                                    decl.value.last(),
+                                    Some(ComponentValue::SassNestingDeclaration(..))
+                                );
+                                statements.push(Statement::Declaration(decl));
+                            }
+                        }
+                        Syntax::Less => {
+                            if is_top_level {
+                                statements.push(self.parse_less_qualified_rule()?);
+                                is_block_element = true;
+                            } else if self.state.in_keyframes_at_rule {
+                                statements.push(Statement::KeyframeBlock(self.parse()?));
+                                is_block_element = true;
+                            } else if let Ok(stmt) =
+                                self.try_parse(Parser::parse_less_qualified_rule)
+                            {
+                                statements.push(stmt);
+                                is_block_element = true;
+                            } else {
+                                statements.push(Statement::Declaration(self.parse()?));
+                            }
+                        }
                     }
                 }
                 Token::Dot(..) | Token::Hash(..) if !self.state.in_keyframes_at_rule => {
-                    is_block_element = true;
                     if self.syntax == Syntax::Less {
-                        let stmt = self
-                            .try_parse(LessMixinDefinition::parse)
-                            .map(Statement::LessMixinDefinition)
-                            .or_else(|_| {
-                                self.try_parse(QualifiedRule::parse)
-                                    .map(Statement::QualifiedRule)
-                            })
-                            .or_else(|_| {
-                                is_block_element = false;
-                                self.parse().map(Statement::LessMixinCall)
-                            })?;
+                        let stmt = if let Ok(stmt) =
+                            self.try_parse(Parser::parse_less_qualified_rule)
+                        {
+                            is_block_element = true;
+                            stmt
+                        } else if let Ok(mixin_def) = self.try_parse(LessMixinDefinition::parse) {
+                            is_block_element = true;
+                            Statement::LessMixinDefinition(mixin_def)
+                        } else {
+                            self.parse().map(Statement::LessMixinCall)?
+                        };
                         statements.push(stmt);
                     } else {
                         statements.push(Statement::QualifiedRule(self.parse()?));
+                        is_block_element = true;
                     }
                 }
                 Token::Ampersand(..)
@@ -312,8 +341,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::NumberSign(..)
                     if !self.state.in_keyframes_at_rule =>
                 {
-                    statements.push(Statement::QualifiedRule(self.parse()?));
-                    is_block_element = true;
+                    if self.syntax == Syntax::Less {
+                        if let Ok(extend_rule) = self.try_parse(LessExtendRule::parse) {
+                            statements.push(Statement::LessExtendRule(extend_rule));
+                        } else {
+                            statements.push(self.parse_less_qualified_rule()?);
+                            is_block_element = true;
+                        }
+                    } else {
+                        statements.push(Statement::QualifiedRule(self.parse()?));
+                        is_block_element = true;
+                    }
                 }
                 Token::AtKeyword(at_keyword) => match self.syntax {
                     Syntax::Css => {
@@ -365,6 +403,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
                 {
                     statements.push(Statement::QualifiedRule(self.parse()?));
+                    is_block_element = true;
+                }
+                Token::GreaterThan(..) | Token::Plus(..) | Token::Tilde(..) | Token::BarBar(..)
+                    if self.syntax == Syntax::Less =>
+                {
+                    statements.push(self.parse_less_qualified_rule()?);
                     is_block_element = true;
                 }
                 Token::Cdo(..) | Token::Cdc(..) => {

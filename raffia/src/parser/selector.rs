@@ -702,28 +702,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
                 span: Span { start, end },
             })
         } else {
-            let (span, first, mut is_previous_combinator) = if let Ok(compound_selector) =
-                input.try_parse(CompoundSelector::parse)
-            {
-                (
-                    compound_selector.span.clone(),
-                    ComplexSelectorChild::CompoundSelector(compound_selector),
-                    false,
-                )
-            } else {
-                let end = input.tokenizer.current_offset();
-                let Some(combinator) = input.parse_combinator(end)? else {
-                    return Err(Error { kind: ErrorKind::ExpectSimpleSelector, span: bump!(input).span });
+            let (span, first, mut is_previous_combinator) =
+                if let Ok(compound_selector) = input.try_parse(CompoundSelector::parse) {
+                    (
+                        compound_selector.span.clone(),
+                        ComplexSelectorChild::CompoundSelector(compound_selector),
+                        false,
+                    )
+                } else {
+                    let end = input.tokenizer.current_offset();
+                    let Some(combinator) = input.parse_combinator(end)? else {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectSimpleSelector,
+                            span: bump!(input).span,
+                        });
+                    };
+                    (
+                        combinator.span.clone(),
+                        ComplexSelectorChild::Combinator(combinator),
+                        true,
+                    )
                 };
-                (
-                    combinator.span.clone(),
-                    ComplexSelectorChild::Combinator(combinator),
-                    true,
-                )
-            };
             let Span { start, mut end } = span;
 
             children.push(first);
+            let is_less = input.syntax == Syntax::Less;
             while !matches!(
                 peek!(input).token,
                 Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
@@ -733,6 +736,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
                     end = compound_selector.span.end;
                     children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
                 } else if let Some(combinator) = input.parse_combinator(end)? {
+                    if is_less && combinator.kind == CombinatorKind::Descendant {
+                        match &peek!(input).token {
+                            Token::Ident(ident) if ident.raw == "when" => break,
+                            _ => {}
+                        }
+                    }
                     children.push(ComplexSelectorChild::Combinator(combinator));
                 } else {
                     break;

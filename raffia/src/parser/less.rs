@@ -1,4 +1,7 @@
-use super::{state::QualifiedRuleContext, Parser};
+use super::{
+    state::{ParserState, QualifiedRuleContext},
+    Parser,
+};
 use crate::{
     ast::*,
     bump,
@@ -314,6 +317,49 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         Ok(left)
     }
+
+    pub(super) fn parse_less_qualified_rule(&mut self) -> PResult<Statement<'s>> {
+        debug_assert_eq!(self.syntax, Syntax::Less);
+
+        let selector_list = self
+            .with_state(ParserState {
+                qualified_rule_ctx: Some(QualifiedRuleContext::Selector),
+                ..self.state
+            })
+            .parse::<SelectorList>()?;
+
+        match &peek!(self).token {
+            Token::Ident(ident) if ident.raw == "when" => {
+                bump!(self);
+                let guard = self.parse()?;
+                let block = self.parse::<SimpleBlock>()?;
+                let span = Span {
+                    start: selector_list.span.start,
+                    end: block.span.end,
+                };
+                return Ok(Statement::LessConditionalQualifiedRule(
+                    LessConditionalQualifiedRule {
+                        selector: selector_list,
+                        guard,
+                        block,
+                        span,
+                    },
+                ));
+            }
+            _ => {}
+        }
+
+        let block = self.parse::<SimpleBlock>()?;
+        let span = Span {
+            start: selector_list.span.start,
+            end: block.span.end,
+        };
+        Ok(Statement::QualifiedRule(QualifiedRule {
+            selector: selector_list,
+            block,
+            span,
+        }))
+    }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessConditions<'s> {
@@ -406,6 +452,47 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendList<'s> {
             span.end = last.span.end;
         }
         Ok(LessExtendList { elements, span })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendRule<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let nesting_selector = input.parse::<NestingSelector>()?;
+        if nesting_selector.suffix.is_some() {
+            return Err(Error {
+                kind: ErrorKind::ExpectLessExtendRule,
+                span: nesting_selector.span,
+            });
+        }
+
+        let pseudo_class_selector = input.parse::<PseudoClassSelector>()?;
+        util::assert_no_ws_or_comment(&nesting_selector.span, &pseudo_class_selector.span)?;
+        let span = Span {
+            start: nesting_selector.span.start,
+            end: pseudo_class_selector.span.end,
+        };
+
+        let InterpolableIdent::Literal(name_of_extend @ Ident { raw: "extend", .. }) =
+            pseudo_class_selector.name
+        else {
+            return Err(Error {
+                kind: ErrorKind::ExpectLessExtendRule,
+                span,
+            });
+        };
+        let Some(PseudoClassSelectorArg::LessExtendList(extend)) = pseudo_class_selector.arg else {
+            return Err(Error {
+                kind: ErrorKind::ExpectLessExtendRule,
+                span,
+            });
+        };
+
+        Ok(LessExtendRule {
+            nesting_selector,
+            name_of_extend,
+            extend,
+            span,
+        })
     }
 }
 

@@ -72,6 +72,7 @@ pub enum ErrorKind {
     ExpectKeyframeBlock,
     MixedDelimiterKindInLessMixin,
     ExpectLessKeyword(&'static str),
+    ExpectLessExtendRule,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -169,6 +170,7 @@ impl Display for ErrorKind {
                 "using both `;` and `,` as delimiters in the same Less mixin is disallowed"
             ),
             Self::ExpectLessKeyword(keyword) => write!(f, "Less keyword `{keyword}` is expected"),
+            Self::ExpectLessExtendRule => write!(f, "Less extend rule is expected"),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {
