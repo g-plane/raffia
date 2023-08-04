@@ -240,7 +240,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse().map(ComponentValue::LessPropertyVariable)
             }
             Token::Tilde(..) if self.syntax == Syntax::Less => {
-                if let Ok(less_escaped_str) = self.try_parse(LessEscapedStr::parse) {
+                if let Ok(list_function_call) = self.try_parse(LessListFunctionCall::parse) {
+                    Ok(ComponentValue::LessListFunctionCall(list_function_call))
+                } else if let Ok(less_escaped_str) = self.try_parse(LessEscapedStr::parse) {
                     Ok(ComponentValue::LessEscapedStr(less_escaped_str))
                 } else {
                     self.parse().map(ComponentValue::LessJavaScriptSnippet)

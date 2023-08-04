@@ -573,6 +573,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessJavaScriptSnippet<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessListFunctionCall<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, tilde_span) = expect!(input, Tilde);
+        let (_, lparen_span) = expect!(input, LParen);
+        util::assert_no_ws_or_comment(&tilde_span, &lparen_span)?;
+
+        let args = input.parse_function_args()?;
+        let (_, Span { end, .. }) = expect!(input, RParen);
+
+        let span = Span {
+            start: tilde_span.start,
+            end,
+        };
+        Ok(LessListFunctionCall { args, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);

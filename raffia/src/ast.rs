@@ -225,6 +225,7 @@ pub enum ComponentValue<'s> {
     LessFormatFunctionCall(LessFormatFunctionCall<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
+    LessListFunctionCall(LessListFunctionCall<'s>),
     LessOperation(LessOperation<'s>),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
@@ -782,6 +783,14 @@ pub struct LessJavaScriptSnippet<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessList<'s> {
     pub elements: Vec<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessListFunctionCall<'s> {
+    pub args: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 
