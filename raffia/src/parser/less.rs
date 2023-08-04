@@ -496,6 +496,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendRule<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessFormatFunctionCall<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, percent_span) = expect!(input, Percent);
+        let (_, lparen_span) = expect!(input, LParen);
+        util::assert_no_ws_or_comment(&percent_span, &lparen_span)?;
+
+        let args = input.parse_function_args()?;
+        let (_, Span { end, .. }) = expect!(input, RParen);
+
+        let span = Span {
+            start: percent_span.start,
+            end,
+        };
+        Ok(LessFormatFunctionCall { args, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (first, first_span) = expect!(input, StrTemplate);

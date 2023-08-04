@@ -222,6 +222,7 @@ pub enum ComponentValue<'s> {
     LessCondition(Box<LessCondition<'s>>),
     LessDetachedRuleset(LessDetachedRuleset<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
+    LessFormatFunctionCall(LessFormatFunctionCall<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
     LessOperation(LessOperation<'s>),
@@ -723,6 +724,14 @@ pub struct LessExtendRule<'s> {
     pub nesting_selector: NestingSelector<'s>,
     pub name_of_extend: Ident<'s>,
     pub extend: LessExtendList<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessFormatFunctionCall<'s> {
+    pub args: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 

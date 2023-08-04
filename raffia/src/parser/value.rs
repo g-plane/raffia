@@ -246,6 +246,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     self.parse().map(ComponentValue::LessJavaScriptSnippet)
                 }
             }
+            Token::Percent(..) if self.syntax == Syntax::Less => {
+                self.parse().map(ComponentValue::LessFormatFunctionCall)
+            }
             Token::BacktickCode(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessJavaScriptSnippet)
             }
