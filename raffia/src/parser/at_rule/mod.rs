@@ -186,6 +186,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             || at_rule_name.eq_ignore_ascii_case("right-bottom")
             || at_rule_name.eq_ignore_ascii_case("viewport")
             || at_rule_name.eq_ignore_ascii_case("try")
+            || at_rule_name.eq_ignore_ascii_case("starting-style")
         {
             let block = input.parse::<SimpleBlock>()?;
             let end = block.span.end;

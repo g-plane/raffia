@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Added support of `@starting-style` at-rule.
+
 ## v0.3.0
 
 - Reject unexpected `@else` at-rule in Sass.
