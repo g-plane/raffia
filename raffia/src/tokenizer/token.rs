@@ -5,28 +5,20 @@ use raffia_macro::{EnumAsIs, SpanIgnoredEq, Spanned};
 #[cfg(feature = "serialize")]
 use serde::Serialize;
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct Comment<'s> {
+    pub content: &'s str,
+    pub kind: CommentKind,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum Comment<'s> {
-    Block(BlockComment<'s>),
-    Line(LineComment<'s>),
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct BlockComment<'s> {
-    pub content: &'s str,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LineComment<'s> {
-    pub content: &'s str,
-    pub span: Span,
+pub enum CommentKind {
+    Block,
+    Line,
 }
 
 #[derive(Clone, Debug, PartialEq, EnumAsIs)]

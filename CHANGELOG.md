@@ -3,6 +3,7 @@ _This changelog only relates to the `raffia` crate._
 ## Unreleased
 
 - Added support of `@starting-style` at-rule.
+- Changed structure of comments.
 
 ## v0.3.0
 

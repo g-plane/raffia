@@ -280,10 +280,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         if let Some(comments) = &mut self.comments {
             let content = unsafe { self.source.get_unchecked(start + 2..content_end) };
-            comments.push(Comment::Block(BlockComment {
+            comments.push(Comment {
                 content,
+                kind: CommentKind::Block,
                 span: Span { start, end },
-            }));
+            });
         }
     }
 
@@ -315,10 +316,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         if let Some(comments) = &mut self.comments {
             let content = unsafe { self.source.get_unchecked(start + 2..end) };
-            comments.push(Comment::Line(LineComment {
+            comments.push(Comment {
                 content,
+                kind: CommentKind::Line,
                 span: Span { start, end },
-            }));
+            });
         }
     }
 
