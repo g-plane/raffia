@@ -2167,8 +2167,8 @@ Stylesheet(
                         ),
                       ),
                       args: [
-                        Length(
-                          type: "Length",
+                        Dimension(
+                          type: "Dimension",
                           value: Number(
                             type: "Number",
                             value: -8.0,
@@ -2187,6 +2187,7 @@ Stylesheet(
                               end: 1130,
                             ),
                           ),
+                          kind: Length,
                           span: Span(
                             start: 1126,
                             end: 1130,

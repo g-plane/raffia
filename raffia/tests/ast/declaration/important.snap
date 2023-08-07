@@ -131,8 +131,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -151,6 +151,7 @@ Stylesheet(
                     end: 60,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 57,
                   end: 60,
@@ -455,8 +456,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 10.0,
@@ -475,6 +476,7 @@ Stylesheet(
                     end: 251,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 247,
                   end: 251,
@@ -515,8 +517,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 20.0,
@@ -535,6 +537,7 @@ Stylesheet(
                     end: 290,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 286,
                   end: 290,
@@ -575,8 +578,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 100.0,
@@ -595,6 +598,7 @@ Stylesheet(
                     end: 336,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 331,
                   end: 336,
@@ -635,8 +639,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 100.0,
@@ -655,6 +659,7 @@ Stylesheet(
                     end: 377,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 372,
                   end: 377,
@@ -742,8 +747,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -762,6 +767,7 @@ Stylesheet(
                     end: 443,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 440,
                   end: 443,

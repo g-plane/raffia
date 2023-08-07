@@ -773,8 +773,8 @@ Stylesheet(
       expr: SassList(
         type: "SassList",
         items: [
-          Length(
-            type: "Length",
+          Dimension(
+            type: "Dimension",
             value: Number(
               type: "Number",
               value: 15.0,
@@ -793,6 +793,7 @@ Stylesheet(
                 end: 311,
               ),
             ),
+            kind: Length,
             span: Span(
               start: 307,
               end: 311,
@@ -806,8 +807,8 @@ Stylesheet(
               end: 313,
             ),
           ),
-          Length(
-            type: "Length",
+          Dimension(
+            type: "Dimension",
             value: Number(
               type: "Number",
               value: 30.0,
@@ -826,6 +827,7 @@ Stylesheet(
                 end: 318,
               ),
             ),
+            kind: Length,
             span: Span(
               start: 314,
               end: 318,

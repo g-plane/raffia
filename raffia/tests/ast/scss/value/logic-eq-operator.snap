@@ -3178,8 +3178,8 @@ Stylesheet(
                     end: 1000,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -3198,6 +3198,7 @@ Stylesheet(
                       end: 1004,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1000,
                     end: 1004,
@@ -3247,8 +3248,8 @@ Stylesheet(
                     end: 1021,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -3267,6 +3268,7 @@ Stylesheet(
                       end: 1025,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1021,
                     end: 1025,
@@ -3316,8 +3318,8 @@ Stylesheet(
                     end: 1041,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -3336,6 +3338,7 @@ Stylesheet(
                       end: 1046,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1042,
                     end: 1046,
@@ -3385,8 +3388,8 @@ Stylesheet(
                     end: 1063,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -3405,6 +3408,7 @@ Stylesheet(
                       end: 1068,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1064,
                     end: 1068,
@@ -4645,8 +4649,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4665,6 +4669,7 @@ Stylesheet(
                       end: 1484,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1480,
                     end: 1484,
@@ -4678,8 +4683,8 @@ Stylesheet(
                     end: 1486,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4698,6 +4703,7 @@ Stylesheet(
                       end: 1490,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1486,
                     end: 1490,
@@ -4730,8 +4736,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4750,6 +4756,7 @@ Stylesheet(
                       end: 1507,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1503,
                     end: 1507,
@@ -4763,8 +4770,8 @@ Stylesheet(
                     end: 1510,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4783,6 +4790,7 @@ Stylesheet(
                       end: 1514,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1510,
                     end: 1514,
@@ -4815,8 +4823,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4835,6 +4843,7 @@ Stylesheet(
                       end: 1531,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1527,
                     end: 1531,
@@ -4848,8 +4857,8 @@ Stylesheet(
                     end: 1533,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4868,6 +4877,7 @@ Stylesheet(
                       end: 1538,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1534,
                     end: 1538,
@@ -4900,8 +4910,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4920,6 +4930,7 @@ Stylesheet(
                       end: 1555,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1551,
                     end: 1555,
@@ -4933,8 +4944,8 @@ Stylesheet(
                     end: 1558,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -4953,6 +4964,7 @@ Stylesheet(
                       end: 1563,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1559,
                     end: 1563,
@@ -4985,8 +4997,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5005,6 +5017,7 @@ Stylesheet(
                       end: 1580,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1576,
                     end: 1580,
@@ -5072,8 +5085,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5092,6 +5105,7 @@ Stylesheet(
                       end: 1606,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1602,
                     end: 1606,
@@ -5159,8 +5173,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5179,6 +5193,7 @@ Stylesheet(
                       end: 1633,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1629,
                     end: 1633,
@@ -5246,8 +5261,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5266,6 +5281,7 @@ Stylesheet(
                       end: 1660,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1656,
                     end: 1660,
@@ -5333,8 +5349,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5353,6 +5369,7 @@ Stylesheet(
                       end: 1688,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1684,
                     end: 1688,
@@ -5429,8 +5446,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5449,6 +5466,7 @@ Stylesheet(
                       end: 1714,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1710,
                     end: 1714,
@@ -5525,8 +5543,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5545,6 +5563,7 @@ Stylesheet(
                       end: 1741,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1737,
                     end: 1741,
@@ -5621,8 +5640,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5641,6 +5660,7 @@ Stylesheet(
                       end: 1768,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1764,
                     end: 1768,
@@ -5717,8 +5737,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5737,6 +5757,7 @@ Stylesheet(
                       end: 1796,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1792,
                     end: 1796,
@@ -5804,8 +5825,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5824,6 +5845,7 @@ Stylesheet(
                       end: 1822,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1818,
                     end: 1822,
@@ -5891,8 +5913,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5911,6 +5933,7 @@ Stylesheet(
                       end: 1849,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1845,
                     end: 1849,
@@ -5978,8 +6001,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -5998,6 +6021,7 @@ Stylesheet(
                       end: 1876,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1872,
                     end: 1876,
@@ -6065,8 +6089,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -6085,6 +6109,7 @@ Stylesheet(
                       end: 1904,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1900,
                     end: 1904,
@@ -6161,8 +6186,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -6181,6 +6206,7 @@ Stylesheet(
                       end: 1930,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1926,
                     end: 1930,
@@ -6257,8 +6283,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -6277,6 +6303,7 @@ Stylesheet(
                       end: 1957,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1953,
                     end: 1957,
@@ -6353,8 +6380,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -6373,6 +6400,7 @@ Stylesheet(
                       end: 1984,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 1980,
                     end: 1984,
@@ -15755,8 +15783,8 @@ Stylesheet(
                     end: 6002,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -15775,6 +15803,7 @@ Stylesheet(
                       end: 6006,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6002,
                     end: 6006,
@@ -15831,8 +15860,8 @@ Stylesheet(
                     end: 6025,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -15851,6 +15880,7 @@ Stylesheet(
                       end: 6029,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6025,
                     end: 6029,
@@ -15907,8 +15937,8 @@ Stylesheet(
                     end: 6047,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -15927,6 +15957,7 @@ Stylesheet(
                       end: 6052,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6048,
                     end: 6052,
@@ -15983,8 +16014,8 @@ Stylesheet(
                     end: 6071,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16003,6 +16034,7 @@ Stylesheet(
                       end: 6076,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6072,
                     end: 6076,
@@ -16551,8 +16583,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16571,6 +16603,7 @@ Stylesheet(
                       end: 6289,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6285,
                     end: 6289,
@@ -16620,8 +16653,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16640,6 +16673,7 @@ Stylesheet(
                       end: 6312,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6308,
                     end: 6312,
@@ -16689,8 +16723,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16709,6 +16743,7 @@ Stylesheet(
                       end: 6336,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6332,
                     end: 6336,
@@ -16758,8 +16793,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16778,6 +16813,7 @@ Stylesheet(
                       end: 6360,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6356,
                     end: 6360,
@@ -16827,8 +16863,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16847,6 +16883,7 @@ Stylesheet(
                       end: 6385,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6381,
                     end: 6385,
@@ -16905,8 +16942,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -16925,6 +16962,7 @@ Stylesheet(
                       end: 6411,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6407,
                     end: 6411,
@@ -16983,8 +17021,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -17003,6 +17041,7 @@ Stylesheet(
                       end: 6438,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6434,
                     end: 6438,
@@ -17061,8 +17100,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -17081,6 +17120,7 @@ Stylesheet(
                       end: 6465,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 6461,
                     end: 6465,

@@ -64,8 +64,8 @@ Stylesheet(
               ),
             ),
             value: [
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 100.0,
@@ -84,6 +84,7 @@ Stylesheet(
                     end: 19,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 14,
                   end: 19,
@@ -157,8 +158,8 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Length(
-                      type: "Length",
+                    Dimension(
+                      type: "Dimension",
                       value: Number(
                         type: "Number",
                         value: 100.0,
@@ -177,6 +178,7 @@ Stylesheet(
                           end: 45,
                         ),
                       ),
+                      kind: Length,
                       span: Span(
                         start: 40,
                         end: 45,

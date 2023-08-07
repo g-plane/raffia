@@ -103,8 +103,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: -10.0,
@@ -123,6 +123,7 @@ Stylesheet(
                       end: 26,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 21,
                     end: 26,
@@ -136,8 +137,8 @@ Stylesheet(
                     end: 28,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -156,6 +157,7 @@ Stylesheet(
                       end: 33,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 29,
                     end: 33,
@@ -217,8 +219,8 @@ Stylesheet(
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
-                left: Length(
-                  type: "Length",
+                left: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 10.0,
@@ -237,6 +239,7 @@ Stylesheet(
                       end: 55,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 50,
                     end: 55,
@@ -250,8 +253,8 @@ Stylesheet(
                     end: 57,
                   ),
                 ),
-                right: Length(
-                  type: "Length",
+                right: Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: -10.0,
@@ -270,6 +273,7 @@ Stylesheet(
                       end: 63,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 58,
                     end: 63,

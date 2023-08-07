@@ -9,15 +9,6 @@ use smallvec::SmallVec;
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Angle<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct AnPlusB {
     pub a: i32,
     pub b: i32,
@@ -372,17 +363,26 @@ pub enum DelimiterKind {
     Semicolon,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct Dimension<'s> {
+    pub value: Number<'s>,
+    pub unit: Ident<'s>,
+    pub kind: DimensionKind,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum Dimension<'s> {
-    Length(Length<'s>),
-    Angle(Angle<'s>),
-    Duration(Duration<'s>),
-    Frequency(Frequency<'s>),
-    Resolution(Resolution<'s>),
-    Flex(Flex<'s>),
-    Unknown(UnknownDimension<'s>),
+pub enum DimensionKind {
+    Length,
+    Angle,
+    Duration,
+    Frequency,
+    Resolution,
+    Flex,
+    Unknown,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -399,24 +399,6 @@ pub struct DocumentPrelude<'s> {
 pub enum DocumentPreludeMatcher<'s> {
     Url(Url<'s>),
     Function(Function<'s>),
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Duration<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Flex<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
@@ -442,15 +424,6 @@ pub struct Function<'s> {
 pub enum FunctionName<'s> {
     Ident(InterpolableIdent<'s>),
     SassQualifiedName(SassQualifiedName<'s>),
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Frequency<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -613,15 +586,6 @@ pub struct LanguageRangeList<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LayerName<'s> {
     pub idents: Vec<InterpolableIdent<'s>>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Length<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
     pub span: Span,
 }
 
@@ -1385,15 +1349,6 @@ pub struct RelativeSelectorList<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct Resolution<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassArbitraryArgument<'s> {
     pub value: Box<ComponentValue<'s>>,
     pub span: Span,
@@ -2139,15 +2094,6 @@ pub struct UniversalSelector<'s> {
 pub enum UnknownAtRulePrelude<'s> {
     ComponentValue(ComponentValue<'s>),
     TokenSeq(TokenSeq<'s>),
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct UnknownDimension<'s> {
-    pub value: Number<'s>,
-    pub unit: Ident<'s>,
-    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

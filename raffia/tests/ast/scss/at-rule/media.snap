@@ -58,8 +58,8 @@ Stylesheet(
                       end: 32,
                     ),
                   ),
-                  right: Length(
-                    type: "Length",
+                  right: Dimension(
+                    type: "Dimension",
                     value: Number(
                       type: "Number",
                       value: 32.0,
@@ -78,6 +78,7 @@ Stylesheet(
                         end: 37,
                       ),
                     ),
+                    kind: Length,
                     span: Span(
                       start: 33,
                       end: 37,

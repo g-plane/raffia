@@ -160,8 +160,8 @@ Stylesheet(
                   end: 89,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 0.5,
@@ -180,6 +180,7 @@ Stylesheet(
                     end: 95,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 90,
                   end: 95,
@@ -220,8 +221,8 @@ Stylesheet(
                   end: 110,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: -0.5,
@@ -240,6 +241,7 @@ Stylesheet(
                     end: 117,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 111,
                   end: 117,
@@ -309,8 +311,8 @@ Stylesheet(
             SassList(
               type: "SassList",
               items: [
-                Length(
-                  type: "Length",
+                Dimension(
+                  type: "Dimension",
                   value: Number(
                     type: "Number",
                     value: 1.0,
@@ -329,6 +331,7 @@ Stylesheet(
                       end: 143,
                     ),
                   ),
+                  kind: Length,
                   span: Span(
                     start: 140,
                     end: 143,

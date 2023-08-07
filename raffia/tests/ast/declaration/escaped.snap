@@ -188,8 +188,8 @@ Stylesheet(
               ),
             ),
             value: [
-              UnknownDimension(
-                type: "UnknownDimension",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -208,6 +208,7 @@ Stylesheet(
                     end: 85,
                   ),
                 ),
+                kind: Unknown,
                 span: Span(
                   start: 82,
                   end: 85,
@@ -233,8 +234,8 @@ Stylesheet(
               ),
             ),
             value: [
-              UnknownDimension(
-                type: "UnknownDimension",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 500.0,
@@ -253,6 +254,7 @@ Stylesheet(
                     end: 103,
                   ),
                 ),
+                kind: Unknown,
                 span: Span(
                   start: 96,
                   end: 103,

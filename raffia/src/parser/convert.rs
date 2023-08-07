@@ -1,6 +1,6 @@
 use crate::{
     ast::{
-        Dimension, Ident, InterpolableIdentStaticPart, InterpolableStrStaticPart,
+        Dimension, DimensionKind, Ident, InterpolableIdentStaticPart, InterpolableStrStaticPart,
         InterpolableUrlStaticPart, Number,
     },
     error::{Error, ErrorKind, PResult},
@@ -13,8 +13,6 @@ impl<'s> TryFrom<(token::Dimension<'s>, Span)> for Dimension<'s> {
     type Error = Error;
 
     fn try_from((token, span): (token::Dimension<'s>, Span)) -> PResult<Self> {
-        use crate::ast::{Angle, Duration, Flex, Frequency, Length, Resolution, UnknownDimension};
-
         let value_span = Span {
             start: span.start,
             end: span.start + token.value.raw.len(),
@@ -23,10 +21,11 @@ impl<'s> TryFrom<(token::Dimension<'s>, Span)> for Dimension<'s> {
             start: span.start + token.value.raw.len(),
             end: span.end,
         };
+
         let value = (token.value, value_span).try_into()?;
         let unit = Ident::from((token.unit, unit_span));
         let unit_name = &unit.name;
-        if unit_name.eq_ignore_ascii_case("px")
+        let kind = if unit_name.eq_ignore_ascii_case("px")
             || unit_name.eq_ignore_ascii_case("em")
             || unit_name.eq_ignore_ascii_case("rem")
             || unit_name.eq_ignore_ascii_case("ex")
@@ -70,27 +69,34 @@ impl<'s> TryFrom<(token::Dimension<'s>, Span)> for Dimension<'s> {
             || unit_name.eq_ignore_ascii_case("pc")
             || unit_name.eq_ignore_ascii_case("pt")
         {
-            Ok(Dimension::Length(Length { value, unit, span }))
+            DimensionKind::Length
         } else if unit_name.eq_ignore_ascii_case("deg")
             || unit_name.eq_ignore_ascii_case("grad")
             || unit_name.eq_ignore_ascii_case("rad")
             || unit_name.eq_ignore_ascii_case("turn")
         {
-            Ok(Dimension::Angle(Angle { value, unit, span }))
+            DimensionKind::Angle
         } else if unit_name.eq_ignore_ascii_case("s") || unit_name.eq_ignore_ascii_case("ms") {
-            Ok(Dimension::Duration(Duration { value, unit, span }))
+            DimensionKind::Duration
         } else if unit_name.eq_ignore_ascii_case("Hz") || unit_name.eq_ignore_ascii_case("kHz") {
-            Ok(Dimension::Frequency(Frequency { value, unit, span }))
+            DimensionKind::Frequency
         } else if unit_name.eq_ignore_ascii_case("dpi")
             || unit_name.eq_ignore_ascii_case("dpcm")
             || unit_name.eq_ignore_ascii_case("dppx")
         {
-            Ok(Dimension::Resolution(Resolution { value, unit, span }))
+            DimensionKind::Resolution
         } else if unit_name.eq_ignore_ascii_case("fr") {
-            Ok(Dimension::Flex(Flex { value, unit, span }))
+            DimensionKind::Flex
         } else {
-            Ok(Dimension::Unknown(UnknownDimension { value, unit, span }))
-        }
+            DimensionKind::Unknown
+        };
+
+        Ok(Dimension {
+            value,
+            unit,
+            kind,
+            span,
+        })
     }
 }
 

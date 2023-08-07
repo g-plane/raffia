@@ -717,8 +717,8 @@ Stylesheet(
                   end: 398,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -737,6 +737,7 @@ Stylesheet(
                     end: 401,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 398,
                   end: 401,
@@ -779,8 +780,8 @@ Stylesheet(
                   end: 418,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -799,6 +800,7 @@ Stylesheet(
                     end: 422,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 419,
                   end: 422,
@@ -841,8 +843,8 @@ Stylesheet(
                   end: 440,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -861,6 +863,7 @@ Stylesheet(
                     end: 443,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 440,
                   end: 443,
@@ -903,8 +906,8 @@ Stylesheet(
                   end: 461,
                 ),
               ),
-              Length(
-                type: "Length",
+              Dimension(
+                type: "Dimension",
                 value: Number(
                   type: "Number",
                   value: 1.0,
@@ -923,6 +926,7 @@ Stylesheet(
                     end: 465,
                   ),
                 ),
+                kind: Length,
                 span: Span(
                   start: 462,
                   end: 465,

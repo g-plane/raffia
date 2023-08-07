@@ -128,8 +128,8 @@ Stylesheet(
                     ),
                   ),
                   value: [
-                    Length(
-                      type: "Length",
+                    Dimension(
+                      type: "Dimension",
                       value: Number(
                         type: "Number",
                         value: 0.0,
@@ -148,6 +148,7 @@ Stylesheet(
                           end: 29,
                         ),
                       ),
+                      kind: Length,
                       span: Span(
                         start: 26,
                         end: 29,
