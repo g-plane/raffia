@@ -60,7 +60,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &self.recoverable_errors
     }
 
-    fn try_parse<R, F: Fn(&mut Self) -> PResult<R>>(&mut self, f: F) -> PResult<R> {
+    fn try_parse<R, F: FnOnce(&mut Self) -> PResult<R>>(&mut self, f: F) -> PResult<R> {
         let tokenizer_state = self.tokenizer.state.clone();
         let comments_count = if let Some(comments) = &self.tokenizer.comments {
             comments.len()
