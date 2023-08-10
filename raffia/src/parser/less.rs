@@ -590,6 +590,56 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessListFunctionCall<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessLookup<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
+
+        let (_, Span { start, .. }) = expect!(input, LBracket);
+        let name = if let Token::RBracket(..) = peek!(input).token {
+            None
+        } else {
+            Some(input.parse()?)
+        };
+        let (_, Span { end, .. }) = expect!(input, RBracket);
+        Ok(LessLookup {
+            name,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessLookupName<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
+
+        match peek!(input).token {
+            Token::AtKeyword(..) => input.parse().map(LessLookupName::LessVariable),
+            Token::At(..) => input.parse().map(LessLookupName::LessVariableVariable),
+            Token::DollarVar(..) => input.parse().map(LessLookupName::LessPropertyVariable),
+            _ => input.parse().map(LessLookupName::Ident),
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessLookups<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        debug_assert_eq!(input.syntax, Syntax::Less);
+
+        let first = input.parse::<LessLookup>()?;
+        let mut span = first.span.clone();
+
+        let mut lookups = vec![first];
+        while let Token::LBracket(..) = peek!(input).token {
+            lookups.push(input.parse()?);
+        }
+
+        if let Some(last) = lookups.last() {
+            span.end = last.span.end;
+        }
+        Ok(LessLookups { lookups, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);
