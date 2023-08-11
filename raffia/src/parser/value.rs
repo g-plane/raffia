@@ -391,9 +391,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     raw: "boolean" | "if",
                     ..
                 }) if self.syntax == Syntax::Less => {
-                    vec![ComponentValue::LessCondition(Box::new(
-                        self.parse_less_condition(false)?,
-                    ))]
+                    let condition =
+                        ComponentValue::LessCondition(Box::new(self.parse_less_condition(false)?));
+                    let mut args = self.parse_function_args()?;
+                    args.insert(0, condition);
+                    args
                 }
                 _ => self.parse_function_args()?,
             }
