@@ -89,6 +89,7 @@ pub enum ErrorKind {
     InvalidSassFlagName(String),
     UnexpectedSassFlag(&'static str),
     DuplicatedSassFlag(&'static str),
+    LessGuardOnMultipleComplexSelectors,
 }
 
 impl Display for ErrorKind {
@@ -198,6 +199,10 @@ impl Display for ErrorKind {
             Self::InvalidSassFlagName(flag) => write!(f, "invalid Sass flag name `{flag}`"),
             Self::UnexpectedSassFlag(flag) => write!(f, "Sass flag `!{flag}` is disallowed"),
             Self::DuplicatedSassFlag(flag) => write!(f, "duplicated Sass flag `!{flag}`"),
+            Self::LessGuardOnMultipleComplexSelectors => write!(
+                f,
+                "Less guards are only allowed on a single complex selector"
+            ),
         }
     }
 }

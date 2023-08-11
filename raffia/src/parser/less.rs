@@ -331,12 +331,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         match &peek!(self).token {
             Token::Ident(ident) if ident.raw == "when" => {
                 bump!(self);
-                let guard = self.parse()?;
+                let guard = self.parse::<LessConditions>()?;
                 let block = self.parse::<SimpleBlock>()?;
                 let span = Span {
                     start: selector_list.span.start,
                     end: block.span.end,
                 };
+                if selector_list.selectors.len() > 1 {
+                    self.recoverable_errors.push(Error {
+                        kind: ErrorKind::LessGuardOnMultipleComplexSelectors,
+                        span: guard.span.clone(),
+                    });
+                }
                 return Ok(Statement::LessConditionalQualifiedRule(
                     LessConditionalQualifiedRule {
                         selector: selector_list,
