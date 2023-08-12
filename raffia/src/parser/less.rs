@@ -277,7 +277,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
+    pub(super) fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
         self.parse_less_operation_recursively(0)
     }
 
