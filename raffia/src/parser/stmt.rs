@@ -411,6 +411,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     statements.push(self.parse_less_qualified_rule()?);
                     is_block_element = true;
                 }
+                Token::DollarLBraceVar(..) if self.syntax == Syntax::Less => {
+                    statements.push(self.parse().map(Statement::Declaration)?);
+                }
                 Token::Cdo(..) | Token::Cdc(..) => {
                     bump!(self);
                     continue;

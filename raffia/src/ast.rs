@@ -713,6 +713,7 @@ pub struct LessInterpolatedIdent<'s> {
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LessInterpolatedIdentElement<'s> {
     Variable(LessVariableInterpolation<'s>),
+    Property(LessPropertyInterpolation<'s>),
     Static(InterpolableIdentStaticPart<'s>),
 }
 
@@ -956,6 +957,14 @@ pub struct LessPluginAtRule<'s> {
 pub enum LessPluginPath<'s> {
     Str(Str<'s>),
     Url(Url<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessPropertyInterpolation<'s> {
+    pub name: Ident<'s>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

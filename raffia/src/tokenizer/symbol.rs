@@ -151,6 +151,13 @@ impl TokenSymbol for DollarEqual {
     }
 }
 
+impl TokenSymbol for DollarLBraceVar<'_> {
+    #[inline]
+    fn symbol() -> &'static str {
+        "${"
+    }
+}
+
 impl TokenSymbol for DollarVar<'_> {
     #[inline]
     fn symbol() -> &'static str {
@@ -442,6 +449,7 @@ impl Token<'_> {
             Dedent(..) => "<dedent>",
             Dimension(..) => "<dimension>",
             DollarEqual(..) => "$=",
+            DollarLBraceVar(..) => "${",
             DollarVar(..) => "$var",
             Dot(..) => ".",
             DotDotDot(..) => "...",

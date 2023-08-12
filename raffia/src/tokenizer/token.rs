@@ -45,6 +45,7 @@ pub enum Token<'s> {
     Dedent(Dedent),
     Dimension(Dimension<'s>),
     DollarEqual(DollarEqual),
+    DollarLBraceVar(DollarLBraceVar<'s>),
     DollarVar(DollarVar<'s>),
     Dot(Dot),
     DotDotDot(DotDotDot),
@@ -206,6 +207,13 @@ pub struct Dimension<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct DollarEqual {}
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct DollarLBraceVar<'s> {
+    pub ident: Ident<'s>,
+}
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

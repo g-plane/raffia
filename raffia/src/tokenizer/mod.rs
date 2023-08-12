@@ -147,11 +147,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             {
                 self.scan_sass_single_hyphen_as_ident()
             }
-            (Some((_, '@')), Some((_, '{')))
+            (Some((_, first_char @ '@' | first_char @ '$')), Some((_, '{')))
                 if self.syntax == Syntax::Less
                     && matches!(chars.peek(), Some((_, c)) if is_start_of_ident(*c)) =>
             {
-                self.scan_at_lbrace_var()
+                if first_char == '@' {
+                    self.scan_at_lbrace_var()
+                } else {
+                    self.scan_dollar_lbrace_var()
+                }
             }
             (Some((_, '`')), _) if self.syntax == Syntax::Less => self.scan_backtick_code(),
             (Some(..), ..) => self.scan_punc(),
@@ -912,6 +916,29 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         match self.state.chars.next() {
             Some((i, '}')) => Ok(TokenWithSpan {
                 token: Token::AtLBraceVar(AtLBraceVar { ident }),
+                span: Span { start, end: i + 1 },
+            }),
+            Some((i, c)) => Err(Error {
+                kind: ErrorKind::ExpectRightBraceForLessVar,
+                span: Span {
+                    start: i,
+                    end: i + c.len_utf8(),
+                },
+            }),
+            None => Err(self.build_eof_error()),
+        }
+    }
+
+    fn scan_dollar_lbrace_var(&mut self) -> PResult<TokenWithSpan<'s>> {
+        let (start, c) = self.state.chars.next().expect("expect char `$`");
+        debug_assert_eq!(c, '$');
+        let (_, c) = self.state.chars.next().expect("expect char `{`");
+        debug_assert_eq!(c, '{');
+
+        let (ident, _) = self.scan_ident_sequence()?;
+        match self.state.chars.next() {
+            Some((i, '}')) => Ok(TokenWithSpan {
+                token: Token::DollarLBraceVar(DollarLBraceVar { ident }),
                 span: Span { start, end: i + 1 },
             }),
             Some((i, c)) => Err(Error {

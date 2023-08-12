@@ -188,7 +188,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 let (ident, ident_span) = expect!(self, Ident);
                 match peek!(self) {
                     TokenWithSpan {
-                        token: Token::AtLBraceVar(..),
+                        token: Token::AtLBraceVar(..) | Token::DollarLBraceVar(..),
                         span,
                     } if ident_span.end == span.start => {
                         LessInterpolatedIdentElement::Static((ident, ident_span).into())
@@ -200,6 +200,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 token: Token::AtLBraceVar(..),
                 ..
             } => self.parse().map(LessInterpolatedIdentElement::Variable)?,
+            TokenWithSpan {
+                token: Token::DollarLBraceVar(..),
+                ..
+            } if matches!(
+                self.state.qualified_rule_ctx,
+                Some(QualifiedRuleContext::DeclarationName)
+            ) =>
+            {
+                self.parse().map(LessInterpolatedIdentElement::Property)?
+            }
             TokenWithSpan { token, span } => {
                 use crate::{
                     token::{AtLBraceVar, Ident},
@@ -244,11 +254,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 TokenWithSpan {
                     token: Token::AtLBraceVar(..),
-                    span: at_brace_var_span,
-                } if *end == at_brace_var_span.start => {
+                    span: at_lbrace_var_span,
+                } if *end == at_lbrace_var_span.start => {
                     let variable = self.parse::<LessVariableInterpolation>()?;
                     *end = variable.span.end;
                     elements.push(LessInterpolatedIdentElement::Variable(variable));
+                }
+                TokenWithSpan {
+                    token: Token::DollarLBraceVar(..),
+                    span: dollar_lbrace_var_span,
+                } if matches!(
+                    self.state.qualified_rule_ctx,
+                    Some(QualifiedRuleContext::DeclarationName)
+                ) && *end == dollar_lbrace_var_span.start =>
+                {
+                    let property = self.parse::<LessPropertyInterpolation>()?;
+                    *end = property.span.end;
+                    elements.push(LessInterpolatedIdentElement::Property(property));
                 }
                 _ => return Ok(elements),
             }
@@ -1047,6 +1069,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPluginPath<'s> {
         } else {
             input.parse().map(LessPluginPath::Url)
         }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPropertyInterpolation<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (dollar_lbrace_var, span) = expect!(input, DollarLBraceVar);
+        Ok(LessPropertyInterpolation {
+            name: (
+                dollar_lbrace_var.ident,
+                Span {
+                    start: span.start + 2,
+                    end: span.end - 1,
+                },
+            )
+                .into(),
+            span,
+        })
     }
 }
 
