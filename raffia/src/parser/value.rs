@@ -248,9 +248,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     self.parse().map(ComponentValue::LessJavaScriptSnippet)
                 }
             }
-            Token::Percent(..) if self.syntax == Syntax::Less => {
-                self.parse().map(ComponentValue::LessFormatFunctionCall)
-            }
+            Token::Percent(..) if self.syntax == Syntax::Less => self
+                .try_parse(LessFormatFunctionCall::parse)
+                .map(ComponentValue::LessFormatFunctionCall)
+                .or_else(|_| self.parse().map(ComponentValue::LessPercentKeyword)),
             Token::BacktickCode(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessJavaScriptSnippet)
             }

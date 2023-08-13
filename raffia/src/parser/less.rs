@@ -1038,6 +1038,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinParameterName<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPercentKeyword {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, span) = expect!(input, Percent);
+        Ok(LessPercentKeyword { span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPluginAtRule<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);

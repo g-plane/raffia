@@ -218,6 +218,7 @@ pub enum ComponentValue<'s> {
     LessList(LessList<'s>),
     LessListFunctionCall(LessListFunctionCall<'s>),
     LessOperation(LessOperation<'s>),
+    LessPercentKeyword(LessPercentKeyword),
     LessPropertyVariable(LessPropertyVariable<'s>),
     LessVariable(LessVariable<'s>),
     LessVariableVariable(LessVariableVariable<'s>),
@@ -939,6 +940,13 @@ pub enum LessOperationOperatorKind {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessParenthesizedCondition<'s> {
     pub condition: Box<LessCondition<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessPercentKeyword {
     pub span: Span,
 }
 
