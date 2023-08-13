@@ -724,16 +724,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
         match input.syntax {
             Syntax::Css => input.parse_component_value_atom(),
             Syntax::Scss | Syntax::Sass => input.parse_sass_bin_expr(),
-            Syntax::Less => {
-                if matches!(
-                    input.state.qualified_rule_ctx,
-                    Some(QualifiedRuleContext::DeclarationValue)
-                ) {
-                    input.parse_less_operation()
-                } else {
-                    input.parse_component_value_atom()
-                }
-            }
+            Syntax::Less => input.parse_less_operation(),
         }
     }
 }
