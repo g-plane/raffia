@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
+    Parse, Syntax,
 };
 use smallvec::{smallvec, SmallVec};
 
@@ -181,7 +181,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
         {
             Ok(MediaQuery::ConditionOnly(condition_only))
         } else {
-            input.parse().map(MediaQuery::WithType)
+            match peek!(input).token {
+                Token::AtKeyword(..) if input.syntax == Syntax::Less => {
+                    input.parse().map(MediaQuery::LessVariable)
+                }
+                _ => input.parse().map(MediaQuery::WithType),
+            }
         }
     }
 }

@@ -1165,6 +1165,7 @@ pub struct MediaOr<'s> {
 pub enum MediaQuery<'s> {
     ConditionOnly(MediaCondition<'s>),
     WithType(MediaQueryWithType<'s>),
+    LessVariable(LessVariable<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
