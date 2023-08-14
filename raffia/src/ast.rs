@@ -800,7 +800,7 @@ pub enum LessMixinArgument<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinCall<'s> {
     pub callee: LessMixinCallee,
-    pub args: Vec<LessMixinArgument<'s>>,
+    pub args: Option<Vec<LessMixinArgument<'s>>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub span: Span,
 }

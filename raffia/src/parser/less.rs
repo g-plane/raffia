@@ -674,102 +674,106 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
 
         let callee = input.parse::<LessMixinCallee>()?;
 
-        expect!(input, LParen);
-        let end;
-        let mut semicolon_comes_at = 0;
-        let mut args = vec![];
-        loop {
-            match peek!(input).token {
-                Token::RParen(..) => {
-                    let TokenWithSpan { span, .. } = bump!(input);
-                    if semicolon_comes_at > 0 {
-                        wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
-                            .map_err(|kind| Error {
-                                kind,
-                                span: Span {
-                                    // We've checked `semicolon_comes_at` must be greater than 0,
-                                    // so `args` won't be empty.
-                                    start: args.first().unwrap().span().start,
-                                    end: args.last().unwrap().span().end,
-                                },
-                            })?;
-                    }
-                    end = span.end;
-                    break;
-                }
-                Token::AtKeyword(..) | Token::DollarVar(..) => {
-                    let name = input.parse::<LessMixinParameterName>()?;
-                    if eat!(input, Colon).is_some() {
-                        let value = if matches!(peek!(input).token, Token::LBrace(..)) {
-                            input.parse().map(ComponentValue::LessDetachedRuleset)?
-                        } else {
-                            input.parse::<ComponentValue>()?
-                        };
-                        let span = Span {
-                            start: name.span().start,
-                            end: value.span().end,
-                        };
-                        args.push(LessMixinArgument::Named(LessMixinNamedArgument {
-                            name,
-                            value,
-                            span,
-                        }));
-                    } else if let Some((_, dotdotdot_span)) = eat!(input, DotDotDot) {
-                        let span = Span {
-                            start: name.span().start,
-                            end: dotdotdot_span.end,
-                        };
-                        args.push(LessMixinArgument::Variadic(LessMixinVariadicArgument {
-                            name,
-                            span,
-                        }));
-                        eat!(input, Semicolon);
-                        end = expect!(input, RParen).1.end;
+        let mut end = callee.span.end;
+        let args = if eat!(input, LParen).is_some() {
+            let mut semicolon_comes_at = 0;
+            let mut args = vec![];
+            loop {
+                match peek!(input).token {
+                    Token::RParen(..) => {
+                        let TokenWithSpan { span, .. } = bump!(input);
+                        if semicolon_comes_at > 0 {
+                            wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
+                                .map_err(|kind| Error {
+                                    kind,
+                                    span: Span {
+                                        // We've checked `semicolon_comes_at` must be greater than 0,
+                                        // so `args` won't be empty.
+                                        start: args.first().unwrap().span().start,
+                                        end: args.last().unwrap().span().end,
+                                    },
+                                })?;
+                        }
+                        end = span.end;
                         break;
-                    } else {
-                        args.push(LessMixinArgument::Value(match name {
-                            LessMixinParameterName::Variable(variable) => {
-                                ComponentValue::LessVariable(variable)
-                            }
-                            LessMixinParameterName::PropertyVariable(property_variable) => {
-                                ComponentValue::LessPropertyVariable(property_variable)
-                            }
-                        }));
                     }
-                }
-                Token::LBrace(..) => args.push(LessMixinArgument::Value(
-                    ComponentValue::LessDetachedRuleset(input.parse()?),
-                )),
-                Token::Comma(..) => {
-                    return Err(Error {
-                        kind: ErrorKind::ExpectComponentValue,
-                        span: bump!(input).span,
-                    });
-                }
-                _ => args.push(LessMixinArgument::Value(input.parse()?)),
-            };
+                    Token::AtKeyword(..) | Token::DollarVar(..) => {
+                        let name = input.parse::<LessMixinParameterName>()?;
+                        if eat!(input, Colon).is_some() {
+                            let value = if matches!(peek!(input).token, Token::LBrace(..)) {
+                                input.parse().map(ComponentValue::LessDetachedRuleset)?
+                            } else {
+                                input.parse::<ComponentValue>()?
+                            };
+                            let span = Span {
+                                start: name.span().start,
+                                end: value.span().end,
+                            };
+                            args.push(LessMixinArgument::Named(LessMixinNamedArgument {
+                                name,
+                                value,
+                                span,
+                            }));
+                        } else if let Some((_, dotdotdot_span)) = eat!(input, DotDotDot) {
+                            let span = Span {
+                                start: name.span().start,
+                                end: dotdotdot_span.end,
+                            };
+                            args.push(LessMixinArgument::Variadic(LessMixinVariadicArgument {
+                                name,
+                                span,
+                            }));
+                            eat!(input, Semicolon);
+                            end = expect!(input, RParen).1.end;
+                            break;
+                        } else {
+                            args.push(LessMixinArgument::Value(match name {
+                                LessMixinParameterName::Variable(variable) => {
+                                    ComponentValue::LessVariable(variable)
+                                }
+                                LessMixinParameterName::PropertyVariable(property_variable) => {
+                                    ComponentValue::LessPropertyVariable(property_variable)
+                                }
+                            }));
+                        }
+                    }
+                    Token::LBrace(..) => args.push(LessMixinArgument::Value(
+                        ComponentValue::LessDetachedRuleset(input.parse()?),
+                    )),
+                    Token::Comma(..) => {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectComponentValue,
+                            span: bump!(input).span,
+                        });
+                    }
+                    _ => args.push(LessMixinArgument::Value(input.parse()?)),
+                };
 
-            match peek!(input).token {
-                Token::RParen(..) => {}
-                Token::Comma(..) => {
-                    bump!(input);
-                }
-                Token::Semicolon(..) => {
-                    let TokenWithSpan { span, .. } = bump!(input);
-                    wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
-                        .map_err(|kind| Error { kind, span })?;
-                    semicolon_comes_at = args.len();
-                }
-                _ => {
-                    let TokenWithSpan { token, span } = bump!(input);
-                    use crate::{token::RParen, tokenizer::TokenSymbol};
-                    return Err(Error {
-                        kind: ErrorKind::Unexpected(RParen::symbol(), token.symbol()),
-                        span,
-                    });
+                match peek!(input).token {
+                    Token::RParen(..) => {}
+                    Token::Comma(..) => {
+                        bump!(input);
+                    }
+                    Token::Semicolon(..) => {
+                        let TokenWithSpan { span, .. } = bump!(input);
+                        wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
+                            .map_err(|kind| Error { kind, span })?;
+                        semicolon_comes_at = args.len();
+                    }
+                    _ => {
+                        let TokenWithSpan { token, span } = bump!(input);
+                        use crate::{token::RParen, tokenizer::TokenSymbol};
+                        return Err(Error {
+                            kind: ErrorKind::Unexpected(RParen::symbol(), token.symbol()),
+                            span,
+                        });
+                    }
                 }
             }
-        }
+            Some(args)
+        } else {
+            None
+        };
 
         let important = if !matches!(
             input.state.qualified_rule_ctx,
