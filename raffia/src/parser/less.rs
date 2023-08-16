@@ -14,7 +14,6 @@ use crate::{
     util, Parse,
 };
 
-const PRECEDENCE_RELATIONAL: u8 = 3;
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
@@ -41,9 +40,78 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         self.parse_less_condition_recursively(needs_parens, 0)
     }
 
-    fn parse_less_condition_atom(&mut self, needs_parens: bool) -> PResult<LessCondition<'s>> {
+    fn parse_less_condition_atom(&mut self) -> PResult<LessCondition<'s>> {
+        let left = self.parse_less_operation().map(LessCondition::Value)?;
+
+        let op = match &peek!(self).token {
+            Token::GreaterThan(..) => LessBinaryConditionOperator {
+                kind: LessBinaryConditionOperatorKind::GreaterThan,
+                span: bump!(self).span,
+            },
+            Token::GreaterThanEqual(..) => LessBinaryConditionOperator {
+                kind: LessBinaryConditionOperatorKind::GreaterThanOrEqual,
+                span: bump!(self).span,
+            },
+            Token::LessThan(..) => LessBinaryConditionOperator {
+                kind: LessBinaryConditionOperatorKind::LessThan,
+                span: bump!(self).span,
+            },
+            Token::LessThanEqual(..) => LessBinaryConditionOperator {
+                kind: LessBinaryConditionOperatorKind::LessThanOrEqual,
+                span: bump!(self).span,
+            },
+            Token::Equal(..) => {
+                let eq_span = bump!(self).span;
+                match peek!(self) {
+                    TokenWithSpan {
+                        token: Token::GreaterThan(..),
+                        span: gt_span,
+                    } if eq_span.end == gt_span.start => LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::EqualOrGreaterThan,
+                        span: Span {
+                            start: eq_span.start,
+                            end: bump!(self).span.end,
+                        },
+                    },
+                    TokenWithSpan {
+                        token: Token::LessThan(..),
+                        span: lt_span,
+                    } if eq_span.end == lt_span.start => LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::EqualOrLessThan,
+                        span: Span {
+                            start: eq_span.start,
+                            end: bump!(self).span.end,
+                        },
+                    },
+                    _ => LessBinaryConditionOperator {
+                        kind: LessBinaryConditionOperatorKind::Equal,
+                        span: eq_span,
+                    },
+                }
+            }
+            _ => return Ok(left),
+        };
+
+        let right = self.parse_less_operation().map(LessCondition::Value)?;
+
+        let span = Span {
+            start: left.span().start,
+            end: right.span().end,
+        };
+        Ok(LessCondition::Binary(LessBinaryCondition {
+            left: Box::new(left),
+            op,
+            right: Box::new(right),
+            span,
+        }))
+    }
+
+    fn parse_less_condition_inside_parens(
+        &mut self,
+        needs_parens: bool,
+    ) -> PResult<LessCondition<'s>> {
         self.try_parse(|parser| parser.parse_less_condition(needs_parens))
-            .or_else(|_| self.parse_less_operation().map(LessCondition::Value))
+            .or_else(|_| self.parse_less_condition_atom())
     }
 
     fn parse_less_condition_recursively(
@@ -51,11 +119,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         needs_parens: bool,
         precedence: u8,
     ) -> PResult<LessCondition<'s>> {
-        let mut left = if precedence >= PRECEDENCE_RELATIONAL {
+        let mut left = if precedence >= PRECEDENCE_AND {
             match &peek!(self).token {
                 Token::LParen(..) => {
                     let Span { start, .. } = bump!(self).span;
-                    let condition = self.parse_less_condition_atom(needs_parens)?;
+                    let condition = self.parse_less_condition_inside_parens(needs_parens)?;
                     let (_, Span { end, .. }) = expect!(self, RParen);
                     LessCondition::Parenthesized(LessParenthesizedCondition {
                         condition: Box::new(condition),
@@ -65,7 +133,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::Ident(ident) if ident.raw == "not" => {
                     let Span { start, .. } = bump!(self).span;
                     expect!(self, LParen);
-                    let condition = self.parse_less_condition_atom(needs_parens)?;
+                    let condition = self.parse_less_condition_inside_parens(needs_parens)?;
                     let (_, Span { end, .. }) = expect!(self, RParen);
                     LessCondition::Negated(LessNegatedCondition {
                         condition: Box::new(condition),
@@ -81,7 +149,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             span,
                         });
                     } else {
-                        self.parse_less_operation().map(LessCondition::Value)?
+                        self.parse_less_condition_atom()?
                     }
                 }
             }
@@ -91,59 +159,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         loop {
             let op = match &peek!(self).token {
-                Token::GreaterThan(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    LessBinaryConditionOperator {
-                        kind: LessBinaryConditionOperatorKind::GreaterThan,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::GreaterThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    LessBinaryConditionOperator {
-                        kind: LessBinaryConditionOperatorKind::GreaterThanOrEqual,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::LessThan(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    LessBinaryConditionOperator {
-                        kind: LessBinaryConditionOperatorKind::LessThan,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::LessThanEqual(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    LessBinaryConditionOperator {
-                        kind: LessBinaryConditionOperatorKind::LessThanOrEqual,
-                        span: bump!(self).span,
-                    }
-                }
-                Token::Equal(..) if precedence == PRECEDENCE_RELATIONAL => {
-                    let eq_span = bump!(self).span;
-                    match peek!(self) {
-                        TokenWithSpan {
-                            token: Token::GreaterThan(..),
-                            span: gt_span,
-                        } if eq_span.end == gt_span.start => LessBinaryConditionOperator {
-                            kind: LessBinaryConditionOperatorKind::EqualOrGreaterThan,
-                            span: Span {
-                                start: eq_span.start,
-                                end: bump!(self).span.end,
-                            },
-                        },
-                        TokenWithSpan {
-                            token: Token::LessThan(..),
-                            span: lt_span,
-                        } if eq_span.end == lt_span.start => LessBinaryConditionOperator {
-                            kind: LessBinaryConditionOperatorKind::EqualOrLessThan,
-                            span: Span {
-                                start: eq_span.start,
-                                end: bump!(self).span.end,
-                            },
-                        },
-                        _ => LessBinaryConditionOperator {
-                            kind: LessBinaryConditionOperatorKind::Equal,
-                            span: eq_span,
-                        },
-                    }
-                }
                 Token::Ident(token) if token.raw == "and" && precedence == PRECEDENCE_AND => {
                     LessBinaryConditionOperator {
                         kind: LessBinaryConditionOperatorKind::And,
