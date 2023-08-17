@@ -21,7 +21,6 @@ mod layer;
 mod media;
 mod namespace;
 mod page;
-mod sass_import;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
