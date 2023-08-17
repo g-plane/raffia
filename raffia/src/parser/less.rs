@@ -556,6 +556,59 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessFormatFunctionCall<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessImportOptions<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, Span { start, .. }) = expect!(input, LParen);
+
+        let mut names = Vec::with_capacity(1);
+        while let Token::Ident(crate::token::Ident {
+            raw: "less" | "css" | "multiple" | "once" | "inline" | "reference" | "optional",
+            ..
+        }) = peek!(input).token
+        {
+            names.push(input.parse()?);
+            if !matches!(peek!(input).token, Token::RParen(..)) {
+                expect!(input, Comma);
+            }
+        }
+
+        let (_, Span { end, .. }) = expect!(input, RParen);
+
+        Ok(LessImportOptions {
+            names,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessImportPrelude<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let options = input.parse::<LessImportOptions>()?;
+        let start = options.span.start;
+
+        let href = match &peek!(input).token {
+            Token::Str(..) | Token::StrTemplate(..) => input.parse().map(ImportPreludeHref::Str)?,
+            _ => input.parse().map(ImportPreludeHref::Url)?,
+        };
+        let mut end = href.span().end;
+
+        let media = if matches!(peek!(input).token, Token::Semicolon(..)) {
+            None
+        } else {
+            let media = input.parse::<MediaQueryList>()?;
+            end = media.span.end;
+            Some(media)
+        };
+
+        Ok(LessImportPrelude {
+            href,
+            options,
+            media,
+            span: Span { start, end },
+        })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (first, first_span) = expect!(input, StrTemplate);

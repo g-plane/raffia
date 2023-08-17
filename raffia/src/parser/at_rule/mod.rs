@@ -52,16 +52,30 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let end = block.span.end;
             (Some(prelude), Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("import") {
-            let (end, prelude) = if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
-                if let Ok(prelude) = input.try_parse(ImportPrelude::parse) {
+            let (end, prelude) = match input.syntax {
+                Syntax::Css => {
+                    let prelude = input.parse::<ImportPrelude>()?;
                     (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
-                } else {
-                    let prelude = input.parse::<SassImportPrelude>()?;
-                    (prelude.span.end, AtRulePrelude::SassImport(prelude))
                 }
-            } else {
-                let prelude = input.parse::<ImportPrelude>()?;
-                (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
+                Syntax::Scss | Syntax::Sass => {
+                    if let Ok(prelude) = input.try_parse(ImportPrelude::parse) {
+                        (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
+                    } else {
+                        let prelude = input.parse::<SassImportPrelude>()?;
+                        (prelude.span.end, AtRulePrelude::SassImport(prelude))
+                    }
+                }
+                Syntax::Less => {
+                    if let Ok(prelude) = input.try_parse(ImportPrelude::parse) {
+                        (prelude.span.end, AtRulePrelude::Import(Box::new(prelude)))
+                    } else {
+                        let prelude = input.parse::<LessImportPrelude>()?;
+                        (
+                            prelude.span.end,
+                            AtRulePrelude::LessImport(Box::new(prelude)),
+                        )
+                    }
+                }
             };
             (Some(prelude), None, end)
         } else if at_rule_name.eq_ignore_ascii_case("charset") {

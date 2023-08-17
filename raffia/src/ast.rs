@@ -40,6 +40,7 @@ pub enum AtRulePrelude<'s> {
     Import(Box<ImportPrelude<'s>>),
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
+    LessImport(Box<LessImportPrelude<'s>>),
     Media(MediaQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
     Nest(SelectorList<'s>),
@@ -698,6 +699,24 @@ pub struct LessExtendRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessFormatFunctionCall<'s> {
     pub args: Vec<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessImportOptions<'s> {
+    pub names: Vec<Ident<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessImportPrelude<'s> {
+    pub href: ImportPreludeHref<'s>,
+    pub options: LessImportOptions<'s>,
+    pub media: Option<MediaQueryList<'s>>,
     pub span: Span,
 }
 
