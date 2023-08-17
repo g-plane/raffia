@@ -71,13 +71,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ImportPrelude<'s> {
             span.end = supports.span().end;
         }
 
-        let media = match &peek!(input).token {
-            Token::Semicolon(..) => None,
-            _ => {
-                let media = input.parse::<MediaQueryList>()?;
-                span.end = media.span.end;
-                Some(media)
-            }
+        let media = if matches!(peek!(input).token, Token::Semicolon(..)) {
+            None
+        } else {
+            let media = input.parse::<MediaQueryList>()?;
+            span.end = media.span.end;
+            Some(media)
         };
 
         Ok(ImportPrelude {
