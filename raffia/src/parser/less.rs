@@ -869,10 +869,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCallee {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCallee<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let first_name = input.parse::<LessMixinName>()?;
-        let mut span = first_name.span.clone();
+        let mut span = first_name.span().clone();
 
         let mut children = vec![LessMixinCalleeChild {
             name: first_name,
@@ -886,12 +886,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCallee {
             });
             if let Token::Dot(..) | Token::Hash(..) = peek!(input).token {
                 let name = input.parse::<LessMixinName>()?;
+                let name_span = name.span();
                 let span = Span {
                     start: combinator
                         .as_ref()
                         .map(|combinator| combinator.span.start)
-                        .unwrap_or(name.span.start),
-                    end: name.span.end,
+                        .unwrap_or(name_span.start),
+                    end: name_span.end,
                 };
                 children.push(LessMixinCalleeChild {
                     name,
@@ -1038,7 +1039,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         let block = input.parse::<SimpleBlock>()?;
 
         let span = Span {
-            start: name.span.start,
+            start: name.span().start,
             end: block.span.end,
         };
 
@@ -1052,37 +1053,54 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinName {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         match bump!(input) {
             TokenWithSpan {
                 token: Token::Dot(..),
                 span: dot_span,
             } => {
-                let (ident, ident_span) = expect_without_ws_or_comments!(input, Ident);
-                Ok(LessMixinName {
-                    name: if ident.escaped {
-                        format!(".{}", util::handle_escape(ident.raw))
-                    } else {
-                        format!(".{}", ident.raw)
-                    },
-                    span: Span {
-                        start: dot_span.start,
-                        end: ident_span.end,
-                    },
-                })
+                let ident: Ident = expect_without_ws_or_comments!(input, Ident).into();
+                let span = Span {
+                    start: dot_span.start,
+                    end: ident.span.end,
+                };
+                Ok(LessMixinName::ClassSelector(ClassSelector {
+                    name: InterpolableIdent::Literal(ident),
+                    span,
+                }))
             }
             TokenWithSpan {
                 token: Token::Hash(hash),
                 span,
-            } => Ok(LessMixinName {
-                name: if hash.escaped {
-                    format!("#{}", util::handle_escape(hash.raw))
+            } => {
+                let raw = hash.raw;
+                if raw.starts_with(|c: char| c.is_ascii_digit())
+                    || matches!(raw.as_bytes(), [b'-', c, ..] if *c != b'-')
+                {
+                    input.recoverable_errors.push(Error {
+                        kind: ErrorKind::InvalidIdSelectorName,
+                        span: span.clone(),
+                    });
+                }
+                let name = if hash.escaped {
+                    util::handle_escape(raw)
                 } else {
-                    format!("#{}", hash.raw)
-                },
-                span,
-            }),
+                    util::CowStr::from(raw)
+                };
+                let name_span = Span {
+                    start: span.start + 1,
+                    end: span.end,
+                };
+                Ok(LessMixinName::IdSelector(IdSelector {
+                    name: InterpolableIdent::Literal(Ident {
+                        name,
+                        raw,
+                        span: name_span,
+                    }),
+                    span,
+                }))
+            }
             TokenWithSpan { token, span } => {
                 use crate::{
                     token::{Dot, Hash},

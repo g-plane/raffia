@@ -818,7 +818,7 @@ pub enum LessMixinArgument<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinCall<'s> {
-    pub callee: LessMixinCallee,
+    pub callee: LessMixinCallee<'s>,
     pub args: Option<Vec<LessMixinArgument<'s>>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub span: Span,
@@ -827,16 +827,16 @@ pub struct LessMixinCall<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessMixinCallee {
-    pub children: Vec<LessMixinCalleeChild>,
+pub struct LessMixinCallee<'s> {
+    pub children: Vec<LessMixinCalleeChild<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessMixinCalleeChild {
-    pub name: LessMixinName,
+pub struct LessMixinCalleeChild<'s> {
+    pub name: LessMixinName<'s>,
     pub combinator: Option<Combinator>,
     pub span: Span,
 }
@@ -845,19 +845,19 @@ pub struct LessMixinCalleeChild {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinDefinition<'s> {
-    pub name: LessMixinName,
+    pub name: LessMixinName<'s>,
     pub params: Vec<LessMixinParameter<'s>>,
     pub guard: Option<LessConditions<'s>>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
 }
 
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessMixinName {
-    pub name: String,
-    pub span: Span,
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessMixinName<'s> {
+    ClassSelector(ClassSelector<'s>),
+    IdSelector(IdSelector<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
