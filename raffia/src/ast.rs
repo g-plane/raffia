@@ -1028,6 +1028,14 @@ pub struct LessVariable<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessVariableCall<'s> {
+    pub variable: LessVariable<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableDeclaration<'s> {
     pub name: LessVariable<'s>,
     pub value: ComponentValues<'s>,
@@ -1944,6 +1952,7 @@ pub enum Statement<'s> {
     LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
     LessPluginAtRule(LessPluginAtRule<'s>),
+    LessVariableCall(LessVariableCall<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
     SassAtRootAtRule(SassAtRootAtRule<'s>),

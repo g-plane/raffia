@@ -1237,6 +1237,20 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariable<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableCall<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let variable = input.parse::<LessVariable>()?;
+        expect_without_ws_or_comments!(input, LParen);
+        let (_, Span { end, .. }) = expect!(input, RParen);
+
+        let span = Span {
+            start: variable.span.start,
+            end,
+        };
+        Ok(LessVariableCall { variable, span })
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);

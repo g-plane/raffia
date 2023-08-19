@@ -380,6 +380,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));
+                        } else if let Ok(variable_call) = self.try_parse(LessVariableCall::parse) {
+                            statements.push(Statement::LessVariableCall(variable_call));
                         } else if let Some((statement, is_block)) =
                             self.parse_less_at_rule(&at_keyword_name)?
                         {
