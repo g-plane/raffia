@@ -174,7 +174,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Number(..) => self.parse().map(ComponentValue::Number),
             Token::Dimension(..) => self.parse().map(ComponentValue::Dimension),
             Token::Percentage(..) => self.parse().map(ComponentValue::Percentage),
-            Token::Hash(..) => self.parse().map(ComponentValue::HexColor),
+            Token::Hash(..) => {
+                if self.syntax == Syntax::Less {
+                    self.try_parse(Parser::parse_less_maybe_mixin_call_or_with_lookups)
+                        .or_else(|_| self.parse().map(ComponentValue::HexColor))
+                } else {
+                    self.parse().map(ComponentValue::HexColor)
+                }
+            }
             Token::Str(..) => self
                 .parse()
                 .map(InterpolableStr::Literal)
@@ -228,6 +235,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             }
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessVariable)
+            }
+            Token::Dot(..) if self.syntax == Syntax::Less => {
+                self.parse_less_maybe_mixin_call_or_with_lookups()
             }
             Token::StrTemplate(..) if self.syntax == Syntax::Less => self
                 .parse()

@@ -292,6 +292,26 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
+    pub(super) fn parse_less_maybe_mixin_call_or_with_lookups(
+        &mut self,
+    ) -> PResult<ComponentValue<'s>> {
+        let mixin_call = self.parse::<LessMixinCall>()?;
+        if matches!(peek!(self).token, Token::LBracket(..)) {
+            let lookups = self.parse::<LessLookups>()?;
+            let span = Span {
+                start: mixin_call.span.start,
+                end: lookups.span.end,
+            };
+            Ok(ComponentValue::LessNamespaceValue(LessNamespaceValue {
+                callee: LessNamespaceValueCallee::LessMixinCall(mixin_call),
+                lookups,
+                span,
+            }))
+        } else {
+            Ok(ComponentValue::LessMixinCall(mixin_call))
+        }
+    }
+
     pub(super) fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
         self.parse_less_operation_recursively(0)
     }

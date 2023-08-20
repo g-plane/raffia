@@ -218,6 +218,8 @@ pub enum ComponentValue<'s> {
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
     LessListFunctionCall(LessListFunctionCall<'s>),
+    LessMixinCall(LessMixinCall<'s>),
+    LessNamespaceValue(LessNamespaceValue<'s>),
     LessOperation(LessOperation<'s>),
     LessPercentKeyword(LessPercentKeyword),
     LessPropertyVariable(LessPropertyVariable<'s>),
@@ -917,6 +919,23 @@ pub struct LessMixinVariadicArgument<'s> {
 pub struct LessMixinVariadicParameter<'s> {
     pub name: Option<LessMixinParameterName<'s>>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessNamespaceValue<'s> {
+    pub callee: LessNamespaceValueCallee<'s>,
+    pub lookups: LessLookups<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum LessNamespaceValueCallee<'s> {
+    LessMixinCall(LessMixinCall<'s>),
+    LessVariable(LessVariable<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
