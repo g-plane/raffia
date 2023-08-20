@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but found `[`
+  ┌─ stmt-with-lookups.less:1:8
+  │
+1 │ @call()[];
+  │        ^
+
+
