@@ -182,10 +182,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
             Ok(MediaQuery::ConditionOnly(condition_only))
         } else if input.syntax == Syntax::Less {
             match peek!(input).token {
-                Token::AtKeyword(..) => input
-                    .try_parse(LessNamespaceValue::parse)
-                    .map(MediaQuery::LessNamespaceValue)
-                    .or_else(|_| input.parse().map(MediaQuery::LessVariable)),
+                Token::AtKeyword(..) => {
+                    input
+                        .parse_less_maybe_variable_or_with_lookups()
+                        .map(|value| match value {
+                            ComponentValue::LessVariable(variable) => {
+                                MediaQuery::LessVariable(variable)
+                            }
+                            ComponentValue::LessNamespaceValue(namespace_value) => {
+                                MediaQuery::LessNamespaceValue(namespace_value)
+                            }
+                            _ => unreachable!(),
+                        })
+                }
                 Token::Dot(..) | Token::Hash(..) => {
                     input.parse().map(MediaQuery::LessNamespaceValue)
                 }

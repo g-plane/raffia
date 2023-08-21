@@ -234,7 +234,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse().map(ComponentValue::SassNestingDeclaration)
             }
             Token::AtKeyword(..) if self.syntax == Syntax::Less => {
-                self.parse().map(ComponentValue::LessVariable)
+                self.parse_less_maybe_variable_or_with_lookups()
             }
             Token::Dot(..) if self.syntax == Syntax::Less => {
                 self.parse_less_maybe_mixin_call_or_with_lookups()

@@ -312,6 +312,30 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
+    pub(super) fn parse_less_maybe_variable_or_with_lookups(
+        &mut self,
+    ) -> PResult<ComponentValue<'s>> {
+        let variable = self.parse::<LessVariable>()?;
+        match peek!(self) {
+            TokenWithSpan {
+                token: Token::LBracket(..),
+                span,
+            } if variable.span.end == span.start => {
+                let lookups = self.parse::<LessLookups>()?;
+                let span = Span {
+                    start: variable.span.start,
+                    end: lookups.span.end,
+                };
+                Ok(ComponentValue::LessNamespaceValue(LessNamespaceValue {
+                    callee: LessNamespaceValueCallee::LessVariable(variable),
+                    lookups,
+                    span,
+                }))
+            }
+            _ => Ok(ComponentValue::LessVariable(variable)),
+        }
+    }
+
     pub(super) fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
         self.parse_less_operation_recursively(0)
     }
