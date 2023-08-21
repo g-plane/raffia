@@ -1148,6 +1148,36 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinParameterName<'s> {
     }
 }
 
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNamespaceValue<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let callee = input.parse::<LessNamespaceValueCallee>()?;
+        let callee_span = callee.span();
+
+        let lookups = input.parse::<LessLookups>()?;
+        util::assert_no_ws_or_comment(callee_span, &lookups.span)?;
+
+        let span = Span {
+            start: callee_span.start,
+            end: lookups.span.end,
+        };
+        Ok(LessNamespaceValue {
+            callee,
+            lookups,
+            span,
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNamespaceValueCallee<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        if matches!(peek!(input).token, Token::AtKeyword(..)) {
+            input.parse().map(LessNamespaceValueCallee::LessVariable)
+        } else {
+            input.parse().map(LessNamespaceValueCallee::LessMixinCall)
+        }
+    }
+}
+
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPercentKeyword {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, span) = expect!(input, Percent);

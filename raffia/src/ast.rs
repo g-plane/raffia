@@ -1212,6 +1212,7 @@ pub enum MediaQuery<'s> {
     ConditionOnly(MediaCondition<'s>),
     WithType(MediaQueryWithType<'s>),
     LessVariable(LessVariable<'s>),
+    LessNamespaceValue(LessNamespaceValue<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

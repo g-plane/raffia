@@ -180,13 +180,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
             input.try_parse(|parser| parser.parse_media_condition(/* allow_or */ true))
         {
             Ok(MediaQuery::ConditionOnly(condition_only))
-        } else {
+        } else if input.syntax == Syntax::Less {
             match peek!(input).token {
-                Token::AtKeyword(..) if input.syntax == Syntax::Less => {
-                    input.parse().map(MediaQuery::LessVariable)
+                Token::AtKeyword(..) => input
+                    .try_parse(LessNamespaceValue::parse)
+                    .map(MediaQuery::LessNamespaceValue)
+                    .or_else(|_| input.parse().map(MediaQuery::LessVariable)),
+                Token::Dot(..) | Token::Hash(..) => {
+                    input.parse().map(MediaQuery::LessNamespaceValue)
                 }
                 _ => input.parse().map(MediaQuery::WithType),
             }
+        } else {
+            input.parse().map(MediaQuery::WithType)
         }
     }
 }
