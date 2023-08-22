@@ -348,7 +348,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 operation
             } else {
                 let value = self.parse_component_value_atom()?;
-                if let ComponentValue::LessMixinCall(mixin_call) = &value {
+                if let (ComponentValue::LessMixinCall(mixin_call), None) =
+                    (&value, &self.state.qualified_rule_ctx)
+                {
                     self.recoverable_errors.push(Error {
                         kind: ErrorKind::UnexpectedLessMixinCall,
                         span: mixin_call.span.clone(),
