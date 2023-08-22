@@ -347,7 +347,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 expect!(self, RParen);
                 operation
             } else {
-                self.parse_component_value_atom()?
+                let value = self.parse_component_value_atom()?;
+                if let ComponentValue::LessMixinCall(mixin_call) = &value {
+                    self.recoverable_errors.push(Error {
+                        kind: ErrorKind::UnexpectedLessMixinCall,
+                        span: mixin_call.span.clone(),
+                    });
+                }
+                value
             }
         } else {
             self.parse_less_operation_recursively(precedence + 1)?
