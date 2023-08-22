@@ -41,7 +41,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_less_condition_atom(&mut self) -> PResult<LessCondition<'s>> {
-        let left = self.parse_less_operation().map(LessCondition::Value)?;
+        let left = self
+            .parse_less_operation(/* allow_mixin_call */ false)
+            .map(LessCondition::Value)?;
 
         let op = match &peek!(self).token {
             Token::GreaterThan(..) => LessBinaryConditionOperator {
@@ -92,7 +94,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             _ => return Ok(left),
         };
 
-        let right = self.parse_less_operation().map(LessCondition::Value)?;
+        let right = self
+            .parse_less_operation(/* allow_mixin_call */ false)
+            .map(LessCondition::Value)?;
 
         let span = Span {
             start: left.span().start,
@@ -336,30 +340,37 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(super) fn parse_less_operation(&mut self) -> PResult<ComponentValue<'s>> {
-        self.parse_less_operation_recursively(0)
+    pub(super) fn parse_less_operation(
+        &mut self,
+        allow_mixin_call: bool,
+    ) -> PResult<ComponentValue<'s>> {
+        self.parse_less_operation_recursively(0, allow_mixin_call)
     }
 
-    fn parse_less_operation_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'s>> {
+    fn parse_less_operation_recursively(
+        &mut self,
+        precedence: u8,
+        allow_mixin_call: bool,
+    ) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             if eat!(self, LParen).is_some() {
-                let operation = self.parse_less_operation()?;
+                let operation = self.parse_less_operation(allow_mixin_call)?;
                 expect!(self, RParen);
                 operation
             } else {
                 let value = self.parse_component_value_atom()?;
-                if let (ComponentValue::LessMixinCall(mixin_call), None) =
-                    (&value, &self.state.qualified_rule_ctx)
-                {
-                    self.recoverable_errors.push(Error {
-                        kind: ErrorKind::UnexpectedLessMixinCall,
-                        span: mixin_call.span.clone(),
-                    });
+                if let ComponentValue::LessMixinCall(mixin_call) = &value {
+                    if !allow_mixin_call {
+                        self.recoverable_errors.push(Error {
+                            kind: ErrorKind::UnexpectedLessMixinCall,
+                            span: mixin_call.span.clone(),
+                        });
+                    }
                 }
                 value
             }
         } else {
-            self.parse_less_operation_recursively(precedence + 1)?
+            self.parse_less_operation_recursively(precedence + 1, allow_mixin_call)?
         };
 
         loop {
@@ -392,7 +403,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => break,
             };
 
-            let right = self.parse_less_operation_recursively(precedence + 1)?;
+            let right = self.parse_less_operation_recursively(precedence + 1, allow_mixin_call)?;
             let span = Span {
                 start: left.span().start,
                 end: right.span().end,

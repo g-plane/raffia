@@ -735,7 +735,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComponentValue<'s> {
         match input.syntax {
             Syntax::Css => input.parse_component_value_atom(),
             Syntax::Scss | Syntax::Sass => input.parse_sass_bin_expr(),
-            Syntax::Less => input.parse_less_operation(),
+            Syntax::Less => input.parse_less_operation(/* allow_mixin_call */ true),
         }
     }
 }
