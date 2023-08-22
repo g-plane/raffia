@@ -964,10 +964,43 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         expect!(input, LParen);
         let mut semicolon_comes_at = 0;
         let mut params = vec![];
-        while eat!(input, RParen).is_none() {
+        'params: while eat!(input, RParen).is_none() {
             match peek!(input).token {
-                Token::AtKeyword(..) | Token::DollarVar(..) => {
-                    let name = input.parse::<LessMixinParameterName>()?;
+                Token::DotDotDot(..) => {
+                    let TokenWithSpan { span, .. } = bump!(input);
+                    params.push(LessMixinParameter::Variadic(LessMixinVariadicParameter {
+                        name: None,
+                        span,
+                    }));
+                    eat!(input, Semicolon);
+                    expect!(input, RParen);
+                    break;
+                }
+                Token::Comma(..) => {
+                    return Err(Error {
+                        kind: ErrorKind::ExpectComponentValue,
+                        span: bump!(input).span,
+                    });
+                }
+                _ => 'maybe: {
+                    let value = input.parse::<ComponentValue>()?;
+                    let name = {
+                        match value {
+                            ComponentValue::LessVariable(variable) => {
+                                LessMixinParameterName::Variable(variable)
+                            }
+                            ComponentValue::LessPropertyVariable(property) => {
+                                LessMixinParameterName::PropertyVariable(property)
+                            }
+                            value => {
+                                let span = value.span().clone();
+                                params.push(LessMixinParameter::Unnamed(
+                                    LessMixinUnnamedParameter { value, span },
+                                ));
+                                break 'maybe;
+                            }
+                        }
+                    };
                     let name_span = name.span();
                     if eat!(input, Colon).is_some() {
                         let value = if matches!(peek!(input).token, Token::LBrace(..)) {
@@ -995,7 +1028,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                         }));
                         eat!(input, Semicolon);
                         expect!(input, RParen);
-                        break;
+                        break 'params;
                     } else {
                         let span = name_span.clone();
                         params.push(LessMixinParameter::Named(LessMixinNamedParameter {
@@ -1004,30 +1037,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                             span,
                         }));
                     }
-                }
-                Token::DotDotDot(..) => {
-                    let TokenWithSpan { span, .. } = bump!(input);
-                    params.push(LessMixinParameter::Variadic(LessMixinVariadicParameter {
-                        name: None,
-                        span,
-                    }));
-                    eat!(input, Semicolon);
-                    expect!(input, RParen);
-                    break;
-                }
-                Token::Comma(..) => {
-                    return Err(Error {
-                        kind: ErrorKind::ExpectComponentValue,
-                        span: bump!(input).span,
-                    });
-                }
-                _ => {
-                    let value = input.parse::<ComponentValue>()?;
-                    let span = value.span().clone();
-                    params.push(LessMixinParameter::Unnamed(LessMixinUnnamedParameter {
-                        value,
-                        span,
-                    }));
                 }
             }
 
