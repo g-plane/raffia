@@ -1,0 +1,10 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: Less mixin call is disallowed
+  ┌─ mixin-call-in-operation.less:1:10
+  │
+1 │ #a when (.b()) {}
+  │          ^^^^
+
+
