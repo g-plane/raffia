@@ -481,7 +481,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
         match self.try_parse(|parser| {
-            let hex_color = parser.parse();
+            let hex_color = parser.parse::<HexColor>();
             if let TokenWithSpan {
                 token: Token::LParen(..),
                 span,
@@ -499,7 +499,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 kind: ErrorKind::TryParseError,
                 ..
             }) => self.parse_less_maybe_mixin_call_or_with_lookups(),
-            hex_color => hex_color,
+            hex_color => hex_color.map(ComponentValue::HexColor),
         }
     }
 }
