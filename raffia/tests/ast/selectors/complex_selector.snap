@@ -10534,9 +10534,67 @@ Stylesheet(
         end: 1620,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "trailing-test+",
+                      raw: "trailing-test\\+",
+                      span: Span(
+                        start: 1622,
+                        end: 1637,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1621,
+                      end: 1637,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1621,
+                  end: 1637,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1621,
+              end: 1637,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1621,
+          end: 1637,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1638,
+          end: 1640,
+        ),
+      ),
+      span: Span(
+        start: 1621,
+        end: 1640,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 1621,
+    end: 1641,
   ),
 )
