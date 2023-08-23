@@ -1969,6 +1969,7 @@ pub enum Statement<'s> {
     KeyframeBlock(KeyframeBlock<'s>),
     LessConditionalQualifiedRule(LessConditionalQualifiedRule<'s>),
     LessExtendRule(LessExtendRule<'s>),
+    LessFunctionCall(Function<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
     LessPluginAtRule(LessPluginAtRule<'s>),

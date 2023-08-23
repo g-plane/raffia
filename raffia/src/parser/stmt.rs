@@ -307,8 +307,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             {
                                 statements.push(stmt);
                                 is_block_element = true;
+                            } else if let Ok(decl) = self.try_parse(Declaration::parse) {
+                                statements.push(Statement::Declaration(decl));
                             } else {
-                                statements.push(Statement::Declaration(self.parse()?));
+                                statements.push(Statement::LessFunctionCall(self.parse()?));
                             }
                         }
                     }
