@@ -344,13 +344,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &mut self,
         allow_mixin_call: bool,
     ) -> PResult<ComponentValue<'s>> {
-        self.parse_less_operation_recursively(0, allow_mixin_call)
+        self.parse_less_operation_recursively(allow_mixin_call, 0)
     }
 
     fn parse_less_operation_recursively(
         &mut self,
-        precedence: u8,
         allow_mixin_call: bool,
+        precedence: u8,
     ) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             if eat!(self, LParen).is_some() {
@@ -370,7 +370,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 value
             }
         } else {
-            self.parse_less_operation_recursively(precedence + 1, allow_mixin_call)?
+            self.parse_less_operation_recursively(allow_mixin_call, precedence + 1)?
         };
 
         loop {
@@ -403,7 +403,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => break,
             };
 
-            let right = self.parse_less_operation_recursively(precedence + 1, allow_mixin_call)?;
+            let right = self.parse_less_operation_recursively(allow_mixin_call, precedence + 1)?;
             let span = Span {
                 start: left.span().start,
                 end: right.span().end,
