@@ -176,8 +176,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::Percentage(..) => self.parse().map(ComponentValue::Percentage),
             Token::Hash(..) => {
                 if self.syntax == Syntax::Less {
-                    self.try_parse(Parser::parse_less_maybe_mixin_call_or_with_lookups)
-                        .or_else(|_| self.parse().map(ComponentValue::HexColor))
+                    self.try_parse(HexColor::parse)
+                        .map(ComponentValue::HexColor)
+                        .or_else(|_| self.parse_less_maybe_mixin_call_or_with_lookups())
                 } else {
                     self.parse().map(ComponentValue::HexColor)
                 }
