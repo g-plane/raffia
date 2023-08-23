@@ -353,21 +353,28 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         precedence: u8,
     ) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
-            if eat!(self, LParen).is_some() {
-                let operation = self.parse_less_operation(allow_mixin_call)?;
-                expect!(self, RParen);
-                operation
-            } else {
-                let value = self.parse_component_value_atom()?;
-                if let ComponentValue::LessMixinCall(mixin_call) = &value {
-                    if !allow_mixin_call {
-                        self.recoverable_errors.push(Error {
-                            kind: ErrorKind::UnexpectedLessMixinCall,
-                            span: mixin_call.span.clone(),
-                        });
-                    }
+            match peek!(self).token {
+                Token::LParen(..) => {
+                    bump!(self);
+                    let operation = self.parse_less_operation(allow_mixin_call)?;
+                    expect!(self, RParen);
+                    operation
                 }
-                value
+                Token::Minus(..) => self
+                    .parse::<LessNegativeValue>()
+                    .map(ComponentValue::LessNegativeValue)?,
+                _ => {
+                    let value = self.parse_component_value_atom()?;
+                    if let ComponentValue::LessMixinCall(mixin_call) = &value {
+                        if !allow_mixin_call {
+                            self.recoverable_errors.push(Error {
+                                kind: ErrorKind::UnexpectedLessMixinCall,
+                                span: mixin_call.span.clone(),
+                            });
+                        }
+                    }
+                    value
+                }
             }
         } else {
             self.parse_less_operation_recursively(allow_mixin_call, precedence + 1)?
@@ -1228,6 +1235,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNamespaceValueCallee<'s> {
         } else {
             input.parse().map(LessNamespaceValueCallee::LessMixinCall)
         }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNegativeValue<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, minus_span) = expect!(input, Minus);
+        let value = match peek!(input) {
+            TokenWithSpan {
+                token:
+                    Token::AtKeyword(..) | Token::At(..) | Token::DollarVar(..) | Token::LParen(..),
+                span,
+            } if minus_span.end == span.start => Box::new(input.parse_component_value_atom()?),
+            TokenWithSpan { token, span } => {
+                use crate::{
+                    token::{AtKeyword, DollarVar, LParen},
+                    tokenizer::TokenSymbol,
+                };
+                return Err(Error {
+                    kind: ErrorKind::ExpectOneOf(
+                        vec![AtKeyword::symbol(), DollarVar::symbol(), LParen::symbol()],
+                        token.symbol(),
+                    ),
+                    span: span.clone(),
+                });
+            }
+        };
+
+        let span = Span {
+            start: minus_span.start,
+            end: value.span().end,
+        };
+        Ok(LessNegativeValue { value, span })
     }
 }
 

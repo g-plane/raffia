@@ -220,6 +220,7 @@ pub enum ComponentValue<'s> {
     LessListFunctionCall(LessListFunctionCall<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessNamespaceValue(LessNamespaceValue<'s>),
+    LessNegativeValue(LessNegativeValue<'s>),
     LessOperation(LessOperation<'s>),
     LessPercentKeyword(LessPercentKeyword),
     LessPropertyVariable(LessPropertyVariable<'s>),
@@ -943,6 +944,14 @@ pub enum LessNamespaceValueCallee<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessNegatedCondition<'s> {
     pub condition: Box<LessCondition<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessNegativeValue<'s> {
+    pub value: Box<ComponentValue<'s>>,
     pub span: Span,
 }
 
