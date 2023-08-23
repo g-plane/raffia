@@ -1,0 +1,2681 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "var",
+          raw: "var",
+          span: Span(
+            start: 213,
+            end: 216,
+          ),
+        ),
+        span: Span(
+          start: 212,
+          end: 216,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Str(
+            type: "Str",
+            value: "content",
+            raw: "\"content\"",
+            span: Span(
+              start: 218,
+              end: 227,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 218,
+          end: 227,
+        ),
+      ),
+      span: Span(
+        start: 212,
+        end: 227,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "comments",
+                      raw: "comments",
+                      span: Span(
+                        start: 476,
+                        end: 484,
+                      ),
+                    ),
+                    span: Span(
+                      start: 475,
+                      end: 484,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 475,
+                  end: 484,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 475,
+              end: 484,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "comments",
+                      raw: "comments",
+                      span: Span(
+                        start: 565,
+                        end: 573,
+                      ),
+                    ),
+                    span: Span(
+                      start: 564,
+                      end: 573,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 564,
+                  end: 573,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 564,
+              end: 573,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 475,
+          end: 573,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 643,
+                end: 648,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 650,
+                  end: 653,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 643,
+              end: 653,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background-color",
+              raw: "background-color",
+              span: Span(
+                start: 706,
+                end: 722,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "orange",
+                raw: "orange",
+                span: Span(
+                  start: 724,
+                  end: 730,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 706,
+              end: 730,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "font-size",
+              raw: "font-size",
+              span: Span(
+                start: 754,
+                end: 763,
+              ),
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 12.0,
+                  raw: "12",
+                  span: Span(
+                    start: 765,
+                    end: 767,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 767,
+                    end: 769,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 765,
+                  end: 769,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 754,
+              end: 769,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "content",
+              raw: "content",
+              span: Span(
+                start: 793,
+                end: 800,
+              ),
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "var",
+                  raw: "var",
+                  span: Span(
+                    start: 803,
+                    end: 806,
+                  ),
+                ),
+                span: Span(
+                  start: 802,
+                  end: 806,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 793,
+              end: 806,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "border",
+              raw: "border",
+              span: Span(
+                start: 811,
+                end: 817,
+              ),
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 819,
+                    end: 820,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 820,
+                    end: 822,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 819,
+                  end: 822,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "solid",
+                raw: "solid",
+                span: Span(
+                  start: 823,
+                  end: 828,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "black",
+                raw: "black",
+                span: Span(
+                  start: 829,
+                  end: 834,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 811,
+              end: 834,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "padding",
+              raw: "padding",
+              span: Span(
+                start: 864,
+                end: 871,
+              ),
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 873,
+                  end: 874,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 864,
+              end: 874,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 887,
+                end: 893,
+              ),
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 895,
+                    end: 896,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "em",
+                  raw: "em",
+                  span: Span(
+                    start: 896,
+                    end: 898,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 895,
+                  end: 898,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 887,
+              end: 898,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 612,
+          end: 901,
+        ),
+      ),
+      span: Span(
+        start: 475,
+        end: 901,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "selector",
+                      raw: "selector",
+                      span: Span(
+                        start: 968,
+                        end: 976,
+                      ),
+                    ),
+                    span: Span(
+                      start: 967,
+                      end: 976,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 967,
+                  end: 976,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 967,
+              end: 976,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "lots",
+                      raw: "lots",
+                      span: Span(
+                        start: 991,
+                        end: 995,
+                      ),
+                    ),
+                    span: Span(
+                      start: 990,
+                      end: 995,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 990,
+                  end: 995,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 990,
+              end: 995,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "comments",
+                      raw: "comments",
+                      span: Span(
+                        start: 1007,
+                        end: 1015,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1006,
+                      end: 1015,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1006,
+                  end: 1015,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1006,
+              end: 1015,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 967,
+          end: 1015,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 1020,
+                end: 1025,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "grey",
+                raw: "grey",
+                span: Span(
+                  start: 1053,
+                  end: 1057,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Comma,
+                span: Span(
+                  start: 1057,
+                  end: 1058,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "orange",
+                raw: "orange",
+                span: Span(
+                  start: 1070,
+                  end: 1076,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1020,
+              end: 1076,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "-webkit-border-radius",
+              raw: "-webkit-border-radius",
+              span: Span(
+                start: 1080,
+                end: 1101,
+              ),
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 1103,
+                    end: 1104,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 1104,
+                    end: 1106,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 1103,
+                  end: 1106,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1080,
+              end: 1106,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "-moz-border-radius",
+              raw: "-moz-border-radius",
+              span: Span(
+                start: 1128,
+                end: 1146,
+              ),
+            ),
+            value: [
+              LessOperation(
+                type: "LessOperation",
+                left: Dimension(
+                  type: "Dimension",
+                  value: Number(
+                    type: "Number",
+                    value: 2.0,
+                    raw: "2",
+                    span: Span(
+                      start: 1149,
+                      end: 1150,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 1150,
+                      end: 1152,
+                    ),
+                  ),
+                  kind: Length,
+                  span: Span(
+                    start: 1149,
+                    end: 1152,
+                  ),
+                ),
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Multiply,
+                  span: Span(
+                    start: 1153,
+                    end: 1154,
+                  ),
+                ),
+                right: Number(
+                  type: "Number",
+                  value: 4.0,
+                  raw: "4",
+                  span: Span(
+                    start: 1155,
+                    end: 1156,
+                  ),
+                ),
+                span: Span(
+                  start: 1149,
+                  end: 1156,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1128,
+              end: 1156,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1016,
+          end: 1190,
+        ),
+      ),
+      span: Span(
+        start: 967,
+        end: 1190,
+      ),
+    ),
+    LessMixinDefinition(
+      type: "LessMixinDefinition",
+      name: ClassSelector(
+        type: "ClassSelector",
+        name: Ident(
+          type: "Ident",
+          name: "mixin_def_with_colors",
+          raw: "mixin_def_with_colors",
+          span: Span(
+            start: 1193,
+            end: 1214,
+          ),
+        ),
+        span: Span(
+          start: 1192,
+          end: 1214,
+        ),
+      ),
+      params: [
+        LessMixinNamedParameter(
+          type: "LessMixinNamedParameter",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 1216,
+                end: 1217,
+              ),
+            ),
+            span: Span(
+              start: 1215,
+              end: 1217,
+            ),
+          ),
+          value: Some(Ident(
+            type: "Ident",
+            name: "white",
+            raw: "white",
+            span: Span(
+              start: 1219,
+              end: 1224,
+            ),
+          )),
+          span: Span(
+            start: 1215,
+            end: 1224,
+          ),
+        ),
+        LessMixinNamedParameter(
+          type: "LessMixinNamedParameter",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 1240,
+                end: 1241,
+              ),
+            ),
+            span: Span(
+              start: 1239,
+              end: 1241,
+            ),
+          ),
+          value: Some(Dimension(
+            type: "Dimension",
+            value: Number(
+              type: "Number",
+              value: 1.0,
+              raw: "1",
+              span: Span(
+                start: 1243,
+                end: 1244,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 1244,
+                end: 1246,
+              ),
+            ),
+            kind: Length,
+            span: Span(
+              start: 1243,
+              end: 1246,
+            ),
+          )),
+          span: Span(
+            start: 1239,
+            end: 1246,
+          ),
+        ),
+      ],
+      guard: Some(LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 1313,
+                    end: 1314,
+                  ),
+                ),
+                span: Span(
+                  start: 1312,
+                  end: 1314,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: Equal,
+                span: Span(
+                  start: 1315,
+                  end: 1316,
+                ),
+              ),
+              right: Ident(
+                type: "Ident",
+                name: "white",
+                raw: "white",
+                span: Span(
+                  start: 1317,
+                  end: 1322,
+                ),
+              ),
+              span: Span(
+                start: 1312,
+                end: 1322,
+              ),
+            ),
+            span: Span(
+              start: 1311,
+              end: 1323,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1311,
+          end: 1323,
+        ),
+      )),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "test-rule",
+                            raw: "test-rule",
+                            span: Span(
+                              start: 1331,
+                              end: 1340,
+                            ),
+                          ),
+                          span: Span(
+                            start: 1330,
+                            end: 1340,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1330,
+                        end: 1340,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 1330,
+                    end: 1340,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1330,
+                end: 1340,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 1351,
+                      end: 1356,
+                    ),
+                  ),
+                  value: [
+                    LessVariable(
+                      type: "LessVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 1359,
+                          end: 1360,
+                        ),
+                      ),
+                      span: Span(
+                        start: 1358,
+                        end: 1360,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 1351,
+                    end: 1360,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1341,
+                end: 1367,
+              ),
+            ),
+            span: Span(
+              start: 1330,
+              end: 1367,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1324,
+          end: 1369,
+        ),
+      ),
+      span: Span(
+        start: 1192,
+        end: 1369,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin_def_with_colors",
+                raw: "mixin_def_with_colors",
+                span: Span(
+                  start: 1371,
+                  end: 1392,
+                ),
+              ),
+              span: Span(
+                start: 1370,
+                end: 1392,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 1370,
+              end: 1392,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1370,
+          end: 1392,
+        ),
+      ),
+      args: Some([]),
+      important: None,
+      span: Span(
+        start: 1370,
+        end: 1394,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "sr-only-focusable",
+                      raw: "sr-only-focusable",
+                      span: Span(
+                        start: 1416,
+                        end: 1433,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1415,
+                      end: 1433,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1415,
+                  end: 1433,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1415,
+              end: 1433,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1415,
+          end: 1433,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "clip",
+              raw: "clip",
+              span: Span(
+                start: 1438,
+                end: 1442,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "auto",
+                raw: "auto",
+                span: Span(
+                  start: 1444,
+                  end: 1448,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1438,
+              end: 1448,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1434,
+          end: 1451,
+        ),
+      ),
+      span: Span(
+        start: 1415,
+        end: 1451,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "-webkit-keyframes",
+        raw: "-webkit-keyframes",
+        span: Span(
+          start: 1454,
+          end: 1471,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "hover",
+        raw: "hover",
+        span: Span(
+          start: 1485,
+          end: 1490,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 0.0,
+                  raw: "0",
+                  span: Span(
+                    start: 1512,
+                    end: 1513,
+                  ),
+                ),
+                span: Span(
+                  start: 1512,
+                  end: 1514,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 1521,
+                      end: 1526,
+                    ),
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 1528,
+                        end: 1531,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 1521,
+                    end: 1531,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1515,
+                end: 1536,
+              ),
+            ),
+            span: Span(
+              start: 1512,
+              end: 1536,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1508,
+          end: 1538,
+        ),
+      )),
+      span: Span(
+        start: 1453,
+        end: 1538,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "last",
+                      raw: "last",
+                      span: Span(
+                        start: 1541,
+                        end: 1545,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1540,
+                      end: 1545,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1540,
+                  end: 1545,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1540,
+              end: 1545,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1540,
+          end: 1545,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 1548,
+                end: 1553,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "blue",
+                raw: "blue",
+                span: Span(
+                  start: 1555,
+                  end: 1559,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1548,
+              end: 1559,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1546,
+          end: 1561,
+        ),
+      ),
+      span: Span(
+        start: 1540,
+        end: 1561,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "div",
+                      raw: "div",
+                      span: Span(
+                        start: 1598,
+                        end: 1601,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1597,
+                      end: 1601,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1597,
+                  end: 1601,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1597,
+              end: 1601,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1597,
+          end: 1601,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 1604,
+                end: 1609,
+              ),
+            ),
+            value: [
+              HexColor(
+                type: "HexColor",
+                value: "A33",
+                raw: "A33",
+                span: Span(
+                  start: 1610,
+                  end: 1614,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1604,
+              end: 1614,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1602,
+          end: 1617,
+        ),
+      ),
+      span: Span(
+        start: 1597,
+        end: 1617,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "string_w_comment",
+          raw: "string_w_comment",
+          span: Span(
+            start: 1670,
+            end: 1686,
+          ),
+        ),
+        span: Span(
+          start: 1669,
+          end: 1686,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          LessEscapedStr(
+            type: "LessEscapedStr",
+            str: Str(
+              type: "Str",
+              value: "/* // Not commented out // */",
+              raw: "\"/* // Not commented out // */\"",
+              span: Span(
+                start: 1689,
+                end: 1720,
+              ),
+            ),
+            span: Span(
+              start: 1688,
+              end: 1720,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1688,
+          end: 1720,
+        ),
+      ),
+      span: Span(
+        start: 1669,
+        end: 1720,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "output-block",
+                      raw: "output-block",
+                      span: Span(
+                        start: 1723,
+                        end: 1735,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1722,
+                      end: 1735,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1722,
+                  end: 1735,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1722,
+              end: 1735,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1722,
+          end: 1735,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "comment",
+              raw: "comment",
+              span: Span(
+                start: 1738,
+                end: 1745,
+              ),
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "string_w_comment",
+                  raw: "string_w_comment",
+                  span: Span(
+                    start: 1748,
+                    end: 1764,
+                  ),
+                ),
+                span: Span(
+                  start: 1747,
+                  end: 1764,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1738,
+              end: 1764,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1736,
+          end: 1767,
+        ),
+      ),
+      span: Span(
+        start: 1722,
+        end: 1767,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 1795,
+          end: 1800,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          MediaQueryWithType(
+            type: "MediaQueryWithType",
+            modifier: None,
+            mediaType: Ident(
+              type: "Ident",
+              name: "all",
+              raw: "all",
+              span: Span(
+                start: 1801,
+                end: 1804,
+              ),
+            ),
+            condition: Some(MediaCondition(
+              type: "MediaCondition",
+              conditions: [
+                MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
+                  name: Ident(
+                    type: "Ident",
+                    name: "max-width",
+                    raw: "max-width",
+                    span: Span(
+                      start: 1815,
+                      end: 1824,
+                    ),
+                  ),
+                  value: Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 1024.0,
+                      raw: "1024",
+                      span: Span(
+                        start: 1825,
+                        end: 1829,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 1829,
+                        end: 1831,
+                      ),
+                    ),
+                    kind: Length,
+                    span: Span(
+                      start: 1825,
+                      end: 1831,
+                    ),
+                  ),
+                  span: Span(
+                    start: 1815,
+                    end: 1831,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1815,
+                end: 1831,
+              ),
+            )),
+            span: Span(
+              start: 1801,
+              end: 1831,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1801,
+          end: 1831,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1833,
+          end: 1835,
+        ),
+      )),
+      span: Span(
+        start: 1794,
+        end: 1835,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "-webkit-keyframes",
+        raw: "-webkit-keyframes",
+        span: Span(
+          start: 1837,
+          end: 1854,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "hover",
+        raw: "hover",
+        span: Span(
+          start: 1855,
+          end: 1860,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1884,
+          end: 1888,
+        ),
+      )),
+      span: Span(
+        start: 1836,
+        end: 1888,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "bg",
+                      raw: "bg",
+                      span: Span(
+                        start: 1890,
+                        end: 1892,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1889,
+                      end: 1892,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1889,
+                  end: 1892,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1889,
+              end: 1892,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1889,
+          end: 1892,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background-image",
+              raw: "background-image",
+              span: Span(
+                start: 1897,
+                end: 1913,
+              ),
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "linear-gradient",
+                  raw: "linear-gradient",
+                  span: Span(
+                    start: 1915,
+                    end: 1930,
+                  ),
+                ),
+                args: [
+                  HexColor(
+                    type: "HexColor",
+                    value: "333",
+                    raw: "333",
+                    span: Span(
+                      start: 1931,
+                      end: 1935,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 1949,
+                      end: 1950,
+                    ),
+                  ),
+                  HexColor(
+                    type: "HexColor",
+                    value: "111",
+                    raw: "111",
+                    span: Span(
+                      start: 1951,
+                      end: 1955,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1915,
+                  end: 1956,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1897,
+              end: 1956,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1893,
+          end: 1959,
+        ),
+      ),
+      span: Span(
+        start: 1889,
+        end: 1959,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "planadvisor",
+                      raw: "planadvisor",
+                      span: Span(
+                        start: 1961,
+                        end: 1972,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1960,
+                      end: 1972,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1960,
+                  end: 1972,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1960,
+              end: 1972,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "first",
+                      raw: "first",
+                      span: Span(
+                        start: 1998,
+                        end: 2003,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1997,
+                      end: 2003,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1997,
+                  end: 2003,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1997,
+              end: 2003,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "planning",
+                      raw: "planning",
+                      span: Span(
+                        start: 2027,
+                        end: 2035,
+                      ),
+                    ),
+                    span: Span(
+                      start: 2026,
+                      end: 2035,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2026,
+                  end: 2035,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 2026,
+              end: 2035,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1960,
+          end: 2035,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 2042,
+                end: 2048,
+              ),
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 10.0,
+                  raw: "10",
+                  span: Span(
+                    start: 2049,
+                    end: 2051,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 2051,
+                    end: 2053,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 2049,
+                  end: 2053,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 2042,
+              end: 2053,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "total-width",
+              raw: "total-width",
+              span: Span(
+                start: 2059,
+                end: 2070,
+              ),
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "total-width",
+                  raw: "total-width",
+                  span: Span(
+                    start: 2073,
+                    end: 2084,
+                  ),
+                ),
+                span: Span(
+                  start: 2072,
+                  end: 2084,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 2059,
+              end: 2084,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2036,
+          end: 2087,
+        ),
+      ),
+      span: Span(
+        start: 1960,
+        end: 2087,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "base",
+          raw: "base",
+          span: Span(
+            start: 2089,
+            end: 2093,
+          ),
+        ),
+        span: Span(
+          start: 2088,
+          end: 2093,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Number(
+            type: "Number",
+            value: 1.0,
+            raw: "1",
+            span: Span(
+              start: 2120,
+              end: 2121,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2120,
+          end: 2121,
+        ),
+      ),
+      span: Span(
+        start: 2088,
+        end: 2121,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "column-width",
+          raw: "column-width",
+          span: Span(
+            start: 2124,
+            end: 2136,
+          ),
+        ),
+        span: Span(
+          start: 2123,
+          end: 2136,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          LessOperation(
+            type: "LessOperation",
+            left: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "base",
+                raw: "base",
+                span: Span(
+                  start: 2156,
+                  end: 2160,
+                ),
+              ),
+              span: Span(
+                start: 2155,
+                end: 2160,
+              ),
+            ),
+            op: LessOperationOperator(
+              type: "LessOperationOperator",
+              kind: Multiply,
+              span: Span(
+                start: 2161,
+                end: 2162,
+              ),
+            ),
+            right: Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 6.0,
+                raw: "6",
+                span: Span(
+                  start: 2163,
+                  end: 2164,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "em",
+                raw: "em",
+                span: Span(
+                  start: 2164,
+                  end: 2166,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 2163,
+                end: 2166,
+              ),
+            ),
+            span: Span(
+              start: 2155,
+              end: 2166,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2155,
+          end: 2166,
+        ),
+      ),
+      span: Span(
+        start: 2123,
+        end: 2166,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "gutter-width",
+          raw: "gutter-width",
+          span: Span(
+            start: 2223,
+            end: 2235,
+          ),
+        ),
+        span: Span(
+          start: 2222,
+          end: 2235,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Dimension(
+            type: "Dimension",
+            value: Number(
+              type: "Number",
+              value: 2.0,
+              raw: "2",
+              span: Span(
+                start: 2254,
+                end: 2255,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "em",
+              raw: "em",
+              span: Span(
+                start: 2255,
+                end: 2257,
+              ),
+            ),
+            kind: Length,
+            span: Span(
+              start: 2254,
+              end: 2257,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2254,
+          end: 2257,
+        ),
+      ),
+      span: Span(
+        start: 2222,
+        end: 2257,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "columns",
+          raw: "columns",
+          span: Span(
+            start: 2322,
+            end: 2329,
+          ),
+        ),
+        span: Span(
+          start: 2321,
+          end: 2329,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          Number(
+            type: "Number",
+            value: 12.0,
+            raw: "12",
+            span: Span(
+              start: 2353,
+              end: 2355,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2353,
+          end: 2355,
+        ),
+      ),
+      span: Span(
+        start: 2321,
+        end: 2355,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "gridsystem-width",
+          raw: "gridsystem-width",
+          span: Span(
+            start: 2421,
+            end: 2437,
+          ),
+        ),
+        span: Span(
+          start: 2420,
+          end: 2437,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          LessOperation(
+            type: "LessOperation",
+            left: LessOperation(
+              type: "LessOperation",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "column-width",
+                  raw: "column-width",
+                  span: Span(
+                    start: 2454,
+                    end: 2466,
+                  ),
+                ),
+                span: Span(
+                  start: 2453,
+                  end: 2466,
+                ),
+              ),
+              op: LessOperationOperator(
+                type: "LessOperationOperator",
+                kind: Multiply,
+                span: Span(
+                  start: 2467,
+                  end: 2468,
+                ),
+              ),
+              right: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "columns",
+                  raw: "columns",
+                  span: Span(
+                    start: 2556,
+                    end: 2563,
+                  ),
+                ),
+                span: Span(
+                  start: 2555,
+                  end: 2563,
+                ),
+              ),
+              span: Span(
+                start: 2453,
+                end: 2563,
+              ),
+            ),
+            op: LessOperationOperator(
+              type: "LessOperationOperator",
+              kind: Plus,
+              span: Span(
+                start: 2565,
+                end: 2566,
+              ),
+            ),
+            right: LessOperation(
+              type: "LessOperation",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "gutter-width",
+                  raw: "gutter-width",
+                  span: Span(
+                    start: 2659,
+                    end: 2671,
+                  ),
+                ),
+                span: Span(
+                  start: 2658,
+                  end: 2671,
+                ),
+              ),
+              op: LessOperationOperator(
+                type: "LessOperationOperator",
+                kind: Multiply,
+                span: Span(
+                  start: 2672,
+                  end: 2673,
+                ),
+              ),
+              right: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "columns",
+                  raw: "columns",
+                  span: Span(
+                    start: 2762,
+                    end: 2769,
+                  ),
+                ),
+                span: Span(
+                  start: 2761,
+                  end: 2769,
+                ),
+              ),
+              span: Span(
+                start: 2658,
+                end: 2769,
+              ),
+            ),
+            span: Span(
+              start: 2453,
+              end: 2769,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2453,
+          end: 2769,
+        ),
+      ),
+      span: Span(
+        start: 2420,
+        end: 2769,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "total-width",
+          raw: "total-width",
+          span: Span(
+            start: 2829,
+            end: 2840,
+          ),
+        ),
+        span: Span(
+          start: 2828,
+          end: 2840,
+        ),
+      ),
+      value: ComponentValues(
+        type: "ComponentValues",
+        values: [
+          LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "gridsystem-width",
+              raw: "gridsystem-width",
+              span: Span(
+                start: 2861,
+                end: 2877,
+              ),
+            ),
+            span: Span(
+              start: 2860,
+              end: 2877,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2860,
+          end: 2877,
+        ),
+      ),
+      span: Span(
+        start: 2828,
+        end: 2877,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "some-inline-comments",
+                      raw: "some-inline-comments",
+                      span: Span(
+                        start: 3011,
+                        end: 3031,
+                      ),
+                    ),
+                    span: Span(
+                      start: 3010,
+                      end: 3031,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 3010,
+                  end: 3031,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 3010,
+              end: 3031,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3010,
+          end: 3031,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 3038,
+                end: 3039,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "yes",
+                raw: "yes",
+                span: Span(
+                  start: 3041,
+                  end: 3044,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 3038,
+              end: 3044,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 3064,
+                end: 3065,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 3067,
+                  end: 3070,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 3064,
+              end: 3070,
+            ),
+          ),
+          LessVariableDeclaration(
+            type: "LessVariableDeclaration",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "c",
+                raw: "c",
+                span: Span(
+                  start: 3090,
+                  end: 3091,
+                ),
+              ),
+              span: Span(
+                start: 3089,
+                end: 3091,
+              ),
+            ),
+            value: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "yes",
+                  raw: "yes",
+                  span: Span(
+                    start: 3093,
+                    end: 3096,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 3093,
+                end: 3096,
+              ),
+            ),
+            span: Span(
+              start: 3089,
+              end: 3096,
+            ),
+          ),
+          LessVariableDeclaration(
+            type: "LessVariableDeclaration",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "d",
+                raw: "d",
+                span: Span(
+                  start: 3116,
+                  end: 3117,
+                ),
+              ),
+              span: Span(
+                start: 3115,
+                end: 3117,
+              ),
+            ),
+            value: ComponentValues(
+              type: "ComponentValues",
+              values: [
+                Ident(
+                  type: "Ident",
+                  name: "red",
+                  raw: "red",
+                  span: Span(
+                    start: 3119,
+                    end: 3122,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 3119,
+                end: 3122,
+              ),
+            ),
+            span: Span(
+              start: 3115,
+              end: 3122,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 3142,
+                end: 3143,
+              ),
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 3146,
+                    end: 3147,
+                  ),
+                ),
+                span: Span(
+                  start: 3145,
+                  end: 3147,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 3142,
+              end: 3147,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "d",
+              raw: "d",
+              span: Span(
+                start: 3153,
+                end: 3154,
+              ),
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 3157,
+                    end: 3158,
+                  ),
+                ),
+                span: Span(
+                  start: 3156,
+                  end: 3158,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 3153,
+              end: 3158,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3032,
+          end: 3161,
+        ),
+      ),
+      span: Span(
+        start: 3010,
+        end: 3161,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 3162,
+  ),
+)

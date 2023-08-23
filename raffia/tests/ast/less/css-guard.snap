@@ -1,0 +1,702 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    LessConditionalQualifiedRule(
+      type: "LessConditionalQualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "light",
+                      raw: "light",
+                      span: Span(
+                        start: 1,
+                        end: 6,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 6,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 6,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 6,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 6,
+        ),
+      ),
+      guard: LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "lightness",
+                  raw: "lightness",
+                  span: Span(
+                    start: 13,
+                    end: 22,
+                  ),
+                ),
+                args: [
+                  LessVariable(
+                    type: "LessVariable",
+                    name: Ident(
+                      type: "Ident",
+                      name: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 24,
+                        end: 25,
+                      ),
+                    ),
+                    span: Span(
+                      start: 23,
+                      end: 25,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 13,
+                  end: 26,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: GreaterThan,
+                span: Span(
+                  start: 27,
+                  end: 28,
+                ),
+              ),
+              right: Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 29,
+                    end: 31,
+                  ),
+                ),
+                span: Span(
+                  start: 29,
+                  end: 32,
+                ),
+              ),
+              span: Span(
+                start: 13,
+                end: 32,
+              ),
+            ),
+            span: Span(
+              start: 12,
+              end: 33,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 12,
+          end: 33,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 38,
+                end: 43,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 45,
+                  end: 50,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 38,
+              end: 50,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 34,
+          end: 53,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 53,
+      ),
+    ),
+    LessConditionalQualifiedRule(
+      type: "LessConditionalQualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "dark",
+                      raw: "dark",
+                      span: Span(
+                        start: 55,
+                        end: 59,
+                      ),
+                    ),
+                    span: Span(
+                      start: 54,
+                      end: 59,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 54,
+                  end: 59,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 54,
+              end: 59,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 54,
+          end: 59,
+        ),
+      ),
+      guard: LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "lightness",
+                  raw: "lightness",
+                  span: Span(
+                    start: 66,
+                    end: 75,
+                  ),
+                ),
+                args: [
+                  LessVariable(
+                    type: "LessVariable",
+                    name: Ident(
+                      type: "Ident",
+                      name: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 77,
+                        end: 78,
+                      ),
+                    ),
+                    span: Span(
+                      start: 76,
+                      end: 78,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 66,
+                  end: 79,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: LessThan,
+                span: Span(
+                  start: 80,
+                  end: 81,
+                ),
+              ),
+              right: Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 82,
+                    end: 84,
+                  ),
+                ),
+                span: Span(
+                  start: 82,
+                  end: 85,
+                ),
+              ),
+              span: Span(
+                start: 66,
+                end: 85,
+              ),
+            ),
+            span: Span(
+              start: 65,
+              end: 86,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 65,
+          end: 86,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 91,
+                end: 96,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "orange",
+                raw: "orange",
+                span: Span(
+                  start: 98,
+                  end: 104,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 91,
+              end: 104,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 87,
+          end: 107,
+        ),
+      ),
+      span: Span(
+        start: 54,
+        end: 107,
+      ),
+    ),
+    LessConditionalQualifiedRule(
+      type: "LessConditionalQualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "multiple-conditions-1",
+                      raw: "multiple-conditions-1",
+                      span: Span(
+                        start: 109,
+                        end: 130,
+                      ),
+                    ),
+                    span: Span(
+                      start: 108,
+                      end: 130,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 108,
+                  end: 130,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 108,
+              end: 130,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 108,
+          end: 130,
+        ),
+      ),
+      guard: LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 138,
+                    end: 139,
+                  ),
+                ),
+                span: Span(
+                  start: 137,
+                  end: 139,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: Equal,
+                span: Span(
+                  start: 140,
+                  end: 141,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 142,
+                  end: 143,
+                ),
+              ),
+              span: Span(
+                start: 137,
+                end: 143,
+              ),
+            ),
+            span: Span(
+              start: 136,
+              end: 144,
+            ),
+          ),
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 148,
+                    end: 149,
+                  ),
+                ),
+                span: Span(
+                  start: 147,
+                  end: 149,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: Equal,
+                span: Span(
+                  start: 150,
+                  end: 151,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 152,
+                  end: 153,
+                ),
+              ),
+              span: Span(
+                start: 147,
+                end: 153,
+              ),
+            ),
+            span: Span(
+              start: 146,
+              end: 154,
+            ),
+          ),
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "d",
+                  raw: "d",
+                  span: Span(
+                    start: 158,
+                    end: 159,
+                  ),
+                ),
+                span: Span(
+                  start: 157,
+                  end: 159,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: Equal,
+                span: Span(
+                  start: 160,
+                  end: 161,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 3.0,
+                raw: "3",
+                span: Span(
+                  start: 162,
+                  end: 163,
+                ),
+              ),
+              span: Span(
+                start: 157,
+                end: 163,
+              ),
+            ),
+            span: Span(
+              start: 156,
+              end: 164,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 136,
+          end: 164,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 169,
+                end: 174,
+              ),
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 176,
+                  end: 179,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 169,
+              end: 179,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 165,
+          end: 182,
+        ),
+      ),
+      span: Span(
+        start: 108,
+        end: 182,
+      ),
+    ),
+    LessConditionalQualifiedRule(
+      type: "LessConditionalQualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "clsWithGuard",
+                      raw: "clsWithGuard",
+                      span: Span(
+                        start: 184,
+                        end: 196,
+                      ),
+                    ),
+                    span: Span(
+                      start: 183,
+                      end: 196,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 183,
+                  end: 196,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 183,
+              end: 196,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 183,
+          end: 196,
+        ),
+      ),
+      guard: LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "colWidth",
+                  raw: "colWidth",
+                  span: Span(
+                    start: 204,
+                    end: 212,
+                  ),
+                ),
+                span: Span(
+                  start: 203,
+                  end: 212,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: LessThanOrEqual,
+                span: Span(
+                  start: 213,
+                  end: 215,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 216,
+                  end: 217,
+                ),
+              ),
+              span: Span(
+                start: 203,
+                end: 217,
+              ),
+            ),
+            span: Span(
+              start: 202,
+              end: 218,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 202,
+          end: 218,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 219,
+          end: 221,
+        ),
+      ),
+      span: Span(
+        start: 183,
+        end: 221,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 222,
+  ),
+)

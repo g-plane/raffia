@@ -1,0 +1,134 @@
+/******************\
+*                  *
+*  Comment Header  *
+*                  *
+\******************/
+
+/*
+
+    Comment
+
+*/
+
+/*
+ * Comment Test
+ *
+ * - cloudhead (http://cloudhead.net)
+ *
+ */
+
+////////////////
+@var: "content";
+////////////////
+
+/* Colors
+ * ------
+ *   #EDF8FC (background blue)
+ *   #166C89 (darkest blue)
+ *
+ * Text:
+ *   #333 (standard text) // A comment within a comment!
+ *   #1F9EC9 (standard link)
+ *
+ */
+
+/* @group Variables
+------------------- */
+#comments /* boo *//* boo again*/,
+//.commented_out1
+//.commented_out2
+//.commented_out3
+.comments //end of comments1
+//end of comments2
+{
+  /**/ // An empty comment
+  color: red; /* A C-style comment */  /* A C-style comment */
+  background-color: orange; // A little comment
+  font-size: 12px;
+
+  /* lost comment */ content: @var;
+
+  border: 1px solid black;
+
+  // padding & margin //
+  padding: 0; // }{ '"
+  margin: 2em;
+} //
+
+/* commented out
+  #more-comments {
+    color: grey;
+  }
+*/
+
+.selector /* .with */, .lots, /* of */ .comments {
+  color/* survive */ /* me too */: grey, /* blue */ orange;
+  -webkit-border-radius: 2px /* webkit only */;
+  -moz-border-radius: (2px * 4) /* moz only with operation */;
+}
+
+.mixin_def_with_colors(@a: white, // in
+       @b: 1px //put in @b - causes problems! --->
+       ) // the
+       when (@a = white) {
+    .test-rule {
+        color: @b;
+    }
+}
+.mixin_def_with_colors();
+
+// .s when
+//R/2
+
+.sr-only-focusable {
+  clip: auto;
+}
+
+@-webkit-keyframes /* Safari */ hover /* and Chrome */ {
+  0% {
+    color: red;
+  }
+}
+
+#last { color: blue }
+//
+
+/*  *//* { *//*  *//*  *//*  */#div { color:#A33; }/* } */
+
+// line immediately followed
+/*by block */
+@string_w_comment: ~"/* // Not commented out // */";
+#output-block { comment: @string_w_comment; }
+/*comment on last line*/
+
+@media all and/*! */(max-width:1024px) {}
+@-webkit-keyframes hover /* Safari and Chrome */{  }
+.bg {
+  background-image: linear-gradient(#333 /*{comment}*/, #111);
+}
+#planadvisor,
+/*comment*//*comment*/
+.first,/*comment*//*comment*/.planning {
+    margin:10px;
+    total-width: @total-width;
+}
+@base                       :   1;
+@column-width               :   @base * 6em;                //      Width of column             */
+@gutter-width               :   2em;                        //      Width of column spacing     */
+@columns                    :   12;                         //      Number of Columns           */
+@gridsystem-width           :   (@column-width *            //      For calculating the total   */
+                                    @columns) + (               //      width of the content area.  */
+                                    @gutter-width *             //      We strongly recommend you   */
+                                    @columns);                  //      do not change this formula. */
+@total-width                :   @gridsystem-width;          //      set to 100% for fluid grid  */
+
+// .............................................................................
+
+.some-inline-comments {
+    a: yes /* comment */;
+    b: red /* comment */;
+   @c: yes /* comment */;
+   @d: red /* comment */;
+    c: @c;
+    d: @d;
+}

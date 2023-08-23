@@ -1,0 +1,10 @@
+.light when (lightness(@a) > 50%) {
+  color: green;
+}
+.dark when (lightness(@a) < 50%) {
+  color: orange;
+}
+.multiple-conditions-1 when (@b = 1), (@c = 2), (@d = 3) {
+  color: red;
+}
+.clsWithGuard when (@colWidth <= 0) {}
