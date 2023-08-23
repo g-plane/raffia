@@ -474,6 +474,34 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             span,
         }))
     }
+
+    pub(super) fn parse_maybe_hex_color_or_less_mixin_call(
+        &mut self,
+    ) -> PResult<ComponentValue<'s>> {
+        debug_assert_eq!(self.syntax, Syntax::Less);
+
+        match self.try_parse(|parser| {
+            let hex_color = parser.parse();
+            if let TokenWithSpan {
+                token: Token::LParen(..),
+                span,
+            } = peek!(parser)
+            {
+                Err(Error {
+                    kind: ErrorKind::TryParseError,
+                    span: span.clone(),
+                })
+            } else {
+                hex_color
+            }
+        }) {
+            Err(Error {
+                kind: ErrorKind::TryParseError,
+                ..
+            }) => self.parse_less_maybe_mixin_call_or_with_lookups(),
+            hex_color => hex_color,
+        }
+    }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessConditions<'s> {
