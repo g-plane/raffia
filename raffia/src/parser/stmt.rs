@@ -314,7 +314,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 statements.push(Statement::KeyframeBlock(self.parse()?));
                                 is_block_element = true;
                             } else {
-                                statements.push(Statement::LessFunctionCall(self.parse()?));
+                                let fn_call = self.parse::<Function>()?;
+                                is_block_element = fn_call
+                                    .args
+                                    .last()
+                                    .map(ComponentValue::is_less_detached_ruleset)
+                                    .unwrap_or_default();
+                                statements.push(Statement::LessFunctionCall(fn_call));
                             }
                         }
                     }
