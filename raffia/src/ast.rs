@@ -675,7 +675,7 @@ pub struct LessEscapedStr<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessExtend<'s> {
     pub selector: ComplexSelector<'s>,
-    pub all: bool,
+    pub all: Option<Ident<'s>>,
     pub span: Span,
 }
 

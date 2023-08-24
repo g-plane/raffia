@@ -546,7 +546,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
         let mut selector = input.parse::<ComplexSelector>()?;
 
         let span = selector.span.clone();
-        let mut all = false;
+        let mut all = None;
 
         if let [.., complex_child, ComplexSelectorChild::Combinator(Combinator {
             kind: CombinatorKind::Descendant,
@@ -557,14 +557,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
             if let [SimpleSelector::Type(TypeSelector::TagName(TagNameSelector {
                 name:
                     WqName {
-                        name: InterpolableIdent::Literal(Ident { raw: "all", .. }),
+                        name: InterpolableIdent::Literal(token_all @ Ident { raw: "all", .. }),
                         prefix: None,
                         ..
                     },
                 ..
             }))] = &children[..]
             {
-                all = true;
+                all = Some(token_all.clone());
                 selector.span.end = complex_child.span().end;
                 selector.children.truncate(selector.children.len() - 2);
             }
