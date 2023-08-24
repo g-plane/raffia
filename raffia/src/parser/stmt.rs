@@ -296,19 +296,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             }
                         }
                         Syntax::Less => {
-                            if is_top_level {
-                                statements.push(self.parse_less_qualified_rule()?);
+                            if let Ok(stmt) = self.try_parse(Parser::parse_less_qualified_rule) {
+                                statements.push(stmt);
                                 is_block_element = true;
+                            } else if let Ok(decl) = self.try_parse(|parser| {
+                                if is_top_level {
+                                    Err(Error {
+                                        kind: ErrorKind::TryParseError,
+                                        span: bump!(parser).span,
+                                    })
+                                } else {
+                                    parser.parse()
+                                }
+                            }) {
+                                statements.push(Statement::Declaration(decl));
                             } else if self.state.in_keyframes_at_rule {
                                 statements.push(Statement::KeyframeBlock(self.parse()?));
                                 is_block_element = true;
-                            } else if let Ok(stmt) =
-                                self.try_parse(Parser::parse_less_qualified_rule)
-                            {
-                                statements.push(stmt);
-                                is_block_element = true;
-                            } else if let Ok(decl) = self.try_parse(Declaration::parse) {
-                                statements.push(Statement::Declaration(decl));
                             } else {
                                 statements.push(Statement::LessFunctionCall(self.parse()?));
                             }
