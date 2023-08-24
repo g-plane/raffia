@@ -1,0 +1,2780 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "b",
+                      raw: "b",
+                      span: Span(
+                        start: 1,
+                        end: 2,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 2,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 3,
+                        end: 9,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "a",
+                                      raw: "a",
+                                      span: Span(
+                                        start: 11,
+                                        end: 12,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 10,
+                                      end: 12,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 10,
+                                  end: 12,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 10,
+                              end: 12,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 10,
+                            end: 12,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 10,
+                        end: 12,
+                      ),
+                    )),
+                    span: Span(
+                      start: 2,
+                      end: 13,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 13,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 13,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 0,
+          end: 13,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 14,
+          end: 16,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 16,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "c",
+                      raw: "c",
+                      span: Span(
+                        start: 18,
+                        end: 19,
+                      ),
+                    ),
+                    span: Span(
+                      start: 17,
+                      end: 19,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 20,
+                        end: 26,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "b",
+                                      raw: "b",
+                                      span: Span(
+                                        start: 28,
+                                        end: 29,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 27,
+                                      end: 29,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 27,
+                                  end: 29,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 27,
+                              end: 29,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 27,
+                            end: 29,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 27,
+                        end: 29,
+                      ),
+                    )),
+                    span: Span(
+                      start: 19,
+                      end: 30,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 17,
+                  end: 30,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 17,
+              end: 30,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 17,
+          end: 30,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 31,
+          end: 33,
+        ),
+      ),
+      span: Span(
+        start: 17,
+        end: 33,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext1",
+                      raw: "ext1",
+                      span: Span(
+                        start: 36,
+                        end: 40,
+                      ),
+                    ),
+                    span: Span(
+                      start: 35,
+                      end: 40,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 35,
+                  end: 40,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 40,
+                  end: 41,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext2",
+                      raw: "ext2",
+                      span: Span(
+                        start: 42,
+                        end: 46,
+                      ),
+                    ),
+                    span: Span(
+                      start: 41,
+                      end: 46,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 41,
+                  end: 46,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 35,
+              end: 46,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 35,
+          end: 46,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessExtendRule(
+            type: "LessExtendRule",
+            nestingSelector: NestingSelector(
+              type: "NestingSelector",
+              suffix: None,
+              span: Span(
+                start: 51,
+                end: 52,
+              ),
+            ),
+            nameOfExtend: Ident(
+              type: "Ident",
+              name: "extend",
+              raw: "extend",
+              span: Span(
+                start: 53,
+                end: 59,
+              ),
+            ),
+            extend: LessExtendList(
+              type: "LessExtendList",
+              elements: [
+                LessExtend(
+                  type: "LessExtend",
+                  selector: ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          ClassSelector(
+                            type: "ClassSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "foo",
+                              raw: "foo",
+                              span: Span(
+                                start: 61,
+                                end: 64,
+                              ),
+                            ),
+                            span: Span(
+                              start: 60,
+                              end: 64,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 60,
+                          end: 64,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 60,
+                      end: 64,
+                    ),
+                  ),
+                  all: Some(Ident(
+                    type: "Ident",
+                    name: "all",
+                    raw: "all",
+                    span: Span(
+                      start: 65,
+                      end: 68,
+                    ),
+                  )),
+                  span: Span(
+                    start: 60,
+                    end: 68,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 60,
+                end: 68,
+              ),
+            ),
+            span: Span(
+              start: 51,
+              end: 69,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 47,
+          end: 72,
+        ),
+      ),
+      span: Span(
+        start: 35,
+        end: 72,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "fuu",
+                      raw: "fuu",
+                      span: Span(
+                        start: 75,
+                        end: 78,
+                      ),
+                    ),
+                    span: Span(
+                      start: 74,
+                      end: 78,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 79,
+                        end: 85,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext8",
+                                      raw: "ext8",
+                                      span: Span(
+                                        start: 87,
+                                        end: 91,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 86,
+                                      end: 91,
+                                    ),
+                                  ),
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext9",
+                                      raw: "ext9",
+                                      span: Span(
+                                        start: 92,
+                                        end: 96,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 91,
+                                      end: 96,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 86,
+                                  end: 96,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 86,
+                              end: 96,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 97,
+                              end: 100,
+                            ),
+                          )),
+                          span: Span(
+                            start: 86,
+                            end: 100,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 86,
+                        end: 100,
+                      ),
+                    )),
+                    span: Span(
+                      start: 78,
+                      end: 101,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 74,
+                  end: 101,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 74,
+              end: 101,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 74,
+          end: 101,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 102,
+          end: 104,
+        ),
+      ),
+      span: Span(
+        start: 74,
+        end: 104,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "buu",
+                      raw: "buu",
+                      span: Span(
+                        start: 106,
+                        end: 109,
+                      ),
+                    ),
+                    span: Span(
+                      start: 105,
+                      end: 109,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 110,
+                        end: 116,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext8",
+                                      raw: "ext8",
+                                      span: Span(
+                                        start: 118,
+                                        end: 122,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 117,
+                                      end: 122,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 117,
+                                  end: 122,
+                                ),
+                              ),
+                              Combinator(
+                                type: "Combinator",
+                                kind: Descendant,
+                                span: Span(
+                                  start: 122,
+                                  end: 123,
+                                ),
+                              ),
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext9",
+                                      raw: "ext9",
+                                      span: Span(
+                                        start: 124,
+                                        end: 128,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 123,
+                                      end: 128,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 123,
+                                  end: 128,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 117,
+                              end: 128,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 129,
+                              end: 132,
+                            ),
+                          )),
+                          span: Span(
+                            start: 117,
+                            end: 132,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 117,
+                        end: 132,
+                      ),
+                    )),
+                    span: Span(
+                      start: 109,
+                      end: 133,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 105,
+                  end: 133,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 105,
+              end: 133,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 105,
+          end: 133,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 134,
+          end: 136,
+        ),
+      ),
+      span: Span(
+        start: 105,
+        end: 136,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "zap",
+                      raw: "zap",
+                      span: Span(
+                        start: 138,
+                        end: 141,
+                      ),
+                    ),
+                    span: Span(
+                      start: 137,
+                      end: 141,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 142,
+                        end: 148,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext8",
+                                      raw: "ext8",
+                                      span: Span(
+                                        start: 150,
+                                        end: 154,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 149,
+                                      end: 154,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 149,
+                                  end: 154,
+                                ),
+                              ),
+                              Combinator(
+                                type: "Combinator",
+                                kind: NextSibling,
+                                span: Span(
+                                  start: 155,
+                                  end: 156,
+                                ),
+                              ),
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext9",
+                                      raw: "ext9",
+                                      span: Span(
+                                        start: 158,
+                                        end: 162,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 157,
+                                      end: 162,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 157,
+                                  end: 162,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 149,
+                              end: 162,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 163,
+                              end: 166,
+                            ),
+                          )),
+                          span: Span(
+                            start: 149,
+                            end: 166,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 149,
+                        end: 166,
+                      ),
+                    )),
+                    span: Span(
+                      start: 141,
+                      end: 167,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 137,
+                  end: 167,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 137,
+              end: 167,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 137,
+          end: 167,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 168,
+          end: 170,
+        ),
+      ),
+      span: Span(
+        start: 137,
+        end: 170,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "zoo",
+                      raw: "zoo",
+                      span: Span(
+                        start: 172,
+                        end: 175,
+                      ),
+                    ),
+                    span: Span(
+                      start: 171,
+                      end: 175,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 176,
+                        end: 182,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext8",
+                                      raw: "ext8",
+                                      span: Span(
+                                        start: 184,
+                                        end: 188,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 183,
+                                      end: 188,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 183,
+                                  end: 188,
+                                ),
+                              ),
+                              Combinator(
+                                type: "Combinator",
+                                kind: Child,
+                                span: Span(
+                                  start: 189,
+                                  end: 190,
+                                ),
+                              ),
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "ext9",
+                                      raw: "ext9",
+                                      span: Span(
+                                        start: 192,
+                                        end: 196,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 191,
+                                      end: 196,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 191,
+                                  end: 196,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 183,
+                              end: 196,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 197,
+                              end: 200,
+                            ),
+                          )),
+                          span: Span(
+                            start: 183,
+                            end: 200,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 183,
+                        end: 200,
+                      ),
+                    )),
+                    span: Span(
+                      start: 175,
+                      end: 201,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 171,
+                  end: 201,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 171,
+              end: 201,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 171,
+          end: 201,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 202,
+          end: 204,
+        ),
+      ),
+      span: Span(
+        start: 171,
+        end: 204,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "cc",
+                      raw: "cc",
+                      span: Span(
+                        start: 207,
+                        end: 209,
+                      ),
+                    ),
+                    span: Span(
+                      start: 206,
+                      end: 209,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 210,
+                        end: 216,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "aa",
+                                      raw: "aa",
+                                      span: Span(
+                                        start: 218,
+                                        end: 220,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 217,
+                                      end: 220,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 217,
+                                  end: 220,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 217,
+                              end: 220,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 217,
+                            end: 220,
+                          ),
+                        ),
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "bb",
+                                      raw: "bb",
+                                      span: Span(
+                                        start: 222,
+                                        end: 224,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 221,
+                                      end: 224,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 221,
+                                  end: 224,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 221,
+                              end: 224,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 221,
+                            end: 224,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 217,
+                        end: 224,
+                      ),
+                    )),
+                    span: Span(
+                      start: 209,
+                      end: 225,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 206,
+                  end: 225,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 206,
+              end: 225,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 206,
+          end: 225,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 226,
+          end: 228,
+        ),
+      ),
+      span: Span(
+        start: 206,
+        end: 228,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ee",
+                      raw: "ee",
+                      span: Span(
+                        start: 230,
+                        end: 232,
+                      ),
+                    ),
+                    span: Span(
+                      start: 229,
+                      end: 232,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 233,
+                        end: 239,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "dd",
+                                      raw: "dd",
+                                      span: Span(
+                                        start: 241,
+                                        end: 243,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 240,
+                                      end: 243,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 240,
+                                  end: 243,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 240,
+                              end: 243,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 244,
+                              end: 247,
+                            ),
+                          )),
+                          span: Span(
+                            start: 240,
+                            end: 247,
+                          ),
+                        ),
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "bb",
+                                      raw: "bb",
+                                      span: Span(
+                                        start: 249,
+                                        end: 251,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 248,
+                                      end: 251,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 248,
+                                  end: 251,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 248,
+                              end: 251,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 248,
+                            end: 251,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 240,
+                        end: 251,
+                      ),
+                    )),
+                    span: Span(
+                      start: 232,
+                      end: 252,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 229,
+                  end: 252,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 229,
+              end: 252,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 229,
+          end: 252,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 253,
+          end: 255,
+        ),
+      ),
+      span: Span(
+        start: 229,
+        end: 255,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ff",
+                      raw: "ff",
+                      span: Span(
+                        start: 257,
+                        end: 259,
+                      ),
+                    ),
+                    span: Span(
+                      start: 256,
+                      end: 259,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 260,
+                        end: 266,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "dd",
+                                      raw: "dd",
+                                      span: Span(
+                                        start: 268,
+                                        end: 270,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 267,
+                                      end: 270,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 267,
+                                  end: 270,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 267,
+                              end: 270,
+                            ),
+                          ),
+                          all: None,
+                          span: Span(
+                            start: 267,
+                            end: 270,
+                          ),
+                        ),
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "bb",
+                                      raw: "bb",
+                                      span: Span(
+                                        start: 272,
+                                        end: 274,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 271,
+                                      end: 274,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 271,
+                                  end: 274,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 271,
+                              end: 274,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 275,
+                              end: 278,
+                            ),
+                          )),
+                          span: Span(
+                            start: 271,
+                            end: 278,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 267,
+                        end: 278,
+                      ),
+                    )),
+                    span: Span(
+                      start: 259,
+                      end: 279,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 256,
+                  end: 279,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 256,
+              end: 279,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 256,
+          end: 279,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 280,
+          end: 282,
+        ),
+      ),
+      span: Span(
+        start: 256,
+        end: 282,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext1",
+                      raw: "ext1",
+                      span: Span(
+                        start: 285,
+                        end: 289,
+                      ),
+                    ),
+                    span: Span(
+                      start: 284,
+                      end: 289,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 284,
+                  end: 289,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 289,
+                  end: 290,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext2",
+                      raw: "ext2",
+                      span: Span(
+                        start: 291,
+                        end: 295,
+                      ),
+                    ),
+                    span: Span(
+                      start: 290,
+                      end: 295,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 290,
+                  end: 295,
+                ),
+              ),
+              Combinator(
+                type: "Combinator",
+                kind: Descendant,
+                span: Span(
+                  start: 295,
+                  end: 300,
+                ),
+              ),
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 301,
+                        end: 307,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "foo",
+                                      raw: "foo",
+                                      span: Span(
+                                        start: 309,
+                                        end: 312,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 308,
+                                      end: 312,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 308,
+                                  end: 312,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 308,
+                              end: 312,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 313,
+                              end: 316,
+                            ),
+                          )),
+                          span: Span(
+                            start: 308,
+                            end: 316,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 308,
+                        end: 316,
+                      ),
+                    )),
+                    span: Span(
+                      start: 300,
+                      end: 317,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 300,
+                  end: 317,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 284,
+              end: 317,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 284,
+          end: 317,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 318,
+          end: 321,
+        ),
+      ),
+      span: Span(
+        start: 284,
+        end: 321,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext3",
+                      raw: "ext3",
+                      span: Span(
+                        start: 323,
+                        end: 327,
+                      ),
+                    ),
+                    span: Span(
+                      start: 322,
+                      end: 327,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 328,
+                        end: 334,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "foo",
+                                      raw: "foo",
+                                      span: Span(
+                                        start: 336,
+                                        end: 339,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 335,
+                                      end: 339,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 335,
+                                  end: 339,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 335,
+                              end: 339,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 340,
+                              end: 343,
+                            ),
+                          )),
+                          span: Span(
+                            start: 335,
+                            end: 343,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 335,
+                        end: 343,
+                      ),
+                    )),
+                    span: Span(
+                      start: 327,
+                      end: 344,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 322,
+                  end: 344,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 322,
+              end: 344,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "ext4",
+                      raw: "ext4",
+                      span: Span(
+                        start: 347,
+                        end: 351,
+                      ),
+                    ),
+                    span: Span(
+                      start: 346,
+                      end: 351,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 352,
+                        end: 358,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "foo",
+                                      raw: "foo",
+                                      span: Span(
+                                        start: 360,
+                                        end: 363,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 359,
+                                      end: 363,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 359,
+                                  end: 363,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 359,
+                              end: 363,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 364,
+                              end: 367,
+                            ),
+                          )),
+                          span: Span(
+                            start: 359,
+                            end: 367,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 359,
+                        end: 367,
+                      ),
+                    )),
+                    span: Span(
+                      start: 351,
+                      end: 368,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 346,
+                  end: 368,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 346,
+              end: 368,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 322,
+          end: 368,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 369,
+          end: 372,
+        ),
+      ),
+      span: Span(
+        start: 322,
+        end: 372,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "attribute-test",
+                      raw: "attribute-test",
+                      span: Span(
+                        start: 375,
+                        end: 389,
+                      ),
+                    ),
+                    span: Span(
+                      start: 374,
+                      end: 389,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 374,
+                  end: 389,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 374,
+              end: 389,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 374,
+          end: 389,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessExtendRule(
+            type: "LessExtendRule",
+            nestingSelector: NestingSelector(
+              type: "NestingSelector",
+              suffix: None,
+              span: Span(
+                start: 394,
+                end: 395,
+              ),
+            ),
+            nameOfExtend: Ident(
+              type: "Ident",
+              name: "extend",
+              raw: "extend",
+              span: Span(
+                start: 396,
+                end: 402,
+              ),
+            ),
+            extend: LessExtendList(
+              type: "LessExtendList",
+              elements: [
+                LessExtend(
+                  type: "LessExtend",
+                  selector: ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          AttributeSelector(
+                            type: "AttributeSelector",
+                            name: WqName(
+                              type: "WqName",
+                              name: Ident(
+                                type: "Ident",
+                                name: "data",
+                                raw: "data",
+                                span: Span(
+                                  start: 404,
+                                  end: 408,
+                                ),
+                              ),
+                              prefix: None,
+                              span: Span(
+                                start: 404,
+                                end: 408,
+                              ),
+                            ),
+                            matcher: Some(AttributeSelectorMatcher(
+                              type: "AttributeSelectorMatcher",
+                              kind: Exact,
+                              span: Span(
+                                start: 408,
+                                end: 409,
+                              ),
+                            )),
+                            value: Some(Str(
+                              type: "Str",
+                              value: "test",
+                              raw: "\"test\"",
+                              span: Span(
+                                start: 409,
+                                end: 415,
+                              ),
+                            )),
+                            modifier: None,
+                            span: Span(
+                              start: 403,
+                              end: 416,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 403,
+                          end: 416,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 403,
+                      end: 416,
+                    ),
+                  ),
+                  all: Some(Ident(
+                    type: "Ident",
+                    name: "all",
+                    raw: "all",
+                    span: Span(
+                      start: 417,
+                      end: 420,
+                    ),
+                  )),
+                  span: Span(
+                    start: 403,
+                    end: 420,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 403,
+                end: 420,
+              ),
+            ),
+            span: Span(
+              start: 394,
+              end: 421,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 390,
+          end: 424,
+        ),
+      ),
+      span: Span(
+        start: 374,
+        end: 424,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "submit",
+                      raw: "submit",
+                      span: Span(
+                        start: 427,
+                        end: 433,
+                      ),
+                    ),
+                    span: Span(
+                      start: 426,
+                      end: 433,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 426,
+                  end: 433,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 426,
+              end: 433,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 426,
+          end: 433,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        NestingSelector(
+                          type: "NestingSelector",
+                          suffix: None,
+                          span: Span(
+                            start: 438,
+                            end: 439,
+                          ),
+                        ),
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "hover",
+                            raw: "hover",
+                            span: Span(
+                              start: 440,
+                              end: 445,
+                            ),
+                          ),
+                          arg: None,
+                          span: Span(
+                            start: 439,
+                            end: 445,
+                          ),
+                        ),
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "extend",
+                            raw: "extend",
+                            span: Span(
+                              start: 446,
+                              end: 452,
+                            ),
+                          ),
+                          arg: Some(LessExtendList(
+                            type: "LessExtendList",
+                            elements: [
+                              LessExtend(
+                                type: "LessExtend",
+                                selector: ComplexSelector(
+                                  type: "ComplexSelector",
+                                  children: [
+                                    CompoundSelector(
+                                      type: "CompoundSelector",
+                                      children: [
+                                        ClassSelector(
+                                          type: "ClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "button",
+                                            raw: "button",
+                                            span: Span(
+                                              start: 454,
+                                              end: 460,
+                                            ),
+                                          ),
+                                          span: Span(
+                                            start: 453,
+                                            end: 460,
+                                          ),
+                                        ),
+                                        PseudoClassSelector(
+                                          type: "PseudoClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "hover",
+                                            raw: "hover",
+                                            span: Span(
+                                              start: 461,
+                                              end: 466,
+                                            ),
+                                          ),
+                                          arg: None,
+                                          span: Span(
+                                            start: 460,
+                                            end: 466,
+                                          ),
+                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 453,
+                                        end: 466,
+                                      ),
+                                    ),
+                                  ],
+                                  span: Span(
+                                    start: 453,
+                                    end: 466,
+                                  ),
+                                ),
+                                all: None,
+                                span: Span(
+                                  start: 453,
+                                  end: 466,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 453,
+                              end: 466,
+                            ),
+                          )),
+                          span: Span(
+                            start: 445,
+                            end: 467,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 438,
+                        end: 467,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 438,
+                    end: 467,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 438,
+                end: 467,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 468,
+                end: 470,
+              ),
+            ),
+            span: Span(
+              start: 438,
+              end: 470,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 434,
+          end: 472,
+        ),
+      ),
+      span: Span(
+        start: 426,
+        end: 472,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "nomatch",
+                      raw: "nomatch",
+                      span: Span(
+                        start: 474,
+                        end: 481,
+                      ),
+                    ),
+                    span: Span(
+                      start: 473,
+                      end: 481,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 473,
+                  end: 481,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 473,
+              end: 481,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 473,
+          end: 481,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        NestingSelector(
+                          type: "NestingSelector",
+                          suffix: None,
+                          span: Span(
+                            start: 486,
+                            end: 487,
+                          ),
+                        ),
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "hover",
+                            raw: "hover",
+                            span: Span(
+                              start: 488,
+                              end: 493,
+                            ),
+                          ),
+                          arg: None,
+                          span: Span(
+                            start: 487,
+                            end: 493,
+                          ),
+                        ),
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "extend",
+                            raw: "extend",
+                            span: Span(
+                              start: 494,
+                              end: 500,
+                            ),
+                          ),
+                          arg: Some(LessExtendList(
+                            type: "LessExtendList",
+                            elements: [
+                              LessExtend(
+                                type: "LessExtend",
+                                selector: ComplexSelector(
+                                  type: "ComplexSelector",
+                                  children: [
+                                    CompoundSelector(
+                                      type: "CompoundSelector",
+                                      children: [
+                                        ClassSelector(
+                                          type: "ClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "button",
+                                            raw: "button",
+                                            span: Span(
+                                              start: 502,
+                                              end: 508,
+                                            ),
+                                          ),
+                                          span: Span(
+                                            start: 501,
+                                            end: 508,
+                                          ),
+                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 501,
+                                        end: 508,
+                                      ),
+                                    ),
+                                    Combinator(
+                                      type: "Combinator",
+                                      kind: Descendant,
+                                      span: Span(
+                                        start: 508,
+                                        end: 509,
+                                      ),
+                                    ),
+                                    CompoundSelector(
+                                      type: "CompoundSelector",
+                                      children: [
+                                        PseudoClassSelector(
+                                          type: "PseudoClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "hover",
+                                            raw: "hover",
+                                            span: Span(
+                                              start: 510,
+                                              end: 515,
+                                            ),
+                                          ),
+                                          arg: None,
+                                          span: Span(
+                                            start: 509,
+                                            end: 515,
+                                          ),
+                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 509,
+                                        end: 515,
+                                      ),
+                                    ),
+                                  ],
+                                  span: Span(
+                                    start: 501,
+                                    end: 515,
+                                  ),
+                                ),
+                                all: None,
+                                span: Span(
+                                  start: 501,
+                                  end: 515,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 501,
+                              end: 515,
+                            ),
+                          )),
+                          span: Span(
+                            start: 493,
+                            end: 516,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 486,
+                        end: 516,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 486,
+                    end: 516,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 486,
+                end: 516,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 517,
+                end: 519,
+              ),
+            ),
+            span: Span(
+              start: 486,
+              end: 519,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 482,
+          end: 521,
+        ),
+      ),
+      span: Span(
+        start: 473,
+        end: 521,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "i",
+                      raw: "i",
+                      span: Span(
+                        start: 524,
+                        end: 525,
+                      ),
+                    ),
+                    span: Span(
+                      start: 523,
+                      end: 525,
+                    ),
+                  ),
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "j",
+                      raw: "j",
+                      span: Span(
+                        start: 526,
+                        end: 527,
+                      ),
+                    ),
+                    span: Span(
+                      start: 525,
+                      end: 527,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "extend",
+                      raw: "extend",
+                      span: Span(
+                        start: 528,
+                        end: 534,
+                      ),
+                    ),
+                    arg: Some(LessExtendList(
+                      type: "LessExtendList",
+                      elements: [
+                        LessExtend(
+                          type: "LessExtend",
+                          selector: ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "g",
+                                      raw: "g",
+                                      span: Span(
+                                        start: 536,
+                                        end: 537,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 535,
+                                      end: 537,
+                                    ),
+                                  ),
+                                ],
+                                span: Span(
+                                  start: 535,
+                                  end: 537,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 535,
+                              end: 537,
+                            ),
+                          ),
+                          all: Some(Ident(
+                            type: "Ident",
+                            name: "all",
+                            raw: "all",
+                            span: Span(
+                              start: 538,
+                              end: 541,
+                            ),
+                          )),
+                          span: Span(
+                            start: 535,
+                            end: 541,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 535,
+                        end: 541,
+                      ),
+                    )),
+                    span: Span(
+                      start: 527,
+                      end: 542,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 523,
+                  end: 542,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 523,
+              end: 542,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 523,
+          end: 542,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 543,
+          end: 545,
+        ),
+      ),
+      span: Span(
+        start: 523,
+        end: 545,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 546,
+  ),
+)

@@ -1,0 +1,35 @@
+.b:extend(.a) {}
+.c:extend(.b) {}
+
+.ext1 .ext2 {
+  &:extend(.foo all);
+}
+
+.fuu:extend(.ext8.ext9 all) {}
+.buu:extend(.ext8 .ext9 all) {}
+.zap:extend(.ext8 + .ext9 all) {}
+.zoo:extend(.ext8 > .ext9 all) {}
+
+.cc:extend(.aa,.bb) {}
+.ee:extend(.dd all,.bb) {}
+.ff:extend(.dd,.bb all) {}
+
+.ext1 .ext2
+    :extend(.foo all) {
+}
+.ext3:extend(.foo all),
+.ext4:extend(.foo all) {
+}
+
+.attribute-test {
+  &:extend([data="test"] all);
+}
+
+.submit {
+  &:hover:extend(.button:hover) {}
+}
+.nomatch {
+  &:hover:extend(.button :hover) {}
+}
+
+.i.j:extend(.g all) {}

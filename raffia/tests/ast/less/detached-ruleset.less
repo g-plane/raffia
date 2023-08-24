@@ -1,0 +1,35 @@
+@ruleset: {
+  color: black;
+  background: white;
+}
+
+.wrap-mixin({
+  color: black;
+  one: @a;
+  four: @d;
+});
+
+.wrap-mixin(@ruleset: {
+  color: red;
+});
+
+.wrap-mixin({
+  test: extra-wrap;
+  .wrap-mixin-calls-wrap({
+    test: wrapped-twice;
+  });
+});
+
+.wrap-media-mixin({
+  @media (tv) {
+    .triple-wrapped-mq {
+      triple: true;
+    }
+  }
+});
+
+.mixin-definition({direct: works;}; @b: {named: works;});
+
+each(@selectors, {
+  .sel-@{value} {}
+});

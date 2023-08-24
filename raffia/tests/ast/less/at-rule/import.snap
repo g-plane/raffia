@@ -1,0 +1,624 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 1,
+          end: 7,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 8,
+              end: 11,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "import/import-test-c.less",
+            raw: "\"import/import-test-c.less\"",
+            span: Span(
+              start: 12,
+              end: 39,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 8,
+            end: 40,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: None,
+        span: Span(
+          start: 8,
+          end: 40,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 40,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 43,
+          end: 49,
+        ),
+      ),
+      prelude: Some(LessImportPrelude(
+        type: "LessImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 59,
+              end: 62,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "import/import-test-d.css",
+            raw: "\"import/import-test-d.css\"",
+            span: Span(
+              start: 63,
+              end: 89,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 59,
+            end: 90,
+          ),
+        ),
+        options: LessImportOptions(
+          type: "LessImportOptions",
+          names: [
+            Ident(
+              type: "Ident",
+              name: "inline",
+              raw: "inline",
+              span: Span(
+                start: 51,
+                end: 57,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 50,
+            end: 58,
+          ),
+        ),
+        media: Some(MediaQueryList(
+          type: "MediaQueryList",
+          queries: [
+            MediaCondition(
+              type: "MediaCondition",
+              conditions: [
+                MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
+                  name: Ident(
+                    type: "Ident",
+                    name: "min-width",
+                    raw: "min-width",
+                    span: Span(
+                      start: 92,
+                      end: 101,
+                    ),
+                  ),
+                  value: Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 600.0,
+                      raw: "600",
+                      span: Span(
+                        start: 102,
+                        end: 105,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 105,
+                        end: 107,
+                      ),
+                    ),
+                    kind: Length,
+                    span: Span(
+                      start: 102,
+                      end: 107,
+                    ),
+                  ),
+                  span: Span(
+                    start: 92,
+                    end: 107,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 92,
+                end: 107,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 92,
+            end: 107,
+          ),
+        )),
+        span: Span(
+          start: 50,
+          end: 107,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 42,
+        end: 107,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 111,
+          end: 117,
+        ),
+      ),
+      prelude: Some(LessImportPrelude(
+        type: "LessImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 132,
+              end: 135,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "import/invalid-css.less",
+            raw: "\"import/invalid-css.less\"",
+            span: Span(
+              start: 136,
+              end: 161,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 132,
+            end: 162,
+          ),
+        ),
+        options: LessImportOptions(
+          type: "LessImportOptions",
+          names: [
+            Ident(
+              type: "Ident",
+              name: "inline",
+              raw: "inline",
+              span: Span(
+                start: 119,
+                end: 125,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "css",
+              raw: "css",
+              span: Span(
+                start: 127,
+                end: 130,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 118,
+            end: 131,
+          ),
+        ),
+        media: None,
+        span: Span(
+          start: 118,
+          end: 162,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 110,
+        end: 162,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 165,
+          end: 171,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: LessInterpolatedStr(
+          type: "LessInterpolatedStr",
+          elements: [
+            InterpolableStrStaticPart(
+              type: "InterpolableStrStaticPart",
+              value: "import/import-",
+              raw: "\"import/import-",
+              span: Span(
+                start: 172,
+                end: 187,
+              ),
+            ),
+            LessVariableInterpolation(
+              type: "LessVariableInterpolation",
+              name: Ident(
+                type: "Ident",
+                name: "in",
+                raw: "in",
+                span: Span(
+                  start: 189,
+                  end: 191,
+                ),
+              ),
+              span: Span(
+                start: 187,
+                end: 192,
+              ),
+            ),
+            InterpolableStrStaticPart(
+              type: "InterpolableStrStaticPart",
+              value: "",
+              raw: "",
+              span: Span(
+                start: 192,
+                end: 192,
+              ),
+            ),
+            LessVariableInterpolation(
+              type: "LessVariableInterpolation",
+              name: Ident(
+                type: "Ident",
+                name: "terpolation",
+                raw: "terpolation",
+                span: Span(
+                  start: 194,
+                  end: 205,
+                ),
+              ),
+              span: Span(
+                start: 192,
+                end: 206,
+              ),
+            ),
+            InterpolableStrStaticPart(
+              type: "InterpolableStrStaticPart",
+              value: ".less",
+              raw: ".less\"",
+              span: Span(
+                start: 206,
+                end: 212,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 172,
+            end: 212,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: None,
+        span: Span(
+          start: 172,
+          end: 212,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 164,
+        end: 212,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 215,
+          end: 221,
+        ),
+      ),
+      prelude: Some(LessImportPrelude(
+        type: "LessImportPrelude",
+        href: Str(
+          type: "Str",
+          value: "import/import-test-f.less",
+          raw: "\"import/import-test-f.less\"",
+          span: Span(
+            start: 233,
+            end: 260,
+          ),
+        ),
+        options: LessImportOptions(
+          type: "LessImportOptions",
+          names: [
+            Ident(
+              type: "Ident",
+              name: "multiple",
+              raw: "multiple",
+              span: Span(
+                start: 223,
+                end: 231,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 222,
+            end: 232,
+          ),
+        ),
+        media: None,
+        span: Span(
+          start: 222,
+          end: 260,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 214,
+        end: 260,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 263,
+          end: 269,
+        ),
+      ),
+      prelude: Some(LessImportPrelude(
+        type: "LessImportPrelude",
+        href: Str(
+          type: "Str",
+          value: "file-does-not-exist.does-not-exist",
+          raw: "\"file-does-not-exist.does-not-exist\"",
+          span: Span(
+            start: 281,
+            end: 317,
+          ),
+        ),
+        options: LessImportOptions(
+          type: "LessImportOptions",
+          names: [
+            Ident(
+              type: "Ident",
+              name: "optional",
+              raw: "optional",
+              span: Span(
+                start: 271,
+                end: 279,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 270,
+            end: 280,
+          ),
+        ),
+        media: None,
+        span: Span(
+          start: 270,
+          end: 317,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 262,
+        end: 317,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 320,
+          end: 326,
+        ),
+      ),
+      prelude: Some(LessImportPrelude(
+        type: "LessImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 344,
+              end: 347,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "import/import-test-d.css",
+            raw: "\"import/import-test-d.css\"",
+            span: Span(
+              start: 348,
+              end: 374,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 344,
+            end: 375,
+          ),
+        ),
+        options: LessImportOptions(
+          type: "LessImportOptions",
+          names: [
+            Ident(
+              type: "Ident",
+              name: "less",
+              raw: "less",
+              span: Span(
+                start: 328,
+                end: 332,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "multiple",
+              raw: "multiple",
+              span: Span(
+                start: 334,
+                end: 342,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 327,
+            end: 343,
+          ),
+        ),
+        media: Some(MediaQueryList(
+          type: "MediaQueryList",
+          queries: [
+            MediaQueryWithType(
+              type: "MediaQueryWithType",
+              modifier: None,
+              mediaType: Ident(
+                type: "Ident",
+                name: "screen",
+                raw: "screen",
+                span: Span(
+                  start: 376,
+                  end: 382,
+                ),
+              ),
+              condition: Some(MediaCondition(
+                type: "MediaCondition",
+                conditions: [
+                  MediaFeaturePlain(
+                    type: "MediaFeaturePlain",
+                    name: Ident(
+                      type: "Ident",
+                      name: "max-width",
+                      raw: "max-width",
+                      span: Span(
+                        start: 388,
+                        end: 397,
+                      ),
+                    ),
+                    value: Dimension(
+                      type: "Dimension",
+                      value: Number(
+                        type: "Number",
+                        value: 603.0,
+                        raw: "603",
+                        span: Span(
+                          start: 399,
+                          end: 402,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 402,
+                          end: 404,
+                        ),
+                      ),
+                      kind: Length,
+                      span: Span(
+                        start: 399,
+                        end: 404,
+                      ),
+                    ),
+                    span: Span(
+                      start: 388,
+                      end: 404,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 388,
+                  end: 404,
+                ),
+              )),
+              span: Span(
+                start: 376,
+                end: 404,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 376,
+            end: 404,
+          ),
+        )),
+        span: Span(
+          start: 327,
+          end: 404,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 319,
+        end: 404,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 407,
+  ),
+)
