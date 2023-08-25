@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `(`, but found `<ident>`
+  ┌─ malformed.less:1:9
+  │
+1 │ @import malformed "this-statement-is-invalid.less";
+  │         ^^^^^^^^^
+
+

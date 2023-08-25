@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but found `<ident>`
+  ┌─ unsupported-1.less:1:13
+  │
+1 │ @media @all and @tv {}
+  │             ^^^
+
+

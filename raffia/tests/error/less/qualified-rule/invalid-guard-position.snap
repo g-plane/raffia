@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but found `<ident>`
+  ┌─ invalid-guard-position.less:1:4
+  │
+1 │ .a when (@ie8 = true),
+  │    ^^^^
+
+

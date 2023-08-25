@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: component value is expected
+  ┌─ bad-string.css:2:12
+  │
+2 │   content: "
+  │            ^
+
+

@@ -1,0 +1,181 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "unknown",
+        raw: "unknown",
+        span: Span(
+          start: 1,
+          end: 8,
+        ),
+      ),
+      prelude: Some(TokenSeq(
+        type: "TokenSeq",
+        tokens: [
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Ident(Ident(
+              kind: "Ident",
+              escaped: false,
+              raw: "url",
+            )),
+            span: Span(
+              start: 9,
+              end: 12,
+            ),
+          ),
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: LParen(LParen(
+              kind: "LParen",
+            )),
+            span: Span(
+              start: 12,
+              end: 13,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 9,
+          end: 13,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "a",
+                              raw: "a",
+                              span: Span(
+                                start: 18,
+                                end: 19,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 18,
+                              end: 19,
+                            ),
+                          ),
+                          span: Span(
+                            start: 18,
+                            end: 19,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 18,
+                        end: 19,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 18,
+                    end: 19,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 18,
+                end: 19,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "width",
+                    raw: "width",
+                    span: Span(
+                      start: 21,
+                      end: 26,
+                    ),
+                  ),
+                  value: [
+                    Dimension(
+                      type: "Dimension",
+                      value: Number(
+                        type: "Number",
+                        value: 20.0,
+                        raw: "20",
+                        span: Span(
+                          start: 28,
+                          end: 30,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 30,
+                          end: 32,
+                        ),
+                      ),
+                      kind: Length,
+                      span: Span(
+                        start: 28,
+                        end: 32,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 21,
+                    end: 32,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 20,
+                end: 34,
+              ),
+            ),
+            span: Span(
+              start: 18,
+              end: 34,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 14,
+          end: 36,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 36,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 37,
+  ),
+)

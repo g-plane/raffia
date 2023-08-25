@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `{`, but found `(`
+  ┌─ unmatched-parens-2.css:1:8
+  │
+1 │ @media (missing: bracket {
+  │        ^
+
+
