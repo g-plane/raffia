@@ -2295,8 +2295,8 @@ Stylesheet(
                         ),
                       ),
                       value: [
-                        LessOperation(
-                          type: "LessOperation",
+                        LessBinaryOperation(
+                          type: "LessBinaryOperation",
                           left: LessVariable(
                             type: "LessVariable",
                             name: Ident(

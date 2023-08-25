@@ -637,54 +637,61 @@ Stylesheet(
               ),
             ),
             value: [
-              LessOperation(
-                type: "LessOperation",
-                left: Dimension(
-                  type: "Dimension",
-                  value: Number(
-                    type: "Number",
-                    value: 2.0,
-                    raw: "2",
+              LessParenthesizedOperation(
+                type: "LessParenthesizedOperation",
+                operation: LessBinaryOperation(
+                  type: "LessBinaryOperation",
+                  left: Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 1149,
+                        end: 1150,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 1150,
+                        end: 1152,
+                      ),
+                    ),
+                    kind: Length,
                     span: Span(
                       start: 1149,
-                      end: 1150,
-                    ),
-                  ),
-                  unit: Ident(
-                    type: "Ident",
-                    name: "px",
-                    raw: "px",
-                    span: Span(
-                      start: 1150,
                       end: 1152,
                     ),
                   ),
-                  kind: Length,
+                  op: LessOperationOperator(
+                    type: "LessOperationOperator",
+                    kind: Multiply,
+                    span: Span(
+                      start: 1153,
+                      end: 1154,
+                    ),
+                  ),
+                  right: Number(
+                    type: "Number",
+                    value: 4.0,
+                    raw: "4",
+                    span: Span(
+                      start: 1155,
+                      end: 1156,
+                    ),
+                  ),
                   span: Span(
                     start: 1149,
-                    end: 1152,
-                  ),
-                ),
-                op: LessOperationOperator(
-                  type: "LessOperationOperator",
-                  kind: Multiply,
-                  span: Span(
-                    start: 1153,
-                    end: 1154,
-                  ),
-                ),
-                right: Number(
-                  type: "Number",
-                  value: 4.0,
-                  raw: "4",
-                  span: Span(
-                    start: 1155,
                     end: 1156,
                   ),
                 ),
                 span: Span(
-                  start: 1149,
-                  end: 1156,
+                  start: 1148,
+                  end: 1157,
                 ),
               ),
             ],
@@ -692,7 +699,7 @@ Stylesheet(
             lessPropertyMerge: None,
             span: Span(
               start: 1128,
-              end: 1156,
+              end: 1157,
             ),
           ),
         ],
@@ -2046,8 +2053,8 @@ Stylesheet(
       value: ComponentValues(
         type: "ComponentValues",
         values: [
-          LessOperation(
-            type: "LessOperation",
+          LessBinaryOperation(
+            type: "LessBinaryOperation",
             left: LessVariable(
               type: "LessVariable",
               name: Ident(
@@ -2234,53 +2241,60 @@ Stylesheet(
       value: ComponentValues(
         type: "ComponentValues",
         values: [
-          LessOperation(
-            type: "LessOperation",
-            left: LessOperation(
-              type: "LessOperation",
-              left: LessVariable(
-                type: "LessVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "column-width",
-                  raw: "column-width",
+          LessBinaryOperation(
+            type: "LessBinaryOperation",
+            left: LessParenthesizedOperation(
+              type: "LessParenthesizedOperation",
+              operation: LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "column-width",
+                    raw: "column-width",
+                    span: Span(
+                      start: 2454,
+                      end: 2466,
+                    ),
+                  ),
                   span: Span(
-                    start: 2454,
+                    start: 2453,
                     end: 2466,
                   ),
                 ),
-                span: Span(
-                  start: 2453,
-                  end: 2466,
-                ),
-              ),
-              op: LessOperationOperator(
-                type: "LessOperationOperator",
-                kind: Multiply,
-                span: Span(
-                  start: 2467,
-                  end: 2468,
-                ),
-              ),
-              right: LessVariable(
-                type: "LessVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "columns",
-                  raw: "columns",
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Multiply,
                   span: Span(
-                    start: 2556,
+                    start: 2467,
+                    end: 2468,
+                  ),
+                ),
+                right: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "columns",
+                    raw: "columns",
+                    span: Span(
+                      start: 2556,
+                      end: 2563,
+                    ),
+                  ),
+                  span: Span(
+                    start: 2555,
                     end: 2563,
                   ),
                 ),
                 span: Span(
-                  start: 2555,
+                  start: 2453,
                   end: 2563,
                 ),
               ),
               span: Span(
-                start: 2453,
-                end: 2563,
+                start: 2452,
+                end: 2564,
               ),
             ),
             op: LessOperationOperator(
@@ -2291,67 +2305,74 @@ Stylesheet(
                 end: 2566,
               ),
             ),
-            right: LessOperation(
-              type: "LessOperation",
-              left: LessVariable(
-                type: "LessVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "gutter-width",
-                  raw: "gutter-width",
+            right: LessParenthesizedOperation(
+              type: "LessParenthesizedOperation",
+              operation: LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "gutter-width",
+                    raw: "gutter-width",
+                    span: Span(
+                      start: 2659,
+                      end: 2671,
+                    ),
+                  ),
                   span: Span(
-                    start: 2659,
+                    start: 2658,
                     end: 2671,
                   ),
                 ),
-                span: Span(
-                  start: 2658,
-                  end: 2671,
-                ),
-              ),
-              op: LessOperationOperator(
-                type: "LessOperationOperator",
-                kind: Multiply,
-                span: Span(
-                  start: 2672,
-                  end: 2673,
-                ),
-              ),
-              right: LessVariable(
-                type: "LessVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "columns",
-                  raw: "columns",
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Multiply,
                   span: Span(
-                    start: 2762,
+                    start: 2672,
+                    end: 2673,
+                  ),
+                ),
+                right: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "columns",
+                    raw: "columns",
+                    span: Span(
+                      start: 2762,
+                      end: 2769,
+                    ),
+                  ),
+                  span: Span(
+                    start: 2761,
                     end: 2769,
                   ),
                 ),
                 span: Span(
-                  start: 2761,
+                  start: 2658,
                   end: 2769,
                 ),
               ),
               span: Span(
-                start: 2658,
-                end: 2769,
+                start: 2567,
+                end: 2770,
               ),
             ),
             span: Span(
-              start: 2453,
-              end: 2769,
+              start: 2452,
+              end: 2770,
             ),
           ),
         ],
         span: Span(
-          start: 2453,
-          end: 2769,
+          start: 2452,
+          end: 2770,
         ),
       ),
       span: Span(
         start: 2420,
-        end: 2769,
+        end: 2770,
       ),
     ),
     LessVariableDeclaration(

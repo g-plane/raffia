@@ -167,66 +167,73 @@ Stylesheet(
                       end: 83,
                     ),
                   ),
-                  value: LessOperation(
-                    type: "LessOperation",
-                    left: LessVariable(
-                      type: "LessVariable",
-                      name: Ident(
-                        type: "Ident",
-                        name: "some-var",
-                        raw: "some-var",
+                  value: LessParenthesizedOperation(
+                    type: "LessParenthesizedOperation",
+                    operation: LessBinaryOperation(
+                      type: "LessBinaryOperation",
+                      left: LessVariable(
+                        type: "LessVariable",
+                        name: Ident(
+                          type: "Ident",
+                          name: "some-var",
+                          raw: "some-var",
+                          span: Span(
+                            start: 87,
+                            end: 95,
+                          ),
+                        ),
                         span: Span(
-                          start: 87,
+                          start: 86,
                           end: 95,
+                        ),
+                      ),
+                      op: LessOperationOperator(
+                        type: "LessOperationOperator",
+                        kind: Plus,
+                        span: Span(
+                          start: 96,
+                          end: 97,
+                        ),
+                      ),
+                      right: Number(
+                        type: "Number",
+                        value: 1.0,
+                        raw: "1",
+                        span: Span(
+                          start: 98,
+                          end: 99,
                         ),
                       ),
                       span: Span(
                         start: 86,
-                        end: 95,
-                      ),
-                    ),
-                    op: LessOperationOperator(
-                      type: "LessOperationOperator",
-                      kind: Plus,
-                      span: Span(
-                        start: 96,
-                        end: 97,
-                      ),
-                    ),
-                    right: Number(
-                      type: "Number",
-                      value: 1.0,
-                      raw: "1",
-                      span: Span(
-                        start: 98,
                         end: 99,
                       ),
                     ),
                     span: Span(
-                      start: 86,
-                      end: 99,
+                      start: 85,
+                      end: 100,
                     ),
                   ),
                   span: Span(
                     start: 74,
-                    end: 99,
+                    end: 100,
                   ),
                 ),
               ],
               span: Span(
                 start: 74,
-                end: 99,
+                end: 100,
               ),
             )),
             span: Span(
               start: 62,
-              end: 99,
+              end: 100,
             ),
           ),
         ],
         span: Span(
           start: 62,
-          end: 99,
+          end: 100,
         ),
       )),
       block: Some(SimpleBlock(

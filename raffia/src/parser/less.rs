@@ -343,10 +343,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             match peek!(self).token {
                 Token::LParen(..) => {
-                    bump!(self);
+                    let TokenWithSpan {
+                        span: Span { start, .. },
+                        ..
+                    } = bump!(self);
                     let operation = self.parse_less_operation(allow_mixin_call)?;
-                    expect!(self, RParen);
-                    operation
+                    let (_, Span { end, .. }) = expect!(self, RParen);
+                    ComponentValue::LessParenthesizedOperation(LessParenthesizedOperation {
+                        operation: Box::new(operation),
+                        span: Span { start, end },
+                    })
                 }
                 Token::Minus(..) => self
                     .parse::<LessNegativeValue>()
@@ -403,7 +409,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 start: left.span().start,
                 end: right.span().end,
             };
-            left = ComponentValue::LessOperation(LessOperation {
+            left = ComponentValue::LessBinaryOperation(LessBinaryOperation {
                 left: Box::new(left),
                 op,
                 right: Box::new(right),
