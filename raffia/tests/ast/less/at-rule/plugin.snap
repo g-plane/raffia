@@ -1,0 +1,122 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "plugin",
+        raw: "plugin",
+        span: Span(
+          start: 1,
+          end: 7,
+        ),
+      ),
+      prelude: Some(LessPlugin(
+        type: "LessPlugin",
+        path: Str(
+          type: "Str",
+          value: "../../plugin/plugin-global",
+          raw: "\"../../plugin/plugin-global\"",
+          span: Span(
+            start: 8,
+            end: 36,
+          ),
+        ),
+        args: None,
+        span: Span(
+          start: 8,
+          end: 36,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 36,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "plugin",
+        raw: "plugin",
+        span: Span(
+          start: 39,
+          end: 45,
+        ),
+      ),
+      prelude: Some(LessPlugin(
+        type: "LessPlugin",
+        path: Str(
+          type: "Str",
+          value: "../../plugin/plugin-local",
+          raw: "\"../../plugin/plugin-local\"",
+          span: Span(
+            start: 58,
+            end: 85,
+          ),
+        ),
+        args: Some(TokenSeq(
+          type: "TokenSeq",
+          tokens: [
+            TokenWithSpan(
+              type: "TokenWithSpan",
+              token: Ident(Ident(
+                kind: "Ident",
+                escaped: false,
+                raw: "test",
+              )),
+              span: Span(
+                start: 47,
+                end: 51,
+              ),
+            ),
+            TokenWithSpan(
+              type: "TokenWithSpan",
+              token: Equal(Equal(
+                kind: "Equal",
+              )),
+              span: Span(
+                start: 51,
+                end: 52,
+              ),
+            ),
+            TokenWithSpan(
+              type: "TokenWithSpan",
+              token: Ident(Ident(
+                kind: "Ident",
+                escaped: false,
+                raw: "test",
+              )),
+              span: Span(
+                start: 52,
+                end: 56,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 47,
+            end: 56,
+          ),
+        )),
+        span: Span(
+          start: 46,
+          end: 85,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 38,
+        end: 85,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 87,
+  ),
+)
