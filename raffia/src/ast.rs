@@ -667,7 +667,7 @@ pub struct LessDetachedRuleset<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessEscapedStr<'s> {
-    pub str: LessInterpolatedStr<'s>,
+    pub str: InterpolableStr<'s>,
     pub span: Span,
 }
 
