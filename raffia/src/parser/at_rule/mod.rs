@@ -204,6 +204,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let block = input.parse::<SimpleBlock>()?;
             let end = block.span.end;
             (None, Some(block), end)
+        } else if at_rule_name == "plugin" && input.syntax == Syntax::Less {
+            let prelude = input.parse::<LessPlugin>()?;
+            let end = prelude.span.end;
+            (
+                Some(AtRulePrelude::LessPlugin(Box::new(prelude))),
+                None,
+                end,
+            )
         } else {
             let (prelude, block, end) = input.parse_unknown_at_rule()?;
             (

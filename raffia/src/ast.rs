@@ -41,6 +41,7 @@ pub enum AtRulePrelude<'s> {
     Keyframes(KeyframesName<'s>),
     Layer(LayerName<'s>),
     LessImport(Box<LessImportPrelude<'s>>),
+    LessPlugin(Box<LessPlugin<'s>>),
     Media(MediaQueryList<'s>),
     Namespace(NamespacePrelude<'s>),
     Nest(SelectorList<'s>),
@@ -1000,7 +1001,7 @@ pub struct LessPercentKeyword {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessPluginAtRule<'s> {
+pub struct LessPlugin<'s> {
     pub path: LessPluginPath<'s>,
     pub args: Option<TokenSeq<'s>>,
     pub span: Span,
@@ -1981,7 +1982,6 @@ pub enum Statement<'s> {
     LessFunctionCall(Function<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessMixinDefinition(LessMixinDefinition<'s>),
-    LessPluginAtRule(LessPluginAtRule<'s>),
     LessVariableCall(LessVariableCall<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),

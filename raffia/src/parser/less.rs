@@ -21,18 +21,6 @@ const PRECEDENCE_MULTIPLY: u8 = 2;
 const PRECEDENCE_PLUS: u8 = 1;
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
-    pub(super) fn parse_less_at_rule(
-        &mut self,
-        at_keyword_name: &str,
-    ) -> PResult<Option<(Statement<'s>, bool)>> {
-        debug_assert_eq!(self.syntax, Syntax::Less);
-
-        match at_keyword_name {
-            "plugin" => Ok(Some((Statement::LessPluginAtRule(self.parse()?), false))),
-            _ => Ok(None),
-        }
-    }
-
     pub(super) fn parse_less_condition(
         &mut self,
         needs_parens: bool,
@@ -1305,13 +1293,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPercentKeyword {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPluginAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPlugin<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert_eq!(input.syntax, Syntax::Less);
 
-        let (_, Span { start, .. }) = expect!(input, AtKeyword);
+        let mut start = None;
 
-        let args = if eat!(input, LParen).is_some() {
+        let args = if let Some((_, span)) = eat!(input, LParen) {
+            start = Some(span.start);
             let args = input.parse_tokens_in_parens()?;
             expect!(input, RParen);
             Some(args)
@@ -1320,12 +1309,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessPluginAtRule<'s> {
         };
 
         let path = input.parse::<LessPluginPath>()?;
+        let path_span = path.span();
 
         let span = Span {
-            start,
-            end: path.span().end,
+            start: start.unwrap_or(path_span.start),
+            end: path_span.end,
         };
-        Ok(LessPluginAtRule { path, args, span })
+        Ok(LessPlugin { path, args, span })
     }
 }
 
