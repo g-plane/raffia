@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -44,6 +45,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 7,
@@ -62,6 +64,10 @@ Stylesheet(
                 start: 12,
                 end: 19,
               ),
+            ),
+            colonSpan: Span(
+              start: 19,
+              end: 20,
             ),
             value: [
               LessFormatFunctionCall(
@@ -199,6 +205,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 59,
           end: 67,
@@ -217,6 +224,10 @@ Stylesheet(
                 start: 72,
                 end: 73,
               ),
+            ),
+            colonSpan: Span(
+              start: 73,
+              end: 74,
             ),
             value: [
               Function(
@@ -295,6 +306,10 @@ Stylesheet(
                 start: 98,
                 end: 99,
               ),
+            ),
+            colonSpan: Span(
+              start: 99,
+              end: 100,
             ),
             value: [
               Function(
@@ -404,6 +419,10 @@ Stylesheet(
                 start: 135,
                 end: 136,
               ),
+            ),
+            colonSpan: Span(
+              start: 136,
+              end: 137,
             ),
             value: [
               Function(
@@ -600,6 +619,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 192,
           end: 195,
@@ -618,6 +638,10 @@ Stylesheet(
                 start: 200,
                 end: 201,
               ),
+            ),
+            colonSpan: Span(
+              start: 201,
+              end: 202,
             ),
             value: [
               Function(
@@ -706,6 +730,10 @@ Stylesheet(
                 start: 227,
                 end: 228,
               ),
+            ),
+            colonSpan: Span(
+              start: 228,
+              end: 229,
             ),
             value: [
               Function(
@@ -857,6 +885,10 @@ Stylesheet(
                                 end: 274,
                               ),
                             ),
+                            colonSpan: Span(
+                              start: 274,
+                              end: 275,
+                            ),
                             value: [
                               Number(
                                 type: "Number",
@@ -909,6 +941,10 @@ Stylesheet(
                                 start: 281,
                                 end: 282,
                               ),
+                            ),
+                            colonSpan: Span(
+                              start: 282,
+                              end: 283,
                             ),
                             value: [
                               Number(
@@ -966,6 +1002,10 @@ Stylesheet(
                 start: 291,
                 end: 292,
               ),
+            ),
+            colonSpan: Span(
+              start: 292,
+              end: 293,
             ),
             value: [
               Function(
@@ -1037,6 +1077,10 @@ Stylesheet(
                 start: 314,
                 end: 315,
               ),
+            ),
+            colonSpan: Span(
+              start: 315,
+              end: 316,
             ),
             value: [
               Function(
@@ -1115,6 +1159,10 @@ Stylesheet(
                 start: 335,
                 end: 336,
               ),
+            ),
+            colonSpan: Span(
+              start: 336,
+              end: 337,
             ),
             value: [
               Function(
@@ -1197,6 +1245,10 @@ Stylesheet(
                 end: 357,
               ),
             ),
+            colonSpan: Span(
+              start: 357,
+              end: 358,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1277,6 +1329,10 @@ Stylesheet(
                 start: 378,
                 end: 379,
               ),
+            ),
+            colonSpan: Span(
+              start: 379,
+              end: 380,
             ),
             value: [
               Function(
@@ -1401,6 +1457,10 @@ Stylesheet(
                 end: 416,
               ),
             ),
+            colonSpan: Span(
+              start: 416,
+              end: 417,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1513,6 +1573,10 @@ Stylesheet(
                 end: 451,
               ),
             ),
+            colonSpan: Span(
+              start: 451,
+              end: 452,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1600,6 +1664,10 @@ Stylesheet(
                 start: 476,
                 end: 477,
               ),
+            ),
+            colonSpan: Span(
+              start: 477,
+              end: 478,
             ),
             value: [
               Function(
@@ -1825,6 +1893,10 @@ Stylesheet(
                                 end: 567,
                               ),
                             ),
+                            colonSpan: Span(
+                              start: 567,
+                              end: 568,
+                            ),
                             value: [
                               Ident(
                                 type: "Ident",
@@ -1967,6 +2039,10 @@ Stylesheet(
                                 end: 621,
                               ),
                             ),
+                            colonSpan: Span(
+                              start: 621,
+                              end: 622,
+                            ),
                             value: [
                               Ident(
                                 type: "Ident",
@@ -2019,6 +2095,10 @@ Stylesheet(
                                 start: 642,
                                 end: 647,
                               ),
+                            ),
+                            colonSpan: Span(
+                              start: 647,
+                              end: 648,
                             ),
                             value: [
                               Ident(
@@ -2117,6 +2197,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 666,
           end: 680,
@@ -2135,6 +2216,10 @@ Stylesheet(
                 start: 685,
                 end: 691,
               ),
+            ),
+            colonSpan: Span(
+              start: 691,
+              end: 692,
             ),
             value: [
               LessListFunctionCall(
@@ -2293,6 +2378,10 @@ Stylesheet(
                           start: 728,
                           end: 741,
                         ),
+                      ),
+                      colonSpan: Span(
+                        start: 741,
+                        end: 742,
                       ),
                       value: [
                         LessBinaryOperation(

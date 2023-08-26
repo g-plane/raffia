@@ -60,6 +60,10 @@ Stylesheet(
                 end: 20,
               ),
             ),
+            colonSpan: Span(
+              start: 20,
+              end: 21,
+            ),
             value: [
               SassVariable(
                 type: "SassVariable",

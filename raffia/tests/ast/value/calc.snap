@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -45,6 +46,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 5,
@@ -63,6 +65,10 @@ Stylesheet(
                 start: 10,
                 end: 19,
               ),
+            ),
+            colonSpan: Span(
+              start: 19,
+              end: 20,
             ),
             value: [
               Function(
@@ -200,6 +206,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 42,
           end: 45,
@@ -218,6 +225,10 @@ Stylesheet(
                 start: 50,
                 end: 57,
               ),
+            ),
+            colonSpan: Span(
+              start: 57,
+              end: 58,
             ),
             value: [
               TokenWithSpan(
@@ -314,6 +325,10 @@ Stylesheet(
                 end: 85,
               ),
             ),
+            colonSpan: Span(
+              start: 85,
+              end: 86,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -378,6 +393,10 @@ Stylesheet(
                 end: 111,
               ),
             ),
+            colonSpan: Span(
+              start: 111,
+              end: 112,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -424,6 +443,10 @@ Stylesheet(
                 start: 124,
                 end: 135,
               ),
+            ),
+            colonSpan: Span(
+              start: 135,
+              end: 136,
             ),
             value: [
               Function(
@@ -520,6 +543,10 @@ Stylesheet(
                 end: 167,
               ),
             ),
+            colonSpan: Span(
+              start: 167,
+              end: 168,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -615,6 +642,10 @@ Stylesheet(
                 end: 201,
               ),
             ),
+            colonSpan: Span(
+              start: 201,
+              end: 202,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -685,6 +716,10 @@ Stylesheet(
                 start: 219,
                 end: 224,
               ),
+            ),
+            colonSpan: Span(
+              start: 224,
+              end: 225,
             ),
             value: [
               Function(
@@ -791,6 +826,10 @@ Stylesheet(
                 end: 256,
               ),
             ),
+            colonSpan: Span(
+              start: 256,
+              end: 257,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -895,6 +934,10 @@ Stylesheet(
                 start: 299,
                 end: 304,
               ),
+            ),
+            colonSpan: Span(
+              start: 304,
+              end: 305,
             ),
             value: [
               Function(
@@ -1001,6 +1044,10 @@ Stylesheet(
                 end: 345,
               ),
             ),
+            colonSpan: Span(
+              start: 345,
+              end: 346,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1096,6 +1143,10 @@ Stylesheet(
                 end: 373,
               ),
             ),
+            colonSpan: Span(
+              start: 373,
+              end: 374,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1180,6 +1231,10 @@ Stylesheet(
                 start: 394,
                 end: 399,
               ),
+            ),
+            colonSpan: Span(
+              start: 399,
+              end: 400,
             ),
             value: [
               Function(
@@ -1285,6 +1340,10 @@ Stylesheet(
                 start: 420,
                 end: 425,
               ),
+            ),
+            colonSpan: Span(
+              start: 425,
+              end: 426,
             ),
             value: [
               Function(
@@ -1494,6 +1553,10 @@ Stylesheet(
                 end: 471,
               ),
             ),
+            colonSpan: Span(
+              start: 471,
+              end: 472,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1575,6 +1638,10 @@ Stylesheet(
                 start: 493,
                 end: 498,
               ),
+            ),
+            colonSpan: Span(
+              start: 498,
+              end: 499,
             ),
             value: [
               Function(
@@ -1689,6 +1756,10 @@ Stylesheet(
                 end: 531,
               ),
             ),
+            colonSpan: Span(
+              start: 531,
+              end: 532,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1785,6 +1856,10 @@ Stylesheet(
                 end: 561,
               ),
             ),
+            colonSpan: Span(
+              start: 561,
+              end: 562,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -1873,6 +1948,10 @@ Stylesheet(
                 start: 589,
                 end: 594,
               ),
+            ),
+            colonSpan: Span(
+              start: 594,
+              end: 595,
             ),
             value: [
               Function(
@@ -2114,6 +2193,10 @@ Stylesheet(
                 end: 645,
               ),
             ),
+            colonSpan: Span(
+              start: 645,
+              end: 646,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -2160,6 +2243,10 @@ Stylesheet(
                 start: 665,
                 end: 670,
               ),
+            ),
+            colonSpan: Span(
+              start: 670,
+              end: 671,
             ),
             value: [
               Function(
@@ -2208,6 +2295,10 @@ Stylesheet(
                 end: 695,
               ),
             ),
+            colonSpan: Span(
+              start: 695,
+              end: 696,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -2255,6 +2346,10 @@ Stylesheet(
                 end: 721,
               ),
             ),
+            colonSpan: Span(
+              start: 721,
+              end: 722,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -2301,6 +2396,10 @@ Stylesheet(
                 start: 736,
                 end: 741,
               ),
+            ),
+            colonSpan: Span(
+              start: 741,
+              end: 742,
             ),
             value: [
               Function(
@@ -2639,6 +2738,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 802,
           end: 806,
@@ -2657,6 +2757,10 @@ Stylesheet(
                 start: 811,
                 end: 820,
               ),
+            ),
+            colonSpan: Span(
+              start: 820,
+              end: 821,
             ),
             value: [
               Function(
@@ -2781,6 +2885,10 @@ Stylesheet(
                 end: 860,
               ),
             ),
+            colonSpan: Span(
+              start: 860,
+              end: 861,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -2903,6 +3011,10 @@ Stylesheet(
                 start: 890,
                 end: 899,
               ),
+            ),
+            colonSpan: Span(
+              start: 899,
+              end: 900,
             ),
             value: [
               Function(
@@ -3027,6 +3139,10 @@ Stylesheet(
                 end: 938,
               ),
             ),
+            colonSpan: Span(
+              start: 938,
+              end: 939,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -3150,6 +3266,10 @@ Stylesheet(
                 end: 977,
               ),
             ),
+            colonSpan: Span(
+              start: 977,
+              end: 978,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -3272,6 +3392,10 @@ Stylesheet(
                 start: 1007,
                 end: 1016,
               ),
+            ),
+            colonSpan: Span(
+              start: 1016,
+              end: 1017,
             ),
             value: [
               Function(
@@ -3436,6 +3560,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1047,
           end: 1052,
@@ -3454,6 +3579,10 @@ Stylesheet(
                 start: 1057,
                 end: 1073,
               ),
+            ),
+            colonSpan: Span(
+              start: 1073,
+              end: 1074,
             ),
             value: [
               Function(
@@ -3734,6 +3863,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1156,
           end: 1159,
@@ -3752,6 +3882,10 @@ Stylesheet(
                 start: 1164,
                 end: 1170,
               ),
+            ),
+            colonSpan: Span(
+              start: 1170,
+              end: 1171,
             ),
             value: [
               Function(
@@ -3869,6 +4003,10 @@ Stylesheet(
                 start: 1211,
                 end: 1216,
               ),
+            ),
+            colonSpan: Span(
+              start: 1216,
+              end: 1217,
             ),
             value: [
               Function(
@@ -4037,6 +4175,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1247,
           end: 1250,
@@ -4055,6 +4194,10 @@ Stylesheet(
                 start: 1253,
                 end: 1258,
               ),
+            ),
+            colonSpan: Span(
+              start: 1258,
+              end: 1259,
             ),
             value: [
               Function(
@@ -4182,6 +4325,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1278,
           end: 1281,
@@ -4200,6 +4344,10 @@ Stylesheet(
                 start: 1284,
                 end: 1294,
               ),
+            ),
+            colonSpan: Span(
+              start: 1294,
+              end: 1295,
             ),
             value: [
               Function(
@@ -4344,6 +4492,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1317,
           end: 1320,
@@ -4362,6 +4511,10 @@ Stylesheet(
                 start: 1323,
                 end: 1328,
               ),
+            ),
+            colonSpan: Span(
+              start: 1328,
+              end: 1329,
             ),
             value: [
               Function(
@@ -4512,6 +4665,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1364,
           end: 1369,
@@ -4530,6 +4684,10 @@ Stylesheet(
                 start: 1374,
                 end: 1390,
               ),
+            ),
+            colonSpan: Span(
+              start: 1390,
+              end: 1391,
             ),
             value: [
               Function(
@@ -4802,6 +4960,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1475,
           end: 1480,
@@ -4820,6 +4979,10 @@ Stylesheet(
                 start: 1580,
                 end: 1589,
               ),
+            ),
+            colonSpan: Span(
+              start: 1589,
+              end: 1590,
             ),
             value: [
               Function(
@@ -5048,6 +5211,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1627,
           end: 1632,
@@ -5066,6 +5230,10 @@ Stylesheet(
                 start: 1696,
                 end: 1705,
               ),
+            ),
+            colonSpan: Span(
+              start: 1705,
+              end: 1706,
             ),
             value: [
               Function(
@@ -5328,6 +5496,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1752,
           end: 1757,
@@ -5346,6 +5515,10 @@ Stylesheet(
                 start: 1762,
                 end: 1767,
               ),
+            ),
+            colonSpan: Span(
+              start: 1767,
+              end: 1768,
             ),
             value: [
               Function(
@@ -5444,6 +5617,10 @@ Stylesheet(
                 start: 1787,
                 end: 1796,
               ),
+            ),
+            colonSpan: Span(
+              start: 1796,
+              end: 1797,
             ),
             value: [
               Function(
@@ -5561,6 +5738,10 @@ Stylesheet(
                 end: 1839,
               ),
             ),
+            colonSpan: Span(
+              start: 1839,
+              end: 1840,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -5643,6 +5824,10 @@ Stylesheet(
                 end: 1874,
               ),
             ),
+            colonSpan: Span(
+              start: 1874,
+              end: 1875,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -5724,6 +5909,10 @@ Stylesheet(
                 start: 1898,
                 end: 1907,
               ),
+            ),
+            colonSpan: Span(
+              start: 1907,
+              end: 1908,
             ),
             value: [
               Function(
@@ -5825,6 +6014,10 @@ Stylesheet(
                 end: 1946,
               ),
             ),
+            colonSpan: Span(
+              start: 1946,
+              end: 1947,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -5889,6 +6082,10 @@ Stylesheet(
                 end: 1971,
               ),
             ),
+            colonSpan: Span(
+              start: 1971,
+              end: 1972,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -5952,6 +6149,10 @@ Stylesheet(
                 start: 1988,
                 end: 1997,
               ),
+            ),
+            colonSpan: Span(
+              start: 1997,
+              end: 1998,
             ),
             value: [
               Function(
@@ -6051,6 +6252,10 @@ Stylesheet(
                 end: 2039,
               ),
             ),
+            colonSpan: Span(
+              start: 2039,
+              end: 2040,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -6104,6 +6309,10 @@ Stylesheet(
                 start: 2054,
                 end: 2059,
               ),
+            ),
+            colonSpan: Span(
+              start: 2059,
+              end: 2060,
             ),
             value: [
               Function(
@@ -6211,6 +6420,10 @@ Stylesheet(
                 end: 2091,
               ),
             ),
+            colonSpan: Span(
+              start: 2091,
+              end: 2092,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -6292,6 +6505,10 @@ Stylesheet(
                 end: 2115,
               ),
             ),
+            colonSpan: Span(
+              start: 2115,
+              end: 2116,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -6338,6 +6555,10 @@ Stylesheet(
                 start: 2127,
                 end: 2132,
               ),
+            ),
+            colonSpan: Span(
+              start: 2132,
+              end: 2133,
             ),
             value: [
               Function(
@@ -6402,6 +6623,10 @@ Stylesheet(
                 start: 2147,
                 end: 2152,
               ),
+            ),
+            colonSpan: Span(
+              start: 2152,
+              end: 2153,
             ),
             value: [
               Function(
@@ -6501,6 +6726,10 @@ Stylesheet(
                 start: 2183,
                 end: 2188,
               ),
+            ),
+            colonSpan: Span(
+              start: 2188,
+              end: 2189,
             ),
             value: [
               Function(
@@ -6618,6 +6847,10 @@ Stylesheet(
                 end: 2233,
               ),
             ),
+            colonSpan: Span(
+              start: 2233,
+              end: 2234,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -6734,6 +6967,10 @@ Stylesheet(
                 end: 2273,
               ),
             ),
+            colonSpan: Span(
+              start: 2273,
+              end: 2274,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -6849,6 +7086,10 @@ Stylesheet(
                 start: 2310,
                 end: 2315,
               ),
+            ),
+            colonSpan: Span(
+              start: 2315,
+              end: 2316,
             ),
             value: [
               Function(
@@ -7006,6 +7247,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2356,
           end: 2364,
@@ -7024,6 +7266,10 @@ Stylesheet(
                 start: 2369,
                 end: 2374,
               ),
+            ),
+            colonSpan: Span(
+              start: 2374,
+              end: 2375,
             ),
             value: [
               Function(
@@ -7191,6 +7437,10 @@ Stylesheet(
                 end: 2413,
               ),
             ),
+            colonSpan: Span(
+              start: 2413,
+              end: 2414,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -7356,6 +7606,10 @@ Stylesheet(
                 start: 2447,
                 end: 2452,
               ),
+            ),
+            colonSpan: Span(
+              start: 2452,
+              end: 2453,
             ),
             value: [
               Function(
@@ -7563,6 +7817,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2508,
           end: 2512,
@@ -7581,6 +7836,10 @@ Stylesheet(
                 start: 2517,
                 end: 2522,
               ),
+            ),
+            colonSpan: Span(
+              start: 2522,
+              end: 2523,
             ),
             value: [
               Function(
@@ -7720,6 +7979,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2544,
           end: 2548,
@@ -7738,6 +7998,10 @@ Stylesheet(
                 start: 2553,
                 end: 2562,
               ),
+            ),
+            colonSpan: Span(
+              start: 2562,
+              end: 2563,
             ),
             value: [
               Function(
@@ -7820,6 +8084,10 @@ Stylesheet(
                 start: 2586,
                 end: 2595,
               ),
+            ),
+            colonSpan: Span(
+              start: 2595,
+              end: 2596,
             ),
             value: [
               Function(
@@ -7950,6 +8218,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2626,
           end: 2630,
@@ -7968,6 +8237,10 @@ Stylesheet(
                 start: 2635,
                 end: 2644,
               ),
+            ),
+            colonSpan: Span(
+              start: 2644,
+              end: 2645,
             ),
             value: [
               Function(
@@ -8050,6 +8323,10 @@ Stylesheet(
                 start: 2668,
                 end: 2677,
               ),
+            ),
+            colonSpan: Span(
+              start: 2677,
+              end: 2678,
             ),
             value: [
               Function(
@@ -8180,6 +8457,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2708,
           end: 2713,
@@ -8198,6 +8476,10 @@ Stylesheet(
                 start: 2718,
                 end: 2727,
               ),
+            ),
+            colonSpan: Span(
+              start: 2727,
+              end: 2728,
             ),
             value: [
               Function(
@@ -8280,6 +8562,10 @@ Stylesheet(
                 start: 2752,
                 end: 2761,
               ),
+            ),
+            colonSpan: Span(
+              start: 2761,
+              end: 2762,
             ),
             value: [
               Function(
@@ -8410,6 +8696,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2788,
           end: 2793,
@@ -8428,6 +8715,10 @@ Stylesheet(
                 start: 2798,
                 end: 2807,
               ),
+            ),
+            colonSpan: Span(
+              start: 2807,
+              end: 2808,
             ),
             value: [
               Function(
@@ -8510,6 +8801,10 @@ Stylesheet(
                 start: 2832,
                 end: 2841,
               ),
+            ),
+            colonSpan: Span(
+              start: 2841,
+              end: 2842,
             ),
             value: [
               Function(
@@ -8640,6 +8935,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2868,
           end: 2873,
@@ -8658,6 +8954,10 @@ Stylesheet(
                 start: 2878,
                 end: 2887,
               ),
+            ),
+            colonSpan: Span(
+              start: 2887,
+              end: 2888,
             ),
             value: [
               Function(
@@ -8788,6 +9088,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2914,
           end: 2920,
@@ -8806,6 +9107,10 @@ Stylesheet(
                 start: 2925,
                 end: 2934,
               ),
+            ),
+            colonSpan: Span(
+              start: 2934,
+              end: 2935,
             ),
             value: [
               Function(
@@ -8929,6 +9234,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2961,
           end: 2966,
@@ -8947,6 +9253,10 @@ Stylesheet(
                 start: 2971,
                 end: 2975,
               ),
+            ),
+            colonSpan: Span(
+              start: 2975,
+              end: 2976,
             ),
             value: [
               Function(
@@ -9035,6 +9345,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2991,
           end: 2995,
@@ -9053,6 +9364,10 @@ Stylesheet(
                 start: 3000,
                 end: 3004,
               ),
+            ),
+            colonSpan: Span(
+              start: 3004,
+              end: 3005,
             ),
             value: [
               Function(
@@ -9165,6 +9480,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3023,
           end: 3027,
@@ -9183,6 +9499,10 @@ Stylesheet(
                 start: 3032,
                 end: 3051,
               ),
+            ),
+            colonSpan: Span(
+              start: 3051,
+              end: 3052,
             ),
             value: [
               Function(
@@ -9327,6 +9647,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3079,
           end: 3084,
@@ -9345,6 +9666,10 @@ Stylesheet(
                 start: 3089,
                 end: 3108,
               ),
+            ),
+            colonSpan: Span(
+              start: 3108,
+              end: 3109,
             ),
             value: [
               Function(
@@ -9399,6 +9724,10 @@ Stylesheet(
                 start: 3123,
                 end: 3142,
               ),
+            ),
+            colonSpan: Span(
+              start: 3142,
+              end: 3143,
             ),
             value: [
               Function(
@@ -9478,6 +9807,10 @@ Stylesheet(
                 end: 3180,
               ),
             ),
+            colonSpan: Span(
+              start: 3180,
+              end: 3181,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -9555,6 +9888,10 @@ Stylesheet(
                 start: 3209,
                 end: 3228,
               ),
+            ),
+            colonSpan: Span(
+              start: 3228,
+              end: 3229,
             ),
             value: [
               Function(
@@ -9634,6 +9971,10 @@ Stylesheet(
                 end: 3264,
               ),
             ),
+            colonSpan: Span(
+              start: 3264,
+              end: 3265,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -9705,6 +10046,10 @@ Stylesheet(
                 end: 3312,
               ),
             ),
+            colonSpan: Span(
+              start: 3312,
+              end: 3313,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -9758,6 +10103,10 @@ Stylesheet(
                 start: 3333,
                 end: 3338,
               ),
+            ),
+            colonSpan: Span(
+              start: 3338,
+              end: 3339,
             ),
             value: [
               Function(

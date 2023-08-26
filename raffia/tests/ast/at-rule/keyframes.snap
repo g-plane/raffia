@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -153,6 +154,10 @@ Stylesheet(
                       end: 145,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 145,
+                    end: 146,
+                  ),
                   value: [
                     Function(
                       type: "Function",
@@ -233,6 +238,10 @@ Stylesheet(
                       start: 187,
                       end: 196,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 196,
+                    end: 197,
                   ),
                   value: [
                     Function(
@@ -356,6 +365,10 @@ Stylesheet(
                       end: 261,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 261,
+                    end: 262,
+                  ),
                   value: [
                     Number(
                       type: "Number",
@@ -384,6 +397,10 @@ Stylesheet(
                       start: 266,
                       end: 270,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 270,
+                    end: 271,
                   ),
                   value: [
                     Number(
@@ -447,6 +464,10 @@ Stylesheet(
                       start: 287,
                       end: 290,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 290,
+                    end: 291,
                   ),
                   value: [
                     Dimension(
@@ -544,6 +565,10 @@ Stylesheet(
                       end: 319,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 319,
+                    end: 320,
+                  ),
                   value: [
                     Dimension(
                       type: "Dimension",
@@ -624,6 +649,10 @@ Stylesheet(
                       end: 343,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 343,
+                    end: 344,
+                  ),
                   value: [
                     Dimension(
                       type: "Dimension",
@@ -669,6 +698,10 @@ Stylesheet(
                       start: 352,
                       end: 356,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 356,
+                    end: 357,
                   ),
                   value: [
                     Percentage(
@@ -866,6 +899,10 @@ Stylesheet(
                       end: 488,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 488,
+                    end: 489,
+                  ),
                   value: [
                     Dimension(
                       type: "Dimension",
@@ -946,6 +983,10 @@ Stylesheet(
                       end: 531,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 531,
+                    end: 532,
+                  ),
                   value: [
                     Dimension(
                       type: "Dimension",
@@ -991,6 +1032,10 @@ Stylesheet(
                       start: 548,
                       end: 555,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 555,
+                    end: 556,
                   ),
                   value: [
                     Number(
@@ -1055,6 +1100,10 @@ Stylesheet(
                       end: 592,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 592,
+                    end: 593,
+                  ),
                   value: [
                     Number(
                       type: "Number",
@@ -1110,6 +1159,10 @@ Stylesheet(
                       start: 623,
                       end: 634,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 634,
+                    end: 635,
                   ),
                   value: [
                     Dimension(
@@ -1218,6 +1271,10 @@ Stylesheet(
                       end: 705,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 705,
+                    end: 706,
+                  ),
                   value: [
                     Function(
                       type: "Function",
@@ -1298,6 +1355,10 @@ Stylesheet(
                       start: 747,
                       end: 756,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 756,
+                    end: 757,
                   ),
                   value: [
                     Function(

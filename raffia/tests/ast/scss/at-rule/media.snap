@@ -21,89 +21,100 @@ Stylesheet(
           MediaCondition(
             type: "MediaCondition",
             conditions: [
-              MediaFeaturePlain(
-                type: "MediaFeaturePlain",
-                name: Ident(
-                  type: "Ident",
-                  name: "max-width",
-                  raw: "max-width",
-                  span: Span(
-                    start: 8,
-                    end: 17,
+              MediaInParens(
+                type: "MediaInParens",
+                kind: MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
+                  name: Ident(
+                    type: "Ident",
+                    name: "max-width",
+                    raw: "max-width",
+                    span: Span(
+                      start: 8,
+                      end: 17,
+                    ),
                   ),
-                ),
-                value: SassBinaryExpression(
-                  type: "SassBinaryExpression",
-                  left: SassVariable(
-                    type: "SassVariable",
-                    name: Ident(
-                      type: "Ident",
-                      name: "area-width",
-                      raw: "area-width",
+                  colonSpan: Span(
+                    start: 17,
+                    end: 18,
+                  ),
+                  value: SassBinaryExpression(
+                    type: "SassBinaryExpression",
+                    left: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "area-width",
+                        raw: "area-width",
+                        span: Span(
+                          start: 20,
+                          end: 30,
+                        ),
+                      ),
                       span: Span(
-                        start: 20,
+                        start: 19,
                         end: 30,
+                      ),
+                    ),
+                    op: SassBinaryOperator(
+                      type: "SassBinaryOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 31,
+                        end: 32,
+                      ),
+                    ),
+                    right: Dimension(
+                      type: "Dimension",
+                      value: Number(
+                        type: "Number",
+                        value: 32.0,
+                        raw: "32",
+                        span: Span(
+                          start: 33,
+                          end: 35,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 35,
+                          end: 37,
+                        ),
+                      ),
+                      kind: Length,
+                      span: Span(
+                        start: 33,
+                        end: 37,
                       ),
                     ),
                     span: Span(
                       start: 19,
-                      end: 30,
-                    ),
-                  ),
-                  op: SassBinaryOperator(
-                    type: "SassBinaryOperator",
-                    kind: Plus,
-                    span: Span(
-                      start: 31,
-                      end: 32,
-                    ),
-                  ),
-                  right: Dimension(
-                    type: "Dimension",
-                    value: Number(
-                      type: "Number",
-                      value: 32.0,
-                      raw: "32",
-                      span: Span(
-                        start: 33,
-                        end: 35,
-                      ),
-                    ),
-                    unit: Ident(
-                      type: "Ident",
-                      name: "px",
-                      raw: "px",
-                      span: Span(
-                        start: 35,
-                        end: 37,
-                      ),
-                    ),
-                    kind: Length,
-                    span: Span(
-                      start: 33,
                       end: 37,
                     ),
                   ),
                   span: Span(
-                    start: 19,
+                    start: 8,
                     end: 37,
                   ),
                 ),
                 span: Span(
-                  start: 8,
-                  end: 37,
+                  start: 7,
+                  end: 38,
                 ),
               ),
             ],
             span: Span(
-              start: 8,
-              end: 37,
+              start: 7,
+              end: 38,
             ),
           ),
         ],
         span: Span(
-          start: 8,
-          end: 37,
+          start: 7,
+          end: 38,
         ),
       )),
       block: Some(SimpleBlock(
@@ -136,16 +147,23 @@ Stylesheet(
           MediaCondition(
             type: "MediaCondition",
             conditions: [
-              MediaFeatureBoolean(
-                type: "MediaFeatureBoolean",
-                name: SassVariable(
-                  type: "SassVariable",
-                  name: Ident(
-                    type: "Ident",
-                    name: "breakpoint",
-                    raw: "breakpoint",
+              MediaInParens(
+                type: "MediaInParens",
+                kind: MediaFeatureBoolean(
+                  type: "MediaFeatureBoolean",
+                  name: SassVariable(
+                    type: "SassVariable",
+                    name: Ident(
+                      type: "Ident",
+                      name: "breakpoint",
+                      raw: "breakpoint",
+                      span: Span(
+                        start: 52,
+                        end: 62,
+                      ),
+                    ),
                     span: Span(
-                      start: 52,
+                      start: 51,
                       end: 62,
                     ),
                   ),
@@ -155,20 +173,20 @@ Stylesheet(
                   ),
                 ),
                 span: Span(
-                  start: 51,
-                  end: 62,
+                  start: 50,
+                  end: 63,
                 ),
               ),
             ],
             span: Span(
-              start: 51,
-              end: 62,
+              start: 50,
+              end: 63,
             ),
           ),
         ],
         span: Span(
-          start: 51,
-          end: 62,
+          start: 50,
+          end: 63,
         ),
       )),
       block: Some(SimpleBlock(

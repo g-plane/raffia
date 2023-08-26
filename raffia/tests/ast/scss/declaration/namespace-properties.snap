@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -71,6 +72,10 @@ Stylesheet(
                 end: 9,
               ),
             ),
+            colonSpan: Span(
+              start: 9,
+              end: 10,
+            ),
             value: [
               SassNestingDeclaration(
                 type: "SassNestingDeclaration",
@@ -87,6 +92,10 @@ Stylesheet(
                           start: 17,
                           end: 19,
                         ),
+                      ),
+                      colonSpan: Span(
+                        start: 19,
+                        end: 20,
                       ),
                       value: [
                         Ident(
@@ -117,6 +126,10 @@ Stylesheet(
                           end: 29,
                         ),
                       ),
+                      colonSpan: Span(
+                        start: 29,
+                        end: 30,
+                      ),
                       value: [
                         SassNestingDeclaration(
                           type: "SassNestingDeclaration",
@@ -133,6 +146,10 @@ Stylesheet(
                                     start: 39,
                                     end: 41,
                                   ),
+                                ),
+                                colonSpan: Span(
+                                  start: 41,
+                                  end: 42,
                                 ),
                                 value: [
                                   Ident(
@@ -181,6 +198,10 @@ Stylesheet(
                           start: 56,
                           end: 58,
                         ),
+                      ),
+                      colonSpan: Span(
+                        start: 58,
+                        end: 59,
                       ),
                       value: [
                         Ident(
@@ -278,6 +299,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 70,
           end: 73,
@@ -296,6 +318,10 @@ Stylesheet(
                 start: 78,
                 end: 81,
               ),
+            ),
+            colonSpan: Span(
+              start: 81,
+              end: 82,
             ),
             value: [
               SassBinaryExpression(
@@ -347,6 +373,10 @@ Stylesheet(
                           end: 103,
                         ),
                       ),
+                      colonSpan: Span(
+                        start: 103,
+                        end: 104,
+                      ),
                       value: [
                         Ident(
                           type: "Ident",
@@ -375,6 +405,10 @@ Stylesheet(
                           start: 114,
                           end: 118,
                         ),
+                      ),
+                      colonSpan: Span(
+                        start: 118,
+                        end: 119,
                       ),
                       value: [
                         Ident(
@@ -472,6 +506,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 129,
           end: 132,
@@ -490,6 +525,10 @@ Stylesheet(
                 start: 137,
                 end: 140,
               ),
+            ),
+            colonSpan: Span(
+              start: 140,
+              end: 141,
             ),
             value: [
               Ident(
@@ -520,6 +559,10 @@ Stylesheet(
                 end: 153,
               ),
             ),
+            colonSpan: Span(
+              start: 153,
+              end: 154,
+            ),
             value: [
               SassNestingDeclaration(
                 type: "SassNestingDeclaration",
@@ -536,6 +579,10 @@ Stylesheet(
                           start: 161,
                           end: 164,
                         ),
+                      ),
+                      colonSpan: Span(
+                        start: 164,
+                        end: 165,
                       ),
                       value: [
                         Dimension(
@@ -583,6 +630,10 @@ Stylesheet(
                           end: 178,
                         ),
                       ),
+                      colonSpan: Span(
+                        start: 178,
+                        end: 179,
+                      ),
                       value: [
                         Ident(
                           type: "Ident",
@@ -612,6 +663,10 @@ Stylesheet(
                           end: 193,
                         ),
                       ),
+                      colonSpan: Span(
+                        start: 193,
+                        end: 194,
+                      ),
                       value: [
                         SassNestingDeclaration(
                           type: "SassNestingDeclaration",
@@ -628,6 +683,10 @@ Stylesheet(
                                     start: 195,
                                     end: 198,
                                   ),
+                                ),
+                                colonSpan: Span(
+                                  start: 198,
+                                  end: 199,
                                 ),
                                 value: [
                                   Ident(

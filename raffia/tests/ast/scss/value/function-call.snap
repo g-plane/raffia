@@ -44,6 +44,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 6,
@@ -62,6 +63,10 @@ Stylesheet(
                 start: 11,
                 end: 29,
               ),
+            ),
+            colonSpan: Span(
+              start: 29,
+              end: 30,
             ),
             value: [
               Function(
@@ -117,6 +122,10 @@ Stylesheet(
                 start: 57,
                 end: 76,
               ),
+            ),
+            colonSpan: Span(
+              start: 76,
+              end: 77,
             ),
             value: [
               Function(
@@ -189,6 +198,10 @@ Stylesheet(
                 start: 107,
                 end: 122,
               ),
+            ),
+            colonSpan: Span(
+              start: 122,
+              end: 123,
             ),
             value: [
               Function(
@@ -267,6 +280,10 @@ Stylesheet(
                 start: 151,
                 end: 167,
               ),
+            ),
+            colonSpan: Span(
+              start: 167,
+              end: 168,
             ),
             value: [
               Function(
@@ -385,6 +402,10 @@ Stylesheet(
                 start: 203,
                 end: 213,
               ),
+            ),
+            colonSpan: Span(
+              start: 213,
+              end: 214,
             ),
             value: [
               Function(
@@ -521,6 +542,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 241,
           end: 255,
@@ -539,6 +561,10 @@ Stylesheet(
                 start: 260,
                 end: 265,
               ),
+            ),
+            colonSpan: Span(
+              start: 265,
+              end: 266,
             ),
             value: [
               Function(
@@ -628,6 +654,10 @@ Stylesheet(
                 start: 287,
                 end: 290,
               ),
+            ),
+            colonSpan: Span(
+              start: 290,
+              end: 291,
             ),
             value: [
               Function(
@@ -727,6 +757,10 @@ Stylesheet(
                 end: 318,
               ),
             ),
+            colonSpan: Span(
+              start: 318,
+              end: 319,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -816,6 +850,10 @@ Stylesheet(
                 end: 344,
               ),
             ),
+            colonSpan: Span(
+              start: 344,
+              end: 345,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -871,6 +909,10 @@ Stylesheet(
                 start: 361,
                 end: 371,
               ),
+            ),
+            colonSpan: Span(
+              start: 371,
+              end: 372,
             ),
             value: [
               Function(
@@ -958,6 +1000,10 @@ Stylesheet(
                 start: 401,
                 end: 406,
               ),
+            ),
+            colonSpan: Span(
+              start: 406,
+              end: 407,
             ),
             value: [
               Function(

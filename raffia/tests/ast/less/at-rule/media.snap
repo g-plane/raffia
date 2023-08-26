@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -70,48 +71,59 @@ Stylesheet(
           MediaCondition(
             type: "MediaCondition",
             conditions: [
-              MediaFeaturePlain(
-                type: "MediaFeaturePlain",
-                name: Ident(
-                  type: "Ident",
-                  name: "max-width",
-                  raw: "max-width",
-                  span: Span(
-                    start: 30,
-                    end: 39,
-                  ),
-                ),
-                value: LessVariable(
-                  type: "LessVariable",
+              MediaInParens(
+                type: "MediaInParens",
+                kind: MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
                   name: Ident(
                     type: "Ident",
-                    name: "bpMedium",
-                    raw: "bpMedium",
+                    name: "max-width",
+                    raw: "max-width",
                     span: Span(
-                      start: 42,
+                      start: 30,
+                      end: 39,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 39,
+                    end: 40,
+                  ),
+                  value: LessVariable(
+                    type: "LessVariable",
+                    name: Ident(
+                      type: "Ident",
+                      name: "bpMedium",
+                      raw: "bpMedium",
+                      span: Span(
+                        start: 42,
+                        end: 50,
+                      ),
+                    ),
+                    span: Span(
+                      start: 41,
                       end: 50,
                     ),
                   ),
                   span: Span(
-                    start: 41,
+                    start: 30,
                     end: 50,
                   ),
                 ),
                 span: Span(
-                  start: 30,
-                  end: 50,
+                  start: 29,
+                  end: 51,
                 ),
               ),
             ],
             span: Span(
-              start: 30,
-              end: 50,
+              start: 29,
+              end: 51,
             ),
           ),
         ],
         span: Span(
-          start: 30,
-          end: 50,
+          start: 29,
+          end: 51,
         ),
       )),
       block: Some(SimpleBlock(
@@ -153,87 +165,114 @@ Stylesheet(
                 end: 68,
               ),
             ),
-            condition: Some(MediaCondition(
-              type: "MediaCondition",
-              conditions: [
-                MediaFeaturePlain(
-                  type: "MediaFeaturePlain",
-                  name: Ident(
-                    type: "Ident",
-                    name: "min-width",
-                    raw: "min-width",
-                    span: Span(
-                      start: 74,
-                      end: 83,
-                    ),
-                  ),
-                  value: LessParenthesizedOperation(
-                    type: "LessParenthesizedOperation",
-                    operation: LessBinaryOperation(
-                      type: "LessBinaryOperation",
-                      left: LessVariable(
-                        type: "LessVariable",
-                        name: Ident(
-                          type: "Ident",
-                          name: "some-var",
-                          raw: "some-var",
+            condition: Some(MediaConditionAfterMediaType(
+              type: "MediaConditionAfterMediaType",
+              and: Ident(
+                type: "Ident",
+                name: "and",
+                raw: "and",
+                span: Span(
+                  start: 69,
+                  end: 72,
+                ),
+              ),
+              condition: MediaCondition(
+                type: "MediaCondition",
+                conditions: [
+                  MediaInParens(
+                    type: "MediaInParens",
+                    kind: MediaFeaturePlain(
+                      type: "MediaFeaturePlain",
+                      name: Ident(
+                        type: "Ident",
+                        name: "min-width",
+                        raw: "min-width",
+                        span: Span(
+                          start: 74,
+                          end: 83,
+                        ),
+                      ),
+                      colonSpan: Span(
+                        start: 83,
+                        end: 84,
+                      ),
+                      value: LessParenthesizedOperation(
+                        type: "LessParenthesizedOperation",
+                        operation: LessBinaryOperation(
+                          type: "LessBinaryOperation",
+                          left: LessVariable(
+                            type: "LessVariable",
+                            name: Ident(
+                              type: "Ident",
+                              name: "some-var",
+                              raw: "some-var",
+                              span: Span(
+                                start: 87,
+                                end: 95,
+                              ),
+                            ),
+                            span: Span(
+                              start: 86,
+                              end: 95,
+                            ),
+                          ),
+                          op: LessOperationOperator(
+                            type: "LessOperationOperator",
+                            kind: Plus,
+                            span: Span(
+                              start: 96,
+                              end: 97,
+                            ),
+                          ),
+                          right: Number(
+                            type: "Number",
+                            value: 1.0,
+                            raw: "1",
+                            span: Span(
+                              start: 98,
+                              end: 99,
+                            ),
+                          ),
                           span: Span(
-                            start: 87,
-                            end: 95,
+                            start: 86,
+                            end: 99,
                           ),
                         ),
                         span: Span(
-                          start: 86,
-                          end: 95,
-                        ),
-                      ),
-                      op: LessOperationOperator(
-                        type: "LessOperationOperator",
-                        kind: Plus,
-                        span: Span(
-                          start: 96,
-                          end: 97,
-                        ),
-                      ),
-                      right: Number(
-                        type: "Number",
-                        value: 1.0,
-                        raw: "1",
-                        span: Span(
-                          start: 98,
-                          end: 99,
+                          start: 85,
+                          end: 100,
                         ),
                       ),
                       span: Span(
-                        start: 86,
-                        end: 99,
+                        start: 74,
+                        end: 100,
                       ),
                     ),
                     span: Span(
-                      start: 85,
-                      end: 100,
+                      start: 73,
+                      end: 101,
                     ),
                   ),
-                  span: Span(
-                    start: 74,
-                    end: 100,
-                  ),
+                ],
+                span: Span(
+                  start: 73,
+                  end: 101,
                 ),
-              ],
+              ),
               span: Span(
-                start: 74,
-                end: 100,
+                start: 69,
+                end: 101,
               ),
             )),
             span: Span(
               start: 62,
-              end: 100,
+              end: 101,
             ),
           ),
         ],
         span: Span(
           start: 62,
-          end: 100,
+          end: 101,
         ),
       )),
       block: Some(SimpleBlock(
@@ -275,115 +314,142 @@ Stylesheet(
                 end: 115,
               ),
             ),
-            condition: Some(MediaCondition(
-              type: "MediaCondition",
-              conditions: [
-                MediaFeaturePlain(
-                  type: "MediaFeaturePlain",
-                  name: Ident(
-                    type: "Ident",
-                    name: "device-aspect-ratio",
-                    raw: "device-aspect-ratio",
-                    span: Span(
-                      start: 121,
-                      end: 140,
-                    ),
-                  ),
-                  value: LessEscapedStr(
-                    type: "LessEscapedStr",
-                    str: LessInterpolatedStr(
-                      type: "LessInterpolatedStr",
-                      elements: [
-                        InterpolableStrStaticPart(
-                          type: "InterpolableStrStaticPart",
-                          value: "",
-                          raw: "\'",
+            condition: Some(MediaConditionAfterMediaType(
+              type: "MediaConditionAfterMediaType",
+              and: Ident(
+                type: "Ident",
+                name: "and",
+                raw: "and",
+                span: Span(
+                  start: 116,
+                  end: 119,
+                ),
+              ),
+              condition: MediaCondition(
+                type: "MediaCondition",
+                conditions: [
+                  MediaInParens(
+                    type: "MediaInParens",
+                    kind: MediaFeaturePlain(
+                      type: "MediaFeaturePlain",
+                      name: Ident(
+                        type: "Ident",
+                        name: "device-aspect-ratio",
+                        raw: "device-aspect-ratio",
+                        span: Span(
+                          start: 121,
+                          end: 140,
+                        ),
+                      ),
+                      colonSpan: Span(
+                        start: 140,
+                        end: 141,
+                      ),
+                      value: LessEscapedStr(
+                        type: "LessEscapedStr",
+                        str: LessInterpolatedStr(
+                          type: "LessInterpolatedStr",
+                          elements: [
+                            InterpolableStrStaticPart(
+                              type: "InterpolableStrStaticPart",
+                              value: "",
+                              raw: "\'",
+                              span: Span(
+                                start: 143,
+                                end: 144,
+                              ),
+                            ),
+                            LessVariableInterpolation(
+                              type: "LessVariableInterpolation",
+                              name: Ident(
+                                type: "Ident",
+                                name: "ratio_large",
+                                raw: "ratio_large",
+                                span: Span(
+                                  start: 146,
+                                  end: 157,
+                                ),
+                              ),
+                              span: Span(
+                                start: 144,
+                                end: 158,
+                              ),
+                            ),
+                            InterpolableStrStaticPart(
+                              type: "InterpolableStrStaticPart",
+                              value: " / ",
+                              raw: " / ",
+                              span: Span(
+                                start: 158,
+                                end: 161,
+                              ),
+                            ),
+                            LessVariableInterpolation(
+                              type: "LessVariableInterpolation",
+                              name: Ident(
+                                type: "Ident",
+                                name: "ratio_small",
+                                raw: "ratio_small",
+                                span: Span(
+                                  start: 163,
+                                  end: 174,
+                                ),
+                              ),
+                              span: Span(
+                                start: 161,
+                                end: 175,
+                              ),
+                            ),
+                            InterpolableStrStaticPart(
+                              type: "InterpolableStrStaticPart",
+                              value: "",
+                              raw: "\'",
+                              span: Span(
+                                start: 175,
+                                end: 176,
+                              ),
+                            ),
+                          ],
                           span: Span(
                             start: 143,
-                            end: 144,
-                          ),
-                        ),
-                        LessVariableInterpolation(
-                          type: "LessVariableInterpolation",
-                          name: Ident(
-                            type: "Ident",
-                            name: "ratio_large",
-                            raw: "ratio_large",
-                            span: Span(
-                              start: 146,
-                              end: 157,
-                            ),
-                          ),
-                          span: Span(
-                            start: 144,
-                            end: 158,
-                          ),
-                        ),
-                        InterpolableStrStaticPart(
-                          type: "InterpolableStrStaticPart",
-                          value: " / ",
-                          raw: " / ",
-                          span: Span(
-                            start: 158,
-                            end: 161,
-                          ),
-                        ),
-                        LessVariableInterpolation(
-                          type: "LessVariableInterpolation",
-                          name: Ident(
-                            type: "Ident",
-                            name: "ratio_small",
-                            raw: "ratio_small",
-                            span: Span(
-                              start: 163,
-                              end: 174,
-                            ),
-                          ),
-                          span: Span(
-                            start: 161,
-                            end: 175,
-                          ),
-                        ),
-                        InterpolableStrStaticPart(
-                          type: "InterpolableStrStaticPart",
-                          value: "",
-                          raw: "\'",
-                          span: Span(
-                            start: 175,
                             end: 176,
                           ),
                         ),
-                      ],
+                        span: Span(
+                          start: 142,
+                          end: 176,
+                        ),
+                      ),
                       span: Span(
-                        start: 143,
+                        start: 121,
                         end: 176,
                       ),
                     ),
                     span: Span(
-                      start: 142,
-                      end: 176,
+                      start: 120,
+                      end: 177,
                     ),
                   ),
-                  span: Span(
-                    start: 121,
-                    end: 176,
-                  ),
+                ],
+                span: Span(
+                  start: 120,
+                  end: 177,
                 ),
-              ],
+              ),
               span: Span(
-                start: 121,
-                end: 176,
+                start: 116,
+                end: 177,
               ),
             )),
             span: Span(
               start: 112,
-              end: 176,
+              end: 177,
             ),
           ),
         ],
         span: Span(
           start: 112,
-          end: 176,
+          end: 177,
         ),
       )),
       block: Some(SimpleBlock(

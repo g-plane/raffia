@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +71,10 @@ Stylesheet(
                 start: 6,
                 end: 7,
               ),
+            ),
+            colonSpan: Span(
+              start: 7,
+              end: 8,
             ),
             value: [
               SassBinaryExpression(
@@ -172,6 +177,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 23,
           end: 26,
@@ -190,6 +196,10 @@ Stylesheet(
                 start: 31,
                 end: 32,
               ),
+            ),
+            colonSpan: Span(
+              start: 32,
+              end: 33,
             ),
             value: [
               SassParenthesizedExpression(
@@ -251,6 +261,10 @@ Stylesheet(
                 end: 56,
               ),
             ),
+            colonSpan: Span(
+              start: 56,
+              end: 57,
+            ),
             value: [
               SassParenthesizedExpression(
                 type: "SassParenthesizedExpression",
@@ -310,6 +324,10 @@ Stylesheet(
                 start: 78,
                 end: 79,
               ),
+            ),
+            colonSpan: Span(
+              start: 79,
+              end: 80,
             ),
             value: [
               SassParenthesizedExpression(
@@ -371,6 +389,10 @@ Stylesheet(
                 end: 101,
               ),
             ),
+            colonSpan: Span(
+              start: 101,
+              end: 102,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -423,6 +445,10 @@ Stylesheet(
                 start: 122,
                 end: 123,
               ),
+            ),
+            colonSpan: Span(
+              start: 123,
+              end: 124,
             ),
             value: [
               SassBinaryExpression(
@@ -517,6 +543,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 144,
           end: 153,
@@ -595,6 +622,10 @@ Stylesheet(
                 end: 189,
               ),
             ),
+            colonSpan: Span(
+              start: 189,
+              end: 190,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -640,6 +671,10 @@ Stylesheet(
                 start: 216,
                 end: 227,
               ),
+            ),
+            colonSpan: Span(
+              start: 227,
+              end: 228,
             ),
             value: [
               SassParenthesizedExpression(
@@ -1186,6 +1221,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 490,
           end: 491,
@@ -1204,6 +1240,10 @@ Stylesheet(
                 start: 496,
                 end: 500,
               ),
+            ),
+            colonSpan: Span(
+              start: 500,
+              end: 501,
             ),
             value: [
               Ident(

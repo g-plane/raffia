@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -44,6 +45,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 9,
@@ -62,6 +64,10 @@ Stylesheet(
                 start: 14,
                 end: 19,
               ),
+            ),
+            colonSpan: Span(
+              start: 19,
+              end: 20,
             ),
             value: [
               LessParenthesizedOperation(
@@ -123,6 +129,10 @@ Stylesheet(
                 end: 49,
               ),
             ),
+            colonSpan: Span(
+              start: 49,
+              end: 50,
+            ),
             value: [
               LessParenthesizedOperation(
                 type: "LessParenthesizedOperation",
@@ -183,6 +193,10 @@ Stylesheet(
                 end: 73,
               ),
             ),
+            colonSpan: Span(
+              start: 73,
+              end: 74,
+            ),
             value: [
               LessParenthesizedOperation(
                 type: "LessParenthesizedOperation",
@@ -242,6 +256,10 @@ Stylesheet(
                 start: 89,
                 end: 94,
               ),
+            ),
+            colonSpan: Span(
+              start: 94,
+              end: 95,
             ),
             value: [
               LessParenthesizedOperation(

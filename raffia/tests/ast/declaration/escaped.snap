@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -52,6 +53,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +72,10 @@ Stylesheet(
                 start: 6,
                 end: 13,
               ),
+            ),
+            colonSpan: Span(
+              start: 13,
+              end: 14,
             ),
             value: [
               HexColor(
@@ -100,6 +106,10 @@ Stylesheet(
                 end: 30,
               ),
             ),
+            colonSpan: Span(
+              start: 30,
+              end: 31,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -128,6 +138,10 @@ Stylesheet(
                 start: 40,
                 end: 47,
               ),
+            ),
+            colonSpan: Span(
+              start: 47,
+              end: 48,
             ),
             value: [
               HexColor(
@@ -158,6 +172,10 @@ Stylesheet(
                 end: 63,
               ),
             ),
+            colonSpan: Span(
+              start: 63,
+              end: 64,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -186,6 +204,10 @@ Stylesheet(
                 start: 73,
                 end: 80,
               ),
+            ),
+            colonSpan: Span(
+              start: 80,
+              end: 81,
             ),
             value: [
               Dimension(
@@ -233,6 +255,10 @@ Stylesheet(
                 end: 94,
               ),
             ),
+            colonSpan: Span(
+              start: 94,
+              end: 95,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -279,6 +305,10 @@ Stylesheet(
                 end: 112,
               ),
             ),
+            colonSpan: Span(
+              start: 112,
+              end: 113,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -307,6 +337,10 @@ Stylesheet(
                 start: 129,
                 end: 134,
               ),
+            ),
+            colonSpan: Span(
+              start: 134,
+              end: 135,
             ),
             value: [
               HexColor(

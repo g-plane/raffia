@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -145,6 +146,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 36,
@@ -163,6 +165,10 @@ Stylesheet(
                 start: 38,
                 end: 39,
               ),
+            ),
+            colonSpan: Span(
+              start: 39,
+              end: 40,
             ),
             value: [
               Ident(
@@ -274,6 +280,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 69,
                 end: 78,
@@ -301,6 +308,10 @@ Stylesheet(
                       start: 81,
                       end: 94,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 94,
+                    end: 95,
                   ),
                   value: [
                     SassInterpolatedIdent(
@@ -399,6 +410,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 115,
           end: 116,
@@ -417,6 +429,10 @@ Stylesheet(
                 start: 130,
                 end: 136,
               ),
+            ),
+            colonSpan: Span(
+              start: 136,
+              end: 137,
             ),
             value: [
               Dimension(
@@ -512,6 +528,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 146,
           end: 147,
@@ -530,6 +547,10 @@ Stylesheet(
                 start: 161,
                 end: 167,
               ),
+            ),
+            colonSpan: Span(
+              start: 167,
+              end: 168,
             ),
             value: [
               Dimension(
@@ -625,6 +646,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 177,
           end: 180,
@@ -643,6 +665,10 @@ Stylesheet(
                 start: 185,
                 end: 189,
               ),
+            ),
+            colonSpan: Span(
+              start: 189,
+              end: 190,
             ),
             value: [
               SassInterpolatedStr(
@@ -843,6 +869,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 247,
           end: 248,
@@ -888,6 +915,10 @@ Stylesheet(
                 start: 251,
                 end: 265,
               ),
+            ),
+            colonSpan: Span(
+              start: 265,
+              end: 266,
             ),
             value: [
               Ident(
@@ -1000,6 +1031,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 273,
           end: 286,
@@ -1018,6 +1050,10 @@ Stylesheet(
                 start: 289,
                 end: 290,
               ),
+            ),
+            colonSpan: Span(
+              start: 290,
+              end: 291,
             ),
             value: [
               Ident(
@@ -1104,6 +1140,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 297,
           end: 305,
@@ -1122,6 +1159,10 @@ Stylesheet(
                 start: 308,
                 end: 309,
               ),
+            ),
+            colonSpan: Span(
+              start: 309,
+              end: 310,
             ),
             value: [
               Ident(
@@ -1208,6 +1249,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 316,
           end: 324,
@@ -1226,6 +1268,10 @@ Stylesheet(
                 start: 327,
                 end: 328,
               ),
+            ),
+            colonSpan: Span(
+              start: 328,
+              end: 329,
             ),
             value: [
               Ident(
@@ -1346,6 +1392,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 335,
           end: 352,
@@ -1364,6 +1411,10 @@ Stylesheet(
                 start: 355,
                 end: 356,
               ),
+            ),
+            colonSpan: Span(
+              start: 356,
+              end: 357,
             ),
             value: [
               Ident(
@@ -1552,6 +1603,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 364,
           end: 390,
@@ -1660,6 +1712,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 395,
           end: 414,
@@ -1786,6 +1839,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 419,
           end: 456,
@@ -1912,6 +1966,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 460,
           end: 499,
@@ -2209,6 +2264,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 596,
           end: 609,
@@ -2227,6 +2283,10 @@ Stylesheet(
                 start: 852,
                 end: 869,
               ),
+            ),
+            colonSpan: Span(
+              start: 869,
+              end: 870,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2275,6 +2335,10 @@ Stylesheet(
                 end: 899,
               ),
             ),
+            colonSpan: Span(
+              start: 899,
+              end: 900,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2321,6 +2385,10 @@ Stylesheet(
                 start: 1001,
                 end: 1016,
               ),
+            ),
+            colonSpan: Span(
+              start: 1016,
+              end: 1017,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2386,6 +2454,10 @@ Stylesheet(
                 start: 1036,
                 end: 1051,
               ),
+            ),
+            colonSpan: Span(
+              start: 1051,
+              end: 1052,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2492,6 +2564,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1073,
           end: 1097,
@@ -2510,6 +2583,10 @@ Stylesheet(
                 start: 1521,
                 end: 1526,
               ),
+            ),
+            colonSpan: Span(
+              start: 1526,
+              end: 1527,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2567,6 +2644,10 @@ Stylesheet(
                 end: 1549,
               ),
             ),
+            colonSpan: Span(
+              start: 1549,
+              end: 1550,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2622,6 +2703,10 @@ Stylesheet(
                 start: 1567,
                 end: 1580,
               ),
+            ),
+            colonSpan: Span(
+              start: 1580,
+              end: 1581,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2719,6 +2804,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1600,
           end: 1621,
@@ -2737,6 +2823,10 @@ Stylesheet(
                 start: 1626,
                 end: 1632,
               ),
+            ),
+            colonSpan: Span(
+              start: 1632,
+              end: 1633,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2784,6 +2874,10 @@ Stylesheet(
                 start: 1651,
                 end: 1657,
               ),
+            ),
+            colonSpan: Span(
+              start: 1657,
+              end: 1658,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2850,6 +2944,10 @@ Stylesheet(
                 end: 1686,
               ),
             ),
+            colonSpan: Span(
+              start: 1686,
+              end: 1687,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2915,6 +3013,10 @@ Stylesheet(
                 end: 1713,
               ),
             ),
+            colonSpan: Span(
+              start: 1713,
+              end: 1714,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2979,6 +3081,10 @@ Stylesheet(
                 start: 1734,
                 end: 1740,
               ),
+            ),
+            colonSpan: Span(
+              start: 1740,
+              end: 1741,
             ),
             value: [
               SassInterpolatedIdent(
@@ -3085,6 +3191,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1766,
           end: 1773,
@@ -3103,6 +3210,10 @@ Stylesheet(
                 start: 1778,
                 end: 1784,
               ),
+            ),
+            colonSpan: Span(
+              start: 1784,
+              end: 1785,
             ),
             value: [
               Str(
@@ -3133,6 +3244,10 @@ Stylesheet(
                 end: 1811,
               ),
             ),
+            colonSpan: Span(
+              start: 1811,
+              end: 1812,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -3162,6 +3277,10 @@ Stylesheet(
                 end: 1836,
               ),
             ),
+            colonSpan: Span(
+              start: 1836,
+              end: 1837,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -3190,6 +3309,10 @@ Stylesheet(
                 start: 1855,
                 end: 1861,
               ),
+            ),
+            colonSpan: Span(
+              start: 1861,
+              end: 1862,
             ),
             value: [
               Str(
@@ -3260,6 +3383,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1885,
           end: 1899,
@@ -3278,6 +3402,10 @@ Stylesheet(
                 start: 1904,
                 end: 1910,
               ),
+            ),
+            colonSpan: Span(
+              start: 1910,
+              end: 1911,
             ),
             value: [
               SassInterpolatedIdent(
@@ -3316,6 +3444,10 @@ Stylesheet(
                 start: 1928,
                 end: 1934,
               ),
+            ),
+            colonSpan: Span(
+              start: 1934,
+              end: 1935,
             ),
             value: [
               SassInterpolatedStr(
@@ -3373,6 +3505,10 @@ Stylesheet(
                 end: 1962,
               ),
             ),
+            colonSpan: Span(
+              start: 1962,
+              end: 1963,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -3429,6 +3565,10 @@ Stylesheet(
                 end: 1988,
               ),
             ),
+            colonSpan: Span(
+              start: 1988,
+              end: 1989,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -3484,6 +3624,10 @@ Stylesheet(
                 start: 2008,
                 end: 2014,
               ),
+            ),
+            colonSpan: Span(
+              start: 2014,
+              end: 2015,
             ),
             value: [
               SassInterpolatedStr(
@@ -3581,6 +3725,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2039,
           end: 2054,
@@ -3599,6 +3744,10 @@ Stylesheet(
                 start: 2059,
                 end: 2065,
               ),
+            ),
+            colonSpan: Span(
+              start: 2065,
+              end: 2066,
             ),
             value: [
               SassInterpolatedIdent(
@@ -3637,6 +3786,10 @@ Stylesheet(
                 start: 2083,
                 end: 2089,
               ),
+            ),
+            colonSpan: Span(
+              start: 2089,
+              end: 2090,
             ),
             value: [
               SassInterpolatedStr(
@@ -3694,6 +3847,10 @@ Stylesheet(
                 end: 2117,
               ),
             ),
+            colonSpan: Span(
+              start: 2117,
+              end: 2118,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -3750,6 +3907,10 @@ Stylesheet(
                 end: 2143,
               ),
             ),
+            colonSpan: Span(
+              start: 2143,
+              end: 2144,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -3805,6 +3966,10 @@ Stylesheet(
                 start: 2163,
                 end: 2169,
               ),
+            ),
+            colonSpan: Span(
+              start: 2169,
+              end: 2170,
             ),
             value: [
               SassInterpolatedStr(
@@ -3902,6 +4067,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2194,
           end: 2212,
@@ -3920,6 +4086,10 @@ Stylesheet(
                 start: 2217,
                 end: 2223,
               ),
+            ),
+            colonSpan: Span(
+              start: 2223,
+              end: 2224,
             ),
             value: [
               SassInterpolatedIdent(
@@ -3977,6 +4147,10 @@ Stylesheet(
                 start: 2246,
                 end: 2252,
               ),
+            ),
+            colonSpan: Span(
+              start: 2252,
+              end: 2253,
             ),
             value: [
               SassInterpolatedStr(
@@ -4053,6 +4227,10 @@ Stylesheet(
                 end: 2285,
               ),
             ),
+            colonSpan: Span(
+              start: 2285,
+              end: 2286,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -4128,6 +4306,10 @@ Stylesheet(
                 end: 2316,
               ),
             ),
+            colonSpan: Span(
+              start: 2316,
+              end: 2317,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -4202,6 +4384,10 @@ Stylesheet(
                 start: 2341,
                 end: 2347,
               ),
+            ),
+            colonSpan: Span(
+              start: 2347,
+              end: 2348,
             ),
             value: [
               SassInterpolatedStr(
@@ -4318,6 +4504,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2377,
           end: 2395,
@@ -4336,6 +4523,10 @@ Stylesheet(
                 start: 2400,
                 end: 2406,
               ),
+            ),
+            colonSpan: Span(
+              start: 2406,
+              end: 2407,
             ),
             value: [
               SassInterpolatedIdent(
@@ -4393,6 +4584,10 @@ Stylesheet(
                 start: 2430,
                 end: 2436,
               ),
+            ),
+            colonSpan: Span(
+              start: 2436,
+              end: 2437,
             ),
             value: [
               SassInterpolatedStr(
@@ -4469,6 +4664,10 @@ Stylesheet(
                 end: 2470,
               ),
             ),
+            colonSpan: Span(
+              start: 2470,
+              end: 2471,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -4544,6 +4743,10 @@ Stylesheet(
                 end: 2502,
               ),
             ),
+            colonSpan: Span(
+              start: 2502,
+              end: 2503,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -4618,6 +4821,10 @@ Stylesheet(
                 start: 2528,
                 end: 2534,
               ),
+            ),
+            colonSpan: Span(
+              start: 2534,
+              end: 2535,
             ),
             value: [
               SassInterpolatedStr(
@@ -4734,6 +4941,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2565,
           end: 2584,
@@ -4752,6 +4960,10 @@ Stylesheet(
                 start: 2589,
                 end: 2595,
               ),
+            ),
+            colonSpan: Span(
+              start: 2595,
+              end: 2596,
             ),
             value: [
               SassInterpolatedIdent(
@@ -4827,6 +5039,10 @@ Stylesheet(
                 start: 2621,
                 end: 2627,
               ),
+            ),
+            colonSpan: Span(
+              start: 2627,
+              end: 2628,
             ),
             value: [
               SassInterpolatedStr(
@@ -4921,6 +5137,10 @@ Stylesheet(
                 end: 2663,
               ),
             ),
+            colonSpan: Span(
+              start: 2663,
+              end: 2664,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -5014,6 +5234,10 @@ Stylesheet(
                 end: 2697,
               ),
             ),
+            colonSpan: Span(
+              start: 2697,
+              end: 2698,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -5106,6 +5330,10 @@ Stylesheet(
                 start: 2725,
                 end: 2731,
               ),
+            ),
+            colonSpan: Span(
+              start: 2731,
+              end: 2732,
             ),
             value: [
               SassInterpolatedStr(
@@ -5240,6 +5468,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2764,
           end: 2783,
@@ -5258,6 +5487,10 @@ Stylesheet(
                 start: 2788,
                 end: 2794,
               ),
+            ),
+            colonSpan: Span(
+              start: 2794,
+              end: 2795,
             ),
             value: [
               SassInterpolatedIdent(
@@ -5343,6 +5576,10 @@ Stylesheet(
                 start: 2821,
                 end: 2827,
               ),
+            ),
+            colonSpan: Span(
+              start: 2827,
+              end: 2828,
             ),
             value: [
               SassInterpolatedStr(
@@ -5447,6 +5684,10 @@ Stylesheet(
                 end: 2864,
               ),
             ),
+            colonSpan: Span(
+              start: 2864,
+              end: 2865,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -5550,6 +5791,10 @@ Stylesheet(
                 end: 2899,
               ),
             ),
+            colonSpan: Span(
+              start: 2899,
+              end: 2900,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -5652,6 +5897,10 @@ Stylesheet(
                 start: 2928,
                 end: 2934,
               ),
+            ),
+            colonSpan: Span(
+              start: 2934,
+              end: 2935,
             ),
             value: [
               SassInterpolatedStr(
@@ -5796,6 +6045,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2968,
           end: 2986,
@@ -5814,6 +6064,10 @@ Stylesheet(
                 start: 2991,
                 end: 2997,
               ),
+            ),
+            colonSpan: Span(
+              start: 2997,
+              end: 2998,
             ),
             value: [
               SassInterpolatedIdent(
@@ -5852,6 +6106,10 @@ Stylesheet(
                 start: 3008,
                 end: 3014,
               ),
+            ),
+            colonSpan: Span(
+              start: 3014,
+              end: 3015,
             ),
             value: [
               SassInterpolatedStr(
@@ -5909,6 +6167,10 @@ Stylesheet(
                 end: 3035,
               ),
             ),
+            colonSpan: Span(
+              start: 3035,
+              end: 3036,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -5965,6 +6227,10 @@ Stylesheet(
                 end: 3054,
               ),
             ),
+            colonSpan: Span(
+              start: 3054,
+              end: 3055,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6020,6 +6286,10 @@ Stylesheet(
                 start: 3067,
                 end: 3073,
               ),
+            ),
+            colonSpan: Span(
+              start: 3073,
+              end: 3074,
             ),
             value: [
               SassInterpolatedStr(
@@ -6117,6 +6387,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3091,
           end: 3107,
@@ -6135,6 +6406,10 @@ Stylesheet(
                 start: 3112,
                 end: 3118,
               ),
+            ),
+            colonSpan: Span(
+              start: 3118,
+              end: 3119,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6173,6 +6448,10 @@ Stylesheet(
                 start: 3137,
                 end: 3143,
               ),
+            ),
+            colonSpan: Span(
+              start: 3143,
+              end: 3144,
             ),
             value: [
               SassInterpolatedStr(
@@ -6230,6 +6509,10 @@ Stylesheet(
                 end: 3172,
               ),
             ),
+            colonSpan: Span(
+              start: 3172,
+              end: 3173,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6286,6 +6569,10 @@ Stylesheet(
                 end: 3199,
               ),
             ),
+            colonSpan: Span(
+              start: 3199,
+              end: 3200,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6341,6 +6628,10 @@ Stylesheet(
                 start: 3220,
                 end: 3226,
               ),
+            ),
+            colonSpan: Span(
+              start: 3226,
+              end: 3227,
             ),
             value: [
               SassInterpolatedStr(
@@ -6438,6 +6729,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3252,
           end: 3274,
@@ -6456,6 +6748,10 @@ Stylesheet(
                 start: 3279,
                 end: 3285,
               ),
+            ),
+            colonSpan: Span(
+              start: 3285,
+              end: 3286,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6494,6 +6790,10 @@ Stylesheet(
                 start: 3306,
                 end: 3312,
               ),
+            ),
+            colonSpan: Span(
+              start: 3312,
+              end: 3313,
             ),
             value: [
               SassInterpolatedStr(
@@ -6551,6 +6851,10 @@ Stylesheet(
                 end: 3343,
               ),
             ),
+            colonSpan: Span(
+              start: 3343,
+              end: 3344,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6607,6 +6911,10 @@ Stylesheet(
                 end: 3372,
               ),
             ),
+            colonSpan: Span(
+              start: 3372,
+              end: 3373,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6662,6 +6970,10 @@ Stylesheet(
                 start: 3395,
                 end: 3401,
               ),
+            ),
+            colonSpan: Span(
+              start: 3401,
+              end: 3402,
             ),
             value: [
               SassInterpolatedStr(
@@ -6759,6 +7071,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3429,
           end: 3451,
@@ -6777,6 +7090,10 @@ Stylesheet(
                 start: 3456,
                 end: 3462,
               ),
+            ),
+            colonSpan: Span(
+              start: 3462,
+              end: 3463,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6815,6 +7132,10 @@ Stylesheet(
                 start: 3483,
                 end: 3489,
               ),
+            ),
+            colonSpan: Span(
+              start: 3489,
+              end: 3490,
             ),
             value: [
               SassInterpolatedStr(
@@ -6872,6 +7193,10 @@ Stylesheet(
                 end: 3520,
               ),
             ),
+            colonSpan: Span(
+              start: 3520,
+              end: 3521,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6928,6 +7253,10 @@ Stylesheet(
                 end: 3549,
               ),
             ),
+            colonSpan: Span(
+              start: 3549,
+              end: 3550,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -6983,6 +7312,10 @@ Stylesheet(
                 start: 3572,
                 end: 3578,
               ),
+            ),
+            colonSpan: Span(
+              start: 3578,
+              end: 3579,
             ),
             value: [
               SassInterpolatedStr(
@@ -7080,6 +7413,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3606,
           end: 3630,
@@ -7098,6 +7432,10 @@ Stylesheet(
                 start: 3635,
                 end: 3641,
               ),
+            ),
+            colonSpan: Span(
+              start: 3641,
+              end: 3642,
             ),
             value: [
               SassInterpolatedIdent(
@@ -7136,6 +7474,10 @@ Stylesheet(
                 start: 3668,
                 end: 3674,
               ),
+            ),
+            colonSpan: Span(
+              start: 3674,
+              end: 3675,
             ),
             value: [
               SassInterpolatedStr(
@@ -7193,6 +7535,10 @@ Stylesheet(
                 end: 3711,
               ),
             ),
+            colonSpan: Span(
+              start: 3711,
+              end: 3712,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7249,6 +7595,10 @@ Stylesheet(
                 end: 3746,
               ),
             ),
+            colonSpan: Span(
+              start: 3746,
+              end: 3747,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7304,6 +7654,10 @@ Stylesheet(
                 start: 3775,
                 end: 3781,
               ),
+            ),
+            colonSpan: Span(
+              start: 3781,
+              end: 3782,
             ),
             value: [
               SassInterpolatedStr(
@@ -7401,6 +7755,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3815,
           end: 3845,
@@ -7419,6 +7774,10 @@ Stylesheet(
                 start: 3850,
                 end: 3856,
               ),
+            ),
+            colonSpan: Span(
+              start: 3856,
+              end: 3857,
             ),
             value: [
               SassInterpolatedIdent(
@@ -7457,6 +7816,10 @@ Stylesheet(
                 start: 3885,
                 end: 3891,
               ),
+            ),
+            colonSpan: Span(
+              start: 3891,
+              end: 3892,
             ),
             value: [
               SassInterpolatedStr(
@@ -7514,6 +7877,10 @@ Stylesheet(
                 end: 3930,
               ),
             ),
+            colonSpan: Span(
+              start: 3930,
+              end: 3931,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7570,6 +7937,10 @@ Stylesheet(
                 end: 3967,
               ),
             ),
+            colonSpan: Span(
+              start: 3967,
+              end: 3968,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7625,6 +7996,10 @@ Stylesheet(
                 start: 3998,
                 end: 4004,
               ),
+            ),
+            colonSpan: Span(
+              start: 4004,
+              end: 4005,
             ),
             value: [
               SassInterpolatedStr(
@@ -7722,6 +8097,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 4040,
           end: 4070,
@@ -7740,6 +8116,10 @@ Stylesheet(
                 start: 4075,
                 end: 4081,
               ),
+            ),
+            colonSpan: Span(
+              start: 4081,
+              end: 4082,
             ),
             value: [
               SassInterpolatedIdent(
@@ -7778,6 +8158,10 @@ Stylesheet(
                 start: 4110,
                 end: 4116,
               ),
+            ),
+            colonSpan: Span(
+              start: 4116,
+              end: 4117,
             ),
             value: [
               SassInterpolatedStr(
@@ -7835,6 +8219,10 @@ Stylesheet(
                 end: 4155,
               ),
             ),
+            colonSpan: Span(
+              start: 4155,
+              end: 4156,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7891,6 +8279,10 @@ Stylesheet(
                 end: 4192,
               ),
             ),
+            colonSpan: Span(
+              start: 4192,
+              end: 4193,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -7946,6 +8338,10 @@ Stylesheet(
                 start: 4223,
                 end: 4229,
               ),
+            ),
+            colonSpan: Span(
+              start: 4229,
+              end: 4230,
             ),
             value: [
               SassInterpolatedStr(
@@ -8043,6 +8439,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 4265,
           end: 4291,
@@ -8061,6 +8458,10 @@ Stylesheet(
                 start: 4296,
                 end: 4302,
               ),
+            ),
+            colonSpan: Span(
+              start: 4302,
+              end: 4303,
             ),
             value: [
               SassInterpolatedIdent(
@@ -8099,6 +8500,10 @@ Stylesheet(
                 start: 4361,
                 end: 4367,
               ),
+            ),
+            colonSpan: Span(
+              start: 4367,
+              end: 4368,
             ),
             value: [
               SassInterpolatedStr(
@@ -8156,6 +8561,10 @@ Stylesheet(
                 end: 4436,
               ),
             ),
+            colonSpan: Span(
+              start: 4436,
+              end: 4437,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8212,6 +8621,10 @@ Stylesheet(
                 end: 4503,
               ),
             ),
+            colonSpan: Span(
+              start: 4503,
+              end: 4504,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8267,6 +8680,10 @@ Stylesheet(
                 start: 4564,
                 end: 4570,
               ),
+            ),
+            colonSpan: Span(
+              start: 4570,
+              end: 4571,
             ),
             value: [
               SassInterpolatedStr(
@@ -8364,6 +8781,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 4636,
           end: 4668,
@@ -8382,6 +8800,10 @@ Stylesheet(
                 start: 4673,
                 end: 4679,
               ),
+            ),
+            colonSpan: Span(
+              start: 4679,
+              end: 4680,
             ),
             value: [
               SassInterpolatedIdent(
@@ -8420,6 +8842,10 @@ Stylesheet(
                 start: 4740,
                 end: 4746,
               ),
+            ),
+            colonSpan: Span(
+              start: 4746,
+              end: 4747,
             ),
             value: [
               SassInterpolatedStr(
@@ -8477,6 +8903,10 @@ Stylesheet(
                 end: 4817,
               ),
             ),
+            colonSpan: Span(
+              start: 4817,
+              end: 4818,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8533,6 +8963,10 @@ Stylesheet(
                 end: 4886,
               ),
             ),
+            colonSpan: Span(
+              start: 4886,
+              end: 4887,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8588,6 +9022,10 @@ Stylesheet(
                 start: 4949,
                 end: 4955,
               ),
+            ),
+            colonSpan: Span(
+              start: 4955,
+              end: 4956,
             ),
             value: [
               SassInterpolatedStr(
@@ -8685,6 +9123,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 5023,
           end: 5055,
@@ -8703,6 +9142,10 @@ Stylesheet(
                 start: 5060,
                 end: 5066,
               ),
+            ),
+            colonSpan: Span(
+              start: 5066,
+              end: 5067,
             ),
             value: [
               SassInterpolatedIdent(
@@ -8741,6 +9184,10 @@ Stylesheet(
                 start: 5127,
                 end: 5133,
               ),
+            ),
+            colonSpan: Span(
+              start: 5133,
+              end: 5134,
             ),
             value: [
               SassInterpolatedStr(
@@ -8798,6 +9245,10 @@ Stylesheet(
                 end: 5204,
               ),
             ),
+            colonSpan: Span(
+              start: 5204,
+              end: 5205,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8854,6 +9305,10 @@ Stylesheet(
                 end: 5273,
               ),
             ),
+            colonSpan: Span(
+              start: 5273,
+              end: 5274,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -8909,6 +9364,10 @@ Stylesheet(
                 start: 5336,
                 end: 5342,
               ),
+            ),
+            colonSpan: Span(
+              start: 5342,
+              end: 5343,
             ),
             value: [
               SassInterpolatedStr(
@@ -9006,6 +9465,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 5410,
           end: 5436,
@@ -9024,6 +9484,10 @@ Stylesheet(
                 start: 5441,
                 end: 5447,
               ),
+            ),
+            colonSpan: Span(
+              start: 5447,
+              end: 5448,
             ),
             value: [
               SassInterpolatedIdent(
@@ -9062,6 +9526,10 @@ Stylesheet(
                 start: 5506,
                 end: 5512,
               ),
+            ),
+            colonSpan: Span(
+              start: 5512,
+              end: 5513,
             ),
             value: [
               SassInterpolatedStr(
@@ -9119,6 +9587,10 @@ Stylesheet(
                 end: 5581,
               ),
             ),
+            colonSpan: Span(
+              start: 5581,
+              end: 5582,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9175,6 +9647,10 @@ Stylesheet(
                 end: 5648,
               ),
             ),
+            colonSpan: Span(
+              start: 5648,
+              end: 5649,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9230,6 +9706,10 @@ Stylesheet(
                 start: 5709,
                 end: 5715,
               ),
+            ),
+            colonSpan: Span(
+              start: 5715,
+              end: 5716,
             ),
             value: [
               SassInterpolatedStr(
@@ -9327,6 +9807,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 5781,
           end: 5813,
@@ -9345,6 +9826,10 @@ Stylesheet(
                 start: 5818,
                 end: 5824,
               ),
+            ),
+            colonSpan: Span(
+              start: 5824,
+              end: 5825,
             ),
             value: [
               SassInterpolatedIdent(
@@ -9383,6 +9868,10 @@ Stylesheet(
                 start: 5885,
                 end: 5891,
               ),
+            ),
+            colonSpan: Span(
+              start: 5891,
+              end: 5892,
             ),
             value: [
               SassInterpolatedStr(
@@ -9440,6 +9929,10 @@ Stylesheet(
                 end: 5962,
               ),
             ),
+            colonSpan: Span(
+              start: 5962,
+              end: 5963,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9496,6 +9989,10 @@ Stylesheet(
                 end: 6031,
               ),
             ),
+            colonSpan: Span(
+              start: 6031,
+              end: 6032,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9551,6 +10048,10 @@ Stylesheet(
                 start: 6094,
                 end: 6100,
               ),
+            ),
+            colonSpan: Span(
+              start: 6100,
+              end: 6101,
             ),
             value: [
               SassInterpolatedStr(
@@ -9648,6 +10149,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 6168,
           end: 6200,
@@ -9666,6 +10168,10 @@ Stylesheet(
                 start: 6205,
                 end: 6211,
               ),
+            ),
+            colonSpan: Span(
+              start: 6211,
+              end: 6212,
             ),
             value: [
               SassInterpolatedIdent(
@@ -9704,6 +10210,10 @@ Stylesheet(
                 start: 6272,
                 end: 6278,
               ),
+            ),
+            colonSpan: Span(
+              start: 6278,
+              end: 6279,
             ),
             value: [
               SassInterpolatedStr(
@@ -9761,6 +10271,10 @@ Stylesheet(
                 end: 6349,
               ),
             ),
+            colonSpan: Span(
+              start: 6349,
+              end: 6350,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9817,6 +10331,10 @@ Stylesheet(
                 end: 6418,
               ),
             ),
+            colonSpan: Span(
+              start: 6418,
+              end: 6419,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -9872,6 +10390,10 @@ Stylesheet(
                 start: 6481,
                 end: 6487,
               ),
+            ),
+            colonSpan: Span(
+              start: 6487,
+              end: 6488,
             ),
             value: [
               SassInterpolatedStr(
@@ -9969,6 +10491,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 6555,
           end: 6580,
@@ -9987,6 +10510,10 @@ Stylesheet(
                 start: 6585,
                 end: 6591,
               ),
+            ),
+            colonSpan: Span(
+              start: 6591,
+              end: 6592,
             ),
             value: [
               SassInterpolatedIdent(
@@ -10025,6 +10552,10 @@ Stylesheet(
                 start: 6608,
                 end: 6614,
               ),
+            ),
+            colonSpan: Span(
+              start: 6614,
+              end: 6615,
             ),
             value: [
               SassInterpolatedStr(
@@ -10082,6 +10613,10 @@ Stylesheet(
                 end: 6641,
               ),
             ),
+            colonSpan: Span(
+              start: 6641,
+              end: 6642,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10138,6 +10673,10 @@ Stylesheet(
                 end: 6666,
               ),
             ),
+            colonSpan: Span(
+              start: 6666,
+              end: 6667,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10193,6 +10732,10 @@ Stylesheet(
                 start: 6685,
                 end: 6691,
               ),
+            ),
+            colonSpan: Span(
+              start: 6691,
+              end: 6692,
             ),
             value: [
               SassInterpolatedStr(
@@ -10290,6 +10833,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 6715,
           end: 6746,
@@ -10308,6 +10852,10 @@ Stylesheet(
                 start: 6751,
                 end: 6757,
               ),
+            ),
+            colonSpan: Span(
+              start: 6757,
+              end: 6758,
             ),
             value: [
               SassInterpolatedIdent(
@@ -10346,6 +10894,10 @@ Stylesheet(
                 start: 6776,
                 end: 6782,
               ),
+            ),
+            colonSpan: Span(
+              start: 6782,
+              end: 6783,
             ),
             value: [
               SassInterpolatedStr(
@@ -10403,6 +10955,10 @@ Stylesheet(
                 end: 6811,
               ),
             ),
+            colonSpan: Span(
+              start: 6811,
+              end: 6812,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10459,6 +11015,10 @@ Stylesheet(
                 end: 6838,
               ),
             ),
+            colonSpan: Span(
+              start: 6838,
+              end: 6839,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10514,6 +11074,10 @@ Stylesheet(
                 start: 6859,
                 end: 6865,
               ),
+            ),
+            colonSpan: Span(
+              start: 6865,
+              end: 6866,
             ),
             value: [
               SassInterpolatedStr(
@@ -10611,6 +11175,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 6891,
           end: 6922,
@@ -10629,6 +11194,10 @@ Stylesheet(
                 start: 6927,
                 end: 6933,
               ),
+            ),
+            colonSpan: Span(
+              start: 6933,
+              end: 6934,
             ),
             value: [
               SassInterpolatedIdent(
@@ -10667,6 +11236,10 @@ Stylesheet(
                 start: 6952,
                 end: 6958,
               ),
+            ),
+            colonSpan: Span(
+              start: 6958,
+              end: 6959,
             ),
             value: [
               SassInterpolatedStr(
@@ -10724,6 +11297,10 @@ Stylesheet(
                 end: 6987,
               ),
             ),
+            colonSpan: Span(
+              start: 6987,
+              end: 6988,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10780,6 +11357,10 @@ Stylesheet(
                 end: 7014,
               ),
             ),
+            colonSpan: Span(
+              start: 7014,
+              end: 7015,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -10835,6 +11416,10 @@ Stylesheet(
                 start: 7035,
                 end: 7041,
               ),
+            ),
+            colonSpan: Span(
+              start: 7041,
+              end: 7042,
             ),
             value: [
               SassInterpolatedStr(
@@ -10932,6 +11517,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 7067,
           end: 7090,
@@ -10950,6 +11536,10 @@ Stylesheet(
                 start: 7095,
                 end: 7101,
               ),
+            ),
+            colonSpan: Span(
+              start: 7101,
+              end: 7102,
             ),
             value: [
               SassInterpolatedIdent(
@@ -10988,6 +11578,10 @@ Stylesheet(
                 start: 7114,
                 end: 7120,
               ),
+            ),
+            colonSpan: Span(
+              start: 7120,
+              end: 7121,
             ),
             value: [
               SassInterpolatedStr(
@@ -11045,6 +11639,10 @@ Stylesheet(
                 end: 7143,
               ),
             ),
+            colonSpan: Span(
+              start: 7143,
+              end: 7144,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11101,6 +11699,10 @@ Stylesheet(
                 end: 7164,
               ),
             ),
+            colonSpan: Span(
+              start: 7164,
+              end: 7165,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11156,6 +11758,10 @@ Stylesheet(
                 start: 7179,
                 end: 7185,
               ),
+            ),
+            colonSpan: Span(
+              start: 7185,
+              end: 7186,
             ),
             value: [
               SassInterpolatedStr(
@@ -11253,6 +11859,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 7205,
           end: 7227,
@@ -11271,6 +11878,10 @@ Stylesheet(
                 start: 7232,
                 end: 7238,
               ),
+            ),
+            colonSpan: Span(
+              start: 7238,
+              end: 7239,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11309,6 +11920,10 @@ Stylesheet(
                 start: 7251,
                 end: 7257,
               ),
+            ),
+            colonSpan: Span(
+              start: 7257,
+              end: 7258,
             ),
             value: [
               SassInterpolatedStr(
@@ -11366,6 +11981,10 @@ Stylesheet(
                 end: 7280,
               ),
             ),
+            colonSpan: Span(
+              start: 7280,
+              end: 7281,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11422,6 +12041,10 @@ Stylesheet(
                 end: 7301,
               ),
             ),
+            colonSpan: Span(
+              start: 7301,
+              end: 7302,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11477,6 +12100,10 @@ Stylesheet(
                 start: 7316,
                 end: 7322,
               ),
+            ),
+            colonSpan: Span(
+              start: 7322,
+              end: 7323,
             ),
             value: [
               SassInterpolatedStr(
@@ -11574,6 +12201,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 7342,
           end: 7364,
@@ -11592,6 +12220,10 @@ Stylesheet(
                 start: 7369,
                 end: 7375,
               ),
+            ),
+            colonSpan: Span(
+              start: 7375,
+              end: 7376,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11630,6 +12262,10 @@ Stylesheet(
                 start: 7388,
                 end: 7394,
               ),
+            ),
+            colonSpan: Span(
+              start: 7394,
+              end: 7395,
             ),
             value: [
               SassInterpolatedStr(
@@ -11687,6 +12323,10 @@ Stylesheet(
                 end: 7417,
               ),
             ),
+            colonSpan: Span(
+              start: 7417,
+              end: 7418,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11743,6 +12383,10 @@ Stylesheet(
                 end: 7438,
               ),
             ),
+            colonSpan: Span(
+              start: 7438,
+              end: 7439,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -11798,6 +12442,10 @@ Stylesheet(
                 start: 7453,
                 end: 7459,
               ),
+            ),
+            colonSpan: Span(
+              start: 7459,
+              end: 7460,
             ),
             value: [
               SassInterpolatedStr(
@@ -11895,6 +12543,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 7479,
           end: 7506,
@@ -11913,6 +12562,10 @@ Stylesheet(
                 start: 7511,
                 end: 7517,
               ),
+            ),
+            colonSpan: Span(
+              start: 7517,
+              end: 7518,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11979,6 +12632,10 @@ Stylesheet(
                 start: 7537,
                 end: 7543,
               ),
+            ),
+            colonSpan: Span(
+              start: 7543,
+              end: 7544,
             ),
             value: [
               SassInterpolatedStr(
@@ -12064,6 +12721,10 @@ Stylesheet(
                 end: 7573,
               ),
             ),
+            colonSpan: Span(
+              start: 7573,
+              end: 7574,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -12148,6 +12809,10 @@ Stylesheet(
                 end: 7601,
               ),
             ),
+            colonSpan: Span(
+              start: 7601,
+              end: 7602,
+            ),
             value: [
               SassInterpolatedStr(
                 type: "SassInterpolatedStr",
@@ -12231,6 +12896,10 @@ Stylesheet(
                 start: 7623,
                 end: 7629,
               ),
+            ),
+            colonSpan: Span(
+              start: 7629,
+              end: 7630,
             ),
             value: [
               SassInterpolatedStr(

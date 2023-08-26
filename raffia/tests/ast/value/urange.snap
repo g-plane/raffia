@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -30,6 +31,10 @@ Stylesheet(
                 end: 26,
               ),
             ),
+            colonSpan: Span(
+              start: 26,
+              end: 27,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -58,6 +63,10 @@ Stylesheet(
                 start: 43,
                 end: 46,
               ),
+            ),
+            colonSpan: Span(
+              start: 46,
+              end: 47,
             ),
             value: [
               Function(
@@ -106,6 +115,10 @@ Stylesheet(
                 end: 89,
               ),
             ),
+            colonSpan: Span(
+              start: 89,
+              end: 90,
+            ),
             value: [
               UnicodeRange(
                 type: "UnicodeRange",
@@ -137,6 +150,10 @@ Stylesheet(
                 start: 136,
                 end: 149,
               ),
+            ),
+            colonSpan: Span(
+              start: 149,
+              end: 150,
             ),
             value: [
               UnicodeRange(
@@ -170,6 +187,10 @@ Stylesheet(
                 end: 172,
               ),
             ),
+            colonSpan: Span(
+              start: 172,
+              end: 173,
+            ),
             value: [
               UnicodeRange(
                 type: "UnicodeRange",
@@ -201,6 +222,10 @@ Stylesheet(
                 start: 184,
                 end: 197,
               ),
+            ),
+            colonSpan: Span(
+              start: 197,
+              end: 198,
             ),
             value: [
               UnicodeRange(
@@ -234,6 +259,10 @@ Stylesheet(
                 end: 256,
               ),
             ),
+            colonSpan: Span(
+              start: 256,
+              end: 257,
+            ),
             value: [
               UnicodeRange(
                 type: "UnicodeRange",
@@ -265,6 +294,10 @@ Stylesheet(
                 start: 301,
                 end: 314,
               ),
+            ),
+            colonSpan: Span(
+              start: 314,
+              end: 315,
             ),
             value: [
               UnicodeRange(
@@ -317,6 +350,10 @@ Stylesheet(
                 start: 360,
                 end: 373,
               ),
+            ),
+            colonSpan: Span(
+              start: 373,
+              end: 374,
             ),
             value: [
               UnicodeRange(
@@ -410,6 +447,10 @@ Stylesheet(
                 end: 452,
               ),
             ),
+            colonSpan: Span(
+              start: 452,
+              end: 453,
+            ),
             value: [
               UnicodeRange(
                 type: "UnicodeRange",
@@ -442,6 +483,10 @@ Stylesheet(
                 end: 477,
               ),
             ),
+            colonSpan: Span(
+              start: 477,
+              end: 478,
+            ),
             value: [
               UnicodeRange(
                 type: "UnicodeRange",
@@ -473,6 +518,10 @@ Stylesheet(
                 start: 487,
                 end: 500,
               ),
+            ),
+            colonSpan: Span(
+              start: 500,
+              end: 501,
             ),
             value: [
               UnicodeRange(

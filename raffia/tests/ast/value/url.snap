@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -52,6 +53,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -70,6 +72,10 @@ Stylesheet(
                 start: 8,
                 end: 18,
               ),
+            ),
+            colonSpan: Span(
+              start: 18,
+              end: 19,
             ),
             value: [
               Url(
@@ -117,6 +123,10 @@ Stylesheet(
                 end: 68,
               ),
             ),
+            colonSpan: Span(
+              start: 68,
+              end: 69,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -162,6 +172,10 @@ Stylesheet(
                 start: 108,
                 end: 118,
               ),
+            ),
+            colonSpan: Span(
+              start: 118,
+              end: 119,
             ),
             value: [
               Url(
@@ -209,6 +223,10 @@ Stylesheet(
                 end: 169,
               ),
             ),
+            colonSpan: Span(
+              start: 169,
+              end: 170,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -254,6 +272,10 @@ Stylesheet(
                 start: 211,
                 end: 221,
               ),
+            ),
+            colonSpan: Span(
+              start: 221,
+              end: 222,
             ),
             value: [
               Url(
@@ -301,6 +323,10 @@ Stylesheet(
                 end: 273,
               ),
             ),
+            colonSpan: Span(
+              start: 273,
+              end: 274,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -346,6 +372,10 @@ Stylesheet(
                 start: 315,
                 end: 325,
               ),
+            ),
+            colonSpan: Span(
+              start: 325,
+              end: 326,
             ),
             value: [
               Url(
@@ -393,6 +423,10 @@ Stylesheet(
                 end: 378,
               ),
             ),
+            colonSpan: Span(
+              start: 378,
+              end: 379,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -439,6 +473,10 @@ Stylesheet(
                 end: 427,
               ),
             ),
+            colonSpan: Span(
+              start: 427,
+              end: 428,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -484,6 +522,10 @@ Stylesheet(
                 start: 523,
                 end: 533,
               ),
+            ),
+            colonSpan: Span(
+              start: 533,
+              end: 534,
             ),
             value: [
               Url(
@@ -540,6 +582,10 @@ Stylesheet(
                 start: 571,
                 end: 581,
               ),
+            ),
+            colonSpan: Span(
+              start: 581,
+              end: 582,
             ),
             value: [
               Url(
@@ -642,6 +688,10 @@ Stylesheet(
                 end: 643,
               ),
             ),
+            colonSpan: Span(
+              start: 643,
+              end: 644,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -743,6 +793,10 @@ Stylesheet(
                 end: 731,
               ),
             ),
+            colonSpan: Span(
+              start: 731,
+              end: 732,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -788,6 +842,10 @@ Stylesheet(
                 start: 742,
                 end: 752,
               ),
+            ),
+            colonSpan: Span(
+              start: 752,
+              end: 753,
             ),
             value: [
               Url(
@@ -835,6 +893,10 @@ Stylesheet(
                 end: 775,
               ),
             ),
+            colonSpan: Span(
+              start: 775,
+              end: 776,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -881,6 +943,10 @@ Stylesheet(
                 end: 794,
               ),
             ),
+            colonSpan: Span(
+              start: 794,
+              end: 795,
+            ),
             value: [
               TokenWithSpan(
                 type: "TokenWithSpan",
@@ -912,6 +978,10 @@ Stylesheet(
                 start: 837,
                 end: 847,
               ),
+            ),
+            colonSpan: Span(
+              start: 847,
+              end: 848,
             ),
             value: [
               Url(
@@ -959,6 +1029,10 @@ Stylesheet(
                 end: 904,
               ),
             ),
+            colonSpan: Span(
+              start: 904,
+              end: 905,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1004,6 +1078,10 @@ Stylesheet(
                 start: 951,
                 end: 961,
               ),
+            ),
+            colonSpan: Span(
+              start: 961,
+              end: 962,
             ),
             value: [
               Url(
@@ -1071,6 +1149,10 @@ Stylesheet(
                 end: 992,
               ),
             ),
+            colonSpan: Span(
+              start: 992,
+              end: 993,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1116,6 +1198,10 @@ Stylesheet(
                 start: 1038,
                 end: 1048,
               ),
+            ),
+            colonSpan: Span(
+              start: 1048,
+              end: 1049,
             ),
             value: [
               Url(
@@ -1163,6 +1249,10 @@ Stylesheet(
                 end: 1105,
               ),
             ),
+            colonSpan: Span(
+              start: 1105,
+              end: 1106,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1208,6 +1298,10 @@ Stylesheet(
                 start: 1167,
                 end: 1177,
               ),
+            ),
+            colonSpan: Span(
+              start: 1177,
+              end: 1178,
             ),
             value: [
               Url(
@@ -1255,6 +1349,10 @@ Stylesheet(
                 end: 1233,
               ),
             ),
+            colonSpan: Span(
+              start: 1233,
+              end: 1234,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1300,6 +1398,10 @@ Stylesheet(
                 start: 1276,
                 end: 1281,
               ),
+            ),
+            colonSpan: Span(
+              start: 1281,
+              end: 1282,
             ),
             value: [
               Url(
@@ -1347,6 +1449,10 @@ Stylesheet(
                 end: 1303,
               ),
             ),
+            colonSpan: Span(
+              start: 1303,
+              end: 1304,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1392,6 +1498,10 @@ Stylesheet(
                 start: 1319,
                 end: 1324,
               ),
+            ),
+            colonSpan: Span(
+              start: 1324,
+              end: 1325,
             ),
             value: [
               Url(
@@ -1439,6 +1549,10 @@ Stylesheet(
                 end: 1346,
               ),
             ),
+            colonSpan: Span(
+              start: 1346,
+              end: 1347,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1485,6 +1599,10 @@ Stylesheet(
                 end: 1367,
               ),
             ),
+            colonSpan: Span(
+              start: 1367,
+              end: 1368,
+            ),
             value: [
               Url(
                 type: "Url",
@@ -1530,6 +1648,10 @@ Stylesheet(
                 start: 1381,
                 end: 1386,
               ),
+            ),
+            colonSpan: Span(
+              start: 1386,
+              end: 1387,
             ),
             value: [
               Url(
@@ -1670,6 +1792,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1431,
           end: 1440,
@@ -1688,6 +1811,10 @@ Stylesheet(
                 start: 1445,
                 end: 1446,
               ),
+            ),
+            colonSpan: Span(
+              start: 1446,
+              end: 1447,
             ),
             value: [
               Ident(
@@ -1726,6 +1853,10 @@ Stylesheet(
                 end: 1458,
               ),
             ),
+            colonSpan: Span(
+              start: 1458,
+              end: 1459,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -1763,6 +1894,10 @@ Stylesheet(
                 start: 1469,
                 end: 1470,
               ),
+            ),
+            colonSpan: Span(
+              start: 1470,
+              end: 1471,
             ),
             value: [
               Ident(

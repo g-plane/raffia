@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -69,6 +70,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 7,
@@ -87,6 +89,10 @@ Stylesheet(
                 start: 10,
                 end: 17,
               ),
+            ),
+            colonSpan: Span(
+              start: 17,
+              end: 18,
             ),
             value: [
               Str(
@@ -182,6 +188,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 28,
           end: 35,
@@ -200,6 +207,10 @@ Stylesheet(
                 start: 38,
                 end: 45,
               ),
+            ),
+            colonSpan: Span(
+              start: 45,
+              end: 46,
             ),
             value: [
               Str(
@@ -295,6 +306,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 56,
           end: 63,
@@ -313,6 +325,10 @@ Stylesheet(
                 start: 66,
                 end: 73,
               ),
+            ),
+            colonSpan: Span(
+              start: 73,
+              end: 74,
             ),
             value: [
               Str(
@@ -408,6 +424,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 86,
           end: 93,
@@ -426,6 +443,10 @@ Stylesheet(
                 start: 96,
                 end: 103,
               ),
+            ),
+            colonSpan: Span(
+              start: 103,
+              end: 104,
             ),
             value: [
               Str(
@@ -521,6 +542,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 118,
           end: 125,
@@ -539,6 +561,10 @@ Stylesheet(
                 start: 128,
                 end: 135,
               ),
+            ),
+            colonSpan: Span(
+              start: 135,
+              end: 136,
             ),
             value: [
               Str(

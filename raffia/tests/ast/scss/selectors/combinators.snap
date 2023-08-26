@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -60,6 +61,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -78,6 +80,10 @@ Stylesheet(
                 start: 5,
                 end: 6,
               ),
+            ),
+            colonSpan: Span(
+              start: 6,
+              end: 7,
             ),
             value: [
               Ident(
@@ -164,6 +170,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 11,
           end: 14,
@@ -182,6 +189,10 @@ Stylesheet(
                 start: 16,
                 end: 17,
               ),
+            ),
+            colonSpan: Span(
+              start: 17,
+              end: 18,
             ),
             value: [
               Ident(
@@ -268,6 +279,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 22,
           end: 25,
@@ -286,6 +298,10 @@ Stylesheet(
                 start: 27,
                 end: 28,
               ),
+            ),
+            colonSpan: Span(
+              start: 28,
+              end: 29,
             ),
             value: [
               Ident(
@@ -372,6 +388,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 33,
           end: 37,
@@ -390,6 +407,10 @@ Stylesheet(
                 start: 39,
                 end: 40,
               ),
+            ),
+            colonSpan: Span(
+              start: 40,
+              end: 41,
             ),
             value: [
               Ident(
@@ -468,6 +489,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 84,
           end: 85,
@@ -499,6 +521,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 90,
                 end: 91,
@@ -555,6 +578,7 @@ Stylesheet(
                         ),
                       ),
                     ],
+                    commaSpans: [],
                     span: Span(
                       start: 98,
                       end: 99,

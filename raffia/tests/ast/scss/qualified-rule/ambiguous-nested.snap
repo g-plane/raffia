@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -278,6 +279,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 8,
                 end: 67,
@@ -296,6 +298,10 @@ Stylesheet(
                       start: 69,
                       end: 70,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 70,
+                    end: 71,
                   ),
                   value: [
                     Ident(
@@ -760,6 +766,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 78,
                 end: 129,
@@ -778,6 +785,10 @@ Stylesheet(
                       start: 131,
                       end: 132,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 132,
+                    end: 133,
                   ),
                   value: [
                     Ident(
@@ -818,6 +829,10 @@ Stylesheet(
                 start: 140,
                 end: 143,
               ),
+            ),
+            colonSpan: Span(
+              start: 143,
+              end: 144,
             ),
             value: [
               Ident(

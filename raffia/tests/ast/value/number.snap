@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -52,6 +53,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +72,10 @@ Stylesheet(
                 start: 4,
                 end: 9,
               ),
+            ),
+            colonSpan: Span(
+              start: 9,
+              end: 10,
             ),
             value: [
               Number(
@@ -148,6 +154,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 17,
           end: 18,
@@ -166,6 +173,10 @@ Stylesheet(
                 start: 21,
                 end: 26,
               ),
+            ),
+            colonSpan: Span(
+              start: 26,
+              end: 27,
             ),
             value: [
               Number(
@@ -244,6 +255,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 35,
           end: 36,
@@ -262,6 +274,10 @@ Stylesheet(
                 start: 39,
                 end: 44,
               ),
+            ),
+            colonSpan: Span(
+              start: 44,
+              end: 45,
             ),
             value: [
               Number(
@@ -340,6 +356,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 53,
           end: 54,
@@ -358,6 +375,10 @@ Stylesheet(
                 start: 57,
                 end: 62,
               ),
+            ),
+            colonSpan: Span(
+              start: 62,
+              end: 63,
             ),
             value: [
               Number(
@@ -436,6 +457,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 70,
           end: 71,
@@ -454,6 +476,10 @@ Stylesheet(
                 start: 74,
                 end: 79,
               ),
+            ),
+            colonSpan: Span(
+              start: 79,
+              end: 80,
             ),
             value: [
               Number(
@@ -532,6 +558,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 88,
           end: 89,
@@ -550,6 +577,10 @@ Stylesheet(
                 start: 92,
                 end: 97,
               ),
+            ),
+            colonSpan: Span(
+              start: 97,
+              end: 98,
             ),
             value: [
               Number(
@@ -628,6 +659,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 106,
           end: 107,
@@ -646,6 +678,10 @@ Stylesheet(
                 start: 110,
                 end: 115,
               ),
+            ),
+            colonSpan: Span(
+              start: 115,
+              end: 116,
             ),
             value: [
               Number(
@@ -724,6 +760,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 124,
           end: 125,
@@ -742,6 +779,10 @@ Stylesheet(
                 start: 128,
                 end: 133,
               ),
+            ),
+            colonSpan: Span(
+              start: 133,
+              end: 134,
             ),
             value: [
               Number(
@@ -820,6 +861,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 143,
           end: 144,
@@ -838,6 +880,10 @@ Stylesheet(
                 start: 147,
                 end: 152,
               ),
+            ),
+            colonSpan: Span(
+              start: 152,
+              end: 153,
             ),
             value: [
               Number(
@@ -916,6 +962,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 162,
           end: 163,
@@ -934,6 +981,10 @@ Stylesheet(
                 start: 166,
                 end: 171,
               ),
+            ),
+            colonSpan: Span(
+              start: 171,
+              end: 172,
             ),
             value: [
               Number(
@@ -1012,6 +1063,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 180,
           end: 181,
@@ -1030,6 +1082,10 @@ Stylesheet(
                 start: 184,
                 end: 189,
               ),
+            ),
+            colonSpan: Span(
+              start: 189,
+              end: 190,
             ),
             value: [
               Number(
@@ -1108,6 +1164,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 199,
           end: 200,
@@ -1126,6 +1183,10 @@ Stylesheet(
                 start: 203,
                 end: 208,
               ),
+            ),
+            colonSpan: Span(
+              start: 208,
+              end: 209,
             ),
             value: [
               Number(
@@ -1204,6 +1265,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 218,
           end: 219,
@@ -1222,6 +1284,10 @@ Stylesheet(
                 start: 222,
                 end: 227,
               ),
+            ),
+            colonSpan: Span(
+              start: 227,
+              end: 228,
             ),
             value: [
               Number(
@@ -1300,6 +1366,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 236,
           end: 237,
@@ -1318,6 +1385,10 @@ Stylesheet(
                 start: 240,
                 end: 245,
               ),
+            ),
+            colonSpan: Span(
+              start: 245,
+              end: 246,
             ),
             value: [
               Number(
@@ -1396,6 +1467,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 255,
           end: 256,
@@ -1414,6 +1486,10 @@ Stylesheet(
                 start: 259,
                 end: 264,
               ),
+            ),
+            colonSpan: Span(
+              start: 264,
+              end: 265,
             ),
             value: [
               Number(
@@ -1492,6 +1568,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 274,
           end: 275,
@@ -1510,6 +1587,10 @@ Stylesheet(
                 start: 278,
                 end: 283,
               ),
+            ),
+            colonSpan: Span(
+              start: 283,
+              end: 284,
             ),
             value: [
               Number(
@@ -1588,6 +1669,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 292,
           end: 293,
@@ -1606,6 +1688,10 @@ Stylesheet(
                 start: 296,
                 end: 301,
               ),
+            ),
+            colonSpan: Span(
+              start: 301,
+              end: 302,
             ),
             value: [
               Number(
@@ -1684,6 +1770,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 311,
           end: 312,
@@ -1702,6 +1789,10 @@ Stylesheet(
                 start: 315,
                 end: 320,
               ),
+            ),
+            colonSpan: Span(
+              start: 320,
+              end: 321,
             ),
             value: [
               Number(

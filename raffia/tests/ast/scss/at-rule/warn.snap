@@ -68,6 +68,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 12,
           end: 13,
@@ -102,6 +103,10 @@ Stylesheet(
                 start: 31,
                 end: 32,
               ),
+            ),
+            colonSpan: Span(
+              start: 32,
+              end: 33,
             ),
             value: [
               Ident(

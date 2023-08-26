@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -93,6 +94,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 9,
           end: 12,
@@ -200,6 +202,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 26,
           end: 29,
@@ -307,6 +310,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 43,
           end: 46,
@@ -414,6 +418,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 61,
           end: 64,
@@ -521,6 +526,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 68,
           end: 79,
@@ -628,6 +634,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 83,
           end: 95,
@@ -735,6 +742,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 99,
           end: 112,
@@ -842,6 +850,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 116,
           end: 130,
@@ -949,6 +958,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 134,
           end: 137,
@@ -1056,6 +1066,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 150,
           end: 153,
@@ -1163,6 +1174,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 167,
           end: 170,
@@ -1270,6 +1282,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 184,
           end: 187,
@@ -1377,6 +1390,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 202,
           end: 205,
@@ -1484,6 +1498,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 217,
           end: 220,
@@ -1592,6 +1607,12 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 244,
+            end: 245,
+          ),
+        ],
         span: Span(
           start: 233,
           end: 256,
@@ -1698,6 +1719,12 @@ Stylesheet(
               start: 285,
               end: 286,
             ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 272,
+            end: 273,
           ),
         ],
         span: Span(

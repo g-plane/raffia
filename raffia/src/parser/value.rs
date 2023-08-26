@@ -478,7 +478,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     pub(super) fn parse_ratio(&mut self, numerator: Number<'s>) -> PResult<Ratio<'s>> {
-        expect!(self, Solidus);
+        let (_, solidus_span) = expect!(self, Solidus);
         let denominator = self.parse::<Number>()?;
         if denominator.value <= 0.0 {
             self.recoverable_errors.push(Error {
@@ -493,6 +493,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(Ratio {
             numerator,
+            solidus_span,
             denominator,
             span,
         })

@@ -45,6 +45,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 5,
@@ -63,6 +64,10 @@ Stylesheet(
                 start: 10,
                 end: 34,
               ),
+            ),
+            colonSpan: Span(
+              start: 34,
+              end: 35,
             ),
             value: [
               TokenWithSpan(
@@ -150,6 +155,10 @@ Stylesheet(
                 start: 75,
                 end: 98,
               ),
+            ),
+            colonSpan: Span(
+              start: 98,
+              end: 99,
             ),
             value: [
               TokenWithSpan(

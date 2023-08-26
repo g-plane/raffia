@@ -348,6 +348,7 @@ pub enum CustomMediaValue<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
+    pub colon_span: Span,
     pub value: Vec<ComponentValue<'s>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub less_property_merge: Option<LessPropertyMerge>,
@@ -1113,6 +1114,15 @@ pub struct MediaCondition<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct MediaConditionAfterMediaType<'s> {
+    pub and: Ident<'s>,
+    pub condition: MediaCondition<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
@@ -1172,6 +1182,7 @@ pub struct MediaFeatureBoolean<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct MediaFeaturePlain<'s> {
     pub name: MediaFeatureName<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub span: Span,
 }
@@ -1198,10 +1209,18 @@ pub struct MediaFeatureRangeInterval<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct MediaInParens<'s> {
+    pub kind: MediaInParensKind<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum MediaInParens<'s> {
+pub enum MediaInParensKind<'s> {
     MediaCondition(MediaCondition<'s>),
     MediaFeature(Box<MediaFeature<'s>>),
 }
@@ -1248,7 +1267,7 @@ pub struct MediaQueryList<'s> {
 pub struct MediaQueryWithType<'s> {
     pub modifier: Option<Ident<'s>>,
     pub media_type: InterpolableIdent<'s>,
-    pub condition: Option<MediaCondition<'s>>,
+    pub condition: Option<MediaConditionAfterMediaType<'s>>,
     pub span: Span,
 }
 
@@ -1421,10 +1440,18 @@ pub struct QualifiedRule<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct QueryInParens<'s> {
+    pub kind: QueryInParensKind<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum QueryInParens<'s> {
+pub enum QueryInParensKind<'s> {
     ContainerCondition(ContainerCondition<'s>),
     SizeFeature(Box<MediaFeature<'s>>),
     StyleQuery(StyleQuery<'s>),
@@ -1435,6 +1462,7 @@ pub enum QueryInParens<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct Ratio<'s> {
     pub numerator: Number<'s>,
+    pub solidus_span: Span,
     pub denominator: Number<'s>,
     pub span: Span,
 }
@@ -1954,6 +1982,7 @@ pub struct SassWhileAtRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SelectorList<'s> {
     pub selectors: Vec<ComplexSelector<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -2068,10 +2097,18 @@ pub struct StyleConditionOr<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct StyleInParens<'s> {
+    pub kind: StyleInParensKind<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum StyleInParens<'s> {
+pub enum StyleInParensKind<'s> {
     Condition(StyleCondition<'s>),
     Feature(Declaration<'s>),
 }

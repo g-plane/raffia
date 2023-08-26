@@ -32,6 +32,10 @@ Stylesheet(
                 end: 29,
               ),
             ),
+            colonSpan: Span(
+              start: 29,
+              end: 30,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -154,6 +158,10 @@ Stylesheet(
                 end: 97,
               ),
             ),
+            colonSpan: Span(
+              start: 97,
+              end: 98,
+            ),
             value: [
               SassVariable(
                 type: "SassVariable",
@@ -189,6 +197,10 @@ Stylesheet(
                 start: 108,
                 end: 112,
               ),
+            ),
+            colonSpan: Span(
+              start: 112,
+              end: 113,
             ),
             value: [
               SassVariable(
@@ -253,6 +265,10 @@ Stylesheet(
                 start: 143,
                 end: 144,
               ),
+            ),
+            colonSpan: Span(
+              start: 144,
+              end: 145,
             ),
             value: [
               Ident(
@@ -360,6 +376,10 @@ Stylesheet(
                 end: 197,
               ),
             ),
+            colonSpan: Span(
+              start: 197,
+              end: 198,
+            ),
             value: [
               SassVariable(
                 type: "SassVariable",
@@ -395,6 +415,10 @@ Stylesheet(
                 start: 208,
                 end: 212,
               ),
+            ),
+            colonSpan: Span(
+              start: 212,
+              end: 213,
             ),
             value: [
               SassVariable(
@@ -482,6 +506,10 @@ Stylesheet(
                 end: 270,
               ),
             ),
+            colonSpan: Span(
+              start: 270,
+              end: 271,
+            ),
             value: [
               Function(
                 type: "Function",
@@ -535,6 +563,10 @@ Stylesheet(
                 start: 290,
                 end: 298,
               ),
+            ),
+            colonSpan: Span(
+              start: 298,
+              end: 299,
             ),
             value: [
               Function(

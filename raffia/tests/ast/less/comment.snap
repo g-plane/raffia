@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -119,6 +120,12 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 508,
+            end: 509,
+          ),
+        ],
         span: Span(
           start: 475,
           end: 573,
@@ -137,6 +144,10 @@ Stylesheet(
                 start: 643,
                 end: 648,
               ),
+            ),
+            colonSpan: Span(
+              start: 648,
+              end: 649,
             ),
             value: [
               Ident(
@@ -167,6 +178,10 @@ Stylesheet(
                 end: 722,
               ),
             ),
+            colonSpan: Span(
+              start: 722,
+              end: 723,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -195,6 +210,10 @@ Stylesheet(
                 start: 754,
                 end: 763,
               ),
+            ),
+            colonSpan: Span(
+              start: 763,
+              end: 764,
             ),
             value: [
               Dimension(
@@ -242,6 +261,10 @@ Stylesheet(
                 end: 800,
               ),
             ),
+            colonSpan: Span(
+              start: 800,
+              end: 801,
+            ),
             value: [
               LessVariable(
                 type: "LessVariable",
@@ -277,6 +300,10 @@ Stylesheet(
                 start: 811,
                 end: 817,
               ),
+            ),
+            colonSpan: Span(
+              start: 817,
+              end: 818,
             ),
             value: [
               Dimension(
@@ -342,6 +369,10 @@ Stylesheet(
                 end: 871,
               ),
             ),
+            colonSpan: Span(
+              start: 871,
+              end: 872,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -370,6 +401,10 @@ Stylesheet(
                 start: 887,
                 end: 893,
               ),
+            ),
+            colonSpan: Span(
+              start: 893,
+              end: 894,
             ),
             value: [
               Dimension(
@@ -525,6 +560,16 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 988,
+            end: 989,
+          ),
+          Span(
+            start: 995,
+            end: 996,
+          ),
+        ],
         span: Span(
           start: 967,
           end: 1015,
@@ -543,6 +588,10 @@ Stylesheet(
                 start: 1020,
                 end: 1025,
               ),
+            ),
+            colonSpan: Span(
+              start: 1051,
+              end: 1052,
             ),
             value: [
               Ident(
@@ -590,6 +639,10 @@ Stylesheet(
                 end: 1101,
               ),
             ),
+            colonSpan: Span(
+              start: 1101,
+              end: 1102,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -635,6 +688,10 @@ Stylesheet(
                 start: 1128,
                 end: 1146,
               ),
+            ),
+            colonSpan: Span(
+              start: 1146,
+              end: 1147,
             ),
             value: [
               LessParenthesizedOperation(
@@ -913,6 +970,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 1330,
                 end: 1340,
@@ -931,6 +989,10 @@ Stylesheet(
                       start: 1351,
                       end: 1356,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 1356,
+                    end: 1357,
                   ),
                   value: [
                     LessVariable(
@@ -1061,6 +1123,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1415,
           end: 1433,
@@ -1079,6 +1142,10 @@ Stylesheet(
                 start: 1438,
                 end: 1442,
               ),
+            ),
+            colonSpan: Span(
+              start: 1442,
+              end: 1443,
             ),
             value: [
               Ident(
@@ -1166,6 +1233,10 @@ Stylesheet(
                       end: 1526,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 1526,
+                    end: 1527,
+                  ),
                   value: [
                     Ident(
                       type: "Ident",
@@ -1246,6 +1317,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1540,
           end: 1545,
@@ -1264,6 +1336,10 @@ Stylesheet(
                 start: 1548,
                 end: 1553,
               ),
+            ),
+            colonSpan: Span(
+              start: 1553,
+              end: 1554,
             ),
             value: [
               Ident(
@@ -1334,6 +1410,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1597,
           end: 1601,
@@ -1352,6 +1429,10 @@ Stylesheet(
                 start: 1604,
                 end: 1609,
               ),
+            ),
+            colonSpan: Span(
+              start: 1609,
+              end: 1610,
             ),
             value: [
               HexColor(
@@ -1470,6 +1551,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1722,
           end: 1735,
@@ -1488,6 +1570,10 @@ Stylesheet(
                 start: 1738,
                 end: 1745,
               ),
+            ),
+            colonSpan: Span(
+              start: 1745,
+              end: 1746,
             ),
             value: [
               LessVariable(
@@ -1551,66 +1637,93 @@ Stylesheet(
                 end: 1804,
               ),
             ),
-            condition: Some(MediaCondition(
-              type: "MediaCondition",
-              conditions: [
-                MediaFeaturePlain(
-                  type: "MediaFeaturePlain",
-                  name: Ident(
-                    type: "Ident",
-                    name: "max-width",
-                    raw: "max-width",
-                    span: Span(
-                      start: 1815,
-                      end: 1824,
-                    ),
-                  ),
-                  value: Dimension(
-                    type: "Dimension",
-                    value: Number(
-                      type: "Number",
-                      value: 1024.0,
-                      raw: "1024",
-                      span: Span(
-                        start: 1825,
-                        end: 1829,
+            condition: Some(MediaConditionAfterMediaType(
+              type: "MediaConditionAfterMediaType",
+              and: Ident(
+                type: "Ident",
+                name: "and",
+                raw: "and",
+                span: Span(
+                  start: 1805,
+                  end: 1808,
+                ),
+              ),
+              condition: MediaCondition(
+                type: "MediaCondition",
+                conditions: [
+                  MediaInParens(
+                    type: "MediaInParens",
+                    kind: MediaFeaturePlain(
+                      type: "MediaFeaturePlain",
+                      name: Ident(
+                        type: "Ident",
+                        name: "max-width",
+                        raw: "max-width",
+                        span: Span(
+                          start: 1815,
+                          end: 1824,
+                        ),
                       ),
-                    ),
-                    unit: Ident(
-                      type: "Ident",
-                      name: "px",
-                      raw: "px",
+                      colonSpan: Span(
+                        start: 1824,
+                        end: 1825,
+                      ),
+                      value: Dimension(
+                        type: "Dimension",
+                        value: Number(
+                          type: "Number",
+                          value: 1024.0,
+                          raw: "1024",
+                          span: Span(
+                            start: 1825,
+                            end: 1829,
+                          ),
+                        ),
+                        unit: Ident(
+                          type: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 1829,
+                            end: 1831,
+                          ),
+                        ),
+                        kind: Length,
+                        span: Span(
+                          start: 1825,
+                          end: 1831,
+                        ),
+                      ),
                       span: Span(
-                        start: 1829,
+                        start: 1815,
                         end: 1831,
                       ),
                     ),
-                    kind: Length,
                     span: Span(
-                      start: 1825,
-                      end: 1831,
+                      start: 1814,
+                      end: 1832,
                     ),
                   ),
-                  span: Span(
-                    start: 1815,
-                    end: 1831,
-                  ),
+                ],
+                span: Span(
+                  start: 1814,
+                  end: 1832,
                 ),
-              ],
+              ),
               span: Span(
-                start: 1815,
-                end: 1831,
+                start: 1805,
+                end: 1832,
               ),
             )),
             span: Span(
               start: 1801,
-              end: 1831,
+              end: 1832,
             ),
           ),
         ],
         span: Span(
           start: 1801,
-          end: 1831,
+          end: 1832,
         ),
       )),
       block: Some(SimpleBlock(
@@ -1699,6 +1812,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1889,
           end: 1892,
@@ -1717,6 +1831,10 @@ Stylesheet(
                 start: 1897,
                 end: 1913,
               ),
+            ),
+            colonSpan: Span(
+              start: 1913,
+              end: 1914,
             ),
             value: [
               Function(
@@ -1890,6 +2008,16 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 1972,
+            end: 1973,
+          ),
+          Span(
+            start: 2003,
+            end: 2004,
+          ),
+        ],
         span: Span(
           start: 1960,
           end: 2035,
@@ -1908,6 +2036,10 @@ Stylesheet(
                 start: 2042,
                 end: 2048,
               ),
+            ),
+            colonSpan: Span(
+              start: 2048,
+              end: 2049,
             ),
             value: [
               Dimension(
@@ -1954,6 +2086,10 @@ Stylesheet(
                 start: 2059,
                 end: 2070,
               ),
+            ),
+            colonSpan: Span(
+              start: 2070,
+              end: 2071,
             ),
             value: [
               LessVariable(
@@ -2463,6 +2599,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3010,
           end: 3031,
@@ -2481,6 +2618,10 @@ Stylesheet(
                 start: 3038,
                 end: 3039,
               ),
+            ),
+            colonSpan: Span(
+              start: 3039,
+              end: 3040,
             ),
             value: [
               Ident(
@@ -2510,6 +2651,10 @@ Stylesheet(
                 start: 3064,
                 end: 3065,
               ),
+            ),
+            colonSpan: Span(
+              start: 3065,
+              end: 3066,
             ),
             value: [
               Ident(
@@ -2622,6 +2767,10 @@ Stylesheet(
                 end: 3143,
               ),
             ),
+            colonSpan: Span(
+              start: 3143,
+              end: 3144,
+            ),
             value: [
               LessVariable(
                 type: "LessVariable",
@@ -2657,6 +2806,10 @@ Stylesheet(
                 start: 3153,
                 end: 3154,
               ),
+            ),
+            colonSpan: Span(
+              start: 3154,
+              end: 3155,
             ),
             value: [
               LessVariable(

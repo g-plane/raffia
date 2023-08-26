@@ -1285,9 +1285,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
 
         let mut selectors = Vec::with_capacity(2);
         selectors.push(first);
+        let mut comma_spans = vec![];
 
         let is_scss_or_sass = matches!(input.syntax, Syntax::Scss | Syntax::Sass);
-        while eat!(input, Comma).is_some() {
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             if is_scss_or_sass
                 && matches!(
                     peek!(input).token,
@@ -1299,12 +1301,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
+        debug_assert!(if is_scss_or_sass {
+            selectors.len() - comma_spans.len() <= 1
+        } else {
+            selectors.len() - comma_spans.len() == 1
+        });
+
         // SAFETY: it has at least one element.
         span.end = unsafe {
             let index = selectors.len() - 1;
             selectors.get_unchecked(index).span().end
         };
-        Ok(SelectorList { selectors, span })
+        Ok(SelectorList {
+            selectors,
+            comma_spans,
+            span,
+        })
     }
 }
 

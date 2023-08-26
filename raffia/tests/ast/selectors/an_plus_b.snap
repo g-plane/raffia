@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -61,6 +62,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 16,
@@ -136,6 +138,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 20,
           end: 33,
@@ -211,6 +214,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 37,
           end: 52,
@@ -286,6 +290,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 56,
           end: 72,
@@ -361,6 +366,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 76,
           end: 90,
@@ -436,6 +442,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 94,
           end: 107,
@@ -511,6 +518,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 111,
           end: 127,
@@ -586,6 +594,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 131,
           end: 146,
@@ -661,6 +670,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 150,
           end: 170,
@@ -736,6 +746,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 174,
           end: 193,
@@ -811,6 +822,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 197,
           end: 213,
@@ -886,6 +898,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 217,
           end: 234,
@@ -961,6 +974,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 238,
           end: 256,
@@ -1036,6 +1050,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 260,
           end: 276,
@@ -1111,6 +1126,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 280,
           end: 305,
@@ -1186,6 +1202,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 309,
           end: 328,
@@ -1261,6 +1278,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 333,
           end: 354,
@@ -1336,6 +1354,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 358,
           end: 376,
@@ -1411,6 +1430,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 380,
           end: 400,
@@ -1486,6 +1506,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 404,
           end: 425,
@@ -1561,6 +1582,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 429,
           end: 448,
@@ -1636,6 +1658,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 452,
           end: 470,
@@ -1711,6 +1734,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 474,
           end: 495,
@@ -1786,6 +1810,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 499,
           end: 519,
@@ -1861,6 +1886,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 523,
           end: 548,
@@ -1936,6 +1962,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 552,
           end: 576,
@@ -2011,6 +2038,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 580,
           end: 601,
@@ -2086,6 +2114,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 605,
           end: 627,
@@ -2161,6 +2190,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 631,
           end: 654,
@@ -2236,6 +2266,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 658,
           end: 679,
@@ -2311,6 +2342,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 683,
           end: 713,
@@ -2386,6 +2418,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 717,
           end: 741,
@@ -2461,6 +2494,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 746,
           end: 764,
@@ -2536,6 +2570,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 768,
           end: 783,
@@ -2611,6 +2646,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 787,
           end: 804,
@@ -2686,6 +2722,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 808,
           end: 826,
@@ -2761,6 +2798,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 830,
           end: 846,
@@ -2836,6 +2874,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 850,
           end: 865,
@@ -2911,6 +2950,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 869,
           end: 887,
@@ -2986,6 +3026,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 891,
           end: 908,
@@ -3061,6 +3102,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 912,
           end: 934,
@@ -3136,6 +3178,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 938,
           end: 959,
@@ -3211,6 +3254,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 963,
           end: 981,
@@ -3286,6 +3330,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 985,
           end: 1004,
@@ -3361,6 +3406,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1008,
           end: 1028,
@@ -3436,6 +3482,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1032,
           end: 1050,
@@ -3511,6 +3558,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1054,
           end: 1081,
@@ -3586,6 +3634,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1085,
           end: 1106,
@@ -3661,6 +3710,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1111,
           end: 1134,
@@ -3736,6 +3786,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1138,
           end: 1158,
@@ -3811,6 +3862,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1162,
           end: 1184,
@@ -3886,6 +3938,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1188,
           end: 1211,
@@ -3961,6 +4014,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1215,
           end: 1236,
@@ -4036,6 +4090,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1240,
           end: 1260,
@@ -4111,6 +4166,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1264,
           end: 1287,
@@ -4186,6 +4242,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1291,
           end: 1313,
@@ -4261,6 +4318,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1317,
           end: 1344,
@@ -4336,6 +4394,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1348,
           end: 1374,
@@ -4411,6 +4470,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1378,
           end: 1401,
@@ -4486,6 +4546,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1405,
           end: 1429,
@@ -4561,6 +4622,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1433,
           end: 1458,
@@ -4636,6 +4698,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1462,
           end: 1485,
@@ -4711,6 +4774,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1489,
           end: 1521,
@@ -4786,6 +4850,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1525,
           end: 1551,
@@ -4861,6 +4926,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1556,
           end: 1570,
@@ -4936,6 +5002,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1574,
           end: 1585,
@@ -5011,6 +5078,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1589,
           end: 1602,
@@ -5086,6 +5154,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1606,
           end: 1620,
@@ -5161,6 +5230,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1624,
           end: 1636,
@@ -5236,6 +5306,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1640,
           end: 1651,
@@ -5311,6 +5382,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1655,
           end: 1669,
@@ -5386,6 +5458,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1673,
           end: 1686,
@@ -5461,6 +5534,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1690,
           end: 1708,
@@ -5536,6 +5610,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1712,
           end: 1729,
@@ -5611,6 +5686,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1733,
           end: 1747,
@@ -5686,6 +5762,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1751,
           end: 1766,
@@ -5761,6 +5838,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1770,
           end: 1786,
@@ -5836,6 +5914,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1790,
           end: 1804,
@@ -5911,6 +5990,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1808,
           end: 1831,
@@ -5986,6 +6066,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1835,
           end: 1852,
@@ -6061,6 +6142,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1857,
           end: 1876,
@@ -6136,6 +6218,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1880,
           end: 1896,
@@ -6211,6 +6294,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1900,
           end: 1918,
@@ -6286,6 +6370,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1922,
           end: 1941,
@@ -6361,6 +6446,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1945,
           end: 1962,
@@ -6436,6 +6522,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1966,
           end: 1982,
@@ -6511,6 +6598,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1986,
           end: 2005,
@@ -6586,6 +6674,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2009,
           end: 2027,
@@ -6661,6 +6750,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2031,
           end: 2054,
@@ -6736,6 +6826,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2058,
           end: 2080,
@@ -6811,6 +6902,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2084,
           end: 2103,
@@ -6886,6 +6978,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2107,
           end: 2127,
@@ -6961,6 +7054,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2131,
           end: 2152,
@@ -7036,6 +7130,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2156,
           end: 2175,
@@ -7111,6 +7206,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2179,
           end: 2207,
@@ -7186,6 +7282,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2211,
           end: 2233,
@@ -7261,6 +7358,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2238,
           end: 2254,
@@ -7336,6 +7434,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2258,
           end: 2275,
@@ -7411,6 +7510,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2279,
           end: 2297,
@@ -7486,6 +7586,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2301,
           end: 2318,
@@ -7561,6 +7662,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2322,
           end: 2338,
@@ -7636,6 +7738,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2342,
           end: 2359,
@@ -7711,6 +7814,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2363,
           end: 2380,
@@ -7786,6 +7890,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2384,
           end: 2402,
@@ -7861,6 +7966,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2406,
           end: 2423,
@@ -7936,6 +8042,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2427,
           end: 2445,
@@ -8011,6 +8118,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2449,
           end: 2468,
@@ -8086,6 +8194,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2472,
           end: 2490,
@@ -8161,6 +8270,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2494,
           end: 2511,
@@ -8236,6 +8346,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2515,
           end: 2533,
@@ -8311,6 +8422,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2537,
           end: 2556,
@@ -8386,6 +8498,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2560,
           end: 2577,
@@ -8461,6 +8574,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2581,
           end: 2599,
@@ -8536,6 +8650,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2603,
           end: 2622,
@@ -8611,6 +8726,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2626,
           end: 2644,
@@ -8686,6 +8802,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2648,
           end: 2665,
@@ -8761,6 +8878,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2669,
           end: 2687,
@@ -8836,6 +8954,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2691,
           end: 2709,
@@ -8911,6 +9030,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2713,
           end: 2732,
@@ -8986,6 +9106,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2736,
           end: 2751,
@@ -9061,6 +9182,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2755,
           end: 2771,
@@ -9136,6 +9258,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2775,
           end: 2792,
@@ -9211,6 +9334,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2796,
           end: 2812,
@@ -9286,6 +9410,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2816,
           end: 2831,
@@ -9361,6 +9486,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2835,
           end: 2851,
@@ -9436,6 +9562,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2855,
           end: 2871,
@@ -9511,6 +9638,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2875,
           end: 2892,
@@ -9586,6 +9714,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2896,
           end: 2912,
@@ -9661,6 +9790,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2916,
           end: 2933,
@@ -9736,6 +9866,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2937,
           end: 2955,
@@ -9811,6 +9942,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2959,
           end: 2976,
@@ -9886,6 +10018,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 2980,
           end: 2996,
@@ -9961,6 +10094,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3000,
           end: 3017,
@@ -10036,6 +10170,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3021,
           end: 3038,
@@ -10111,6 +10246,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3042,
           end: 3060,
@@ -10186,6 +10322,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3064,
           end: 3080,
@@ -10261,6 +10398,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3084,
           end: 3101,
@@ -10336,6 +10474,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3105,
           end: 3123,
@@ -10411,6 +10550,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3127,
           end: 3144,
@@ -10486,6 +10626,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3148,
           end: 3164,
@@ -10561,6 +10702,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3168,
           end: 3185,
@@ -10636,6 +10778,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3189,
           end: 3206,
@@ -10711,6 +10854,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3210,
           end: 3228,
@@ -10786,6 +10930,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3232,
           end: 3245,
@@ -10861,6 +11006,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3249,
           end: 3263,
@@ -10936,6 +11082,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3267,
           end: 3281,
@@ -11011,6 +11158,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3285,
           end: 3299,
@@ -11086,6 +11234,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3303,
           end: 3318,
@@ -11161,6 +11310,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3322,
           end: 3337,
@@ -11236,6 +11386,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3341,
           end: 3354,
@@ -11311,6 +11462,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3358,
           end: 3372,
@@ -11386,6 +11538,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3376,
           end: 3390,
@@ -11461,6 +11614,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3394,
           end: 3408,
@@ -11536,6 +11690,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3412,
           end: 3427,
@@ -11611,6 +11766,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3431,
           end: 3446,
@@ -11686,6 +11842,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3450,
           end: 3478,
@@ -11761,6 +11918,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3483,
           end: 3499,
@@ -11836,6 +11994,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3503,
           end: 3519,
@@ -11911,6 +12070,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3524,
           end: 3572,
@@ -11986,6 +12146,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3576,
           end: 3630,

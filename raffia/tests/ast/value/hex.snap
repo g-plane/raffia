@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -52,6 +53,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +72,10 @@ Stylesheet(
                 start: 4,
                 end: 9,
               ),
+            ),
+            colonSpan: Span(
+              start: 9,
+              end: 10,
             ),
             value: [
               HexColor(
@@ -148,6 +154,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 19,
           end: 20,
@@ -166,6 +173,10 @@ Stylesheet(
                 start: 23,
                 end: 28,
               ),
+            ),
+            colonSpan: Span(
+              start: 28,
+              end: 29,
             ),
             value: [
               HexColor(
@@ -244,6 +255,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 38,
           end: 39,
@@ -262,6 +274,10 @@ Stylesheet(
                 start: 42,
                 end: 47,
               ),
+            ),
+            colonSpan: Span(
+              start: 47,
+              end: 48,
             ),
             value: [
               HexColor(
@@ -340,6 +356,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 57,
           end: 58,
@@ -358,6 +375,10 @@ Stylesheet(
                 start: 61,
                 end: 66,
               ),
+            ),
+            colonSpan: Span(
+              start: 66,
+              end: 67,
             ),
             value: [
               HexColor(
@@ -436,6 +457,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 76,
           end: 77,
@@ -454,6 +476,10 @@ Stylesheet(
                 start: 80,
                 end: 85,
               ),
+            ),
+            colonSpan: Span(
+              start: 85,
+              end: 86,
             ),
             value: [
               HexColor(
@@ -532,6 +558,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 95,
           end: 96,
@@ -550,6 +577,10 @@ Stylesheet(
                 start: 99,
                 end: 104,
               ),
+            ),
+            colonSpan: Span(
+              start: 104,
+              end: 105,
             ),
             value: [
               HexColor(
@@ -628,6 +659,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 114,
           end: 115,
@@ -646,6 +678,10 @@ Stylesheet(
                 start: 118,
                 end: 123,
               ),
+            ),
+            colonSpan: Span(
+              start: 123,
+              end: 124,
             ),
             value: [
               HexColor(
@@ -724,6 +760,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 135,
           end: 136,
@@ -742,6 +779,10 @@ Stylesheet(
                 start: 139,
                 end: 144,
               ),
+            ),
+            colonSpan: Span(
+              start: 144,
+              end: 145,
             ),
             value: [
               HexColor(
@@ -820,6 +861,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 156,
           end: 157,
@@ -838,6 +880,10 @@ Stylesheet(
                 start: 160,
                 end: 165,
               ),
+            ),
+            colonSpan: Span(
+              start: 165,
+              end: 166,
             ),
             value: [
               HexColor(
@@ -916,6 +962,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 177,
           end: 178,
@@ -934,6 +981,10 @@ Stylesheet(
                 start: 181,
                 end: 186,
               ),
+            ),
+            colonSpan: Span(
+              start: 186,
+              end: 187,
             ),
             value: [
               HexColor(
@@ -1012,6 +1063,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 198,
           end: 199,
@@ -1030,6 +1082,10 @@ Stylesheet(
                 start: 202,
                 end: 207,
               ),
+            ),
+            colonSpan: Span(
+              start: 207,
+              end: 208,
             ),
             value: [
               HexColor(
@@ -1108,6 +1164,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 219,
           end: 220,
@@ -1126,6 +1183,10 @@ Stylesheet(
                 start: 223,
                 end: 228,
               ),
+            ),
+            colonSpan: Span(
+              start: 228,
+              end: 229,
             ),
             value: [
               HexColor(
@@ -1204,6 +1265,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 240,
           end: 241,
@@ -1222,6 +1284,10 @@ Stylesheet(
                 start: 244,
                 end: 249,
               ),
+            ),
+            colonSpan: Span(
+              start: 249,
+              end: 250,
             ),
             value: [
               HexColor(
@@ -1300,6 +1366,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 261,
           end: 262,
@@ -1318,6 +1385,10 @@ Stylesheet(
                 start: 265,
                 end: 270,
               ),
+            ),
+            colonSpan: Span(
+              start: 270,
+              end: 271,
             ),
             value: [
               HexColor(
@@ -1396,6 +1467,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 282,
           end: 283,
@@ -1414,6 +1486,10 @@ Stylesheet(
                 start: 286,
                 end: 291,
               ),
+            ),
+            colonSpan: Span(
+              start: 291,
+              end: 292,
             ),
             value: [
               HexColor(
@@ -1492,6 +1568,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 303,
           end: 304,
@@ -1510,6 +1587,10 @@ Stylesheet(
                 start: 307,
                 end: 312,
               ),
+            ),
+            colonSpan: Span(
+              start: 312,
+              end: 313,
             ),
             value: [
               HexColor(
@@ -1588,6 +1669,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 324,
           end: 325,
@@ -1606,6 +1688,10 @@ Stylesheet(
                 start: 328,
                 end: 333,
               ),
+            ),
+            colonSpan: Span(
+              start: 333,
+              end: 334,
             ),
             value: [
               HexColor(
@@ -1684,6 +1770,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 345,
           end: 346,
@@ -1702,6 +1789,10 @@ Stylesheet(
                 start: 349,
                 end: 354,
               ),
+            ),
+            colonSpan: Span(
+              start: 354,
+              end: 355,
             ),
             value: [
               HexColor(
@@ -1780,6 +1871,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 366,
           end: 367,
@@ -1798,6 +1890,10 @@ Stylesheet(
                 start: 370,
                 end: 375,
               ),
+            ),
+            colonSpan: Span(
+              start: 375,
+              end: 376,
             ),
             value: [
               HexColor(
@@ -1876,6 +1972,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 389,
           end: 390,
@@ -1894,6 +1991,10 @@ Stylesheet(
                 start: 393,
                 end: 398,
               ),
+            ),
+            colonSpan: Span(
+              start: 398,
+              end: 399,
             ),
             value: [
               HexColor(
@@ -1972,6 +2073,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 412,
           end: 413,
@@ -1990,6 +2092,10 @@ Stylesheet(
                 start: 416,
                 end: 421,
               ),
+            ),
+            colonSpan: Span(
+              start: 421,
+              end: 422,
             ),
             value: [
               HexColor(
@@ -2068,6 +2174,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 435,
           end: 436,
@@ -2086,6 +2193,10 @@ Stylesheet(
                 start: 439,
                 end: 444,
               ),
+            ),
+            colonSpan: Span(
+              start: 444,
+              end: 445,
             ),
             value: [
               HexColor(
@@ -2164,6 +2275,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 458,
           end: 459,
@@ -2182,6 +2294,10 @@ Stylesheet(
                 start: 462,
                 end: 467,
               ),
+            ),
+            colonSpan: Span(
+              start: 467,
+              end: 468,
             ),
             value: [
               HexColor(
@@ -2260,6 +2376,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 481,
           end: 482,
@@ -2278,6 +2395,10 @@ Stylesheet(
                 start: 485,
                 end: 490,
               ),
+            ),
+            colonSpan: Span(
+              start: 490,
+              end: 491,
             ),
             value: [
               HexColor(
@@ -2356,6 +2477,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 504,
           end: 505,
@@ -2374,6 +2496,10 @@ Stylesheet(
                 start: 508,
                 end: 513,
               ),
+            ),
+            colonSpan: Span(
+              start: 513,
+              end: 514,
             ),
             value: [
               HexColor(
@@ -2452,6 +2578,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 527,
           end: 528,
@@ -2470,6 +2597,10 @@ Stylesheet(
                 start: 531,
                 end: 536,
               ),
+            ),
+            colonSpan: Span(
+              start: 536,
+              end: 537,
             ),
             value: [
               HexColor(
@@ -2548,6 +2679,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 550,
           end: 551,
@@ -2566,6 +2698,10 @@ Stylesheet(
                 start: 554,
                 end: 559,
               ),
+            ),
+            colonSpan: Span(
+              start: 559,
+              end: 560,
             ),
             value: [
               HexColor(
@@ -2644,6 +2780,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 573,
           end: 574,
@@ -2662,6 +2799,10 @@ Stylesheet(
                 start: 577,
                 end: 582,
               ),
+            ),
+            colonSpan: Span(
+              start: 582,
+              end: 583,
             ),
             value: [
               HexColor(
@@ -2740,6 +2881,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 596,
           end: 597,
@@ -2758,6 +2900,10 @@ Stylesheet(
                 start: 600,
                 end: 605,
               ),
+            ),
+            colonSpan: Span(
+              start: 605,
+              end: 606,
             ),
             value: [
               HexColor(
@@ -2836,6 +2982,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 619,
           end: 620,
@@ -2854,6 +3001,10 @@ Stylesheet(
                 start: 623,
                 end: 628,
               ),
+            ),
+            colonSpan: Span(
+              start: 628,
+              end: 629,
             ),
             value: [
               HexColor(
@@ -2932,6 +3083,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 642,
           end: 643,
@@ -2950,6 +3102,10 @@ Stylesheet(
                 start: 646,
                 end: 651,
               ),
+            ),
+            colonSpan: Span(
+              start: 651,
+              end: 652,
             ),
             value: [
               HexColor(
@@ -3028,6 +3184,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 665,
           end: 666,
@@ -3046,6 +3203,10 @@ Stylesheet(
                 start: 669,
                 end: 674,
               ),
+            ),
+            colonSpan: Span(
+              start: 674,
+              end: 675,
             ),
             value: [
               HexColor(
@@ -3124,6 +3285,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 688,
           end: 689,
@@ -3142,6 +3304,10 @@ Stylesheet(
                 start: 692,
                 end: 697,
               ),
+            ),
+            colonSpan: Span(
+              start: 697,
+              end: 698,
             ),
             value: [
               HexColor(
@@ -3220,6 +3386,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 711,
           end: 712,
@@ -3238,6 +3405,10 @@ Stylesheet(
                 start: 715,
                 end: 720,
               ),
+            ),
+            colonSpan: Span(
+              start: 720,
+              end: 721,
             ),
             value: [
               HexColor(
@@ -3316,6 +3487,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 734,
           end: 735,
@@ -3334,6 +3506,10 @@ Stylesheet(
                 start: 738,
                 end: 743,
               ),
+            ),
+            colonSpan: Span(
+              start: 743,
+              end: 744,
             ),
             value: [
               HexColor(
@@ -3412,6 +3588,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 757,
           end: 758,
@@ -3430,6 +3607,10 @@ Stylesheet(
                 start: 761,
                 end: 766,
               ),
+            ),
+            colonSpan: Span(
+              start: 766,
+              end: 767,
             ),
             value: [
               HexColor(
@@ -3508,6 +3689,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 780,
           end: 781,
@@ -3526,6 +3708,10 @@ Stylesheet(
                 start: 784,
                 end: 789,
               ),
+            ),
+            colonSpan: Span(
+              start: 789,
+              end: 790,
             ),
             value: [
               HexColor(
@@ -3604,6 +3790,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 803,
           end: 804,
@@ -3622,6 +3809,10 @@ Stylesheet(
                 start: 807,
                 end: 812,
               ),
+            ),
+            colonSpan: Span(
+              start: 812,
+              end: 813,
             ),
             value: [
               HexColor(
@@ -3700,6 +3891,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 826,
           end: 827,
@@ -3718,6 +3910,10 @@ Stylesheet(
                 start: 830,
                 end: 835,
               ),
+            ),
+            colonSpan: Span(
+              start: 835,
+              end: 836,
             ),
             value: [
               HexColor(
@@ -3796,6 +3992,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 849,
           end: 850,
@@ -3814,6 +4011,10 @@ Stylesheet(
                 start: 853,
                 end: 858,
               ),
+            ),
+            colonSpan: Span(
+              start: 858,
+              end: 859,
             ),
             value: [
               HexColor(
@@ -3892,6 +4093,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 872,
           end: 873,
@@ -3910,6 +4112,10 @@ Stylesheet(
                 start: 876,
                 end: 881,
               ),
+            ),
+            colonSpan: Span(
+              start: 881,
+              end: 882,
             ),
             value: [
               HexColor(
@@ -3988,6 +4194,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 895,
           end: 896,
@@ -4006,6 +4213,10 @@ Stylesheet(
                 start: 899,
                 end: 904,
               ),
+            ),
+            colonSpan: Span(
+              start: 904,
+              end: 905,
             ),
             value: [
               HexColor(
@@ -4084,6 +4295,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 918,
           end: 919,
@@ -4102,6 +4314,10 @@ Stylesheet(
                 start: 922,
                 end: 927,
               ),
+            ),
+            colonSpan: Span(
+              start: 927,
+              end: 928,
             ),
             value: [
               HexColor(
@@ -4180,6 +4396,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 941,
           end: 942,
@@ -4198,6 +4415,10 @@ Stylesheet(
                 start: 945,
                 end: 950,
               ),
+            ),
+            colonSpan: Span(
+              start: 950,
+              end: 951,
             ),
             value: [
               HexColor(
@@ -4276,6 +4497,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 964,
           end: 965,
@@ -4294,6 +4516,10 @@ Stylesheet(
                 start: 968,
                 end: 973,
               ),
+            ),
+            colonSpan: Span(
+              start: 973,
+              end: 974,
             ),
             value: [
               HexColor(
@@ -4372,6 +4598,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 987,
           end: 988,
@@ -4390,6 +4617,10 @@ Stylesheet(
                 start: 991,
                 end: 996,
               ),
+            ),
+            colonSpan: Span(
+              start: 996,
+              end: 997,
             ),
             value: [
               HexColor(
@@ -4468,6 +4699,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1010,
           end: 1011,
@@ -4486,6 +4718,10 @@ Stylesheet(
                 start: 1014,
                 end: 1019,
               ),
+            ),
+            colonSpan: Span(
+              start: 1019,
+              end: 1020,
             ),
             value: [
               HexColor(
@@ -4564,6 +4800,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1033,
           end: 1034,
@@ -4582,6 +4819,10 @@ Stylesheet(
                 start: 1037,
                 end: 1042,
               ),
+            ),
+            colonSpan: Span(
+              start: 1042,
+              end: 1043,
             ),
             value: [
               HexColor(
@@ -4660,6 +4901,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1056,
           end: 1057,
@@ -4678,6 +4920,10 @@ Stylesheet(
                 start: 1060,
                 end: 1065,
               ),
+            ),
+            colonSpan: Span(
+              start: 1065,
+              end: 1066,
             ),
             value: [
               HexColor(
@@ -4756,6 +5002,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1074,
           end: 1075,
@@ -4774,6 +5021,10 @@ Stylesheet(
                 start: 1078,
                 end: 1083,
               ),
+            ),
+            colonSpan: Span(
+              start: 1083,
+              end: 1084,
             ),
             value: [
               HexColor(
@@ -4852,6 +5103,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1093,
           end: 1094,
@@ -4870,6 +5122,10 @@ Stylesheet(
                 start: 1097,
                 end: 1102,
               ),
+            ),
+            colonSpan: Span(
+              start: 1102,
+              end: 1103,
             ),
             value: [
               HexColor(
@@ -4948,6 +5204,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1114,
           end: 1115,
@@ -4966,6 +5223,10 @@ Stylesheet(
                 start: 1118,
                 end: 1123,
               ),
+            ),
+            colonSpan: Span(
+              start: 1123,
+              end: 1124,
             ),
             value: [
               HexColor(
@@ -5044,6 +5305,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1137,
           end: 1138,
@@ -5062,6 +5324,10 @@ Stylesheet(
                 start: 1143,
                 end: 1148,
               ),
+            ),
+            colonSpan: Span(
+              start: 1148,
+              end: 1149,
             ),
             value: [
               HexColor(
@@ -5092,6 +5358,10 @@ Stylesheet(
                 end: 1161,
               ),
             ),
+            colonSpan: Span(
+              start: 1161,
+              end: 1162,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5121,6 +5391,10 @@ Stylesheet(
                 end: 1175,
               ),
             ),
+            colonSpan: Span(
+              start: 1175,
+              end: 1176,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5149,6 +5423,10 @@ Stylesheet(
                 start: 1191,
                 end: 1196,
               ),
+            ),
+            colonSpan: Span(
+              start: 1196,
+              end: 1197,
             ),
             value: [
               HexColor(
@@ -5227,6 +5505,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1206,
           end: 1207,
@@ -5245,6 +5524,10 @@ Stylesheet(
                 start: 1212,
                 end: 1217,
               ),
+            ),
+            colonSpan: Span(
+              start: 1217,
+              end: 1218,
             ),
             value: [
               HexColor(
@@ -5275,6 +5558,10 @@ Stylesheet(
                 end: 1236,
               ),
             ),
+            colonSpan: Span(
+              start: 1236,
+              end: 1237,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5303,6 +5590,10 @@ Stylesheet(
                 start: 1250,
                 end: 1255,
               ),
+            ),
+            colonSpan: Span(
+              start: 1255,
+              end: 1256,
             ),
             value: [
               HexColor(
@@ -5333,6 +5624,10 @@ Stylesheet(
                 end: 1271,
               ),
             ),
+            colonSpan: Span(
+              start: 1271,
+              end: 1272,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5361,6 +5656,10 @@ Stylesheet(
                 start: 1281,
                 end: 1286,
               ),
+            ),
+            colonSpan: Span(
+              start: 1286,
+              end: 1287,
             ),
             value: [
               HexColor(
@@ -5391,6 +5690,10 @@ Stylesheet(
                 end: 1304,
               ),
             ),
+            colonSpan: Span(
+              start: 1304,
+              end: 1305,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5419,6 +5722,10 @@ Stylesheet(
                 start: 1318,
                 end: 1323,
               ),
+            ),
+            colonSpan: Span(
+              start: 1323,
+              end: 1324,
             ),
             value: [
               HexColor(
@@ -5449,6 +5756,10 @@ Stylesheet(
                 end: 1341,
               ),
             ),
+            colonSpan: Span(
+              start: 1341,
+              end: 1342,
+            ),
             value: [
               HexColor(
                 type: "HexColor",
@@ -5477,6 +5788,10 @@ Stylesheet(
                 start: 1352,
                 end: 1357,
               ),
+            ),
+            colonSpan: Span(
+              start: 1357,
+              end: 1358,
             ),
             value: [
               HexColor(

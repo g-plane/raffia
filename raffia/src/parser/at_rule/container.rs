@@ -22,7 +22,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {
             }
             _ => {
                 let first = input.parse::<QueryInParens>()?;
-                let mut span = first.span().clone();
+                let mut span = first.span.clone();
                 let mut conditions = vec![ContainerConditionKind::QueryInParens(first)];
                 if let Token::Ident(ident) = &peek!(input).token {
                     let name = ident.name();
@@ -62,7 +62,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionAnd<'s> {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
                 start: keyword.span.start,
-                end: query_in_parens.span().end,
+                end: query_in_parens.span.end,
             };
             Ok(ContainerConditionAnd {
                 keyword,
@@ -85,7 +85,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionNot<'s> {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
                 start: keyword.span.start,
-                end: query_in_parens.span().end,
+                end: query_in_parens.span.end,
             };
             Ok(ContainerConditionNot {
                 keyword,
@@ -108,7 +108,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionOr<'s> {
             let query_in_parens = input.parse::<QueryInParens>()?;
             let span = Span {
                 start: keyword.span.start,
-                end: query_in_parens.span().end,
+                end: query_in_parens.span.end,
             };
             Ok(ContainerConditionOr {
                 keyword,
@@ -126,27 +126,35 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerConditionOr<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        if eat!(input, LParen).is_some() {
-            let query_in_parens =
-                if let Ok(container_condition) = input.try_parse(ContainerCondition::parse) {
-                    QueryInParens::ContainerCondition(container_condition)
-                } else {
-                    QueryInParens::SizeFeature(Box::new(input.parse()?))
-                };
-            expect!(input, RParen);
-            Ok(query_in_parens)
+        if let Some((_, Span { start, .. })) = eat!(input, LParen) {
+            let kind = if let Ok(container_condition) = input.try_parse(ContainerCondition::parse) {
+                QueryInParensKind::ContainerCondition(container_condition)
+            } else {
+                QueryInParensKind::SizeFeature(Box::new(input.parse()?))
+            };
+            let (_, Span { end, .. }) = expect!(input, RParen);
+            Ok(QueryInParens {
+                kind,
+                span: Span { start, end },
+            })
         } else {
-            let (style_keyword, span) = expect!(input, Ident);
+            let (style_keyword, ident_span) = expect!(input, Ident);
             if !style_keyword.name().eq_ignore_ascii_case("style") {
                 return Err(Error {
                     kind: ErrorKind::ExpectStyleQuery,
-                    span,
+                    span: ident_span,
                 });
             }
             expect_without_ws_or_comments!(input, LParen);
-            let query_in_parens = input.parse().map(QueryInParens::StyleQuery)?;
-            expect!(input, RParen);
-            Ok(query_in_parens)
+            let kind = input.parse().map(QueryInParensKind::StyleQuery)?;
+            let (_, Span { end, .. }) = expect!(input, RParen);
+            Ok(QueryInParens {
+                kind,
+                span: Span {
+                    start: ident_span.start,
+                    end,
+                },
+            })
         }
     }
 }
@@ -164,7 +172,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleCondition<'s> {
             }
             _ => {
                 let first = input.parse::<StyleInParens>()?;
-                let mut span = first.span().clone();
+                let mut span = first.span.clone();
                 let mut conditions = vec![StyleConditionKind::StyleInParens(first)];
                 if let Token::Ident(ident) = &peek!(input).token {
                     let name = ident.name();
@@ -204,7 +212,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionAnd<'s> {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
                 start: ident.span.start,
-                end: style_in_parens.span().end,
+                end: style_in_parens.span.end,
             };
             Ok(StyleConditionAnd {
                 keyword: ident,
@@ -227,7 +235,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionNot<'s> {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
                 start: keyword.span.start,
-                end: style_in_parens.span().end,
+                end: style_in_parens.span.end,
             };
             Ok(StyleConditionNot {
                 keyword,
@@ -250,7 +258,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionOr<'s> {
             let style_in_parens = input.parse::<StyleInParens>()?;
             let span = Span {
                 start: keyword.span.start,
-                end: style_in_parens.span().end,
+                end: style_in_parens.span.end,
             };
             Ok(StyleConditionOr {
                 keyword,
@@ -268,14 +276,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleConditionOr<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleInParens<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        expect!(input, LParen);
-        let style_in_parens = if let Ok(style_condition) = input.try_parse(StyleCondition::parse) {
-            StyleInParens::Condition(style_condition)
+        let (_, Span { start, .. }) = expect!(input, LParen);
+        let kind = input.parse()?;
+        let (_, Span { end, .. }) = expect!(input, RParen);
+        Ok(StyleInParens {
+            kind,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleInParensKind<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        if let Ok(style_condition) = input.try_parse(StyleCondition::parse) {
+            Ok(StyleInParensKind::Condition(style_condition))
         } else {
-            StyleInParens::Feature(input.parse()?)
-        };
-        expect!(input, RParen);
-        Ok(style_in_parens)
+            input.parse().map(StyleInParensKind::Feature)
+        }
     }
 }
 

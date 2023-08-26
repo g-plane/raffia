@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -111,6 +112,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 13,
@@ -236,6 +238,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 17,
           end: 30,
@@ -327,6 +330,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 35,
           end: 46,
@@ -560,6 +564,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 74,
           end: 101,
@@ -726,6 +731,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 105,
           end: 133,
@@ -892,6 +898,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 137,
           end: 167,
@@ -1058,6 +1065,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 171,
           end: 201,
@@ -1225,6 +1233,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 206,
           end: 225,
@@ -1400,6 +1409,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 229,
           end: 252,
@@ -1575,6 +1585,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 256,
           end: 279,
@@ -1758,6 +1769,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 284,
           end: 317,
@@ -2000,6 +2012,12 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 344,
+            end: 345,
+          ),
+        ],
         span: Span(
           start: 322,
           end: 368,
@@ -2058,6 +2076,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 374,
           end: 389,
@@ -2226,6 +2245,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 426,
           end: 433,
@@ -2367,6 +2387,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 438,
                 end: 467,
@@ -2436,6 +2457,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 473,
           end: 481,
@@ -2594,6 +2616,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 486,
                 end: 516,
@@ -2754,6 +2777,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 523,
           end: 542,
@@ -2903,6 +2927,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 609,
           end: 628,

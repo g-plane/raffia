@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -70,6 +71,10 @@ Stylesheet(
                 start: 8,
                 end: 9,
               ),
+            ),
+            colonSpan: Span(
+              start: 9,
+              end: 10,
             ),
             value: [
               Number(
@@ -99,6 +104,10 @@ Stylesheet(
                 start: 18,
                 end: 19,
               ),
+            ),
+            colonSpan: Span(
+              start: 19,
+              end: 20,
             ),
             value: [
               SassBinaryExpression(
@@ -187,6 +196,10 @@ Stylesheet(
                 end: 38,
               ),
             ),
+            colonSpan: Span(
+              start: 38,
+              end: 39,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -215,6 +228,10 @@ Stylesheet(
                 start: 47,
                 end: 48,
               ),
+            ),
+            colonSpan: Span(
+              start: 48,
+              end: 49,
             ),
             value: [
               SassBinaryExpression(
@@ -303,6 +320,10 @@ Stylesheet(
                 end: 68,
               ),
             ),
+            colonSpan: Span(
+              start: 68,
+              end: 69,
+            ),
             value: [
               SassUnaryExpression(
                 type: "SassUnaryExpression",
@@ -353,6 +374,10 @@ Stylesheet(
                 start: 77,
                 end: 78,
               ),
+            ),
+            colonSpan: Span(
+              start: 78,
+              end: 79,
             ),
             value: [
               SassUnaryExpression(
@@ -405,6 +430,10 @@ Stylesheet(
                 end: 88,
               ),
             ),
+            colonSpan: Span(
+              start: 88,
+              end: 89,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -433,6 +462,10 @@ Stylesheet(
                 start: 100,
                 end: 101,
               ),
+            ),
+            colonSpan: Span(
+              start: 101,
+              end: 102,
             ),
             value: [
               SassUnaryExpression(
@@ -478,6 +511,10 @@ Stylesheet(
                 end: 114,
               ),
             ),
+            colonSpan: Span(
+              start: 114,
+              end: 115,
+            ),
             value: [
               SassUnaryExpression(
                 type: "SassUnaryExpression",
@@ -521,6 +558,10 @@ Stylesheet(
                 start: 127,
                 end: 128,
               ),
+            ),
+            colonSpan: Span(
+              start: 128,
+              end: 129,
             ),
             value: [
               Function(

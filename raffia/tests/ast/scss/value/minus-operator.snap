@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 3,
@@ -70,6 +71,10 @@ Stylesheet(
                 start: 8,
                 end: 14,
               ),
+            ),
+            colonSpan: Span(
+              start: 14,
+              end: 15,
             ),
             value: [
               SassBinaryExpression(
@@ -124,6 +129,10 @@ Stylesheet(
                 end: 31,
               ),
             ),
+            colonSpan: Span(
+              start: 31,
+              end: 32,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -161,6 +170,10 @@ Stylesheet(
                 start: 43,
                 end: 49,
               ),
+            ),
+            colonSpan: Span(
+              start: 49,
+              end: 50,
             ),
             value: [
               SassBinaryExpression(
@@ -215,6 +228,10 @@ Stylesheet(
                 end: 67,
               ),
             ),
+            colonSpan: Span(
+              start: 67,
+              end: 68,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -267,6 +284,10 @@ Stylesheet(
                 start: 80,
                 end: 86,
               ),
+            ),
+            colonSpan: Span(
+              start: 86,
+              end: 87,
             ),
             value: [
               Number(
@@ -324,6 +345,10 @@ Stylesheet(
                 end: 106,
               ),
             ),
+            colonSpan: Span(
+              start: 106,
+              end: 107,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -379,6 +404,10 @@ Stylesheet(
                 start: 121,
                 end: 127,
               ),
+            ),
+            colonSpan: Span(
+              start: 127,
+              end: 128,
             ),
             value: [
               SassBinaryExpression(
@@ -442,6 +471,10 @@ Stylesheet(
                 end: 148,
               ),
             ),
+            colonSpan: Span(
+              start: 148,
+              end: 149,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -503,6 +536,10 @@ Stylesheet(
                 start: 164,
                 end: 170,
               ),
+            ),
+            colonSpan: Span(
+              start: 170,
+              end: 171,
             ),
             value: [
               SassBinaryExpression(
@@ -575,6 +612,10 @@ Stylesheet(
                 end: 191,
               ),
             ),
+            colonSpan: Span(
+              start: 191,
+              end: 192,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -630,6 +671,10 @@ Stylesheet(
                 start: 206,
                 end: 213,
               ),
+            ),
+            colonSpan: Span(
+              start: 213,
+              end: 214,
             ),
             value: [
               SassBinaryExpression(
@@ -702,6 +747,10 @@ Stylesheet(
                 end: 235,
               ),
             ),
+            colonSpan: Span(
+              start: 235,
+              end: 236,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -773,6 +822,10 @@ Stylesheet(
                 end: 258,
               ),
             ),
+            colonSpan: Span(
+              start: 258,
+              end: 259,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -838,6 +891,10 @@ Stylesheet(
                 end: 279,
               ),
             ),
+            colonSpan: Span(
+              start: 279,
+              end: 280,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -902,6 +959,10 @@ Stylesheet(
                 start: 294,
                 end: 301,
               ),
+            ),
+            colonSpan: Span(
+              start: 301,
+              end: 302,
             ),
             value: [
               SassBinaryExpression(
@@ -974,6 +1035,10 @@ Stylesheet(
                 end: 323,
               ),
             ),
+            colonSpan: Span(
+              start: 323,
+              end: 324,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -1045,6 +1110,10 @@ Stylesheet(
                 end: 346,
               ),
             ),
+            colonSpan: Span(
+              start: 346,
+              end: 347,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -1100,6 +1169,10 @@ Stylesheet(
                 start: 363,
                 end: 370,
               ),
+            ),
+            colonSpan: Span(
+              start: 370,
+              end: 371,
             ),
             value: [
               SassInterpolatedIdent(
@@ -1166,6 +1239,10 @@ Stylesheet(
                 end: 395,
               ),
             ),
+            colonSpan: Span(
+              start: 395,
+              end: 396,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -1230,6 +1307,10 @@ Stylesheet(
                 start: 413,
                 end: 420,
               ),
+            ),
+            colonSpan: Span(
+              start: 420,
+              end: 421,
             ),
             value: [
               SassBinaryExpression(
@@ -1302,6 +1383,10 @@ Stylesheet(
                 end: 446,
               ),
             ),
+            colonSpan: Span(
+              start: 446,
+              end: 447,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -1357,6 +1442,10 @@ Stylesheet(
                 start: 463,
                 end: 470,
               ),
+            ),
+            colonSpan: Span(
+              start: 470,
+              end: 471,
             ),
             value: [
               SassInterpolatedIdent(
@@ -1422,6 +1511,10 @@ Stylesheet(
                 start: 488,
                 end: 495,
               ),
+            ),
+            colonSpan: Span(
+              start: 495,
+              end: 496,
             ),
             value: [
               SassInterpolatedIdent(
@@ -1496,6 +1589,10 @@ Stylesheet(
                 start: 513,
                 end: 520,
               ),
+            ),
+            colonSpan: Span(
+              start: 520,
+              end: 521,
             ),
             value: [
               SassBinaryExpression(
@@ -1577,6 +1674,10 @@ Stylesheet(
                 end: 546,
               ),
             ),
+            colonSpan: Span(
+              start: 546,
+              end: 547,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -1641,6 +1742,10 @@ Stylesheet(
                 start: 563,
                 end: 570,
               ),
+            ),
+            colonSpan: Span(
+              start: 570,
+              end: 571,
             ),
             value: [
               SassInterpolatedIdent(
@@ -1716,6 +1821,10 @@ Stylesheet(
                 end: 595,
               ),
             ),
+            colonSpan: Span(
+              start: 595,
+              end: 596,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -1789,6 +1898,10 @@ Stylesheet(
                 start: 613,
                 end: 620,
               ),
+            ),
+            colonSpan: Span(
+              start: 620,
+              end: 621,
             ),
             value: [
               SassBinaryExpression(
@@ -1870,6 +1983,10 @@ Stylesheet(
                 end: 646,
               ),
             ),
+            colonSpan: Span(
+              start: 646,
+              end: 647,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -1934,6 +2051,10 @@ Stylesheet(
                 start: 663,
                 end: 670,
               ),
+            ),
+            colonSpan: Span(
+              start: 670,
+              end: 671,
             ),
             value: [
               Number(
@@ -2008,6 +2129,10 @@ Stylesheet(
                 start: 688,
                 end: 695,
               ),
+            ),
+            colonSpan: Span(
+              start: 695,
+              end: 696,
             ),
             value: [
               Number(
@@ -2091,6 +2216,10 @@ Stylesheet(
                 start: 713,
                 end: 720,
               ),
+            ),
+            colonSpan: Span(
+              start: 720,
+              end: 721,
             ),
             value: [
               Number(
@@ -2181,6 +2310,10 @@ Stylesheet(
                 end: 746,
               ),
             ),
+            colonSpan: Span(
+              start: 746,
+              end: 747,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -2254,6 +2387,10 @@ Stylesheet(
                 start: 763,
                 end: 770,
               ),
+            ),
+            colonSpan: Span(
+              start: 770,
+              end: 771,
             ),
             value: [
               Number(
@@ -2338,6 +2475,10 @@ Stylesheet(
                 end: 795,
               ),
             ),
+            colonSpan: Span(
+              start: 795,
+              end: 796,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -2420,6 +2561,10 @@ Stylesheet(
                 start: 813,
                 end: 820,
               ),
+            ),
+            colonSpan: Span(
+              start: 820,
+              end: 821,
             ),
             value: [
               Number(
@@ -2510,6 +2655,10 @@ Stylesheet(
                 end: 846,
               ),
             ),
+            colonSpan: Span(
+              start: 846,
+              end: 847,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2574,6 +2723,10 @@ Stylesheet(
                 start: 863,
                 end: 870,
               ),
+            ),
+            colonSpan: Span(
+              start: 870,
+              end: 871,
             ),
             value: [
               SassInterpolatedIdent(
@@ -2658,6 +2811,10 @@ Stylesheet(
                 end: 895,
               ),
             ),
+            colonSpan: Span(
+              start: 895,
+              end: 896,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -2731,6 +2888,10 @@ Stylesheet(
                 start: 913,
                 end: 920,
               ),
+            ),
+            colonSpan: Span(
+              start: 920,
+              end: 921,
             ),
             value: [
               SassBinaryExpression(
@@ -2869,6 +3030,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 940,
           end: 943,
@@ -2887,6 +3049,10 @@ Stylesheet(
                 start: 948,
                 end: 954,
               ),
+            ),
+            colonSpan: Span(
+              start: 954,
+              end: 955,
             ),
             value: [
               SassBinaryExpression(
@@ -2958,6 +3124,10 @@ Stylesheet(
                 end: 973,
               ),
             ),
+            colonSpan: Span(
+              start: 973,
+              end: 974,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -3012,6 +3182,10 @@ Stylesheet(
                 start: 987,
                 end: 993,
               ),
+            ),
+            colonSpan: Span(
+              start: 993,
+              end: 994,
             ),
             value: [
               SassBinaryExpression(
@@ -3083,6 +3257,10 @@ Stylesheet(
                 end: 1013,
               ),
             ),
+            colonSpan: Span(
+              start: 1013,
+              end: 1014,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -3153,6 +3331,10 @@ Stylesheet(
                 end: 1034,
               ),
             ),
+            colonSpan: Span(
+              start: 1034,
+              end: 1035,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -3218,6 +3400,10 @@ Stylesheet(
                 end: 1057,
               ),
             ),
+            colonSpan: Span(
+              start: 1057,
+              end: 1058,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -3282,6 +3468,10 @@ Stylesheet(
                 start: 1074,
                 end: 1081,
               ),
+            ),
+            colonSpan: Span(
+              start: 1081,
+              end: 1082,
             ),
             value: [
               SassBinaryExpression(
@@ -3354,6 +3544,10 @@ Stylesheet(
                 end: 1105,
               ),
             ),
+            colonSpan: Span(
+              start: 1105,
+              end: 1106,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -3424,6 +3618,10 @@ Stylesheet(
                 start: 1123,
                 end: 1130,
               ),
+            ),
+            colonSpan: Span(
+              start: 1130,
+              end: 1131,
             ),
             value: [
               SassBinaryExpression(
@@ -3505,6 +3703,10 @@ Stylesheet(
                 end: 1153,
               ),
             ),
+            colonSpan: Span(
+              start: 1153,
+              end: 1154,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -3569,6 +3771,10 @@ Stylesheet(
                 start: 1170,
                 end: 1177,
               ),
+            ),
+            colonSpan: Span(
+              start: 1177,
+              end: 1178,
             ),
             value: [
               SassBinaryExpression(
@@ -3650,6 +3856,10 @@ Stylesheet(
                 end: 1201,
               ),
             ),
+            colonSpan: Span(
+              start: 1201,
+              end: 1202,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -3730,6 +3940,10 @@ Stylesheet(
                 end: 1226,
               ),
             ),
+            colonSpan: Span(
+              start: 1226,
+              end: 1227,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -3801,6 +4015,10 @@ Stylesheet(
                 end: 1249,
               ),
             ),
+            colonSpan: Span(
+              start: 1249,
+              end: 1250,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -3856,6 +4074,10 @@ Stylesheet(
                 start: 1266,
                 end: 1273,
               ),
+            ),
+            colonSpan: Span(
+              start: 1273,
+              end: 1274,
             ),
             value: [
               SassBinaryExpression(
@@ -3928,6 +4150,10 @@ Stylesheet(
                 end: 1297,
               ),
             ),
+            colonSpan: Span(
+              start: 1297,
+              end: 1298,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -3998,6 +4224,10 @@ Stylesheet(
                 start: 1315,
                 end: 1322,
               ),
+            ),
+            colonSpan: Span(
+              start: 1322,
+              end: 1323,
             ),
             value: [
               SassBinaryExpression(
@@ -4079,6 +4309,10 @@ Stylesheet(
                 end: 1345,
               ),
             ),
+            colonSpan: Span(
+              start: 1345,
+              end: 1346,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -4143,6 +4377,10 @@ Stylesheet(
                 start: 1362,
                 end: 1369,
               ),
+            ),
+            colonSpan: Span(
+              start: 1369,
+              end: 1370,
             ),
             value: [
               SassBinaryExpression(
@@ -4224,6 +4462,10 @@ Stylesheet(
                 end: 1393,
               ),
             ),
+            colonSpan: Span(
+              start: 1393,
+              end: 1394,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -4304,6 +4546,10 @@ Stylesheet(
                 end: 1418,
               ),
             ),
+            colonSpan: Span(
+              start: 1418,
+              end: 1419,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -4349,6 +4595,10 @@ Stylesheet(
                 start: 1433,
                 end: 1440,
               ),
+            ),
+            colonSpan: Span(
+              start: 1440,
+              end: 1441,
             ),
             value: [
               Dimension(
@@ -4422,6 +4672,10 @@ Stylesheet(
                 end: 1463,
               ),
             ),
+            colonSpan: Span(
+              start: 1463,
+              end: 1464,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -4493,6 +4747,10 @@ Stylesheet(
                 start: 1479,
                 end: 1486,
               ),
+            ),
+            colonSpan: Span(
+              start: 1486,
+              end: 1487,
             ),
             value: [
               SassBinaryExpression(
@@ -4581,6 +4839,10 @@ Stylesheet(
                 end: 1510,
               ),
             ),
+            colonSpan: Span(
+              start: 1510,
+              end: 1511,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -4653,6 +4915,10 @@ Stylesheet(
                 start: 1528,
                 end: 1535,
               ),
+            ),
+            colonSpan: Span(
+              start: 1535,
+              end: 1536,
             ),
             value: [
               Dimension(
@@ -4736,6 +5002,10 @@ Stylesheet(
                 end: 1561,
               ),
             ),
+            colonSpan: Span(
+              start: 1561,
+              end: 1562,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -4808,6 +5078,10 @@ Stylesheet(
                 start: 1580,
                 end: 1587,
               ),
+            ),
+            colonSpan: Span(
+              start: 1587,
+              end: 1588,
             ),
             value: [
               SassBinaryExpression(
@@ -4897,6 +5171,10 @@ Stylesheet(
                 end: 1614,
               ),
             ),
+            colonSpan: Span(
+              start: 1614,
+              end: 1615,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -4969,6 +5247,10 @@ Stylesheet(
                 start: 1632,
                 end: 1639,
               ),
+            ),
+            colonSpan: Span(
+              start: 1639,
+              end: 1640,
             ),
             value: [
               Dimension(
@@ -5052,6 +5334,10 @@ Stylesheet(
                 end: 1665,
               ),
             ),
+            colonSpan: Span(
+              start: 1665,
+              end: 1666,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -5133,6 +5419,10 @@ Stylesheet(
                 start: 1684,
                 end: 1691,
               ),
+            ),
+            colonSpan: Span(
+              start: 1691,
+              end: 1692,
             ),
             value: [
               SassBinaryExpression(
@@ -5231,6 +5521,10 @@ Stylesheet(
                 end: 1718,
               ),
             ),
+            colonSpan: Span(
+              start: 1718,
+              end: 1719,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -5294,6 +5588,10 @@ Stylesheet(
                 start: 1736,
                 end: 1743,
               ),
+            ),
+            colonSpan: Span(
+              start: 1743,
+              end: 1744,
             ),
             value: [
               Dimension(
@@ -5368,6 +5666,10 @@ Stylesheet(
                 end: 1769,
               ),
             ),
+            colonSpan: Span(
+              start: 1769,
+              end: 1770,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -5440,6 +5742,10 @@ Stylesheet(
                 start: 1788,
                 end: 1795,
               ),
+            ),
+            colonSpan: Span(
+              start: 1795,
+              end: 1796,
             ),
             value: [
               SassBinaryExpression(
@@ -5529,6 +5835,10 @@ Stylesheet(
                 end: 1822,
               ),
             ),
+            colonSpan: Span(
+              start: 1822,
+              end: 1823,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -5601,6 +5911,10 @@ Stylesheet(
                 start: 1840,
                 end: 1847,
               ),
+            ),
+            colonSpan: Span(
+              start: 1847,
+              end: 1848,
             ),
             value: [
               Dimension(
@@ -5684,6 +5998,10 @@ Stylesheet(
                 end: 1873,
               ),
             ),
+            colonSpan: Span(
+              start: 1873,
+              end: 1874,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -5765,6 +6083,10 @@ Stylesheet(
                 start: 1892,
                 end: 1899,
               ),
+            ),
+            colonSpan: Span(
+              start: 1899,
+              end: 1900,
             ),
             value: [
               SassBinaryExpression(
@@ -5863,6 +6185,10 @@ Stylesheet(
                 end: 1926,
               ),
             ),
+            colonSpan: Span(
+              start: 1926,
+              end: 1927,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -5927,6 +6253,10 @@ Stylesheet(
                 start: 1947,
                 end: 1954,
               ),
+            ),
+            colonSpan: Span(
+              start: 1954,
+              end: 1955,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6011,6 +6341,10 @@ Stylesheet(
                 end: 1983,
               ),
             ),
+            colonSpan: Span(
+              start: 1983,
+              end: 1984,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6084,6 +6418,10 @@ Stylesheet(
                 start: 2005,
                 end: 2012,
               ),
+            ),
+            colonSpan: Span(
+              start: 2012,
+              end: 2013,
             ),
             value: [
               SassBinaryExpression(
@@ -6174,6 +6512,10 @@ Stylesheet(
                 end: 2042,
               ),
             ),
+            colonSpan: Span(
+              start: 2042,
+              end: 2043,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6238,6 +6580,10 @@ Stylesheet(
                 start: 2063,
                 end: 2070,
               ),
+            ),
+            colonSpan: Span(
+              start: 2070,
+              end: 2071,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6322,6 +6668,10 @@ Stylesheet(
                 end: 2099,
               ),
             ),
+            colonSpan: Span(
+              start: 2099,
+              end: 2100,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6404,6 +6754,10 @@ Stylesheet(
                 start: 2121,
                 end: 2128,
               ),
+            ),
+            colonSpan: Span(
+              start: 2128,
+              end: 2129,
             ),
             value: [
               SassBinaryExpression(
@@ -6503,6 +6857,10 @@ Stylesheet(
                 end: 2158,
               ),
             ),
+            colonSpan: Span(
+              start: 2158,
+              end: 2159,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6558,6 +6916,10 @@ Stylesheet(
                 start: 2179,
                 end: 2186,
               ),
+            ),
+            colonSpan: Span(
+              start: 2186,
+              end: 2187,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6633,6 +6995,10 @@ Stylesheet(
                 end: 2215,
               ),
             ),
+            colonSpan: Span(
+              start: 2215,
+              end: 2216,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6706,6 +7072,10 @@ Stylesheet(
                 start: 2237,
                 end: 2244,
               ),
+            ),
+            colonSpan: Span(
+              start: 2244,
+              end: 2245,
             ),
             value: [
               SassBinaryExpression(
@@ -6796,6 +7166,10 @@ Stylesheet(
                 end: 2274,
               ),
             ),
+            colonSpan: Span(
+              start: 2274,
+              end: 2275,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -6860,6 +7234,10 @@ Stylesheet(
                 start: 2295,
                 end: 2302,
               ),
+            ),
+            colonSpan: Span(
+              start: 2302,
+              end: 2303,
             ),
             value: [
               SassInterpolatedIdent(
@@ -6944,6 +7322,10 @@ Stylesheet(
                 end: 2331,
               ),
             ),
+            colonSpan: Span(
+              start: 2331,
+              end: 2332,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -7026,6 +7408,10 @@ Stylesheet(
                 start: 2353,
                 end: 2360,
               ),
+            ),
+            colonSpan: Span(
+              start: 2360,
+              end: 2361,
             ),
             value: [
               SassBinaryExpression(
@@ -7125,6 +7511,10 @@ Stylesheet(
                 end: 2390,
               ),
             ),
+            colonSpan: Span(
+              start: 2390,
+              end: 2391,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -7198,6 +7588,10 @@ Stylesheet(
                 start: 2411,
                 end: 2418,
               ),
+            ),
+            colonSpan: Span(
+              start: 2418,
+              end: 2419,
             ),
             value: [
               Number(
@@ -7291,6 +7685,10 @@ Stylesheet(
                 end: 2447,
               ),
             ),
+            colonSpan: Span(
+              start: 2447,
+              end: 2448,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -7382,6 +7780,10 @@ Stylesheet(
                 start: 2469,
                 end: 2476,
               ),
+            ),
+            colonSpan: Span(
+              start: 2476,
+              end: 2477,
             ),
             value: [
               Number(
@@ -7490,6 +7892,10 @@ Stylesheet(
                 end: 2506,
               ),
             ),
+            colonSpan: Span(
+              start: 2506,
+              end: 2507,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -7554,6 +7960,10 @@ Stylesheet(
                 start: 2527,
                 end: 2534,
               ),
+            ),
+            colonSpan: Span(
+              start: 2534,
+              end: 2535,
             ),
             value: [
               Number(
@@ -7638,6 +8048,10 @@ Stylesheet(
                 end: 2563,
               ),
             ),
+            colonSpan: Span(
+              start: 2563,
+              end: 2564,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -7720,6 +8134,10 @@ Stylesheet(
                 start: 2585,
                 end: 2592,
               ),
+            ),
+            colonSpan: Span(
+              start: 2592,
+              end: 2593,
             ),
             value: [
               Number(
@@ -7819,6 +8237,10 @@ Stylesheet(
                 end: 2622,
               ),
             ),
+            colonSpan: Span(
+              start: 2622,
+              end: 2623,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -7892,6 +8314,10 @@ Stylesheet(
                 start: 2643,
                 end: 2650,
               ),
+            ),
+            colonSpan: Span(
+              start: 2650,
+              end: 2651,
             ),
             value: [
               Number(
@@ -7985,6 +8411,10 @@ Stylesheet(
                 end: 2679,
               ),
             ),
+            colonSpan: Span(
+              start: 2679,
+              end: 2680,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -8076,6 +8506,10 @@ Stylesheet(
                 start: 2701,
                 end: 2708,
               ),
+            ),
+            colonSpan: Span(
+              start: 2708,
+              end: 2709,
             ),
             value: [
               Number(
@@ -8184,6 +8618,10 @@ Stylesheet(
                 end: 2738,
               ),
             ),
+            colonSpan: Span(
+              start: 2738,
+              end: 2739,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -8248,6 +8686,10 @@ Stylesheet(
                 start: 2759,
                 end: 2766,
               ),
+            ),
+            colonSpan: Span(
+              start: 2766,
+              end: 2767,
             ),
             value: [
               Number(
@@ -8322,6 +8764,10 @@ Stylesheet(
                 start: 2788,
                 end: 2795,
               ),
+            ),
+            colonSpan: Span(
+              start: 2795,
+              end: 2796,
             ),
             value: [
               Number(
@@ -8405,6 +8851,10 @@ Stylesheet(
                 start: 2817,
                 end: 2824,
               ),
+            ),
+            colonSpan: Span(
+              start: 2824,
+              end: 2825,
             ),
             value: [
               Number(
@@ -8495,6 +8945,10 @@ Stylesheet(
                 end: 2854,
               ),
             ),
+            colonSpan: Span(
+              start: 2854,
+              end: 2855,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -8568,6 +9022,10 @@ Stylesheet(
                 start: 2875,
                 end: 2882,
               ),
+            ),
+            colonSpan: Span(
+              start: 2882,
+              end: 2883,
             ),
             value: [
               Number(
@@ -8651,6 +9109,10 @@ Stylesheet(
                 start: 2904,
                 end: 2911,
               ),
+            ),
+            colonSpan: Span(
+              start: 2911,
+              end: 2912,
             ),
             value: [
               Number(
@@ -8743,6 +9205,10 @@ Stylesheet(
                 start: 2933,
                 end: 2940,
               ),
+            ),
+            colonSpan: Span(
+              start: 2940,
+              end: 2941,
             ),
             value: [
               Number(
@@ -8842,6 +9308,10 @@ Stylesheet(
                 end: 2970,
               ),
             ),
+            colonSpan: Span(
+              start: 2970,
+              end: 2971,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -8915,6 +9385,10 @@ Stylesheet(
                 start: 2991,
                 end: 2998,
               ),
+            ),
+            colonSpan: Span(
+              start: 2998,
+              end: 2999,
             ),
             value: [
               Number(
@@ -9008,6 +9482,10 @@ Stylesheet(
                 end: 3027,
               ),
             ),
+            colonSpan: Span(
+              start: 3027,
+              end: 3028,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -9099,6 +9577,10 @@ Stylesheet(
                 start: 3049,
                 end: 3056,
               ),
+            ),
+            colonSpan: Span(
+              start: 3056,
+              end: 3057,
             ),
             value: [
               Number(
@@ -9255,6 +9737,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 3080,
           end: 3083,
@@ -9273,6 +9756,10 @@ Stylesheet(
                 start: 3088,
                 end: 3094,
               ),
+            ),
+            colonSpan: Span(
+              start: 3094,
+              end: 3095,
             ),
             value: [
               Ident(
@@ -9302,6 +9789,10 @@ Stylesheet(
                 start: 3115,
                 end: 3121,
               ),
+            ),
+            colonSpan: Span(
+              start: 3121,
+              end: 3122,
             ),
             value: [
               Ident(
@@ -9341,6 +9832,10 @@ Stylesheet(
                 end: 3149,
               ),
             ),
+            colonSpan: Span(
+              start: 3149,
+              end: 3150,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -9378,6 +9873,10 @@ Stylesheet(
                 start: 3171,
                 end: 3177,
               ),
+            ),
+            colonSpan: Span(
+              start: 3177,
+              end: 3178,
             ),
             value: [
               SassBinaryExpression(
@@ -9432,6 +9931,10 @@ Stylesheet(
                 end: 3206,
               ),
             ),
+            colonSpan: Span(
+              start: 3206,
+              end: 3207,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -9469,6 +9972,10 @@ Stylesheet(
                 start: 3228,
                 end: 3234,
               ),
+            ),
+            colonSpan: Span(
+              start: 3234,
+              end: 3235,
             ),
             value: [
               SassBinaryExpression(
@@ -9523,6 +10030,10 @@ Stylesheet(
                 end: 3263,
               ),
             ),
+            colonSpan: Span(
+              start: 3263,
+              end: 3264,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -9560,6 +10071,10 @@ Stylesheet(
                 start: 3286,
                 end: 3292,
               ),
+            ),
+            colonSpan: Span(
+              start: 3292,
+              end: 3293,
             ),
             value: [
               SassBinaryExpression(
@@ -9614,6 +10129,10 @@ Stylesheet(
                 end: 3322,
               ),
             ),
+            colonSpan: Span(
+              start: 3322,
+              end: 3323,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -9660,6 +10179,10 @@ Stylesheet(
                 start: 3350,
                 end: 3357,
               ),
+            ),
+            colonSpan: Span(
+              start: 3357,
+              end: 3358,
             ),
             value: [
               Ident(
@@ -9717,6 +10240,10 @@ Stylesheet(
                 end: 3393,
               ),
             ),
+            colonSpan: Span(
+              start: 3393,
+              end: 3394,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -9763,6 +10290,10 @@ Stylesheet(
                 start: 3422,
                 end: 3429,
               ),
+            ),
+            colonSpan: Span(
+              start: 3429,
+              end: 3430,
             ),
             value: [
               SassBinaryExpression(
@@ -9826,6 +10357,10 @@ Stylesheet(
                 end: 3466,
               ),
             ),
+            colonSpan: Span(
+              start: 3466,
+              end: 3467,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -9872,6 +10407,10 @@ Stylesheet(
                 start: 3496,
                 end: 3503,
               ),
+            ),
+            colonSpan: Span(
+              start: 3503,
+              end: 3504,
             ),
             value: [
               Ident(
@@ -9929,6 +10468,10 @@ Stylesheet(
                 end: 3541,
               ),
             ),
+            colonSpan: Span(
+              start: 3541,
+              end: 3542,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -9984,6 +10527,10 @@ Stylesheet(
                 start: 3572,
                 end: 3579,
               ),
+            ),
+            colonSpan: Span(
+              start: 3579,
+              end: 3580,
             ),
             value: [
               SassBinaryExpression(
@@ -10056,6 +10603,10 @@ Stylesheet(
                 end: 3618,
               ),
             ),
+            colonSpan: Span(
+              start: 3618,
+              end: 3619,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -10111,6 +10662,10 @@ Stylesheet(
                 start: 3648,
                 end: 3655,
               ),
+            ),
+            colonSpan: Span(
+              start: 3655,
+              end: 3656,
             ),
             value: [
               Ident(
@@ -10177,6 +10732,10 @@ Stylesheet(
                 end: 3693,
               ),
             ),
+            colonSpan: Span(
+              start: 3693,
+              end: 3694,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -10232,6 +10791,10 @@ Stylesheet(
                 start: 3724,
                 end: 3731,
               ),
+            ),
+            colonSpan: Span(
+              start: 3731,
+              end: 3732,
             ),
             value: [
               SassBinaryExpression(
@@ -10304,6 +10867,10 @@ Stylesheet(
                 end: 3770,
               ),
             ),
+            colonSpan: Span(
+              start: 3770,
+              end: 3771,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -10356,6 +10923,10 @@ Stylesheet(
                 start: 3793,
                 end: 3800,
               ),
+            ),
+            colonSpan: Span(
+              start: 3800,
+              end: 3801,
             ),
             value: [
               SassBinaryExpression(
@@ -10410,6 +10981,10 @@ Stylesheet(
                 end: 3831,
               ),
             ),
+            colonSpan: Span(
+              start: 3831,
+              end: 3832,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -10463,6 +11038,10 @@ Stylesheet(
                 end: 3862,
               ),
             ),
+            colonSpan: Span(
+              start: 3862,
+              end: 3863,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -10515,6 +11094,10 @@ Stylesheet(
                 start: 3887,
                 end: 3894,
               ),
+            ),
+            colonSpan: Span(
+              start: 3894,
+              end: 3895,
             ),
             value: [
               Str(
@@ -10572,6 +11155,10 @@ Stylesheet(
                 end: 3930,
               ),
             ),
+            colonSpan: Span(
+              start: 3930,
+              end: 3931,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -10627,6 +11214,10 @@ Stylesheet(
                 start: 3960,
                 end: 3967,
               ),
+            ),
+            colonSpan: Span(
+              start: 3967,
+              end: 3968,
             ),
             value: [
               SassBinaryExpression(
@@ -10690,6 +11281,10 @@ Stylesheet(
                 end: 4004,
               ),
             ),
+            colonSpan: Span(
+              start: 4004,
+              end: 4005,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -10752,6 +11347,10 @@ Stylesheet(
                 end: 4042,
               ),
             ),
+            colonSpan: Span(
+              start: 4042,
+              end: 4043,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -10808,6 +11407,10 @@ Stylesheet(
                 end: 4080,
               ),
             ),
+            colonSpan: Span(
+              start: 4080,
+              end: 4081,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -10863,6 +11466,10 @@ Stylesheet(
                 start: 4112,
                 end: 4119,
               ),
+            ),
+            colonSpan: Span(
+              start: 4119,
+              end: 4120,
             ),
             value: [
               SassBinaryExpression(
@@ -10935,6 +11542,10 @@ Stylesheet(
                 end: 4158,
               ),
             ),
+            colonSpan: Span(
+              start: 4158,
+              end: 4159,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -11006,6 +11617,10 @@ Stylesheet(
                 end: 4198,
               ),
             ),
+            colonSpan: Span(
+              start: 4198,
+              end: 4199,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -11071,6 +11686,10 @@ Stylesheet(
                 end: 4236,
               ),
             ),
+            colonSpan: Span(
+              start: 4236,
+              end: 4237,
+            ),
             value: [
               Str(
                 type: "Str",
@@ -11135,6 +11754,10 @@ Stylesheet(
                 start: 4268,
                 end: 4275,
               ),
+            ),
+            colonSpan: Span(
+              start: 4275,
+              end: 4276,
             ),
             value: [
               SassBinaryExpression(
@@ -11207,6 +11830,10 @@ Stylesheet(
                 end: 4314,
               ),
             ),
+            colonSpan: Span(
+              start: 4314,
+              end: 4315,
+            ),
             value: [
               SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -11278,6 +11905,10 @@ Stylesheet(
                 end: 4354,
               ),
             ),
+            colonSpan: Span(
+              start: 4354,
+              end: 4355,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -11333,6 +11964,10 @@ Stylesheet(
                 start: 4389,
                 end: 4396,
               ),
+            ),
+            colonSpan: Span(
+              start: 4396,
+              end: 4397,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11399,6 +12034,10 @@ Stylesheet(
                 end: 4439,
               ),
             ),
+            colonSpan: Span(
+              start: 4439,
+              end: 4440,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -11463,6 +12102,10 @@ Stylesheet(
                 start: 4475,
                 end: 4482,
               ),
+            ),
+            colonSpan: Span(
+              start: 4482,
+              end: 4483,
             ),
             value: [
               SassBinaryExpression(
@@ -11535,6 +12178,10 @@ Stylesheet(
                 end: 4526,
               ),
             ),
+            colonSpan: Span(
+              start: 4526,
+              end: 4527,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -11590,6 +12237,10 @@ Stylesheet(
                 start: 4563,
                 end: 4570,
               ),
+            ),
+            colonSpan: Span(
+              start: 4570,
+              end: 4571,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11655,6 +12306,10 @@ Stylesheet(
                 start: 4608,
                 end: 4615,
               ),
+            ),
+            colonSpan: Span(
+              start: 4615,
+              end: 4616,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11729,6 +12384,10 @@ Stylesheet(
                 start: 4653,
                 end: 4660,
               ),
+            ),
+            colonSpan: Span(
+              start: 4660,
+              end: 4661,
             ),
             value: [
               SassBinaryExpression(
@@ -11810,6 +12469,10 @@ Stylesheet(
                 end: 4706,
               ),
             ),
+            colonSpan: Span(
+              start: 4706,
+              end: 4707,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -11874,6 +12537,10 @@ Stylesheet(
                 start: 4743,
                 end: 4750,
               ),
+            ),
+            colonSpan: Span(
+              start: 4750,
+              end: 4751,
             ),
             value: [
               SassInterpolatedIdent(
@@ -11949,6 +12616,10 @@ Stylesheet(
                 end: 4795,
               ),
             ),
+            colonSpan: Span(
+              start: 4795,
+              end: 4796,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12022,6 +12693,10 @@ Stylesheet(
                 start: 4833,
                 end: 4840,
               ),
+            ),
+            colonSpan: Span(
+              start: 4840,
+              end: 4841,
             ),
             value: [
               SassBinaryExpression(
@@ -12103,6 +12778,10 @@ Stylesheet(
                 end: 4886,
               ),
             ),
+            colonSpan: Span(
+              start: 4886,
+              end: 4887,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12167,6 +12846,10 @@ Stylesheet(
                 start: 4925,
                 end: 4932,
               ),
+            ),
+            colonSpan: Span(
+              start: 4932,
+              end: 4933,
             ),
             value: [
               SassInterpolatedIdent(
@@ -12241,6 +12924,10 @@ Stylesheet(
                 start: 4972,
                 end: 4979,
               ),
+            ),
+            colonSpan: Span(
+              start: 4979,
+              end: 4980,
             ),
             value: [
               SassInterpolatedIdent(
@@ -12324,6 +13011,10 @@ Stylesheet(
                 start: 5019,
                 end: 5026,
               ),
+            ),
+            colonSpan: Span(
+              start: 5026,
+              end: 5027,
             ),
             value: [
               SassBinaryExpression(
@@ -12414,6 +13105,10 @@ Stylesheet(
                 end: 5074,
               ),
             ),
+            colonSpan: Span(
+              start: 5074,
+              end: 5075,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12487,6 +13182,10 @@ Stylesheet(
                 start: 5113,
                 end: 5120,
               ),
+            ),
+            colonSpan: Span(
+              start: 5120,
+              end: 5121,
             ),
             value: [
               SassInterpolatedIdent(
@@ -12571,6 +13270,10 @@ Stylesheet(
                 end: 5167,
               ),
             ),
+            colonSpan: Span(
+              start: 5167,
+              end: 5168,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12653,6 +13356,10 @@ Stylesheet(
                 start: 5207,
                 end: 5214,
               ),
+            ),
+            colonSpan: Span(
+              start: 5214,
+              end: 5215,
             ),
             value: [
               SassBinaryExpression(
@@ -12743,6 +13450,10 @@ Stylesheet(
                 end: 5262,
               ),
             ),
+            colonSpan: Span(
+              start: 5262,
+              end: 5263,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12807,6 +13518,10 @@ Stylesheet(
                 start: 5301,
                 end: 5308,
               ),
+            ),
+            colonSpan: Span(
+              start: 5308,
+              end: 5309,
             ),
             value: [
               SassInterpolatedIdent(
@@ -12891,6 +13606,10 @@ Stylesheet(
                 end: 5355,
               ),
             ),
+            colonSpan: Span(
+              start: 5355,
+              end: 5356,
+            ),
             value: [
               SassInterpolatedIdent(
                 type: "SassInterpolatedIdent",
@@ -12964,6 +13683,10 @@ Stylesheet(
                 start: 5395,
                 end: 5402,
               ),
+            ),
+            colonSpan: Span(
+              start: 5402,
+              end: 5403,
             ),
             value: [
               SassBinaryExpression(

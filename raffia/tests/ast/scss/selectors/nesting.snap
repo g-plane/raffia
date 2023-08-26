@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 2,
@@ -140,6 +141,10 @@ Stylesheet(
                         start: 34,
                         end: 41,
                       ),
+                    ),
+                    colonSpan: Span(
+                      start: 41,
+                      end: 42,
                     ),
                     value: [
                       Str(
@@ -287,6 +292,12 @@ Stylesheet(
               start: 72,
               end: 77,
             ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 70,
+            end: 71,
           ),
         ],
         span: Span(

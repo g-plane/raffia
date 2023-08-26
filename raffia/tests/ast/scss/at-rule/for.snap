@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -110,6 +111,10 @@ Stylesheet(
                       start: 32,
                       end: 33,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 33,
+                    end: 34,
                   ),
                   value: [
                     SassVariable(
@@ -206,6 +211,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 43,
           end: 44,
@@ -264,6 +270,10 @@ Stylesheet(
                       start: 70,
                       end: 71,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 71,
+                    end: 72,
                   ),
                   value: [
                     SassVariable(

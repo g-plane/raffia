@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -44,6 +45,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 2,
@@ -62,6 +64,10 @@ Stylesheet(
                 start: 7,
                 end: 11,
               ),
+            ),
+            colonSpan: Span(
+              start: 11,
+              end: 12,
             ),
             value: [
               Ident(
@@ -91,6 +97,10 @@ Stylesheet(
                 start: 26,
                 end: 31,
               ),
+            ),
+            colonSpan: Span(
+              start: 31,
+              end: 32,
             ),
             value: [
               Ident(
@@ -129,6 +139,10 @@ Stylesheet(
                 start: 50,
                 end: 55,
               ),
+            ),
+            colonSpan: Span(
+              start: 55,
+              end: 56,
             ),
             value: [
               Dimension(
@@ -191,6 +205,10 @@ Stylesheet(
                 end: 79,
               ),
             ),
+            colonSpan: Span(
+              start: 79,
+              end: 80,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -234,6 +252,10 @@ Stylesheet(
                 start: 98,
                 end: 103,
               ),
+            ),
+            colonSpan: Span(
+              start: 103,
+              end: 104,
             ),
             value: [
               Ident(
@@ -279,6 +301,10 @@ Stylesheet(
                 end: 128,
               ),
             ),
+            colonSpan: Span(
+              start: 128,
+              end: 129,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -322,6 +348,10 @@ Stylesheet(
                 start: 149,
                 end: 154,
               ),
+            ),
+            colonSpan: Span(
+              start: 154,
+              end: 155,
             ),
             value: [
               Ident(
@@ -367,6 +397,10 @@ Stylesheet(
                 end: 185,
               ),
             ),
+            colonSpan: Span(
+              start: 185,
+              end: 186,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -411,6 +445,10 @@ Stylesheet(
                 end: 211,
               ),
             ),
+            colonSpan: Span(
+              start: 211,
+              end: 212,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -454,6 +492,10 @@ Stylesheet(
                 start: 239,
                 end: 245,
               ),
+            ),
+            colonSpan: Span(
+              start: 245,
+              end: 246,
             ),
             value: [
               Dimension(
@@ -516,6 +558,10 @@ Stylesheet(
                 end: 284,
               ),
             ),
+            colonSpan: Span(
+              start: 284,
+              end: 285,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -576,6 +622,10 @@ Stylesheet(
                 start: 324,
                 end: 329,
               ),
+            ),
+            colonSpan: Span(
+              start: 329,
+              end: 330,
             ),
             value: [
               Dimension(
@@ -638,6 +688,10 @@ Stylesheet(
                 end: 370,
               ),
             ),
+            colonSpan: Span(
+              start: 370,
+              end: 371,
+            ),
             value: [
               Dimension(
                 type: "Dimension",
@@ -693,6 +747,10 @@ Stylesheet(
                 end: 410,
               ),
             ),
+            colonSpan: Span(
+              start: 410,
+              end: 411,
+            ),
             value: [
               Number(
                 type: "Number",
@@ -745,6 +803,10 @@ Stylesheet(
                 start: 431,
                 end: 438,
               ),
+            ),
+            colonSpan: Span(
+              start: 438,
+              end: 439,
             ),
             value: [
               Dimension(
@@ -807,6 +869,10 @@ Stylesheet(
                 end: 470,
               ),
             ),
+            colonSpan: Span(
+              start: 470,
+              end: 471,
+            ),
             value: [
               Ident(
                 type: "Ident",
@@ -850,6 +916,10 @@ Stylesheet(
                 start: 490,
                 end: 495,
               ),
+            ),
+            colonSpan: Span(
+              start: 495,
+              end: 496,
             ),
             value: [
               Ident(

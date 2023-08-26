@@ -79,60 +79,87 @@ Stylesheet(
                   end: 41,
                 ),
               ),
-              condition: Some(MediaCondition(
-                type: "MediaCondition",
-                conditions: [
-                  MediaFeaturePlain(
-                    type: "MediaFeaturePlain",
-                    name: Ident(
-                      type: "Ident",
-                      name: "orientation",
-                      raw: "orientation",
-                      span: Span(
-                        start: 47,
-                        end: 58,
-                      ),
-                    ),
-                    value: Ident(
-                      type: "Ident",
-                      name: "landscape",
-                      raw: "landscape",
-                      span: Span(
-                        start: 60,
-                        end: 69,
-                      ),
-                    ),
-                    span: Span(
-                      start: 47,
-                      end: 69,
-                    ),
+              condition: Some(MediaConditionAfterMediaType(
+                type: "MediaConditionAfterMediaType",
+                and: Ident(
+                  type: "Ident",
+                  name: "and",
+                  raw: "and",
+                  span: Span(
+                    start: 42,
+                    end: 45,
                   ),
-                ],
+                ),
+                condition: MediaCondition(
+                  type: "MediaCondition",
+                  conditions: [
+                    MediaInParens(
+                      type: "MediaInParens",
+                      kind: MediaFeaturePlain(
+                        type: "MediaFeaturePlain",
+                        name: Ident(
+                          type: "Ident",
+                          name: "orientation",
+                          raw: "orientation",
+                          span: Span(
+                            start: 47,
+                            end: 58,
+                          ),
+                        ),
+                        colonSpan: Span(
+                          start: 58,
+                          end: 59,
+                        ),
+                        value: Ident(
+                          type: "Ident",
+                          name: "landscape",
+                          raw: "landscape",
+                          span: Span(
+                            start: 60,
+                            end: 69,
+                          ),
+                        ),
+                        span: Span(
+                          start: 47,
+                          end: 69,
+                        ),
+                      ),
+                      span: Span(
+                        start: 46,
+                        end: 70,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 46,
+                    end: 70,
+                  ),
+                ),
                 span: Span(
-                  start: 47,
-                  end: 69,
+                  start: 42,
+                  end: 70,
                 ),
               )),
               span: Span(
                 start: 35,
-                end: 69,
+                end: 70,
               ),
             ),
           ],
           span: Span(
             start: 35,
-            end: 69,
+            end: 70,
           ),
         )),
         span: Span(
           start: 23,
-          end: 69,
+          end: 70,
         ),
       )),
       block: None,
       span: Span(
         start: 15,
-        end: 69,
+        end: 70,
       ),
     ),
   ],

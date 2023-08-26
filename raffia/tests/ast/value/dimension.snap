@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -52,6 +53,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +72,10 @@ Stylesheet(
                 start: 4,
                 end: 9,
               ),
+            ),
+            colonSpan: Span(
+              start: 9,
+              end: 10,
             ),
             value: [
               Dimension(
@@ -165,6 +171,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 19,
           end: 20,
@@ -183,6 +190,10 @@ Stylesheet(
                 start: 23,
                 end: 28,
               ),
+            ),
+            colonSpan: Span(
+              start: 28,
+              end: 29,
             ),
             value: [
               Dimension(
@@ -278,6 +289,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 39,
           end: 40,
@@ -296,6 +308,10 @@ Stylesheet(
                 start: 43,
                 end: 48,
               ),
+            ),
+            colonSpan: Span(
+              start: 48,
+              end: 49,
             ),
             value: [
               Dimension(
@@ -391,6 +407,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 59,
           end: 60,
@@ -409,6 +426,10 @@ Stylesheet(
                 start: 63,
                 end: 68,
               ),
+            ),
+            colonSpan: Span(
+              start: 68,
+              end: 69,
             ),
             value: [
               Dimension(
@@ -504,6 +525,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 79,
           end: 80,
@@ -522,6 +544,10 @@ Stylesheet(
                 start: 83,
                 end: 88,
               ),
+            ),
+            colonSpan: Span(
+              start: 88,
+              end: 89,
             ),
             value: [
               Dimension(
@@ -617,6 +643,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 99,
           end: 100,
@@ -635,6 +662,10 @@ Stylesheet(
                 start: 103,
                 end: 108,
               ),
+            ),
+            colonSpan: Span(
+              start: 108,
+              end: 109,
             ),
             value: [
               Dimension(
@@ -730,6 +761,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 119,
           end: 120,
@@ -748,6 +780,10 @@ Stylesheet(
                 start: 123,
                 end: 128,
               ),
+            ),
+            colonSpan: Span(
+              start: 128,
+              end: 129,
             ),
             value: [
               Dimension(
@@ -843,6 +879,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 140,
           end: 141,
@@ -861,6 +898,10 @@ Stylesheet(
                 start: 144,
                 end: 149,
               ),
+            ),
+            colonSpan: Span(
+              start: 149,
+              end: 150,
             ),
             value: [
               Dimension(
@@ -956,6 +997,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 161,
           end: 162,
@@ -974,6 +1016,10 @@ Stylesheet(
                 start: 165,
                 end: 170,
               ),
+            ),
+            colonSpan: Span(
+              start: 170,
+              end: 171,
             ),
             value: [
               Dimension(
@@ -1069,6 +1115,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 182,
           end: 183,
@@ -1087,6 +1134,10 @@ Stylesheet(
                 start: 186,
                 end: 191,
               ),
+            ),
+            colonSpan: Span(
+              start: 191,
+              end: 192,
             ),
             value: [
               Dimension(
@@ -1182,6 +1233,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 203,
           end: 204,
@@ -1200,6 +1252,10 @@ Stylesheet(
                 start: 207,
                 end: 212,
               ),
+            ),
+            colonSpan: Span(
+              start: 212,
+              end: 213,
             ),
             value: [
               Dimension(
@@ -1295,6 +1351,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 223,
           end: 224,
@@ -1313,6 +1370,10 @@ Stylesheet(
                 start: 227,
                 end: 232,
               ),
+            ),
+            colonSpan: Span(
+              start: 232,
+              end: 233,
             ),
             value: [
               Dimension(
@@ -1408,6 +1469,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 244,
           end: 245,
@@ -1426,6 +1488,10 @@ Stylesheet(
                 start: 248,
                 end: 253,
               ),
+            ),
+            colonSpan: Span(
+              start: 253,
+              end: 254,
             ),
             value: [
               Dimension(
@@ -1521,6 +1587,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 265,
           end: 266,
@@ -1539,6 +1606,10 @@ Stylesheet(
                 start: 269,
                 end: 274,
               ),
+            ),
+            colonSpan: Span(
+              start: 274,
+              end: 275,
             ),
             value: [
               Dimension(
@@ -1634,6 +1705,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 286,
           end: 287,
@@ -1652,6 +1724,10 @@ Stylesheet(
                 start: 290,
                 end: 295,
               ),
+            ),
+            colonSpan: Span(
+              start: 295,
+              end: 296,
             ),
             value: [
               Dimension(
@@ -1747,6 +1823,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 307,
           end: 308,
@@ -1765,6 +1842,10 @@ Stylesheet(
                 start: 311,
                 end: 316,
               ),
+            ),
+            colonSpan: Span(
+              start: 316,
+              end: 317,
             ),
             value: [
               Dimension(

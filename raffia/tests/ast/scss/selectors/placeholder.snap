@@ -44,6 +44,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 2,
@@ -62,6 +63,10 @@ Stylesheet(
                 start: 7,
                 end: 12,
               ),
+            ),
+            colonSpan: Span(
+              start: 12,
+              end: 13,
             ),
             value: [
               Dimension(
@@ -138,6 +143,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 23,
                 end: 25,
@@ -156,6 +162,10 @@ Stylesheet(
                       start: 32,
                       end: 38,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 38,
+                    end: 39,
                   ),
                   value: [
                     Dimension(
@@ -254,6 +264,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 54,
           end: 58,
@@ -344,6 +355,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 77,
                 end: 81,
@@ -499,6 +511,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 100,
           end: 118,
@@ -517,6 +530,10 @@ Stylesheet(
                 start: 123,
                 end: 126,
               ),
+            ),
+            colonSpan: Span(
+              start: 126,
+              end: 127,
             ),
             value: [
               Ident(

@@ -345,6 +345,10 @@ Stylesheet(
                                     end: 295,
                                   ),
                                 ),
+                                colonSpan: Span(
+                                  start: 295,
+                                  end: 296,
+                                ),
                                 value: [
                                   Ident(
                                     type: "Ident",
@@ -407,6 +411,10 @@ Stylesheet(
                                     start: 331,
                                     end: 336,
                                   ),
+                                ),
+                                colonSpan: Span(
+                                  start: 336,
+                                  end: 337,
                                 ),
                                 value: [
                                   Ident(
@@ -479,6 +487,10 @@ Stylesheet(
                                   end: 392,
                                 ),
                               ),
+                              colonSpan: Span(
+                                start: 392,
+                                end: 393,
+                              ),
                               value: [
                                 Ident(
                                   type: "Ident",
@@ -534,6 +546,10 @@ Stylesheet(
                                   start: 427,
                                   end: 432,
                                 ),
+                              ),
+                              colonSpan: Span(
+                                start: 432,
+                                end: 433,
                               ),
                               value: [
                                 Ident(

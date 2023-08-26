@@ -134,6 +134,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
         };
         Ok(Declaration {
             name,
+            colon_span,
             value,
             important,
             less_property_merge,

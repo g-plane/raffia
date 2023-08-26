@@ -52,6 +52,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 0,
           end: 1,
@@ -70,6 +71,10 @@ Stylesheet(
                 start: 6,
                 end: 7,
               ),
+            ),
+            colonSpan: Span(
+              start: 7,
+              end: 8,
             ),
             value: [
               SassBinaryExpression(
