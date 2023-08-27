@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `)`, but found `<at-keyword>`
+  ┌─ definition-missing-comma.less:1:11
+  │
+1 │ .mixin(@a @b) {}
+  │           ^^
+
+
