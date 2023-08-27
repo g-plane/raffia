@@ -21,6 +21,13 @@ pub(crate) enum PairedToken {
     Brace,
 }
 
+#[derive(Debug, PartialEq, Eq)]
+pub(crate) enum ListSeparatorKind {
+    Unknown,
+    Comma,
+    Space,
+}
+
 pub fn handle_escape(s: &str) -> CowStr {
     let mut escaped = String::with_capacity(s.len());
     let mut chars = s.char_indices().peekable();

@@ -389,12 +389,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         if let Ok(less_variable_declaration) =
                             self.try_parse(LessVariableDeclaration::parse)
                         {
-                            is_block_element = less_variable_declaration
-                                .value
-                                .values
-                                .last()
-                                .map(ComponentValue::is_less_detached_ruleset)
-                                .unwrap_or_default();
+                            is_block_element =
+                                less_variable_declaration.value.is_less_detached_ruleset();
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));

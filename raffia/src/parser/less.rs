@@ -13,6 +13,7 @@ use crate::{
     tokenizer::{Token, TokenWithSpan},
     util, Parse,
 };
+use std::mem;
 
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
@@ -496,6 +497,85 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             hex_color => hex_color.map(ComponentValue::HexColor),
         }
     }
+
+    pub(super) fn parse_maybe_less_list(
+        &mut self,
+        allow_comma: bool,
+    ) -> PResult<ComponentValue<'s>> {
+        use util::ListSeparatorKind;
+
+        let single_value = if allow_comma {
+            self.parse_maybe_less_list(false)?
+        } else {
+            self.parse_less_operation(/* allow_mixin_call */ true)?
+        };
+
+        let mut elements = vec![];
+        let mut comma_spans: Option<Vec<_>> = None;
+        let mut separator = ListSeparatorKind::Unknown;
+        let mut end = single_value.span().end;
+        loop {
+            match peek!(self).token {
+                Token::LBrace(..)
+                | Token::RBrace(..)
+                | Token::RParen(..)
+                | Token::Semicolon(..)
+                | Token::Colon(..)
+                | Token::DotDotDot(..)
+                | Token::Eof(..) => break,
+                Token::Comma(..) => {
+                    if !allow_comma {
+                        break;
+                    }
+                    if separator == ListSeparatorKind::Space {
+                        break;
+                    } else {
+                        if separator == ListSeparatorKind::Unknown {
+                            separator = ListSeparatorKind::Comma;
+                        }
+                        let TokenWithSpan { span, .. } = bump!(self);
+                        end = span.end;
+                        if let Some(spans) = &mut comma_spans {
+                            spans.push(span);
+                        } else {
+                            comma_spans = Some(vec![span]);
+                        }
+                    }
+                }
+                _ => {
+                    if separator == ListSeparatorKind::Unknown {
+                        separator = ListSeparatorKind::Space;
+                    }
+                    let item = if separator == ListSeparatorKind::Comma {
+                        self.parse_maybe_less_list(false)?
+                    } else {
+                        self.parse_less_operation(/* allow_mixin_call */ true)?
+                    };
+                    end = item.span().end;
+                    elements.push(item);
+                }
+            }
+        }
+
+        if elements.is_empty() && separator != ListSeparatorKind::Comma {
+            // If there is a trailing comma it can be a list,
+            // though there is only one element.
+            Ok(single_value)
+        } else {
+            debug_assert_ne!(separator, ListSeparatorKind::Unknown);
+
+            let span = Span {
+                start: single_value.span().start,
+                end,
+            };
+            elements.insert(0, single_value);
+            Ok(ComponentValue::LessList(LessList {
+                elements,
+                comma_spans,
+                span,
+            }))
+        }
+    }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessConditions<'s> {
@@ -839,21 +919,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
         let args = if eat!(input, LParen).is_some() {
             let mut semicolon_comes_at = 0;
             let mut args = vec![];
+            let mut comma_spans = vec![];
             loop {
                 match peek!(input).token {
                     Token::RParen(..) => {
                         let TokenWithSpan { span, .. } = bump!(input);
                         if semicolon_comes_at > 0 {
-                            wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
-                                .map_err(|kind| Error {
-                                    kind,
-                                    span: Span {
-                                        // We've checked `semicolon_comes_at` must be greater than 0,
-                                        // so `args` won't be empty.
-                                        start: args.first().unwrap().span().start,
-                                        end: args.last().unwrap().span().end,
-                                    },
-                                })?;
+                            wrap_less_mixin_args_into_less_list(
+                                &mut args,
+                                mem::take(&mut comma_spans),
+                                semicolon_comes_at,
+                            )
+                            .map_err(|kind| Error {
+                                kind,
+                                span: Span {
+                                    // We've checked `semicolon_comes_at` must be greater than 0,
+                                    // so `args` won't be empty.
+                                    start: args.first().unwrap().span().start,
+                                    end: args.last().unwrap().span().end,
+                                },
+                            })?;
                         }
                         end = span.end;
                         break;
@@ -913,12 +998,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                 match peek!(input).token {
                     Token::RParen(..) => {}
                     Token::Comma(..) => {
-                        bump!(input);
+                        comma_spans.push(bump!(input).span);
                     }
                     Token::Semicolon(..) => {
                         let TokenWithSpan { span, .. } = bump!(input);
-                        wrap_less_mixin_args_into_less_list(&mut args, semicolon_comes_at)
-                            .map_err(|kind| Error { kind, span })?;
+                        wrap_less_mixin_args_into_less_list(
+                            &mut args,
+                            mem::take(&mut comma_spans),
+                            semicolon_comes_at,
+                        )
+                        .map_err(|kind| Error { kind, span })?;
                         semicolon_comes_at = args.len();
                     }
                     _ => {
@@ -1013,6 +1102,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
         expect!(input, LParen);
         let mut semicolon_comes_at = 0;
         let mut params = vec![];
+        let mut comma_spans = vec![];
         'params: while eat!(input, RParen).is_none() {
             match peek!(input).token {
                 Token::DotDotDot(..) => {
@@ -1095,29 +1185,39 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                     ..
                 } => {
                     if semicolon_comes_at > 0 {
-                        wrap_less_mixin_params_into_less_list(&mut params, semicolon_comes_at)
-                            .map_err(|kind| Error {
-                                kind,
-                                span: Span {
-                                    // We've checked `semicolon_comes_at` must be greater than 0,
-                                    // so `params` won't be empty.
-                                    start: params.first().unwrap().span().start,
-                                    end: params.last().unwrap().span().end,
-                                },
-                            })?;
+                        wrap_less_mixin_params_into_less_list(
+                            &mut params,
+                            mem::take(&mut comma_spans),
+                            semicolon_comes_at,
+                        )
+                        .map_err(|kind| Error {
+                            kind,
+                            span: Span {
+                                // We've checked `semicolon_comes_at` must be greater than 0,
+                                // so `params` won't be empty.
+                                start: params.first().unwrap().span().start,
+                                end: params.last().unwrap().span().end,
+                            },
+                        })?;
                     }
                     break;
                 }
                 TokenWithSpan {
                     token: Token::Comma(..),
-                    ..
-                } => {}
+                    span,
+                } => {
+                    comma_spans.push(span);
+                }
                 TokenWithSpan {
                     token: Token::Semicolon(..),
                     span,
                 } => {
-                    wrap_less_mixin_params_into_less_list(&mut params, semicolon_comes_at)
-                        .map_err(|kind| Error { kind, span })?;
+                    wrap_less_mixin_params_into_less_list(
+                        &mut params,
+                        mem::take(&mut comma_spans),
+                        semicolon_comes_at,
+                    )
+                    .map_err(|kind| Error { kind, span })?;
                     semicolon_comes_at = params.len();
                 }
                 TokenWithSpan { token, span } => {
@@ -1424,19 +1524,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
         let name = input.parse::<LessVariable>()?;
         expect!(input, Colon);
         let value = if matches!(peek!(input).token, Token::LBrace(..)) {
-            let detached_ruleset = input.parse::<LessDetachedRuleset>()?;
-            let span = detached_ruleset.span.clone();
-            ComponentValues {
-                values: vec![ComponentValue::LessDetachedRuleset(detached_ruleset)],
-                span,
-            }
+            ComponentValue::LessDetachedRuleset(input.parse()?)
         } else {
-            input.parse_component_values(/* allow_comma */ true)?
+            input.parse_maybe_less_list(/* allow_comma */ true)?
         };
 
         let span = Span {
             start: name.span.start,
-            end: value.span.end,
+            end: value.span().end,
         };
         Ok(LessVariableDeclaration { name, value, span })
     }
@@ -1475,6 +1570,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableVariable<'s> {
 
 fn wrap_less_mixin_params_into_less_list(
     params: &mut Vec<LessMixinParameter<'_>>,
+    comma_spans: Vec<Span>,
     index: usize,
 ) -> Result<(), ErrorKind> {
     if let [first, .., last] = &params[index..] {
@@ -1499,6 +1595,7 @@ fn wrap_less_mixin_params_into_less_list(
         params.push(LessMixinParameter::Unnamed(LessMixinUnnamedParameter {
             value: ComponentValue::LessList(LessList {
                 elements,
+                comma_spans: Some(comma_spans),
                 span: span.clone(),
             }),
             span,
@@ -1509,6 +1606,7 @@ fn wrap_less_mixin_params_into_less_list(
 
 fn wrap_less_mixin_args_into_less_list(
     args: &mut Vec<LessMixinArgument<'_>>,
+    comma_spans: Vec<Span>,
     index: usize,
 ) -> Result<(), ErrorKind> {
     if let [first, .., last] = &args[index..] {
@@ -1530,7 +1628,11 @@ fn wrap_less_mixin_args_into_less_list(
             })
             .collect::<Result<_, _>>()?;
         args.push(LessMixinArgument::Value(ComponentValue::LessList(
-            LessList { elements, span },
+            LessList {
+                elements,
+                comma_spans: Some(comma_spans),
+                span,
+            },
         )));
     }
     Ok(())

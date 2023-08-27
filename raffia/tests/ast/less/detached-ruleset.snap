@@ -23,92 +23,83 @@ Stylesheet(
           end: 8,
         ),
       ),
-      value: ComponentValues(
-        type: "ComponentValues",
-        values: [
-          LessDetachedRuleset(
-            type: "LessDetachedRuleset",
-            block: SimpleBlock(
-              type: "SimpleBlock",
-              statements: [
-                Declaration(
-                  type: "Declaration",
-                  name: Ident(
-                    type: "Ident",
-                    name: "color",
-                    raw: "color",
-                    span: Span(
-                      start: 14,
-                      end: 19,
-                    ),
-                  ),
-                  colonSpan: Span(
-                    start: 19,
-                    end: 20,
-                  ),
-                  value: [
-                    Ident(
-                      type: "Ident",
-                      name: "black",
-                      raw: "black",
-                      span: Span(
-                        start: 21,
-                        end: 26,
-                      ),
-                    ),
-                  ],
-                  important: None,
-                  lessPropertyMerge: None,
+      value: LessDetachedRuleset(
+        type: "LessDetachedRuleset",
+        block: SimpleBlock(
+          type: "SimpleBlock",
+          statements: [
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "color",
+                raw: "color",
+                span: Span(
+                  start: 14,
+                  end: 19,
+                ),
+              ),
+              colonSpan: Span(
+                start: 19,
+                end: 20,
+              ),
+              value: [
+                Ident(
+                  type: "Ident",
+                  name: "black",
+                  raw: "black",
                   span: Span(
-                    start: 14,
+                    start: 21,
                     end: 26,
                   ),
                 ),
-                Declaration(
-                  type: "Declaration",
-                  name: Ident(
-                    type: "Ident",
-                    name: "background",
-                    raw: "background",
-                    span: Span(
-                      start: 30,
-                      end: 40,
-                    ),
-                  ),
-                  colonSpan: Span(
-                    start: 40,
-                    end: 41,
-                  ),
-                  value: [
-                    Ident(
-                      type: "Ident",
-                      name: "white",
-                      raw: "white",
-                      span: Span(
-                        start: 42,
-                        end: 47,
-                      ),
-                    ),
-                  ],
-                  important: None,
-                  lessPropertyMerge: None,
+              ],
+              important: None,
+              lessPropertyMerge: None,
+              span: Span(
+                start: 14,
+                end: 26,
+              ),
+            ),
+            Declaration(
+              type: "Declaration",
+              name: Ident(
+                type: "Ident",
+                name: "background",
+                raw: "background",
+                span: Span(
+                  start: 30,
+                  end: 40,
+                ),
+              ),
+              colonSpan: Span(
+                start: 40,
+                end: 41,
+              ),
+              value: [
+                Ident(
+                  type: "Ident",
+                  name: "white",
+                  raw: "white",
                   span: Span(
-                    start: 30,
+                    start: 42,
                     end: 47,
                   ),
                 ),
               ],
+              important: None,
+              lessPropertyMerge: None,
               span: Span(
-                start: 10,
-                end: 50,
+                start: 30,
+                end: 47,
               ),
             ),
-            span: Span(
-              start: 10,
-              end: 50,
-            ),
+          ],
+          span: Span(
+            start: 10,
+            end: 50,
           ),
-        ],
+        ),
         span: Span(
           start: 10,
           end: 50,

@@ -784,6 +784,7 @@ pub struct LessJavaScriptSnippet<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessList<'s> {
     pub elements: Vec<ComponentValue<'s>>,
+    pub comma_spans: Option<Vec<Span>>,
     pub span: Span,
 }
 
@@ -1077,7 +1078,7 @@ pub struct LessVariableCall<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableDeclaration<'s> {
     pub name: LessVariable<'s>,
-    pub value: ComponentValues<'s>,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 

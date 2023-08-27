@@ -271,43 +271,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(in crate::parser) fn parse_component_values(
-        &mut self,
-        allow_comma: bool,
-    ) -> PResult<ComponentValues<'s>> {
-        let first = self.parse::<ComponentValue>()?;
-        let mut span = first.span().clone();
-
-        let mut values = Vec::with_capacity(4);
-        values.push(first);
-        loop {
-            match &peek!(self).token {
-                Token::RBrace(..)
-                | Token::RParen(..)
-                | Token::Semicolon(..)
-                | Token::Dedent(..)
-                | Token::Linebreak(..)
-                | Token::Exclamation(..)
-                | Token::Eof(..) => break,
-                Token::Comma(..) => {
-                    if allow_comma {
-                        values.push(self.parse().map(ComponentValue::Delimiter)?);
-                    } else {
-                        break;
-                    }
-                }
-                _ => values.push(self.parse()?),
-            }
-        }
-
-        // SAFETY: it has at least one element.
-        span.end = unsafe {
-            let index = values.len() - 1;
-            values.get_unchecked(index).span().end
-        };
-        Ok(ComponentValues { values, span })
-    }
-
     pub(super) fn parse_dashed_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         let ident = self.parse()?;
         match &ident {
