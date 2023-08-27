@@ -1,10 +1,11 @@
 ---
 source: raffia/tests/error.rs
+assertion_line: 51
 ---
-error: expect token `)`, but found `<at-keyword>`
-  ┌─ definition-missing-comma.less:1:11
+error: expect token `;`, but found `{`
+  ┌─ definition-missing-comma.less:1:15
   │
 1 │ .mixin(@a @b) {}
-  │           ^^
+  │               ^
 
 

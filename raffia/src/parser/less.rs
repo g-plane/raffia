@@ -920,7 +920,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
             let mut semicolon_comes_at = 0;
             let mut args = vec![];
             let mut comma_spans = vec![];
-            loop {
+            'args: loop {
                 match peek!(input).token {
                     Token::RParen(..) => {
                         let TokenWithSpan { span, .. } = bump!(input);
@@ -943,8 +943,31 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                         end = span.end;
                         break;
                     }
-                    Token::AtKeyword(..) | Token::DollarVar(..) => {
-                        let name = input.parse::<LessMixinParameterName>()?;
+                    Token::LBrace(..) => args.push(LessMixinArgument::Value(
+                        ComponentValue::LessDetachedRuleset(input.parse()?),
+                    )),
+                    Token::Comma(..) => {
+                        return Err(Error {
+                            kind: ErrorKind::ExpectComponentValue,
+                            span: bump!(input).span,
+                        });
+                    }
+                    _ => 'maybe: {
+                        let value = input.parse_maybe_less_list(/* allow_comma */ false)?;
+                        let name = {
+                            match value {
+                                ComponentValue::LessVariable(variable) => {
+                                    LessMixinParameterName::Variable(variable)
+                                }
+                                ComponentValue::LessPropertyVariable(property) => {
+                                    LessMixinParameterName::PropertyVariable(property)
+                                }
+                                value => {
+                                    args.push(LessMixinArgument::Value(value));
+                                    break 'maybe;
+                                }
+                            }
+                        };
                         if eat!(input, Colon).is_some() {
                             let value = if matches!(peek!(input).token, Token::LBrace(..)) {
                                 input.parse().map(ComponentValue::LessDetachedRuleset)?
@@ -971,7 +994,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                             }));
                             eat!(input, Semicolon);
                             end = expect!(input, RParen).1.end;
-                            break;
+                            break 'args;
                         } else {
                             args.push(LessMixinArgument::Value(match name {
                                 LessMixinParameterName::Variable(variable) => {
@@ -983,16 +1006,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                             }));
                         }
                     }
-                    Token::LBrace(..) => args.push(LessMixinArgument::Value(
-                        ComponentValue::LessDetachedRuleset(input.parse()?),
-                    )),
-                    Token::Comma(..) => {
-                        return Err(Error {
-                            kind: ErrorKind::ExpectComponentValue,
-                            span: bump!(input).span,
-                        });
-                    }
-                    _ => args.push(LessMixinArgument::Value(input.parse()?)),
                 };
 
                 match peek!(input).token {
