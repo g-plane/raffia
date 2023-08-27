@@ -1370,6 +1370,7 @@ pub struct PageSelector<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct PageSelectorList<'s> {
     pub selectors: Vec<PageSelector<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 

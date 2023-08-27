@@ -58,14 +58,20 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PageSelectorList<'s> {
         let mut span = first.span.clone();
 
         let mut selectors = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             selectors.push(input.parse()?);
         }
 
         if let Some(last) = selectors.last() {
             span.end = last.span.end;
         }
-        Ok(PageSelectorList { selectors, span })
+        Ok(PageSelectorList {
+            selectors,
+            comma_spans,
+            span,
+        })
     }
 }
 
