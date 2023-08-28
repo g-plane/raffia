@@ -9,6 +9,7 @@ pub(super) struct ParserState {
     pub(super) qualified_rule_ctx: Option<QualifiedRuleContext>,
     pub(super) sass_ctx: u8,
     pub(super) in_keyframes_at_rule: bool,
+    pub(super) less_allow_div: bool,
 }
 
 #[derive(Clone, Debug)]

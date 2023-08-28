@@ -348,7 +348,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         span: Span { start, .. },
                         ..
                     } = bump!(self);
-                    let operation = self.parse_less_operation(allow_mixin_call)?;
+                    let operation = self
+                        .with_state(ParserState {
+                            less_allow_div: true,
+                            ..self.state.clone()
+                        })
+                        .parse_less_operation(allow_mixin_call)?;
                     let (_, Span { end, .. }) = expect!(self, RParen);
                     ComponentValue::LessParenthesizedOperation(LessParenthesizedOperation {
                         operation: Box::new(operation),
@@ -381,11 +386,19 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     kind: LessOperationOperatorKind::Multiply,
                     span: bump!(self).span,
                 },
-                Token::Solidus(..) if precedence == PRECEDENCE_MULTIPLY => LessOperationOperator {
-                    kind: LessOperationOperatorKind::Division,
-                    span: bump!(self).span,
-                },
-                Token::Dot(..) if precedence == PRECEDENCE_MULTIPLY => {
+                Token::Solidus(..)
+                    if precedence == PRECEDENCE_MULTIPLY
+                        && (self.state.less_allow_div || can_be_division_operand(&left)) =>
+                {
+                    LessOperationOperator {
+                        kind: LessOperationOperatorKind::Division,
+                        span: bump!(self).span,
+                    }
+                }
+                Token::Dot(..)
+                    if precedence == PRECEDENCE_MULTIPLY
+                        && (self.state.less_allow_div || can_be_division_operand(&left)) =>
+                {
                     // `./` is also division
                     let Span { start, .. } = bump!(self).span;
                     let (_, Span { end, .. }) = expect_without_ws_or_comments!(self, Solidus);
@@ -1539,7 +1552,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
         let value = if matches!(peek!(input).token, Token::LBrace(..)) {
             ComponentValue::LessDetachedRuleset(input.parse()?)
         } else {
-            input.parse_maybe_less_list(/* allow_comma */ true)?
+            input
+                .with_state(ParserState {
+                    less_allow_div: true,
+                    ..input.state.clone()
+                })
+                .parse_maybe_less_list(/* allow_comma */ true)?
         };
 
         let span = Span {
@@ -1649,4 +1667,14 @@ fn wrap_less_mixin_args_into_less_list(
         )));
     }
     Ok(())
+}
+
+fn can_be_division_operand(left: &ComponentValue) -> bool {
+    matches!(
+        left,
+        ComponentValue::LessVariable(..)
+            | ComponentValue::LessPropertyVariable(..)
+            | ComponentValue::LessBinaryOperation(..)
+            | ComponentValue::LessParenthesizedOperation(..)
+    )
 }
