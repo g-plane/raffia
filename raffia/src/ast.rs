@@ -216,10 +216,8 @@ pub enum ComponentValue<'s> {
     LessCondition(Box<LessCondition<'s>>),
     LessDetachedRuleset(LessDetachedRuleset<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
-    LessFormatFunctionCall(LessFormatFunctionCall<'s>),
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
-    LessListFunctionCall(LessListFunctionCall<'s>),
     LessMixinCall(LessMixinCall<'s>),
     LessNamespaceValue(LessNamespaceValue<'s>),
     LessNegativeValue(LessNegativeValue<'s>),
@@ -432,6 +430,8 @@ pub struct Function<'s> {
 pub enum FunctionName<'s> {
     Ident(InterpolableIdent<'s>),
     SassQualifiedName(SassQualifiedName<'s>),
+    LessListFunction(LessListFunction),
+    LessFormatFunction(LessFormatFunction),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -713,8 +713,7 @@ pub struct LessExtendRule<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessFormatFunctionCall<'s> {
-    pub args: Vec<ComponentValue<'s>>,
+pub struct LessFormatFunction {
     pub span: Span,
 }
 
@@ -791,8 +790,7 @@ pub struct LessList<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct LessListFunctionCall<'s> {
-    pub args: Vec<ComponentValue<'s>>,
+pub struct LessListFunction {
     pub span: Span,
 }
 

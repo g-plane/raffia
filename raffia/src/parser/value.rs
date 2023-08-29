@@ -249,8 +249,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse().map(ComponentValue::LessPropertyVariable)
             }
             Token::Tilde(..) if self.syntax == Syntax::Less => {
-                if let Ok(list_function_call) = self.try_parse(LessListFunctionCall::parse) {
-                    Ok(ComponentValue::LessListFunctionCall(list_function_call))
+                if let Ok(list_function_call) = self.try_parse(Function::parse) {
+                    Ok(ComponentValue::Function(list_function_call))
                 } else if let Ok(less_escaped_str) = self.try_parse(LessEscapedStr::parse) {
                     Ok(ComponentValue::LessEscapedStr(less_escaped_str))
                 } else {
@@ -258,8 +258,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
             }
             Token::Percent(..) if self.syntax == Syntax::Less => self
-                .try_parse(LessFormatFunctionCall::parse)
-                .map(ComponentValue::LessFormatFunctionCall)
+                .try_parse(Function::parse)
+                .map(ComponentValue::Function)
                 .or_else(|_| self.parse().map(ComponentValue::LessPercentKeyword)),
             Token::BacktickCode(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessJavaScriptSnippet)
@@ -775,19 +775,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
                 assert_no_ws_or_comment(name.span(), span)?;
                 match name {
                     FunctionName::Ident(name) => input.parse_function(name),
-                    FunctionName::SassQualifiedName(name) => {
+                    name => {
                         bump!(input);
                         let args = input.parse_function_args()?;
                         let (_, Span { end, .. }) = expect!(input, RParen);
                         let span = Span {
-                            start: name.span.start,
+                            start: name.span().start,
                             end,
                         };
-                        Ok(Function {
-                            name: FunctionName::SassQualifiedName(name),
-                            args,
-                            span,
-                        })
+                        Ok(Function { name, args, span })
                     }
                 }
             }
@@ -804,22 +800,40 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FunctionName<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let ident = input.parse::<Ident>()?;
-        match (&peek!(input).token, input.syntax) {
-            (Token::Dot(..), Syntax::Scss | Syntax::Sass) => {
-                bump!(input);
-                let member = input.parse::<Ident>()?;
-                let span = Span {
-                    start: ident.span.start,
-                    end: member.span.end,
-                };
-                Ok(FunctionName::SassQualifiedName(SassQualifiedName {
-                    module: ident,
-                    member: SassModuleMemberName::Ident(member),
-                    span,
-                }))
+        match peek!(input).token {
+            Token::Ident(..) => {
+                let ident = input.parse::<Ident>()?;
+                match (&peek!(input).token, input.syntax) {
+                    (Token::Dot(..), Syntax::Scss | Syntax::Sass) => {
+                        bump!(input);
+                        let member = input.parse::<Ident>()?;
+                        let span = Span {
+                            start: ident.span.start,
+                            end: member.span.end,
+                        };
+                        Ok(FunctionName::SassQualifiedName(SassQualifiedName {
+                            module: ident,
+                            member: SassModuleMemberName::Ident(member),
+                            span,
+                        }))
+                    }
+                    _ => Ok(FunctionName::Ident(InterpolableIdent::Literal(ident))),
+                }
             }
-            _ => Ok(FunctionName::Ident(InterpolableIdent::Literal(ident))),
+            Token::Percent(..) if input.syntax == Syntax::Less => {
+                input.parse().map(FunctionName::LessFormatFunction)
+            }
+            Token::Tilde(..) if input.syntax == Syntax::Less => {
+                input.parse().map(FunctionName::LessListFunction)
+            }
+            _ => {
+                use crate::{token::Ident, tokenizer::TokenSymbol};
+                let TokenWithSpan { token, span } = bump!(input);
+                Err(Error {
+                    kind: ErrorKind::Unexpected(Ident::symbol(), token.symbol()),
+                    span,
+                })
+            }
         }
     }
 }

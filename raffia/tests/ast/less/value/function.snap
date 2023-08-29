@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -70,8 +69,15 @@ Stylesheet(
               end: 20,
             ),
             value: [
-              LessFormatFunctionCall(
-                type: "LessFormatFunctionCall",
+              Function(
+                type: "Function",
+                name: LessFormatFunction(
+                  type: "LessFormatFunction",
+                  span: Span(
+                    start: 21,
+                    end: 22,
+                  ),
+                ),
                 args: [
                   Str(
                     type: "Str",
@@ -2186,8 +2192,15 @@ Stylesheet(
               end: 692,
             ),
             value: [
-              LessListFunctionCall(
-                type: "LessListFunctionCall",
+              Function(
+                type: "Function",
+                name: LessListFunction(
+                  type: "LessListFunction",
+                  span: Span(
+                    start: 693,
+                    end: 694,
+                  ),
+                ),
                 args: [
                   Number(
                     type: "Number",
@@ -2258,8 +2271,15 @@ Stylesheet(
               ),
             ),
             args: [
-              LessListFunctionCall(
-                type: "LessListFunctionCall",
+              Function(
+                type: "Function",
+                name: LessListFunction(
+                  type: "LessListFunction",
+                  span: Span(
+                    start: 712,
+                    end: 713,
+                  ),
+                ),
                 args: [
                   Number(
                     type: "Number",
@@ -2465,8 +2485,15 @@ Stylesheet(
                   end: 776,
                 ),
               ),
-              LessListFunctionCall(
-                type: "LessListFunctionCall",
+              Function(
+                type: "Function",
+                name: LessListFunction(
+                  type: "LessListFunction",
+                  span: Span(
+                    start: 778,
+                    end: 779,
+                  ),
+                ),
                 args: [
                   Number(
                     type: "Number",

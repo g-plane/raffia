@@ -725,20 +725,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendRule<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessFormatFunctionCall<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessFormatFunction {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (_, percent_span) = expect!(input, Percent);
-        let (_, lparen_span) = expect!(input, LParen);
-        util::assert_no_ws_or_comment(&percent_span, &lparen_span)?;
-
-        let args = input.parse_function_args()?;
-        let (_, Span { end, .. }) = expect!(input, RParen);
-
-        let span = Span {
-            start: percent_span.start,
-            end,
-        };
-        Ok(LessFormatFunctionCall { args, span })
+        let (_, span) = expect!(input, Percent);
+        Ok(LessFormatFunction { span })
     }
 }
 
@@ -855,20 +845,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessJavaScriptSnippet<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessListFunctionCall<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessListFunction {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (_, tilde_span) = expect!(input, Tilde);
-        let (_, lparen_span) = expect!(input, LParen);
-        util::assert_no_ws_or_comment(&tilde_span, &lparen_span)?;
-
-        let args = input.parse_function_args()?;
-        let (_, Span { end, .. }) = expect!(input, RParen);
-
-        let span = Span {
-            start: tilde_span.start,
-            end,
-        };
-        Ok(LessListFunctionCall { args, span })
+        let (_, span) = expect!(input, Tilde);
+        Ok(LessListFunction { span })
     }
 }
 
