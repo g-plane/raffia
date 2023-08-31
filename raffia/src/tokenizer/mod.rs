@@ -519,6 +519,57 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         })
     }
 
+    pub(crate) fn scan_string_only(&mut self) -> PResult<(Str<'s>, Span)> {
+        let (start, quote) = match self.state.chars.next() {
+            Some((index, c @ '\'' | c @ '"')) => (index, c),
+            Some((index, _)) => {
+                return Err(Error {
+                    kind: ErrorKind::ExpectString,
+                    span: Span {
+                        start: index,
+                        end: index + 1,
+                    },
+                })
+            }
+            None => return Err(self.build_eof_error()),
+        };
+
+        let end;
+        let mut escaped = false;
+        loop {
+            match self.state.chars.next() {
+                Some((_, '\\')) => {
+                    escaped = true;
+                    self.scan_escape(/* backslash_consumed */ true)?;
+                }
+                Some((i, c)) if c == quote => {
+                    end = i + 1;
+                    break;
+                }
+                Some((end, '\n')) => {
+                    return Err(Error {
+                        kind: ErrorKind::UnterminatedString,
+                        span: Span { start, end },
+                    });
+                }
+                Some(..) => {}
+                None => {
+                    return Err(Error {
+                        kind: ErrorKind::UnterminatedString,
+                        span: Span {
+                            start,
+                            end: self.source.len(),
+                        },
+                    });
+                }
+            }
+        }
+
+        debug_assert!(start + 1 < end);
+        let raw = unsafe { self.source.get_unchecked(start..end) };
+        Ok((Str { raw, escaped }, Span { start, end }))
+    }
+
     fn scan_string_or_template(&mut self) -> PResult<TokenWithSpan<'s>> {
         // '\'' or '"' is checked (but not consumed) before
         let (start, quote) = self.state.chars.next().unwrap();
@@ -551,19 +602,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     });
                 }
                 Some((end, '\n')) => {
-                    let raw = unsafe { self.source.get_unchecked(start..end) };
-                    return Ok(TokenWithSpan {
-                        token: Token::BadStr(BadStr { raw, escaped }),
+                    return Err(Error {
+                        kind: ErrorKind::UnterminatedString,
                         span: Span { start, end },
                     });
                 }
                 Some(..) => {}
                 None => {
-                    let end = self.source.len();
-                    let raw = unsafe { self.source.get_unchecked(start..end) };
-                    return Ok(TokenWithSpan {
-                        token: Token::BadStr(BadStr { raw, escaped }),
-                        span: Span { start, end },
+                    return Err(Error {
+                        kind: ErrorKind::UnterminatedString,
+                        span: Span {
+                            start,
+                            end: self.source.len(),
+                        },
                     });
                 }
             }

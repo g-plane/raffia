@@ -1,7 +1,7 @@
 use crate::{
     ast::{
         Dimension, DimensionKind, Ident, InterpolableIdentStaticPart, InterpolableStrStaticPart,
-        InterpolableUrlStaticPart, Number,
+        InterpolableUrlStaticPart, Number, Str,
     },
     error::{Error, ErrorKind, PResult},
     tokenizer::token,
@@ -171,6 +171,22 @@ impl<'s> From<(token::UrlTemplate<'s>, Span)> for InterpolableUrlStaticPart<'s> 
         Self {
             value,
             raw: token.raw,
+            span,
+        }
+    }
+}
+
+impl<'s> From<(token::Str<'s>, Span)> for Str<'s> {
+    fn from((str, span): (token::Str<'s>, Span)) -> Self {
+        let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
+        let value = if str.escaped {
+            handle_escape(raw_without_quotes)
+        } else {
+            CowStr::from(raw_without_quotes)
+        };
+        Self {
+            value,
+            raw: str.raw,
             span,
         }
     }

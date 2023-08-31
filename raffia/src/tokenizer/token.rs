@@ -32,7 +32,6 @@ pub enum Token<'s> {
     AtKeyword(AtKeyword<'s>),
     AtLBraceVar(AtLBraceVar<'s>),
     BacktickCode(BacktickCode<'s>),
-    BadStr(BadStr<'s>),
     Bar(Bar),
     BarBar(BarBar),
     BarEqual(BarEqual),
@@ -133,14 +132,6 @@ pub struct AtLBraceVar<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct BacktickCode<'s> {
     pub raw: &'s str,
-}
-
-#[derive(Clone, Debug, PartialEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
-pub struct BadStr<'s> {
-    pub raw: &'s str,
-    pub escaped: bool,
 }
 
 #[derive(Clone, Debug, PartialEq)]

@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: component value is expected
+error: unterminated string
   ┌─ bad-string.css:2:12
   │
 2 │   content: "

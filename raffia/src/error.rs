@@ -32,6 +32,7 @@ pub enum ErrorKind {
     ExpectRightBraceForLessVar,
     UnexpectedLinebreak,
     UnexpectedEof,
+    UnterminatedString,
 
     ExpectRule,
     UnexpectedWhitespace,
@@ -123,6 +124,7 @@ impl Display for ErrorKind {
             Self::ExpectRightBraceForLessVar => write!(f, "`}}` for Less variable is expected"),
             Self::UnexpectedLinebreak => write!(f, "unexpected linebreak"),
             Self::UnexpectedEof => write!(f, "unexpected end of file"),
+            Self::UnterminatedString => write!(f, "unterminated string"),
 
             Self::ExpectRule => write!(f, "CSS rule is expected"),
             Self::UnexpectedWhitespace => write!(f, "unexpected whitespace"),

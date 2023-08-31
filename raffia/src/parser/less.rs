@@ -732,7 +732,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessDetachedRuleset<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessEscapedStr<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, Span { start, .. }) = expect!(input, Tilde);
-        let str = input.parse::<InterpolableStr>()?;
+        let str: Str = input.tokenizer.scan_string_only()?.into();
         let span = Span {
             start,
             end: str.span().end,

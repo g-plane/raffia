@@ -60,13 +60,6 @@ impl TokenSymbol for BacktickCode<'_> {
     }
 }
 
-impl TokenSymbol for BadStr<'_> {
-    #[inline]
-    fn symbol() -> &'static str {
-        "<bad string>"
-    }
-}
-
 impl TokenSymbol for Bar {
     #[inline]
     fn symbol() -> &'static str {
@@ -436,7 +429,6 @@ impl Token<'_> {
             AtKeyword(..) => "<at-keyword>",
             AtLBraceVar(..) => "@{",
             BacktickCode(..) => "<backtick code>",
-            BadStr(..) => "<bad string>",
             Bar(..) => "|",
             BarBar(..) => "||",
             BarEqual(..) => "|=",

@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -347,69 +346,10 @@ Stylesheet(
                       ),
                       value: LessEscapedStr(
                         type: "LessEscapedStr",
-                        str: LessInterpolatedStr(
-                          type: "LessInterpolatedStr",
-                          elements: [
-                            InterpolableStrStaticPart(
-                              type: "InterpolableStrStaticPart",
-                              value: "",
-                              raw: "\'",
-                              span: Span(
-                                start: 143,
-                                end: 144,
-                              ),
-                            ),
-                            LessVariableInterpolation(
-                              type: "LessVariableInterpolation",
-                              name: Ident(
-                                type: "Ident",
-                                name: "ratio_large",
-                                raw: "ratio_large",
-                                span: Span(
-                                  start: 146,
-                                  end: 157,
-                                ),
-                              ),
-                              span: Span(
-                                start: 144,
-                                end: 158,
-                              ),
-                            ),
-                            InterpolableStrStaticPart(
-                              type: "InterpolableStrStaticPart",
-                              value: " / ",
-                              raw: " / ",
-                              span: Span(
-                                start: 158,
-                                end: 161,
-                              ),
-                            ),
-                            LessVariableInterpolation(
-                              type: "LessVariableInterpolation",
-                              name: Ident(
-                                type: "Ident",
-                                name: "ratio_small",
-                                raw: "ratio_small",
-                                span: Span(
-                                  start: 163,
-                                  end: 174,
-                                ),
-                              ),
-                              span: Span(
-                                start: 161,
-                                end: 175,
-                              ),
-                            ),
-                            InterpolableStrStaticPart(
-                              type: "InterpolableStrStaticPart",
-                              value: "",
-                              raw: "\'",
-                              span: Span(
-                                start: 175,
-                                end: 176,
-                              ),
-                            ),
-                          ],
+                        str: Str(
+                          type: "Str",
+                          value: "@{ratio_large} / @{ratio_small}",
+                          raw: "\'@{ratio_large} / @{ratio_small}\'",
                           span: Span(
                             start: 143,
                             end: 176,

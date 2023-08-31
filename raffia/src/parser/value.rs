@@ -940,18 +940,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Percentage<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Str<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (str, span) = expect!(input, Str);
-        let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
-        let value = if str.escaped {
-            handle_escape(raw_without_quotes)
-        } else {
-            CowStr::from(raw_without_quotes)
-        };
-        Ok(Str {
-            value,
-            raw: str.raw,
-            span,
-        })
+        Ok(expect!(input, Str).into())
     }
 }
 
