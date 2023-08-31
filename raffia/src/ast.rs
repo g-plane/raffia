@@ -765,6 +765,7 @@ pub struct LessInterpolatedStr<'s> {
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum LessInterpolatedStrElement<'s> {
     Variable(LessVariableInterpolation<'s>),
+    Property(LessPropertyInterpolation<'s>),
     Static(InterpolableStrStaticPart<'s>),
 }
 

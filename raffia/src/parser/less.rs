@@ -922,17 +922,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessInterpolatedStr<'s> {
                     break;
                 }
             } else {
-                // '@' is consumed, so '{' left only
+                // '@' or '$' is consumed, so '{' left only
                 let start = expect!(input, LBrace).1.start - 1;
                 let (name, name_span) = expect_without_ws_or_comments!(input, Ident);
 
                 let end = expect!(input, RBrace).1.end;
-                elements.push(LessInterpolatedStrElement::Variable(
-                    LessVariableInterpolation {
+                elements.push(match input.source.as_bytes().get(start) {
+                    Some(b'@') => LessInterpolatedStrElement::Variable(LessVariableInterpolation {
                         name: (name, name_span).into(),
                         span: Span { start, end },
-                    },
-                ));
+                    }),
+                    Some(b'$') => LessInterpolatedStrElement::Property(LessPropertyInterpolation {
+                        name: (name, name_span).into(),
+                        span: Span { start, end },
+                    }),
+                    _ => unreachable!(),
+                });
             }
             is_parsing_static_part = !is_parsing_static_part;
         }

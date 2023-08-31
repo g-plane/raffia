@@ -535,7 +535,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end = i + 1;
                     break;
                 }
-                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
+                Some((end, c @ '#' | c @ '@' | c @ '$'))
+                    if self.is_start_of_interpolation_in_str_template(c) =>
+                {
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
                     return Ok(TokenWithSpan {
@@ -610,7 +612,9 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         span,
                     ));
                 }
-                Some((end, '#' | '@')) if self.is_start_of_interpolation_in_str_template() => {
+                Some((end, c @ '#' | c @ '@' | c @ '$'))
+                    if self.is_start_of_interpolation_in_str_template(c) =>
+                {
                     let raw = unsafe { self.source.get_unchecked(start..end) };
                     let span = Span { start, end };
                     return Ok((
@@ -629,12 +633,15 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn is_start_of_interpolation_in_str_template(&mut self) -> bool {
+    fn is_start_of_interpolation_in_str_template(&mut self, c: char) -> bool {
         match self.syntax {
             Syntax::Css => false,
-            Syntax::Scss | Syntax::Sass => matches!(self.state.chars.peek(), Some((_, '{'))),
+            Syntax::Scss | Syntax::Sass => {
+                c == '#' && matches!(self.state.chars.peek(), Some((_, '{')))
+            }
             Syntax::Less => {
-                matches!(self.peek_two_chars(), Some((_, '{', second)) if is_start_of_ident(second))
+                (c == '@' || c == '$')
+                    && matches!(self.peek_two_chars(), Some((_, '{', second)) if is_start_of_ident(second))
             }
         }
     }
