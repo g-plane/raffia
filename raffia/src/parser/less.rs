@@ -367,23 +367,30 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         loop {
-            let op = match peek!(self).token {
-                Token::Asterisk(..) if precedence == PRECEDENCE_MULTIPLY => LessOperationOperator {
+            let op = match peek!(self) {
+                TokenWithSpan {
+                    token: Token::Asterisk(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY => LessOperationOperator {
                     kind: LessOperationOperatorKind::Multiply,
                     span: bump!(self).span,
                 },
-                Token::Solidus(..)
-                    if precedence == PRECEDENCE_MULTIPLY
-                        && (self.state.less_allow_div || can_be_division_operand(&left)) =>
+                TokenWithSpan {
+                    token: Token::Solidus(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY
+                    && (self.state.less_allow_div || can_be_division_operand(&left)) =>
                 {
                     LessOperationOperator {
                         kind: LessOperationOperatorKind::Division,
                         span: bump!(self).span,
                     }
                 }
-                Token::Dot(..)
-                    if precedence == PRECEDENCE_MULTIPLY
-                        && (self.state.less_allow_div || can_be_division_operand(&left)) =>
+                TokenWithSpan {
+                    token: Token::Dot(..),
+                    ..
+                } if precedence == PRECEDENCE_MULTIPLY
+                    && (self.state.less_allow_div || can_be_division_operand(&left)) =>
                 {
                     // `./` is also division
                     let Span { start, .. } = bump!(self).span;
@@ -393,14 +400,116 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         span: Span { start, end },
                     }
                 }
-                Token::Plus(..) if precedence == PRECEDENCE_PLUS => LessOperationOperator {
+                TokenWithSpan {
+                    token: Token::Plus(..),
+                    ..
+                } if precedence == PRECEDENCE_PLUS => LessOperationOperator {
                     kind: LessOperationOperatorKind::Plus,
                     span: bump!(self).span,
                 },
-                Token::Minus(..) if precedence == PRECEDENCE_PLUS => LessOperationOperator {
+                TokenWithSpan {
+                    token: Token::Minus(..),
+                    ..
+                } if precedence == PRECEDENCE_PLUS => LessOperationOperator {
                     kind: LessOperationOperatorKind::Minus,
                     span: bump!(self).span,
                 },
+                TokenWithSpan {
+                    token: Token::Number(token),
+                    span,
+                } if precedence == PRECEDENCE_PLUS
+                    && (token.raw.starts_with('+')
+                        || token.raw.starts_with('-') && span.start == left.span().end) =>
+                {
+                    let (number, number_span) = expect!(self, Number);
+                    let op = LessOperationOperator {
+                        kind: if number.raw.starts_with('+') {
+                            LessOperationOperatorKind::Plus
+                        } else {
+                            LessOperationOperatorKind::Minus
+                        },
+                        span: Span {
+                            start: number_span.start,
+                            end: number_span.start + 1,
+                        },
+                    };
+                    let span = Span {
+                        start: left.span().start,
+                        end: number_span.end,
+                    };
+                    let right = {
+                        let span = Span {
+                            start: number_span.start + 1,
+                            end: number_span.end,
+                        };
+                        let raw = unsafe { number.raw.get_unchecked(1..number.raw.len()) };
+                        raw.parse()
+                            .map_err(|_| Error {
+                                kind: ErrorKind::InvalidNumber,
+                                span: span.clone(),
+                            })
+                            .map(|value| ComponentValue::Number(Number { value, raw, span }))?
+                    };
+                    left = ComponentValue::LessBinaryOperation(LessBinaryOperation {
+                        left: Box::new(left),
+                        op,
+                        right: Box::new(right),
+                        span,
+                    });
+                    continue;
+                }
+                TokenWithSpan {
+                    token: Token::Dimension(token),
+                    span,
+                } if precedence == PRECEDENCE_PLUS
+                    && (token.value.raw.starts_with('+')
+                        || token.value.raw.starts_with('-') && span.start == left.span().end) =>
+                {
+                    let (dimension, dimension_span) = expect!(self, Dimension);
+                    let op = LessOperationOperator {
+                        kind: if dimension.value.raw.starts_with('+') {
+                            LessOperationOperatorKind::Plus
+                        } else {
+                            LessOperationOperatorKind::Minus
+                        },
+                        span: Span {
+                            start: dimension_span.start,
+                            end: dimension_span.start + 1,
+                        },
+                    };
+                    let span = Span {
+                        start: left.span().start,
+                        end: dimension_span.end,
+                    };
+                    let right = {
+                        (
+                            crate::token::Dimension {
+                                value: crate::token::Number {
+                                    raw: unsafe {
+                                        dimension
+                                            .value
+                                            .raw
+                                            .get_unchecked(1..dimension.value.raw.len())
+                                    },
+                                },
+                                unit: dimension.unit,
+                            },
+                            Span {
+                                start: dimension_span.start + 1,
+                                end: dimension_span.end,
+                            },
+                        )
+                            .try_into()
+                            .map(ComponentValue::Dimension)?
+                    };
+                    left = ComponentValue::LessBinaryOperation(LessBinaryOperation {
+                        left: Box::new(left),
+                        op,
+                        right: Box::new(right),
+                        span,
+                    });
+                    continue;
+                }
                 _ => break,
             };
 
