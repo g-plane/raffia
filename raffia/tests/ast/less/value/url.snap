@@ -1,0 +1,172 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "url",
+                      raw: "url",
+                      span: Span(
+                        start: 24,
+                        end: 27,
+                      ),
+                    ),
+                    span: Span(
+                      start: 23,
+                      end: 27,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 23,
+                  end: 27,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 23,
+              end: 27,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 23,
+          end: 27,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 32,
+                end: 42,
+              ),
+            ),
+            colonSpan: Span(
+              start: 42,
+              end: 43,
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 44,
+                    end: 47,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "@a",
+                  raw: "@a",
+                  span: Span(
+                    start: 48,
+                    end: 50,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 44,
+                  end: 51,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 32,
+              end: 51,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 55,
+                end: 65,
+              ),
+            ),
+            colonSpan: Span(
+              start: 65,
+              end: 66,
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 67,
+                    end: 70,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "@{a}",
+                  raw: "@{a}",
+                  span: Span(
+                    start: 71,
+                    end: 75,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 67,
+                  end: 76,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 55,
+              end: 76,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 28,
+          end: 79,
+        ),
+      ),
+      span: Span(
+        start: 23,
+        end: 79,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 80,
+  ),
+)

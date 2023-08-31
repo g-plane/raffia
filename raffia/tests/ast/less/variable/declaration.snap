@@ -1,0 +1,502 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "a",
+          raw: "a",
+          span: Span(
+            start: 1,
+            end: 2,
+          ),
+        ),
+        span: Span(
+          start: 0,
+          end: 2,
+        ),
+      ),
+      value: Number(
+        type: "Number",
+        value: 2.0,
+        raw: "2",
+        span: Span(
+          start: 4,
+          end: 5,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 5,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "x",
+          raw: "x",
+          span: Span(
+            start: 8,
+            end: 9,
+          ),
+        ),
+        span: Span(
+          start: 7,
+          end: 9,
+        ),
+      ),
+      value: LessParenthesizedOperation(
+        type: "LessParenthesizedOperation",
+        operation: LessBinaryOperation(
+          type: "LessBinaryOperation",
+          left: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 13,
+                end: 14,
+              ),
+            ),
+            span: Span(
+              start: 12,
+              end: 14,
+            ),
+          ),
+          op: LessOperationOperator(
+            type: "LessOperationOperator",
+            kind: Multiply,
+            span: Span(
+              start: 15,
+              end: 16,
+            ),
+          ),
+          right: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 18,
+                end: 19,
+              ),
+            ),
+            span: Span(
+              start: 17,
+              end: 19,
+            ),
+          ),
+          span: Span(
+            start: 12,
+            end: 19,
+          ),
+        ),
+        span: Span(
+          start: 11,
+          end: 20,
+        ),
+      ),
+      span: Span(
+        start: 7,
+        end: 20,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "fonts",
+          raw: "fonts",
+          span: Span(
+            start: 23,
+            end: 28,
+          ),
+        ),
+        span: Span(
+          start: 22,
+          end: 28,
+        ),
+      ),
+      value: LessList(
+        type: "LessList",
+        elements: [
+          Str(
+            type: "Str",
+            value: "Trebuchet MS",
+            raw: "\"Trebuchet MS\"",
+            span: Span(
+              start: 30,
+              end: 44,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "Verdana",
+            raw: "Verdana",
+            span: Span(
+              start: 46,
+              end: 53,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "sans-serif",
+            raw: "sans-serif",
+            span: Span(
+              start: 55,
+              end: 65,
+            ),
+          ),
+        ],
+        commaSpans: Some([
+          Span(
+            start: 44,
+            end: 45,
+          ),
+          Span(
+            start: 53,
+            end: 54,
+          ),
+        ]),
+        span: Span(
+          start: 30,
+          end: 65,
+        ),
+      ),
+      span: Span(
+        start: 22,
+        end: 65,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "quotes",
+          raw: "quotes",
+          span: Span(
+            start: 68,
+            end: 74,
+          ),
+        ),
+        span: Span(
+          start: 67,
+          end: 74,
+        ),
+      ),
+      value: LessList(
+        type: "LessList",
+        elements: [
+          Str(
+            type: "Str",
+            value: "~",
+            raw: "\"~\"",
+            span: Span(
+              start: 76,
+              end: 79,
+            ),
+          ),
+          Str(
+            type: "Str",
+            value: "~",
+            raw: "\"~\"",
+            span: Span(
+              start: 80,
+              end: 83,
+            ),
+          ),
+        ],
+        commaSpans: None,
+        span: Span(
+          start: 76,
+          end: 83,
+        ),
+      ),
+      span: Span(
+        start: 67,
+        end: 83,
+      ),
+    ),
+    LessVariableDeclaration(
+      type: "LessVariableDeclaration",
+      name: LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "important-var",
+          raw: "important-var",
+          span: Span(
+            start: 86,
+            end: 99,
+          ),
+        ),
+        span: Span(
+          start: 85,
+          end: 99,
+        ),
+      ),
+      value: LessList(
+        type: "LessList",
+        elements: [
+          LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 102,
+                end: 103,
+              ),
+            ),
+            span: Span(
+              start: 101,
+              end: 103,
+            ),
+          ),
+          ImportantAnnotation(
+            type: "ImportantAnnotation",
+            ident: Ident(
+              type: "Ident",
+              name: "important",
+              raw: "important",
+              span: Span(
+                start: 105,
+                end: 114,
+              ),
+            ),
+            span: Span(
+              start: 104,
+              end: 114,
+            ),
+          ),
+        ],
+        commaSpans: None,
+        span: Span(
+          start: 101,
+          end: 114,
+        ),
+      ),
+      span: Span(
+        start: 85,
+        end: 114,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "variable-dash",
+                      raw: "variable-dash",
+                      span: Span(
+                        start: 118,
+                        end: 131,
+                      ),
+                    ),
+                    span: Span(
+                      start: 117,
+                      end: 131,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 117,
+                  end: 131,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 117,
+              end: 131,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 117,
+          end: 131,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessVariableDeclaration(
+            type: "LessVariableDeclaration",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "jumbotron-padding",
+                raw: "jumbotron-padding",
+                span: Span(
+                  start: 137,
+                  end: 154,
+                ),
+              ),
+              span: Span(
+                start: 136,
+                end: 154,
+              ),
+            ),
+            value: Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 30.0,
+                raw: "30",
+                span: Span(
+                  start: 156,
+                  end: 158,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "px",
+                raw: "px",
+                span: Span(
+                  start: 158,
+                  end: 160,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 156,
+                end: 160,
+              ),
+            ),
+            span: Span(
+              start: 136,
+              end: 160,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "zero",
+              raw: "zero",
+              span: Span(
+                start: 164,
+                end: 168,
+              ),
+            ),
+            colonSpan: Span(
+              start: 168,
+              end: 169,
+            ),
+            value: [
+              LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "var",
+                  raw: "var",
+                  span: Span(
+                    start: 171,
+                    end: 174,
+                  ),
+                ),
+                span: Span(
+                  start: 170,
+                  end: 174,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 164,
+              end: 174,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "name",
+              raw: "name",
+              span: Span(
+                start: 178,
+                end: 182,
+              ),
+            ),
+            colonSpan: Span(
+              start: 182,
+              end: 183,
+            ),
+            value: [
+              LessVariableVariable(
+                type: "LessVariableVariable",
+                variable: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "name",
+                    raw: "name",
+                    span: Span(
+                      start: 186,
+                      end: 190,
+                    ),
+                  ),
+                  span: Span(
+                    start: 185,
+                    end: 190,
+                  ),
+                ),
+                span: Span(
+                  start: 184,
+                  end: 190,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 178,
+              end: 190,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 132,
+          end: 193,
+        ),
+      ),
+      span: Span(
+        start: 117,
+        end: 193,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 194,
+  ),
+)
