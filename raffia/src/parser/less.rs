@@ -1371,10 +1371,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNegativeValue<'s> {
         let (_, minus_span) = expect!(input, Minus);
         let value = match peek!(input) {
             TokenWithSpan {
-                token:
-                    Token::AtKeyword(..) | Token::At(..) | Token::DollarVar(..) | Token::LParen(..),
+                token: Token::AtKeyword(..) | Token::At(..) | Token::DollarVar(..),
                 span,
             } if minus_span.end == span.start => Box::new(input.parse_component_value_atom()?),
+            TokenWithSpan {
+                token: Token::LParen(..),
+                span,
+            } if minus_span.end == span.start => {
+                Box::new(input.parse_less_operation(/* allow_mixin_call */ true)?)
+            }
             TokenWithSpan { token, span } => {
                 use crate::{
                     token::{AtKeyword, DollarVar, LParen},
