@@ -188,26 +188,25 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_less_interpolated_ident(&mut self) -> PResult<InterpolableIdent<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        let first = match peek!(self) {
+        let (first, Span { start, mut end }) = match peek!(self) {
             TokenWithSpan {
                 token: Token::Ident(..),
                 ..
             } => {
                 let (ident, ident_span) = expect!(self, Ident);
-                match peek!(self) {
-                    TokenWithSpan {
-                        token: Token::AtLBraceVar(..) | Token::DollarLBraceVar(..),
-                        span,
-                    } if ident_span.end == span.start => {
-                        LessInterpolatedIdentElement::Static((ident, ident_span).into())
-                    }
-                    _ => return Ok(InterpolableIdent::Literal((ident, ident_span).into())),
-                }
+                (
+                    LessInterpolatedIdentElement::Static((ident, ident_span.clone()).into()),
+                    ident_span,
+                )
             }
             TokenWithSpan {
                 token: Token::AtLBraceVar(..),
                 ..
-            } => self.parse().map(LessInterpolatedIdentElement::Variable)?,
+            } => {
+                let interpolation = self.parse::<LessVariableInterpolation>()?;
+                let span = interpolation.span.clone();
+                (LessInterpolatedIdentElement::Variable(interpolation), span)
+            }
             TokenWithSpan {
                 token: Token::DollarLBraceVar(..),
                 ..
@@ -216,7 +215,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Some(QualifiedRuleContext::DeclarationName)
             ) =>
             {
-                self.parse().map(LessInterpolatedIdentElement::Property)?
+                let interpolation = self.parse::<LessPropertyInterpolation>()?;
+                let span = interpolation.span.clone();
+                (LessInterpolatedIdentElement::Property(interpolation), span)
             }
             TokenWithSpan { token, span } => {
                 use crate::{
@@ -232,14 +233,22 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 });
             }
         };
-        let mut span = first.span().clone();
 
-        let mut elements = self.parse_less_interpolated_ident_rest(&mut span.end)?;
+        let mut elements = self.parse_less_interpolated_ident_rest(&mut end)?;
+        if elements.is_empty() {
+            if let LessInterpolatedIdentElement::Static(ident) = first {
+                return Ok(InterpolableIdent::Literal(Ident {
+                    name: ident.value,
+                    raw: ident.raw,
+                    span: ident.span,
+                }));
+            }
+        }
+
         elements.insert(0, first);
-
         Ok(InterpolableIdent::LessInterpolated(LessInterpolatedIdent {
             elements,
-            span,
+            span: Span { start, end },
         }))
     }
 
@@ -249,38 +258,33 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<Vec<LessInterpolatedIdentElement<'s>>> {
         let mut elements = vec![];
         loop {
-            match peek!(self) {
-                TokenWithSpan {
-                    token: Token::Ident(..),
-                    span: ident_span,
-                } if *end == ident_span.start => {
-                    let (ident, ident_span) = expect!(self, Ident);
-                    *end = ident_span.end;
-                    elements.push(LessInterpolatedIdentElement::Static(
-                        (ident, ident_span).into(),
-                    ));
+            if let Some((token, span)) = self.tokenizer.scan_ident_template()? {
+                *end = span.end;
+                elements.push(LessInterpolatedIdentElement::Static((token, span).into()));
+            } else {
+                match peek!(self) {
+                    TokenWithSpan {
+                        token: Token::AtLBraceVar(..),
+                        span: at_lbrace_var_span,
+                    } if *end == at_lbrace_var_span.start => {
+                        let variable = self.parse::<LessVariableInterpolation>()?;
+                        *end = variable.span.end;
+                        elements.push(LessInterpolatedIdentElement::Variable(variable));
+                    }
+                    TokenWithSpan {
+                        token: Token::DollarLBraceVar(..),
+                        span: dollar_lbrace_var_span,
+                    } if matches!(
+                        self.state.qualified_rule_ctx,
+                        Some(QualifiedRuleContext::DeclarationName)
+                    ) && *end == dollar_lbrace_var_span.start =>
+                    {
+                        let property = self.parse::<LessPropertyInterpolation>()?;
+                        *end = property.span.end;
+                        elements.push(LessInterpolatedIdentElement::Property(property));
+                    }
+                    _ => return Ok(elements),
                 }
-                TokenWithSpan {
-                    token: Token::AtLBraceVar(..),
-                    span: at_lbrace_var_span,
-                } if *end == at_lbrace_var_span.start => {
-                    let variable = self.parse::<LessVariableInterpolation>()?;
-                    *end = variable.span.end;
-                    elements.push(LessInterpolatedIdentElement::Variable(variable));
-                }
-                TokenWithSpan {
-                    token: Token::DollarLBraceVar(..),
-                    span: dollar_lbrace_var_span,
-                } if matches!(
-                    self.state.qualified_rule_ctx,
-                    Some(QualifiedRuleContext::DeclarationName)
-                ) && *end == dollar_lbrace_var_span.start =>
-                {
-                    let property = self.parse::<LessPropertyInterpolation>()?;
-                    *end = property.span.end;
-                    elements.push(LessInterpolatedIdentElement::Property(property));
-                }
-                _ => return Ok(elements),
             }
         }
     }

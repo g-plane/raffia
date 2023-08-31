@@ -801,9 +801,475 @@ Stylesheet(
         end: 140,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "property",
+                      raw: "property",
+                      span: Span(
+                        start: 143,
+                        end: 151,
+                      ),
+                    ),
+                    span: Span(
+                      start: 142,
+                      end: 151,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 142,
+                  end: 151,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 142,
+              end: 151,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 142,
+          end: 151,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: LessInterpolatedIdent(
+              type: "LessInterpolatedIdent",
+              elements: [
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 158,
+                      end: 159,
+                    ),
+                  ),
+                  span: Span(
+                    start: 156,
+                    end: 160,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 156,
+                end: 160,
+              ),
+            ),
+            colonSpan: Span(
+              start: 160,
+              end: 161,
+            ),
+            value: [
+              Number(
+                type: "Number",
+                value: 0.0,
+                raw: "0",
+                span: Span(
+                  start: 162,
+                  end: 163,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 156,
+              end: 163,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: LessInterpolatedIdent(
+              type: "LessInterpolatedIdent",
+              elements: [
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "prefix",
+                    raw: "prefix",
+                    span: Span(
+                      start: 169,
+                      end: 175,
+                    ),
+                  ),
+                  span: Span(
+                    start: 167,
+                    end: 176,
+                  ),
+                ),
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "width",
+                  raw: "width",
+                  span: Span(
+                    start: 176,
+                    end: 181,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 167,
+                end: 181,
+              ),
+            ),
+            colonSpan: Span(
+              start: 181,
+              end: 182,
+            ),
+            value: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 50.0,
+                  raw: "50",
+                  span: Span(
+                    start: 183,
+                    end: 185,
+                  ),
+                ),
+                span: Span(
+                  start: 183,
+                  end: 186,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 167,
+              end: 186,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: LessInterpolatedIdent(
+              type: "LessInterpolatedIdent",
+              elements: [
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "-www-",
+                  raw: "-www-",
+                  span: Span(
+                    start: 190,
+                    end: 195,
+                  ),
+                ),
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 197,
+                      end: 198,
+                    ),
+                  ),
+                  span: Span(
+                    start: 195,
+                    end: 199,
+                  ),
+                ),
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "-",
+                  raw: "-",
+                  span: Span(
+                    start: 199,
+                    end: 200,
+                  ),
+                ),
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "bb",
+                    raw: "bb",
+                    span: Span(
+                      start: 202,
+                      end: 204,
+                    ),
+                  ),
+                  span: Span(
+                    start: 200,
+                    end: 205,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 190,
+                end: 205,
+              ),
+            ),
+            colonSpan: Span(
+              start: 205,
+              end: 206,
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 207,
+                    end: 208,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 208,
+                    end: 210,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 207,
+                  end: 210,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 190,
+              end: 210,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: LessInterpolatedIdent(
+              type: "LessInterpolatedIdent",
+              elements: [
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 216,
+                      end: 217,
+                    ),
+                  ),
+                  span: Span(
+                    start: 214,
+                    end: 218,
+                  ),
+                ),
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "bb",
+                    raw: "bb",
+                    span: Span(
+                      start: 220,
+                      end: 222,
+                    ),
+                  ),
+                  span: Span(
+                    start: 218,
+                    end: 223,
+                  ),
+                ),
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "red",
+                  raw: "red",
+                  span: Span(
+                    start: 223,
+                    end: 226,
+                  ),
+                ),
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "d-d4",
+                    raw: "d-d4",
+                    span: Span(
+                      start: 228,
+                      end: 232,
+                    ),
+                  ),
+                  span: Span(
+                    start: 226,
+                    end: 233,
+                  ),
+                ),
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "-",
+                  raw: "-",
+                  span: Span(
+                    start: 233,
+                    end: 234,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 214,
+                end: 234,
+              ),
+            ),
+            colonSpan: Span(
+              start: 234,
+              end: 235,
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 3.0,
+                  raw: "3",
+                  span: Span(
+                    start: 236,
+                    end: 237,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "pt",
+                  raw: "pt",
+                  span: Span(
+                    start: 237,
+                    end: 239,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 236,
+                  end: 239,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 214,
+              end: 239,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: LessInterpolatedIdent(
+              type: "LessInterpolatedIdent",
+              elements: [
+                InterpolableIdentStaticPart(
+                  type: "InterpolableIdentStaticPart",
+                  value: "pre-property-ish",
+                  raw: "pre-property-ish",
+                  span: Span(
+                    start: 243,
+                    end: 259,
+                  ),
+                ),
+                LessVariableInterpolation(
+                  type: "LessVariableInterpolation",
+                  name: Ident(
+                    type: "Ident",
+                    name: "subterfuge",
+                    raw: "subterfuge",
+                    span: Span(
+                      start: 261,
+                      end: 271,
+                    ),
+                  ),
+                  span: Span(
+                    start: 259,
+                    end: 272,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 243,
+                end: 272,
+              ),
+            ),
+            colonSpan: Span(
+              start: 272,
+              end: 273,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "nice",
+                raw: "nice",
+                span: Span(
+                  start: 274,
+                  end: 278,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "try",
+                raw: "try",
+                span: Span(
+                  start: 279,
+                  end: 282,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "dude",
+                raw: "dude",
+                span: Span(
+                  start: 283,
+                  end: 287,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 243,
+              end: 287,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 152,
+          end: 290,
+        ),
+      ),
+      span: Span(
+        start: 142,
+        end: 290,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 141,
+    end: 291,
   ),
 )
