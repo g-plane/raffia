@@ -343,23 +343,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             match peek!(self).token {
-                Token::LParen(..) => {
-                    let TokenWithSpan {
-                        span: Span { start, .. },
-                        ..
-                    } = bump!(self);
-                    let operation = self
-                        .with_state(ParserState {
-                            less_allow_div: true,
-                            ..self.state.clone()
-                        })
-                        .parse_less_operation(allow_mixin_call)?;
-                    let (_, Span { end, .. }) = expect!(self, RParen);
-                    ComponentValue::LessParenthesizedOperation(LessParenthesizedOperation {
-                        operation: Box::new(operation),
-                        span: Span { start, end },
-                    })
-                }
+                Token::LParen(..) => self
+                    .parse_less_parenthesized_operation(allow_mixin_call)
+                    .map(ComponentValue::LessParenthesizedOperation)?,
                 Token::Minus(..) => self
                     .parse::<LessNegativeValue>()
                     .map(ComponentValue::LessNegativeValue)?,
@@ -432,6 +418,24 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
 
         Ok(left)
+    }
+
+    fn parse_less_parenthesized_operation(
+        &mut self,
+        allow_mixin_call: bool,
+    ) -> PResult<LessParenthesizedOperation<'s>> {
+        let (_, Span { start, .. }) = expect!(self, LParen);
+        let operation = self
+            .with_state(ParserState {
+                less_allow_div: true,
+                ..self.state.clone()
+            })
+            .parse_less_operation(allow_mixin_call)?;
+        let (_, Span { end, .. }) = expect!(self, RParen);
+        Ok(LessParenthesizedOperation {
+            operation: Box::new(operation),
+            span: Span { start, end },
+        })
     }
 
     pub(super) fn parse_less_qualified_rule(&mut self) -> PResult<Statement<'s>> {
@@ -1378,7 +1382,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessNegativeValue<'s> {
                 token: Token::LParen(..),
                 span,
             } if minus_span.end == span.start => {
-                Box::new(input.parse_less_operation(/* allow_mixin_call */ true)?)
+                Box::new(ComponentValue::LessParenthesizedOperation(
+                    input.parse_less_parenthesized_operation(/* allow_mixin_call */ true)?,
+                ))
             }
             TokenWithSpan { token, span } => {
                 use crate::{
