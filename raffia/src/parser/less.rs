@@ -632,6 +632,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
         let single_value = if allow_comma {
             self.parse_maybe_less_list(false)?
+        } else if let Token::Exclamation(..) = peek!(self).token {
+            self.parse().map(ComponentValue::ImportantAnnotation)?
         } else {
             self.parse_less_operation(/* allow_mixin_call */ true)?
         };
@@ -666,6 +668,19 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         } else {
                             comma_spans = Some(vec![span]);
                         }
+                    }
+                }
+                Token::Exclamation(..) => {
+                    if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse) {
+                        if end < important_annotation.span.start
+                            && separator == ListSeparatorKind::Unknown
+                        {
+                            separator = ListSeparatorKind::Space;
+                        }
+                        end = important_annotation.span.end;
+                        elements.push(ComponentValue::ImportantAnnotation(important_annotation));
+                    } else {
+                        break;
                     }
                 }
                 _ => {
