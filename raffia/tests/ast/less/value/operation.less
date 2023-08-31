@@ -1,0 +1,35 @@
+#operations {
+  color: (#110000 + #000011 + #001100);
+  color-2: (yellow - #070707);
+  height: (10px / 2px + 6px - 1px * 2);
+  width: (2 * 4 - 5em);
+  .spacing {
+    height: (10px / 2px+6px-1px);
+    width: (2  * 4-5em);
+  }
+  subtraction: (20 - 10 - 5 - 5);
+  division: (20 / 5 / 4);
+  font-size: (20rem / 5 + 1.5rem);
+}
+
+.with-variables {
+  height: (@x + @y);
+  width: (12 + @y);
+  size: (5cm - @x);
+}
+
+.with-functions {
+  color: (rgb(200, 200, 200) / 2);
+  color: (2 * hsl(0, 50%, 50%));
+  color: (rgb(10, 10, 10) + hsl(0, 50%, 50%));
+}
+
+.negations {
+  variable: (-@var);
+  variable1: (-@var + @var);
+  variable2: (@var + -@var);
+  variable3: (@var - -@var);
+  variable4: (-@var - -@var);
+  paren: (-(@var));
+  paren2: (-(2 + 2) * -@var);
+}

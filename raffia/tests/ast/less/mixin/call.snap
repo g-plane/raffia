@@ -1,0 +1,1885 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "call",
+                      raw: "call",
+                      span: Span(
+                        start: 1,
+                        end: 5,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 5,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 5,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 5,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 0,
+          end: 5,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 11,
+                        end: 16,
+                      ),
+                    ),
+                    span: Span(
+                      start: 10,
+                      end: 16,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 10,
+                    end: 16,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 10,
+                end: 16,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 10,
+              end: 18,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "theme",
+                      raw: "theme",
+                      span: Span(
+                        start: 23,
+                        end: 28,
+                      ),
+                    ),
+                    span: Span(
+                      start: 22,
+                      end: 28,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 22,
+                    end: 28,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 32,
+                        end: 37,
+                      ),
+                    ),
+                    span: Span(
+                      start: 31,
+                      end: 37,
+                    ),
+                  ),
+                  combinator: Some(Combinator(
+                    type: "Combinator",
+                    kind: Child,
+                    span: Span(
+                      start: 29,
+                      end: 30,
+                    ),
+                  )),
+                  span: Span(
+                    start: 29,
+                    end: 37,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 22,
+                end: 37,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 22,
+              end: 39,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "theme",
+                      raw: "theme",
+                      span: Span(
+                        start: 44,
+                        end: 49,
+                      ),
+                    ),
+                    span: Span(
+                      start: 43,
+                      end: 49,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 43,
+                    end: 49,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 53,
+                        end: 58,
+                      ),
+                    ),
+                    span: Span(
+                      start: 52,
+                      end: 58,
+                    ),
+                  ),
+                  combinator: Some(Combinator(
+                    type: "Combinator",
+                    kind: Child,
+                    span: Span(
+                      start: 50,
+                      end: 51,
+                    ),
+                  )),
+                  span: Span(
+                    start: 50,
+                    end: 58,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 43,
+                end: 58,
+              ),
+            ),
+            args: None,
+            important: None,
+            span: Span(
+              start: 43,
+              end: 58,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "namespace",
+                      raw: "namespace",
+                      span: Span(
+                        start: 63,
+                        end: 72,
+                      ),
+                    ),
+                    span: Span(
+                      start: 62,
+                      end: 72,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 62,
+                    end: 72,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "borders",
+                      raw: "borders",
+                      span: Span(
+                        start: 74,
+                        end: 81,
+                      ),
+                    ),
+                    span: Span(
+                      start: 73,
+                      end: 81,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 73,
+                    end: 81,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 62,
+                end: 81,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 62,
+              end: 83,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "amp",
+                      raw: "amp",
+                      span: Span(
+                        start: 88,
+                        end: 91,
+                      ),
+                    ),
+                    span: Span(
+                      start: 87,
+                      end: 91,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 87,
+                    end: 91,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "support",
+                      raw: "support",
+                      span: Span(
+                        start: 92,
+                        end: 99,
+                      ),
+                    ),
+                    span: Span(
+                      start: 91,
+                      end: 99,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 91,
+                    end: 99,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "deeper",
+                      raw: "deeper",
+                      span: Span(
+                        start: 100,
+                        end: 106,
+                      ),
+                    ),
+                    span: Span(
+                      start: 99,
+                      end: 106,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 99,
+                    end: 106,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 87,
+                end: 106,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 87,
+              end: 108,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "guarded",
+                      raw: "guarded",
+                      span: Span(
+                        start: 113,
+                        end: 120,
+                      ),
+                    ),
+                    span: Span(
+                      start: 112,
+                      end: 120,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 112,
+                    end: 120,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "deeper",
+                      raw: "deeper",
+                      span: Span(
+                        start: 124,
+                        end: 130,
+                      ),
+                    ),
+                    span: Span(
+                      start: 123,
+                      end: 130,
+                    ),
+                  ),
+                  combinator: Some(Combinator(
+                    type: "Combinator",
+                    kind: Child,
+                    span: Span(
+                      start: 121,
+                      end: 122,
+                    ),
+                  )),
+                  span: Span(
+                    start: 121,
+                    end: 130,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 134,
+                        end: 139,
+                      ),
+                    ),
+                    span: Span(
+                      start: 133,
+                      end: 139,
+                    ),
+                  ),
+                  combinator: Some(Combinator(
+                    type: "Combinator",
+                    kind: Child,
+                    span: Span(
+                      start: 131,
+                      end: 132,
+                    ),
+                  )),
+                  span: Span(
+                    start: 131,
+                    end: 139,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 112,
+                end: 139,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 112,
+              end: 141,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "namespace",
+                      raw: "namespace",
+                      span: Span(
+                        start: 146,
+                        end: 155,
+                      ),
+                    ),
+                    span: Span(
+                      start: 145,
+                      end: 155,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 145,
+                    end: 155,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "biohazard",
+                      raw: "biohazard",
+                      span: Span(
+                        start: 157,
+                        end: 166,
+                      ),
+                    ),
+                    span: Span(
+                      start: 156,
+                      end: 166,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 156,
+                    end: 166,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "man",
+                      raw: "man",
+                      span: Span(
+                        start: 168,
+                        end: 171,
+                      ),
+                    ),
+                    span: Span(
+                      start: 167,
+                      end: 171,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 167,
+                    end: 171,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 145,
+                end: 171,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 145,
+              end: 173,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "foo-foo",
+                      raw: "foo-foo",
+                      span: Span(
+                        start: 178,
+                        end: 185,
+                      ),
+                    ),
+                    span: Span(
+                      start: 177,
+                      end: 185,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 177,
+                    end: 185,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "bar",
+                      raw: "bar",
+                      span: Span(
+                        start: 189,
+                        end: 192,
+                      ),
+                    ),
+                    span: Span(
+                      start: 188,
+                      end: 192,
+                    ),
+                  ),
+                  combinator: Some(Combinator(
+                    type: "Combinator",
+                    kind: Child,
+                    span: Span(
+                      start: 186,
+                      end: 187,
+                    ),
+                  )),
+                  span: Span(
+                    start: 186,
+                    end: 192,
+                  ),
+                ),
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "baz",
+                      raw: "baz",
+                      span: Span(
+                        start: 193,
+                        end: 196,
+                      ),
+                    ),
+                    span: Span(
+                      start: 192,
+                      end: 196,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 192,
+                    end: 196,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 177,
+                end: 196,
+              ),
+            ),
+            args: Some([]),
+            important: None,
+            span: Span(
+              start: 177,
+              end: 198,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 6,
+          end: 201,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 201,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "error",
+                      raw: "error",
+                      span: Span(
+                        start: 204,
+                        end: 209,
+                      ),
+                    ),
+                    span: Span(
+                      start: 203,
+                      end: 209,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 203,
+                  end: 209,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 203,
+              end: 209,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 203,
+          end: 209,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin_def",
+                      raw: "mixin_def",
+                      span: Span(
+                        start: 215,
+                        end: 224,
+                      ),
+                    ),
+                    span: Span(
+                      start: 214,
+                      end: 224,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 214,
+                    end: 224,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 214,
+                end: 224,
+              ),
+            ),
+            args: Some([
+              LessInterpolatedStr(
+                type: "LessInterpolatedStr",
+                elements: [
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: "",
+                    raw: "\"",
+                    span: Span(
+                      start: 226,
+                      end: 227,
+                    ),
+                  ),
+                  LessVariableInterpolation(
+                    type: "LessVariableInterpolation",
+                    name: Ident(
+                      type: "Ident",
+                      name: "s",
+                      raw: "s",
+                      span: Span(
+                        start: 229,
+                        end: 230,
+                      ),
+                    ),
+                    span: Span(
+                      start: 227,
+                      end: 231,
+                    ),
+                  ),
+                  InterpolableStrStaticPart(
+                    type: "InterpolableStrStaticPart",
+                    value: "a.png",
+                    raw: "a.png\"",
+                    span: Span(
+                      start: 231,
+                      end: 237,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 226,
+                  end: 237,
+                ),
+              ),
+              LessList(
+                type: "LessList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "center",
+                    raw: "center",
+                    span: Span(
+                      start: 239,
+                      end: 245,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "center",
+                    raw: "center",
+                    span: Span(
+                      start: 246,
+                      end: 252,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
+                span: Span(
+                  start: 239,
+                  end: 252,
+                ),
+              ),
+            ]),
+            important: None,
+            span: Span(
+              start: 214,
+              end: 253,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 210,
+          end: 256,
+        ),
+      ),
+      span: Span(
+        start: 203,
+        end: 256,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "list",
+                      raw: "list",
+                      span: Span(
+                        start: 259,
+                        end: 263,
+                      ),
+                    ),
+                    span: Span(
+                      start: 258,
+                      end: 263,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 258,
+                  end: 263,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 258,
+              end: 263,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 258,
+          end: 263,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "generic",
+                      raw: "generic",
+                      span: Span(
+                        start: 269,
+                        end: 276,
+                      ),
+                    ),
+                    span: Span(
+                      start: 268,
+                      end: 276,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 268,
+                    end: 276,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 268,
+                end: 276,
+              ),
+            ),
+            args: Some([
+              LessList(
+                type: "LessList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 277,
+                      end: 278,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 279,
+                      end: 280,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "c",
+                    raw: "c",
+                    span: Span(
+                      start: 281,
+                      end: 282,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
+                span: Span(
+                  start: 277,
+                  end: 282,
+                ),
+              ),
+              LessList(
+                type: "LessList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 284,
+                      end: 285,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 286,
+                      end: 287,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "c",
+                    raw: "c",
+                    span: Span(
+                      start: 288,
+                      end: 289,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
+                span: Span(
+                  start: 284,
+                  end: 289,
+                ),
+              ),
+            ]),
+            important: None,
+            span: Span(
+              start: 268,
+              end: 290,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "generic",
+                      raw: "generic",
+                      span: Span(
+                        start: 295,
+                        end: 302,
+                      ),
+                    ),
+                    span: Span(
+                      start: 294,
+                      end: 302,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 294,
+                    end: 302,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 294,
+                end: 302,
+              ),
+            ),
+            args: Some([
+              LessList(
+                type: "LessList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 303,
+                      end: 304,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 306,
+                      end: 307,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "c",
+                    raw: "c",
+                    span: Span(
+                      start: 309,
+                      end: 310,
+                    ),
+                  ),
+                ],
+                commaSpans: Some([
+                  Span(
+                    start: 304,
+                    end: 305,
+                  ),
+                  Span(
+                    start: 307,
+                    end: 308,
+                  ),
+                ]),
+                span: Span(
+                  start: 303,
+                  end: 310,
+                ),
+              ),
+              LessList(
+                type: "LessList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 312,
+                      end: 313,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 315,
+                      end: 316,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "c",
+                    raw: "c",
+                    span: Span(
+                      start: 318,
+                      end: 319,
+                    ),
+                  ),
+                ],
+                commaSpans: Some([
+                  Span(
+                    start: 313,
+                    end: 314,
+                  ),
+                  Span(
+                    start: 316,
+                    end: 317,
+                  ),
+                ]),
+                span: Span(
+                  start: 312,
+                  end: 319,
+                ),
+              ),
+            ]),
+            important: None,
+            span: Span(
+              start: 294,
+              end: 320,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 264,
+          end: 323,
+        ),
+      ),
+      span: Span(
+        start: 258,
+        end: 323,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "important",
+                      raw: "important",
+                      span: Span(
+                        start: 326,
+                        end: 335,
+                      ),
+                    ),
+                    span: Span(
+                      start: 325,
+                      end: 335,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 325,
+                  end: 335,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 325,
+              end: 335,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 325,
+          end: 335,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 341,
+                        end: 346,
+                      ),
+                    ),
+                    span: Span(
+                      start: 340,
+                      end: 346,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 340,
+                    end: 346,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 340,
+                end: 346,
+              ),
+            ),
+            args: Some([
+              Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 347,
+                  end: 348,
+                ),
+              ),
+            ]),
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 351,
+                  end: 360,
+                ),
+              ),
+              span: Span(
+                start: 350,
+                end: 360,
+              ),
+            )),
+            span: Span(
+              start: 340,
+              end: 360,
+            ),
+          ),
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 365,
+                        end: 370,
+                      ),
+                    ),
+                    span: Span(
+                      start: 364,
+                      end: 370,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 364,
+                    end: 370,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 364,
+                end: 370,
+              ),
+            ),
+            args: Some([]),
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 374,
+                  end: 383,
+                ),
+              ),
+              span: Span(
+                start: 373,
+                end: 383,
+              ),
+            )),
+            span: Span(
+              start: 364,
+              end: 383,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 387,
+                end: 391,
+              ),
+            ),
+            colonSpan: Span(
+              start: 391,
+              end: 392,
+            ),
+            value: [
+              LessMixinCall(
+                type: "LessMixinCall",
+                callee: LessMixinCallee(
+                  type: "LessMixinCallee",
+                  children: [
+                    LessMixinCalleeChild(
+                      type: "LessMixinCalleeChild",
+                      name: ClassSelector(
+                        type: "ClassSelector",
+                        name: Ident(
+                          type: "Ident",
+                          name: "mixin",
+                          raw: "mixin",
+                          span: Span(
+                            start: 394,
+                            end: 399,
+                          ),
+                        ),
+                        span: Span(
+                          start: 393,
+                          end: 399,
+                        ),
+                      ),
+                      combinator: None,
+                      span: Span(
+                        start: 393,
+                        end: 399,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 393,
+                    end: 399,
+                  ),
+                ),
+                args: Some([]),
+                important: None,
+                span: Span(
+                  start: 393,
+                  end: 401,
+                ),
+              ),
+            ],
+            important: Some(ImportantAnnotation(
+              type: "ImportantAnnotation",
+              ident: Ident(
+                type: "Ident",
+                name: "important",
+                raw: "important",
+                span: Span(
+                  start: 403,
+                  end: 412,
+                ),
+              ),
+              span: Span(
+                start: 402,
+                end: 412,
+              ),
+            )),
+            lessPropertyMerge: None,
+            span: Span(
+              start: 387,
+              end: 412,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 336,
+          end: 415,
+        ),
+      ),
+      span: Span(
+        start: 325,
+        end: 415,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 418,
+                  end: 423,
+                ),
+              ),
+              span: Span(
+                start: 417,
+                end: 423,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 417,
+              end: 423,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 417,
+          end: 423,
+        ),
+      ),
+      args: Some([
+        LessMixinNamedArgument(
+          type: "LessMixinNamedArgument",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 425,
+                end: 426,
+              ),
+            ),
+            span: Span(
+              start: 424,
+              end: 426,
+            ),
+          ),
+          value: Percentage(
+            type: "Percentage",
+            value: Number(
+              type: "Number",
+              value: 100.0,
+              raw: "100",
+              span: Span(
+                start: 428,
+                end: 431,
+              ),
+            ),
+            span: Span(
+              start: 428,
+              end: 432,
+            ),
+          ),
+          span: Span(
+            start: 424,
+            end: 432,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 417,
+        end: 433,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 436,
+                  end: 441,
+                ),
+              ),
+              span: Span(
+                start: 435,
+                end: 441,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 435,
+              end: 441,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 435,
+          end: 441,
+        ),
+      ),
+      args: Some([
+        LessMixinNamedArgument(
+          type: "LessMixinNamedArgument",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 443,
+                end: 444,
+              ),
+            ),
+            span: Span(
+              start: 442,
+              end: 444,
+            ),
+          ),
+          value: Percentage(
+            type: "Percentage",
+            value: Number(
+              type: "Number",
+              value: 10.0,
+              raw: "10",
+              span: Span(
+                start: 446,
+                end: 448,
+              ),
+            ),
+            span: Span(
+              start: 446,
+              end: 449,
+            ),
+          ),
+          span: Span(
+            start: 442,
+            end: 449,
+          ),
+        ),
+        LessMixinNamedArgument(
+          type: "LessMixinNamedArgument",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "a",
+              raw: "a",
+              span: Span(
+                start: 452,
+                end: 453,
+              ),
+            ),
+            span: Span(
+              start: 451,
+              end: 453,
+            ),
+          ),
+          value: Dimension(
+            type: "Dimension",
+            value: Number(
+              type: "Number",
+              value: 2.0,
+              raw: "2",
+              span: Span(
+                start: 455,
+                end: 456,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 456,
+                end: 458,
+              ),
+            ),
+            kind: Length,
+            span: Span(
+              start: 455,
+              end: 458,
+            ),
+          ),
+          span: Span(
+            start: 451,
+            end: 458,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 435,
+        end: 459,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 462,
+                  end: 467,
+                ),
+              ),
+              span: Span(
+                start: 461,
+                end: 467,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 461,
+              end: 467,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 461,
+          end: 467,
+        ),
+      ),
+      args: Some([
+        LessMixinVariadicArgument(
+          type: "LessMixinVariadicArgument",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 469,
+                end: 470,
+              ),
+            ),
+            span: Span(
+              start: 468,
+              end: 470,
+            ),
+          ),
+          span: Span(
+            start: 468,
+            end: 473,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 461,
+        end: 474,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 477,
+                  end: 482,
+                ),
+              ),
+              span: Span(
+                start: 476,
+                end: 482,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 476,
+              end: 482,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 476,
+          end: 482,
+        ),
+      ),
+      args: Some([
+        LessMixinNamedArgument(
+          type: "LessMixinNamedArgument",
+          name: LessPropertyVariable(
+            type: "LessPropertyVariable",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 484,
+                end: 485,
+              ),
+            ),
+            span: Span(
+              start: 483,
+              end: 485,
+            ),
+          ),
+          value: Percentage(
+            type: "Percentage",
+            value: Number(
+              type: "Number",
+              value: 100.0,
+              raw: "100",
+              span: Span(
+                start: 487,
+                end: 490,
+              ),
+            ),
+            span: Span(
+              start: 487,
+              end: 491,
+            ),
+          ),
+          span: Span(
+            start: 483,
+            end: 491,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 476,
+        end: 492,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 495,
+                  end: 500,
+                ),
+              ),
+              span: Span(
+                start: 494,
+                end: 500,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 494,
+              end: 500,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 494,
+          end: 500,
+        ),
+      ),
+      args: Some([
+        LessMixinVariadicArgument(
+          type: "LessMixinVariadicArgument",
+          name: LessPropertyVariable(
+            type: "LessPropertyVariable",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 502,
+                end: 503,
+              ),
+            ),
+            span: Span(
+              start: 501,
+              end: 503,
+            ),
+          ),
+          span: Span(
+            start: 501,
+            end: 506,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 494,
+        end: 507,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 509,
+  ),
+)

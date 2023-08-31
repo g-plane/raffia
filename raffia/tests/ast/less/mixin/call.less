@@ -1,0 +1,31 @@
+.call {
+  .mixin();
+  #theme > .mixin();
+  #theme > .mixin;
+  #namespace .borders();
+  .amp.support.deeper();
+  #guarded > #deeper > .mixin();
+  #namespace .biohazard .man();
+  #foo-foo > .bar.baz();
+}
+
+.error {
+  .mixin_def( "@{s}a.png", center center);
+}
+
+.list {
+  .generic(a b c, a b c);
+  .generic(a, b, c; a, b, c);
+}
+
+.important {
+  .mixin(2) !important;
+  .mixin() !important;
+  prop: .mixin() !important;
+}
+
+.mixin(@b: 100%);
+.mixin(@b: 10%, @a: 2px);
+.mixin(@c...);
+.mixin($b: 100%);
+.mixin($c...);

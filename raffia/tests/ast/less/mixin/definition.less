@@ -1,0 +1,83 @@
+.mixin_def(@url, @position) {
+  background-image: @url;
+  background-position: @position;
+}
+
+.clearfix() {
+  // ...
+}
+
+.light (@a) when (lightness(@a) > 50%) {
+  color: inherit;
+}
+.light (@a) when (lightness(@a) < 50%) {
+  color: black;
+}
+
+.max (@a, @b) when (@a > @b) {
+  width: @a;
+}
+.max (@a, @b) when (@a < @b) {
+  width: @b;
+}
+
+.ops (@a) when (@a = 0) {}
+.ops (@a) when (@a >= 0) {}
+.ops (@a) when (@a => 0) {}
+.ops (@a) when (@a <= 0) {}
+.ops (@a) when (@a =< 0) {}
+.ops (@a) when not(@a = 0) {}
+
+.default (@a: inherit) when (@a = inherit) {}
+
+.bool () when (true) and (false)                             {}
+.bool () when (true) and (true)                              {}
+.bool () when (true)                                         {}
+.bool () when (false) and (false)                            {}
+.bool () when (false), (true)                                {}
+.bool () when (false) and (true) and (true),  (true)         {}
+.bool () when (true)  and (true) and (false), (false)        {}
+.bool () when (false), (true) and (true)                     {}
+.bool () when (false), (false), (true)                       {}
+.bool () when (false), (false) and (true), (false)           {}
+.bool () when (false), (true) and (true) and (true), (false) {}
+.bool () when not (false)                                    {}
+.bool () when not (true) and not (false)                     {}
+.bool () when not (true) and not (true)                      {}
+.bool () when not (false) and (false), not (false)           {}
+
+.parenthesisNot(@value) when ((((@value)))) {}
+.parenthesisNot(@value) when (((not(@value)))) {}
+.parenthesisNot(@value) when not((((@value)))) {}
+.parenthesisNot(@value) when ((not((@value)))) {}
+.parenthesisNot(@value) when not(((not(@value)))) {}
+.parenthesisNot(@value) when (not((not(@value)))) {}
+.parenthesisNot(@value) when ((not(not(@value)))) {}
+.parenthesisNot (...) when (default()) {}
+
+.orderOfEvaluation(@a1, @a2, @a3) when ((@a1) and (@a2) or (@a3)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when ((@a3) or (@a1) and (@a2)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when ((@a1) and ((@a2) or (@a3))) {}
+.orderOfEvaluation(@a1, @a2, @a3) when (@a3), (@a1) and (@a2) {}
+.orderOfEvaluation(@a1, @a2, @a3) when (((@a3) or (@a1)) and (@a2)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when ((@a1) and (@a2) or not (@a3)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when (not (@a3) or (@a1) and (@a2)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when not (@a3), (@a1) and (@a2) {}
+.orderOfEvaluation(@a1, @a2, @a3) when (not (@a1) and (@a2) or (@a3)) {}
+.orderOfEvaluation(@a1, @a2, @a3) when ((((@a1) and (@a2) or (@a3)))) {}
+.orderOfEvaluation(@a1, @a2, @a3) when (((@a1) and (@a2)) or (@a3)) {}
+.orderOfEvaluation(...) when (default()) {}
+
+.mixin (@a: 1px, @b: 50%) {}
+.mixin (@a: 1px, @b: 50%) when (@b > 75%) {}
+
+.mixin (...) {}
+.mixin (@a...) {}
+.mixin ('left') {}
+.mxin ('right') {}
+.border-side (left, @w) {}
+.border-radius (@r, left) {}
+
+.mixin ($a) {}
+.mixin ($a: 1px) {}
+.mixin ($a...) {}

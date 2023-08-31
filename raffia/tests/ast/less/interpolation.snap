@@ -1,0 +1,809 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "inputs",
+                              raw: "inputs",
+                              span: Span(
+                                start: 2,
+                                end: 8,
+                              ),
+                            ),
+                            span: Span(
+                              start: 0,
+                              end: 9,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 0,
+                          end: 9,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 9,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 9,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 9,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 9,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 0,
+          end: 9,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 10,
+          end: 12,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 12,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: LessInterpolatedIdent(
+                      type: "LessInterpolatedIdent",
+                      elements: [
+                        InterpolableIdentStaticPart(
+                          type: "InterpolableIdentStaticPart",
+                          value: "d",
+                          raw: "d",
+                          span: Span(
+                            start: 14,
+                            end: 15,
+                          ),
+                        ),
+                        LessVariableInterpolation(
+                          type: "LessVariableInterpolation",
+                          name: Ident(
+                            type: "Ident",
+                            name: "classes",
+                            raw: "classes",
+                            span: Span(
+                              start: 17,
+                              end: 24,
+                            ),
+                          ),
+                          span: Span(
+                            start: 15,
+                            end: 25,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 14,
+                        end: 25,
+                      ),
+                    ),
+                    span: Span(
+                      start: 13,
+                      end: 25,
+                    ),
+                  ),
+                  NestingSelector(
+                    type: "NestingSelector",
+                    suffix: None,
+                    span: Span(
+                      start: 25,
+                      end: 26,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 27,
+                        end: 32,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 26,
+                      end: 32,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 13,
+                  end: 32,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 13,
+              end: 32,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 13,
+          end: 32,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 33,
+          end: 35,
+        ),
+      ),
+      span: Span(
+        start: 13,
+        end: 35,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "c",
+                              raw: "c",
+                              span: Span(
+                                start: 38,
+                                end: 39,
+                              ),
+                            ),
+                            span: Span(
+                              start: 36,
+                              end: 40,
+                            ),
+                          ),
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "d",
+                              raw: "d",
+                              span: Span(
+                                start: 42,
+                                end: 43,
+                              ),
+                            ),
+                            span: Span(
+                              start: 40,
+                              end: 44,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 36,
+                          end: 44,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 36,
+                        end: 44,
+                      ),
+                    ),
+                    span: Span(
+                      start: 36,
+                      end: 44,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 36,
+                  end: 44,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 36,
+              end: 44,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 36,
+          end: 44,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: LessInterpolatedIdent(
+                              type: "LessInterpolatedIdent",
+                              elements: [
+                                LessVariableInterpolation(
+                                  type: "LessVariableInterpolation",
+                                  name: Ident(
+                                    type: "Ident",
+                                    name: "e",
+                                    raw: "e",
+                                    span: Span(
+                                      start: 51,
+                                      end: 52,
+                                    ),
+                                  ),
+                                  span: Span(
+                                    start: 49,
+                                    end: 53,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 49,
+                                end: 53,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 49,
+                              end: 53,
+                            ),
+                          ),
+                          span: Span(
+                            start: 49,
+                            end: 53,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 49,
+                        end: 53,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 49,
+                    end: 53,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 49,
+                end: 53,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 54,
+                end: 56,
+              ),
+            ),
+            span: Span(
+              start: 49,
+              end: 56,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 45,
+          end: 58,
+        ),
+      ),
+      span: Span(
+        start: 36,
+        end: 58,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "selector",
+                              raw: "selector",
+                              span: Span(
+                                start: 61,
+                                end: 69,
+                              ),
+                            ),
+                            span: Span(
+                              start: 59,
+                              end: 70,
+                            ),
+                          ),
+                          InterpolableIdentStaticPart(
+                            type: "InterpolableIdentStaticPart",
+                            value: "red",
+                            raw: "red",
+                            span: Span(
+                              start: 70,
+                              end: 73,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 59,
+                          end: 73,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 59,
+                        end: 73,
+                      ),
+                    ),
+                    span: Span(
+                      start: 59,
+                      end: 73,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: LessInterpolatedIdent(
+                      type: "LessInterpolatedIdent",
+                      elements: [
+                        LessVariableInterpolation(
+                          type: "LessVariableInterpolation",
+                          name: Ident(
+                            type: "Ident",
+                            name: "theme",
+                            raw: "theme",
+                            span: Span(
+                              start: 76,
+                              end: 81,
+                            ),
+                          ),
+                          span: Span(
+                            start: 74,
+                            end: 82,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 74,
+                        end: 82,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 73,
+                      end: 82,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 59,
+                  end: 82,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 59,
+              end: 82,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 59,
+          end: 82,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 83,
+          end: 85,
+        ),
+      ),
+      span: Span(
+        start: 59,
+        end: 85,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "prop",
+                              raw: "prop",
+                              span: Span(
+                                start: 90,
+                                end: 94,
+                              ),
+                            ),
+                            span: Span(
+                              start: 88,
+                              end: 95,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 88,
+                          end: 95,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 88,
+                        end: 95,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 95,
+                        end: 96,
+                      ),
+                    )),
+                    value: Some(LessInterpolatedStr(
+                      type: "LessInterpolatedStr",
+                      elements: [
+                        InterpolableStrStaticPart(
+                          type: "InterpolableStrStaticPart",
+                          value: "val",
+                          raw: "\"val",
+                          span: Span(
+                            start: 96,
+                            end: 100,
+                          ),
+                        ),
+                        LessVariableInterpolation(
+                          type: "LessVariableInterpolation",
+                          name: Ident(
+                            type: "Ident",
+                            name: "num",
+                            raw: "num",
+                            span: Span(
+                              start: 102,
+                              end: 105,
+                            ),
+                          ),
+                          span: Span(
+                            start: 100,
+                            end: 106,
+                          ),
+                        ),
+                        InterpolableStrStaticPart(
+                          type: "InterpolableStrStaticPart",
+                          value: "",
+                          raw: "\"",
+                          span: Span(
+                            start: 106,
+                            end: 107,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 96,
+                        end: 107,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 87,
+                      end: 108,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 87,
+                  end: 108,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 87,
+              end: 108,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "prop",
+                              raw: "prop",
+                              span: Span(
+                                start: 113,
+                                end: 117,
+                              ),
+                            ),
+                            span: Span(
+                              start: 111,
+                              end: 118,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 111,
+                          end: 118,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 111,
+                        end: 118,
+                      ),
+                    ),
+                    matcher: Some(AttributeSelectorMatcher(
+                      type: "AttributeSelectorMatcher",
+                      kind: Exact,
+                      span: Span(
+                        start: 118,
+                        end: 119,
+                      ),
+                    )),
+                    value: Some(LessInterpolatedIdent(
+                      type: "LessInterpolatedIdent",
+                      elements: [
+                        LessVariableInterpolation(
+                          type: "LessVariableInterpolation",
+                          name: Ident(
+                            type: "Ident",
+                            name: "num",
+                            raw: "num",
+                            span: Span(
+                              start: 121,
+                              end: 124,
+                            ),
+                          ),
+                          span: Span(
+                            start: 119,
+                            end: 125,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 119,
+                        end: 125,
+                      ),
+                    )),
+                    modifier: None,
+                    span: Span(
+                      start: 110,
+                      end: 126,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 110,
+                  end: 126,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 110,
+              end: 126,
+            ),
+          ),
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  AttributeSelector(
+                    type: "AttributeSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: LessInterpolatedIdent(
+                        type: "LessInterpolatedIdent",
+                        elements: [
+                          LessVariableInterpolation(
+                            type: "LessVariableInterpolation",
+                            name: Ident(
+                              type: "Ident",
+                              name: "prop",
+                              raw: "prop",
+                              span: Span(
+                                start: 131,
+                                end: 135,
+                              ),
+                            ),
+                            span: Span(
+                              start: 129,
+                              end: 136,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 129,
+                          end: 136,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 129,
+                        end: 136,
+                      ),
+                    ),
+                    matcher: None,
+                    value: None,
+                    modifier: None,
+                    span: Span(
+                      start: 128,
+                      end: 137,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 128,
+                  end: 137,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 128,
+              end: 137,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 108,
+            end: 109,
+          ),
+          Span(
+            start: 126,
+            end: 127,
+          ),
+        ],
+        span: Span(
+          start: 87,
+          end: 137,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 138,
+          end: 140,
+        ),
+      ),
+      span: Span(
+        start: 87,
+        end: 140,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 141,
+  ),
+)
