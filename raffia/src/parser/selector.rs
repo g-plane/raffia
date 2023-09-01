@@ -1287,10 +1287,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
         selectors.push(first);
         let mut comma_spans = vec![];
 
-        let is_scss_or_sass = matches!(input.syntax, Syntax::Scss | Syntax::Sass);
+        let is_css = input.syntax == Syntax::Css;
         while let Some((_, comma_span)) = eat!(input, Comma) {
             comma_spans.push(comma_span);
-            if is_scss_or_sass
+            if !is_css
                 && matches!(
                     peek!(input).token,
                     Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
@@ -1301,10 +1301,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             selectors.push(input.parse()?);
         }
 
-        debug_assert!(if is_scss_or_sass {
-            selectors.len() - comma_spans.len() <= 1
-        } else {
+        debug_assert!(if is_css {
             selectors.len() - comma_spans.len() == 1
+        } else {
+            selectors.len() - comma_spans.len() <= 1
         });
 
         // SAFETY: it has at least one element.

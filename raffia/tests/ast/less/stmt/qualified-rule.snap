@@ -232,9 +232,73 @@ Stylesheet(
         end: 58,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "trailing-comma",
+                      raw: "trailing-comma",
+                      span: Span(
+                        start: 61,
+                        end: 75,
+                      ),
+                    ),
+                    span: Span(
+                      start: 60,
+                      end: 75,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 60,
+                  end: 75,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 60,
+              end: 75,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 75,
+            end: 76,
+          ),
+        ],
+        span: Span(
+          start: 60,
+          end: 75,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 77,
+          end: 79,
+        ),
+      ),
+      span: Span(
+        start: 60,
+        end: 79,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 59,
+    end: 80,
   ),
 )
