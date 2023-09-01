@@ -1296,7 +1296,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                                     less_allow_div: true,
                                     ..input.state.clone()
                                 })
-                                .parse::<ComponentValue>()?
+                                .parse_maybe_less_list(/* allow_comma */ false)?
                         };
                         let span = Span {
                             start: name_span.start,

@@ -7573,9 +7573,94 @@ Stylesheet(
         end: 3060,
       ),
     ),
+    LessMixinDefinition(
+      type: "LessMixinDefinition",
+      name: ClassSelector(
+        type: "ClassSelector",
+        name: Ident(
+          type: "Ident",
+          name: "mixin",
+          raw: "mixin",
+          span: Span(
+            start: 3063,
+            end: 3068,
+          ),
+        ),
+        span: Span(
+          start: 3062,
+          end: 3068,
+        ),
+      ),
+      params: [
+        LessMixinNamedParameter(
+          type: "LessMixinNamedParameter",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "list",
+              raw: "list",
+              span: Span(
+                start: 3070,
+                end: 3074,
+              ),
+            ),
+            span: Span(
+              start: 3069,
+              end: 3074,
+            ),
+          ),
+          value: Some(LessList(
+            type: "LessList",
+            elements: [
+              Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 3076,
+                  end: 3077,
+                ),
+              ),
+              Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 3078,
+                  end: 3079,
+                ),
+              ),
+            ],
+            commaSpans: None,
+            span: Span(
+              start: 3076,
+              end: 3079,
+            ),
+          )),
+          span: Span(
+            start: 3069,
+            end: 3079,
+          ),
+        ),
+      ],
+      guard: None,
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 3081,
+          end: 3083,
+        ),
+      ),
+      span: Span(
+        start: 3062,
+        end: 3083,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 3061,
+    end: 3084,
   ),
 )
