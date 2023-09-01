@@ -265,10 +265,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
     fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<UnknownAtRulePrelude<'s>>> {
         if let Ok(value) = self.try_parse(|parser| {
-            if matches!(parser.syntax, Syntax::Scss | Syntax::Sass) {
-                parser.parse_maybe_sass_list(/* allow_comma */ true)
-            } else {
-                parser.parse::<ComponentValue>()
+            match parser.syntax {
+                Syntax::Css => parser.parse(),
+                Syntax::Scss | Syntax::Sass => {
+                    parser.parse_maybe_sass_list(/* allow_comma */ true)
+                }
+                Syntax::Less => parser.parse_maybe_less_list(/* allow_comma */ true),
             }
         }) {
             return Ok(Some(UnknownAtRulePrelude::ComponentValue(value)));
