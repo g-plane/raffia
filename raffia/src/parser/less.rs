@@ -1263,7 +1263,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                     });
                 }
                 _ => 'maybe: {
-                    let value = input.parse::<ComponentValue>()?;
+                    let value = input
+                        .with_state(ParserState {
+                            less_allow_div: true,
+                            ..input.state.clone()
+                        })
+                        .parse::<ComponentValue>()?;
                     let name = {
                         match value {
                             ComponentValue::LessVariable(variable) => {
@@ -1286,7 +1291,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                         let value = if matches!(peek!(input).token, Token::LBrace(..)) {
                             input.parse().map(ComponentValue::LessDetachedRuleset)?
                         } else {
-                            input.parse::<ComponentValue>()?
+                            input
+                                .with_state(ParserState {
+                                    less_allow_div: true,
+                                    ..input.state.clone()
+                                })
+                                .parse::<ComponentValue>()?
                         };
                         let span = Span {
                             start: name_span.start,
