@@ -1,0 +1,96 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  NestingSelector(
+                    type: "NestingSelector",
+                    suffix: Some(LessInterpolatedIdent(
+                      type: "LessInterpolatedIdent",
+                      elements: [
+                        InterpolableIdentStaticPart(
+                          type: "InterpolableIdentStaticPart",
+                          value: "-bar",
+                          raw: "-bar",
+                          span: Span(
+                            start: 1,
+                            end: 5,
+                          ),
+                        ),
+                        LessVariableInterpolation(
+                          type: "LessVariableInterpolation",
+                          name: Ident(
+                            type: "Ident",
+                            name: "color",
+                            raw: "color",
+                            span: Span(
+                              start: 7,
+                              end: 12,
+                            ),
+                          ),
+                          span: Span(
+                            start: 5,
+                            end: 13,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1,
+                        end: 13,
+                      ),
+                    )),
+                    span: Span(
+                      start: 0,
+                      end: 13,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 13,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 13,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 0,
+          end: 13,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 14,
+          end: 16,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 16,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 17,
+  ),
+)

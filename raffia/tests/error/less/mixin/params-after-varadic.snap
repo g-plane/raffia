@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `)`, but found `,`
+  ┌─ params-after-varadic.less:1:17
+  │
+1 │ .mixin(@a, @b..., @c) {}
+  │                 ^
+
+

@@ -1877,9 +1877,122 @@ Stylesheet(
         end: 507,
       ),
     ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "border-radius",
+                raw: "border-radius",
+                span: Span(
+                  start: 511,
+                  end: 524,
+                ),
+              ),
+              span: Span(
+                start: 510,
+                end: 524,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 510,
+              end: 524,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 510,
+          end: 524,
+        ),
+      ),
+      args: Some([
+        LessList(
+          type: "LessList",
+          elements: [
+            Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 5.0,
+                raw: "5",
+                span: Span(
+                  start: 525,
+                  end: 526,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "px",
+                raw: "px",
+                span: Span(
+                  start: 526,
+                  end: 528,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 525,
+                end: 528,
+              ),
+            ),
+            Delimiter(
+              type: "Delimiter",
+              kind: Solidus,
+              span: Span(
+                start: 528,
+                end: 529,
+              ),
+            ),
+            Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 10.0,
+                raw: "10",
+                span: Span(
+                  start: 529,
+                  end: 531,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "px",
+                raw: "px",
+                span: Span(
+                  start: 531,
+                  end: 533,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 529,
+                end: 533,
+              ),
+            ),
+          ],
+          commaSpans: None,
+          span: Span(
+            start: 525,
+            end: 533,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 510,
+        end: 534,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 509,
+    end: 536,
   ),
 )

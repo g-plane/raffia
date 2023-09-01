@@ -7358,9 +7358,224 @@ Stylesheet(
         end: 2988,
       ),
     ),
+    LessMixinDefinition(
+      type: "LessMixinDefinition",
+      name: ClassSelector(
+        type: "ClassSelector",
+        name: Ident(
+          type: "Ident",
+          name: "mixin-arguments",
+          raw: "mixin-arguments",
+          span: Span(
+            start: 2991,
+            end: 3006,
+          ),
+        ),
+        span: Span(
+          start: 2990,
+          end: 3006,
+        ),
+      ),
+      params: [
+        LessMixinNamedParameter(
+          type: "LessMixinNamedParameter",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 3009,
+                end: 3014,
+              ),
+            ),
+            span: Span(
+              start: 3008,
+              end: 3014,
+            ),
+          ),
+          value: Some(Dimension(
+            type: "Dimension",
+            value: Number(
+              type: "Number",
+              value: 0.0,
+              raw: "0",
+              span: Span(
+                start: 3016,
+                end: 3017,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "px",
+              raw: "px",
+              span: Span(
+                start: 3017,
+                end: 3019,
+              ),
+            ),
+            kind: Length,
+            span: Span(
+              start: 3016,
+              end: 3019,
+            ),
+          )),
+          span: Span(
+            start: 3008,
+            end: 3019,
+          ),
+        ),
+        LessMixinVariadicParameter(
+          type: "LessMixinVariadicParameter",
+          name: None,
+          span: Span(
+            start: 3021,
+            end: 3024,
+          ),
+        ),
+      ],
+      guard: None,
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 3026,
+          end: 3028,
+        ),
+      ),
+      span: Span(
+        start: 2990,
+        end: 3028,
+      ),
+    ),
+    LessMixinDefinition(
+      type: "LessMixinDefinition",
+      name: ClassSelector(
+        type: "ClassSelector",
+        name: Ident(
+          type: "Ident",
+          name: "border-radius",
+          raw: "border-radius",
+          span: Span(
+            start: 3031,
+            end: 3044,
+          ),
+        ),
+        span: Span(
+          start: 3030,
+          end: 3044,
+        ),
+      ),
+      params: [
+        LessMixinNamedParameter(
+          type: "LessMixinNamedParameter",
+          name: LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "r",
+              raw: "r",
+              span: Span(
+                start: 3046,
+                end: 3047,
+              ),
+            ),
+            span: Span(
+              start: 3045,
+              end: 3047,
+            ),
+          ),
+          value: Some(LessBinaryOperation(
+            type: "LessBinaryOperation",
+            left: Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 3049,
+                  end: 3050,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "px",
+                raw: "px",
+                span: Span(
+                  start: 3050,
+                  end: 3052,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 3049,
+                end: 3052,
+              ),
+            ),
+            op: LessOperationOperator(
+              type: "LessOperationOperator",
+              kind: Division,
+              span: Span(
+                start: 3052,
+                end: 3053,
+              ),
+            ),
+            right: Dimension(
+              type: "Dimension",
+              value: Number(
+                type: "Number",
+                value: 5.0,
+                raw: "5",
+                span: Span(
+                  start: 3053,
+                  end: 3054,
+                ),
+              ),
+              unit: Ident(
+                type: "Ident",
+                name: "px",
+                raw: "px",
+                span: Span(
+                  start: 3054,
+                  end: 3056,
+                ),
+              ),
+              kind: Length,
+              span: Span(
+                start: 3053,
+                end: 3056,
+              ),
+            ),
+            span: Span(
+              start: 3049,
+              end: 3056,
+            ),
+          )),
+          span: Span(
+            start: 3045,
+            end: 3056,
+          ),
+        ),
+      ],
+      guard: None,
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 3058,
+          end: 3060,
+        ),
+      ),
+      span: Span(
+        start: 3030,
+        end: 3060,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 2989,
+    end: 3061,
   ),
 )

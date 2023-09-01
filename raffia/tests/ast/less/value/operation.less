@@ -33,3 +33,21 @@
   paren: (-(@var));
   paren2: (-(2 + 2) * -@var);
 }
+
+.division {
+  b: 2px / 2;
+  c: 2px ./ 2;
+  d: (10px / 10px);
+  value: ((16px ./ 2) / 2) / 2;
+  font: 12px/16px Arial;
+}
+
+@media (min-width: @var + 1) {}
+@media (min-width: @var / 9) {}
+
+.mixin(@var, (@var * 2) / 2);
+
+.functions {
+  bar: if(false, 666, 888 / 444);
+  bar2: if(false, 666, (666 / 333));
+}

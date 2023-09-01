@@ -1,0 +1,69 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    Function(
+      type: "Function",
+      name: Ident(
+        type: "Ident",
+        name: "each",
+        raw: "each",
+        span: Span(
+          start: 0,
+          end: 4,
+        ),
+      ),
+      args: [
+        LessVariable(
+          type: "LessVariable",
+          name: Ident(
+            type: "Ident",
+            name: "items",
+            raw: "items",
+            span: Span(
+              start: 6,
+              end: 11,
+            ),
+          ),
+          span: Span(
+            start: 5,
+            end: 11,
+          ),
+        ),
+        Delimiter(
+          type: "Delimiter",
+          kind: Comma,
+          span: Span(
+            start: 11,
+            end: 12,
+          ),
+        ),
+        LessDetachedRuleset(
+          type: "LessDetachedRuleset",
+          block: SimpleBlock(
+            type: "SimpleBlock",
+            statements: [],
+            span: Span(
+              start: 13,
+              end: 15,
+            ),
+          ),
+          span: Span(
+            start: 13,
+            end: 15,
+          ),
+        ),
+      ],
+      span: Span(
+        start: 0,
+        end: 16,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 18,
+  ),
+)

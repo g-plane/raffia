@@ -2574,9 +2574,1163 @@ Stylesheet(
         end: 743,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "division",
+                      raw: "division",
+                      span: Span(
+                        start: 746,
+                        end: 754,
+                      ),
+                    ),
+                    span: Span(
+                      start: 745,
+                      end: 754,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 745,
+                  end: 754,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 745,
+              end: 754,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 745,
+          end: 754,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 759,
+                end: 760,
+              ),
+            ),
+            colonSpan: Span(
+              start: 760,
+              end: 761,
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 762,
+                    end: 763,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 763,
+                    end: 765,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 762,
+                  end: 765,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Solidus,
+                span: Span(
+                  start: 766,
+                  end: 767,
+                ),
+              ),
+              Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 768,
+                  end: 769,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 759,
+              end: 769,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "c",
+              raw: "c",
+              span: Span(
+                start: 773,
+                end: 774,
+              ),
+            ),
+            colonSpan: Span(
+              start: 774,
+              end: 775,
+            ),
+            value: [
+              LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: Dimension(
+                  type: "Dimension",
+                  value: Number(
+                    type: "Number",
+                    value: 2.0,
+                    raw: "2",
+                    span: Span(
+                      start: 776,
+                      end: 777,
+                    ),
+                  ),
+                  unit: Ident(
+                    type: "Ident",
+                    name: "px",
+                    raw: "px",
+                    span: Span(
+                      start: 777,
+                      end: 779,
+                    ),
+                  ),
+                  kind: Length,
+                  span: Span(
+                    start: 776,
+                    end: 779,
+                  ),
+                ),
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Division,
+                  span: Span(
+                    start: 780,
+                    end: 782,
+                  ),
+                ),
+                right: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 783,
+                    end: 784,
+                  ),
+                ),
+                span: Span(
+                  start: 776,
+                  end: 784,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 773,
+              end: 784,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "d",
+              raw: "d",
+              span: Span(
+                start: 788,
+                end: 789,
+              ),
+            ),
+            colonSpan: Span(
+              start: 789,
+              end: 790,
+            ),
+            value: [
+              LessParenthesizedOperation(
+                type: "LessParenthesizedOperation",
+                operation: LessBinaryOperation(
+                  type: "LessBinaryOperation",
+                  left: Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 10.0,
+                      raw: "10",
+                      span: Span(
+                        start: 792,
+                        end: 794,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 794,
+                        end: 796,
+                      ),
+                    ),
+                    kind: Length,
+                    span: Span(
+                      start: 792,
+                      end: 796,
+                    ),
+                  ),
+                  op: LessOperationOperator(
+                    type: "LessOperationOperator",
+                    kind: Division,
+                    span: Span(
+                      start: 797,
+                      end: 798,
+                    ),
+                  ),
+                  right: Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 10.0,
+                      raw: "10",
+                      span: Span(
+                        start: 799,
+                        end: 801,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 801,
+                        end: 803,
+                      ),
+                    ),
+                    kind: Length,
+                    span: Span(
+                      start: 799,
+                      end: 803,
+                    ),
+                  ),
+                  span: Span(
+                    start: 792,
+                    end: 803,
+                  ),
+                ),
+                span: Span(
+                  start: 791,
+                  end: 804,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 788,
+              end: 804,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "value",
+              raw: "value",
+              span: Span(
+                start: 808,
+                end: 813,
+              ),
+            ),
+            colonSpan: Span(
+              start: 813,
+              end: 814,
+            ),
+            value: [
+              LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: LessParenthesizedOperation(
+                  type: "LessParenthesizedOperation",
+                  operation: LessBinaryOperation(
+                    type: "LessBinaryOperation",
+                    left: LessParenthesizedOperation(
+                      type: "LessParenthesizedOperation",
+                      operation: LessBinaryOperation(
+                        type: "LessBinaryOperation",
+                        left: Dimension(
+                          type: "Dimension",
+                          value: Number(
+                            type: "Number",
+                            value: 16.0,
+                            raw: "16",
+                            span: Span(
+                              start: 817,
+                              end: 819,
+                            ),
+                          ),
+                          unit: Ident(
+                            type: "Ident",
+                            name: "px",
+                            raw: "px",
+                            span: Span(
+                              start: 819,
+                              end: 821,
+                            ),
+                          ),
+                          kind: Length,
+                          span: Span(
+                            start: 817,
+                            end: 821,
+                          ),
+                        ),
+                        op: LessOperationOperator(
+                          type: "LessOperationOperator",
+                          kind: Division,
+                          span: Span(
+                            start: 822,
+                            end: 824,
+                          ),
+                        ),
+                        right: Number(
+                          type: "Number",
+                          value: 2.0,
+                          raw: "2",
+                          span: Span(
+                            start: 825,
+                            end: 826,
+                          ),
+                        ),
+                        span: Span(
+                          start: 817,
+                          end: 826,
+                        ),
+                      ),
+                      span: Span(
+                        start: 816,
+                        end: 827,
+                      ),
+                    ),
+                    op: LessOperationOperator(
+                      type: "LessOperationOperator",
+                      kind: Division,
+                      span: Span(
+                        start: 828,
+                        end: 829,
+                      ),
+                    ),
+                    right: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 830,
+                        end: 831,
+                      ),
+                    ),
+                    span: Span(
+                      start: 816,
+                      end: 831,
+                    ),
+                  ),
+                  span: Span(
+                    start: 815,
+                    end: 832,
+                  ),
+                ),
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Division,
+                  span: Span(
+                    start: 833,
+                    end: 834,
+                  ),
+                ),
+                right: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 835,
+                    end: 836,
+                  ),
+                ),
+                span: Span(
+                  start: 815,
+                  end: 836,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 808,
+              end: 836,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "font",
+              raw: "font",
+              span: Span(
+                start: 840,
+                end: 844,
+              ),
+            ),
+            colonSpan: Span(
+              start: 844,
+              end: 845,
+            ),
+            value: [
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 12.0,
+                  raw: "12",
+                  span: Span(
+                    start: 846,
+                    end: 848,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 848,
+                    end: 850,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 846,
+                  end: 850,
+                ),
+              ),
+              Delimiter(
+                type: "Delimiter",
+                kind: Solidus,
+                span: Span(
+                  start: 850,
+                  end: 851,
+                ),
+              ),
+              Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 16.0,
+                  raw: "16",
+                  span: Span(
+                    start: 851,
+                    end: 853,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 853,
+                    end: 855,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 851,
+                  end: 855,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "Arial",
+                raw: "Arial",
+                span: Span(
+                  start: 856,
+                  end: 861,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 840,
+              end: 861,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 755,
+          end: 864,
+        ),
+      ),
+      span: Span(
+        start: 745,
+        end: 864,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 867,
+          end: 872,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          MediaCondition(
+            type: "MediaCondition",
+            conditions: [
+              MediaInParens(
+                type: "MediaInParens",
+                kind: MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
+                  name: Ident(
+                    type: "Ident",
+                    name: "min-width",
+                    raw: "min-width",
+                    span: Span(
+                      start: 874,
+                      end: 883,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 883,
+                    end: 884,
+                  ),
+                  value: LessBinaryOperation(
+                    type: "LessBinaryOperation",
+                    left: LessVariable(
+                      type: "LessVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "var",
+                        raw: "var",
+                        span: Span(
+                          start: 886,
+                          end: 889,
+                        ),
+                      ),
+                      span: Span(
+                        start: 885,
+                        end: 889,
+                      ),
+                    ),
+                    op: LessOperationOperator(
+                      type: "LessOperationOperator",
+                      kind: Plus,
+                      span: Span(
+                        start: 890,
+                        end: 891,
+                      ),
+                    ),
+                    right: Number(
+                      type: "Number",
+                      value: 1.0,
+                      raw: "1",
+                      span: Span(
+                        start: 892,
+                        end: 893,
+                      ),
+                    ),
+                    span: Span(
+                      start: 885,
+                      end: 893,
+                    ),
+                  ),
+                  span: Span(
+                    start: 874,
+                    end: 893,
+                  ),
+                ),
+                span: Span(
+                  start: 873,
+                  end: 894,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 873,
+              end: 894,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 873,
+          end: 894,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 895,
+          end: 897,
+        ),
+      )),
+      span: Span(
+        start: 866,
+        end: 897,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 899,
+          end: 904,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          MediaCondition(
+            type: "MediaCondition",
+            conditions: [
+              MediaInParens(
+                type: "MediaInParens",
+                kind: MediaFeaturePlain(
+                  type: "MediaFeaturePlain",
+                  name: Ident(
+                    type: "Ident",
+                    name: "min-width",
+                    raw: "min-width",
+                    span: Span(
+                      start: 906,
+                      end: 915,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 915,
+                    end: 916,
+                  ),
+                  value: LessBinaryOperation(
+                    type: "LessBinaryOperation",
+                    left: LessVariable(
+                      type: "LessVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "var",
+                        raw: "var",
+                        span: Span(
+                          start: 918,
+                          end: 921,
+                        ),
+                      ),
+                      span: Span(
+                        start: 917,
+                        end: 921,
+                      ),
+                    ),
+                    op: LessOperationOperator(
+                      type: "LessOperationOperator",
+                      kind: Division,
+                      span: Span(
+                        start: 922,
+                        end: 923,
+                      ),
+                    ),
+                    right: Number(
+                      type: "Number",
+                      value: 9.0,
+                      raw: "9",
+                      span: Span(
+                        start: 924,
+                        end: 925,
+                      ),
+                    ),
+                    span: Span(
+                      start: 917,
+                      end: 925,
+                    ),
+                  ),
+                  span: Span(
+                    start: 906,
+                    end: 925,
+                  ),
+                ),
+                span: Span(
+                  start: 905,
+                  end: 926,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 905,
+              end: 926,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 905,
+          end: 926,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 927,
+          end: 929,
+        ),
+      )),
+      span: Span(
+        start: 898,
+        end: 929,
+      ),
+    ),
+    LessMixinCall(
+      type: "LessMixinCall",
+      callee: LessMixinCallee(
+        type: "LessMixinCallee",
+        children: [
+          LessMixinCalleeChild(
+            type: "LessMixinCalleeChild",
+            name: ClassSelector(
+              type: "ClassSelector",
+              name: Ident(
+                type: "Ident",
+                name: "mixin",
+                raw: "mixin",
+                span: Span(
+                  start: 932,
+                  end: 937,
+                ),
+              ),
+              span: Span(
+                start: 931,
+                end: 937,
+              ),
+            ),
+            combinator: None,
+            span: Span(
+              start: 931,
+              end: 937,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 931,
+          end: 937,
+        ),
+      ),
+      args: Some([
+        LessVariable(
+          type: "LessVariable",
+          name: Ident(
+            type: "Ident",
+            name: "var",
+            raw: "var",
+            span: Span(
+              start: 939,
+              end: 942,
+            ),
+          ),
+          span: Span(
+            start: 938,
+            end: 942,
+          ),
+        ),
+        LessBinaryOperation(
+          type: "LessBinaryOperation",
+          left: LessParenthesizedOperation(
+            type: "LessParenthesizedOperation",
+            operation: LessBinaryOperation(
+              type: "LessBinaryOperation",
+              left: LessVariable(
+                type: "LessVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "var",
+                  raw: "var",
+                  span: Span(
+                    start: 946,
+                    end: 949,
+                  ),
+                ),
+                span: Span(
+                  start: 945,
+                  end: 949,
+                ),
+              ),
+              op: LessOperationOperator(
+                type: "LessOperationOperator",
+                kind: Multiply,
+                span: Span(
+                  start: 950,
+                  end: 951,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 2.0,
+                raw: "2",
+                span: Span(
+                  start: 952,
+                  end: 953,
+                ),
+              ),
+              span: Span(
+                start: 945,
+                end: 953,
+              ),
+            ),
+            span: Span(
+              start: 944,
+              end: 954,
+            ),
+          ),
+          op: LessOperationOperator(
+            type: "LessOperationOperator",
+            kind: Division,
+            span: Span(
+              start: 955,
+              end: 956,
+            ),
+          ),
+          right: Number(
+            type: "Number",
+            value: 2.0,
+            raw: "2",
+            span: Span(
+              start: 957,
+              end: 958,
+            ),
+          ),
+          span: Span(
+            start: 944,
+            end: 958,
+          ),
+        ),
+      ]),
+      important: None,
+      span: Span(
+        start: 931,
+        end: 959,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "functions",
+                      raw: "functions",
+                      span: Span(
+                        start: 963,
+                        end: 972,
+                      ),
+                    ),
+                    span: Span(
+                      start: 962,
+                      end: 972,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 962,
+                  end: 972,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 962,
+              end: 972,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 962,
+          end: 972,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "bar",
+              raw: "bar",
+              span: Span(
+                start: 977,
+                end: 980,
+              ),
+            ),
+            colonSpan: Span(
+              start: 980,
+              end: 981,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "if",
+                  raw: "if",
+                  span: Span(
+                    start: 982,
+                    end: 984,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "false",
+                    raw: "false",
+                    span: Span(
+                      start: 985,
+                      end: 990,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 990,
+                      end: 991,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 666.0,
+                    raw: "666",
+                    span: Span(
+                      start: 992,
+                      end: 995,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 995,
+                      end: 996,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 888.0,
+                    raw: "888",
+                    span: Span(
+                      start: 997,
+                      end: 1000,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Solidus,
+                    span: Span(
+                      start: 1001,
+                      end: 1002,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 444.0,
+                    raw: "444",
+                    span: Span(
+                      start: 1003,
+                      end: 1006,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 982,
+                  end: 1007,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 977,
+              end: 1007,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "bar2",
+              raw: "bar2",
+              span: Span(
+                start: 1011,
+                end: 1015,
+              ),
+            ),
+            colonSpan: Span(
+              start: 1015,
+              end: 1016,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "if",
+                  raw: "if",
+                  span: Span(
+                    start: 1017,
+                    end: 1019,
+                  ),
+                ),
+                args: [
+                  Ident(
+                    type: "Ident",
+                    name: "false",
+                    raw: "false",
+                    span: Span(
+                      start: 1020,
+                      end: 1025,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 1025,
+                      end: 1026,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 666.0,
+                    raw: "666",
+                    span: Span(
+                      start: 1027,
+                      end: 1030,
+                    ),
+                  ),
+                  Delimiter(
+                    type: "Delimiter",
+                    kind: Comma,
+                    span: Span(
+                      start: 1030,
+                      end: 1031,
+                    ),
+                  ),
+                  LessParenthesizedOperation(
+                    type: "LessParenthesizedOperation",
+                    operation: LessBinaryOperation(
+                      type: "LessBinaryOperation",
+                      left: Number(
+                        type: "Number",
+                        value: 666.0,
+                        raw: "666",
+                        span: Span(
+                          start: 1033,
+                          end: 1036,
+                        ),
+                      ),
+                      op: LessOperationOperator(
+                        type: "LessOperationOperator",
+                        kind: Division,
+                        span: Span(
+                          start: 1037,
+                          end: 1038,
+                        ),
+                      ),
+                      right: Number(
+                        type: "Number",
+                        value: 333.0,
+                        raw: "333",
+                        span: Span(
+                          start: 1039,
+                          end: 1042,
+                        ),
+                      ),
+                      span: Span(
+                        start: 1033,
+                        end: 1042,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1032,
+                      end: 1043,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1017,
+                  end: 1044,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 1011,
+              end: 1044,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 973,
+          end: 1047,
+        ),
+      ),
+      span: Span(
+        start: 962,
+        end: 1047,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 744,
+    end: 1048,
   ),
 )
