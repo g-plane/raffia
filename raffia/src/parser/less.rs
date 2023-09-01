@@ -393,9 +393,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 TokenWithSpan {
                     token: Token::Dot(..),
                     ..
-                } if precedence == PRECEDENCE_MULTIPLY
-                    && (self.state.less_allow_div || can_be_division_operand(&left)) =>
-                {
+                } if precedence == PRECEDENCE_MULTIPLY => {
                     // `./` is also division
                     let Span { start, .. } = bump!(self).span;
                     let (_, Span { end, .. }) = expect_without_ws_or_comments!(self, Solidus);
