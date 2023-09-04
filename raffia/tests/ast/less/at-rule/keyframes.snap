@@ -187,9 +187,49 @@ Stylesheet(
         end: 67,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 70,
+          end: 79,
+        ),
+      ),
+      prelude: Some(LessVariable(
+        type: "LessVariable",
+        name: Ident(
+          type: "Ident",
+          name: "name",
+          raw: "name",
+          span: Span(
+            start: 81,
+            end: 85,
+          ),
+        ),
+        span: Span(
+          start: 80,
+          end: 85,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 86,
+          end: 88,
+        ),
+      )),
+      span: Span(
+        start: 69,
+        end: 88,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 68,
+    end: 89,
   ),
 )

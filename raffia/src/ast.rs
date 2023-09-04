@@ -572,6 +572,7 @@ pub enum KeyframeSelector<'s> {
 pub enum KeyframesName<'s> {
     Ident(InterpolableIdent<'s>),
     Str(InterpolableStr<'s>),
+    LessVariable(LessVariable<'s>),
     LessEscapedStr(LessEscapedStr<'s>),
 }
 
