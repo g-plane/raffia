@@ -337,16 +337,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((i, '-')) => {
                 start = *i;
                 self.state.chars.next();
-                if self.syntax == Syntax::Less {
-                    // Less allows single hyphen as identifier name
-                    end = start + 1;
+                if let Some((i, c)) = self.state.chars.next() {
+                    debug_assert!(is_start_of_ident(c));
+                    end = i + c.len_utf8();
                 } else {
-                    if let Some((i, c)) = self.state.chars.next() {
-                        debug_assert!(is_start_of_ident(c));
-                        end = i + c.len_utf8();
-                    } else {
-                        return Err(self.build_eof_error());
-                    }
+                    return Err(self.build_eof_error());
                 }
             }
             Some((i, '\\')) => {

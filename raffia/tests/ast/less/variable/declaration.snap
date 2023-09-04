@@ -494,41 +494,9 @@ Stylesheet(
         end: 193,
       ),
     ),
-    LessVariableDeclaration(
-      type: "LessVariableDeclaration",
-      name: LessVariable(
-        type: "LessVariable",
-        name: Ident(
-          type: "Ident",
-          name: "-",
-          raw: "-",
-          span: Span(
-            start: 196,
-            end: 197,
-          ),
-        ),
-        span: Span(
-          start: 195,
-          end: 197,
-        ),
-      ),
-      value: Number(
-        type: "Number",
-        value: 1.0,
-        raw: "1",
-        span: Span(
-          start: 199,
-          end: 200,
-        ),
-      ),
-      span: Span(
-        start: 195,
-        end: 200,
-      ),
-    ),
   ],
   span: Span(
     start: 0,
-    end: 202,
+    end: 194,
   ),
 )
