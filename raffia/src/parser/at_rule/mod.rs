@@ -39,6 +39,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("keyframes")
             || at_rule_name.eq_ignore_ascii_case("-webkit-keyframes")
             || at_rule_name.eq_ignore_ascii_case("-moz-keyframes")
+            || at_rule_name.eq_ignore_ascii_case("-ms-keyframes")
             || at_rule_name.eq_ignore_ascii_case("-o-keyframes")
         {
             let prelude = AtRulePrelude::Keyframes(input.parse()?);
