@@ -1,0 +1,52 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: Some(LessEscapedStr(
+        type: "LessEscapedStr",
+        str: Str(
+          type: "Str",
+          value: "",
+          raw: "\"\"",
+          span: Span(
+            start: 12,
+            end: 14,
+          ),
+        ),
+        span: Span(
+          start: 11,
+          end: 14,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 15,
+          end: 17,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 17,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 18,
+  ),
+)

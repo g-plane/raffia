@@ -84,6 +84,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframesName<'s> {
                 }
                 Ok(KeyframesName::Ident(ident))
             }
+            Token::Tilde(..) => input.parse().map(KeyframesName::LessEscapedStr),
             _ => input.parse().map(KeyframesName::Str),
         }
     }
