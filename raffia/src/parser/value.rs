@@ -1005,23 +1005,40 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
                 modifiers: vec![],
                 span,
             })
-        } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
-            let value = input.parse::<SassInterpolatedUrl>()?;
-            let span = Span {
-                start: prefix_span.start,
-                end: value.span.end + 1, // `)` is consumed, but span excludes it
-            };
-            Ok(Url {
-                name: (prefix, prefix_span).into(),
-                value: Some(UrlValue::SassInterpolated(value)),
-                modifiers: vec![],
-                span,
-            })
         } else {
-            Err(Error {
-                kind: ErrorKind::InvalidUrl,
-                span: bump!(input).span,
-            })
+            match input.syntax {
+                Syntax::Css => Err(Error {
+                    kind: ErrorKind::InvalidUrl,
+                    span: bump!(input).span,
+                }),
+                Syntax::Scss | Syntax::Sass => {
+                    let value = input.parse::<SassInterpolatedUrl>()?;
+                    let span = Span {
+                        start: prefix_span.start,
+                        end: value.span.end + 1, // `)` is consumed, but span excludes it
+                    };
+                    Ok(Url {
+                        name: (prefix, prefix_span).into(),
+                        value: Some(UrlValue::SassInterpolated(value)),
+                        modifiers: vec![],
+                        span,
+                    })
+                }
+                Syntax::Less => {
+                    let value = UrlValue::LessEscapedStr(input.parse()?);
+                    let (_, Span { end, .. }) = expect!(input, RParen);
+                    let span = Span {
+                        start: prefix_span.start,
+                        end,
+                    };
+                    Ok(Url {
+                        name: (prefix, prefix_span).into(),
+                        value: Some(value),
+                        modifiers: vec![],
+                        span,
+                    })
+                }
+            }
         }
     }
 }

@@ -153,20 +153,77 @@ Stylesheet(
               end: 76,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 80,
+                end: 90,
+              ),
+            ),
+            colonSpan: Span(
+              start: 90,
+              end: 91,
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 92,
+                    end: 95,
+                  ),
+                ),
+                value: Some(LessEscapedStr(
+                  type: "LessEscapedStr",
+                  str: Str(
+                    type: "Str",
+                    value: "",
+                    raw: "\"\"",
+                    span: Span(
+                      start: 97,
+                      end: 99,
+                    ),
+                  ),
+                  span: Span(
+                    start: 96,
+                    end: 99,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 92,
+                  end: 100,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 80,
+              end: 100,
+            ),
+          ),
         ],
         span: Span(
           start: 28,
-          end: 79,
+          end: 103,
         ),
       ),
       span: Span(
         start: 23,
-        end: 79,
+        end: 103,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 80,
+    end: 104,
   ),
 )

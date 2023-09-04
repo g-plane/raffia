@@ -2299,6 +2299,7 @@ pub enum UrlValue<'s> {
     Raw(UrlRaw<'s>),
     SassInterpolated(SassInterpolatedUrl<'s>),
     Str(InterpolableStr<'s>),
+    LessEscapedStr(LessEscapedStr<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
