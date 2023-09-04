@@ -47,6 +47,7 @@ Tests come from:
 - [SWC CSS parser](https://github.com/swc-project/swc/tree/main/crates/swc_css_parser/tests)
 - [ESBuild](https://github.com/evanw/esbuild/blob/master/internal/css_parser/css_parser_test.go)
 - [Sass Spec Suite](https://github.com/sass/sass-spec)
+- [Less Test Suite](https://github.com/less/less.js/tree/master/packages/test-data)
 
 ## 📜 License
 
