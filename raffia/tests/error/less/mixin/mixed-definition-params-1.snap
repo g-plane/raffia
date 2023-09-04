@@ -1,10 +1,10 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: using both `;` and `,` as delimiters in the same Less mixin is disallowed
-  ┌─ mixed-definition-params-1.less:1:8
+error: expect token `)`, but found `:`
+  ┌─ mixed-definition-params-1.less:1:24
   │
 1 │ .mixin(@a: 5; @b: 6, @c: 7) {}
-  │        ^^^^^
+  │                        ^
 
 

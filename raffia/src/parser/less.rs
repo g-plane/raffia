@@ -1100,7 +1100,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinCall<'s> {
                             let value = if matches!(peek!(input).token, Token::LBrace(..)) {
                                 input.parse().map(ComponentValue::LessDetachedRuleset)?
                             } else {
-                                input.parse::<ComponentValue>()?
+                                input.parse_maybe_less_list(
+                                    /* allow_comma */ semicolon_comes_at > 0,
+                                )?
                             };
                             let span = Span {
                                 start: name.span().start,
