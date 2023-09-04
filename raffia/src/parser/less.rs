@@ -637,18 +637,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
         match self.try_parse(|parser| {
-            let hex_color = parser.parse::<HexColor>();
-            if let TokenWithSpan {
-                token: Token::LParen(..),
-                span,
-            } = peek!(parser)
-            {
-                Err(Error {
+            let hex_color = parser.parse::<HexColor>()?;
+            match peek!(parser) {
+                TokenWithSpan {
+                    token: Token::LParen(..),
+                    span,
+                } => Err(Error {
                     kind: ErrorKind::TryParseError,
                     span: span.clone(),
-                })
-            } else {
-                hex_color
+                }),
+                TokenWithSpan {
+                    token: Token::LBracket(..) | Token::Dot(..) | Token::Hash(..),
+                    span,
+                } if hex_color.span.end == span.start => Err(Error {
+                    kind: ErrorKind::TryParseError,
+                    span: span.clone(),
+                }),
+                _ => Ok(hex_color),
             }
         }) {
             Err(Error {
