@@ -111,9 +111,85 @@ Stylesheet(
         end: 39,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 42,
+          end: 51,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "t",
+        raw: "t",
+        span: Span(
+          start: 52,
+          end: 53,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          LessMixinCall(
+            type: "LessMixinCall",
+            callee: LessMixinCallee(
+              type: "LessMixinCallee",
+              children: [
+                LessMixinCalleeChild(
+                  type: "LessMixinCalleeChild",
+                  name: ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "mixin",
+                      raw: "mixin",
+                      span: Span(
+                        start: 59,
+                        end: 64,
+                      ),
+                    ),
+                    span: Span(
+                      start: 58,
+                      end: 64,
+                    ),
+                  ),
+                  combinator: None,
+                  span: Span(
+                    start: 58,
+                    end: 64,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 58,
+                end: 64,
+              ),
+            ),
+            args: None,
+            important: None,
+            span: Span(
+              start: 58,
+              end: 64,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 54,
+          end: 67,
+        ),
+      )),
+      span: Span(
+        start: 41,
+        end: 67,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 40,
+    end: 68,
   ),
 )

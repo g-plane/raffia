@@ -326,24 +326,21 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                     }
                 }
-                Token::Dot(..) | Token::Hash(..) if !self.state.in_keyframes_at_rule => {
-                    if self.syntax == Syntax::Less {
-                        let stmt = if let Ok(stmt) =
-                            self.try_parse(Parser::parse_less_qualified_rule)
-                        {
-                            is_block_element = true;
-                            stmt
-                        } else if let Ok(mixin_def) = self.try_parse(LessMixinDefinition::parse) {
-                            is_block_element = true;
-                            Statement::LessMixinDefinition(mixin_def)
-                        } else {
-                            self.parse().map(Statement::LessMixinCall)?
-                        };
-                        statements.push(stmt);
-                    } else {
-                        statements.push(Statement::QualifiedRule(self.parse()?));
+                Token::Dot(..) | Token::Hash(..) if self.syntax == Syntax::Less => {
+                    let stmt = if let Ok(stmt) = self.try_parse(Parser::parse_less_qualified_rule) {
                         is_block_element = true;
-                    }
+                        stmt
+                    } else if let Ok(mixin_def) = self.try_parse(LessMixinDefinition::parse) {
+                        is_block_element = true;
+                        Statement::LessMixinDefinition(mixin_def)
+                    } else {
+                        self.parse().map(Statement::LessMixinCall)?
+                    };
+                    statements.push(stmt);
+                }
+                Token::Dot(..) | Token::Hash(..) if !self.state.in_keyframes_at_rule => {
+                    statements.push(Statement::QualifiedRule(self.parse()?));
+                    is_block_element = true;
                 }
                 Token::Ampersand(..)
                 | Token::LBracket(..)
