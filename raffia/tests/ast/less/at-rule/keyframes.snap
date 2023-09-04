@@ -44,9 +44,76 @@ Stylesheet(
         end: 17,
       ),
     ),
+    LessMixinDefinition(
+      type: "LessMixinDefinition",
+      name: ClassSelector(
+        type: "ClassSelector",
+        name: Ident(
+          type: "Ident",
+          name: "mixin",
+          raw: "mixin",
+          span: Span(
+            start: 20,
+            end: 25,
+          ),
+        ),
+        span: Span(
+          start: 19,
+          end: 25,
+        ),
+      ),
+      params: [],
+      guard: None,
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Percentage(
+                type: "Percentage",
+                value: Number(
+                  type: "Number",
+                  value: 0.0,
+                  raw: "0",
+                  span: Span(
+                    start: 32,
+                    end: 33,
+                  ),
+                ),
+                span: Span(
+                  start: 32,
+                  end: 34,
+                ),
+              ),
+            ],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 35,
+                end: 37,
+              ),
+            ),
+            span: Span(
+              start: 32,
+              end: 37,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 28,
+          end: 39,
+        ),
+      ),
+      span: Span(
+        start: 19,
+        end: 39,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 18,
+    end: 40,
   ),
 )

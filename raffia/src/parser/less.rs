@@ -1,5 +1,5 @@
 use super::{
-    state::{ParserState, QualifiedRuleContext},
+    state::{ParserState, QualifiedRuleContext, LESS_CTX_ALLOW_DIV, LESS_CTX_ALLOW_KEYFRAME_BLOCK},
     Parser,
 };
 use crate::{
@@ -416,7 +416,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     token: Token::Solidus(..),
                     ..
                 } if precedence == PRECEDENCE_MULTIPLY
-                    && (self.state.less_allow_div || can_be_division_operand(&left)) =>
+                    && (self.state.less_ctx & LESS_CTX_ALLOW_DIV != 0
+                        || can_be_division_operand(&left)) =>
                 {
                     LessOperationOperator {
                         kind: LessOperationOperatorKind::Division,
@@ -571,7 +572,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let (_, Span { start, .. }) = expect!(self, LParen);
         let operation = self
             .with_state(ParserState {
-                less_allow_div: true,
+                less_ctx: self.state.less_ctx | LESS_CTX_ALLOW_DIV,
                 ..self.state.clone()
             })
             .parse_less_operation(allow_mixin_call)?;
@@ -1305,7 +1306,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                 _ => 'maybe: {
                     let value = input
                         .with_state(ParserState {
-                            less_allow_div: true,
+                            less_ctx: input.state.less_ctx | LESS_CTX_ALLOW_DIV,
                             ..input.state.clone()
                         })
                         .parse::<ComponentValue>()?;
@@ -1333,7 +1334,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
                         } else {
                             input
                                 .with_state(ParserState {
-                                    less_allow_div: true,
+                                    less_ctx: input.state.less_ctx | LESS_CTX_ALLOW_DIV,
                                     ..input.state.clone()
                                 })
                                 .parse_maybe_less_list(/* allow_comma */ false)?
@@ -1429,7 +1430,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinDefinition<'s> {
             _ => None,
         };
 
-        let block = input.parse::<SimpleBlock>()?;
+        let block = input
+            .with_state(ParserState {
+                less_ctx: input.state.less_ctx | LESS_CTX_ALLOW_KEYFRAME_BLOCK,
+                ..input.state.clone()
+            })
+            .parse::<SimpleBlock>()?;
 
         let span = Span {
             start: name.span().start,
@@ -1726,7 +1732,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessVariableDeclaration<'s> {
         } else {
             input
                 .with_state(ParserState {
-                    less_allow_div: true,
+                    less_ctx: input.state.less_ctx | LESS_CTX_ALLOW_DIV,
                     ..input.state.clone()
                 })
                 .parse_maybe_less_list(/* allow_comma */ true)?
