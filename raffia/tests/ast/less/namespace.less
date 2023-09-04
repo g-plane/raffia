@@ -1,0 +1,27 @@
+.foo {
+  color1: @defaults[@default-color];
+  color2: @defaults[@nested][@color];
+  color3: @theme[color];
+  color4: @theme[@nested][color];
+  color5: @defaults[@@varToGet];
+  prop: #ns1[foo];
+  var: #ns1[@foo];
+  prop: .ns1[foo];
+  var: .ns1[@foo];
+  sub: #ns1.vars[$sub];
+  color: #DEF.colors[primary];
+  treat: .foods[@@key-to-lookup];
+  margin: (@margins[ten]/2);
+  width: #library.sizes[@width];
+  height: #library.add-one(1px)[@return];
+  width: .add(10px, 10px)[];
+  bar: @return[];
+  val: #ns.options[val1] + @ns[@options][val2];
+}
+
+@media (min-width: @breakpoints[mobile]) {}
+@media #ns.breakpoint(.valToGet[])[@max] {}
+
+& when (#ns.options[option]) {}
+& when (#ns.options[option] = true) {}
+& when (@ns[@options][option]) {}
