@@ -103,8 +103,41 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &mut self,
         needs_parens: bool,
     ) -> PResult<LessCondition<'s>> {
-        self.try_parse(|parser| parser.parse_less_condition(needs_parens))
-            .or_else(|_| self.parse_less_condition_atom())
+        self.try_parse(|parser| {
+            let condition = parser.parse_less_condition(needs_parens);
+            match &condition {
+                Ok(LessCondition::Parenthesized(LessParenthesizedCondition {
+                    condition: inner_condition,
+                    span,
+                })) => match &**inner_condition {
+                    LessCondition::Value(ComponentValue::LessBinaryOperation(..))
+                        if matches!(
+                            peek!(parser).token,
+                            Token::GreaterThan(..)
+                                | Token::GreaterThanEqual(..)
+                                | Token::LessThan(..)
+                                | Token::LessThanEqual(..)
+                                | Token::Equal(..)
+                                | Token::Plus(..)
+                                | Token::Minus(..)
+                                | Token::Asterisk(..)
+                                | Token::Solidus(..)
+                        ) =>
+                    {
+                        // special case:
+                        // `when ((8 + 6) > 13)`
+                        // the `(8 + 6)` above is operation, not condition
+                        Err(Error {
+                            kind: ErrorKind::TryParseError,
+                            span: span.clone(),
+                        })
+                    }
+                    _ => condition,
+                },
+                _ => condition,
+            }
+        })
+        .or_else(|_| self.parse_less_condition_atom())
     }
 
     fn parse_less_condition_recursively(

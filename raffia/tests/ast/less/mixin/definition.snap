@@ -7658,9 +7658,148 @@ Stylesheet(
         end: 3083,
       ),
     ),
+    LessConditionalQualifiedRule(
+      type: "LessConditionalQualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "conditions-parser-1",
+                      raw: "conditions-parser-1",
+                      span: Span(
+                        start: 3086,
+                        end: 3105,
+                      ),
+                    ),
+                    span: Span(
+                      start: 3085,
+                      end: 3105,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 3085,
+                  end: 3105,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 3085,
+              end: 3105,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 3085,
+          end: 3105,
+        ),
+      ),
+      guard: LessConditions(
+        type: "LessConditions",
+        conditions: [
+          LessParenthesizedCondition(
+            type: "LessParenthesizedCondition",
+            condition: LessBinaryCondition(
+              type: "LessBinaryCondition",
+              left: LessParenthesizedOperation(
+                type: "LessParenthesizedOperation",
+                operation: LessBinaryOperation(
+                  type: "LessBinaryOperation",
+                  left: Number(
+                    type: "Number",
+                    value: 8.0,
+                    raw: "8",
+                    span: Span(
+                      start: 3113,
+                      end: 3114,
+                    ),
+                  ),
+                  op: LessOperationOperator(
+                    type: "LessOperationOperator",
+                    kind: Plus,
+                    span: Span(
+                      start: 3114,
+                      end: 3115,
+                    ),
+                  ),
+                  right: Number(
+                    type: "Number",
+                    value: 6.0,
+                    raw: "6",
+                    span: Span(
+                      start: 3115,
+                      end: 3116,
+                    ),
+                  ),
+                  span: Span(
+                    start: 3113,
+                    end: 3116,
+                  ),
+                ),
+                span: Span(
+                  start: 3112,
+                  end: 3117,
+                ),
+              ),
+              op: LessBinaryConditionOperator(
+                type: "LessBinaryConditionOperator",
+                kind: LessThan,
+                span: Span(
+                  start: 3118,
+                  end: 3119,
+                ),
+              ),
+              right: Number(
+                type: "Number",
+                value: 13.0,
+                raw: "13",
+                span: Span(
+                  start: 3120,
+                  end: 3122,
+                ),
+              ),
+              span: Span(
+                start: 3112,
+                end: 3122,
+              ),
+            ),
+            span: Span(
+              start: 3111,
+              end: 3123,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 3111,
+          end: 3123,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 3124,
+          end: 3126,
+        ),
+      ),
+      span: Span(
+        start: 3085,
+        end: 3126,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 3084,
+    end: 3127,
   ),
 )
