@@ -872,11 +872,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for InterpolableIdent<'s> {
                 // Less variable interpolation is disallowed in declaration value
                 if matches!(
                     input.state.qualified_rule_ctx,
-                    Some(QualifiedRuleContext::Selector | QualifiedRuleContext::DeclarationName)
+                    Some(QualifiedRuleContext::DeclarationValue)
                 ) {
-                    input.parse_less_interpolated_ident()
-                } else {
                     input.parse().map(InterpolableIdent::Literal)
+                } else {
+                    input.parse_less_interpolated_ident()
                 }
             }
         }
