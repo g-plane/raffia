@@ -1078,7 +1078,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                         if name.eq_ignore_ascii_case("nth-child")
                             || name.eq_ignore_ascii_case("nth-last-child") =>
                     {
-                        if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+                        if input.syntax == Syntax::Css {
+                            input.parse().map(PseudoClassSelectorArg::Nth)?
+                        } else {
                             if let Ok(nth) = input.try_parse(Nth::parse) {
                                 PseudoClassSelectorArg::Nth(nth)
                             } else {
@@ -1086,8 +1088,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                                     .parse_tokens_in_parens()
                                     .map(PseudoClassSelectorArg::TokenSeq)?
                             }
-                        } else {
-                            input.parse().map(PseudoClassSelectorArg::Nth)?
                         }
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
@@ -1096,7 +1096,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             || name.eq_ignore_ascii_case("nth-col")
                             || name.eq_ignore_ascii_case("nth-last-col") =>
                     'pseudo_arg: {
-                        let nth = if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+                        let nth = if input.syntax == Syntax::Css {
+                            input.parse()?
+                        } else {
                             if let Ok(nth) = input.try_parse(Nth::parse) {
                                 nth
                             } else {
@@ -1104,8 +1106,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                                     .parse_tokens_in_parens()
                                     .map(PseudoClassSelectorArg::TokenSeq)?;
                             }
-                        } else {
-                            input.parse()?
                         };
                         if let Some(NthMatcher { span, .. }) = &nth.matcher {
                             input.recoverable_errors.push(Error {
