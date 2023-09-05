@@ -24,6 +24,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 let expr = self.parse_calc_expr()?;
                 expect!(self, RParen);
                 expr
+            } else if self.syntax == Syntax::Less {
+                if matches!(peek!(self).token, Token::Minus(..)) {
+                    ComponentValue::LessNegativeValue(self.parse()?)
+                } else {
+                    self.parse_component_value_atom()?
+                }
             } else {
                 self.parse_component_value_atom()?
             }
