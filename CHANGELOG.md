@@ -5,6 +5,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of `@starting-style` at-rule.
 - Changed structure of comments.
 - Changed AST of dimension.
+- Fixed span when there's a trailing comma in `SelectorList`.
 
 ## v0.3.0
 

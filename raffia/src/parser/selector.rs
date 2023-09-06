@@ -1295,6 +1295,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
 
         let is_css = input.syntax == Syntax::Css;
         while let Some((_, comma_span)) = eat!(input, Comma) {
+            span.end = comma_span.end;
             comma_spans.push(comma_span);
             if !is_css
                 && matches!(
@@ -1304,7 +1305,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             {
                 break;
             }
-            selectors.push(input.parse()?);
+
+            let selector = input.parse::<ComplexSelector>()?;
+            span.end = selector.span.end;
+            selectors.push(selector);
         }
 
         debug_assert!(if is_css {
@@ -1313,11 +1317,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SelectorList<'s> {
             selectors.len() - comma_spans.len() <= 1
         });
 
-        // SAFETY: it has at least one element.
-        span.end = unsafe {
-            let index = selectors.len() - 1;
-            selectors.get_unchecked(index).span().end
-        };
         Ok(SelectorList {
             selectors,
             comma_spans,
