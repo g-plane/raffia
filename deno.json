@@ -1,5 +1,0 @@
-{
-  "tasks": {
-    "wasmbuild": "deno run -A https://deno.land/x/wasmbuild@0.8.5/main.ts -p wasm --out wasm/pkg"
-  }
-}

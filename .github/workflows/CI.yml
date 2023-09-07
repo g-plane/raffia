@@ -43,17 +43,9 @@ jobs:
             ~/.cargo/git/db/
             target/
           key: ${{ runner.os }}-wasm-${{ hashFiles('**/Cargo.toml') }}
-      - uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-      - name: Cache Deno Dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cache/deno
-            ~/.cache/wasmbuild
-          key: ${{ runner.os }}-deno-${{ hashFiles('deno.json') }}
-      - run: deno task wasmbuild
+      - name: Install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - run: wasm-pack build --target web --no-typescript wasm
       - name: Deploy Production
         run: netlify deploy --site=raffia --dir=wasm/pkg --prod
         env:
