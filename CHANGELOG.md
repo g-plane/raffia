@@ -6,6 +6,7 @@ _This changelog only relates to the `raffia` crate._
 - Changed structure of comments.
 - Changed AST of dimension.
 - Fixed span when there's a trailing comma in `SelectorList`.
+- Changed `Syntax` enum ser/de-able only when `config_serde` enabled.
 
 ## v0.3.0
 

@@ -18,4 +18,5 @@ insta = { version = "1.29", features = ["glob", "ron"] }
 serde_json = "1.0"
 
 [features]
+config_serde = ["serde"]
 serialize = ["serde"]

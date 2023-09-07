@@ -1,5 +1,5 @@
 {
-  "rust-analyzer.cargo.features": ["serialize"],
+  "rust-analyzer.cargo.features": ["config_serde", "serialize"],
   "[css][scss][less]": {
     "editor.formatOnSave": false
   }
