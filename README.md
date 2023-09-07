@@ -27,7 +27,7 @@ For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 
 - CSS: Almost completed.
 - SCSS/Sass: Almost completed.
-- Less: Only a few features are implemented.
+- Less: Almost completed.
 
 ## ⌛ Benchmark
 
