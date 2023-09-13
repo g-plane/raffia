@@ -1086,14 +1086,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                     {
                         if input.syntax == Syntax::Css {
                             input.parse().map(PseudoClassSelectorArg::Nth)?
+                        } else if let Ok(nth) = input.try_parse(Nth::parse) {
+                            PseudoClassSelectorArg::Nth(nth)
                         } else {
-                            if let Ok(nth) = input.try_parse(Nth::parse) {
-                                PseudoClassSelectorArg::Nth(nth)
-                            } else {
-                                input
-                                    .parse_tokens_in_parens()
-                                    .map(PseudoClassSelectorArg::TokenSeq)?
-                            }
+                            input
+                                .parse_tokens_in_parens()
+                                .map(PseudoClassSelectorArg::TokenSeq)?
                         }
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
@@ -1104,14 +1102,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                     'pseudo_arg: {
                         let nth = if input.syntax == Syntax::Css {
                             input.parse()?
+                        } else if let Ok(nth) = input.try_parse(Nth::parse) {
+                            nth
                         } else {
-                            if let Ok(nth) = input.try_parse(Nth::parse) {
-                                nth
-                            } else {
-                                break 'pseudo_arg input
-                                    .parse_tokens_in_parens()
-                                    .map(PseudoClassSelectorArg::TokenSeq)?;
-                            }
+                            break 'pseudo_arg input
+                                .parse_tokens_in_parens()
+                                .map(PseudoClassSelectorArg::TokenSeq)?;
                         };
                         if let Some(NthMatcher { span, .. }) = &nth.matcher {
                             input.recoverable_errors.push(Error {
