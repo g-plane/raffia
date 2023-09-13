@@ -253,7 +253,7 @@ Stylesheet(
                   type: "SassParenthesizedExpression",
                   expr: SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "value1",
@@ -273,7 +273,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 195,
                       end: 208,
@@ -433,7 +433,7 @@ Stylesheet(
                   type: "SassParenthesizedExpression",
                   expr: SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "value1",
@@ -444,10 +444,15 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 314,
+                        end: 315,
+                      ),
+                    ]),
                     span: Span(
                       start: 308,
-                      end: 314,
+                      end: 315,
                     ),
                   ),
                   span: Span(
@@ -672,7 +677,7 @@ Stylesheet(
                 type: "SassArbitraryArgument",
                 value: SassList(
                   type: "SassList",
-                  items: [
+                  elements: [
                     Ident(
                       type: "Ident",
                       name: "a",
@@ -701,7 +706,7 @@ Stylesheet(
                       ),
                     ),
                   ],
-                  separator: Space,
+                  commaSpans: None,
                   span: Span(
                     start: 470,
                     end: 475,

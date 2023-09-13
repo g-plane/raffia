@@ -29,6 +29,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         &mut self,
         allow_comma: bool,
     ) -> PResult<ComponentValue<'s>> {
+        use util::ListSeparatorKind;
+
         let single_value = if allow_comma {
             self.parse_maybe_sass_list(false)?
         } else if let Token::Exclamation(..) = peek!(self).token {
@@ -37,8 +39,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             self.parse_sass_bin_expr()?
         };
 
-        let mut items = vec![];
-        let mut separator = SassListSeparatorKind::Unknown;
+        let mut elements = vec![];
+        let mut comma_spans: Option<Vec<_>> = None;
+        let mut separator = ListSeparatorKind::Unknown;
         let mut end = single_value.span().end;
         loop {
             match peek!(self).token {
@@ -55,56 +58,64 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if !allow_comma {
                         break;
                     }
-                    match separator {
-                        SassListSeparatorKind::Unknown => separator = SassListSeparatorKind::Comma,
-                        SassListSeparatorKind::Comma => {}
-                        SassListSeparatorKind::Space => break,
+                    if separator == ListSeparatorKind::Space {
+                        break;
+                    } else {
+                        if separator == ListSeparatorKind::Unknown {
+                            separator = ListSeparatorKind::Comma;
+                        }
+                        let TokenWithSpan { span, .. } = bump!(self);
+                        end = span.end;
+                        if let Some(spans) = &mut comma_spans {
+                            spans.push(span);
+                        } else {
+                            comma_spans = Some(vec![span]);
+                        }
                     }
-                    bump!(self);
                 }
                 Token::Exclamation(..) => {
                     if let Ok(important_annotation) = self.try_parse(ImportantAnnotation::parse) {
                         if end < important_annotation.span.start
-                            && matches!(separator, SassListSeparatorKind::Unknown)
+                            && matches!(separator, ListSeparatorKind::Unknown)
                         {
-                            separator = SassListSeparatorKind::Space;
+                            separator = ListSeparatorKind::Space;
                         }
                         end = important_annotation.span.end;
-                        items.push(ComponentValue::ImportantAnnotation(important_annotation));
+                        elements.push(ComponentValue::ImportantAnnotation(important_annotation));
                     } else {
                         break;
                     }
                 }
                 _ => {
-                    if matches!(separator, SassListSeparatorKind::Unknown) {
-                        separator = SassListSeparatorKind::Space;
+                    if separator == ListSeparatorKind::Unknown {
+                        separator = ListSeparatorKind::Space;
                     }
-                    let item = if matches!(separator, SassListSeparatorKind::Comma) {
+                    let item = if separator == ListSeparatorKind::Comma {
                         self.parse_maybe_sass_list(false)?
                     } else {
                         self.parse_sass_bin_expr()?
                     };
                     end = item.span().end;
-                    items.push(item);
+                    elements.push(item);
                 }
             }
         }
 
-        if items.is_empty() && !matches!(separator, SassListSeparatorKind::Comma) {
+        if elements.is_empty() && separator != ListSeparatorKind::Comma {
             // If there is a trailing comma it can be a Sass list,
             // though there is only one element.
             Ok(single_value)
         } else {
-            debug_assert_ne!(separator, SassListSeparatorKind::Unknown);
+            debug_assert_ne!(separator, ListSeparatorKind::Unknown);
 
             let span = Span {
                 start: single_value.span().start,
                 end,
             };
-            items.insert(0, single_value);
+            elements.insert(0, single_value);
             Ok(ComponentValue::SassList(SassList {
-                items,
-                separator,
+                elements,
+                comma_spans,
                 span,
             }))
         }

@@ -28,7 +28,7 @@ Stylesheet(
         type: "SassParenthesizedExpression",
         expr: SassList(
           type: "SassList",
-          items: [
+          elements: [
             Ident(
               type: "Ident",
               name: "a",
@@ -57,7 +57,16 @@ Stylesheet(
               ),
             ),
           ],
-          separator: Comma,
+          commaSpans: Some([
+            Span(
+              start: 17,
+              end: 18,
+            ),
+            Span(
+              start: 20,
+              end: 21,
+            ),
+          ]),
           span: Span(
             start: 16,
             end: 23,
@@ -303,12 +312,12 @@ Stylesheet(
       ],
       expr: SassList(
         type: "SassList",
-        items: [
+        elements: [
           SassParenthesizedExpression(
             type: "SassParenthesizedExpression",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Str(
                   type: "Str",
                   value: "",
@@ -328,7 +337,12 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Comma,
+              commaSpans: Some([
+                Span(
+                  start: 103,
+                  end: 104,
+                ),
+              ]),
               span: Span(
                 start: 101,
                 end: 117,
@@ -343,7 +357,7 @@ Stylesheet(
             type: "SassParenthesizedExpression",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Str(
                   type: "Str",
                   value: ":hover",
@@ -363,7 +377,12 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Comma,
+              commaSpans: Some([
+                Span(
+                  start: 143,
+                  end: 144,
+                ),
+              ]),
               span: Span(
                 start: 135,
                 end: 157,
@@ -378,7 +397,7 @@ Stylesheet(
             type: "SassParenthesizedExpression",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Str(
                   type: "Str",
                   value: ":active",
@@ -398,7 +417,12 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Comma,
+              commaSpans: Some([
+                Span(
+                  start: 184,
+                  end: 185,
+                ),
+              ]),
               span: Span(
                 start: 175,
                 end: 196,
@@ -410,7 +434,16 @@ Stylesheet(
             ),
           ),
         ],
-        separator: Comma,
+        commaSpans: Some([
+          Span(
+            start: 118,
+            end: 119,
+          ),
+          Span(
+            start: 158,
+            end: 159,
+          ),
+        ]),
         span: Span(
           start: 100,
           end: 197,

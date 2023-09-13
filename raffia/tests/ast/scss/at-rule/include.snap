@@ -1225,7 +1225,7 @@ Stylesheet(
           type: "SassArbitraryArgument",
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "a",
@@ -1263,7 +1263,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 692,
               end: 699,
@@ -1301,7 +1301,7 @@ Stylesheet(
             type: "SassParenthesizedExpression",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "a",
@@ -1339,7 +1339,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 727,
                 end: 734,
@@ -1382,7 +1382,7 @@ Stylesheet(
             type: "SassParenthesizedExpression",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "a",
@@ -1420,7 +1420,20 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Comma,
+              commaSpans: Some([
+                Span(
+                  start: 764,
+                  end: 765,
+                ),
+                Span(
+                  start: 767,
+                  end: 768,
+                ),
+                Span(
+                  start: 770,
+                  end: 771,
+                ),
+              ]),
               span: Span(
                 start: 763,
                 end: 773,
@@ -1735,7 +1748,7 @@ Stylesheet(
           type: "SassArbitraryArgument",
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "a",
@@ -1755,7 +1768,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 911,
               end: 914,
@@ -1866,7 +1879,7 @@ Stylesheet(
           type: "SassArbitraryArgument",
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "b",
@@ -1886,7 +1899,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 960,
               end: 963,

@@ -424,7 +424,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -444,7 +444,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 342,
               end: 354,
@@ -476,7 +476,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -496,7 +496,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 362,
               end: 374,
@@ -528,7 +528,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -548,7 +548,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 382,
               end: 394,
@@ -600,7 +600,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -620,7 +620,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 431,
               end: 443,
@@ -652,7 +652,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -672,7 +672,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 460,
               end: 472,
@@ -704,7 +704,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -724,7 +724,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 489,
               end: 501,
@@ -890,7 +890,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "overridden",
@@ -910,7 +910,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 653,
               end: 665,
@@ -962,7 +962,7 @@ Stylesheet(
           ),
           value: SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "configured",
@@ -989,7 +989,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 699,
               end: 720,

@@ -27,7 +27,7 @@ Stylesheet(
         type: "SassParenthesizedExpression",
         expr: SassList(
           type: "SassList",
-          items: [
+          elements: [
             Ident(
               type: "Ident",
               name: "alpha",
@@ -56,10 +56,23 @@ Stylesheet(
               ),
             ),
           ],
-          separator: Comma,
+          commaSpans: Some([
+            Span(
+              start: 15,
+              end: 16,
+            ),
+            Span(
+              start: 21,
+              end: 22,
+            ),
+            Span(
+              start: 28,
+              end: 29,
+            ),
+          ]),
           span: Span(
             start: 10,
-            end: 28,
+            end: 29,
           ),
         ),
         span: Span(
@@ -97,7 +110,7 @@ Stylesheet(
         type: "SassParenthesizedExpression",
         expr: SassList(
           type: "SassList",
-          items: [
+          elements: [
             Ident(
               type: "Ident",
               name: "alpha",
@@ -108,10 +121,15 @@ Stylesheet(
               ),
             ),
           ],
-          separator: Comma,
+          commaSpans: Some([
+            Span(
+              start: 61,
+              end: 62,
+            ),
+          ]),
           span: Span(
             start: 56,
-            end: 61,
+            end: 62,
           ),
         ),
         span: Span(
@@ -147,10 +165,10 @@ Stylesheet(
       ),
       value: SassList(
         type: "SassList",
-        items: [
+        elements: [
           SassList(
             type: "SassList",
-            items: [
+            elements: [
               Number(
                 type: "Number",
                 value: 0.0,
@@ -203,7 +221,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 88,
               end: 107,
@@ -211,7 +229,7 @@ Stylesheet(
           ),
           SassList(
             type: "SassList",
-            items: [
+            elements: [
               Number(
                 type: "Number",
                 value: 0.0,
@@ -264,14 +282,19 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 109,
               end: 129,
             ),
           ),
         ],
-        separator: Comma,
+        commaSpans: Some([
+          Span(
+            start: 107,
+            end: 108,
+          ),
+        ]),
         span: Span(
           start: 88,
           end: 129,
@@ -307,10 +330,10 @@ Stylesheet(
         type: "SassParenthesizedExpression",
         expr: SassList(
           type: "SassList",
-          items: [
+          elements: [
             SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Dimension(
                   type: "Dimension",
                   value: Number(
@@ -347,17 +370,22 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 140,
                 end: 149,
               ),
             ),
           ],
-          separator: Comma,
+          commaSpans: Some([
+            Span(
+              start: 149,
+              end: 150,
+            ),
+          ]),
           span: Span(
             start: 140,
-            end: 149,
+            end: 150,
           ),
         ),
         span: Span(
@@ -393,7 +421,7 @@ Stylesheet(
       ),
       value: SassList(
         type: "SassList",
-        items: [
+        elements: [
           SassVariable(
             type: "SassVariable",
             name: Ident(
@@ -429,7 +457,7 @@ Stylesheet(
             ),
           ),
         ],
-        separator: Space,
+        commaSpans: None,
         span: Span(
           start: 170,
           end: 191,

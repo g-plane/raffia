@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -201,7 +200,7 @@ Stylesheet(
             ),
             value: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "a",
@@ -230,7 +229,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 64,
                 end: 73,
@@ -508,7 +507,7 @@ Stylesheet(
       ),
       value: SassList(
         type: "SassList",
-        items: [
+        elements: [
           Ident(
             type: "Ident",
             name: "new",
@@ -528,7 +527,7 @@ Stylesheet(
             ),
           ),
         ],
-        separator: Space,
+        commaSpans: None,
         span: Span(
           start: 180,
           end: 189,
@@ -605,7 +604,7 @@ Stylesheet(
       ),
       value: SassList(
         type: "SassList",
-        items: [
+        elements: [
           Ident(
             type: "Ident",
             name: "a",
@@ -634,7 +633,16 @@ Stylesheet(
             ),
           ),
         ],
-        separator: Comma,
+        commaSpans: Some([
+          Span(
+            start: 231,
+            end: 232,
+          ),
+          Span(
+            start: 234,
+            end: 235,
+          ),
+        ]),
         span: Span(
           start: 230,
           end: 237,

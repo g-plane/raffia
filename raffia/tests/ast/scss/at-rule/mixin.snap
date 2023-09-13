@@ -917,7 +917,7 @@ Stylesheet(
           ),
           defaultValue: Some(SassList(
             type: "SassList",
-            items: [
+            elements: [
               Ident(
                 type: "Ident",
                 name: "a",
@@ -937,7 +937,7 @@ Stylesheet(
                 ),
               ),
             ],
-            separator: Space,
+            commaSpans: None,
             span: Span(
               start: 476,
               end: 479,

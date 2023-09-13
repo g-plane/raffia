@@ -807,7 +807,7 @@ Stylesheet(
       type: "SassDebugAtRule",
       expr: SassList(
         type: "SassList",
-        items: [
+        elements: [
           Dimension(
             type: "Dimension",
             value: Number(
@@ -869,7 +869,7 @@ Stylesheet(
             ),
           ),
         ],
-        separator: Space,
+        commaSpans: None,
         span: Span(
           start: 307,
           end: 318,

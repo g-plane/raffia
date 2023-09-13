@@ -49,7 +49,7 @@ Stylesheet(
             type: "SassReturnAtRule",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "positional",
@@ -85,7 +85,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 46,
                 end: 61,
@@ -176,7 +176,7 @@ Stylesheet(
             type: "SassReturnAtRule",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "positional",
@@ -228,7 +228,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 117,
                 end: 135,
@@ -303,7 +303,7 @@ Stylesheet(
             type: "SassReturnAtRule",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "keyword",
@@ -339,7 +339,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 186,
                 end: 198,
@@ -446,7 +446,7 @@ Stylesheet(
             type: "SassReturnAtRule",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "keyword",
@@ -498,7 +498,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 257,
                 end: 272,
@@ -597,7 +597,7 @@ Stylesheet(
             type: "SassReturnAtRule",
             expr: SassList(
               type: "SassList",
-              items: [
+              elements: [
                 Ident(
                   type: "Ident",
                   name: "keyword",
@@ -649,7 +649,7 @@ Stylesheet(
                   ),
                 ),
               ],
-              separator: Space,
+              commaSpans: None,
               span: Span(
                 start: 322,
                 end: 337,

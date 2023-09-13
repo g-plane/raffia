@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -4097,7 +4096,7 @@ Stylesheet(
                 elements: [
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4117,7 +4116,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2227,
                       end: 2241,
@@ -4167,7 +4166,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4187,7 +4186,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2258,
                       end: 2272,
@@ -4246,7 +4245,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4266,7 +4265,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2290,
                       end: 2304,
@@ -4325,7 +4324,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4345,7 +4344,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2321,
                       end: 2335,
@@ -4404,7 +4403,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4424,7 +4423,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2354,
                       end: 2368,
@@ -4534,7 +4533,7 @@ Stylesheet(
                 elements: [
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4554,7 +4553,12 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2417,
+                        end: 2418,
+                      ),
+                    ]),
                     span: Span(
                       start: 2410,
                       end: 2425,
@@ -4604,7 +4608,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4624,7 +4628,12 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2449,
+                        end: 2450,
+                      ),
+                    ]),
                     span: Span(
                       start: 2442,
                       end: 2457,
@@ -4683,7 +4692,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4703,7 +4712,12 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2482,
+                        end: 2483,
+                      ),
+                    ]),
                     span: Span(
                       start: 2475,
                       end: 2490,
@@ -4762,7 +4776,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4782,7 +4796,12 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2514,
+                        end: 2515,
+                      ),
+                    ]),
                     span: Span(
                       start: 2507,
                       end: 2522,
@@ -4841,7 +4860,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "alpha",
@@ -4861,7 +4880,12 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2548,
+                        end: 2549,
+                      ),
+                    ]),
                     span: Span(
                       start: 2541,
                       end: 2556,
@@ -4971,7 +4995,7 @@ Stylesheet(
                 elements: [
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamme",
@@ -5009,7 +5033,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2599,
                       end: 2616,
@@ -5059,7 +5083,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamme",
@@ -5097,7 +5121,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2633,
                       end: 2650,
@@ -5156,7 +5180,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamme",
@@ -5194,7 +5218,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2668,
                       end: 2685,
@@ -5253,7 +5277,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamme",
@@ -5291,7 +5315,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2702,
                       end: 2719,
@@ -5350,7 +5374,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamme",
@@ -5388,7 +5412,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 2738,
                       end: 2755,
@@ -5498,7 +5522,7 @@ Stylesheet(
                 elements: [
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamma",
@@ -5510,7 +5534,7 @@ Stylesheet(
                       ),
                       SassList(
                         type: "SassList",
-                        items: [
+                        elements: [
                           Str(
                             type: "Str",
                             value: "\'",
@@ -5539,14 +5563,19 @@ Stylesheet(
                             ),
                           ),
                         ],
-                        separator: Space,
+                        commaSpans: None,
                         span: Span(
                           start: 2805,
                           end: 2816,
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2803,
+                        end: 2804,
+                      ),
+                    ]),
                     span: Span(
                       start: 2798,
                       end: 2816,
@@ -5596,7 +5625,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamma",
@@ -5608,7 +5637,7 @@ Stylesheet(
                       ),
                       SassList(
                         type: "SassList",
-                        items: [
+                        elements: [
                           Str(
                             type: "Str",
                             value: "\'",
@@ -5637,14 +5666,19 @@ Stylesheet(
                             ),
                           ),
                         ],
-                        separator: Space,
+                        commaSpans: None,
                         span: Span(
                           start: 2840,
                           end: 2851,
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2838,
+                        end: 2839,
+                      ),
+                    ]),
                     span: Span(
                       start: 2833,
                       end: 2851,
@@ -5703,7 +5737,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamma",
@@ -5715,7 +5749,7 @@ Stylesheet(
                       ),
                       SassList(
                         type: "SassList",
-                        items: [
+                        elements: [
                           Str(
                             type: "Str",
                             value: "\'",
@@ -5744,14 +5778,19 @@ Stylesheet(
                             ),
                           ),
                         ],
-                        separator: Space,
+                        commaSpans: None,
                         span: Span(
                           start: 2876,
                           end: 2887,
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2874,
+                        end: 2875,
+                      ),
+                    ]),
                     span: Span(
                       start: 2869,
                       end: 2887,
@@ -5810,7 +5849,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamma",
@@ -5822,7 +5861,7 @@ Stylesheet(
                       ),
                       SassList(
                         type: "SassList",
-                        items: [
+                        elements: [
                           Str(
                             type: "Str",
                             value: "\'",
@@ -5851,14 +5890,19 @@ Stylesheet(
                             ),
                           ),
                         ],
-                        separator: Space,
+                        commaSpans: None,
                         span: Span(
                           start: 2911,
                           end: 2922,
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2909,
+                        end: 2910,
+                      ),
+                    ]),
                     span: Span(
                       start: 2904,
                       end: 2922,
@@ -5917,7 +5961,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Ident(
                         type: "Ident",
                         name: "gamma",
@@ -5929,7 +5973,7 @@ Stylesheet(
                       ),
                       SassList(
                         type: "SassList",
-                        items: [
+                        elements: [
                           Str(
                             type: "Str",
                             value: "\'",
@@ -5958,14 +6002,19 @@ Stylesheet(
                             ),
                           ),
                         ],
-                        separator: Space,
+                        commaSpans: None,
                         span: Span(
                           start: 2948,
                           end: 2959,
                         ),
                       ),
                     ],
-                    separator: Comma,
+                    commaSpans: Some([
+                      Span(
+                        start: 2946,
+                        end: 2947,
+                      ),
+                    ]),
                     span: Span(
                       start: 2941,
                       end: 2959,
@@ -12573,7 +12622,7 @@ Stylesheet(
                 elements: [
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "[",
@@ -12602,7 +12651,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 7521,
                       end: 7532,
@@ -12652,7 +12701,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "[",
@@ -12681,7 +12730,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 7549,
                       end: 7560,
@@ -12740,7 +12789,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "[",
@@ -12769,7 +12818,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 7578,
                       end: 7589,
@@ -12828,7 +12877,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "[",
@@ -12857,7 +12906,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 7606,
                       end: 7617,
@@ -12916,7 +12965,7 @@ Stylesheet(
                   ),
                   SassList(
                     type: "SassList",
-                    items: [
+                    elements: [
                       Str(
                         type: "Str",
                         value: "[",
@@ -12945,7 +12994,7 @@ Stylesheet(
                         ),
                       ),
                     ],
-                    separator: Space,
+                    commaSpans: None,
                     span: Span(
                       start: 7636,
                       end: 7647,
