@@ -278,6 +278,7 @@ pub struct CompoundSelector<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct CompoundSelectorList<'s> {
     pub selectors: Vec<CompoundSelector<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1496,6 +1497,7 @@ pub struct RelativeSelector<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct RelativeSelectorList<'s> {
     pub selectors: Vec<RelativeSelector<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 

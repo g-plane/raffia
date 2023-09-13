@@ -191,6 +191,12 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [
+                  Span(
+                    start: 31,
+                    end: 32,
+                  ),
+                ],
                 span: Span(
                   start: 29,
                   end: 35,
@@ -327,6 +333,7 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [],
                 span: Span(
                   start: 58,
                   end: 68,
@@ -477,6 +484,7 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [],
                 span: Span(
                   start: 104,
                   end: 112,

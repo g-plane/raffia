@@ -820,7 +820,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
         let mut span = first.span.clone();
 
         let mut selectors = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             selectors.push(input.parse()?);
         }
 
@@ -829,7 +831,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelectorList<'s> {
             let index = selectors.len() - 1;
             selectors.get_unchecked(index).span().end
         };
-        Ok(CompoundSelectorList { selectors, span })
+        Ok(CompoundSelectorList {
+            selectors,
+            comma_spans,
+            span,
+        })
     }
 }
 
@@ -1271,7 +1277,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelectorList<'s> {
         let mut span = first.span.clone();
 
         let mut selectors = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             selectors.push(input.parse()?);
         }
 
@@ -1280,7 +1288,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for RelativeSelectorList<'s> {
             let index = selectors.len() - 1;
             selectors.get_unchecked(index).span().end
         };
-        Ok(RelativeSelectorList { selectors, span })
+        Ok(RelativeSelectorList {
+            selectors,
+            comma_spans,
+            span,
+        })
     }
 }
 
