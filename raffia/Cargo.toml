@@ -6,6 +6,7 @@ authors = ["Pig Fang <g-plane@hotmail.com>"]
 description = "One parser for CSS/SCSS/Sass/Less."
 repository = "https://github.com/g-plane/raffia"
 license = "MIT"
+exclude = ["/tests"]
 
 [dependencies]
 raffia_macro = { path = "../raffia_macro", version = "0.1" }
