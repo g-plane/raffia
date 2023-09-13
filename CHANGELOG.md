@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Changed AST of `@supports` at-rule.
+
 ## v0.4.0
 
 - Added support of `@starting-style` at-rule.

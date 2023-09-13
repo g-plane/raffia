@@ -2879,39 +2879,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 966,
-                        end: 971,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 971,
-                      end: 972,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 973,
-                          end: 976,
+                          start: 966,
+                          end: 971,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 971,
+                        end: 972,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 973,
+                            end: 976,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 966,
+                        end: 976,
+                      ),
+                    ),
                     span: Span(
-                      start: 966,
-                      end: 976,
+                      start: 965,
+                      end: 977,
                     ),
                   ),
                   span: Span(
@@ -3160,39 +3167,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1093,
-                        end: 1098,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1098,
-                      end: 1099,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1100,
-                          end: 1103,
+                          start: 1093,
+                          end: 1098,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1098,
+                        end: 1099,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1100,
+                            end: 1103,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1093,
+                        end: 1103,
+                      ),
+                    ),
                     span: Span(
-                      start: 1093,
-                      end: 1103,
+                      start: 1092,
+                      end: 1104,
                     ),
                   ),
                   span: Span(
@@ -3459,39 +3473,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1235,
-                        end: 1240,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1240,
-                      end: 1241,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1242,
-                          end: 1245,
+                          start: 1235,
+                          end: 1240,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1240,
+                        end: 1241,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1242,
+                            end: 1245,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1235,
+                        end: 1245,
+                      ),
+                    ),
                     span: Span(
-                      start: 1235,
-                      end: 1245,
+                      start: 1234,
+                      end: 1246,
                     ),
                   ),
                   span: Span(
@@ -3767,39 +3788,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1388,
-                        end: 1393,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1393,
-                      end: 1394,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1395,
-                          end: 1398,
+                          start: 1388,
+                          end: 1393,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1393,
+                        end: 1394,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1395,
+                            end: 1398,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1388,
+                        end: 1398,
+                      ),
+                    ),
                     span: Span(
-                      start: 1388,
-                      end: 1398,
+                      start: 1387,
+                      end: 1399,
                     ),
                   ),
                   span: Span(
@@ -4066,39 +4094,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1535,
-                        end: 1540,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1540,
-                      end: 1541,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1542,
-                          end: 1545,
+                          start: 1535,
+                          end: 1540,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1540,
+                        end: 1541,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1542,
+                            end: 1545,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1535,
+                        end: 1545,
+                      ),
+                    ),
                     span: Span(
-                      start: 1535,
-                      end: 1545,
+                      start: 1534,
+                      end: 1546,
                     ),
                   ),
                   span: Span(
@@ -4365,39 +4400,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1674,
-                        end: 1679,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1679,
-                      end: 1680,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1681,
-                          end: 1684,
+                          start: 1674,
+                          end: 1679,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1679,
+                        end: 1680,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1681,
+                            end: 1684,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1674,
+                        end: 1684,
+                      ),
+                    ),
                     span: Span(
-                      start: 1674,
-                      end: 1684,
+                      start: 1673,
+                      end: 1685,
                     ),
                   ),
                   span: Span(
@@ -4673,39 +4715,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 1824,
-                        end: 1829,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 1829,
-                      end: 1830,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 1831,
-                          end: 1834,
+                          start: 1824,
+                          end: 1829,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 1829,
+                        end: 1830,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 1831,
+                            end: 1834,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 1824,
+                        end: 1834,
+                      ),
+                    ),
                     span: Span(
-                      start: 1824,
-                      end: 1834,
+                      start: 1823,
+                      end: 1835,
                     ),
                   ),
                   span: Span(
@@ -4887,39 +4936,46 @@ Stylesheet(
       prelude: Some(SupportsCondition(
         type: "SupportsCondition",
         conditions: [
-          SupportsDecl(
-            type: "SupportsDecl",
-            decl: Declaration(
-              type: "Declaration",
-              name: Ident(
-                type: "Ident",
-                name: "color",
-                raw: "color",
-                span: Span(
-                  start: 1934,
-                  end: 1939,
-                ),
-              ),
-              colonSpan: Span(
-                start: 1939,
-                end: 1940,
-              ),
-              value: [
-                Ident(
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
                   type: "Ident",
-                  name: "red",
-                  raw: "red",
+                  name: "color",
+                  raw: "color",
                   span: Span(
-                    start: 1941,
-                    end: 1944,
+                    start: 1934,
+                    end: 1939,
                   ),
                 ),
-              ],
-              important: None,
-              lessPropertyMerge: None,
+                colonSpan: Span(
+                  start: 1939,
+                  end: 1940,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "red",
+                    raw: "red",
+                    span: Span(
+                      start: 1941,
+                      end: 1944,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 1934,
+                  end: 1944,
+                ),
+              ),
               span: Span(
-                start: 1934,
-                end: 1944,
+                start: 1933,
+                end: 1945,
               ),
             ),
             span: Span(
@@ -5183,39 +5239,46 @@ Stylesheet(
       prelude: Some(SupportsCondition(
         type: "SupportsCondition",
         conditions: [
-          SupportsDecl(
-            type: "SupportsDecl",
-            decl: Declaration(
-              type: "Declaration",
-              name: Ident(
-                type: "Ident",
-                name: "color",
-                raw: "color",
-                span: Span(
-                  start: 2070,
-                  end: 2075,
-                ),
-              ),
-              colonSpan: Span(
-                start: 2075,
-                end: 2076,
-              ),
-              value: [
-                Ident(
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
                   type: "Ident",
-                  name: "red",
-                  raw: "red",
+                  name: "color",
+                  raw: "color",
                   span: Span(
-                    start: 2077,
-                    end: 2080,
+                    start: 2070,
+                    end: 2075,
                   ),
                 ),
-              ],
-              important: None,
-              lessPropertyMerge: None,
+                colonSpan: Span(
+                  start: 2075,
+                  end: 2076,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "red",
+                    raw: "red",
+                    span: Span(
+                      start: 2077,
+                      end: 2080,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 2070,
+                  end: 2080,
+                ),
+              ),
               span: Span(
-                start: 2070,
-                end: 2080,
+                start: 2069,
+                end: 2081,
               ),
             ),
             span: Span(
@@ -5564,39 +5627,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2232,
-                        end: 2237,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2237,
-                      end: 2238,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2239,
-                          end: 2242,
+                          start: 2232,
+                          end: 2237,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2237,
+                        end: 2238,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2239,
+                            end: 2242,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2232,
+                        end: 2242,
+                      ),
+                    ),
                     span: Span(
-                      start: 2232,
-                      end: 2242,
+                      start: 2231,
+                      end: 2243,
                     ),
                   ),
                   span: Span(
@@ -5863,39 +5933,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2376,
-                        end: 2381,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2381,
-                      end: 2382,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2383,
-                          end: 2386,
+                          start: 2376,
+                          end: 2381,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2381,
+                        end: 2382,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2383,
+                            end: 2386,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2376,
+                        end: 2386,
+                      ),
+                    ),
                     span: Span(
-                      start: 2376,
-                      end: 2386,
+                      start: 2375,
+                      end: 2387,
                     ),
                   ),
                   span: Span(
@@ -6171,39 +6248,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2533,
-                        end: 2538,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2538,
-                      end: 2539,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2540,
-                          end: 2543,
+                          start: 2533,
+                          end: 2538,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2538,
+                        end: 2539,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2540,
+                            end: 2543,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2533,
+                        end: 2543,
+                      ),
+                    ),
                     span: Span(
-                      start: 2533,
-                      end: 2543,
+                      start: 2532,
+                      end: 2544,
                     ),
                   ),
                   span: Span(
@@ -6479,39 +6563,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2688,
-                        end: 2693,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2693,
-                      end: 2694,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2695,
-                          end: 2698,
+                          start: 2688,
+                          end: 2693,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2693,
+                        end: 2694,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2695,
+                            end: 2698,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2688,
+                        end: 2698,
+                      ),
+                    ),
                     span: Span(
-                      start: 2688,
-                      end: 2698,
+                      start: 2687,
+                      end: 2699,
                     ),
                   ),
                   span: Span(
@@ -6787,39 +6878,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2843,
-                        end: 2848,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2848,
-                      end: 2849,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2850,
-                          end: 2853,
+                          start: 2843,
+                          end: 2848,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2848,
+                        end: 2849,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2850,
+                            end: 2853,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2843,
+                        end: 2853,
+                      ),
+                    ),
                     span: Span(
-                      start: 2843,
-                      end: 2853,
+                      start: 2842,
+                      end: 2854,
                     ),
                   ),
                   span: Span(
@@ -7086,39 +7184,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 2989,
-                        end: 2994,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 2994,
-                      end: 2995,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 2996,
-                          end: 2999,
+                          start: 2989,
+                          end: 2994,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 2994,
+                        end: 2995,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 2996,
+                            end: 2999,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 2989,
+                        end: 2999,
+                      ),
+                    ),
                     span: Span(
-                      start: 2989,
-                      end: 2999,
+                      start: 2988,
+                      end: 3000,
                     ),
                   ),
                   span: Span(
@@ -7385,39 +7490,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 3130,
-                        end: 3135,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 3135,
-                      end: 3136,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 3137,
-                          end: 3140,
+                          start: 3130,
+                          end: 3135,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 3135,
+                        end: 3136,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 3137,
+                            end: 3140,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 3130,
+                        end: 3140,
+                      ),
+                    ),
                     span: Span(
-                      start: 3130,
-                      end: 3140,
+                      start: 3129,
+                      end: 3141,
                     ),
                   ),
                   span: Span(
@@ -7693,39 +7805,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 3284,
-                        end: 3289,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 3289,
-                      end: 3290,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 3291,
-                          end: 3294,
+                          start: 3284,
+                          end: 3289,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 3289,
+                        end: 3290,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 3291,
+                            end: 3294,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 3284,
+                        end: 3294,
+                      ),
+                    ),
                     span: Span(
-                      start: 3284,
-                      end: 3294,
+                      start: 3283,
+                      end: 3295,
                     ),
                   ),
                   span: Span(
@@ -8001,39 +8120,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 3436,
-                        end: 3441,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 3441,
-                      end: 3442,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 3443,
-                          end: 3446,
+                          start: 3436,
+                          end: 3441,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 3441,
+                        end: 3442,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 3443,
+                            end: 3446,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 3436,
+                        end: 3446,
+                      ),
+                    ),
                     span: Span(
-                      start: 3436,
-                      end: 3446,
+                      start: 3435,
+                      end: 3447,
                     ),
                   ),
                   span: Span(
@@ -8309,39 +8435,46 @@ Stylesheet(
             prelude: Some(SupportsCondition(
               type: "SupportsCondition",
               conditions: [
-                SupportsDecl(
-                  type: "SupportsDecl",
-                  decl: Declaration(
-                    type: "Declaration",
-                    name: Ident(
-                      type: "Ident",
-                      name: "color",
-                      raw: "color",
-                      span: Span(
-                        start: 3588,
-                        end: 3593,
-                      ),
-                    ),
-                    colonSpan: Span(
-                      start: 3593,
-                      end: 3594,
-                    ),
-                    value: [
-                      Ident(
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
                         type: "Ident",
-                        name: "red",
-                        raw: "red",
+                        name: "color",
+                        raw: "color",
                         span: Span(
-                          start: 3595,
-                          end: 3598,
+                          start: 3588,
+                          end: 3593,
                         ),
                       ),
-                    ],
-                    important: None,
-                    lessPropertyMerge: None,
+                      colonSpan: Span(
+                        start: 3593,
+                        end: 3594,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 3595,
+                            end: 3598,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 3588,
+                        end: 3598,
+                      ),
+                    ),
                     span: Span(
-                      start: 3588,
-                      end: 3598,
+                      start: 3587,
+                      end: 3599,
                     ),
                   ),
                   span: Span(

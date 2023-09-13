@@ -2168,10 +2168,18 @@ pub struct SupportsDecl<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SupportsInParens<'s> {
+    pub kind: SupportsInParensKind<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum SupportsInParens<'s> {
+pub enum SupportsInParensKind<'s> {
     SupportsCondition(SupportsCondition<'s>),
     Feature(Box<SupportsDecl<'s>>),
     Selector(SelectorList<'s>),

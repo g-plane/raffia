@@ -79,15 +79,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
                 ..
             } => input
                 .try_parse(|parser| {
-                    parser
-                        .parse()
-                        .map(|supports_decl| SupportsInParens::Feature(Box::new(supports_decl)))
+                    parser.parse::<SupportsDecl>().map(|supports_decl| {
+                        let span = supports_decl.span.clone();
+                        SupportsInParens {
+                            kind: SupportsInParensKind::Feature(Box::new(supports_decl)),
+                            span,
+                        }
+                    })
                 })
                 .or_else(|_| {
-                    expect!(input, LParen);
+                    let (_, Span { start, .. }) = expect!(input, LParen);
                     let condition = input.parse()?;
-                    expect!(input, RParen);
-                    Ok(SupportsInParens::SupportsCondition(condition))
+                    let (_, Span { end, .. }) = expect!(input, RParen);
+                    Ok(SupportsInParens {
+                        kind: SupportsInParensKind::SupportsCondition(condition),
+                        span: Span { start, end },
+                    })
                 }),
             TokenWithSpan {
                 token: Token::Ident(..),
@@ -96,13 +103,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SupportsInParens<'s> {
                 let function_ident = input.parse::<Ident>()?;
                 if function_ident.name.eq_ignore_ascii_case("selector") {
                     expect!(input, LParen);
-                    let selector_list = input.parse()?;
+                    let selector_list = input.parse::<SelectorList>()?;
                     expect!(input, RParen);
-                    Ok(SupportsInParens::Selector(selector_list))
+                    let span = selector_list.span.clone();
+                    Ok(SupportsInParens {
+                        kind: SupportsInParensKind::Selector(selector_list),
+                        span,
+                    })
                 } else {
-                    Ok(SupportsInParens::Function(input.parse_function(
-                        InterpolableIdent::Literal(function_ident),
-                    )?))
+                    let function =
+                        input.parse_function(InterpolableIdent::Literal(function_ident))?;
+                    let span = function.span.clone();
+                    Ok(SupportsInParens {
+                        kind: SupportsInParensKind::Function(function),
+                        span,
+                    })
                 }
             }
             TokenWithSpan { token, span } => Err(Error {
