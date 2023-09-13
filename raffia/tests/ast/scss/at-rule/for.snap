@@ -61,44 +61,71 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassForAtRule(
-            type: "SassForAtRule",
-            binding: SassVariable(
-              type: "SassVariable",
-              name: Ident(
-                type: "Ident",
-                name: "i",
-                raw: "i",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "for",
+              raw: "for",
+              span: Span(
+                start: 7,
+                end: 10,
+              ),
+            ),
+            prelude: Some(SassFor(
+              type: "SassFor",
+              binding: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "i",
+                  raw: "i",
+                  span: Span(
+                    start: 12,
+                    end: 13,
+                  ),
+                ),
                 span: Span(
-                  start: 12,
+                  start: 11,
                   end: 13,
+                ),
+              ),
+              fromSpan: Span(
+                start: 14,
+                end: 18,
+              ),
+              start: Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 19,
+                  end: 20,
+                ),
+              ),
+              end: Number(
+                type: "Number",
+                value: 5.0,
+                raw: "5",
+                span: Span(
+                  start: 29,
+                  end: 30,
+                ),
+              ),
+              boundary: SassForBoundary(
+                type: "SassForBoundary",
+                kind: Inclusive,
+                span: Span(
+                  start: 21,
+                  end: 28,
                 ),
               ),
               span: Span(
                 start: 11,
-                end: 13,
-              ),
-            ),
-            start: Number(
-              type: "Number",
-              value: 1.0,
-              raw: "1",
-              span: Span(
-                start: 19,
-                end: 20,
-              ),
-            ),
-            end: Number(
-              type: "Number",
-              value: 5.0,
-              raw: "5",
-              span: Span(
-                start: 29,
                 end: 30,
               ),
-            ),
-            isExclusive: false,
-            body: SimpleBlock(
+            )),
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -146,7 +173,7 @@ Stylesheet(
                 start: 31,
                 end: 39,
               ),
-            ),
+            )),
             span: Span(
               start: 6,
               end: 39,
@@ -220,44 +247,71 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassForAtRule(
-            type: "SassForAtRule",
-            binding: SassVariable(
-              type: "SassVariable",
-              name: Ident(
-                type: "Ident",
-                name: "i",
-                raw: "i",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "for",
+              raw: "for",
+              span: Span(
+                start: 50,
+                end: 53,
+              ),
+            ),
+            prelude: Some(SassFor(
+              type: "SassFor",
+              binding: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "i",
+                  raw: "i",
+                  span: Span(
+                    start: 55,
+                    end: 56,
+                  ),
+                ),
                 span: Span(
-                  start: 55,
+                  start: 54,
                   end: 56,
+                ),
+              ),
+              fromSpan: Span(
+                start: 57,
+                end: 61,
+              ),
+              start: Number(
+                type: "Number",
+                value: 1.0,
+                raw: "1",
+                span: Span(
+                  start: 62,
+                  end: 63,
+                ),
+              ),
+              end: Number(
+                type: "Number",
+                value: 5.0,
+                raw: "5",
+                span: Span(
+                  start: 67,
+                  end: 68,
+                ),
+              ),
+              boundary: SassForBoundary(
+                type: "SassForBoundary",
+                kind: Exclusive,
+                span: Span(
+                  start: 64,
+                  end: 66,
                 ),
               ),
               span: Span(
                 start: 54,
-                end: 56,
-              ),
-            ),
-            start: Number(
-              type: "Number",
-              value: 1.0,
-              raw: "1",
-              span: Span(
-                start: 62,
-                end: 63,
-              ),
-            ),
-            end: Number(
-              type: "Number",
-              value: 5.0,
-              raw: "5",
-              span: Span(
-                start: 67,
                 end: 68,
               ),
-            ),
-            isExclusive: true,
-            body: SimpleBlock(
+            )),
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -305,7 +359,7 @@ Stylesheet(
                 start: 69,
                 end: 77,
               ),
-            ),
+            )),
             span: Span(
               start: 49,
               end: 77,

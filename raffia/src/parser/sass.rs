@@ -1,5 +1,5 @@
 use super::{
-    state::{ParserState, SASS_CTX_ALLOW_DIV, SASS_CTX_ALLOW_KEYFRAME_BLOCK, SASS_CTX_IN_FUNCTION},
+    state::{ParserState, SASS_CTX_ALLOW_DIV},
     Parser,
 };
 use crate::{
@@ -118,72 +118,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 comma_spans,
                 span,
             }))
-        }
-    }
-
-    pub(super) fn parse_sass_at_rule(
-        &mut self,
-        at_keyword_name: &str,
-    ) -> PResult<Option<(Statement<'s>, bool)>> {
-        debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-        match at_keyword_name {
-            "each" => Ok(Some((Statement::SassEachAtRule(self.parse()?), true))),
-            "for" => Ok(Some((Statement::SassForAtRule(self.parse()?), true))),
-            "if" => Ok(Some((Statement::SassIfAtRule(self.parse()?), true))),
-            "while" => Ok(Some((Statement::SassWhileAtRule(self.parse()?), true))),
-            "mixin" => Ok(Some((
-                Statement::SassMixinAtRule(
-                    self.with_state(ParserState {
-                        sass_ctx: self.state.sass_ctx | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
-                        ..self.state.clone()
-                    })
-                    .parse()?,
-                ),
-                true,
-            ))),
-            "include" => {
-                let at_rule = self
-                    .with_state(ParserState {
-                        sass_ctx: self.state.sass_ctx | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
-                        ..self.state.clone()
-                    })
-                    .parse::<SassIncludeAtRule>()?;
-                let is_block = at_rule.block.is_some();
-                Ok(Some((Statement::SassIncludeAtRule(at_rule), is_block)))
-            }
-            "content" => Ok(Some((Statement::SassContentAtRule(self.parse()?), false))),
-            "use" => Ok(Some((Statement::SassUseAtRule(self.parse()?), false))),
-            "function" => Ok(Some((
-                Statement::SassFunctionAtRule(
-                    self.with_state(ParserState {
-                        sass_ctx: self.state.sass_ctx | SASS_CTX_IN_FUNCTION,
-                        ..self.state.clone()
-                    })
-                    .parse()?,
-                ),
-                true,
-            ))),
-            "return" => {
-                let rule = self.parse::<SassReturnAtRule>()?;
-                if self.state.sass_ctx & SASS_CTX_IN_FUNCTION == 0 {
-                    self.recoverable_errors.push(Error {
-                        kind: ErrorKind::ReturnOutsideFunction,
-                        span: rule.span.clone(),
-                    });
-                }
-                Ok(Some((Statement::SassReturnAtRule(rule), false)))
-            }
-            "extend" => Ok(Some((Statement::SassExtendAtRule(self.parse()?), false))),
-            "forward" => Ok(Some((Statement::SassForwardAtRule(self.parse()?), false))),
-            "at-root" => Ok(Some((Statement::SassAtRootAtRule(self.parse()?), true))),
-            "warn" => Ok(Some((Statement::SassWarnAtRule(self.parse()?), false))),
-            "error" => Ok(Some((Statement::SassErrorAtRule(self.parse()?), false))),
-            "debug" => Ok(Some((Statement::SassDebugAtRule(self.parse()?), false))),
-            "else" => Err(Error {
-                kind: ErrorKind::UnexpectedSassElseAtRule,
-                span: bump!(self).span,
-            }),
-            _ => Ok(None),
         }
     }
 
@@ -620,25 +554,45 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     fn parse_sass_module_config(
         &mut self,
         allow_overridable: bool,
-    ) -> PResult<Option<Vec<SassModuleConfigItem<'s>>>> {
+    ) -> PResult<Option<SassModuleConfig<'s>>> {
         match &peek!(self).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("with") => {
-                bump!(self);
-                expect!(self, LParen);
-                let mut config = vec![self.parse_sass_module_config_item(allow_overridable)?];
-                if !matches!(&peek!(self).token, Token::RParen(..)) {
-                    expect!(self, Comma);
-                }
+                let TokenWithSpan {
+                    span: with_span, ..
+                } = bump!(self);
+                let start = with_span.start;
+                let end;
+                let (_, lparen_span) = expect!(self, LParen);
 
-                while eat!(self, RParen).is_none() {
-                    config.push(self.parse_sass_module_config_item(allow_overridable)?);
-                    if eat!(self, RParen).is_some() {
-                        break;
-                    } else {
-                        expect!(self, Comma);
+                let mut items = vec![self.parse_sass_module_config_item(allow_overridable)?];
+                let mut comma_spans = vec![];
+                if let Some((_, span)) = eat!(self, RParen) {
+                    end = span.end;
+                } else {
+                    comma_spans.push(expect!(self, Comma).1);
+                    loop {
+                        if let Some((_, span)) = eat!(self, RParen) {
+                            end = span.end;
+                            break;
+                        }
+
+                        items.push(self.parse_sass_module_config_item(allow_overridable)?);
+                        if let Some((_, span)) = eat!(self, RParen) {
+                            end = span.end;
+                            break;
+                        } else {
+                            comma_spans.push(expect!(self, Comma).1);
+                        }
                     }
                 }
-                Ok(Some(config))
+
+                Ok(Some(SassModuleConfig {
+                    with_span,
+                    lparen_span,
+                    items,
+                    comma_spans,
+                    span: Span { start, end },
+                }))
             }
             _ => Ok(None),
         }
@@ -674,10 +628,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     /// This method will consume `)` token.
     fn parse_sass_params(
         &mut self,
-    ) -> PResult<(Vec<SassParameter<'s>>, Option<SassArbitraryParameter<'s>>)> {
+    ) -> PResult<(
+        Vec<SassParameter<'s>>,
+        Option<SassArbitraryParameter<'s>>,
+        usize,
+    )> {
         let mut parameters = vec![];
         let mut arbitrary_parameter = None;
-        while eat!(self, RParen).is_none() {
+        let end;
+        loop {
+            if let Some((_, span)) = eat!(self, RParen) {
+                end = span.end;
+                break;
+            }
+
             let name = self.parse::<SassVariable>()?;
             let token_with_span = bump!(self);
             match token_with_span.token {
@@ -709,7 +673,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     };
                     arbitrary_parameter = Some(SassArbitraryParameter { name, span });
                     eat!(self, Comma);
-                    expect!(self, RParen);
+                    end = expect!(self, RParen).1.end;
                     break;
                 }
                 Token::RParen(..) => {
@@ -719,6 +683,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         default_value: None,
                         span,
                     });
+                    end = token_with_span.span.end;
                     break;
                 }
                 token => {
@@ -728,14 +693,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     });
                 }
             }
-            if eat!(self, RParen).is_some() {
+            if let Some((_, span)) = eat!(self, RParen) {
+                end = span.end;
                 break;
             } else {
                 expect!(self, Comma);
             }
         }
 
-        Ok((parameters, arbitrary_parameter))
+        Ok((parameters, arbitrary_parameter, end))
     }
 
     pub(super) fn parse_sass_qualified_name(
@@ -795,35 +761,16 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRoot<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let mut selector = None;
-        let mut query = None;
-        let block: SimpleBlock;
-
-        match &peek!(input).token {
-            Token::LBrace(..) => block = input.parse()?,
-            Token::LParen(..) => {
-                query = Some(input.parse()?);
-                block = input.parse()?;
-            }
-            _ => {
-                selector = Some(input.parse()?);
-                block = input.parse()?;
-            }
-        }
-
-        let span = Span {
-            start,
-            end: block.span.end,
+        let kind = if matches!(peek!(input).token, Token::LParen(..)) {
+            SassAtRootKind::Query(input.parse()?)
+        } else {
+            SassAtRootKind::Selector(input.parse()?)
         };
-        Ok(SassAtRootAtRule {
-            selector,
-            query,
-            block,
-            span,
-        })
+
+        let span = kind.span().clone();
+        Ok(SassAtRoot { kind, span })
     }
 }
 
@@ -831,13 +778,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootQuery<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, LParen).1.start;
 
-        let kind = {
+        let modifier = {
             let (token, span) = expect!(input, Ident);
             let ident_name = token.name();
             if ident_name.eq_ignore_ascii_case("with") {
-                SassAtRootQueryKind::With
+                SassAtRootQueryModifier {
+                    kind: SassAtRootQueryModifierKind::With,
+                    span,
+                }
             } else if ident_name.eq_ignore_ascii_case("without") {
-                SassAtRootQueryKind::Without
+                SassAtRootQueryModifier {
+                    kind: SassAtRootQueryModifierKind::Without,
+                    span,
+                }
             } else {
                 return Err(Error {
                     kind: ErrorKind::ExpectSassAtRootWithOrWithout,
@@ -845,7 +798,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootQuery<'s> {
                 });
             }
         };
-        expect!(input, Colon);
+        let colon_span = expect!(input, Colon).1;
 
         let mut rules = Vec::with_capacity(1);
         loop {
@@ -862,7 +815,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassAtRootQuery<'s> {
         let end = expect!(input, RParen).1.end;
 
         Ok(SassAtRootQuery {
-            kind,
+            modifier,
+            colon_span,
             rules,
             span: Span { start, end },
         })
@@ -885,45 +839,26 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassConditionalClause<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContentAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContent<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let (_, span) = expect!(input, AtKeyword);
-        let mut end = span.end;
-
-        let arguments = if eat!(input, LParen).is_some() {
-            let arguments = input.parse_sass_invocation_args()?;
-            end = expect!(input, RParen).1.end;
-            Some(arguments)
-        } else {
-            None
-        };
-        Ok(SassContentAtRule {
-            arguments,
-            span: Span {
-                start: span.start,
-                end,
-            },
+        let (_, Span { start, .. }) = expect!(input, LParen);
+        let args = input.parse_sass_invocation_args()?;
+        let (_, Span { end, .. }) = expect!(input, RParen);
+        Ok(SassContent {
+            args,
+            span: Span { start, end },
         })
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassDebugAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEach<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
-        let span = Span {
-            start,
-            end: expr.span().end,
-        };
-        Ok(SassDebugAtRule { expr, span })
-    }
-}
+        debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
+        let first_binding = input.parse::<SassVariable>()?;
+        let start = first_binding.span().start;
 
-        let mut bindings = vec![input.parse()?];
+        let mut bindings = vec![first_binding];
         while eat!(input, Comma).is_some() {
             bindings.push(input.parse()?);
         }
@@ -937,41 +872,29 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEachAtRule<'s> {
         }
 
         let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
-        let body = input.parse::<SimpleBlock>()?;
         let span = Span {
             start,
-            end: body.span.end,
+            end: expr.span().end,
         };
-        Ok(SassEachAtRule {
+        Ok(SassEach {
             bindings,
+            in_span: keyword_in_span,
             expr,
-            body,
             span,
         })
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassErrorAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtend<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
-        let span = Span {
-            start,
-            end: expr.span().end,
-        };
-        Ok(SassErrorAtRule { expr, span })
-    }
-}
-
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-
-        let selectors = input.parse()?;
+        let selectors = input.parse::<CompoundSelectorList>()?;
+        let start = selectors.span.start;
+        let mut end = selectors.span.end;
 
         let optional = if let Some((_, exclamation_span)) = eat!(input, Exclamation) {
             let (keyword, keyword_span) = expect_without_ws_or_comments!(input, Ident);
             if keyword.name().eq_ignore_ascii_case("optional") {
+                end = keyword_span.end;
                 let span = Span {
                     start: exclamation_span.start,
                     end: keyword_span.end,
@@ -991,8 +914,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
             None
         };
 
-        let end = input.tokenizer.current_offset();
-        Ok(SassExtendAtRule {
+        Ok(SassExtend {
             selectors,
             optional,
             span: Span { start, end },
@@ -1000,13 +922,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassExtendAtRule<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFor<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let at_keyword_span = expect!(input, AtKeyword).1;
-
-        let binding = input.parse()?;
+        let binding = input.parse::<SassVariable>()?;
 
         let (keyword_from, keyword_from_span) = expect!(input, Ident);
         if keyword_from.name() != "from" {
@@ -1015,42 +935,52 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForAtRule<'s> {
                 span: keyword_from_span,
             });
         }
+
         let start = input.parse()?;
+        let boundary = input.parse()?;
+        let end = input.parse::<ComponentValue>()?;
 
-        let (keyword_to_or_through, keyword_to_or_through_span) = expect!(input, Ident);
-        let keyword_to_or_through_name = keyword_to_or_through.name();
-        if keyword_to_or_through_name != "to" && keyword_to_or_through_name != "through" {
-            return Err(Error {
-                kind: ErrorKind::ExpectSassKeyword("to"),
-                span: keyword_to_or_through_span,
-            });
-        }
-        let is_exclusive = keyword_to_or_through_name == "to";
-        let end = input.parse()?;
-
-        let body = input.parse::<SimpleBlock>()?;
         let span = Span {
-            start: at_keyword_span.start,
-            end: body.span.end,
+            start: binding.span.start,
+            end: end.span().end,
         };
-        Ok(SassForAtRule {
+        Ok(SassFor {
             binding,
+            from_span: keyword_from_span,
             start,
             end,
-            is_exclusive,
-            body,
+            boundary,
             span,
         })
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForBoundary {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (keyword, span) = expect!(input, Ident);
+        match &*keyword.name() {
+            "to" => Ok(SassForBoundary {
+                kind: SassForBoundaryKind::Exclusive,
+                span,
+            }),
+            "through" => Ok(SassForBoundary {
+                kind: SassForBoundaryKind::Inclusive,
+                span,
+            }),
+            _ => Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("to"),
+                span,
+            }),
+        }
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForward<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let start = expect!(input, AtKeyword).1.start;
-
-        let path = input.parse()?;
+        let path = input.parse::<InterpolableStr>()?;
+        let mut span = path.span().clone();
 
         let prefix = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("as") => {
@@ -1070,8 +1000,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
             let start = keyword_span.start;
             let name = keyword.name();
             if name.eq_ignore_ascii_case("hide") {
-                bump!(input);
+                let keyword_span = bump!(input).span;
                 let mut members = vec![];
+                let mut comma_spans = vec![];
                 loop {
                     match &peek!(input).token {
                         Token::Ident(..) => {
@@ -1079,21 +1010,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
                         }
                         _ => members.push(input.parse().map(SassForwardMember::Variable)?),
                     }
-                    if eat!(input, Comma).is_none() {
+                    if let Some((_, span)) = eat!(input, Comma) {
+                        comma_spans.push(span);
+                    } else {
                         break;
                     }
                 }
                 Some(SassForwardVisibility {
-                    kind: SassForwardVisibilityKind::Hide,
+                    modifier: SassForwardVisibilityModifier {
+                        kind: SassForwardVisibilityModifierKind::Hide,
+                        span: keyword_span,
+                    },
                     members,
+                    comma_spans,
                     span: Span {
                         start,
                         end: input.tokenizer.current_offset(),
                     },
                 })
             } else if name.eq_ignore_ascii_case("show") {
-                bump!(input);
+                let keyword_span = bump!(input).span;
                 let mut members = vec![];
+                let mut comma_spans = vec![];
                 loop {
                     match &peek!(input).token {
                         Token::Ident(..) => {
@@ -1101,13 +1039,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
                         }
                         _ => members.push(input.parse().map(SassForwardMember::Variable)?),
                     }
-                    if eat!(input, Comma).is_none() {
+                    if let Some((_, span)) = eat!(input, Comma) {
+                        comma_spans.push(span);
+                    } else {
                         break;
                     }
                 }
                 Some(SassForwardVisibility {
-                    kind: SassForwardVisibilityKind::Show,
+                    modifier: SassForwardVisibilityModifier {
+                        kind: SassForwardVisibilityModifierKind::Show,
+                        span: keyword_span,
+                    },
                     members,
+                    comma_spans,
                     span: Span {
                         start,
                         end: input.tokenizer.current_offset(),
@@ -1121,42 +1065,36 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForwardAtRule<'s> {
         };
 
         let config = input.parse_sass_module_config(/* allow_overridable */ true)?;
+        if let Some(config) = &config {
+            span.end = config.span.end;
+        }
 
-        Ok(SassForwardAtRule {
+        Ok(SassForward {
             path,
             prefix,
             visibility,
             config,
-            span: Span {
-                start,
-                end: input.tokenizer.current_offset(),
-            },
+            span,
         })
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunctionAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassFunction<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let start = expect!(input, AtKeyword).1.start;
+        let name = input.parse::<Ident>()?;
+        let start = name.span.start;
 
-        let name = input.parse()?;
-
-        expect!(input, LParen);
-        let (parameters, arbitrary_parameter) = input.parse_sass_params()?;
-
-        let body = input.parse::<SimpleBlock>()?;
+        let parameters = input.parse::<SassParameters>()?;
 
         let span = Span {
             start,
-            end: body.span.end,
+            end: parameters.span.end,
         };
-        Ok(SassFunctionAtRule {
+        Ok(SassFunction {
             name,
             parameters,
-            arbitrary_parameter,
-            body,
             span,
         })
     }
@@ -1229,48 +1167,74 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassImportPrelude<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInclude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let start = expect!(input, AtKeyword).1.start;
+        let name = input.parse::<FunctionName>()?;
+        let mut span = name.span().clone();
 
-        let name = input.parse()?;
-
-        let arguments = if eat!(input, LParen).is_some() {
-            let arguments = input.parse_sass_invocation_args()?;
-            expect!(input, RParen);
+        let arguments = if matches!(peek!(input).token, Token::LParen(..)) {
+            let arguments = input.parse::<SassIncludeArgs>()?;
+            span.end = arguments.span.end;
             Some(arguments)
         } else {
             None
         };
 
-        let (content_block_params, content_block_arbitrary_params) = match &peek!(input).token {
+        let content_block_params = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("using") => {
-                bump!(input);
-                expect!(input, LParen);
-                let (params, arbitrary_param) = input.parse_sass_params()?;
-                (Some(params), arbitrary_param)
+                let content_block_params = input.parse::<SassIncludeContentBlockParams>()?;
+                span.end = content_block_params.span.end;
+                Some(content_block_params)
             }
-            _ => (None, None),
-        };
-
-        let block = match &peek!(input).token {
-            Token::LBrace(..) => input.parse().map(Some)?,
             _ => None,
         };
 
-        Ok(SassIncludeAtRule {
+        Ok(SassInclude {
             name,
             arguments,
             content_block_params,
-            content_block_arbitrary_param: content_block_arbitrary_params,
-            block,
-            span: Span {
-                start,
-                end: input.tokenizer.current_offset(),
-            },
+            span,
         })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeArgs<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, Span { start, .. }) = expect!(input, LParen);
+        let args = input.parse_sass_invocation_args()?;
+        let (_, Span { end, .. }) = expect!(input, RParen);
+        Ok(SassIncludeArgs {
+            args,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeContentBlockParams<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        match bump!(input) {
+            TokenWithSpan {
+                token: Token::Ident(ident),
+                span: using_span,
+            } if ident.name().eq_ignore_ascii_case("using") => {
+                let params = input.parse::<SassParameters>()?;
+                let span = Span {
+                    start: using_span.start,
+                    end: params.span.end,
+                };
+                Ok(SassIncludeContentBlockParams {
+                    using_span,
+                    params,
+                    span,
+                })
+            }
+            TokenWithSpan { span, .. } => Err(Error {
+                kind: ErrorKind::ExpectSassKeyword("using"),
+                span,
+            }),
+        }
     }
 }
 
@@ -1411,34 +1375,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMapItem<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixinAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixin<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         debug_assert!(matches!(input.syntax, Syntax::Scss | Syntax::Sass));
 
-        let start = expect!(input, AtKeyword).1.start;
+        let name = input.parse::<Ident>()?;
+        let start = name.span.start;
+        let mut end = name.span.end;
 
-        let name = input.parse()?;
-
-        let mut parameters = None;
-        let mut arbitrary_parameter = None;
-        if eat!(input, LParen).is_some() {
-            let (params, arbitrary_param) = input.parse_sass_params()?;
-            parameters = Some(params);
-            arbitrary_parameter = arbitrary_param;
-        }
-
-        let body = input.parse::<SimpleBlock>()?;
-
-        let span = Span {
-            start,
-            end: body.span.end,
+        let parameters = if matches!(peek!(input).token, Token::LParen(..)) {
+            let parameters = input.parse::<SassParameters>()?;
+            end = parameters.span.end;
+            Some(parameters)
+        } else {
+            None
         };
-        Ok(SassMixinAtRule {
+
+        Ok(SassMixin {
             name,
             parameters,
-            arbitrary_parameter,
-            body,
-            span,
+            span: Span { start, end },
+        })
+    }
+}
+
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParameters<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let (_, Span { start, .. }) = expect!(input, LParen);
+        let (params, arbitrary_param, end) = input.parse_sass_params()?;
+        Ok(SassParameters {
+            params,
+            arbitrary_param,
+            span: Span { start, end },
         })
     }
 }
@@ -1485,63 +1453,82 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassPlaceholderSelector<'s> {
     }
 }
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassReturnAtRule<'s> {
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUse<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let expr = input
-            .with_state(ParserState {
-                sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
-                ..input.state.clone()
-            })
-            .parse_maybe_sass_list(/* allow_comma */ true)?;
-        let span = Span {
-            start,
-            end: expr.span().end,
-        };
-        Ok(SassReturnAtRule { expr, span })
-    }
-}
+        let path = input.parse::<InterpolableStr>()?;
+        let mut span = path.span().clone();
 
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseAtRule<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-
-        let path = input.parse()?;
         let namespace = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("as") => {
-                bump!(input);
-                input.parse().map(Some)?
+                let namespace = input.parse::<SassUseNamespace>()?;
+                span.end = namespace.span.end;
+                Some(namespace)
             }
             _ => None,
         };
 
         let config = input.parse_sass_module_config(/* allow_overridable */ false)?;
+        if let Some(config) = &config {
+            span.end = config.span.end;
+        }
 
-        Ok(SassUseAtRule {
+        Ok(SassUse {
             path,
             namespace,
             config,
-            span: Span {
-                start,
-                end: input.tokenizer.current_offset(),
-            },
+            span,
         })
     }
 }
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseNamespace<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let token_with_span = bump!(input);
-        match token_with_span.token {
-            Token::Asterisk(..) => Ok(SassUseNamespace::Unnamed(SassUnnamedNamespace {
-                span: token_with_span.span,
-            })),
-            Token::Ident(ident) => Ok(SassUseNamespace::Named(
-                (ident, token_with_span.span).into(),
-            )),
-            _ => Err(Error {
+        let as_span = match peek!(input) {
+            TokenWithSpan {
+                token: Token::Ident(ident),
+                ..
+            } if ident.name().eq_ignore_ascii_case("as") => bump!(input).span,
+            TokenWithSpan { span, .. } => {
+                return Err(Error {
+                    kind: ErrorKind::ExpectSassKeyword("as"),
+                    span: span.clone(),
+                })
+            }
+        };
+        match bump!(input) {
+            TokenWithSpan {
+                token: Token::Asterisk(..),
+                span: asterisk_span,
+            } => {
+                let span = Span {
+                    start: as_span.start,
+                    end: asterisk_span.end,
+                };
+                Ok(SassUseNamespace {
+                    as_span,
+                    kind: SassUseNamespaceKind::Unnamed(SassUnnamedNamespace {
+                        span: asterisk_span,
+                    }),
+                    span,
+                })
+            }
+            TokenWithSpan {
+                token: Token::Ident(ident),
+                span: ident_span,
+            } => {
+                let span = Span {
+                    start: as_span.start,
+                    end: ident_span.end,
+                };
+                Ok(SassUseNamespace {
+                    as_span,
+                    kind: SassUseNamespaceKind::Named((ident, ident_span).into()),
+                    span,
+                })
+            }
+            TokenWithSpan { span, .. } => Err(Error {
                 kind: ErrorKind::ExpectSassUseNamespace,
-                span: token_with_span.span,
+                span,
             }),
         }
     }
@@ -1615,35 +1602,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             value,
             overridable: flags & FLAG_DEFAULT != 0,
             force_global,
-            span,
-        })
-    }
-}
-
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWarnAtRule<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
-        let span = Span {
-            start,
-            end: expr.span().end,
-        };
-        Ok(SassWarnAtRule { expr, span })
-    }
-}
-
-impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassWhileAtRule<'s> {
-    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        let start = expect!(input, AtKeyword).1.start;
-        let condition = input.parse()?;
-        let body = input.parse::<SimpleBlock>()?;
-        let span = Span {
-            start,
-            end: body.span.end,
-        };
-        Ok(SassWhileAtRule {
-            condition,
-            body,
             span,
         })
     }

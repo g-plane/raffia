@@ -4,6 +4,7 @@ _This changelog only relates to the `raffia` crate._
 
 - Changed AST of `@supports` at-rule.
 - Changed AST of Sass list.
+- Changed AST of most of Sass at-rules.
 
 ## v0.4.0
 

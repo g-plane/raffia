@@ -82,9 +82,18 @@ Stylesheet(
                 block: SimpleBlock(
                   type: "SimpleBlock",
                   statements: [
-                    SassDebugAtRule(
-                      type: "SassDebugAtRule",
-                      expr: Str(
+                    AtRule(
+                      type: "AtRule",
+                      name: Ident(
+                        type: "Ident",
+                        name: "debug",
+                        raw: "debug",
+                        span: Span(
+                          start: 16,
+                          end: 21,
+                        ),
+                      ),
+                      prelude: Some(Str(
                         type: "Str",
                         value: "debug",
                         raw: "\"debug\"",
@@ -92,7 +101,8 @@ Stylesheet(
                           start: 22,
                           end: 29,
                         ),
-                      ),
+                      )),
+                      block: None,
                       span: Span(
                         start: 15,
                         end: 29,
@@ -218,9 +228,18 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassDebugAtRule(
-            type: "SassDebugAtRule",
-            expr: Str(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "debug",
+              raw: "debug",
+              span: Span(
+                start: 59,
+                end: 64,
+              ),
+            ),
+            prelude: Some(Str(
               type: "Str",
               value: "debug",
               raw: "\"debug\"",
@@ -228,7 +247,8 @@ Stylesheet(
                 start: 65,
                 end: 72,
               ),
-            ),
+            )),
+            block: None,
             span: Span(
               start: 58,
               end: 72,
@@ -278,9 +298,18 @@ Stylesheet(
         end: 87,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: Str(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 90,
+          end: 95,
+        ),
+      ),
+      prelude: Some(Str(
         type: "Str",
         value: "debug",
         raw: "\"debug\"",
@@ -288,7 +317,8 @@ Stylesheet(
           start: 96,
           end: 103,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 89,
         end: 103,

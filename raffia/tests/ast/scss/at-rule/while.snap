@@ -4,9 +4,18 @@ source: raffia/tests/ast.rs
 Stylesheet(
   type: "Stylesheet",
   statements: [
-    SassWhileAtRule(
-      type: "SassWhileAtRule",
-      condition: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "while",
+        raw: "while",
+        span: Span(
+          start: 1,
+          end: 6,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: SassVariable(
           type: "SassVariable",
@@ -45,8 +54,8 @@ Stylesheet(
           start: 7,
           end: 14,
         ),
-      ),
-      body: SimpleBlock(
+      )),
+      block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
           Declaration(
@@ -160,7 +169,7 @@ Stylesheet(
           start: 15,
           end: 41,
         ),
-      ),
+      )),
       span: Span(
         start: 0,
         end: 41,

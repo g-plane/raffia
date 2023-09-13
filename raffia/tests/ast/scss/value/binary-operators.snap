@@ -736,25 +736,57 @@ Stylesheet(
         end: 251,
       ),
     ),
-    SassFunctionAtRule(
-      type: "SassFunctionAtRule",
+    AtRule(
+      type: "AtRule",
       name: Ident(
         type: "Ident",
-        name: "f",
-        raw: "f",
+        name: "function",
+        raw: "function",
         span: Span(
-          start: 263,
-          end: 264,
+          start: 254,
+          end: 262,
         ),
       ),
-      parameters: [],
-      arbitraryParameter: None,
-      body: SimpleBlock(
+      prelude: Some(SassFunction(
+        type: "SassFunction",
+        name: Ident(
+          type: "Ident",
+          name: "f",
+          raw: "f",
+          span: Span(
+            start: 263,
+            end: 264,
+          ),
+        ),
+        parameters: SassParameters(
+          type: "SassParameters",
+          params: [],
+          arbitraryParam: None,
+          span: Span(
+            start: 264,
+            end: 266,
+          ),
+        ),
+        span: Span(
+          start: 263,
+          end: 266,
+        ),
+      )),
+      block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassReturnAtRule(
-            type: "SassReturnAtRule",
-            expr: SassBinaryExpression(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "return",
+              raw: "return",
+              span: Span(
+                start: 272,
+                end: 278,
+              ),
+            ),
+            prelude: Some(SassBinaryExpression(
               type: "SassBinaryExpression",
               left: Ident(
                 type: "Ident",
@@ -786,7 +818,8 @@ Stylesheet(
                 start: 279,
                 end: 284,
               ),
-            ),
+            )),
+            block: None,
             span: Span(
               start: 271,
               end: 284,
@@ -797,15 +830,24 @@ Stylesheet(
           start: 267,
           end: 299,
         ),
-      ),
+      )),
       span: Span(
         start: 253,
         end: 299,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassList(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 301,
+          end: 306,
+        ),
+      ),
+      prelude: Some(SassList(
         type: "SassList",
         elements: [
           Dimension(
@@ -874,15 +916,25 @@ Stylesheet(
           start: 307,
           end: 318,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 300,
         end: 318,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 337,
+          end: 342,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: SassBinaryExpression(
           type: "SassBinaryExpression",
@@ -938,15 +990,25 @@ Stylesheet(
           start: 343,
           end: 352,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 336,
         end: 352,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 367,
+          end: 372,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: SassParenthesizedExpression(
           type: "SassParenthesizedExpression",
@@ -1009,15 +1071,25 @@ Stylesheet(
           start: 373,
           end: 384,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 366,
         end: 384,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 399,
+          end: 404,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: Function(
           type: "Function",
@@ -1057,15 +1129,25 @@ Stylesheet(
           start: 405,
           end: 413,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 398,
         end: 413,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 428,
+          end: 433,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: SassVariable(
           type: "SassVariable",
@@ -1104,15 +1186,25 @@ Stylesheet(
           start: 434,
           end: 442,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 427,
         end: 442,
       ),
     ),
-    SassDebugAtRule(
-      type: "SassDebugAtRule",
-      expr: SassBinaryExpression(
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "debug",
+        raw: "debug",
+        span: Span(
+          start: 457,
+          end: 462,
+        ),
+      ),
+      prelude: Some(SassBinaryExpression(
         type: "SassBinaryExpression",
         left: SassQualifiedName(
           type: "SassQualifiedName",
@@ -1167,7 +1259,8 @@ Stylesheet(
           start: 463,
           end: 475,
         ),
-      ),
+      )),
+      block: None,
       span: Span(
         start: 456,
         end: 475,

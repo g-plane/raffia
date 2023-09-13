@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -206,46 +205,63 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassExtendAtRule(
-            type: "SassExtendAtRule",
-            selectors: CompoundSelectorList(
-              type: "CompoundSelectorList",
-              selectors: [
-                CompoundSelector(
-                  type: "CompoundSelector",
-                  children: [
-                    ClassSelector(
-                      type: "ClassSelector",
-                      name: Ident(
-                        type: "Ident",
-                        name: "error",
-                        raw: "error",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "extend",
+              raw: "extend",
+              span: Span(
+                start: 69,
+                end: 75,
+              ),
+            ),
+            prelude: Some(SassExtend(
+              type: "SassExtend",
+              selectors: CompoundSelectorList(
+                type: "CompoundSelectorList",
+                selectors: [
+                  CompoundSelector(
+                    type: "CompoundSelector",
+                    children: [
+                      ClassSelector(
+                        type: "ClassSelector",
+                        name: Ident(
+                          type: "Ident",
+                          name: "error",
+                          raw: "error",
+                          span: Span(
+                            start: 77,
+                            end: 82,
+                          ),
+                        ),
                         span: Span(
-                          start: 77,
+                          start: 76,
                           end: 82,
                         ),
                       ),
-                      span: Span(
-                        start: 76,
-                        end: 82,
-                      ),
+                    ],
+                    span: Span(
+                      start: 76,
+                      end: 82,
                     ),
-                  ],
-                  span: Span(
-                    start: 76,
-                    end: 82,
                   ),
+                ],
+                span: Span(
+                  start: 76,
+                  end: 82,
                 ),
-              ],
+              ),
+              optional: None,
               span: Span(
                 start: 76,
                 end: 82,
               ),
-            ),
-            optional: None,
+            )),
+            block: None,
             span: Span(
               start: 68,
-              end: 85,
+              end: 82,
             ),
           ),
           Declaration(

@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -109,50 +108,82 @@ Stylesheet(
         end: 39,
       ),
     ),
-    SassFunctionAtRule(
-      type: "SassFunctionAtRule",
+    AtRule(
+      type: "AtRule",
       name: Ident(
         type: "Ident",
-        name: "grid-width",
-        raw: "grid-width",
+        name: "function",
+        raw: "function",
         span: Span(
-          start: 49,
-          end: 59,
+          start: 40,
+          end: 48,
         ),
       ),
-      parameters: [
-        SassParameter(
-          type: "SassParameter",
-          name: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "n",
-              raw: "n",
+      prelude: Some(SassFunction(
+        type: "SassFunction",
+        name: Ident(
+          type: "Ident",
+          name: "grid-width",
+          raw: "grid-width",
+          span: Span(
+            start: 49,
+            end: 59,
+          ),
+        ),
+        parameters: SassParameters(
+          type: "SassParameters",
+          params: [
+            SassParameter(
+              type: "SassParameter",
+              name: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "n",
+                  raw: "n",
+                  span: Span(
+                    start: 61,
+                    end: 62,
+                  ),
+                ),
+                span: Span(
+                  start: 60,
+                  end: 62,
+                ),
+              ),
+              defaultValue: None,
               span: Span(
-                start: 61,
+                start: 60,
                 end: 62,
               ),
             ),
-            span: Span(
-              start: 60,
-              end: 62,
-            ),
-          ),
-          defaultValue: None,
+          ],
+          arbitraryParam: None,
           span: Span(
-            start: 60,
-            end: 62,
+            start: 59,
+            end: 63,
           ),
         ),
-      ],
-      arbitraryParameter: None,
-      body: SimpleBlock(
+        span: Span(
+          start: 49,
+          end: 63,
+        ),
+      )),
+      block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassReturnAtRule(
-            type: "SassReturnAtRule",
-            expr: SassBinaryExpression(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "return",
+              raw: "return",
+              span: Span(
+                start: 67,
+                end: 73,
+              ),
+            ),
+            prelude: Some(SassBinaryExpression(
               type: "SassBinaryExpression",
               left: SassBinaryExpression(
                 type: "SassBinaryExpression",
@@ -291,7 +322,8 @@ Stylesheet(
                 start: 74,
                 end: 117,
               ),
-            ),
+            )),
+            block: None,
             span: Span(
               start: 66,
               end: 117,
@@ -302,7 +334,7 @@ Stylesheet(
           start: 66,
           end: 119,
         ),
-      ),
+      )),
       span: Span(
         start: 39,
         end: 119,

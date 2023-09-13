@@ -53,11 +53,19 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: None,
-            block: SimpleBlock(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 10,
+                end: 17,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -158,7 +166,7 @@ Stylesheet(
                 start: 18,
                 end: 39,
               ),
-            ),
+            )),
             span: Span(
               start: 9,
               end: 39,
@@ -224,54 +232,69 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        ClassSelector(
-                          type: "ClassSelector",
-                          name: Ident(
-                            type: "Ident",
-                            name: "bar",
-                            raw: "bar",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 53,
+                end: 60,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          ClassSelector(
+                            type: "ClassSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 62,
+                                end: 65,
+                              ),
+                            ),
                             span: Span(
-                              start: 62,
+                              start: 61,
                               end: 65,
                             ),
                           ),
-                          span: Span(
-                            start: 61,
-                            end: 65,
-                          ),
+                        ],
+                        span: Span(
+                          start: 61,
+                          end: 65,
                         ),
-                      ],
-                      span: Span(
-                        start: 61,
-                        end: 65,
                       ),
+                    ],
+                    span: Span(
+                      start: 61,
+                      end: 65,
                     ),
-                  ],
-                  span: Span(
-                    start: 61,
-                    end: 65,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 61,
+                  end: 65,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 61,
                 end: 65,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -312,7 +335,7 @@ Stylesheet(
                 start: 66,
                 end: 72,
               ),
-            ),
+            )),
             span: Span(
               start: 52,
               end: 72,
@@ -329,70 +352,100 @@ Stylesheet(
         end: 74,
       ),
     ),
-    SassMixinAtRule(
-      type: "SassMixinAtRule",
+    AtRule(
+      type: "AtRule",
       name: Ident(
         type: "Ident",
-        name: "bar",
-        raw: "bar",
+        name: "mixin",
+        raw: "mixin",
+        span: Span(
+          start: 77,
+          end: 82,
+        ),
+      ),
+      prelude: Some(SassMixin(
+        type: "SassMixin",
+        name: Ident(
+          type: "Ident",
+          name: "bar",
+          raw: "bar",
+          span: Span(
+            start: 83,
+            end: 86,
+          ),
+        ),
+        parameters: None,
         span: Span(
           start: 83,
           end: 86,
         ),
-      ),
-      parameters: None,
-      arbitraryParameter: None,
-      body: SimpleBlock(
+      )),
+      block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        ClassSelector(
-                          type: "ClassSelector",
-                          name: Ident(
-                            type: "Ident",
-                            name: "bar",
-                            raw: "bar",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 92,
+                end: 99,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          ClassSelector(
+                            type: "ClassSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 101,
+                                end: 104,
+                              ),
+                            ),
                             span: Span(
-                              start: 101,
+                              start: 100,
                               end: 104,
                             ),
                           ),
-                          span: Span(
-                            start: 100,
-                            end: 104,
-                          ),
+                        ],
+                        span: Span(
+                          start: 100,
+                          end: 104,
                         ),
-                      ],
-                      span: Span(
-                        start: 100,
-                        end: 104,
                       ),
+                    ],
+                    span: Span(
+                      start: 100,
+                      end: 104,
                     ),
-                  ],
-                  span: Span(
-                    start: 100,
-                    end: 104,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 100,
+                  end: 104,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 100,
                 end: 104,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -433,7 +486,7 @@ Stylesheet(
                 start: 105,
                 end: 111,
               ),
-            ),
+            )),
             span: Span(
               start: 91,
               end: 111,
@@ -444,7 +497,7 @@ Stylesheet(
           start: 87,
           end: 113,
         ),
-      ),
+      )),
       span: Span(
         start: 76,
         end: 113,
@@ -540,54 +593,69 @@ Stylesheet(
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: Some(SelectorList(
-                    type: "SelectorList",
-                    selectors: [
-                      ComplexSelector(
-                        type: "ComplexSelector",
-                        children: [
-                          CompoundSelector(
-                            type: "CompoundSelector",
-                            children: [
-                              ClassSelector(
-                                type: "ClassSelector",
-                                name: Ident(
-                                  type: "Ident",
-                                  name: "bar",
-                                  raw: "bar",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 145,
+                      end: 152,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SelectorList(
+                      type: "SelectorList",
+                      selectors: [
+                        ComplexSelector(
+                          type: "ComplexSelector",
+                          children: [
+                            CompoundSelector(
+                              type: "CompoundSelector",
+                              children: [
+                                ClassSelector(
+                                  type: "ClassSelector",
+                                  name: Ident(
+                                    type: "Ident",
+                                    name: "bar",
+                                    raw: "bar",
+                                    span: Span(
+                                      start: 154,
+                                      end: 157,
+                                    ),
+                                  ),
                                   span: Span(
-                                    start: 154,
+                                    start: 153,
                                     end: 157,
                                   ),
                                 ),
-                                span: Span(
-                                  start: 153,
-                                  end: 157,
-                                ),
+                              ],
+                              span: Span(
+                                start: 153,
+                                end: 157,
                               ),
-                            ],
-                            span: Span(
-                              start: 153,
-                              end: 157,
                             ),
+                          ],
+                          span: Span(
+                            start: 153,
+                            end: 157,
                           ),
-                        ],
-                        span: Span(
-                          start: 153,
-                          end: 157,
                         ),
+                      ],
+                      commaSpans: [],
+                      span: Span(
+                        start: 153,
+                        end: 157,
                       ),
-                    ],
-                    commaSpans: [],
+                    ),
                     span: Span(
                       start: 153,
                       end: 157,
                     ),
                   )),
-                  query: None,
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       Declaration(
@@ -628,7 +696,7 @@ Stylesheet(
                       start: 158,
                       end: 164,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 144,
                     end: 164,
@@ -720,54 +788,69 @@ Stylesheet(
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: Some(SelectorList(
-                    type: "SelectorList",
-                    selectors: [
-                      ComplexSelector(
-                        type: "ComplexSelector",
-                        children: [
-                          CompoundSelector(
-                            type: "CompoundSelector",
-                            children: [
-                              ClassSelector(
-                                type: "ClassSelector",
-                                name: Ident(
-                                  type: "Ident",
-                                  name: "bar",
-                                  raw: "bar",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 196,
+                      end: 203,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SelectorList(
+                      type: "SelectorList",
+                      selectors: [
+                        ComplexSelector(
+                          type: "ComplexSelector",
+                          children: [
+                            CompoundSelector(
+                              type: "CompoundSelector",
+                              children: [
+                                ClassSelector(
+                                  type: "ClassSelector",
+                                  name: Ident(
+                                    type: "Ident",
+                                    name: "bar",
+                                    raw: "bar",
+                                    span: Span(
+                                      start: 205,
+                                      end: 208,
+                                    ),
+                                  ),
                                   span: Span(
-                                    start: 205,
+                                    start: 204,
                                     end: 208,
                                   ),
                                 ),
-                                span: Span(
-                                  start: 204,
-                                  end: 208,
-                                ),
+                              ],
+                              span: Span(
+                                start: 204,
+                                end: 208,
                               ),
-                            ],
-                            span: Span(
-                              start: 204,
-                              end: 208,
                             ),
+                          ],
+                          span: Span(
+                            start: 204,
+                            end: 208,
                           ),
-                        ],
-                        span: Span(
-                          start: 204,
-                          end: 208,
                         ),
+                      ],
+                      commaSpans: [],
+                      span: Span(
+                        start: 204,
+                        end: 208,
                       ),
-                    ],
-                    commaSpans: [],
+                    ),
                     span: Span(
                       start: 204,
                       end: 208,
                     ),
                   )),
-                  query: None,
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       Declaration(
@@ -808,7 +891,7 @@ Stylesheet(
                       start: 209,
                       end: 215,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 195,
                     end: 215,
@@ -885,46 +968,61 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        NestingSelector(
-                          type: "NestingSelector",
-                          suffix: None,
-                          span: Span(
-                            start: 241,
-                            end: 242,
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 233,
+                end: 240,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          NestingSelector(
+                            type: "NestingSelector",
+                            suffix: None,
+                            span: Span(
+                              start: 241,
+                              end: 242,
+                            ),
                           ),
+                        ],
+                        span: Span(
+                          start: 241,
+                          end: 242,
                         ),
-                      ],
-                      span: Span(
-                        start: 241,
-                        end: 242,
                       ),
+                    ],
+                    span: Span(
+                      start: 241,
+                      end: 242,
                     ),
-                  ],
-                  span: Span(
-                    start: 241,
-                    end: 242,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 241,
+                  end: 242,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 241,
                 end: 242,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -965,7 +1063,7 @@ Stylesheet(
                 start: 243,
                 end: 258,
               ),
-            ),
+            )),
             span: Span(
               start: 232,
               end: 258,
@@ -1031,46 +1129,61 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        NestingSelector(
-                          type: "NestingSelector",
-                          suffix: None,
-                          span: Span(
-                            start: 280,
-                            end: 281,
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 272,
+                end: 279,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          NestingSelector(
+                            type: "NestingSelector",
+                            suffix: None,
+                            span: Span(
+                              start: 280,
+                              end: 281,
+                            ),
                           ),
+                        ],
+                        span: Span(
+                          start: 280,
+                          end: 281,
                         ),
-                      ],
-                      span: Span(
-                        start: 280,
-                        end: 281,
                       ),
+                    ],
+                    span: Span(
+                      start: 280,
+                      end: 281,
                     ),
-                  ],
-                  span: Span(
-                    start: 280,
-                    end: 281,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 280,
+                  end: 281,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 280,
                 end: 281,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -1122,46 +1235,61 @@ Stylesheet(
                   block: SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
-                      SassAtRootAtRule(
-                        type: "SassAtRootAtRule",
-                        selector: Some(SelectorList(
-                          type: "SelectorList",
-                          selectors: [
-                            ComplexSelector(
-                              type: "ComplexSelector",
-                              children: [
-                                CompoundSelector(
-                                  type: "CompoundSelector",
-                                  children: [
-                                    NestingSelector(
-                                      type: "NestingSelector",
-                                      suffix: None,
-                                      span: Span(
-                                        start: 310,
-                                        end: 311,
+                      AtRule(
+                        type: "AtRule",
+                        name: Ident(
+                          type: "Ident",
+                          name: "at-root",
+                          raw: "at-root",
+                          span: Span(
+                            start: 302,
+                            end: 309,
+                          ),
+                        ),
+                        prelude: Some(SassAtRoot(
+                          type: "SassAtRoot",
+                          kind: SelectorList(
+                            type: "SelectorList",
+                            selectors: [
+                              ComplexSelector(
+                                type: "ComplexSelector",
+                                children: [
+                                  CompoundSelector(
+                                    type: "CompoundSelector",
+                                    children: [
+                                      NestingSelector(
+                                        type: "NestingSelector",
+                                        suffix: None,
+                                        span: Span(
+                                          start: 310,
+                                          end: 311,
+                                        ),
                                       ),
+                                    ],
+                                    span: Span(
+                                      start: 310,
+                                      end: 311,
                                     ),
-                                  ],
-                                  span: Span(
-                                    start: 310,
-                                    end: 311,
                                   ),
+                                ],
+                                span: Span(
+                                  start: 310,
+                                  end: 311,
                                 ),
-                              ],
-                              span: Span(
-                                start: 310,
-                                end: 311,
                               ),
+                            ],
+                            commaSpans: [],
+                            span: Span(
+                              start: 310,
+                              end: 311,
                             ),
-                          ],
-                          commaSpans: [],
+                          ),
                           span: Span(
                             start: 310,
                             end: 311,
                           ),
                         )),
-                        query: None,
-                        block: SimpleBlock(
+                        block: Some(SimpleBlock(
                           type: "SimpleBlock",
                           statements: [
                             Declaration(
@@ -1202,7 +1330,7 @@ Stylesheet(
                             start: 312,
                             end: 335,
                           ),
-                        ),
+                        )),
                         span: Span(
                           start: 301,
                           end: 335,
@@ -1224,7 +1352,7 @@ Stylesheet(
                 start: 282,
                 end: 345,
               ),
-            ),
+            )),
             span: Span(
               start: 271,
               end: 345,
@@ -1290,96 +1418,126 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        ClassSelector(
-                          type: "ClassSelector",
-                          name: Ident(
-                            type: "Ident",
-                            name: "bar",
-                            raw: "bar",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 359,
+                end: 366,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          ClassSelector(
+                            type: "ClassSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "bar",
+                              raw: "bar",
+                              span: Span(
+                                start: 368,
+                                end: 371,
+                              ),
+                            ),
                             span: Span(
-                              start: 368,
+                              start: 367,
                               end: 371,
                             ),
                           ),
-                          span: Span(
-                            start: 367,
-                            end: 371,
-                          ),
+                        ],
+                        span: Span(
+                          start: 367,
+                          end: 371,
                         ),
-                      ],
-                      span: Span(
-                        start: 367,
-                        end: 371,
                       ),
+                    ],
+                    span: Span(
+                      start: 367,
+                      end: 371,
                     ),
-                  ],
-                  span: Span(
-                    start: 367,
-                    end: 371,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 367,
+                  end: 371,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 367,
                 end: 371,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: Some(SelectorList(
-                    type: "SelectorList",
-                    selectors: [
-                      ComplexSelector(
-                        type: "ComplexSelector",
-                        children: [
-                          CompoundSelector(
-                            type: "CompoundSelector",
-                            children: [
-                              NestingSelector(
-                                type: "NestingSelector",
-                                suffix: None,
-                                span: Span(
-                                  start: 387,
-                                  end: 388,
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 379,
+                      end: 386,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SelectorList(
+                      type: "SelectorList",
+                      selectors: [
+                        ComplexSelector(
+                          type: "ComplexSelector",
+                          children: [
+                            CompoundSelector(
+                              type: "CompoundSelector",
+                              children: [
+                                NestingSelector(
+                                  type: "NestingSelector",
+                                  suffix: None,
+                                  span: Span(
+                                    start: 387,
+                                    end: 388,
+                                  ),
                                 ),
+                              ],
+                              span: Span(
+                                start: 387,
+                                end: 388,
                               ),
-                            ],
-                            span: Span(
-                              start: 387,
-                              end: 388,
                             ),
+                          ],
+                          span: Span(
+                            start: 387,
+                            end: 388,
                           ),
-                        ],
-                        span: Span(
-                          start: 387,
-                          end: 388,
                         ),
+                      ],
+                      commaSpans: [],
+                      span: Span(
+                        start: 387,
+                        end: 388,
                       ),
-                    ],
-                    commaSpans: [],
+                    ),
                     span: Span(
                       start: 387,
                       end: 388,
                     ),
                   )),
-                  query: None,
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       Declaration(
@@ -1420,7 +1578,7 @@ Stylesheet(
                       start: 389,
                       end: 408,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 378,
                     end: 408,
@@ -1431,7 +1589,7 @@ Stylesheet(
                 start: 372,
                 end: 412,
               ),
-            ),
+            )),
             span: Span(
               start: 358,
               end: 412,
@@ -1505,11 +1663,19 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: None,
-            block: SimpleBlock(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 425,
+                end: 432,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -1704,7 +1870,7 @@ Stylesheet(
                 start: 433,
                 end: 514,
               ),
-            ),
+            )),
             span: Span(
               start: 424,
               end: 514,
@@ -1811,11 +1977,19 @@ Stylesheet(
               end: 537,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: None,
-            block: SimpleBlock(
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 543,
+                end: 550,
+              ),
+            ),
+            prelude: None,
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -1924,7 +2098,7 @@ Stylesheet(
                 start: 551,
                 end: 590,
               ),
-            ),
+            )),
             span: Span(
               start: 542,
               end: 590,
@@ -2031,62 +2205,77 @@ Stylesheet(
               end: 613,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: Some(SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        TagNameSelector(
-                          type: "TagNameSelector",
-                          name: WqName(
-                            type: "WqName",
-                            name: Ident(
-                              type: "Ident",
-                              name: "bar",
-                              raw: "bar",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 619,
+                end: 626,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          TagNameSelector(
+                            type: "TagNameSelector",
+                            name: WqName(
+                              type: "WqName",
+                              name: Ident(
+                                type: "Ident",
+                                name: "bar",
+                                raw: "bar",
+                                span: Span(
+                                  start: 627,
+                                  end: 630,
+                                ),
+                              ),
+                              prefix: None,
                               span: Span(
                                 start: 627,
                                 end: 630,
                               ),
                             ),
-                            prefix: None,
                             span: Span(
                               start: 627,
                               end: 630,
                             ),
                           ),
-                          span: Span(
-                            start: 627,
-                            end: 630,
-                          ),
+                        ],
+                        span: Span(
+                          start: 627,
+                          end: 630,
                         ),
-                      ],
-                      span: Span(
-                        start: 627,
-                        end: 630,
                       ),
+                    ],
+                    span: Span(
+                      start: 627,
+                      end: 630,
                     ),
-                  ],
-                  span: Span(
-                    start: 627,
-                    end: 630,
                   ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 627,
+                  end: 630,
                 ),
-              ],
-              commaSpans: [],
+              ),
               span: Span(
                 start: 627,
                 end: 630,
               ),
             )),
-            query: None,
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 Declaration(
@@ -2127,7 +2316,7 @@ Stylesheet(
                 start: 631,
                 end: 652,
               ),
-            ),
+            )),
             span: Span(
               start: 618,
               end: 652,
@@ -2322,29 +2511,55 @@ Stylesheet(
               end: 715,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: Some(SassAtRootQuery(
-              type: "SassAtRootQuery",
-              kind: Without,
-              rules: [
-                Ident(
-                  type: "Ident",
-                  name: "media",
-                  raw: "media",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 720,
+                end: 727,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SassAtRootQuery(
+                type: "SassAtRootQuery",
+                modifier: SassAtRootQueryModifier(
+                  type: "SassAtRootQueryModifier",
+                  kind: Without,
                   span: Span(
-                    start: 738,
-                    end: 743,
+                    start: 729,
+                    end: 736,
                   ),
                 ),
-              ],
+                colonSpan: Span(
+                  start: 736,
+                  end: 737,
+                ),
+                rules: [
+                  Ident(
+                    type: "Ident",
+                    name: "media",
+                    raw: "media",
+                    span: Span(
+                      start: 738,
+                      end: 743,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 728,
+                  end: 744,
+                ),
+              ),
               span: Span(
                 start: 728,
                 end: 744,
               ),
             )),
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -2445,7 +2660,7 @@ Stylesheet(
                 start: 745,
                 end: 787,
               ),
-            ),
+            )),
             span: Span(
               start: 719,
               end: 787,
@@ -2640,29 +2855,55 @@ Stylesheet(
               end: 850,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: Some(SassAtRootQuery(
-              type: "SassAtRootQuery",
-              kind: Without,
-              rules: [
-                Ident(
-                  type: "Ident",
-                  name: "all",
-                  raw: "all",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 855,
+                end: 862,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SassAtRootQuery(
+                type: "SassAtRootQuery",
+                modifier: SassAtRootQueryModifier(
+                  type: "SassAtRootQueryModifier",
+                  kind: Without,
                   span: Span(
-                    start: 873,
-                    end: 876,
+                    start: 864,
+                    end: 871,
                   ),
                 ),
-              ],
+                colonSpan: Span(
+                  start: 871,
+                  end: 872,
+                ),
+                rules: [
+                  Ident(
+                    type: "Ident",
+                    name: "all",
+                    raw: "all",
+                    span: Span(
+                      start: 873,
+                      end: 876,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 863,
+                  end: 877,
+                ),
+              ),
               span: Span(
                 start: 863,
                 end: 877,
               ),
             )),
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -2763,7 +3004,7 @@ Stylesheet(
                 start: 878,
                 end: 920,
               ),
-            ),
+            )),
             span: Span(
               start: 854,
               end: 920,
@@ -2935,11 +3176,19 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: None,
-                  block: SimpleBlock(
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 985,
+                      end: 992,
+                    ),
+                  ),
+                  prelude: None,
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -3040,7 +3289,7 @@ Stylesheet(
                       start: 993,
                       end: 1043,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 984,
                     end: 1043,
@@ -3223,29 +3472,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "all",
-                        raw: "all",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1112,
+                      end: 1119,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 1130,
-                          end: 1133,
+                          start: 1121,
+                          end: 1128,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 1128,
+                        end: 1129,
+                      ),
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "all",
+                          raw: "all",
+                          span: Span(
+                            start: 1130,
+                            end: 1133,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1120,
+                        end: 1134,
+                      ),
+                    ),
                     span: Span(
                       start: 1120,
                       end: 1134,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -3346,7 +3621,7 @@ Stylesheet(
                       start: 1135,
                       end: 1185,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1111,
                     end: 1185,
@@ -3529,38 +3804,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "media",
-                        raw: "media",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1254,
+                      end: 1261,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 1272,
-                          end: 1277,
+                          start: 1263,
+                          end: 1270,
                         ),
                       ),
-                      Ident(
-                        type: "Ident",
-                        name: "supports",
-                        raw: "supports",
-                        span: Span(
-                          start: 1278,
-                          end: 1286,
-                        ),
+                      colonSpan: Span(
+                        start: 1270,
+                        end: 1271,
                       ),
-                    ],
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "media",
+                          raw: "media",
+                          span: Span(
+                            start: 1272,
+                            end: 1277,
+                          ),
+                        ),
+                        Ident(
+                          type: "Ident",
+                          name: "supports",
+                          raw: "supports",
+                          span: Span(
+                            start: 1278,
+                            end: 1286,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1262,
+                        end: 1287,
+                      ),
+                    ),
                     span: Span(
                       start: 1262,
                       end: 1287,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -3661,7 +3962,7 @@ Stylesheet(
                       start: 1288,
                       end: 1338,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1253,
                     end: 1338,
@@ -3844,29 +4145,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "supports",
-                        raw: "supports",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1407,
+                      end: 1414,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 1425,
-                          end: 1433,
+                          start: 1416,
+                          end: 1423,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 1423,
+                        end: 1424,
+                      ),
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "supports",
+                          raw: "supports",
+                          span: Span(
+                            start: 1425,
+                            end: 1433,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1415,
+                        end: 1434,
+                      ),
+                    ),
                     span: Span(
                       start: 1415,
                       end: 1434,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -3967,7 +4294,7 @@ Stylesheet(
                       start: 1435,
                       end: 1485,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1406,
                     end: 1485,
@@ -4150,29 +4477,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "all",
-                        raw: "all",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1554,
+                      end: 1561,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 1569,
-                          end: 1572,
+                          start: 1563,
+                          end: 1567,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 1567,
+                        end: 1568,
+                      ),
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "all",
+                          raw: "all",
+                          span: Span(
+                            start: 1569,
+                            end: 1572,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1562,
+                        end: 1573,
+                      ),
+                    ),
                     span: Span(
                       start: 1562,
                       end: 1573,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -4273,7 +4626,7 @@ Stylesheet(
                       start: 1574,
                       end: 1624,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1553,
                     end: 1624,
@@ -4456,38 +4809,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "media",
-                        raw: "media",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1693,
+                      end: 1700,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 1708,
-                          end: 1713,
+                          start: 1702,
+                          end: 1706,
                         ),
                       ),
-                      Ident(
-                        type: "Ident",
-                        name: "supports",
-                        raw: "supports",
-                        span: Span(
-                          start: 1714,
-                          end: 1722,
-                        ),
+                      colonSpan: Span(
+                        start: 1706,
+                        end: 1707,
                       ),
-                    ],
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "media",
+                          raw: "media",
+                          span: Span(
+                            start: 1708,
+                            end: 1713,
+                          ),
+                        ),
+                        Ident(
+                          type: "Ident",
+                          name: "supports",
+                          raw: "supports",
+                          span: Span(
+                            start: 1714,
+                            end: 1722,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1701,
+                        end: 1723,
+                      ),
+                    ),
                     span: Span(
                       start: 1701,
                       end: 1723,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -4588,7 +4967,7 @@ Stylesheet(
                       start: 1724,
                       end: 1774,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1692,
                     end: 1774,
@@ -4771,29 +5150,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "media",
-                        raw: "media",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 1843,
+                      end: 1850,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 1858,
-                          end: 1863,
+                          start: 1852,
+                          end: 1856,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 1856,
+                        end: 1857,
+                      ),
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "media",
+                          raw: "media",
+                          span: Span(
+                            start: 1858,
+                            end: 1863,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1851,
+                        end: 1864,
+                      ),
+                    ),
                     span: Span(
                       start: 1851,
                       end: 1864,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -4894,7 +5299,7 @@ Stylesheet(
                       start: 1865,
                       end: 1915,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 1842,
                     end: 1915,
@@ -5085,29 +5490,55 @@ Stylesheet(
               end: 1978,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: Some(SassAtRootQuery(
-              type: "SassAtRootQuery",
-              kind: Without,
-              rules: [
-                Str(
-                  type: "Str",
-                  value: "supports",
-                  raw: "\"supports\"",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 1983,
+                end: 1990,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SassAtRootQuery(
+                type: "SassAtRootQuery",
+                modifier: SassAtRootQueryModifier(
+                  type: "SassAtRootQueryModifier",
+                  kind: Without,
                   span: Span(
-                    start: 2001,
-                    end: 2011,
+                    start: 1992,
+                    end: 1999,
                   ),
                 ),
-              ],
+                colonSpan: Span(
+                  start: 1999,
+                  end: 2000,
+                ),
+                rules: [
+                  Str(
+                    type: "Str",
+                    value: "supports",
+                    raw: "\"supports\"",
+                    span: Span(
+                      start: 2001,
+                      end: 2011,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1991,
+                  end: 2012,
+                ),
+              ),
               span: Span(
                 start: 1991,
                 end: 2012,
               ),
             )),
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -5208,7 +5639,7 @@ Stylesheet(
                 start: 2013,
                 end: 2055,
               ),
-            ),
+            )),
             span: Span(
               start: 1982,
               end: 2055,
@@ -5388,29 +5819,55 @@ Stylesheet(
               end: 2114,
             ),
           ),
-          SassAtRootAtRule(
-            type: "SassAtRootAtRule",
-            selector: None,
-            query: Some(SassAtRootQuery(
-              type: "SassAtRootQuery",
-              kind: Without,
-              rules: [
-                Str(
-                  type: "Str",
-                  value: "all",
-                  raw: "\"all\"",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "at-root",
+              raw: "at-root",
+              span: Span(
+                start: 2119,
+                end: 2126,
+              ),
+            ),
+            prelude: Some(SassAtRoot(
+              type: "SassAtRoot",
+              kind: SassAtRootQuery(
+                type: "SassAtRootQuery",
+                modifier: SassAtRootQueryModifier(
+                  type: "SassAtRootQueryModifier",
+                  kind: Without,
                   span: Span(
-                    start: 2137,
-                    end: 2142,
+                    start: 2128,
+                    end: 2135,
                   ),
                 ),
-              ],
+                colonSpan: Span(
+                  start: 2135,
+                  end: 2136,
+                ),
+                rules: [
+                  Str(
+                    type: "Str",
+                    value: "all",
+                    raw: "\"all\"",
+                    span: Span(
+                      start: 2137,
+                      end: 2142,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 2127,
+                  end: 2143,
+                ),
+              ),
               span: Span(
                 start: 2127,
                 end: 2143,
               ),
             )),
-            block: SimpleBlock(
+            block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
                 QualifiedRule(
@@ -5511,7 +5968,7 @@ Stylesheet(
                 start: 2144,
                 end: 2186,
               ),
-            ),
+            )),
             span: Span(
               start: 2118,
               end: 2186,
@@ -5683,29 +6140,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "all",
-                        raw: "\"all\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 2251,
+                      end: 2258,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 2269,
-                          end: 2274,
+                          start: 2260,
+                          end: 2267,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 2267,
+                        end: 2268,
+                      ),
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "all",
+                          raw: "\"all\"",
+                          span: Span(
+                            start: 2269,
+                            end: 2274,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 2259,
+                        end: 2275,
+                      ),
+                    ),
                     span: Span(
                       start: 2259,
                       end: 2275,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -5806,7 +6289,7 @@ Stylesheet(
                       start: 2276,
                       end: 2326,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 2250,
                     end: 2326,
@@ -5989,38 +6472,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 2395,
+                      end: 2402,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 2413,
-                          end: 2420,
+                          start: 2404,
+                          end: 2411,
                         ),
                       ),
-                      Str(
-                        type: "Str",
-                        value: "supports",
-                        raw: "\"supports\"",
-                        span: Span(
-                          start: 2421,
-                          end: 2431,
-                        ),
+                      colonSpan: Span(
+                        start: 2411,
+                        end: 2412,
                       ),
-                    ],
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 2413,
+                            end: 2420,
+                          ),
+                        ),
+                        Str(
+                          type: "Str",
+                          value: "supports",
+                          raw: "\"supports\"",
+                          span: Span(
+                            start: 2421,
+                            end: 2431,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 2403,
+                        end: 2432,
+                      ),
+                    ),
                     span: Span(
                       start: 2403,
                       end: 2432,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -6121,7 +6630,7 @@ Stylesheet(
                       start: 2433,
                       end: 2483,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 2394,
                     end: 2483,
@@ -6304,38 +6813,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 2552,
+                      end: 2559,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 2570,
-                          end: 2577,
+                          start: 2561,
+                          end: 2568,
                         ),
                       ),
-                      Ident(
-                        type: "Ident",
-                        name: "supports",
-                        raw: "supports",
-                        span: Span(
-                          start: 2578,
-                          end: 2586,
-                        ),
+                      colonSpan: Span(
+                        start: 2568,
+                        end: 2569,
                       ),
-                    ],
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 2570,
+                            end: 2577,
+                          ),
+                        ),
+                        Ident(
+                          type: "Ident",
+                          name: "supports",
+                          raw: "supports",
+                          span: Span(
+                            start: 2578,
+                            end: 2586,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 2560,
+                        end: 2587,
+                      ),
+                    ),
                     span: Span(
                       start: 2560,
                       end: 2587,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -6436,7 +6971,7 @@ Stylesheet(
                       start: 2588,
                       end: 2638,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 2551,
                     end: 2638,
@@ -6619,38 +7154,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "media",
-                        raw: "media",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 2707,
+                      end: 2714,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 2725,
-                          end: 2730,
+                          start: 2716,
+                          end: 2723,
                         ),
                       ),
-                      Str(
-                        type: "Str",
-                        value: "supports",
-                        raw: "\"supports\"",
-                        span: Span(
-                          start: 2731,
-                          end: 2741,
-                        ),
+                      colonSpan: Span(
+                        start: 2723,
+                        end: 2724,
                       ),
-                    ],
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "media",
+                          raw: "media",
+                          span: Span(
+                            start: 2725,
+                            end: 2730,
+                          ),
+                        ),
+                        Str(
+                          type: "Str",
+                          value: "supports",
+                          raw: "\"supports\"",
+                          span: Span(
+                            start: 2731,
+                            end: 2741,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 2715,
+                        end: 2742,
+                      ),
+                    ),
                     span: Span(
                       start: 2715,
                       end: 2742,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -6751,7 +7312,7 @@ Stylesheet(
                       start: 2743,
                       end: 2793,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 2706,
                     end: 2793,
@@ -6934,29 +7495,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: Without,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 2862,
+                      end: 2869,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: Without,
                         span: Span(
-                          start: 2880,
-                          end: 2887,
+                          start: 2871,
+                          end: 2878,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 2878,
+                        end: 2879,
+                      ),
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 2880,
+                            end: 2887,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 2870,
+                        end: 2888,
+                      ),
+                    ),
                     span: Span(
                       start: 2870,
                       end: 2888,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -7057,7 +7644,7 @@ Stylesheet(
                       start: 2889,
                       end: 2939,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 2861,
                     end: 2939,
@@ -7240,29 +7827,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "all",
-                        raw: "\"all\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 3008,
+                      end: 3015,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 3023,
-                          end: 3028,
+                          start: 3017,
+                          end: 3021,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 3021,
+                        end: 3022,
+                      ),
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "all",
+                          raw: "\"all\"",
+                          span: Span(
+                            start: 3023,
+                            end: 3028,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 3016,
+                        end: 3029,
+                      ),
+                    ),
                     span: Span(
                       start: 3016,
                       end: 3029,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -7363,7 +7976,7 @@ Stylesheet(
                       start: 3030,
                       end: 3080,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 3007,
                     end: 3080,
@@ -7546,38 +8159,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 3149,
+                      end: 3156,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 3164,
-                          end: 3171,
+                          start: 3158,
+                          end: 3162,
                         ),
                       ),
-                      Str(
-                        type: "Str",
-                        value: "supports",
-                        raw: "\"supports\"",
-                        span: Span(
-                          start: 3172,
-                          end: 3182,
-                        ),
+                      colonSpan: Span(
+                        start: 3162,
+                        end: 3163,
                       ),
-                    ],
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 3164,
+                            end: 3171,
+                          ),
+                        ),
+                        Str(
+                          type: "Str",
+                          value: "supports",
+                          raw: "\"supports\"",
+                          span: Span(
+                            start: 3172,
+                            end: 3182,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 3157,
+                        end: 3183,
+                      ),
+                    ),
                     span: Span(
                       start: 3157,
                       end: 3183,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -7678,7 +8317,7 @@ Stylesheet(
                       start: 3184,
                       end: 3234,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 3148,
                     end: 3234,
@@ -7861,38 +8500,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 3303,
+                      end: 3310,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 3318,
-                          end: 3325,
+                          start: 3312,
+                          end: 3316,
                         ),
                       ),
-                      Ident(
-                        type: "Ident",
-                        name: "supports",
-                        raw: "supports",
-                        span: Span(
-                          start: 3326,
-                          end: 3334,
-                        ),
+                      colonSpan: Span(
+                        start: 3316,
+                        end: 3317,
                       ),
-                    ],
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 3318,
+                            end: 3325,
+                          ),
+                        ),
+                        Ident(
+                          type: "Ident",
+                          name: "supports",
+                          raw: "supports",
+                          span: Span(
+                            start: 3326,
+                            end: 3334,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 3311,
+                        end: 3335,
+                      ),
+                    ),
                     span: Span(
                       start: 3311,
                       end: 3335,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -7993,7 +8658,7 @@ Stylesheet(
                       start: 3336,
                       end: 3386,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 3302,
                     end: 3386,
@@ -8176,38 +8841,64 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Ident(
-                        type: "Ident",
-                        name: "media",
-                        raw: "media",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 3455,
+                      end: 3462,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 3470,
-                          end: 3475,
+                          start: 3464,
+                          end: 3468,
                         ),
                       ),
-                      Str(
-                        type: "Str",
-                        value: "supports",
-                        raw: "\"supports\"",
-                        span: Span(
-                          start: 3476,
-                          end: 3486,
-                        ),
+                      colonSpan: Span(
+                        start: 3468,
+                        end: 3469,
                       ),
-                    ],
+                      rules: [
+                        Ident(
+                          type: "Ident",
+                          name: "media",
+                          raw: "media",
+                          span: Span(
+                            start: 3470,
+                            end: 3475,
+                          ),
+                        ),
+                        Str(
+                          type: "Str",
+                          value: "supports",
+                          raw: "\"supports\"",
+                          span: Span(
+                            start: 3476,
+                            end: 3486,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 3463,
+                        end: 3487,
+                      ),
+                    ),
                     span: Span(
                       start: 3463,
                       end: 3487,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -8308,7 +8999,7 @@ Stylesheet(
                       start: 3488,
                       end: 3538,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 3454,
                     end: 3538,
@@ -8491,29 +9182,55 @@ Stylesheet(
             block: Some(SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassAtRootAtRule(
-                  type: "SassAtRootAtRule",
-                  selector: None,
-                  query: Some(SassAtRootQuery(
-                    type: "SassAtRootQuery",
-                    kind: With,
-                    rules: [
-                      Str(
-                        type: "Str",
-                        value: "media",
-                        raw: "\"media\"",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "at-root",
+                    raw: "at-root",
+                    span: Span(
+                      start: 3607,
+                      end: 3614,
+                    ),
+                  ),
+                  prelude: Some(SassAtRoot(
+                    type: "SassAtRoot",
+                    kind: SassAtRootQuery(
+                      type: "SassAtRootQuery",
+                      modifier: SassAtRootQueryModifier(
+                        type: "SassAtRootQueryModifier",
+                        kind: With,
                         span: Span(
-                          start: 3622,
-                          end: 3629,
+                          start: 3616,
+                          end: 3620,
                         ),
                       ),
-                    ],
+                      colonSpan: Span(
+                        start: 3620,
+                        end: 3621,
+                      ),
+                      rules: [
+                        Str(
+                          type: "Str",
+                          value: "media",
+                          raw: "\"media\"",
+                          span: Span(
+                            start: 3622,
+                            end: 3629,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 3615,
+                        end: 3630,
+                      ),
+                    ),
                     span: Span(
                       start: 3615,
                       end: 3630,
                     ),
                   )),
-                  block: SimpleBlock(
+                  block: Some(SimpleBlock(
                     type: "SimpleBlock",
                     statements: [
                       QualifiedRule(
@@ -8614,7 +9331,7 @@ Stylesheet(
                       start: 3631,
                       end: 3681,
                     ),
-                  ),
+                  )),
                   span: Span(
                     start: 3606,
                     end: 3681,

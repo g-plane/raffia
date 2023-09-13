@@ -4,570 +4,892 @@ source: raffia/tests/ast.rs
 Stylesheet(
   type: "Stylesheet",
   statements: [
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "used",
-        raw: "\"used\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
+        span: Span(
+          start: 1,
+          end: 4,
+        ),
+      ),
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "used",
+          raw: "\"used\"",
+          span: Span(
+            start: 5,
+            end: 11,
+          ),
+        ),
+        namespace: None,
+        config: None,
         span: Span(
           start: 5,
           end: 11,
         ),
-      ),
-      namespace: None,
-      config: None,
+      )),
+      block: None,
       span: Span(
         start: 0,
-        end: 12,
+        end: 11,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 18,
-          end: 25,
+          start: 14,
+          end: 17,
         ),
       ),
-      namespace: Some(Ident(
-        type: "Ident",
-        name: "o1",
-        raw: "o1",
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 18,
+            end: 25,
+          ),
+        ),
+        namespace: Some(SassUseNamespace(
+          type: "SassUseNamespace",
+          asSpan: Span(
+            start: 26,
+            end: 28,
+          ),
+          kind: Ident(
+            type: "Ident",
+            name: "o1",
+            raw: "o1",
+            span: Span(
+              start: 29,
+              end: 31,
+            ),
+          ),
+          span: Span(
+            start: 26,
+            end: 31,
+          ),
+        )),
+        config: None,
         span: Span(
-          start: 29,
+          start: 18,
           end: 31,
         ),
       )),
-      config: None,
+      block: None,
       span: Span(
         start: 13,
-        end: 32,
+        end: 31,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 38,
-          end: 45,
+          start: 34,
+          end: 37,
         ),
       ),
-      namespace: Some(SassUnnamedNamespace(
-        type: "SassUnnamedNamespace",
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 38,
+            end: 45,
+          ),
+        ),
+        namespace: Some(SassUseNamespace(
+          type: "SassUseNamespace",
+          asSpan: Span(
+            start: 46,
+            end: 48,
+          ),
+          kind: SassUnnamedNamespace(
+            type: "SassUnnamedNamespace",
+            span: Span(
+              start: 49,
+              end: 50,
+            ),
+          ),
+          span: Span(
+            start: 46,
+            end: 50,
+          ),
+        )),
+        config: None,
         span: Span(
-          start: 49,
+          start: 38,
           end: 50,
         ),
       )),
-      config: None,
+      block: None,
       span: Span(
         start: 33,
-        end: 51,
+        end: 50,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 57,
-          end: 64,
+          start: 53,
+          end: 56,
         ),
       ),
-      namespace: None,
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "c",
-              raw: "c",
-              span: Span(
-                start: 72,
-                end: 73,
-              ),
-            ),
-            span: Span(
-              start: 71,
-              end: 73,
-            ),
-          ),
-          value: Ident(
-            type: "Ident",
-            name: "e",
-            raw: "e",
-            span: Span(
-              start: 75,
-              end: 76,
-            ),
-          ),
-          overridable: false,
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
           span: Span(
-            start: 71,
-            end: 76,
+            start: 57,
+            end: 64,
           ),
         ),
-      ]),
+        namespace: None,
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 65,
+            end: 69,
+          ),
+          lparenSpan: Span(
+            start: 70,
+            end: 71,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 72,
+                    end: 73,
+                  ),
+                ),
+                span: Span(
+                  start: 71,
+                  end: 73,
+                ),
+              ),
+              value: Ident(
+                type: "Ident",
+                name: "e",
+                raw: "e",
+                span: Span(
+                  start: 75,
+                  end: 76,
+                ),
+              ),
+              overridable: false,
+              span: Span(
+                start: 71,
+                end: 76,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 65,
+            end: 77,
+          ),
+        )),
+        span: Span(
+          start: 57,
+          end: 77,
+        ),
+      )),
+      block: None,
       span: Span(
         start: 52,
         end: 77,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "module",
-        raw: "\'module\'",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 84,
-          end: 92,
+          start: 80,
+          end: 83,
         ),
       ),
-      namespace: None,
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
-              span: Span(
-                start: 103,
-                end: 104,
-              ),
-            ),
-            span: Span(
-              start: 102,
-              end: 104,
-            ),
-          ),
-          value: Str(
-            type: "Str",
-            value: "a",
-            raw: "\'a\'",
-            span: Span(
-              start: 106,
-              end: 109,
-            ),
-          ),
-          overridable: false,
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "module",
+          raw: "\'module\'",
           span: Span(
-            start: 102,
-            end: 109,
+            start: 84,
+            end: 92,
           ),
         ),
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "b",
-              raw: "b",
+        namespace: None,
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 93,
+            end: 97,
+          ),
+          lparenSpan: Span(
+            start: 98,
+            end: 99,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 103,
+                    end: 104,
+                  ),
+                ),
+                span: Span(
+                  start: 102,
+                  end: 104,
+                ),
+              ),
+              value: Str(
+                type: "Str",
+                value: "a",
+                raw: "\'a\'",
+                span: Span(
+                  start: 106,
+                  end: 109,
+                ),
+              ),
+              overridable: false,
               span: Span(
-                start: 114,
-                end: 115,
+                start: 102,
+                end: 109,
               ),
             ),
-            span: Span(
-              start: 113,
-              end: 115,
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 114,
+                    end: 115,
+                  ),
+                ),
+                span: Span(
+                  start: 113,
+                  end: 115,
+                ),
+              ),
+              value: Str(
+                type: "Str",
+                value: "b",
+                raw: "\'b\'",
+                span: Span(
+                  start: 117,
+                  end: 120,
+                ),
+              ),
+              overridable: false,
+              span: Span(
+                start: 113,
+                end: 120,
+              ),
             ),
-          ),
-          value: Str(
-            type: "Str",
-            value: "b",
-            raw: "\'b\'",
-            span: Span(
-              start: 117,
-              end: 120,
+          ],
+          commaSpans: [
+            Span(
+              start: 109,
+              end: 110,
             ),
-          ),
-          overridable: false,
+            Span(
+              start: 120,
+              end: 121,
+            ),
+          ],
           span: Span(
-            start: 113,
-            end: 120,
+            start: 93,
+            end: 123,
           ),
+        )),
+        span: Span(
+          start: 84,
+          end: 123,
         ),
-      ]),
+      )),
+      block: None,
       span: Span(
         start: 79,
         end: 123,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 130,
-          end: 137,
+          start: 126,
+          end: 129,
         ),
       ),
-      namespace: None,
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
-              span: Span(
-                start: 145,
-                end: 146,
-              ),
-            ),
-            span: Span(
-              start: 144,
-              end: 146,
-            ),
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 130,
+            end: 137,
           ),
-          value: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
+        ),
+        namespace: None,
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 138,
+            end: 142,
+          ),
+          lparenSpan: Span(
+            start: 143,
+            end: 144,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 145,
+                    end: 146,
+                  ),
+                ),
+                span: Span(
+                  start: 144,
+                  end: 146,
+                ),
+              ),
+              value: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 149,
+                    end: 150,
+                  ),
+                ),
+                span: Span(
+                  start: 148,
+                  end: 150,
+                ),
+              ),
+              overridable: false,
               span: Span(
-                start: 149,
+                start: 144,
                 end: 150,
               ),
             ),
-            span: Span(
-              start: 148,
-              end: 150,
-            ),
-          ),
-          overridable: false,
+          ],
+          commaSpans: [],
           span: Span(
-            start: 144,
-            end: 150,
+            start: 138,
+            end: 151,
           ),
+        )),
+        span: Span(
+          start: 130,
+          end: 151,
         ),
-      ]),
+      )),
+      block: None,
       span: Span(
         start: 125,
         end: 151,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 158,
-          end: 165,
+          start: 154,
+          end: 157,
         ),
       ),
-      namespace: None,
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
-              span: Span(
-                start: 176,
-                end: 177,
-              ),
-            ),
-            span: Span(
-              start: 175,
-              end: 177,
-            ),
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 158,
+            end: 165,
           ),
-          value: SassList(
-            type: "SassList",
-            elements: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
+        ),
+        namespace: None,
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 166,
+            end: 170,
+          ),
+          lparenSpan: Span(
+            start: 171,
+            end: 172,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 176,
+                    end: 177,
+                  ),
+                ),
                 span: Span(
-                  start: 179,
-                  end: 189,
+                  start: 175,
+                  end: 177,
                 ),
               ),
-              Ident(
-                type: "Ident",
-                name: "a",
-                raw: "a",
+              value: SassList(
+                type: "SassList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "configured",
+                    raw: "configured",
+                    span: Span(
+                      start: 179,
+                      end: 189,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 190,
+                      end: 191,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
                 span: Span(
-                  start: 190,
+                  start: 179,
                   end: 191,
                 ),
               ),
-            ],
-            commaSpans: None,
-            span: Span(
-              start: 179,
-              end: 191,
-            ),
-          ),
-          overridable: false,
-          span: Span(
-            start: 175,
-            end: 191,
-          ),
-        ),
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "b",
-              raw: "b",
+              overridable: false,
               span: Span(
-                start: 196,
-                end: 197,
+                start: 175,
+                end: 191,
               ),
             ),
-            span: Span(
-              start: 195,
-              end: 197,
-            ),
-          ),
-          value: SassList(
-            type: "SassList",
-            elements: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 196,
+                    end: 197,
+                  ),
+                ),
                 span: Span(
-                  start: 199,
-                  end: 209,
+                  start: 195,
+                  end: 197,
                 ),
               ),
-              Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
+              value: SassList(
+                type: "SassList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "configured",
+                    raw: "configured",
+                    span: Span(
+                      start: 199,
+                      end: 209,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "b",
+                    raw: "b",
+                    span: Span(
+                      start: 210,
+                      end: 211,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
                 span: Span(
-                  start: 210,
+                  start: 199,
                   end: 211,
                 ),
               ),
-            ],
-            commaSpans: None,
-            span: Span(
-              start: 199,
-              end: 211,
-            ),
-          ),
-          overridable: false,
-          span: Span(
-            start: 195,
-            end: 211,
-          ),
-        ),
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "c",
-              raw: "c",
+              overridable: false,
               span: Span(
-                start: 216,
-                end: 217,
+                start: 195,
+                end: 211,
               ),
             ),
-            span: Span(
-              start: 215,
-              end: 217,
-            ),
-          ),
-          value: SassList(
-            type: "SassList",
-            elements: [
-              Ident(
-                type: "Ident",
-                name: "configured",
-                raw: "configured",
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 216,
+                    end: 217,
+                  ),
+                ),
                 span: Span(
-                  start: 219,
-                  end: 229,
+                  start: 215,
+                  end: 217,
                 ),
               ),
-              Ident(
-                type: "Ident",
-                name: "c",
-                raw: "c",
+              value: SassList(
+                type: "SassList",
+                elements: [
+                  Ident(
+                    type: "Ident",
+                    name: "configured",
+                    raw: "configured",
+                    span: Span(
+                      start: 219,
+                      end: 229,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "c",
+                    raw: "c",
+                    span: Span(
+                      start: 230,
+                      end: 231,
+                    ),
+                  ),
+                ],
+                commaSpans: None,
                 span: Span(
-                  start: 230,
+                  start: 219,
                   end: 231,
                 ),
               ),
-            ],
-            commaSpans: None,
-            span: Span(
-              start: 219,
-              end: 231,
+              overridable: false,
+              span: Span(
+                start: 215,
+                end: 231,
+              ),
             ),
-          ),
-          overridable: false,
+          ],
+          commaSpans: [
+            Span(
+              start: 191,
+              end: 192,
+            ),
+            Span(
+              start: 211,
+              end: 212,
+            ),
+          ],
           span: Span(
-            start: 215,
-            end: 231,
+            start: 166,
+            end: 233,
           ),
+        )),
+        span: Span(
+          start: 158,
+          end: 233,
         ),
-      ]),
+      )),
+      block: None,
       span: Span(
         start: 153,
         end: 233,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 240,
-          end: 247,
+          start: 236,
+          end: 239,
         ),
       ),
-      namespace: None,
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
-              span: Span(
-                start: 255,
-                end: 256,
-              ),
-            ),
-            span: Span(
-              start: 254,
-              end: 256,
-            ),
-          ),
-          value: Ident(
-            type: "Ident",
-            name: "configured",
-            raw: "configured",
-            span: Span(
-              start: 258,
-              end: 268,
-            ),
-          ),
-          overridable: false,
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
           span: Span(
-            start: 254,
-            end: 268,
+            start: 240,
+            end: 247,
           ),
         ),
-      ]),
+        namespace: None,
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 248,
+            end: 252,
+          ),
+          lparenSpan: Span(
+            start: 253,
+            end: 254,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 255,
+                    end: 256,
+                  ),
+                ),
+                span: Span(
+                  start: 254,
+                  end: 256,
+                ),
+              ),
+              value: Ident(
+                type: "Ident",
+                name: "configured",
+                raw: "configured",
+                span: Span(
+                  start: 258,
+                  end: 268,
+                ),
+              ),
+              overridable: false,
+              span: Span(
+                start: 254,
+                end: 268,
+              ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 268,
+              end: 269,
+            ),
+          ],
+          span: Span(
+            start: 248,
+            end: 270,
+          ),
+        )),
+        span: Span(
+          start: 240,
+          end: 270,
+        ),
+      )),
+      block: None,
       span: Span(
         start: 235,
         end: 270,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "u\\73 e",
+        span: Span(
+          start: 273,
+          end: 279,
+        ),
+      ),
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 280,
+            end: 287,
+          ),
+        ),
+        namespace: None,
+        config: None,
         span: Span(
           start: 280,
           end: 287,
         ),
-      ),
-      namespace: None,
-      config: None,
+      )),
+      block: None,
       span: Span(
         start: 272,
-        end: 288,
+        end: 287,
       ),
     ),
-    SassUseAtRule(
-      type: "SassUseAtRule",
-      path: Str(
-        type: "Str",
-        value: "other",
-        raw: "\"other\"",
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "use",
+        raw: "use",
         span: Span(
-          start: 294,
-          end: 301,
+          start: 290,
+          end: 293,
         ),
       ),
-      namespace: Some(Ident(
-        type: "Ident",
-        name: "o1",
-        raw: "o1",
-        span: Span(
-          start: 305,
-          end: 307,
+      prelude: Some(SassUse(
+        type: "SassUse",
+        path: Str(
+          type: "Str",
+          value: "other",
+          raw: "\"other\"",
+          span: Span(
+            start: 294,
+            end: 301,
+          ),
         ),
-      )),
-      config: Some([
-        SassModuleConfigItem(
-          type: "SassModuleConfigItem",
-          variable: SassVariable(
-            type: "SassVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
+        namespace: Some(SassUseNamespace(
+          type: "SassUseNamespace",
+          asSpan: Span(
+            start: 302,
+            end: 304,
+          ),
+          kind: Ident(
+            type: "Ident",
+            name: "o1",
+            raw: "o1",
+            span: Span(
+              start: 305,
+              end: 307,
+            ),
+          ),
+          span: Span(
+            start: 302,
+            end: 307,
+          ),
+        )),
+        config: Some(SassModuleConfig(
+          type: "SassModuleConfig",
+          withSpan: Span(
+            start: 308,
+            end: 312,
+          ),
+          lparenSpan: Span(
+            start: 313,
+            end: 314,
+          ),
+          items: [
+            SassModuleConfigItem(
+              type: "SassModuleConfigItem",
+              variable: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 315,
+                    end: 316,
+                  ),
+                ),
+                span: Span(
+                  start: 314,
+                  end: 316,
+                ),
+              ),
+              value: Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 318,
+                  end: 319,
+                ),
+              ),
+              overridable: false,
               span: Span(
-                start: 315,
-                end: 316,
+                start: 314,
+                end: 319,
               ),
             ),
-            span: Span(
-              start: 314,
-              end: 316,
-            ),
-          ),
-          value: Ident(
-            type: "Ident",
-            name: "b",
-            raw: "b",
-            span: Span(
-              start: 318,
-              end: 319,
-            ),
-          ),
-          overridable: false,
+          ],
+          commaSpans: [],
           span: Span(
-            start: 314,
-            end: 319,
+            start: 308,
+            end: 320,
           ),
+        )),
+        span: Span(
+          start: 294,
+          end: 320,
         ),
-      ]),
+      )),
+      block: None,
       span: Span(
         start: 289,
         end: 320,

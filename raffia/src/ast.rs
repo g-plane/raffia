@@ -48,7 +48,18 @@ pub enum AtRulePrelude<'s> {
     Page(PageSelectorList<'s>),
     PositionFallback(InterpolableIdent<'s>),
     Property(InterpolableIdent<'s>),
+    SassAtRoot(SassAtRoot<'s>),
+    SassContent(SassContent<'s>),
+    SassEach(Box<SassEach<'s>>),
+    SassExpr(Box<ComponentValue<'s>>),
+    SassExtend(Box<SassExtend<'s>>),
+    SassFor(Box<SassFor<'s>>),
+    SassForward(Box<SassForward<'s>>),
+    SassFunction(Box<SassFunction<'s>>),
     SassImport(SassImportPrelude<'s>),
+    SassInclude(Box<SassInclude<'s>>),
+    SassMixin(Box<SassMixin<'s>>),
+    SassUse(Box<SassUse<'s>>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
     Unknown(UnknownAtRulePrelude<'s>),
@@ -1507,26 +1518,41 @@ pub struct SassArbitraryParameter<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassAtRootAtRule<'s> {
-    pub selector: Option<SelectorList<'s>>,
-    pub query: Option<SassAtRootQuery<'s>>,
-    pub block: SimpleBlock<'s>,
+pub struct SassAtRoot<'s> {
+    pub kind: SassAtRootKind<'s>,
     pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum SassAtRootKind<'s> {
+    Selector(SelectorList<'s>),
+    Query(SassAtRootQuery<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassAtRootQuery<'s> {
-    pub kind: SassAtRootQueryKind,
+    pub modifier: SassAtRootQueryModifier,
+    pub colon_span: Span,
     /// space-separated rule names
     pub rules: Vec<SassAtRootQueryRule<'s>>,
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassAtRootQueryModifier {
+    pub kind: SassAtRootQueryModifierKind,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-pub enum SassAtRootQueryKind {
+pub enum SassAtRootQueryModifierKind {
     With,
     Without,
 }
@@ -1587,33 +1613,17 @@ pub struct SassConditionalClause<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassContentAtRule<'s> {
-    pub arguments: Option<Vec<ComponentValue<'s>>>,
+pub struct SassContent<'s> {
+    pub args: Vec<ComponentValue<'s>>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassDebugAtRule<'s> {
-    pub expr: ComponentValue<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassEachAtRule<'s> {
+pub struct SassEach<'s> {
     pub bindings: Vec<SassVariable<'s>>,
-    pub expr: ComponentValue<'s>,
-    pub body: SimpleBlock<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassErrorAtRule<'s> {
+    pub in_span: Span,
     pub expr: ComponentValue<'s>,
     pub span: Span,
 }
@@ -1621,7 +1631,7 @@ pub struct SassErrorAtRule<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassExtendAtRule<'s> {
+pub struct SassExtend<'s> {
     pub selectors: CompoundSelectorList<'s>,
     pub optional: Option<SassFlag<'s>>,
     pub span: Span,
@@ -1638,23 +1648,38 @@ pub struct SassFlag<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassForAtRule<'s> {
+pub struct SassFor<'s> {
     pub binding: SassVariable<'s>,
+    pub from_span: Span,
     pub start: ComponentValue<'s>,
     pub end: ComponentValue<'s>,
-    pub is_exclusive: bool,
-    pub body: SimpleBlock<'s>,
+    pub boundary: SassForBoundary,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassForwardAtRule<'s> {
+pub struct SassForBoundary {
+    pub kind: SassForBoundaryKind,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+pub enum SassForBoundaryKind {
+    Inclusive,
+    Exclusive,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassForward<'s> {
     pub path: InterpolableStr<'s>,
     pub prefix: Option<Ident<'s>>,
     pub visibility: Option<SassForwardVisibility<'s>>,
-    pub config: Option<Vec<SassModuleConfigItem<'s>>>,
+    pub config: Option<SassModuleConfig<'s>>,
     pub span: Span,
 }
 
@@ -1670,14 +1695,23 @@ pub enum SassForwardMember<'s> {
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassForwardVisibility<'s> {
-    pub kind: SassForwardVisibilityKind,
+    pub modifier: SassForwardVisibilityModifier,
     pub members: Vec<SassForwardMember<'s>>,
+    pub comma_spans: Vec<Span>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassForwardVisibilityModifier {
+    pub kind: SassForwardVisibilityModifierKind,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
-pub enum SassForwardVisibilityKind {
+pub enum SassForwardVisibilityModifierKind {
     Hide,
     Show,
 }
@@ -1685,11 +1719,9 @@ pub enum SassForwardVisibilityKind {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassFunctionAtRule<'s> {
+pub struct SassFunction<'s> {
     pub name: Ident<'s>,
-    pub parameters: Vec<SassParameter<'s>>,
-    pub arbitrary_parameter: Option<SassArbitraryParameter<'s>>,
-    pub body: SimpleBlock<'s>,
+    pub parameters: SassParameters<'s>,
     pub span: Span,
 }
 
@@ -1714,12 +1746,27 @@ pub struct SassImportPrelude<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassIncludeAtRule<'s> {
+pub struct SassInclude<'s> {
     pub name: FunctionName<'s>,
-    pub arguments: Option<Vec<ComponentValue<'s>>>,
-    pub content_block_params: Option<Vec<SassParameter<'s>>>,
-    pub content_block_arbitrary_param: Option<SassArbitraryParameter<'s>>,
-    pub block: Option<SimpleBlock<'s>>,
+    pub arguments: Option<SassIncludeArgs<'s>>,
+    pub content_block_params: Option<SassIncludeContentBlockParams<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassIncludeArgs<'s> {
+    pub args: Vec<ComponentValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassIncludeContentBlockParams<'s> {
+    pub using_span: Span,
+    pub params: SassParameters<'s>,
     pub span: Span,
 }
 
@@ -1809,11 +1856,20 @@ pub struct SassMapItem<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassMixinAtRule<'s> {
+pub struct SassMixin<'s> {
     pub name: Ident<'s>,
-    pub parameters: Option<Vec<SassParameter<'s>>>,
-    pub arbitrary_parameter: Option<SassArbitraryParameter<'s>>,
-    pub body: SimpleBlock<'s>,
+    pub parameters: Option<SassParameters<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassModuleConfig<'s> {
+    pub with_span: Span,
+    pub lparen_span: Span,
+    pub items: Vec<SassModuleConfigItem<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1855,6 +1911,15 @@ pub struct SassParameter<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassParameters<'s> {
+    pub params: Vec<SassParameter<'s>>,
+    pub arbitrary_param: Option<SassArbitraryParameter<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassParenthesizedExpression<'s> {
     pub expr: Box<ComponentValue<'s>>,
     pub span: Span,
@@ -1874,14 +1939,6 @@ pub struct SassPlaceholderSelector<'s> {
 pub struct SassQualifiedName<'s> {
     pub module: Ident<'s>,
     pub member: SassModuleMemberName<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassReturnAtRule<'s> {
-    pub expr: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1920,17 +1977,26 @@ pub struct SassUnnamedNamespace {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassUseAtRule<'s> {
+pub struct SassUse<'s> {
     pub path: InterpolableStr<'s>,
     pub namespace: Option<SassUseNamespace<'s>>,
-    pub config: Option<Vec<SassModuleConfigItem<'s>>>,
+    pub config: Option<SassModuleConfig<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassUseNamespace<'s> {
+    pub as_span: Span,
+    pub kind: SassUseNamespaceKind<'s>,
     pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum SassUseNamespace<'s> {
+pub enum SassUseNamespaceKind<'s> {
     Named(Ident<'s>),
     Unnamed(SassUnnamedNamespace),
 }
@@ -1952,23 +2018,6 @@ pub struct SassVariableDeclaration<'s> {
     pub value: ComponentValue<'s>,
     pub overridable: bool,
     pub force_global: bool,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassWarnAtRule<'s> {
-    pub expr: ComponentValue<'s>,
-    pub span: Span,
-}
-
-#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
-#[cfg_attr(feature = "serialize", derive(Serialize))]
-#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
-pub struct SassWhileAtRule<'s> {
-    pub condition: ComponentValue<'s>,
-    pub body: SimpleBlock<'s>,
     pub span: Span,
 }
 
@@ -2018,23 +2067,8 @@ pub enum Statement<'s> {
     LessVariableCall(LessVariableCall<'s>),
     LessVariableDeclaration(LessVariableDeclaration<'s>),
     QualifiedRule(QualifiedRule<'s>),
-    SassAtRootAtRule(SassAtRootAtRule<'s>),
-    SassContentAtRule(SassContentAtRule<'s>),
-    SassDebugAtRule(SassDebugAtRule<'s>),
-    SassEachAtRule(SassEachAtRule<'s>),
-    SassErrorAtRule(SassErrorAtRule<'s>),
-    SassExtendAtRule(SassExtendAtRule<'s>),
-    SassForAtRule(SassForAtRule<'s>),
-    SassForwardAtRule(SassForwardAtRule<'s>),
-    SassFunctionAtRule(SassFunctionAtRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
-    SassIncludeAtRule(SassIncludeAtRule<'s>),
-    SassMixinAtRule(SassMixinAtRule<'s>),
-    SassReturnAtRule(SassReturnAtRule<'s>),
-    SassUseAtRule(SassUseAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
-    SassWarnAtRule(SassWarnAtRule<'s>),
-    SassWhileAtRule(SassWhileAtRule<'s>),
     UnknownSassAtRule(UnknownSassAtRule<'s>),
 }
 

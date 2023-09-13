@@ -2,7 +2,7 @@ use super::{state::ParserState, Parser};
 use crate::{
     ast::*,
     bump,
-    error::PResult,
+    error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
@@ -213,6 +213,173 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 None,
                 end,
             )
+        } else if matches!(input.syntax, Syntax::Scss | Syntax::Sass) {
+            use super::state::{
+                SASS_CTX_ALLOW_DIV, SASS_CTX_ALLOW_KEYFRAME_BLOCK, SASS_CTX_IN_FUNCTION,
+            };
+            match &*at_rule_name {
+                "each" => {
+                    let prelude = input.parse()?;
+                    let block = input.parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (
+                        Some(AtRulePrelude::SassEach(Box::new(prelude))),
+                        Some(block),
+                        end,
+                    )
+                }
+                "while" => {
+                    let prelude = input.parse()?;
+                    let block = input.parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (
+                        Some(AtRulePrelude::SassExpr(Box::new(prelude))),
+                        Some(block),
+                        end,
+                    )
+                }
+                "for" => {
+                    let prelude = input.parse()?;
+                    let block = input.parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (
+                        Some(AtRulePrelude::SassFor(Box::new(prelude))),
+                        Some(block),
+                        end,
+                    )
+                }
+                "mixin" => {
+                    let prelude = input.parse()?;
+                    let block = input
+                        .with_state(ParserState {
+                            sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
+                            ..input.state.clone()
+                        })
+                        .parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (
+                        Some(AtRulePrelude::SassMixin(Box::new(prelude))),
+                        Some(block),
+                        end,
+                    )
+                }
+                "include" => {
+                    let prelude = input.parse::<SassInclude>()?;
+                    let block =
+                        if matches!(peek!(input).token, Token::LBrace(..) | Token::Indent(..)) {
+                            Some(
+                                input
+                                    .with_state(ParserState {
+                                        sass_ctx: input.state.sass_ctx
+                                            | SASS_CTX_ALLOW_KEYFRAME_BLOCK,
+                                        ..input.state.clone()
+                                    })
+                                    .parse::<SimpleBlock>()?,
+                            )
+                        } else {
+                            None
+                        };
+                    let end = block
+                        .as_ref()
+                        .map(|block| block.span.end)
+                        .unwrap_or(prelude.span.end);
+                    (
+                        Some(AtRulePrelude::SassInclude(Box::new(prelude))),
+                        block,
+                        end,
+                    )
+                }
+                "content" => {
+                    if matches!(peek!(input).token, Token::LParen(..)) {
+                        let prelude = input.parse::<SassContent>()?;
+                        let end = prelude.span.end;
+                        (Some(AtRulePrelude::SassContent(prelude)), None, end)
+                    } else {
+                        (None, None, input.tokenizer.current_offset())
+                    }
+                }
+                "use" => {
+                    let prelude = input.parse::<SassUse>()?;
+                    let end = prelude.span.end;
+                    (Some(AtRulePrelude::SassUse(Box::new(prelude))), None, end)
+                }
+                "function" => {
+                    let prelude = input.parse::<SassFunction>()?;
+                    let block = input
+                        .with_state(ParserState {
+                            sass_ctx: input.state.sass_ctx | SASS_CTX_IN_FUNCTION,
+                            ..input.state.clone()
+                        })
+                        .parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (
+                        Some(AtRulePrelude::SassFunction(Box::new(prelude))),
+                        Some(block),
+                        end,
+                    )
+                }
+                "return" => {
+                    let expr = input
+                        .with_state(ParserState {
+                            sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
+                            ..input.state.clone()
+                        })
+                        .parse_maybe_sass_list(/* allow_comma */ true)?;
+                    let end = expr.span().end;
+                    if input.state.sass_ctx & SASS_CTX_IN_FUNCTION == 0 {
+                        input.recoverable_errors.push(Error {
+                            kind: ErrorKind::ReturnOutsideFunction,
+                            span: Span {
+                                start: at_keyword_span.start,
+                                end,
+                            },
+                        });
+                    }
+                    (Some(AtRulePrelude::SassExpr(Box::new(expr))), None, end)
+                }
+                "extend" => {
+                    let prelude = input.parse::<SassExtend>()?;
+                    let end = prelude.span.end;
+                    (
+                        Some(AtRulePrelude::SassExtend(Box::new(prelude))),
+                        None,
+                        end,
+                    )
+                }
+                "warn" | "error" | "debug" => {
+                    let expr = input.parse_maybe_sass_list(/* allow_comma */ true)?;
+                    let end = expr.span().end;
+                    (Some(AtRulePrelude::SassExpr(Box::new(expr))), None, end)
+                }
+                "forward" => {
+                    let prelude = input.parse::<SassForward>()?;
+                    let end = prelude.span.end;
+                    (
+                        Some(AtRulePrelude::SassForward(Box::new(prelude))),
+                        None,
+                        end,
+                    )
+                }
+                "at-root" => {
+                    let prelude =
+                        if !matches!(peek!(input).token, Token::LBrace(..) | Token::Indent(..)) {
+                            Some(AtRulePrelude::SassAtRoot(input.parse()?))
+                        } else {
+                            None
+                        };
+                    let block = input.parse::<SimpleBlock>()?;
+                    let end = block.span.end;
+                    (prelude, Some(block), end)
+                }
+                _ => {
+                    let (prelude, block, end) = input.parse_unknown_at_rule()?;
+                    (
+                        prelude.map(AtRulePrelude::Unknown),
+                        block,
+                        end.unwrap_or(at_keyword_span.end),
+                    )
+                }
+            }
         } else {
             let (prelude, block, end) = input.parse_unknown_at_rule()?;
             (

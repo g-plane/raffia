@@ -27,12 +27,22 @@ Stylesheet(
       block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassContentAtRule(
-            type: "SassContentAtRule",
-            arguments: None,
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "content",
+              raw: "content",
+              span: Span(
+                start: 18,
+                end: 25,
+              ),
+            ),
+            prelude: None,
+            block: None,
             span: Span(
               start: 17,
-              end: 25,
+              end: 27,
             ),
           ),
         ],
@@ -69,12 +79,22 @@ Stylesheet(
       block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassContentAtRule(
-            type: "SassContentAtRule",
-            arguments: None,
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "content",
+              raw: "content",
+              span: Span(
+                start: 45,
+                end: 52,
+              ),
+            ),
+            prelude: None,
+            block: None,
             span: Span(
               start: 44,
-              end: 52,
+              end: 55,
             ),
           ),
           SassIfAtRule(
@@ -93,9 +113,18 @@ Stylesheet(
               block: SimpleBlock(
                 type: "SimpleBlock",
                 statements: [
-                  SassDebugAtRule(
-                    type: "SassDebugAtRule",
-                    expr: Str(
+                  AtRule(
+                    type: "AtRule",
+                    name: Ident(
+                      type: "Ident",
+                      name: "debug",
+                      raw: "debug",
+                      span: Span(
+                        start: 70,
+                        end: 75,
+                      ),
+                    ),
+                    prelude: Some(Str(
                       type: "Str",
                       value: "",
                       raw: "\"\"",
@@ -103,7 +132,8 @@ Stylesheet(
                         start: 76,
                         end: 78,
                       ),
-                    ),
+                    )),
+                    block: None,
                     span: Span(
                       start: 69,
                       end: 78,

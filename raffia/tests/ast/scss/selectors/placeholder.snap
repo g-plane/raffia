@@ -273,46 +273,63 @@ Stylesheet(
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [
-          SassExtendAtRule(
-            type: "SassExtendAtRule",
-            selectors: CompoundSelectorList(
-              type: "CompoundSelectorList",
-              selectors: [
-                CompoundSelector(
-                  type: "CompoundSelector",
-                  children: [
-                    SassPlaceholderSelector(
-                      type: "SassPlaceholderSelector",
-                      name: Ident(
-                        type: "Ident",
-                        name: "x",
-                        raw: "x",
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "extend",
+              raw: "extend",
+              span: Span(
+                start: 64,
+                end: 70,
+              ),
+            ),
+            prelude: Some(SassExtend(
+              type: "SassExtend",
+              selectors: CompoundSelectorList(
+                type: "CompoundSelectorList",
+                selectors: [
+                  CompoundSelector(
+                    type: "CompoundSelector",
+                    children: [
+                      SassPlaceholderSelector(
+                        type: "SassPlaceholderSelector",
+                        name: Ident(
+                          type: "Ident",
+                          name: "x",
+                          raw: "x",
+                          span: Span(
+                            start: 72,
+                            end: 73,
+                          ),
+                        ),
                         span: Span(
-                          start: 72,
+                          start: 71,
                           end: 73,
                         ),
                       ),
-                      span: Span(
-                        start: 71,
-                        end: 73,
-                      ),
+                    ],
+                    span: Span(
+                      start: 71,
+                      end: 73,
                     ),
-                  ],
-                  span: Span(
-                    start: 71,
-                    end: 73,
                   ),
+                ],
+                span: Span(
+                  start: 71,
+                  end: 73,
                 ),
-              ],
+              ),
+              optional: None,
               span: Span(
                 start: 71,
                 end: 73,
               ),
-            ),
-            optional: None,
+            )),
+            block: None,
             span: Span(
               start: 63,
-              end: 74,
+              end: 73,
             ),
           ),
           QualifiedRule(
@@ -364,46 +381,63 @@ Stylesheet(
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
-                SassExtendAtRule(
-                  type: "SassExtendAtRule",
-                  selectors: CompoundSelectorList(
-                    type: "CompoundSelectorList",
-                    selectors: [
-                      CompoundSelector(
-                        type: "CompoundSelector",
-                        children: [
-                          SassPlaceholderSelector(
-                            type: "SassPlaceholderSelector",
-                            name: Ident(
-                              type: "Ident",
-                              name: "y",
-                              raw: "y",
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "extend",
+                    raw: "extend",
+                    span: Span(
+                      start: 85,
+                      end: 91,
+                    ),
+                  ),
+                  prelude: Some(SassExtend(
+                    type: "SassExtend",
+                    selectors: CompoundSelectorList(
+                      type: "CompoundSelectorList",
+                      selectors: [
+                        CompoundSelector(
+                          type: "CompoundSelector",
+                          children: [
+                            SassPlaceholderSelector(
+                              type: "SassPlaceholderSelector",
+                              name: Ident(
+                                type: "Ident",
+                                name: "y",
+                                raw: "y",
+                                span: Span(
+                                  start: 93,
+                                  end: 94,
+                                ),
+                              ),
                               span: Span(
-                                start: 93,
+                                start: 92,
                                 end: 94,
                               ),
                             ),
-                            span: Span(
-                              start: 92,
-                              end: 94,
-                            ),
+                          ],
+                          span: Span(
+                            start: 92,
+                            end: 94,
                           ),
-                        ],
-                        span: Span(
-                          start: 92,
-                          end: 94,
                         ),
+                      ],
+                      span: Span(
+                        start: 92,
+                        end: 94,
                       ),
-                    ],
+                    ),
+                    optional: None,
                     span: Span(
                       start: 92,
                       end: 94,
                     ),
-                  ),
-                  optional: None,
+                  )),
+                  block: None,
                   span: Span(
                     start: 84,
-                    end: 96,
+                    end: 94,
                   ),
                 ),
               ],
