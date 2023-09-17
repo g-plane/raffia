@@ -1229,6 +1229,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1309,6 +1310,12 @@ Stylesheet(
                             start: 550,
                             end: 566,
                           ),
+                        ),
+                      ],
+                      commaSpans: [
+                        Span(
+                          start: 548,
+                          end: 549,
                         ),
                       ],
                       span: Span(

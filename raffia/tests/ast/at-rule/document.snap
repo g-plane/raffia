@@ -126,6 +126,20 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [
+          Span(
+            start: 33,
+            end: 34,
+          ),
+          Span(
+            start: 75,
+            end: 76,
+          ),
+          Span(
+            start: 100,
+            end: 101,
+          ),
+        ],
         span: Span(
           start: 10,
           end: 122,

@@ -431,7 +431,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 },
                             ));
                         } else if let ComponentValue::SassVariable(sass_var) = value {
-                            if eat!(self, Colon).is_some() {
+                            if let Some((_, colon_span)) = eat!(self, Colon) {
                                 let value = self.parse::<ComponentValue>()?;
                                 let span = Span {
                                     start: sass_var.span.start,
@@ -440,6 +440,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 values.push(ComponentValue::SassKeywordArgument(
                                     SassKeywordArgument {
                                         name: sass_var,
+                                        colon_span,
                                         value: Box::new(value),
                                         span,
                                     },

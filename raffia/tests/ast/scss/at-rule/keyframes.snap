@@ -345,6 +345,10 @@ Stylesheet(
                       end: 248,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 248,
+                    end: 249,
+                  ),
                   value: Ident(
                     type: "Ident",
                     name: "true",
@@ -404,6 +408,7 @@ Stylesheet(
                               ),
                             ),
                           ],
+                          commaSpans: [],
                           block: SimpleBlock(
                             type: "SimpleBlock",
                             statements: [
@@ -471,6 +476,7 @@ Stylesheet(
                               ),
                             ),
                           ],
+                          commaSpans: [],
                           block: SimpleBlock(
                             type: "SimpleBlock",
                             statements: [
@@ -546,6 +552,7 @@ Stylesheet(
                             ),
                           ),
                         ],
+                        commaSpans: [],
                         block: SimpleBlock(
                           type: "SimpleBlock",
                           statements: [
@@ -606,6 +613,7 @@ Stylesheet(
                             ),
                           ),
                         ],
+                        commaSpans: [],
                         block: SimpleBlock(
                           type: "SimpleBlock",
                           statements: [
@@ -659,6 +667,12 @@ Stylesheet(
                       end: 452,
                     ),
                   )),
+                  elseSpans: [
+                    Span(
+                      start: 358,
+                      end: 363,
+                    ),
+                  ],
                   span: Span(
                     start: 260,
                     end: 452,

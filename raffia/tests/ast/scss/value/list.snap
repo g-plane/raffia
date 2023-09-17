@@ -23,6 +23,10 @@ Stylesheet(
           end: 7,
         ),
       ),
+      colonSpan: Span(
+        start: 7,
+        end: 8,
+      ),
       value: SassParenthesizedExpression(
         type: "SassParenthesizedExpression",
         expr: SassList(
@@ -106,6 +110,10 @@ Stylesheet(
           end: 53,
         ),
       ),
+      colonSpan: Span(
+        start: 53,
+        end: 54,
+      ),
       value: SassParenthesizedExpression(
         type: "SassParenthesizedExpression",
         expr: SassList(
@@ -162,6 +170,10 @@ Stylesheet(
           start: 65,
           end: 86,
         ),
+      ),
+      colonSpan: Span(
+        start: 86,
+        end: 87,
       ),
       value: SassList(
         type: "SassList",
@@ -326,6 +338,10 @@ Stylesheet(
           end: 137,
         ),
       ),
+      colonSpan: Span(
+        start: 137,
+        end: 138,
+      ),
       value: SassParenthesizedExpression(
         type: "SassParenthesizedExpression",
         expr: SassList(
@@ -418,6 +434,10 @@ Stylesheet(
           start: 153,
           end: 168,
         ),
+      ),
+      colonSpan: Span(
+        start: 168,
+        end: 169,
       ),
       value: SassList(
         type: "SassList",

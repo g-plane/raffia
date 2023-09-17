@@ -816,6 +816,7 @@ Stylesheet(
         arguments: Some(SassIncludeArgs(
           type: "SassIncludeArgs",
           args: [],
+          commaSpans: [],
           span: Span(
             start: 343,
             end: 345,
@@ -1163,6 +1164,12 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [
+            Span(
+              start: 474,
+              end: 475,
+            ),
+          ],
           span: Span(
             start: 472,
             end: 476,
@@ -1222,6 +1229,16 @@ Stylesheet(
                 start: 509,
                 end: 510,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 508,
+              end: 509,
+            ),
+            Span(
+              start: 510,
+              end: 511,
             ),
           ],
           span: Span(
@@ -1284,6 +1301,10 @@ Stylesheet(
                   end: 541,
                 ),
               ),
+              colonSpan: Span(
+                start: 541,
+                end: 542,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "z",
@@ -1297,6 +1318,12 @@ Stylesheet(
                 start: 539,
                 end: 544,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 544,
+              end: 545,
             ),
           ],
           span: Span(
@@ -1359,6 +1386,10 @@ Stylesheet(
                   end: 576,
                 ),
               ),
+              colonSpan: Span(
+                start: 576,
+                end: 577,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "y",
@@ -1391,6 +1422,10 @@ Stylesheet(
                   end: 582,
                 ),
               ),
+              colonSpan: Span(
+                start: 582,
+                end: 583,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "z",
@@ -1404,6 +1439,16 @@ Stylesheet(
                 start: 580,
                 end: 585,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 579,
+              end: 580,
+            ),
+            Span(
+              start: 585,
+              end: 586,
             ),
           ],
           span: Span(
@@ -1475,6 +1520,10 @@ Stylesheet(
                   end: 614,
                 ),
               ),
+              colonSpan: Span(
+                start: 614,
+                end: 615,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "z",
@@ -1488,6 +1537,16 @@ Stylesheet(
                 start: 612,
                 end: 617,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 610,
+              end: 611,
+            ),
+            Span(
+              start: 617,
+              end: 618,
             ),
           ],
           span: Span(
@@ -1599,6 +1658,7 @@ Stylesheet(
         arguments: Some(SassIncludeArgs(
           type: "SassIncludeArgs",
           args: [],
+          commaSpans: [],
           span: Span(
             start: 666,
             end: 668,
@@ -1695,6 +1755,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 691,
             end: 703,
@@ -1798,6 +1859,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 725,
             end: 739,
@@ -1914,6 +1976,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 761,
             end: 778,
@@ -1972,6 +2035,10 @@ Stylesheet(
                         end: 803,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 803,
+                      end: 804,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "a",
@@ -1996,6 +2063,10 @@ Stylesheet(
                         start: 808,
                         end: 809,
                       ),
+                    ),
+                    colonSpan: Span(
+                      start: 809,
+                      end: 810,
                     ),
                     value: Ident(
                       type: "Ident",
@@ -2022,6 +2093,10 @@ Stylesheet(
                         end: 815,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 815,
+                      end: 816,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "c",
@@ -2047,6 +2122,10 @@ Stylesheet(
                         end: 821,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 821,
+                      end: 822,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "d",
@@ -2062,6 +2141,20 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [
+                  Span(
+                    start: 806,
+                    end: 807,
+                  ),
+                  Span(
+                    start: 812,
+                    end: 813,
+                  ),
+                  Span(
+                    start: 818,
+                    end: 819,
+                  ),
+                ],
                 span: Span(
                   start: 801,
                   end: 825,
@@ -2073,6 +2166,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 800,
             end: 829,
@@ -2131,6 +2225,10 @@ Stylesheet(
                         end: 856,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 856,
+                      end: 857,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "a",
@@ -2155,6 +2253,10 @@ Stylesheet(
                         start: 861,
                         end: 864,
                       ),
+                    ),
+                    colonSpan: Span(
+                      start: 864,
+                      end: 865,
                     ),
                     value: Ident(
                       type: "Ident",
@@ -2181,6 +2283,10 @@ Stylesheet(
                         end: 872,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 872,
+                      end: 873,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "c",
@@ -2206,6 +2312,10 @@ Stylesheet(
                         end: 880,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 880,
+                      end: 881,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "d",
@@ -2221,6 +2331,20 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [
+                  Span(
+                    start: 859,
+                    end: 860,
+                  ),
+                  Span(
+                    start: 867,
+                    end: 868,
+                  ),
+                  Span(
+                    start: 875,
+                    end: 876,
+                  ),
+                ],
                 span: Span(
                   start: 852,
                   end: 884,
@@ -2232,6 +2356,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 851,
             end: 888,
@@ -2325,6 +2450,10 @@ Stylesheet(
                         end: 921,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 921,
+                      end: 922,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "c",
@@ -2350,6 +2479,10 @@ Stylesheet(
                         end: 926,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 926,
+                      end: 927,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "d",
@@ -2365,6 +2498,12 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [
+                  Span(
+                    start: 924,
+                    end: 925,
+                  ),
+                ],
                 span: Span(
                   start: 919,
                   end: 930,
@@ -2374,6 +2513,12 @@ Stylesheet(
                 start: 919,
                 end: 933,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 917,
+              end: 918,
             ),
           ],
           span: Span(
@@ -2478,6 +2623,10 @@ Stylesheet(
                         end: 970,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 970,
+                      end: 971,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "d",
@@ -2493,6 +2642,7 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [],
                 span: Span(
                   start: 968,
                   end: 973,
@@ -2502,6 +2652,16 @@ Stylesheet(
                 start: 968,
                 end: 976,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 958,
+              end: 959,
+            ),
+            Span(
+              start: 966,
+              end: 967,
             ),
           ],
           span: Span(
@@ -2564,6 +2724,10 @@ Stylesheet(
                   end: 1002,
                 ),
               ),
+              colonSpan: Span(
+                start: 1002,
+                end: 1003,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "c",
@@ -2594,6 +2758,10 @@ Stylesheet(
                         end: 1009,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 1009,
+                      end: 1010,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "a",
@@ -2618,6 +2786,10 @@ Stylesheet(
                         start: 1014,
                         end: 1015,
                       ),
+                    ),
+                    colonSpan: Span(
+                      start: 1015,
+                      end: 1016,
                     ),
                     value: Ident(
                       type: "Ident",
@@ -2644,6 +2816,10 @@ Stylesheet(
                         end: 1021,
                       ),
                     ),
+                    colonSpan: Span(
+                      start: 1021,
+                      end: 1022,
+                    ),
                     value: Ident(
                       type: "Ident",
                       name: "d",
@@ -2659,6 +2835,16 @@ Stylesheet(
                     ),
                   ),
                 ],
+                commaSpans: [
+                  Span(
+                    start: 1012,
+                    end: 1013,
+                  ),
+                  Span(
+                    start: 1018,
+                    end: 1019,
+                  ),
+                ],
                 span: Span(
                   start: 1007,
                   end: 1025,
@@ -2668,6 +2854,12 @@ Stylesheet(
                 start: 1007,
                 end: 1028,
               ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 1005,
+              end: 1006,
             ),
           ],
           span: Span(
@@ -2747,6 +2939,7 @@ Stylesheet(
               ),
             ),
           ],
+          commaSpans: [],
           span: Span(
             start: 1053,
             end: 1072,
@@ -2781,6 +2974,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -2861,6 +3055,12 @@ Stylesheet(
                             start: 1115,
                             end: 1131,
                           ),
+                        ),
+                      ],
+                      commaSpans: [
+                        Span(
+                          start: 1113,
+                          end: 1114,
                         ),
                       ],
                       span: Span(

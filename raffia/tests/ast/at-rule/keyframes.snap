@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -140,6 +139,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -225,6 +225,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -351,6 +352,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -451,6 +453,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -551,6 +554,12 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [
+              Span(
+                start: 307,
+                end: 308,
+              ),
+            ],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -635,6 +644,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -885,6 +895,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -969,6 +980,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1086,6 +1098,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1146,6 +1159,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1257,6 +1271,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1342,6 +1357,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1461,6 +1477,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [],
@@ -1521,6 +1538,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [],
@@ -1581,6 +1599,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [],
@@ -1641,6 +1660,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [],
@@ -1701,6 +1721,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [],

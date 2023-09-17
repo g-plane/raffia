@@ -409,6 +409,7 @@ pub enum DimensionKind {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct DocumentPrelude<'s> {
     pub matchers: Vec<DocumentPreludeMatcher<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -492,10 +493,18 @@ pub enum ImportPreludeLayer<'s> {
     WithName(Function<'s>),
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct ImportPreludeSupports<'s> {
+    pub kind: ImportPreludeSupportsKind<'s>,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum ImportPreludeSupports<'s> {
+pub enum ImportPreludeSupportsKind<'s> {
     SupportsCondition(SupportsCondition<'s>),
     Declaration(Declaration<'s>),
 }
@@ -566,6 +575,7 @@ pub struct ImportantAnnotation<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct KeyframeBlock<'s> {
     pub selectors: Vec<KeyframeSelector<'s>>,
+    pub comma_spans: Vec<Span>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
 }
@@ -1273,6 +1283,7 @@ pub enum MediaQuery<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct MediaQueryList<'s> {
     pub queries: SmallVec<[MediaQuery<'s>; 1]>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1617,6 +1628,7 @@ pub struct SassConditionalClause<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassContent<'s> {
     pub args: Vec<ComponentValue<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1625,6 +1637,7 @@ pub struct SassContent<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassEach<'s> {
     pub bindings: Vec<SassVariable<'s>>,
+    pub comma_spans: Vec<Span>,
     pub in_span: Span,
     pub expr: ComponentValue<'s>,
     pub span: Span,
@@ -1734,6 +1747,7 @@ pub struct SassIfAtRule<'s> {
     pub if_clause: SassConditionalClause<'s>,
     pub else_if_clauses: Vec<SassConditionalClause<'s>>,
     pub else_clause: Option<SimpleBlock<'s>>,
+    pub else_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1742,6 +1756,7 @@ pub struct SassIfAtRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassImportPrelude<'s> {
     pub paths: Vec<Str<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1760,6 +1775,7 @@ pub struct SassInclude<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassIncludeArgs<'s> {
     pub args: Vec<ComponentValue<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1825,6 +1841,7 @@ pub enum SassInterpolatedUrlElement<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassKeywordArgument<'s> {
     pub name: SassVariable<'s>,
+    pub colon_span: Span,
     pub value: Box<ComponentValue<'s>>,
     pub span: Span,
 }
@@ -1843,6 +1860,7 @@ pub struct SassList<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassMap<'s> {
     pub items: Vec<SassMapItem<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -1851,6 +1869,7 @@ pub struct SassMap<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassMapItem<'s> {
     pub key: ComponentValue<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub span: Span,
 }
@@ -1880,6 +1899,7 @@ pub struct SassModuleConfig<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassModuleConfigItem<'s> {
     pub variable: SassVariable<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub overridable: bool,
     pub span: Span,
@@ -2017,6 +2037,7 @@ pub struct SassVariable<'s> {
 pub struct SassVariableDeclaration<'s> {
     pub namespace: Option<Ident<'s>>,
     pub name: SassVariable<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub overridable: bool,
     pub force_global: bool,

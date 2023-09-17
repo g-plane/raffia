@@ -254,16 +254,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
         let mut span = first.span().clone();
 
         let mut queries: SmallVec<[MediaQuery; 1]> = smallvec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             queries.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, queries.len());
 
         // SAFETY: it has at least one element.
         span.end = unsafe {
             let index = queries.len() - 1;
             queries.get_unchecked(index).span().end
         };
-        Ok(MediaQueryList { queries, span })
+        Ok(MediaQueryList {
+            queries,
+            comma_spans,
+            span,
+        })
     }
 }
 

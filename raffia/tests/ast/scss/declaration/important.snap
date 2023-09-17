@@ -257,6 +257,10 @@ Stylesheet(
           end: 85,
         ),
       ),
+      colonSpan: Span(
+        start: 85,
+        end: 86,
+      ),
       value: ImportantAnnotation(
         type: "ImportantAnnotation",
         ident: Ident(
@@ -298,6 +302,10 @@ Stylesheet(
           start: 99,
           end: 105,
         ),
+      ),
+      colonSpan: Span(
+        start: 105,
+        end: 106,
       ),
       value: ImportantAnnotation(
         type: "ImportantAnnotation",

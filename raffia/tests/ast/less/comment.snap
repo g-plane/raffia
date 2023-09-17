@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -1210,6 +1209,7 @@ Stylesheet(
                 ),
               ),
             ],
+            commaSpans: [],
             block: SimpleBlock(
               type: "SimpleBlock",
               statements: [
@@ -1703,6 +1703,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 1801,
           end: 1832,

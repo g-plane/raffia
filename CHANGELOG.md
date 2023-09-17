@@ -3,6 +3,7 @@ _This changelog only relates to the `raffia` crate._
 ## Unreleased
 
 - Rejected whitespace or comments in Sass arbitrary argument.
+- Added token spans for some AST nodes.
 
 ## v0.5.0
 

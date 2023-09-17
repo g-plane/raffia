@@ -18,9 +18,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
 
         let mut selectors = Vec::with_capacity(2);
         selectors.push(first_selector);
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             selectors.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, selectors.len());
 
         let block = input
             .with_state(ParserState {
@@ -28,12 +31,14 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for KeyframeBlock<'s> {
                 ..input.state.clone()
             })
             .parse::<SimpleBlock>()?;
+
         let span = Span {
             start,
             end: block.span.end,
         };
         Ok(KeyframeBlock {
             selectors,
+            comma_spans,
             block,
             span,
         })

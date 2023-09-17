@@ -23,6 +23,10 @@ Stylesheet(
           end: 11,
         ),
       ),
+      colonSpan: Span(
+        start: 11,
+        end: 12,
+      ),
       value: Dimension(
         type: "Dimension",
         value: Number(
@@ -74,6 +78,10 @@ Stylesheet(
           start: 18,
           end: 31,
         ),
+      ),
+      colonSpan: Span(
+        start: 31,
+        end: 32,
       ),
       value: Dimension(
         type: "Dimension",

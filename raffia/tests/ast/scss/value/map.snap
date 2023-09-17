@@ -23,6 +23,10 @@ Stylesheet(
           end: 4,
         ),
       ),
+      colonSpan: Span(
+        start: 4,
+        end: 5,
+      ),
       value: SassMap(
         type: "SassMap",
         items: [
@@ -43,6 +47,10 @@ Stylesheet(
                 start: 10,
                 end: 16,
               ),
+            ),
+            colonSpan: Span(
+              start: 16,
+              end: 17,
             ),
             value: SassParenthesizedExpression(
               type: "SassParenthesizedExpression",
@@ -76,6 +84,10 @@ Stylesheet(
                 end: 37,
               ),
             ),
+            colonSpan: Span(
+              start: 37,
+              end: 38,
+            ),
             value: Ident(
               type: "Ident",
               name: "value-2-0",
@@ -107,6 +119,10 @@ Stylesheet(
                 start: 52,
                 end: 58,
               ),
+            ),
+            colonSpan: Span(
+              start: 58,
+              end: 59,
             ),
             value: SassParenthesizedExpression(
               type: "SassParenthesizedExpression",
@@ -168,6 +184,10 @@ Stylesheet(
                 end: 98,
               ),
             ),
+            colonSpan: Span(
+              start: 98,
+              end: 99,
+            ),
             value: SassList(
               type: "SassList",
               elements: [
@@ -220,6 +240,10 @@ Stylesheet(
                 start: 133,
                 end: 137,
               ),
+            ),
+            colonSpan: Span(
+              start: 137,
+              end: 138,
             ),
             value: SassParenthesizedExpression(
               type: "SassParenthesizedExpression",
@@ -290,6 +314,10 @@ Stylesheet(
                 end: 180,
               ),
             ),
+            colonSpan: Span(
+              start: 180,
+              end: 181,
+            ),
             value: SassMap(
               type: "SassMap",
               items: [
@@ -303,6 +331,10 @@ Stylesheet(
                       start: 183,
                       end: 190,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 190,
+                    end: 191,
                   ),
                   value: Ident(
                     type: "Ident",
@@ -319,6 +351,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 182,
                 end: 202,
@@ -345,6 +378,10 @@ Stylesheet(
                       end: 214,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 214,
+                    end: 215,
+                  ),
                   value: Ident(
                     type: "Ident",
                     name: "key-7-1",
@@ -360,10 +397,15 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 206,
                 end: 224,
               ),
+            ),
+            colonSpan: Span(
+              start: 224,
+              end: 225,
             ),
             value: SassMap(
               type: "SassMap",
@@ -378,6 +420,10 @@ Stylesheet(
                       start: 227,
                       end: 236,
                     ),
+                  ),
+                  colonSpan: Span(
+                    start: 236,
+                    end: 237,
                   ),
                   value: Ident(
                     type: "Ident",
@@ -394,6 +440,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 226,
                 end: 248,
@@ -459,6 +506,10 @@ Stylesheet(
                 end: 279,
               ),
             ),
+            colonSpan: Span(
+              start: 279,
+              end: 280,
+            ),
             value: SassParenthesizedExpression(
               type: "SassParenthesizedExpression",
               expr: SassList(
@@ -516,6 +567,40 @@ Stylesheet(
               start: 252,
               end: 314,
             ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 29,
+            end: 30,
+          ),
+          Span(
+            start: 48,
+            end: 49,
+          ),
+          Span(
+            start: 71,
+            end: 72,
+          ),
+          Span(
+            start: 129,
+            end: 130,
+          ),
+          Span(
+            start: 172,
+            end: 173,
+          ),
+          Span(
+            start: 202,
+            end: 203,
+          ),
+          Span(
+            start: 248,
+            end: 249,
+          ),
+          Span(
+            start: 314,
+            end: 315,
           ),
         ],
         span: Span(
@@ -629,6 +714,10 @@ Stylesheet(
                             end: 345,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 345,
+                          end: 346,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 1.0,
@@ -654,6 +743,10 @@ Stylesheet(
                             end: 353,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 353,
+                          end: 354,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 2.0,
@@ -667,6 +760,12 @@ Stylesheet(
                           start: 350,
                           end: 356,
                         ),
+                      ),
+                    ],
+                    commaSpans: [
+                      Span(
+                        start: 348,
+                        end: 349,
                       ),
                     ],
                     span: Span(
@@ -747,6 +846,10 @@ Stylesheet(
                             end: 384,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 384,
+                          end: 385,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 1.0,
@@ -772,6 +875,10 @@ Stylesheet(
                             end: 392,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 392,
+                          end: 393,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 2.0,
@@ -785,6 +892,12 @@ Stylesheet(
                           start: 389,
                           end: 395,
                         ),
+                      ),
+                    ],
+                    commaSpans: [
+                      Span(
+                        start: 387,
+                        end: 388,
                       ),
                     ],
                     span: Span(
@@ -865,6 +978,10 @@ Stylesheet(
                             end: 423,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 423,
+                          end: 424,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 1.0,
@@ -890,6 +1007,10 @@ Stylesheet(
                             end: 431,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 431,
+                          end: 432,
+                        ),
                         value: Number(
                           type: "Number",
                           value: 2.0,
@@ -903,6 +1024,12 @@ Stylesheet(
                           start: 428,
                           end: 434,
                         ),
+                      ),
+                    ],
+                    commaSpans: [
+                      Span(
+                        start: 426,
+                        end: 427,
                       ),
                     ],
                     span: Span(
@@ -972,6 +1099,7 @@ Stylesheet(
                   SassMap(
                     type: "SassMap",
                     items: [],
+                    commaSpans: [],
                     span: Span(
                       start: 458,
                       end: 460,
@@ -1074,6 +1202,10 @@ Stylesheet(
                             end: 497,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 497,
+                          end: 498,
+                        ),
                         value: Ident(
                           type: "Ident",
                           name: "value-5-1",
@@ -1089,6 +1221,7 @@ Stylesheet(
                         ),
                       ),
                     ],
+                    commaSpans: [],
                     span: Span(
                       start: 489,
                       end: 509,

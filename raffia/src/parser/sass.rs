@@ -497,10 +497,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         ))
     }
 
-    fn parse_sass_invocation_args(&mut self) -> PResult<Vec<ComponentValue<'s>>> {
+    fn parse_sass_invocation_args(&mut self) -> PResult<(Vec<ComponentValue<'s>>, Vec<Span>)> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
 
         let mut values = Vec::with_capacity(4);
+        let mut comma_spans = vec![];
         while !matches!(peek!(self).token, Token::RParen(..) | Token::Eof(..)) {
             match peek!(self).token {
                 Token::Comma(..) => {
@@ -526,7 +527,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             },
                         ));
                     } else if let ComponentValue::SassVariable(sass_var) = value {
-                        if eat!(self, Colon).is_some() {
+                        if let Some((_, colon_span)) = eat!(self, Colon) {
                             let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
                             let span = Span {
                                 start: sass_var.span.start,
@@ -534,6 +535,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             };
                             values.push(ComponentValue::SassKeywordArgument(SassKeywordArgument {
                                 name: sass_var,
+                                colon_span,
                                 value: Box::new(value),
                                 span,
                             }));
@@ -546,10 +548,11 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
             }
             if !matches!(peek!(self).token, Token::RParen(..) | Token::Eof(..)) {
-                expect!(self, Comma);
+                comma_spans.push(expect!(self, Comma).1);
             }
         }
-        Ok(values)
+        debug_assert!(values.len() - comma_spans.len() <= 1);
+        Ok((values, comma_spans))
     }
 
     fn parse_sass_module_config(
@@ -604,7 +607,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         allow_overridable: bool,
     ) -> PResult<SassModuleConfigItem<'s>> {
         let variable = self.parse::<SassVariable>()?;
-        expect!(self, Colon);
+        let (_, colon_span) = expect!(self, Colon);
         let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
 
         let (overridable, end) = if allow_overridable {
@@ -620,6 +623,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
         Ok(SassModuleConfigItem {
             variable,
+            colon_span,
             value,
             overridable,
             span,
@@ -843,10 +847,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassConditionalClause<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassContent<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, Span { start, .. }) = expect!(input, LParen);
-        let args = input.parse_sass_invocation_args()?;
+        let (args, comma_spans) = input.parse_sass_invocation_args()?;
         let (_, Span { end, .. }) = expect!(input, RParen);
         Ok(SassContent {
             args,
+            comma_spans,
             span: Span { start, end },
         })
     }
@@ -860,9 +865,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEach<'s> {
         let start = first_binding.span().start;
 
         let mut bindings = vec![first_binding];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             bindings.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, bindings.len());
 
         let (keyword_in, keyword_in_span) = expect!(input, Ident);
         if keyword_in.name() != "in" {
@@ -879,6 +887,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassEach<'s> {
         };
         Ok(SassEach {
             bindings,
+            comma_spans,
             in_span: keyword_in_span,
             expr,
             span,
@@ -1110,11 +1119,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
         let if_clause = input.parse()?;
         let mut else_if_clauses = vec![];
         let mut else_clause = None;
+        let mut else_spans = vec![];
 
         while let Token::AtKeyword(at_keyword) = &peek!(input).token {
             match &*at_keyword.ident.name() {
                 "else" => {
-                    bump!(input);
+                    else_spans.push(bump!(input).span);
                     match &peek!(input).token {
                         Token::Ident(ident) if ident.name() == "if" => {
                             bump!(input);
@@ -1128,17 +1138,22 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
                 }
                 // `elseif` is deprecated by Sass
                 "elseif" => {
-                    bump!(input);
+                    else_spans.push(bump!(input).span);
                     else_if_clauses.push(input.parse()?);
                 }
                 _ => break,
             }
         }
 
+        debug_assert_eq!(
+            else_spans.len(),
+            else_if_clauses.len() + else_clause.iter().count()
+        );
         Ok(SassIfAtRule {
             if_clause,
             else_if_clauses,
             else_clause,
+            else_spans,
             span: Span {
                 start,
                 end: input.tokenizer.current_offset(),
@@ -1153,9 +1168,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassImportPrelude<'s> {
         let mut span = first.span.clone();
 
         let mut paths = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             paths.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, paths.len());
 
         if let Some(Str {
             span: Span { end, .. },
@@ -1164,7 +1182,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassImportPrelude<'s> {
         {
             span.end = *end;
         }
-        Ok(SassImportPrelude { paths, span })
+        Ok(SassImportPrelude {
+            paths,
+            comma_spans,
+            span,
+        })
     }
 }
 
@@ -1204,10 +1226,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassInclude<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIncludeArgs<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, Span { start, .. }) = expect!(input, LParen);
-        let args = input.parse_sass_invocation_args()?;
+        let (args, comma_spans) = input.parse_sass_invocation_args()?;
         let (_, Span { end, .. }) = expect!(input, RParen);
         Ok(SassIncludeArgs {
             args,
+            comma_spans,
             span: Span { start, end },
         })
     }
@@ -1348,16 +1371,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
         let start = expect!(input, LParen).1.start;
 
         let mut items = vec![];
+        let mut comma_spans = vec![];
         while !matches!(&peek!(input).token, Token::RParen(..)) {
             items.push(input.parse()?);
             if !matches!(&peek!(input).token, Token::RParen(..)) {
-                expect!(input, Comma);
+                comma_spans.push(expect!(input, Comma).1);
             }
         }
+        debug_assert!(items.len() - comma_spans.len() <= 1);
 
         let end = expect!(input, RParen).1.end;
         Ok(SassMap {
             items,
+            comma_spans,
             span: Span { start, end },
         })
     }
@@ -1366,13 +1392,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMapItem<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let key = input.parse_maybe_sass_list(/* allow_comma */ false)?;
-        expect!(input, Colon);
+        let (_, colon_span) = expect!(input, Colon);
         let value = input.parse_maybe_sass_list(/* allow_comma */ false)?;
         let span = Span {
             start: key.span().start,
             end: value.span().end,
         };
-        Ok(SassMapItem { key, value, span })
+        Ok(SassMapItem {
+            key,
+            colon_span,
+            value,
+            span,
+        })
     }
 }
 
@@ -1571,7 +1602,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
         };
 
         let name = input.parse::<SassVariable>()?;
-        expect!(input, Colon);
+        let (_, colon_span) = expect!(input, Colon);
         let value = input
             .with_state(ParserState {
                 sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
@@ -1600,6 +1631,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
         Ok(SassVariableDeclaration {
             namespace,
             name,
+            colon_span,
             value,
             overridable: flags & FLAG_DEFAULT != 0,
             force_global,

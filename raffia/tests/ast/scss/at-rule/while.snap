@@ -117,6 +117,10 @@ Stylesheet(
                 end: 30,
               ),
             ),
+            colonSpan: Span(
+              start: 30,
+              end: 31,
+            ),
             value: SassBinaryExpression(
               type: "SassBinaryExpression",
               left: SassVariable(

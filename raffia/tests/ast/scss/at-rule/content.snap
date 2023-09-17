@@ -109,6 +109,7 @@ Stylesheet(
             prelude: Some(SassContent(
               type: "SassContent",
               args: [],
+              commaSpans: [],
               span: Span(
                 start: 55,
                 end: 57,
@@ -193,6 +194,12 @@ Stylesheet(
                     start: 96,
                     end: 102,
                   ),
+                ),
+              ],
+              commaSpans: [
+                Span(
+                  start: 94,
+                  end: 95,
                 ),
               ],
               span: Span(
@@ -280,6 +287,10 @@ Stylesheet(
                       end: 139,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 139,
+                    end: 140,
+                  ),
                   value: Ident(
                     type: "Ident",
                     name: "value1",
@@ -312,6 +323,10 @@ Stylesheet(
                       end: 154,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 154,
+                    end: 155,
+                  ),
                   value: Ident(
                     type: "Ident",
                     name: "value2",
@@ -325,6 +340,12 @@ Stylesheet(
                     start: 149,
                     end: 162,
                   ),
+                ),
+              ],
+              commaSpans: [
+                Span(
+                  start: 147,
+                  end: 148,
                 ),
               ],
               span: Span(
@@ -437,6 +458,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 193,
                 end: 213,
@@ -520,6 +542,10 @@ Stylesheet(
                             end: 249,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 249,
+                          end: 250,
+                        ),
                         value: Ident(
                           type: "Ident",
                           name: "value1",
@@ -545,6 +571,10 @@ Stylesheet(
                             end: 263,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 263,
+                          end: 264,
+                        ),
                         value: Ident(
                           type: "Ident",
                           name: "value2",
@@ -560,6 +590,12 @@ Stylesheet(
                         ),
                       ),
                     ],
+                    commaSpans: [
+                      Span(
+                        start: 257,
+                        end: 258,
+                      ),
+                    ],
                     span: Span(
                       start: 244,
                       end: 272,
@@ -571,6 +607,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 243,
                 end: 276,
@@ -692,6 +729,10 @@ Stylesheet(
                             end: 326,
                           ),
                         ),
+                        colonSpan: Span(
+                          start: 326,
+                          end: 327,
+                        ),
                         value: Ident(
                           type: "Ident",
                           name: "value2",
@@ -707,6 +748,7 @@ Stylesheet(
                         ),
                       ),
                     ],
+                    commaSpans: [],
                     span: Span(
                       start: 321,
                       end: 335,
@@ -716,6 +758,12 @@ Stylesheet(
                     start: 321,
                     end: 338,
                   ),
+                ),
+              ],
+              commaSpans: [
+                Span(
+                  start: 319,
+                  end: 320,
                 ),
               ],
               span: Span(
@@ -812,6 +860,10 @@ Stylesheet(
                       end: 383,
                     ),
                   ),
+                  colonSpan: Span(
+                    start: 383,
+                    end: 384,
+                  ),
                   value: Ident(
                     type: "Ident",
                     name: "value2",
@@ -825,6 +877,12 @@ Stylesheet(
                     start: 378,
                     end: 391,
                   ),
+                ),
+              ],
+              commaSpans: [
+                Span(
+                  start: 376,
+                  end: 377,
                 ),
               ],
               span: Span(
@@ -911,6 +969,12 @@ Stylesheet(
                     start: 432,
                     end: 438,
                   ),
+                ),
+              ],
+              commaSpans: [
+                Span(
+                  start: 430,
+                  end: 431,
                 ),
               ],
               span: Span(
@@ -1025,6 +1089,7 @@ Stylesheet(
                   ),
                 ),
               ],
+              commaSpans: [],
               span: Span(
                 start: 469,
                 end: 479,

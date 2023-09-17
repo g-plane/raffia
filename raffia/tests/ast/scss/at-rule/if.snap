@@ -267,6 +267,12 @@ Stylesheet(
           end: 50,
         ),
       )),
+      elseSpans: [
+        Span(
+          start: 32,
+          end: 37,
+        ),
+      ],
       span: Span(
         start: 0,
         end: 50,
@@ -529,6 +535,12 @@ Stylesheet(
         ),
       ],
       elseClause: None,
+      elseSpans: [
+        Span(
+          start: 94,
+          end: 99,
+        ),
+      ],
       span: Span(
         start: 52,
         end: 146,
@@ -653,6 +665,7 @@ Stylesheet(
             ),
             elseIfClauses: [],
             elseClause: None,
+            elseSpans: [],
             span: Span(
               start: 151,
               end: 189,
@@ -946,6 +959,20 @@ Stylesheet(
                 end: 333,
               ),
             )),
+            elseSpans: [
+              Span(
+                start: 222,
+                end: 227,
+              ),
+              Span(
+                start: 263,
+                end: 268,
+              ),
+              Span(
+                start: 304,
+                end: 309,
+              ),
+            ],
             span: Span(
               start: 186,
               end: 333,
@@ -1092,6 +1119,7 @@ Stylesheet(
       ),
       elseIfClauses: [],
       elseClause: None,
+      elseSpans: [],
       span: Span(
         start: 337,
         end: 364,
@@ -1234,6 +1262,12 @@ Stylesheet(
           end: 392,
         ),
       )),
+      elseSpans: [
+        Span(
+          start: 374,
+          end: 381,
+        ),
+      ],
       span: Span(
         start: 361,
         end: 392,
@@ -1458,6 +1492,16 @@ Stylesheet(
                 end: 494,
               ),
             )),
+            elseSpans: [
+              Span(
+                start: 432,
+                end: 439,
+              ),
+              Span(
+                start: 467,
+                end: 472,
+              ),
+            ],
             span: Span(
               start: 402,
               end: 494,

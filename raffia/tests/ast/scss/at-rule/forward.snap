@@ -518,6 +518,10 @@ Stylesheet(
                   end: 251,
                 ),
               ),
+              colonSpan: Span(
+                start: 251,
+                end: 252,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "e",
@@ -603,6 +607,10 @@ Stylesheet(
                   start: 283,
                   end: 285,
                 ),
+              ),
+              colonSpan: Span(
+                start: 285,
+                end: 286,
               ),
               value: Ident(
                 type: "Ident",
@@ -690,6 +698,10 @@ Stylesheet(
                   end: 340,
                 ),
               ),
+              colonSpan: Span(
+                start: 340,
+                end: 341,
+              ),
               value: SassList(
                 type: "SassList",
                 elements: [
@@ -742,6 +754,10 @@ Stylesheet(
                   end: 360,
                 ),
               ),
+              colonSpan: Span(
+                start: 360,
+                end: 361,
+              ),
               value: SassList(
                 type: "SassList",
                 elements: [
@@ -793,6 +809,10 @@ Stylesheet(
                   start: 378,
                   end: 380,
                 ),
+              ),
+              colonSpan: Span(
+                start: 380,
+                end: 381,
               ),
               value: SassList(
                 type: "SassList",
@@ -908,6 +928,10 @@ Stylesheet(
                   end: 429,
                 ),
               ),
+              colonSpan: Span(
+                start: 429,
+                end: 430,
+              ),
               value: SassList(
                 type: "SassList",
                 elements: [
@@ -960,6 +984,10 @@ Stylesheet(
                   end: 458,
                 ),
               ),
+              colonSpan: Span(
+                start: 458,
+                end: 459,
+              ),
               value: SassList(
                 type: "SassList",
                 elements: [
@@ -1011,6 +1039,10 @@ Stylesheet(
                   start: 485,
                   end: 487,
                 ),
+              ),
+              colonSpan: Span(
+                start: 487,
+                end: 488,
               ),
               value: SassList(
                 type: "SassList",
@@ -1126,6 +1158,10 @@ Stylesheet(
                   end: 543,
                 ),
               ),
+              colonSpan: Span(
+                start: 543,
+                end: 544,
+              ),
               value: Ident(
                 type: "Ident",
                 name: "configured",
@@ -1216,6 +1252,10 @@ Stylesheet(
                   start: 585,
                   end: 587,
                 ),
+              ),
+              colonSpan: Span(
+                start: 587,
+                end: 588,
               ),
               value: Ident(
                 type: "Ident",
@@ -1315,6 +1355,10 @@ Stylesheet(
                   start: 649,
                   end: 651,
                 ),
+              ),
+              colonSpan: Span(
+                start: 651,
+                end: 652,
               ),
               value: SassList(
                 type: "SassList",
@@ -1420,6 +1464,10 @@ Stylesheet(
                   start: 695,
                   end: 697,
                 ),
+              ),
+              colonSpan: Span(
+                start: 697,
+                end: 698,
               ),
               value: SassList(
                 type: "SassList",

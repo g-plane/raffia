@@ -80,6 +80,10 @@ Stylesheet(
                 end: 13,
               ),
             ),
+            colonSpan: Span(
+              start: 13,
+              end: 14,
+            ),
             value: SassBinaryExpression(
               type: "SassBinaryExpression",
               left: Number(
@@ -139,6 +143,10 @@ Stylesheet(
                 end: 33,
               ),
             ),
+            colonSpan: Span(
+              start: 33,
+              end: 34,
+            ),
             value: SassBinaryExpression(
               type: "SassBinaryExpression",
               left: Ident(
@@ -197,6 +205,10 @@ Stylesheet(
                 start: 57,
                 end: 62,
               ),
+            ),
+            colonSpan: Span(
+              start: 62,
+              end: 63,
             ),
             value: SassList(
               type: "SassList",
@@ -392,6 +404,10 @@ Stylesheet(
           end: 120,
         ),
       ),
+      colonSpan: Span(
+        start: 121,
+        end: 122,
+      ),
       value: Ident(
         type: "Ident",
         name: "bip",
@@ -427,6 +443,10 @@ Stylesheet(
           end: 134,
         ),
       ),
+      colonSpan: Span(
+        start: 134,
+        end: 135,
+      ),
       value: Ident(
         type: "Ident",
         name: "foo",
@@ -461,6 +481,10 @@ Stylesheet(
           start: 142,
           end: 146,
         ),
+      ),
+      colonSpan: Span(
+        start: 146,
+        end: 147,
       ),
       value: Number(
         type: "Number",
@@ -504,6 +528,10 @@ Stylesheet(
           start: 171,
           end: 178,
         ),
+      ),
+      colonSpan: Span(
+        start: 178,
+        end: 179,
       ),
       value: SassList(
         type: "SassList",
@@ -567,6 +595,10 @@ Stylesheet(
           end: 202,
         ),
       ),
+      colonSpan: Span(
+        start: 202,
+        end: 203,
+      ),
       value: Ident(
         type: "Ident",
         name: "c",
@@ -601,6 +633,10 @@ Stylesheet(
           start: 216,
           end: 228,
         ),
+      ),
+      colonSpan: Span(
+        start: 228,
+        end: 229,
       ),
       value: SassList(
         type: "SassList",

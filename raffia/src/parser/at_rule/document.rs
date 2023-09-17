@@ -8,13 +8,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for DocumentPrelude<'s> {
         let mut span = first.span().clone();
 
         let mut matchers = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             matchers.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, matchers.len());
+
         if let Some(last) = matchers.last() {
             span.end = last.span().end;
         }
-        Ok(DocumentPrelude { matchers, span })
+        Ok(DocumentPrelude {
+            matchers,
+            comma_spans,
+            span,
+        })
     }
 }
 
