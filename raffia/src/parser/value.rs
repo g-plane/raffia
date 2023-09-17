@@ -6,7 +6,7 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::{assert_no_ws_or_comment, handle_escape, CowStr},
+    util::{self, CowStr},
     Parse, Syntax,
 };
 
@@ -127,7 +127,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             } = name
                             {
                                 let (_, lparen_span) = expect!(self, LParen);
-                                assert_no_ws_or_comment(&name.span, &lparen_span)?;
+                                util::assert_no_ws_or_comment(&name.span, &lparen_span)?;
                                 let args = self.parse_function_args()?;
                                 let (_, Span { end, .. }) = expect!(self, RParen);
                                 let span = Span {
@@ -422,7 +422,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     let value = self.parse::<ComponentValue>()?;
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
                         if let Some((_, mut span)) = eat!(self, DotDotDot) {
-                            assert_no_ws_or_comment(value.span(), &span)?;
+                            util::assert_no_ws_or_comment(value.span(), &span)?;
                             span.start = value.span().start;
                             values.push(ComponentValue::SassArbitraryArgument(
                                 SassArbitraryArgument {
@@ -791,7 +791,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Function<'s> {
                 token: Token::LParen(..),
                 span,
             } => {
-                assert_no_ws_or_comment(name.span(), span)?;
+                util::assert_no_ws_or_comment(name.span(), span)?;
                 match name {
                     FunctionName::Ident(name) => input.parse_function(name),
                     name => {
@@ -862,7 +862,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
         let (token, span) = expect!(input, Hash);
         let raw = token.raw;
         let value = if token.escaped {
-            handle_escape(raw)
+            util::handle_escape(raw)
         } else {
             CowStr::from(raw)
         };
@@ -1085,7 +1085,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
                 span,
             } => {
                 let value = if url.escaped {
-                    handle_escape(url.raw)
+                    util::handle_escape(url.raw)
                 } else {
                     CowStr::from(url.raw)
                 };
