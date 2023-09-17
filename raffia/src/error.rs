@@ -36,6 +36,7 @@ pub enum ErrorKind {
 
     ExpectRule,
     UnexpectedWhitespace,
+    UnexpectedWhitespaceOrComments,
     ExpectSimpleSelector,
     ExpectTypeSelector,
     ExpectIdSelector,
@@ -128,6 +129,7 @@ impl Display for ErrorKind {
 
             Self::ExpectRule => write!(f, "CSS rule is expected"),
             Self::UnexpectedWhitespace => write!(f, "unexpected whitespace"),
+            Self::UnexpectedWhitespaceOrComments => write!(f, "unexpected whitespace or comments"),
             Self::ExpectSimpleSelector => write!(f, "simple selector is expected"),
             Self::ExpectTypeSelector => write!(f, "type selector is expected"),
             Self::ExpectIdSelector => write!(f, "ID selector is expected"),

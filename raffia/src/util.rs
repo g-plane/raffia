@@ -71,7 +71,7 @@ pub(crate) fn assert_no_ws_or_comment(left: &Span, right: &Span) -> PResult<()> 
         Ok(())
     } else {
         Err(Error {
-            kind: ErrorKind::UnexpectedWhitespace,
+            kind: ErrorKind::UnexpectedWhitespaceOrComments,
             span: Span {
                 start: left.end,
                 end: right.start,
