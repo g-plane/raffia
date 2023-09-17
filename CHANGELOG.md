@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Rejected whitespace or comments in Sass arbitrary argument.
+
 ## v0.5.0
 
 - Changed AST of `@supports` at-rule.

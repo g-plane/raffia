@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unexpected whitespace
+  ┌─ comments-in-arbitrary-arg-1.scss:2:15
+  │
+2 │   width: fn($a/*a*/...);
+  │               ^^^^^
+
+

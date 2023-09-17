@@ -324,14 +324,26 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 {
                     let mut values = Vec::with_capacity(1);
                     loop {
-                        match &peek!(self).token {
-                            Token::RParen(..) => break,
-                            Token::Comma(..) => {
+                        match peek!(self) {
+                            TokenWithSpan {
+                                token: Token::RParen(..),
+                                ..
+                            } => break,
+                            TokenWithSpan {
+                                token: Token::Comma(..),
+                                ..
+                            } => {
                                 values.push(ComponentValue::Delimiter(self.parse()?));
                             }
-                            Token::DotDotDot(..)
-                                if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
-                                    && values.len() == 1 =>
+                            TokenWithSpan {
+                                token: Token::DotDotDot(..),
+                                span,
+                            } if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
+                                && values.len() == 1
+                                && values
+                                    .first()
+                                    .map(|value| value.span().end == span.start)
+                                    .unwrap_or_default() =>
                             {
                                 let TokenWithSpan {
                                     span: Span { end, .. },
@@ -410,6 +422,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     let value = self.parse::<ComponentValue>()?;
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
                         if let Some((_, mut span)) = eat!(self, DotDotDot) {
+                            assert_no_ws_or_comment(value.span(), &span)?;
                             span.start = value.span().start;
                             values.push(ComponentValue::SassArbitraryArgument(
                                 SassArbitraryArgument {

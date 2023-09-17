@@ -514,6 +514,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => {
                     let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
                     if let Some((_, span)) = eat!(self, DotDotDot) {
+                        util::assert_no_ws_or_comment(value.span(), &span)?;
                         let span = Span {
                             start: value.span().start,
                             end: span.end,

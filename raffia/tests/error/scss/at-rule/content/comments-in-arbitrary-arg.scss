@@ -1,0 +1,3 @@
+@include mixin {
+  @content($a/*a*/...);
+}
