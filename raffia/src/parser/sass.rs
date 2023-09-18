@@ -21,9 +21,6 @@ const PRECEDENCE_EQUALITY: u8 = 3;
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
-const FLAG_DEFAULT: u8 = 1;
-const FLAG_GLOBAL: u8 = 2;
-
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_maybe_sass_list(
         &mut self,
@@ -367,8 +364,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
-    fn parse_sass_flags_into_bits(&mut self) -> PResult<(u8, usize)> {
-        let mut flags = 0;
+    fn parse_sass_flags(&mut self) -> PResult<(Vec<SassFlag<'s>>, usize)> {
+        let mut flags: Vec<SassFlag<'s>> = Vec::with_capacity(1);
         let mut end = self.tokenizer.current_offset();
         while let Some((_, exclamation_span)) = eat!(self, Exclamation) {
             let keyword = self.parse::<Ident>()?;
@@ -377,7 +374,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
 
             match &*keyword.name {
                 "default" => {
-                    if flags & FLAG_DEFAULT != 0 {
+                    if flags.iter().any(|flag| flag.keyword.name == "default") {
                         self.recoverable_errors.push(Error {
                             kind: ErrorKind::DuplicatedSassFlag("default"),
                             span: Span {
@@ -386,10 +383,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             },
                         });
                     }
-                    flags |= FLAG_DEFAULT;
                 }
                 "global" => {
-                    if flags & FLAG_GLOBAL != 0 {
+                    if flags.iter().any(|flag| flag.keyword.name == "global") {
                         self.recoverable_errors.push(Error {
                             kind: ErrorKind::DuplicatedSassFlag("global"),
                             span: Span {
@@ -398,13 +394,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             },
                         });
                     }
-                    flags |= FLAG_GLOBAL;
                 }
                 _ => self.recoverable_errors.push(Error {
                     kind: ErrorKind::InvalidSassFlagName(keyword.name.to_string()),
-                    span: keyword.span,
+                    span: keyword.span.clone(),
                 }),
             }
+
+            flags.push(SassFlag {
+                keyword,
+                span: Span {
+                    start: exclamation_span.start,
+                    end,
+                },
+            });
         }
 
         Ok((flags, end))
@@ -589,6 +592,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         }
                     }
                 }
+                debug_assert!(items.len() - comma_spans.len() <= 1);
 
                 Ok(Some(SassModuleConfig {
                     with_span,
@@ -610,11 +614,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let (_, colon_span) = expect!(self, Colon);
         let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
 
-        let (overridable, end) = if allow_overridable {
-            let (flags, end) = self.parse_sass_flags_into_bits()?;
-            (flags & FLAG_DEFAULT != 0, end)
+        let (flags, end) = if allow_overridable {
+            self.parse_sass_flags()?
         } else {
-            (false, value.span().end)
+            (vec![], value.span().end)
         };
 
         let span = Span {
@@ -625,7 +628,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             variable,
             colon_span,
             value,
-            overridable,
+            flags,
             span,
         })
     }
@@ -636,10 +639,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<(
         Vec<SassParameter<'s>>,
         Option<SassArbitraryParameter<'s>>,
+        Vec<Span>,
         usize,
     )> {
         let mut parameters = vec![];
         let mut arbitrary_parameter = None;
+        let mut comma_spans = vec![];
         let end;
         loop {
             if let Some((_, span)) = eat!(self, RParen) {
@@ -657,17 +662,27 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         default_value: None,
                         span,
                     });
+                    comma_spans.push(token_with_span.span);
                     continue;
                 }
                 Token::Colon(..) => {
-                    let default_value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
+                    let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
+                    let end = value.span().end;
+                    let default_value_span = Span {
+                        start: token_with_span.span.start,
+                        end,
+                    };
                     let span = Span {
                         start: name.span.start,
-                        end: default_value.span().end,
+                        end,
                     };
                     parameters.push(SassParameter {
                         name,
-                        default_value: Some(default_value),
+                        default_value: Some(SassParameterDefaultValue {
+                            colon_span: token_with_span.span,
+                            value,
+                            span: default_value_span,
+                        }),
                         span,
                     });
                 }
@@ -677,7 +692,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         end: token_with_span.span.end,
                     };
                     arbitrary_parameter = Some(SassArbitraryParameter { name, span });
-                    eat!(self, Comma);
+                    if let Some((_, comma_span)) = eat!(self, Comma) {
+                        comma_spans.push(comma_span);
+                    }
                     end = expect!(self, RParen).1.end;
                     break;
                 }
@@ -702,11 +719,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 end = span.end;
                 break;
             } else {
-                expect!(self, Comma);
+                comma_spans.push(expect!(self, Comma).1);
             }
         }
 
-        Ok((parameters, arbitrary_parameter, end))
+        debug_assert!(
+            parameters.len() + arbitrary_parameter.iter().count() - comma_spans.len() <= 1
+        );
+        Ok((parameters, arbitrary_parameter, comma_spans, end))
     }
 
     pub(super) fn parse_sass_qualified_name(
@@ -994,10 +1014,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassForward<'s> {
 
         let prefix = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("as") => {
-                bump!(input);
-                let prefix = input.parse()?;
-                expect_without_ws_or_comments!(input, Asterisk);
-                Some(prefix)
+                let TokenWithSpan { span: as_span, .. } = bump!(input);
+                let name = input.parse()?;
+                let (_, Span { end, .. }) = expect_without_ws_or_comments!(input, Asterisk);
+                let span = Span {
+                    start: as_span.start,
+                    end,
+                };
+                Some(SassForwardPrefix {
+                    as_span,
+                    name,
+                    span,
+                })
             }
             _ => None,
         };
@@ -1434,10 +1462,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMixin<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParameters<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let (_, Span { start, .. }) = expect!(input, LParen);
-        let (params, arbitrary_param, end) = input.parse_sass_params()?;
+        let (params, arbitrary_param, comma_spans, end) = input.parse_sass_params()?;
         Ok(SassParameters {
             params,
             arbitrary_param,
+            comma_spans,
             span: Span { start, end },
         })
     }
@@ -1610,7 +1639,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             })
             .parse_maybe_sass_list(/* allow_comma */ true)?;
 
-        let (flags, end) = input.parse_sass_flags_into_bits()?;
+        let (flags, end) = input.parse_sass_flags()?;
 
         let span = Span {
             start: namespace
@@ -1620,8 +1649,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             end,
         };
 
-        let force_global = flags & FLAG_GLOBAL != 0;
-        if namespace.is_some() && force_global {
+        if namespace.is_some() && flags.iter().any(|flag| flag.keyword.name == "global") {
             input.recoverable_errors.push(Error {
                 kind: ErrorKind::UnexpectedSassFlag("global"),
                 span: span.clone(),
@@ -1633,8 +1661,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
             name,
             colon_span,
             value,
-            overridable: flags & FLAG_DEFAULT != 0,
-            force_global,
+            flags,
             span,
         })
     }

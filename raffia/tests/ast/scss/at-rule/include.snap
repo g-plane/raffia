@@ -37,6 +37,7 @@ Stylesheet(
             type: "SassParameters",
             params: [],
             arbitraryParam: None,
+            commaSpans: [],
             span: Span(
               start: 21,
               end: 23,
@@ -149,12 +150,23 @@ Stylesheet(
                     end: 64,
                   ),
                 ),
-                defaultValue: Some(Ident(
-                  type: "Ident",
-                  name: "value1",
-                  raw: "value1",
+                defaultValue: Some(SassParameterDefaultValue(
+                  type: "SassParameterDefaultValue",
+                  colonSpan: Span(
+                    start: 64,
+                    end: 65,
+                  ),
+                  value: Ident(
+                    type: "Ident",
+                    name: "value1",
+                    raw: "value1",
+                    span: Span(
+                      start: 66,
+                      end: 72,
+                    ),
+                  ),
                   span: Span(
-                    start: 66,
+                    start: 64,
                     end: 72,
                   ),
                 )),
@@ -181,12 +193,23 @@ Stylesheet(
                     end: 79,
                   ),
                 ),
-                defaultValue: Some(Ident(
-                  type: "Ident",
-                  name: "value2",
-                  raw: "value2",
+                defaultValue: Some(SassParameterDefaultValue(
+                  type: "SassParameterDefaultValue",
+                  colonSpan: Span(
+                    start: 79,
+                    end: 80,
+                  ),
+                  value: Ident(
+                    type: "Ident",
+                    name: "value2",
+                    raw: "value2",
+                    span: Span(
+                      start: 81,
+                      end: 87,
+                    ),
+                  ),
                   span: Span(
-                    start: 81,
+                    start: 79,
                     end: 87,
                   ),
                 )),
@@ -197,6 +220,12 @@ Stylesheet(
               ),
             ],
             arbitraryParam: None,
+            commaSpans: [
+              Span(
+                start: 72,
+                end: 73,
+              ),
+            ],
             span: Span(
               start: 58,
               end: 88,
@@ -464,6 +493,12 @@ Stylesheet(
               ),
             ],
             arbitraryParam: None,
+            commaSpans: [
+              Span(
+                start: 180,
+                end: 181,
+              ),
+            ],
             span: Span(
               start: 174,
               end: 188,
@@ -628,6 +663,7 @@ Stylesheet(
                 end: 254,
               ),
             )),
+            commaSpans: [],
             span: Span(
               start: 245,
               end: 255,
@@ -881,6 +917,12 @@ Stylesheet(
               ),
             ],
             arbitraryParam: None,
+            commaSpans: [
+              Span(
+                start: 357,
+                end: 358,
+              ),
+            ],
             span: Span(
               start: 351,
               end: 365,
@@ -991,6 +1033,12 @@ Stylesheet(
               ),
             ],
             arbitraryParam: None,
+            commaSpans: [
+              Span(
+                start: 395,
+                end: 396,
+              ),
+            ],
             span: Span(
               start: 389,
               end: 403,
@@ -1101,6 +1149,12 @@ Stylesheet(
               ),
             ],
             arbitraryParam: None,
+            commaSpans: [
+              Span(
+                start: 433,
+                end: 434,
+              ),
+            ],
             span: Span(
               start: 427,
               end: 441,

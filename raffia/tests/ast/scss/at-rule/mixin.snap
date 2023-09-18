@@ -55,6 +55,12 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [
+            Span(
+              start: 28,
+              end: 29,
+            ),
+          ],
           span: Span(
             start: 25,
             end: 30,
@@ -212,6 +218,16 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [
+            Span(
+              start: 104,
+              end: 105,
+            ),
+            Span(
+              start: 108,
+              end: 109,
+            ),
+          ],
           span: Span(
             start: 101,
             end: 110,
@@ -353,12 +369,23 @@ Stylesheet(
                   end: 184,
                 ),
               ),
-              defaultValue: Some(Ident(
-                type: "Ident",
-                name: "a",
-                raw: "a",
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 184,
+                  end: 185,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 186,
+                    end: 187,
+                  ),
+                ),
                 span: Span(
-                  start: 186,
+                  start: 184,
                   end: 187,
                 ),
               )),
@@ -369,6 +396,12 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [
+            Span(
+              start: 187,
+              end: 188,
+            ),
+          ],
           span: Span(
             start: 181,
             end: 189,
@@ -494,12 +527,23 @@ Stylesheet(
                   end: 254,
                 ),
               ),
-              defaultValue: Some(Ident(
-                type: "Ident",
-                name: "a",
-                raw: "a",
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 254,
+                  end: 255,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 256,
+                    end: 257,
+                  ),
+                ),
                 span: Span(
-                  start: 256,
+                  start: 254,
                   end: 257,
                 ),
               )),
@@ -526,12 +570,23 @@ Stylesheet(
                   end: 261,
                 ),
               ),
-              defaultValue: Some(Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 261,
+                  end: 262,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 263,
+                    end: 264,
+                  ),
+                ),
                 span: Span(
-                  start: 263,
+                  start: 261,
                   end: 264,
                 ),
               )),
@@ -542,6 +597,16 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [
+            Span(
+              start: 257,
+              end: 258,
+            ),
+            Span(
+              start: 264,
+              end: 265,
+            ),
+          ],
           span: Span(
             start: 251,
             end: 266,
@@ -707,12 +772,23 @@ Stylesheet(
                   end: 333,
                 ),
               ),
-              defaultValue: Some(Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 333,
+                  end: 334,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 335,
+                    end: 336,
+                  ),
+                ),
                 span: Span(
-                  start: 335,
+                  start: 333,
                   end: 336,
                 ),
               )),
@@ -723,6 +799,16 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [
+            Span(
+              start: 329,
+              end: 330,
+            ),
+            Span(
+              start: 336,
+              end: 337,
+            ),
+          ],
           span: Span(
             start: 326,
             end: 338,
@@ -869,6 +955,7 @@ Stylesheet(
               end: 394,
             ),
           )),
+          commaSpans: [],
           span: Span(
             start: 385,
             end: 395,
@@ -959,12 +1046,23 @@ Stylesheet(
                   end: 416,
                 ),
               ),
-              defaultValue: Some(Ident(
-                type: "Ident",
-                name: "b",
-                raw: "b",
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 416,
+                  end: 417,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 418,
+                    end: 419,
+                  ),
+                ),
                 span: Span(
-                  start: 418,
+                  start: 416,
                   end: 419,
                 ),
               )),
@@ -997,6 +1095,16 @@ Stylesheet(
               end: 429,
             ),
           )),
+          commaSpans: [
+            Span(
+              start: 412,
+              end: 413,
+            ),
+            Span(
+              start: 419,
+              end: 420,
+            ),
+          ],
           span: Span(
             start: 409,
             end: 430,
@@ -1046,6 +1154,7 @@ Stylesheet(
           type: "SassParameters",
           params: [],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 451,
             end: 453,
@@ -1112,31 +1221,42 @@ Stylesheet(
                   end: 474,
                 ),
               ),
-              defaultValue: Some(SassList(
-                type: "SassList",
-                elements: [
-                  Ident(
-                    type: "Ident",
-                    name: "a",
-                    raw: "a",
-                    span: Span(
-                      start: 476,
-                      end: 477,
+              defaultValue: Some(SassParameterDefaultValue(
+                type: "SassParameterDefaultValue",
+                colonSpan: Span(
+                  start: 474,
+                  end: 475,
+                ),
+                value: SassList(
+                  type: "SassList",
+                  elements: [
+                    Ident(
+                      type: "Ident",
+                      name: "a",
+                      raw: "a",
+                      span: Span(
+                        start: 476,
+                        end: 477,
+                      ),
                     ),
-                  ),
-                  Ident(
-                    type: "Ident",
-                    name: "b",
-                    raw: "b",
-                    span: Span(
-                      start: 478,
-                      end: 479,
+                    Ident(
+                      type: "Ident",
+                      name: "b",
+                      raw: "b",
+                      span: Span(
+                        start: 478,
+                        end: 479,
+                      ),
                     ),
+                  ],
+                  commaSpans: None,
+                  span: Span(
+                    start: 476,
+                    end: 479,
                   ),
-                ],
-                commaSpans: None,
+                ),
                 span: Span(
-                  start: 476,
+                  start: 474,
                   end: 479,
                 ),
               )),
@@ -1147,6 +1267,7 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 469,
             end: 480,
@@ -1196,6 +1317,7 @@ Stylesheet(
           type: "SassParameters",
           params: [],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 504,
             end: 506,

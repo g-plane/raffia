@@ -608,8 +608,7 @@ Stylesheet(
                 end: 169,
               ),
             ),
-            overridable: false,
-            forceGlobal: false,
+            flags: [],
             span: Span(
               start: 158,
               end: 170,
@@ -766,6 +765,7 @@ Stylesheet(
           type: "SassParameters",
           params: [],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 264,
             end: 266,

@@ -117,8 +117,7 @@ Stylesheet(
                 end: 24,
               ),
             ),
-            overridable: false,
-            forceGlobal: false,
+            flags: [],
             span: Span(
               start: 8,
               end: 25,
@@ -180,8 +179,7 @@ Stylesheet(
                 end: 53,
               ),
             ),
-            overridable: false,
-            forceGlobal: false,
+            flags: [],
             span: Span(
               start: 28,
               end: 54,
@@ -247,8 +245,7 @@ Stylesheet(
                 end: 73,
               ),
             ),
-            overridable: false,
-            forceGlobal: false,
+            flags: [],
             span: Span(
               start: 57,
               end: 74,
@@ -417,8 +414,7 @@ Stylesheet(
           end: 126,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 114,
         end: 127,
@@ -456,8 +452,7 @@ Stylesheet(
           end: 139,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 129,
         end: 140,
@@ -495,8 +490,24 @@ Stylesheet(
           end: 149,
         ),
       ),
-      overridable: true,
-      forceGlobal: false,
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 151,
+              end: 158,
+            ),
+          ),
+          span: Span(
+            start: 150,
+            end: 158,
+          ),
+        ),
+      ],
       span: Span(
         start: 142,
         end: 158,
@@ -561,8 +572,7 @@ Stylesheet(
           end: 189,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 161,
         end: 190,
@@ -608,8 +618,24 @@ Stylesheet(
           end: 205,
         ),
       ),
-      overridable: true,
-      forceGlobal: false,
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 207,
+              end: 214,
+            ),
+          ),
+          span: Span(
+            start: 206,
+            end: 214,
+          ),
+        ),
+      ],
       span: Span(
         start: 191,
         end: 214,
@@ -684,8 +710,24 @@ Stylesheet(
           end: 237,
         ),
       ),
-      overridable: true,
-      forceGlobal: false,
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 239,
+              end: 246,
+            ),
+          ),
+          span: Span(
+            start: 238,
+            end: 246,
+          ),
+        ),
+      ],
       span: Span(
         start: 216,
         end: 246,

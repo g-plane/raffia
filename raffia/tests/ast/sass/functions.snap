@@ -53,8 +53,7 @@ Stylesheet(
           end: 17,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 0,
         end: 18,
@@ -109,8 +108,7 @@ Stylesheet(
           end: 37,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 18,
         end: 39,
@@ -167,6 +165,7 @@ Stylesheet(
             ),
           ],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 59,
             end: 63,

@@ -30,6 +30,7 @@ Stylesheet(
           type: "SassParameters",
           params: [],
           arbitraryParam: None,
+          commaSpans: [],
           span: Span(
             start: 19,
             end: 21,
@@ -358,8 +359,7 @@ Stylesheet(
                       end: 254,
                     ),
                   ),
-                  overridable: false,
-                  forceGlobal: false,
+                  flags: [],
                   span: Span(
                     start: 244,
                     end: 255,

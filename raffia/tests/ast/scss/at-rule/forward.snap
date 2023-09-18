@@ -62,13 +62,24 @@ Stylesheet(
             end: 41,
           ),
         ),
-        prefix: Some(Ident(
-          type: "Ident",
-          name: "d-",
-          raw: "d-",
+        prefix: Some(SassForwardPrefix(
+          type: "SassForwardPrefix",
+          asSpan: Span(
+            start: 42,
+            end: 44,
+          ),
+          name: Ident(
+            type: "Ident",
+            name: "d-",
+            raw: "d-",
+            span: Span(
+              start: 45,
+              end: 47,
+            ),
+          ),
           span: Span(
-            start: 45,
-            end: 47,
+            start: 42,
+            end: 48,
           ),
         )),
         visibility: None,
@@ -531,7 +542,7 @@ Stylesheet(
                   end: 254,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 249,
                 end: 255,
@@ -621,7 +632,24 @@ Stylesheet(
                   end: 297,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 299,
+                      end: 306,
+                    ),
+                  ),
+                  span: Span(
+                    start: 298,
+                    end: 306,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 283,
                 end: 306,
@@ -730,7 +758,7 @@ Stylesheet(
                   end: 354,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 338,
                 end: 355,
@@ -786,7 +814,7 @@ Stylesheet(
                   end: 374,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 358,
                 end: 375,
@@ -842,7 +870,7 @@ Stylesheet(
                   end: 394,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 378,
                 end: 396,
@@ -960,7 +988,24 @@ Stylesheet(
                   end: 443,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 445,
+                      end: 452,
+                    ),
+                  ),
+                  span: Span(
+                    start: 444,
+                    end: 452,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 427,
                 end: 452,
@@ -1016,7 +1061,24 @@ Stylesheet(
                   end: 472,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 474,
+                      end: 481,
+                    ),
+                  ),
+                  span: Span(
+                    start: 473,
+                    end: 481,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 456,
                 end: 481,
@@ -1072,7 +1134,24 @@ Stylesheet(
                   end: 501,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 503,
+                      end: 510,
+                    ),
+                  ),
+                  span: Span(
+                    start: 502,
+                    end: 510,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 485,
                 end: 510,
@@ -1171,7 +1250,7 @@ Stylesheet(
                   end: 555,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 541,
                 end: 556,
@@ -1266,7 +1345,24 @@ Stylesheet(
                   end: 599,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 601,
+                      end: 608,
+                    ),
+                  ),
+                  span: Span(
+                    start: 600,
+                    end: 608,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 585,
                 end: 608,
@@ -1317,13 +1413,24 @@ Stylesheet(
             end: 634,
           ),
         ),
-        prefix: Some(Ident(
-          type: "Ident",
-          name: "m1-",
-          raw: "m1-",
+        prefix: Some(SassForwardPrefix(
+          type: "SassForwardPrefix",
+          asSpan: Span(
+            start: 635,
+            end: 637,
+          ),
+          name: Ident(
+            type: "Ident",
+            name: "m1-",
+            raw: "m1-",
+            span: Span(
+              start: 638,
+              end: 641,
+            ),
+          ),
           span: Span(
-            start: 638,
-            end: 641,
+            start: 635,
+            end: 642,
           ),
         )),
         visibility: None,
@@ -1388,7 +1495,7 @@ Stylesheet(
                   end: 665,
                 ),
               ),
-              overridable: false,
+              flags: [],
               span: Span(
                 start: 649,
                 end: 666,
@@ -1504,7 +1611,24 @@ Stylesheet(
                   end: 720,
                 ),
               ),
-              overridable: true,
+              flags: [
+                SassFlag(
+                  type: "SassFlag",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "default",
+                    raw: "default",
+                    span: Span(
+                      start: 722,
+                      end: 729,
+                    ),
+                  ),
+                  span: Span(
+                    start: 721,
+                    end: 729,
+                  ),
+                ),
+              ],
               span: Span(
                 start: 695,
                 end: 729,

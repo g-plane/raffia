@@ -277,8 +277,7 @@ Stylesheet(
           end: 97,
         ),
       ),
-      overridable: false,
-      forceGlobal: false,
+      flags: [],
       span: Span(
         start: 75,
         end: 98,
@@ -323,8 +322,24 @@ Stylesheet(
           end: 117,
         ),
       ),
-      overridable: true,
-      forceGlobal: false,
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 119,
+              end: 126,
+            ),
+          ),
+          span: Span(
+            start: 118,
+            end: 126,
+          ),
+        ),
+      ],
       span: Span(
         start: 99,
         end: 126,

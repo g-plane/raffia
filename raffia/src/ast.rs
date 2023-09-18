@@ -1692,7 +1692,7 @@ pub enum SassForBoundaryKind {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassForward<'s> {
     pub path: InterpolableStr<'s>,
-    pub prefix: Option<Ident<'s>>,
+    pub prefix: Option<SassForwardPrefix<'s>>,
     pub visibility: Option<SassForwardVisibility<'s>>,
     pub config: Option<SassModuleConfig<'s>>,
     pub span: Span,
@@ -1704,6 +1704,15 @@ pub struct SassForward<'s> {
 pub enum SassForwardMember<'s> {
     Ident(Ident<'s>),
     Variable(SassVariable<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassForwardPrefix<'s> {
+    pub as_span: Span,
+    pub name: Ident<'s>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -1901,7 +1910,7 @@ pub struct SassModuleConfigItem<'s> {
     pub variable: SassVariable<'s>,
     pub colon_span: Span,
     pub value: ComponentValue<'s>,
-    pub overridable: bool,
+    pub flags: Vec<SassFlag<'s>>,
     pub span: Span,
 }
 
@@ -1926,7 +1935,16 @@ pub struct SassNestingDeclaration<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct SassParameter<'s> {
     pub name: SassVariable<'s>,
-    pub default_value: Option<ComponentValue<'s>>,
+    pub default_value: Option<SassParameterDefaultValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct SassParameterDefaultValue<'s> {
+    pub colon_span: Span,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -1936,6 +1954,7 @@ pub struct SassParameter<'s> {
 pub struct SassParameters<'s> {
     pub params: Vec<SassParameter<'s>>,
     pub arbitrary_param: Option<SassArbitraryParameter<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -2039,8 +2058,7 @@ pub struct SassVariableDeclaration<'s> {
     pub name: SassVariable<'s>,
     pub colon_span: Span,
     pub value: ComponentValue<'s>,
-    pub overridable: bool,
-    pub force_global: bool,
+    pub flags: Vec<SassFlag<'s>>,
     pub span: Span,
 }
 
