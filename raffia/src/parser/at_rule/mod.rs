@@ -21,6 +21,7 @@ mod layer;
 mod media;
 mod namespace;
 mod page;
+mod scope;
 mod supports;
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
@@ -165,6 +166,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("property") {
             // https://drafts.css-houdini.org/css-properties-values-api/#at-property-rule
             let prelude = Some(AtRulePrelude::Property(input.parse_dashed_ident()?));
+            let block = input.parse::<SimpleBlock>()?;
+            let end = block.span.end;
+            (prelude, Some(block), end)
+        } else if at_rule_name.eq_ignore_ascii_case("scope") {
+            let prelude = if let Token::LParen(..) | Token::Ident(..) = peek!(input).token {
+                Some(AtRulePrelude::Scope(Box::new(input.parse()?)))
+            } else {
+                None
+            };
             let block = input.parse::<SimpleBlock>()?;
             let end = block.span.end;
             (prelude, Some(block), end)

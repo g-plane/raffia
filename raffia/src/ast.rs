@@ -60,6 +60,7 @@ pub enum AtRulePrelude<'s> {
     SassInclude(Box<SassInclude<'s>>),
     SassMixin(Box<SassMixin<'s>>),
     SassUse(Box<SassUse<'s>>),
+    Scope(Box<ScopePrelude<'s>>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
     Unknown(UnknownAtRulePrelude<'s>),
@@ -2059,6 +2060,42 @@ pub struct SassVariableDeclaration<'s> {
     pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub flags: Vec<SassFlag<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct ScopeEnd<'s> {
+    pub to_span: Span,
+    pub lparen_span: Span,
+    pub selector: SelectorList<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(untagged))]
+pub enum ScopePrelude<'s> {
+    StartOnly(ScopeStart<'s>),
+    EndOnly(ScopeEnd<'s>),
+    Both(ScopeStartWithEnd<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct ScopeStart<'s> {
+    pub selector: SelectorList<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct ScopeStartWithEnd<'s> {
+    pub start: ScopeStart<'s>,
+    pub end: ScopeEnd<'s>,
     pub span: Span,
 }
 

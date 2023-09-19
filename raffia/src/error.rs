@@ -75,6 +75,7 @@ pub enum ErrorKind {
     MixedDelimiterKindInLessMixin,
     ExpectLessKeyword(&'static str),
     ExpectLessExtendRule,
+    ExpectScopeTo,
 
     TryParseError,
     CSSWideKeywordDisallowed,
@@ -177,6 +178,7 @@ impl Display for ErrorKind {
             ),
             Self::ExpectLessKeyword(keyword) => write!(f, "Less keyword `{keyword}` is expected"),
             Self::ExpectLessExtendRule => write!(f, "Less extend rule is expected"),
+            Self::ExpectScopeTo => write!(f, "keyword `to` of `@scope` at-rule is expected"),
 
             Self::TryParseError => unreachable!(),
             Self::CSSWideKeywordDisallowed => {

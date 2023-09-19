@@ -3,6 +3,7 @@ _This changelog only relates to the `raffia` crate._
 ## Unreleased
 
 - Allowed parsing custom property value as normal declaration value.
+- Added support of `@scope` at-rule.
 
 ## v0.5.1
 
