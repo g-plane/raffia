@@ -1,7 +1,7 @@
 use super::Parser;
 use crate::{
     tokenizer::{token::Comment, Tokenizer},
-    Syntax,
+    ParserOptions, Syntax,
 };
 
 /// Parser builder is for building a parser while allowing us
@@ -13,6 +13,7 @@ use crate::{
 pub struct ParserBuilder<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
+    options: Option<ParserOptions>,
     comments: Option<&'cmt mut Vec<Comment<'s>>>,
 }
 
@@ -21,6 +22,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
     pub fn new(source: &'s str) -> Self {
         ParserBuilder {
             source,
+            options: None,
             syntax: Syntax::default(),
             comments: None,
         }
@@ -29,6 +31,12 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
     /// Specify the syntax for parsing.
     pub fn syntax(mut self, syntax: Syntax) -> Self {
         self.syntax = syntax;
+        self
+    }
+
+    /// Customize parser options.
+    pub fn options(mut self, options: ParserOptions) -> Self {
+        self.options = Some(options);
         self
     }
 
@@ -52,6 +60,7 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
         Parser {
             source: self.source,
             syntax: self.syntax,
+            options: self.options.unwrap_or_default(),
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),
             state: Default::default(),
             recoverable_errors: vec![],

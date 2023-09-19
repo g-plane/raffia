@@ -44,7 +44,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                 // filter: progid:DXImageTransform.Microsoft...
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("progid")
                             ) =>
-                {
+                'value: {
+                    if parser.options.try_parsing_value_in_custom_property {
+                        if let Ok(values) = parser.try_parse(Parser::parse_declaration_value) {
+                            break 'value values;
+                        }
+                    }
+
                     let mut values = Vec::with_capacity(3);
                     let mut pairs = Vec::with_capacity(1);
                     loop {
@@ -86,33 +92,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     }
                     values
                 }
-                _ => {
-                    let mut values = Vec::with_capacity(3);
-                    loop {
-                        match &peek!(parser).token {
-                            Token::RBrace(..)
-                            | Token::RParen(..)
-                            | Token::Semicolon(..)
-                            | Token::Dedent(..)
-                            | Token::Linebreak(..)
-                            | Token::Exclamation(..)
-                            | Token::Eof(..) => break,
-                            _ => {
-                                let value = parser.parse::<ComponentValue>()?;
-                                match &value {
-                                    ComponentValue::SassNestingDeclaration(..)
-                                        if matches!(parser.syntax, Syntax::Scss | Syntax::Sass) =>
-                                    {
-                                        values.push(value);
-                                        break;
-                                    }
-                                    _ => values.push(value),
-                                }
-                            }
-                        }
-                    }
-                    values
-                }
+                _ => parser.parse_declaration_value()?,
             }
         };
 
@@ -251,6 +231,34 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Stylesheet<'s> {
 }
 
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
+    fn parse_declaration_value(&mut self) -> PResult<Vec<ComponentValue<'s>>> {
+        let mut values = Vec::with_capacity(3);
+        loop {
+            match &peek!(self).token {
+                Token::RBrace(..)
+                | Token::RParen(..)
+                | Token::Semicolon(..)
+                | Token::Dedent(..)
+                | Token::Linebreak(..)
+                | Token::Exclamation(..)
+                | Token::Eof(..) => break,
+                _ => {
+                    let value = self.parse::<ComponentValue>()?;
+                    match &value {
+                        ComponentValue::SassNestingDeclaration(..)
+                            if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
+                        {
+                            values.push(value);
+                            break;
+                        }
+                        _ => values.push(value),
+                    }
+                }
+            }
+        }
+        Ok(values)
+    }
+
     fn parse_statements(&mut self, is_top_level: bool) -> PResult<Vec<Statement<'s>>> {
         let mut statements = Vec::with_capacity(1);
         loop {

@@ -3,6 +3,7 @@ use crate::{
     config::Syntax,
     error::{Error, PResult},
     tokenizer::{token::TokenWithSpan, Tokenizer},
+    ParserOptions,
 };
 pub use builder::ParserBuilder;
 
@@ -26,6 +27,7 @@ pub trait Parse<'cmt, 's: 'cmt>: Sized {
 pub struct Parser<'cmt, 's: 'cmt> {
     source: &'s str,
     syntax: Syntax,
+    options: ParserOptions,
     tokenizer: Tokenizer<'cmt, 's>,
     state: ParserState,
     recoverable_errors: Vec<Error>,
@@ -39,6 +41,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Parser {
             source,
             syntax,
+            options: Default::default(),
             tokenizer: Tokenizer::new(source, syntax, None),
             state: Default::default(),
             recoverable_errors: vec![],

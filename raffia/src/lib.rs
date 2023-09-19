@@ -100,7 +100,7 @@
 //!
 //! Note that Raffia only supports serialization. Deserialization isn't supported.
 
-pub use config::Syntax;
+pub use config::{ParserOptions, Syntax};
 pub use parser::{Parse, Parser, ParserBuilder};
 pub use pos::{Span, Spanned};
 pub use span_ignored_eq::SpanIgnoredEq;
