@@ -1144,9 +1144,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
 
         let start = expect!(input, AtKeyword).1.start;
 
-        let if_clause = input.parse()?;
-        let mut else_if_clauses = vec![];
-        let mut else_clause = None;
+        let if_clause = input.parse::<SassConditionalClause>()?;
+        let mut else_if_clauses = Vec::<SassConditionalClause>::new();
+        let mut else_clause: Option<SimpleBlock> = None;
         let mut else_spans = vec![];
 
         while let Token::AtKeyword(at_keyword) = &peek!(input).token {
@@ -1177,15 +1177,24 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassIfAtRule<'s> {
             else_spans.len(),
             else_if_clauses.len() + else_clause.iter().count()
         );
+        let span = Span {
+            start,
+            end: else_clause
+                .as_ref()
+                .map(|else_clause| else_clause.span.end)
+                .or_else(|| {
+                    else_if_clauses
+                        .last()
+                        .map(|else_if_clause| else_if_clause.span.end)
+                })
+                .unwrap_or(if_clause.span.end),
+        };
         Ok(SassIfAtRule {
             if_clause,
             else_if_clauses,
             else_clause,
             else_spans,
-            span: Span {
-                start,
-                end: input.tokenizer.current_offset(),
-            },
+            span,
         })
     }
 }

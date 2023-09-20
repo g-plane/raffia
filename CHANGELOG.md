@@ -5,6 +5,7 @@ _This changelog only relates to the `raffia` crate._
 - Allowed parsing custom property value as normal declaration value.
 - Added support of `@scope` at-rule.
 - Fixed parsing `@namespace` at-rule.
+- Fixed span of Sass `@if` at-rule.
 
 ## v0.5.1
 
