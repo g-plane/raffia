@@ -5,7 +5,14 @@ use crate::{ast::*, error::PResult, peek, tokenizer::Token, Parse, Spanned};
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let prefix = match &peek!(input).token {
-            Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
+            Token::Ident(ident) => {
+                if ident.name().eq_ignore_ascii_case("url") {
+                    None
+                } else {
+                    Some(InterpolableIdent::Literal(input.parse::<Ident>()?))
+                }
+            }
+            Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                 input.parse::<InterpolableIdent>().map(Some)?
             }
             _ => None,

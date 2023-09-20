@@ -1,0 +1,4 @@
+@namespace "http://example.com/foo";
+@namespace url("http://example.com/foo");
+@namespace toto "http://toto.example.org";
+@namespace toto url("http://toto.example.org");

@@ -1,0 +1,198 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "namespace",
+        raw: "namespace",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: Some(NamespacePrelude(
+        type: "NamespacePrelude",
+        prefix: None,
+        uri: Str(
+          type: "Str",
+          value: "http://example.com/foo",
+          raw: "\"http://example.com/foo\"",
+          span: Span(
+            start: 11,
+            end: 35,
+          ),
+        ),
+        span: Span(
+          start: 11,
+          end: 35,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 35,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "namespace",
+        raw: "namespace",
+        span: Span(
+          start: 38,
+          end: 47,
+        ),
+      ),
+      prelude: Some(NamespacePrelude(
+        type: "NamespacePrelude",
+        prefix: None,
+        uri: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 48,
+              end: 51,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "http://example.com/foo",
+            raw: "\"http://example.com/foo\"",
+            span: Span(
+              start: 52,
+              end: 76,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 48,
+            end: 77,
+          ),
+        ),
+        span: Span(
+          start: 48,
+          end: 77,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 37,
+        end: 77,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "namespace",
+        raw: "namespace",
+        span: Span(
+          start: 80,
+          end: 89,
+        ),
+      ),
+      prelude: Some(NamespacePrelude(
+        type: "NamespacePrelude",
+        prefix: Some(Ident(
+          type: "Ident",
+          name: "toto",
+          raw: "toto",
+          span: Span(
+            start: 90,
+            end: 94,
+          ),
+        )),
+        uri: Str(
+          type: "Str",
+          value: "http://toto.example.org",
+          raw: "\"http://toto.example.org\"",
+          span: Span(
+            start: 95,
+            end: 120,
+          ),
+        ),
+        span: Span(
+          start: 90,
+          end: 120,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 79,
+        end: 120,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "namespace",
+        raw: "namespace",
+        span: Span(
+          start: 123,
+          end: 132,
+        ),
+      ),
+      prelude: Some(NamespacePrelude(
+        type: "NamespacePrelude",
+        prefix: Some(Ident(
+          type: "Ident",
+          name: "toto",
+          raw: "toto",
+          span: Span(
+            start: 133,
+            end: 137,
+          ),
+        )),
+        uri: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 138,
+              end: 141,
+            ),
+          ),
+          value: Some(Str(
+            type: "Str",
+            value: "http://toto.example.org",
+            raw: "\"http://toto.example.org\"",
+            span: Span(
+              start: 142,
+              end: 167,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 138,
+            end: 168,
+          ),
+        ),
+        span: Span(
+          start: 133,
+          end: 168,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 122,
+        end: 168,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 170,
+  ),
+)
