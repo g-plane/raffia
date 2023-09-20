@@ -26,9 +26,9 @@
 //!
 //! ## Advanced Usage
 //!
-//! ### More Parser Options
+//! ### Creating Parser with Builder
 //!
-//! If you need to control more parser options, you can use [`ParserBuilder`].
+//! If you need to control parser with additional features, you can use [`ParserBuilder`].
 //!
 //! For example, to collect comments:
 //!
@@ -46,6 +46,29 @@
 //! use raffia::{ParserBuilder, Syntax};
 //!
 //! let builder = ParserBuilder::new("a {}").syntax(Syntax::Scss);
+//! ```
+//!
+//! ### Parser Options
+//!
+//! #### `try_parsing_value_in_custom_property`
+//!
+//! By default, value of custom property whose name starts with `--` will be parsed as tokens.
+//! If you want to parse it as normal declaration value, you can enable this option.
+//! Even though this option is enabled,
+//! parser will fallback to parse as tokens if there're syntax errors.
+//!
+//! ```rust
+//! use raffia::{ast::*, ParserBuilder, ParserOptions};
+//!
+//! let options = ParserOptions {
+//!     try_parsing_value_in_custom_property: true,
+//!     ..Default::default()
+//! };
+//! let builder = ParserBuilder::new("--foo: calc(var(--bar) + 1px)").options(options);
+//! let mut parser = builder.build();
+//!
+//! let declaration = parser.parse::<Declaration>().unwrap();
+//! assert!(matches!(declaration.value[0], ComponentValue::Function(..)));
 //! ```
 //!
 //! ### Parse Partial Structure
