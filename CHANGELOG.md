@@ -6,6 +6,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support of `@scope` at-rule.
 - Fixed parsing `@namespace` at-rule.
 - Fixed span of Sass `@if` at-rule.
+- Added UTF-8 BOM support.
 
 ## v0.5.1
 

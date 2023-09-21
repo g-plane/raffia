@@ -57,8 +57,9 @@ impl<'cmt, 's: 'cmt> ParserBuilder<'cmt, 's> {
 
     /// Build a parser.
     pub fn build(self) -> Parser<'cmt, 's> {
+        let source = self.source.strip_prefix('\u{feff}').unwrap_or(self.source);
         Parser {
-            source: self.source,
+            source,
             syntax: self.syntax,
             options: self.options.unwrap_or_default(),
             tokenizer: Tokenizer::new(self.source, self.syntax, self.comments),

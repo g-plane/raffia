@@ -38,6 +38,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     /// Create a parser with the given source code and specified syntax.
     /// If you need to control more options, please use [`ParserBuilder`].
     pub fn new(source: &'s str, syntax: Syntax) -> Self {
+        let source = source.strip_prefix('\u{feff}').unwrap_or(source);
         Parser {
             source,
             syntax,
