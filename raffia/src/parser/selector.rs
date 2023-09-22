@@ -935,16 +935,21 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LanguageRangeList<'s> {
         let mut span = first.span().clone();
 
         let mut ranges = vec![first];
-        while eat!(input, Comma).is_some() {
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
             ranges.push(input.parse()?);
         }
+        debug_assert_eq!(comma_spans.len() + 1, ranges.len());
 
-        // SAFETY: it has at least one element.
-        span.end = unsafe {
-            let index = ranges.len() - 1;
-            ranges.get_unchecked(index).span().end
-        };
-        Ok(LanguageRangeList { ranges, span })
+        if let Some(end) = ranges.last() {
+            span.end = end.span().end;
+        }
+        Ok(LanguageRangeList {
+            ranges,
+            comma_spans,
+            span,
+        })
     }
 }
 
