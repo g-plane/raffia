@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -3357,95 +3358,109 @@ Stylesheet(
           end: 937,
         ),
       ),
-      args: Some([
-        LessVariable(
-          type: "LessVariable",
-          name: Ident(
-            type: "Ident",
-            name: "var",
-            raw: "var",
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessVariable(
+            type: "LessVariable",
+            name: Ident(
+              type: "Ident",
+              name: "var",
+              raw: "var",
+              span: Span(
+                start: 939,
+                end: 942,
+              ),
+            ),
             span: Span(
-              start: 939,
+              start: 938,
               end: 942,
             ),
           ),
-          span: Span(
-            start: 938,
-            end: 942,
-          ),
-        ),
-        LessBinaryOperation(
-          type: "LessBinaryOperation",
-          left: LessParenthesizedOperation(
-            type: "LessParenthesizedOperation",
-            operation: LessBinaryOperation(
-              type: "LessBinaryOperation",
-              left: LessVariable(
-                type: "LessVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "var",
-                  raw: "var",
+          LessBinaryOperation(
+            type: "LessBinaryOperation",
+            left: LessParenthesizedOperation(
+              type: "LessParenthesizedOperation",
+              operation: LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "var",
+                    raw: "var",
+                    span: Span(
+                      start: 946,
+                      end: 949,
+                    ),
+                  ),
                   span: Span(
-                    start: 946,
+                    start: 945,
                     end: 949,
+                  ),
+                ),
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Multiply,
+                  span: Span(
+                    start: 950,
+                    end: 951,
+                  ),
+                ),
+                right: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 952,
+                    end: 953,
                   ),
                 ),
                 span: Span(
                   start: 945,
-                  end: 949,
-                ),
-              ),
-              op: LessOperationOperator(
-                type: "LessOperationOperator",
-                kind: Multiply,
-                span: Span(
-                  start: 950,
-                  end: 951,
-                ),
-              ),
-              right: Number(
-                type: "Number",
-                value: 2.0,
-                raw: "2",
-                span: Span(
-                  start: 952,
                   end: 953,
                 ),
               ),
               span: Span(
-                start: 945,
-                end: 953,
+                start: 944,
+                end: 954,
+              ),
+            ),
+            op: LessOperationOperator(
+              type: "LessOperationOperator",
+              kind: Division,
+              span: Span(
+                start: 955,
+                end: 956,
+              ),
+            ),
+            right: Number(
+              type: "Number",
+              value: 2.0,
+              raw: "2",
+              span: Span(
+                start: 957,
+                end: 958,
               ),
             ),
             span: Span(
               start: 944,
-              end: 954,
-            ),
-          ),
-          op: LessOperationOperator(
-            type: "LessOperationOperator",
-            kind: Division,
-            span: Span(
-              start: 955,
-              end: 956,
-            ),
-          ),
-          right: Number(
-            type: "Number",
-            value: 2.0,
-            raw: "2",
-            span: Span(
-              start: 957,
               end: 958,
             ),
           ),
-          span: Span(
-            start: 944,
-            end: 958,
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [
+          Span(
+            start: 942,
+            end: 943,
           ),
+        ],
+        span: Span(
+          start: 937,
+          end: 959,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 931,

@@ -22,6 +22,10 @@ Stylesheet(
           end: 2,
         ),
       ),
+      colonSpan: Span(
+        start: 2,
+        end: 3,
+      ),
       value: Number(
         type: "Number",
         value: 2.0,
@@ -53,6 +57,10 @@ Stylesheet(
           start: 7,
           end: 9,
         ),
+      ),
+      colonSpan: Span(
+        start: 9,
+        end: 10,
       ),
       value: LessParenthesizedOperation(
         type: "LessParenthesizedOperation",
@@ -131,6 +139,10 @@ Stylesheet(
           end: 28,
         ),
       ),
+      colonSpan: Span(
+        start: 28,
+        end: 29,
+      ),
       value: LessList(
         type: "LessList",
         elements: [
@@ -200,6 +212,10 @@ Stylesheet(
           end: 74,
         ),
       ),
+      colonSpan: Span(
+        start: 74,
+        end: 75,
+      ),
       value: LessList(
         type: "LessList",
         elements: [
@@ -250,6 +266,10 @@ Stylesheet(
           start: 85,
           end: 99,
         ),
+      ),
+      colonSpan: Span(
+        start: 99,
+        end: 100,
       ),
       value: LessList(
         type: "LessList",
@@ -364,6 +384,10 @@ Stylesheet(
                 start: 136,
                 end: 154,
               ),
+            ),
+            colonSpan: Span(
+              start: 154,
+              end: 155,
             ),
             value: Dimension(
               type: "Dimension",

@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -283,40 +284,60 @@ Stylesheet(
           end: 128,
         ),
       ),
-      params: [
-        LessMixinNamedParameter(
-          type: "LessMixinNamedParameter",
-          name: LessVariable(
-            type: "LessVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
+      params: LessMixinParameters(
+        type: "LessMixinParameters",
+        params: [
+          LessMixinNamedParameter(
+            type: "LessMixinNamedParameter",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 131,
+                  end: 132,
+                ),
+              ),
               span: Span(
-                start: 131,
+                start: 130,
                 end: 132,
               ),
             ),
+            value: Some(LessMixinNamedParameterDefaultValue(
+              type: "LessMixinNamedParameterDefaultValue",
+              colonSpan: Span(
+                start: 132,
+                end: 133,
+              ),
+              value: Ident(
+                type: "Ident",
+                name: "green",
+                raw: "green",
+                span: Span(
+                  start: 134,
+                  end: 139,
+                ),
+              ),
+              span: Span(
+                start: 132,
+                end: 139,
+              ),
+            )),
             span: Span(
               start: 130,
-              end: 132,
-            ),
-          ),
-          value: Some(Ident(
-            type: "Ident",
-            name: "green",
-            raw: "green",
-            span: Span(
-              start: 134,
               end: 139,
             ),
-          )),
-          span: Span(
-            start: 130,
-            end: 139,
           ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 129,
+          end: 140,
         ),
-      ],
+      ),
       guard: None,
       block: SimpleBlock(
         type: "SimpleBlock",

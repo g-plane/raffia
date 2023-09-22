@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -509,6 +510,10 @@ Stylesheet(
                 end: 171,
               ),
             ),
+            colonSpan: Span(
+              start: 171,
+              end: 172,
+            ),
             value: Function(
               type: "Function",
               name: Ident(
@@ -826,6 +831,10 @@ Stylesheet(
                 start: 253,
                 end: 255,
               ),
+            ),
+            colonSpan: Span(
+              start: 255,
+              end: 256,
             ),
             value: Function(
               type: "Function",
@@ -1826,6 +1835,10 @@ Stylesheet(
                 end: 543,
               ),
             ),
+            colonSpan: Span(
+              start: 543,
+              end: 544,
+            ),
             value: Function(
               type: "Function",
               name: Ident(
@@ -1962,6 +1975,10 @@ Stylesheet(
                 start: 589,
                 end: 596,
               ),
+            ),
+            colonSpan: Span(
+              start: 596,
+              end: 597,
             ),
             value: Function(
               type: "Function",
@@ -2468,83 +2485,97 @@ Stylesheet(
                 end: 768,
               ),
             ),
-            args: Some([
-              LessPropertyVariable(
-                type: "LessPropertyVariable",
-                name: Ident(
-                  type: "Ident",
-                  name: "list-1",
-                  raw: "list-1",
+            args: Some(LessMixinArguments(
+              type: "LessMixinArguments",
+              args: [
+                LessPropertyVariable(
+                  type: "LessPropertyVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "list-1",
+                    raw: "list-1",
+                    span: Span(
+                      start: 770,
+                      end: 776,
+                    ),
+                  ),
                   span: Span(
-                    start: 770,
+                    start: 769,
                     end: 776,
                   ),
                 ),
-                span: Span(
-                  start: 769,
-                  end: 776,
-                ),
-              ),
-              Function(
-                type: "Function",
-                name: LessListFunction(
-                  type: "LessListFunction",
+                Function(
+                  type: "Function",
+                  name: LessListFunction(
+                    type: "LessListFunction",
+                    span: Span(
+                      start: 778,
+                      end: 779,
+                    ),
+                  ),
+                  args: [
+                    Number(
+                      type: "Number",
+                      value: 7.0,
+                      raw: "7",
+                      span: Span(
+                        start: 780,
+                        end: 781,
+                      ),
+                    ),
+                    Delimiter(
+                      type: "Delimiter",
+                      kind: Semicolon,
+                      span: Span(
+                        start: 781,
+                        end: 782,
+                      ),
+                    ),
+                    Number(
+                      type: "Number",
+                      value: 8.0,
+                      raw: "8",
+                      span: Span(
+                        start: 783,
+                        end: 784,
+                      ),
+                    ),
+                    Delimiter(
+                      type: "Delimiter",
+                      kind: Semicolon,
+                      span: Span(
+                        start: 784,
+                        end: 785,
+                      ),
+                    ),
+                    Number(
+                      type: "Number",
+                      value: 9.0,
+                      raw: "9",
+                      span: Span(
+                        start: 786,
+                        end: 787,
+                      ),
+                    ),
+                  ],
                   span: Span(
                     start: 778,
-                    end: 779,
+                    end: 788,
                   ),
                 ),
-                args: [
-                  Number(
-                    type: "Number",
-                    value: 7.0,
-                    raw: "7",
-                    span: Span(
-                      start: 780,
-                      end: 781,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Semicolon,
-                    span: Span(
-                      start: 781,
-                      end: 782,
-                    ),
-                  ),
-                  Number(
-                    type: "Number",
-                    value: 8.0,
-                    raw: "8",
-                    span: Span(
-                      start: 783,
-                      end: 784,
-                    ),
-                  ),
-                  Delimiter(
-                    type: "Delimiter",
-                    kind: Semicolon,
-                    span: Span(
-                      start: 784,
-                      end: 785,
-                    ),
-                  ),
-                  Number(
-                    type: "Number",
-                    value: 9.0,
-                    raw: "9",
-                    span: Span(
-                      start: 786,
-                      end: 787,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 778,
-                  end: 788,
+              ],
+              isCommaSeparated: true,
+              separatorSpans: [
+                Span(
+                  start: 776,
+                  end: 777,
                 ),
+              ],
+              span: Span(
+                start: 768,
+                end: 789,
               ),
-            ]),
+            )),
             important: None,
             span: Span(
               start: 762,

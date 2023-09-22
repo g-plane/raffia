@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -21,6 +22,10 @@ Stylesheet(
           start: 0,
           end: 8,
         ),
+      ),
+      colonSpan: Span(
+        start: 8,
+        end: 9,
       ),
       value: LessDetachedRuleset(
         type: "LessDetachedRuleset",
@@ -144,137 +149,146 @@ Stylesheet(
           end: 63,
         ),
       ),
-      args: Some([
-        LessDetachedRuleset(
-          type: "LessDetachedRuleset",
-          block: SimpleBlock(
-            type: "SimpleBlock",
-            statements: [
-              Declaration(
-                type: "Declaration",
-                name: Ident(
-                  type: "Ident",
-                  name: "color",
-                  raw: "color",
-                  span: Span(
-                    start: 68,
-                    end: 73,
-                  ),
-                ),
-                colonSpan: Span(
-                  start: 73,
-                  end: 74,
-                ),
-                value: [
-                  Ident(
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessDetachedRuleset(
+            type: "LessDetachedRuleset",
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
                     type: "Ident",
-                    name: "black",
-                    raw: "black",
+                    name: "color",
+                    raw: "color",
                     span: Span(
-                      start: 75,
-                      end: 80,
+                      start: 68,
+                      end: 73,
                     ),
                   ),
-                ],
-                important: None,
-                lessPropertyMerge: None,
-                span: Span(
-                  start: 68,
-                  end: 80,
-                ),
-              ),
-              Declaration(
-                type: "Declaration",
-                name: Ident(
-                  type: "Ident",
-                  name: "one",
-                  raw: "one",
+                  colonSpan: Span(
+                    start: 73,
+                    end: 74,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "black",
+                      raw: "black",
+                      span: Span(
+                        start: 75,
+                        end: 80,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
                   span: Span(
-                    start: 84,
-                    end: 87,
+                    start: 68,
+                    end: 80,
                   ),
                 ),
-                colonSpan: Span(
-                  start: 87,
-                  end: 88,
-                ),
-                value: [
-                  LessVariable(
-                    type: "LessVariable",
-                    name: Ident(
-                      type: "Ident",
-                      name: "a",
-                      raw: "a",
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "one",
+                    raw: "one",
+                    span: Span(
+                      start: 84,
+                      end: 87,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 87,
+                    end: 88,
+                  ),
+                  value: [
+                    LessVariable(
+                      type: "LessVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 90,
+                          end: 91,
+                        ),
+                      ),
                       span: Span(
-                        start: 90,
+                        start: 89,
                         end: 91,
                       ),
                     ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 84,
+                    end: 91,
+                  ),
+                ),
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "four",
+                    raw: "four",
                     span: Span(
-                      start: 89,
-                      end: 91,
+                      start: 95,
+                      end: 99,
                     ),
                   ),
-                ],
-                important: None,
-                lessPropertyMerge: None,
-                span: Span(
-                  start: 84,
-                  end: 91,
-                ),
-              ),
-              Declaration(
-                type: "Declaration",
-                name: Ident(
-                  type: "Ident",
-                  name: "four",
-                  raw: "four",
-                  span: Span(
-                    start: 95,
-                    end: 99,
+                  colonSpan: Span(
+                    start: 99,
+                    end: 100,
                   ),
-                ),
-                colonSpan: Span(
-                  start: 99,
-                  end: 100,
-                ),
-                value: [
-                  LessVariable(
-                    type: "LessVariable",
-                    name: Ident(
-                      type: "Ident",
-                      name: "d",
-                      raw: "d",
+                  value: [
+                    LessVariable(
+                      type: "LessVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "d",
+                        raw: "d",
+                        span: Span(
+                          start: 102,
+                          end: 103,
+                        ),
+                      ),
                       span: Span(
-                        start: 102,
+                        start: 101,
                         end: 103,
                       ),
                     ),
-                    span: Span(
-                      start: 101,
-                      end: 103,
-                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 95,
+                    end: 103,
                   ),
-                ],
-                important: None,
-                lessPropertyMerge: None,
-                span: Span(
-                  start: 95,
-                  end: 103,
                 ),
+              ],
+              span: Span(
+                start: 64,
+                end: 106,
               ),
-            ],
+            ),
             span: Span(
               start: 64,
               end: 106,
             ),
           ),
-          span: Span(
-            start: 64,
-            end: 106,
-          ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 63,
+          end: 107,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 52,
@@ -316,80 +330,93 @@ Stylesheet(
           end: 121,
         ),
       ),
-      args: Some([
-        LessMixinNamedArgument(
-          type: "LessMixinNamedArgument",
-          name: LessVariable(
-            type: "LessVariable",
-            name: Ident(
-              type: "Ident",
-              name: "ruleset",
-              raw: "ruleset",
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessMixinNamedArgument(
+            type: "LessMixinNamedArgument",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "ruleset",
+                raw: "ruleset",
+                span: Span(
+                  start: 123,
+                  end: 130,
+                ),
+              ),
               span: Span(
-                start: 123,
+                start: 122,
                 end: 130,
               ),
             ),
-            span: Span(
-              start: 122,
-              end: 130,
+            colonSpan: Span(
+              start: 130,
+              end: 131,
             ),
-          ),
-          value: LessDetachedRuleset(
-            type: "LessDetachedRuleset",
-            block: SimpleBlock(
-              type: "SimpleBlock",
-              statements: [
-                Declaration(
-                  type: "Declaration",
-                  name: Ident(
-                    type: "Ident",
-                    name: "color",
-                    raw: "color",
-                    span: Span(
-                      start: 136,
-                      end: 141,
-                    ),
-                  ),
-                  colonSpan: Span(
-                    start: 141,
-                    end: 142,
-                  ),
-                  value: [
-                    Ident(
+            value: LessDetachedRuleset(
+              type: "LessDetachedRuleset",
+              block: SimpleBlock(
+                type: "SimpleBlock",
+                statements: [
+                  Declaration(
+                    type: "Declaration",
+                    name: Ident(
                       type: "Ident",
-                      name: "red",
-                      raw: "red",
+                      name: "color",
+                      raw: "color",
                       span: Span(
-                        start: 143,
-                        end: 146,
+                        start: 136,
+                        end: 141,
                       ),
                     ),
-                  ],
-                  important: None,
-                  lessPropertyMerge: None,
-                  span: Span(
-                    start: 136,
-                    end: 146,
+                    colonSpan: Span(
+                      start: 141,
+                      end: 142,
+                    ),
+                    value: [
+                      Ident(
+                        type: "Ident",
+                        name: "red",
+                        raw: "red",
+                        span: Span(
+                          start: 143,
+                          end: 146,
+                        ),
+                      ),
+                    ],
+                    important: None,
+                    lessPropertyMerge: None,
+                    span: Span(
+                      start: 136,
+                      end: 146,
+                    ),
                   ),
+                ],
+                span: Span(
+                  start: 132,
+                  end: 149,
                 ),
-              ],
+              ),
               span: Span(
                 start: 132,
                 end: 149,
               ),
             ),
             span: Span(
-              start: 132,
+              start: 122,
               end: 149,
             ),
           ),
-          span: Span(
-            start: 122,
-            end: 149,
-          ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 121,
+          end: 150,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 110,
@@ -431,149 +458,167 @@ Stylesheet(
           end: 164,
         ),
       ),
-      args: Some([
-        LessDetachedRuleset(
-          type: "LessDetachedRuleset",
-          block: SimpleBlock(
-            type: "SimpleBlock",
-            statements: [
-              Declaration(
-                type: "Declaration",
-                name: Ident(
-                  type: "Ident",
-                  name: "test",
-                  raw: "test",
-                  span: Span(
-                    start: 169,
-                    end: 173,
-                  ),
-                ),
-                colonSpan: Span(
-                  start: 173,
-                  end: 174,
-                ),
-                value: [
-                  Ident(
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessDetachedRuleset(
+            type: "LessDetachedRuleset",
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
                     type: "Ident",
-                    name: "extra-wrap",
-                    raw: "extra-wrap",
+                    name: "test",
+                    raw: "test",
                     span: Span(
-                      start: 175,
-                      end: 185,
+                      start: 169,
+                      end: 173,
                     ),
                   ),
-                ],
-                important: None,
-                lessPropertyMerge: None,
-                span: Span(
-                  start: 169,
-                  end: 185,
+                  colonSpan: Span(
+                    start: 173,
+                    end: 174,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "extra-wrap",
+                      raw: "extra-wrap",
+                      span: Span(
+                        start: 175,
+                        end: 185,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 169,
+                    end: 185,
+                  ),
                 ),
-              ),
-              LessMixinCall(
-                type: "LessMixinCall",
-                callee: LessMixinCallee(
-                  type: "LessMixinCallee",
-                  children: [
-                    LessMixinCalleeChild(
-                      type: "LessMixinCalleeChild",
-                      name: ClassSelector(
-                        type: "ClassSelector",
-                        name: Ident(
-                          type: "Ident",
-                          name: "wrap-mixin-calls-wrap",
-                          raw: "wrap-mixin-calls-wrap",
+                LessMixinCall(
+                  type: "LessMixinCall",
+                  callee: LessMixinCallee(
+                    type: "LessMixinCallee",
+                    children: [
+                      LessMixinCalleeChild(
+                        type: "LessMixinCalleeChild",
+                        name: ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "wrap-mixin-calls-wrap",
+                            raw: "wrap-mixin-calls-wrap",
+                            span: Span(
+                              start: 190,
+                              end: 211,
+                            ),
+                          ),
                           span: Span(
-                            start: 190,
+                            start: 189,
                             end: 211,
                           ),
                         ),
+                        combinator: None,
                         span: Span(
                           start: 189,
                           end: 211,
                         ),
                       ),
-                      combinator: None,
-                      span: Span(
-                        start: 189,
-                        end: 211,
-                      ),
+                    ],
+                    span: Span(
+                      start: 189,
+                      end: 211,
                     ),
-                  ],
-                  span: Span(
-                    start: 189,
-                    end: 211,
                   ),
-                ),
-                args: Some([
-                  LessDetachedRuleset(
-                    type: "LessDetachedRuleset",
-                    block: SimpleBlock(
-                      type: "SimpleBlock",
-                      statements: [
-                        Declaration(
-                          type: "Declaration",
-                          name: Ident(
-                            type: "Ident",
-                            name: "test",
-                            raw: "test",
-                            span: Span(
-                              start: 218,
-                              end: 222,
-                            ),
-                          ),
-                          colonSpan: Span(
-                            start: 222,
-                            end: 223,
-                          ),
-                          value: [
-                            Ident(
-                              type: "Ident",
-                              name: "wrapped-twice",
-                              raw: "wrapped-twice",
+                  args: Some(LessMixinArguments(
+                    type: "LessMixinArguments",
+                    args: [
+                      LessDetachedRuleset(
+                        type: "LessDetachedRuleset",
+                        block: SimpleBlock(
+                          type: "SimpleBlock",
+                          statements: [
+                            Declaration(
+                              type: "Declaration",
+                              name: Ident(
+                                type: "Ident",
+                                name: "test",
+                                raw: "test",
+                                span: Span(
+                                  start: 218,
+                                  end: 222,
+                                ),
+                              ),
+                              colonSpan: Span(
+                                start: 222,
+                                end: 223,
+                              ),
+                              value: [
+                                Ident(
+                                  type: "Ident",
+                                  name: "wrapped-twice",
+                                  raw: "wrapped-twice",
+                                  span: Span(
+                                    start: 224,
+                                    end: 237,
+                                  ),
+                                ),
+                              ],
+                              important: None,
+                              lessPropertyMerge: None,
                               span: Span(
-                                start: 224,
+                                start: 218,
                                 end: 237,
                               ),
                             ),
                           ],
-                          important: None,
-                          lessPropertyMerge: None,
                           span: Span(
-                            start: 218,
-                            end: 237,
+                            start: 212,
+                            end: 242,
                           ),
                         ),
-                      ],
-                      span: Span(
-                        start: 212,
-                        end: 242,
+                        span: Span(
+                          start: 212,
+                          end: 242,
+                        ),
                       ),
-                    ),
+                    ],
+                    isCommaSeparated: true,
+                    separatorSpans: [],
                     span: Span(
-                      start: 212,
-                      end: 242,
+                      start: 211,
+                      end: 243,
                     ),
+                  )),
+                  important: None,
+                  span: Span(
+                    start: 189,
+                    end: 243,
                   ),
-                ]),
-                important: None,
-                span: Span(
-                  start: 189,
-                  end: 243,
                 ),
+              ],
+              span: Span(
+                start: 165,
+                end: 246,
               ),
-            ],
+            ),
             span: Span(
               start: 165,
               end: 246,
             ),
           ),
-          span: Span(
-            start: 165,
-            end: 246,
-          ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 164,
+          end: 247,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 153,
@@ -615,184 +660,193 @@ Stylesheet(
           end: 267,
         ),
       ),
-      args: Some([
-        LessDetachedRuleset(
-          type: "LessDetachedRuleset",
-          block: SimpleBlock(
-            type: "SimpleBlock",
-            statements: [
-              AtRule(
-                type: "AtRule",
-                name: Ident(
-                  type: "Ident",
-                  name: "media",
-                  raw: "media",
-                  span: Span(
-                    start: 273,
-                    end: 278,
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessDetachedRuleset(
+            type: "LessDetachedRuleset",
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                AtRule(
+                  type: "AtRule",
+                  name: Ident(
+                    type: "Ident",
+                    name: "media",
+                    raw: "media",
+                    span: Span(
+                      start: 273,
+                      end: 278,
+                    ),
                   ),
-                ),
-                prelude: Some(MediaQueryList(
-                  type: "MediaQueryList",
-                  queries: [
-                    MediaCondition(
-                      type: "MediaCondition",
-                      conditions: [
-                        MediaInParens(
-                          type: "MediaInParens",
-                          kind: MediaFeatureBoolean(
-                            type: "MediaFeatureBoolean",
-                            name: Ident(
-                              type: "Ident",
-                              name: "tv",
-                              raw: "tv",
+                  prelude: Some(MediaQueryList(
+                    type: "MediaQueryList",
+                    queries: [
+                      MediaCondition(
+                        type: "MediaCondition",
+                        conditions: [
+                          MediaInParens(
+                            type: "MediaInParens",
+                            kind: MediaFeatureBoolean(
+                              type: "MediaFeatureBoolean",
+                              name: Ident(
+                                type: "Ident",
+                                name: "tv",
+                                raw: "tv",
+                                span: Span(
+                                  start: 280,
+                                  end: 282,
+                                ),
+                              ),
                               span: Span(
                                 start: 280,
                                 end: 282,
                               ),
                             ),
                             span: Span(
-                              start: 280,
-                              end: 282,
+                              start: 279,
+                              end: 283,
                             ),
                           ),
-                          span: Span(
-                            start: 279,
-                            end: 283,
-                          ),
+                        ],
+                        span: Span(
+                          start: 279,
+                          end: 283,
                         ),
-                      ],
-                      span: Span(
-                        start: 279,
-                        end: 283,
                       ),
+                    ],
+                    commaSpans: [],
+                    span: Span(
+                      start: 279,
+                      end: 283,
                     ),
-                  ],
-                  commaSpans: [],
-                  span: Span(
-                    start: 279,
-                    end: 283,
-                  ),
-                )),
-                block: Some(SimpleBlock(
-                  type: "SimpleBlock",
-                  statements: [
-                    QualifiedRule(
-                      type: "QualifiedRule",
-                      selector: SelectorList(
-                        type: "SelectorList",
-                        selectors: [
-                          ComplexSelector(
-                            type: "ComplexSelector",
-                            children: [
-                              CompoundSelector(
-                                type: "CompoundSelector",
-                                children: [
-                                  ClassSelector(
-                                    type: "ClassSelector",
-                                    name: Ident(
-                                      type: "Ident",
-                                      name: "triple-wrapped-mq",
-                                      raw: "triple-wrapped-mq",
+                  )),
+                  block: Some(SimpleBlock(
+                    type: "SimpleBlock",
+                    statements: [
+                      QualifiedRule(
+                        type: "QualifiedRule",
+                        selector: SelectorList(
+                          type: "SelectorList",
+                          selectors: [
+                            ComplexSelector(
+                              type: "ComplexSelector",
+                              children: [
+                                CompoundSelector(
+                                  type: "CompoundSelector",
+                                  children: [
+                                    ClassSelector(
+                                      type: "ClassSelector",
+                                      name: Ident(
+                                        type: "Ident",
+                                        name: "triple-wrapped-mq",
+                                        raw: "triple-wrapped-mq",
+                                        span: Span(
+                                          start: 291,
+                                          end: 308,
+                                        ),
+                                      ),
                                       span: Span(
-                                        start: 291,
+                                        start: 290,
                                         end: 308,
                                       ),
                                     ),
-                                    span: Span(
-                                      start: 290,
-                                      end: 308,
-                                    ),
+                                  ],
+                                  span: Span(
+                                    start: 290,
+                                    end: 308,
                                   ),
-                                ],
+                                ),
+                              ],
+                              span: Span(
+                                start: 290,
+                                end: 308,
+                              ),
+                            ),
+                          ],
+                          commaSpans: [],
+                          span: Span(
+                            start: 290,
+                            end: 308,
+                          ),
+                        ),
+                        block: SimpleBlock(
+                          type: "SimpleBlock",
+                          statements: [
+                            Declaration(
+                              type: "Declaration",
+                              name: Ident(
+                                type: "Ident",
+                                name: "triple",
+                                raw: "triple",
                                 span: Span(
-                                  start: 290,
-                                  end: 308,
+                                  start: 317,
+                                  end: 323,
                                 ),
                               ),
-                            ],
-                            span: Span(
-                              start: 290,
-                              end: 308,
-                            ),
-                          ),
-                        ],
-                        commaSpans: [],
-                        span: Span(
-                          start: 290,
-                          end: 308,
-                        ),
-                      ),
-                      block: SimpleBlock(
-                        type: "SimpleBlock",
-                        statements: [
-                          Declaration(
-                            type: "Declaration",
-                            name: Ident(
-                              type: "Ident",
-                              name: "triple",
-                              raw: "triple",
+                              colonSpan: Span(
+                                start: 323,
+                                end: 324,
+                              ),
+                              value: [
+                                Ident(
+                                  type: "Ident",
+                                  name: "true",
+                                  raw: "true",
+                                  span: Span(
+                                    start: 325,
+                                    end: 329,
+                                  ),
+                                ),
+                              ],
+                              important: None,
+                              lessPropertyMerge: None,
                               span: Span(
                                 start: 317,
-                                end: 323,
+                                end: 329,
                               ),
                             ),
-                            colonSpan: Span(
-                              start: 323,
-                              end: 324,
-                            ),
-                            value: [
-                              Ident(
-                                type: "Ident",
-                                name: "true",
-                                raw: "true",
-                                span: Span(
-                                  start: 325,
-                                  end: 329,
-                                ),
-                              ),
-                            ],
-                            important: None,
-                            lessPropertyMerge: None,
-                            span: Span(
-                              start: 317,
-                              end: 329,
-                            ),
+                          ],
+                          span: Span(
+                            start: 309,
+                            end: 336,
                           ),
-                        ],
+                        ),
                         span: Span(
-                          start: 309,
+                          start: 290,
                           end: 336,
                         ),
                       ),
-                      span: Span(
-                        start: 290,
-                        end: 336,
-                      ),
+                    ],
+                    span: Span(
+                      start: 284,
+                      end: 340,
                     ),
-                  ],
+                  )),
                   span: Span(
-                    start: 284,
+                    start: 272,
                     end: 340,
                   ),
-                )),
-                span: Span(
-                  start: 272,
-                  end: 340,
                 ),
+              ],
+              span: Span(
+                start: 268,
+                end: 342,
               ),
-            ],
+            ),
             span: Span(
               start: 268,
               end: 342,
             ),
           ),
-          span: Span(
-            start: 268,
-            end: 342,
-          ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 267,
+          end: 343,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 250,
@@ -834,75 +888,10 @@ Stylesheet(
           end: 363,
         ),
       ),
-      args: Some([
-        LessDetachedRuleset(
-          type: "LessDetachedRuleset",
-          block: SimpleBlock(
-            type: "SimpleBlock",
-            statements: [
-              Declaration(
-                type: "Declaration",
-                name: Ident(
-                  type: "Ident",
-                  name: "direct",
-                  raw: "direct",
-                  span: Span(
-                    start: 365,
-                    end: 371,
-                  ),
-                ),
-                colonSpan: Span(
-                  start: 371,
-                  end: 372,
-                ),
-                value: [
-                  Ident(
-                    type: "Ident",
-                    name: "works",
-                    raw: "works",
-                    span: Span(
-                      start: 373,
-                      end: 378,
-                    ),
-                  ),
-                ],
-                important: None,
-                lessPropertyMerge: None,
-                span: Span(
-                  start: 365,
-                  end: 378,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 364,
-              end: 380,
-            ),
-          ),
-          span: Span(
-            start: 364,
-            end: 380,
-          ),
-        ),
-        LessMixinNamedArgument(
-          type: "LessMixinNamedArgument",
-          name: LessVariable(
-            type: "LessVariable",
-            name: Ident(
-              type: "Ident",
-              name: "b",
-              raw: "b",
-              span: Span(
-                start: 383,
-                end: 384,
-              ),
-            ),
-            span: Span(
-              start: 382,
-              end: 384,
-            ),
-          ),
-          value: LessDetachedRuleset(
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [
+          LessDetachedRuleset(
             type: "LessDetachedRuleset",
             block: SimpleBlock(
               type: "SimpleBlock",
@@ -911,16 +900,16 @@ Stylesheet(
                   type: "Declaration",
                   name: Ident(
                     type: "Ident",
-                    name: "named",
-                    raw: "named",
+                    name: "direct",
+                    raw: "direct",
                     span: Span(
-                      start: 387,
-                      end: 392,
+                      start: 365,
+                      end: 371,
                     ),
                   ),
                   colonSpan: Span(
-                    start: 392,
-                    end: 393,
+                    start: 371,
+                    end: 372,
                   ),
                   value: [
                     Ident(
@@ -928,35 +917,118 @@ Stylesheet(
                       name: "works",
                       raw: "works",
                       span: Span(
-                        start: 394,
-                        end: 399,
+                        start: 373,
+                        end: 378,
                       ),
                     ),
                   ],
                   important: None,
                   lessPropertyMerge: None,
                   span: Span(
-                    start: 387,
-                    end: 399,
+                    start: 365,
+                    end: 378,
                   ),
                 ),
               ],
+              span: Span(
+                start: 364,
+                end: 380,
+              ),
+            ),
+            span: Span(
+              start: 364,
+              end: 380,
+            ),
+          ),
+          LessMixinNamedArgument(
+            type: "LessMixinNamedArgument",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 383,
+                  end: 384,
+                ),
+              ),
+              span: Span(
+                start: 382,
+                end: 384,
+              ),
+            ),
+            colonSpan: Span(
+              start: 384,
+              end: 385,
+            ),
+            value: LessDetachedRuleset(
+              type: "LessDetachedRuleset",
+              block: SimpleBlock(
+                type: "SimpleBlock",
+                statements: [
+                  Declaration(
+                    type: "Declaration",
+                    name: Ident(
+                      type: "Ident",
+                      name: "named",
+                      raw: "named",
+                      span: Span(
+                        start: 387,
+                        end: 392,
+                      ),
+                    ),
+                    colonSpan: Span(
+                      start: 392,
+                      end: 393,
+                    ),
+                    value: [
+                      Ident(
+                        type: "Ident",
+                        name: "works",
+                        raw: "works",
+                        span: Span(
+                          start: 394,
+                          end: 399,
+                        ),
+                      ),
+                    ],
+                    important: None,
+                    lessPropertyMerge: None,
+                    span: Span(
+                      start: 387,
+                      end: 399,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 386,
+                  end: 401,
+                ),
+              ),
               span: Span(
                 start: 386,
                 end: 401,
               ),
             ),
             span: Span(
-              start: 386,
+              start: 382,
               end: 401,
             ),
           ),
-          span: Span(
-            start: 382,
-            end: 401,
+        ],
+        isCommaSeparated: false,
+        separatorSpans: [
+          Span(
+            start: 380,
+            end: 381,
           ),
+        ],
+        span: Span(
+          start: 363,
+          end: 402,
         ),
-      ]),
+      )),
       important: None,
       span: Span(
         start: 346,

@@ -8,6 +8,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed span of Sass `@if` at-rule.
 - Added UTF-8 BOM support.
 - Changed some AST types with `Box` as wrapper.
+- Added token spans for some AST nodes.
 
 ## v0.5.1
 

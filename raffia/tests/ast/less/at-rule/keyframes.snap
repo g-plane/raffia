@@ -62,7 +62,16 @@ Stylesheet(
           end: 25,
         ),
       ),
-      params: [],
+      params: LessMixinParameters(
+        type: "LessMixinParameters",
+        params: [],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 25,
+          end: 27,
+        ),
+      ),
       guard: None,
       block: SimpleBlock(
         type: "SimpleBlock",

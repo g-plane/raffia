@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -1565,34 +1566,43 @@ Stylesheet(
                       end: 427,
                     ),
                   ),
-                  args: Some([
-                    Dimension(
-                      type: "Dimension",
-                      value: Number(
-                        type: "Number",
-                        value: 1.0,
-                        raw: "1",
+                  args: Some(LessMixinArguments(
+                    type: "LessMixinArguments",
+                    args: [
+                      Dimension(
+                        type: "Dimension",
+                        value: Number(
+                          type: "Number",
+                          value: 1.0,
+                          raw: "1",
+                          span: Span(
+                            start: 428,
+                            end: 429,
+                          ),
+                        ),
+                        unit: Ident(
+                          type: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 429,
+                            end: 431,
+                          ),
+                        ),
+                        kind: Length,
                         span: Span(
                           start: 428,
-                          end: 429,
-                        ),
-                      ),
-                      unit: Ident(
-                        type: "Ident",
-                        name: "px",
-                        raw: "px",
-                        span: Span(
-                          start: 429,
                           end: 431,
                         ),
                       ),
-                      kind: Length,
-                      span: Span(
-                        start: 428,
-                        end: 431,
-                      ),
+                    ],
+                    isCommaSeparated: true,
+                    separatorSpans: [],
+                    span: Span(
+                      start: 427,
+                      end: 432,
                     ),
-                  ]),
+                  )),
                   important: None,
                   span: Span(
                     start: 411,
@@ -1697,60 +1707,74 @@ Stylesheet(
                       end: 456,
                     ),
                   ),
-                  args: Some([
-                    Dimension(
-                      type: "Dimension",
-                      value: Number(
-                        type: "Number",
-                        value: 10.0,
-                        raw: "10",
+                  args: Some(LessMixinArguments(
+                    type: "LessMixinArguments",
+                    args: [
+                      Dimension(
+                        type: "Dimension",
+                        value: Number(
+                          type: "Number",
+                          value: 10.0,
+                          raw: "10",
+                          span: Span(
+                            start: 457,
+                            end: 459,
+                          ),
+                        ),
+                        unit: Ident(
+                          type: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 459,
+                            end: 461,
+                          ),
+                        ),
+                        kind: Length,
                         span: Span(
                           start: 457,
-                          end: 459,
-                        ),
-                      ),
-                      unit: Ident(
-                        type: "Ident",
-                        name: "px",
-                        raw: "px",
-                        span: Span(
-                          start: 459,
                           end: 461,
                         ),
                       ),
-                      kind: Length,
-                      span: Span(
-                        start: 457,
-                        end: 461,
-                      ),
-                    ),
-                    Dimension(
-                      type: "Dimension",
-                      value: Number(
-                        type: "Number",
-                        value: 10.0,
-                        raw: "10",
+                      Dimension(
+                        type: "Dimension",
+                        value: Number(
+                          type: "Number",
+                          value: 10.0,
+                          raw: "10",
+                          span: Span(
+                            start: 463,
+                            end: 465,
+                          ),
+                        ),
+                        unit: Ident(
+                          type: "Ident",
+                          name: "px",
+                          raw: "px",
+                          span: Span(
+                            start: 465,
+                            end: 467,
+                          ),
+                        ),
+                        kind: Length,
                         span: Span(
                           start: 463,
-                          end: 465,
-                        ),
-                      ),
-                      unit: Ident(
-                        type: "Ident",
-                        name: "px",
-                        raw: "px",
-                        span: Span(
-                          start: 465,
                           end: 467,
                         ),
                       ),
-                      kind: Length,
-                      span: Span(
-                        start: 463,
-                        end: 467,
+                    ],
+                    isCommaSeparated: true,
+                    separatorSpans: [
+                      Span(
+                        start: 461,
+                        end: 462,
                       ),
+                    ],
+                    span: Span(
+                      start: 456,
+                      end: 468,
                     ),
-                  ]),
+                  )),
                   important: None,
                   span: Span(
                     start: 452,
@@ -2263,74 +2287,83 @@ Stylesheet(
                   end: 606,
                 ),
               ),
-              args: Some([
-                LessNamespaceValue(
-                  type: "LessNamespaceValue",
-                  callee: LessMixinCall(
-                    type: "LessMixinCall",
-                    callee: LessMixinCallee(
-                      type: "LessMixinCallee",
-                      children: [
-                        LessMixinCalleeChild(
-                          type: "LessMixinCalleeChild",
-                          name: ClassSelector(
-                            type: "ClassSelector",
-                            name: Ident(
-                              type: "Ident",
-                              name: "valToGet",
-                              raw: "valToGet",
+              args: Some(LessMixinArguments(
+                type: "LessMixinArguments",
+                args: [
+                  LessNamespaceValue(
+                    type: "LessNamespaceValue",
+                    callee: LessMixinCall(
+                      type: "LessMixinCall",
+                      callee: LessMixinCallee(
+                        type: "LessMixinCallee",
+                        children: [
+                          LessMixinCalleeChild(
+                            type: "LessMixinCalleeChild",
+                            name: ClassSelector(
+                              type: "ClassSelector",
+                              name: Ident(
+                                type: "Ident",
+                                name: "valToGet",
+                                raw: "valToGet",
+                                span: Span(
+                                  start: 608,
+                                  end: 616,
+                                ),
+                              ),
                               span: Span(
-                                start: 608,
+                                start: 607,
                                 end: 616,
                               ),
                             ),
+                            combinator: None,
                             span: Span(
                               start: 607,
                               end: 616,
                             ),
                           ),
-                          combinator: None,
-                          span: Span(
-                            start: 607,
-                            end: 616,
-                          ),
+                        ],
+                        span: Span(
+                          start: 607,
+                          end: 616,
                         ),
-                      ],
+                      ),
+                      args: None,
+                      important: None,
                       span: Span(
                         start: 607,
                         end: 616,
                       ),
                     ),
-                    args: None,
-                    important: None,
+                    lookups: LessLookups(
+                      type: "LessLookups",
+                      lookups: [
+                        LessLookup(
+                          type: "LessLookup",
+                          name: None,
+                          span: Span(
+                            start: 616,
+                            end: 618,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 616,
+                        end: 618,
+                      ),
+                    ),
                     span: Span(
                       start: 607,
-                      end: 616,
-                    ),
-                  ),
-                  lookups: LessLookups(
-                    type: "LessLookups",
-                    lookups: [
-                      LessLookup(
-                        type: "LessLookup",
-                        name: None,
-                        span: Span(
-                          start: 616,
-                          end: 618,
-                        ),
-                      ),
-                    ],
-                    span: Span(
-                      start: 616,
                       end: 618,
                     ),
                   ),
-                  span: Span(
-                    start: 607,
-                    end: 618,
-                  ),
+                ],
+                isCommaSeparated: true,
+                separatorSpans: [],
+                span: Span(
+                  start: 606,
+                  end: 619,
                 ),
-              ]),
+              )),
               important: None,
               span: Span(
                 start: 592,
@@ -2541,6 +2574,11 @@ Stylesheet(
             ),
           ),
         ],
+        whenSpan: Span(
+          start: 632,
+          end: 636,
+        ),
+        commaSpans: [],
         span: Span(
           start: 637,
           end: 658,
@@ -2730,6 +2768,11 @@ Stylesheet(
             ),
           ),
         ],
+        whenSpan: Span(
+          start: 664,
+          end: 668,
+        ),
+        commaSpans: [],
         span: Span(
           start: 669,
           end: 697,
@@ -2868,6 +2911,11 @@ Stylesheet(
             ),
           ),
         ],
+        whenSpan: Span(
+          start: 703,
+          end: 707,
+        ),
+        commaSpans: [],
         span: Span(
           start: 708,
           end: 731,

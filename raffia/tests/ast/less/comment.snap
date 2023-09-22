@@ -1,5 +1,6 @@
 ---
 source: raffia/tests/ast.rs
+assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -21,6 +22,10 @@ Stylesheet(
           start: 212,
           end: 216,
         ),
+      ),
+      colonSpan: Span(
+        start: 216,
+        end: 217,
       ),
       value: Str(
         type: "Str",
@@ -778,89 +783,125 @@ Stylesheet(
           end: 1214,
         ),
       ),
-      params: [
-        LessMixinNamedParameter(
-          type: "LessMixinNamedParameter",
-          name: LessVariable(
-            type: "LessVariable",
-            name: Ident(
-              type: "Ident",
-              name: "a",
-              raw: "a",
+      params: LessMixinParameters(
+        type: "LessMixinParameters",
+        params: [
+          LessMixinNamedParameter(
+            type: "LessMixinNamedParameter",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "a",
+                raw: "a",
+                span: Span(
+                  start: 1216,
+                  end: 1217,
+                ),
+              ),
               span: Span(
-                start: 1216,
+                start: 1215,
                 end: 1217,
               ),
             ),
+            value: Some(LessMixinNamedParameterDefaultValue(
+              type: "LessMixinNamedParameterDefaultValue",
+              colonSpan: Span(
+                start: 1217,
+                end: 1218,
+              ),
+              value: Ident(
+                type: "Ident",
+                name: "white",
+                raw: "white",
+                span: Span(
+                  start: 1219,
+                  end: 1224,
+                ),
+              ),
+              span: Span(
+                start: 1217,
+                end: 1224,
+              ),
+            )),
             span: Span(
               start: 1215,
-              end: 1217,
-            ),
-          ),
-          value: Some(Ident(
-            type: "Ident",
-            name: "white",
-            raw: "white",
-            span: Span(
-              start: 1219,
               end: 1224,
             ),
-          )),
-          span: Span(
-            start: 1215,
-            end: 1224,
           ),
-        ),
-        LessMixinNamedParameter(
-          type: "LessMixinNamedParameter",
-          name: LessVariable(
-            type: "LessVariable",
-            name: Ident(
-              type: "Ident",
-              name: "b",
-              raw: "b",
+          LessMixinNamedParameter(
+            type: "LessMixinNamedParameter",
+            name: LessVariable(
+              type: "LessVariable",
+              name: Ident(
+                type: "Ident",
+                name: "b",
+                raw: "b",
+                span: Span(
+                  start: 1240,
+                  end: 1241,
+                ),
+              ),
               span: Span(
-                start: 1240,
+                start: 1239,
                 end: 1241,
               ),
             ),
-            span: Span(
-              start: 1239,
-              end: 1241,
-            ),
-          ),
-          value: Some(Dimension(
-            type: "Dimension",
-            value: Number(
-              type: "Number",
-              value: 1.0,
-              raw: "1",
-              span: Span(
-                start: 1243,
-                end: 1244,
+            value: Some(LessMixinNamedParameterDefaultValue(
+              type: "LessMixinNamedParameterDefaultValue",
+              colonSpan: Span(
+                start: 1241,
+                end: 1242,
               ),
-            ),
-            unit: Ident(
-              type: "Ident",
-              name: "px",
-              raw: "px",
+              value: Dimension(
+                type: "Dimension",
+                value: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "1",
+                  span: Span(
+                    start: 1243,
+                    end: 1244,
+                  ),
+                ),
+                unit: Ident(
+                  type: "Ident",
+                  name: "px",
+                  raw: "px",
+                  span: Span(
+                    start: 1244,
+                    end: 1246,
+                  ),
+                ),
+                kind: Length,
+                span: Span(
+                  start: 1243,
+                  end: 1246,
+                ),
+              ),
               span: Span(
-                start: 1244,
+                start: 1241,
                 end: 1246,
               ),
-            ),
-            kind: Length,
+            )),
             span: Span(
-              start: 1243,
+              start: 1239,
               end: 1246,
             ),
-          )),
-          span: Span(
-            start: 1239,
-            end: 1246,
           ),
+        ],
+        isCommaSeparated: true,
+        separatorSpans: [
+          Span(
+            start: 1224,
+            end: 1225,
+          ),
+        ],
+        span: Span(
+          start: 1214,
+          end: 1291,
         ),
-      ],
+      ),
       guard: Some(LessConditions(
         type: "LessConditions",
         conditions: [
@@ -912,6 +953,11 @@ Stylesheet(
             ),
           ),
         ],
+        whenSpan: Span(
+          start: 1306,
+          end: 1310,
+        ),
+        commaSpans: [],
         span: Span(
           start: 1311,
           end: 1323,
@@ -1066,7 +1112,16 @@ Stylesheet(
           end: 1392,
         ),
       ),
-      args: Some([]),
+      args: Some(LessMixinArguments(
+        type: "LessMixinArguments",
+        args: [],
+        isCommaSeparated: true,
+        separatorSpans: [],
+        span: Span(
+          start: 1392,
+          end: 1394,
+        ),
+      )),
       important: None,
       span: Span(
         start: 1370,
@@ -1471,6 +1526,10 @@ Stylesheet(
           start: 1669,
           end: 1686,
         ),
+      ),
+      colonSpan: Span(
+        start: 1686,
+        end: 1687,
       ),
       value: LessEscapedStr(
         type: "LessEscapedStr",
@@ -2128,6 +2187,10 @@ Stylesheet(
           end: 2093,
         ),
       ),
+      colonSpan: Span(
+        start: 2116,
+        end: 2117,
+      ),
       value: Number(
         type: "Number",
         value: 1.0,
@@ -2159,6 +2222,10 @@ Stylesheet(
           start: 2123,
           end: 2136,
         ),
+      ),
+      colonSpan: Span(
+        start: 2151,
+        end: 2152,
       ),
       value: LessBinaryOperation(
         type: "LessBinaryOperation",
@@ -2240,6 +2307,10 @@ Stylesheet(
           end: 2235,
         ),
       ),
+      colonSpan: Span(
+        start: 2250,
+        end: 2251,
+      ),
       value: Dimension(
         type: "Dimension",
         value: Number(
@@ -2289,6 +2360,10 @@ Stylesheet(
           end: 2329,
         ),
       ),
+      colonSpan: Span(
+        start: 2349,
+        end: 2350,
+      ),
       value: Number(
         type: "Number",
         value: 12.0,
@@ -2320,6 +2395,10 @@ Stylesheet(
           start: 2420,
           end: 2437,
         ),
+      ),
+      colonSpan: Span(
+        start: 2448,
+        end: 2449,
       ),
       value: LessBinaryOperation(
         type: "LessBinaryOperation",
@@ -2466,6 +2545,10 @@ Stylesheet(
           start: 2828,
           end: 2840,
         ),
+      ),
+      colonSpan: Span(
+        start: 2856,
+        end: 2857,
       ),
       value: LessVariable(
         type: "LessVariable",
@@ -2621,6 +2704,10 @@ Stylesheet(
                 end: 3091,
               ),
             ),
+            colonSpan: Span(
+              start: 3091,
+              end: 3092,
+            ),
             value: Ident(
               type: "Ident",
               name: "yes",
@@ -2652,6 +2739,10 @@ Stylesheet(
                 start: 3115,
                 end: 3117,
               ),
+            ),
+            colonSpan: Span(
+              start: 3117,
+              end: 3118,
             ),
             value: Ident(
               type: "Ident",

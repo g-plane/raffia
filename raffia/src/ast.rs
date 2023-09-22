@@ -690,6 +690,8 @@ pub struct LessConditionalQualifiedRule<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessConditions<'s> {
     pub conditions: Vec<LessCondition<'s>>,
+    pub when_span: Span,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -723,6 +725,7 @@ pub struct LessExtend<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessExtendList<'s> {
     pub elements: Vec<LessExtend<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -748,6 +751,7 @@ pub struct LessFormatFunction {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessImportOptions<'s> {
     pub names: Vec<Ident<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 
@@ -859,9 +863,19 @@ pub enum LessMixinArgument<'s> {
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinArguments<'s> {
+    pub args: Vec<LessMixinArgument<'s>>,
+    pub is_comma_separated: bool,
+    pub separator_spans: Vec<Span>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinCall<'s> {
     pub callee: LessMixinCallee<'s>,
-    pub args: Option<Vec<LessMixinArgument<'s>>>,
+    pub args: Option<LessMixinArguments<'s>>,
     pub important: Option<ImportantAnnotation<'s>>,
     pub span: Span,
 }
@@ -888,7 +902,7 @@ pub struct LessMixinCalleeChild<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinDefinition<'s> {
     pub name: LessMixinName<'s>,
-    pub params: Vec<LessMixinParameter<'s>>,
+    pub params: LessMixinParameters<'s>,
     pub guard: Option<LessConditions<'s>>,
     pub block: SimpleBlock<'s>,
     pub span: Span,
@@ -907,6 +921,7 @@ pub enum LessMixinName<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinNamedArgument<'s> {
     pub name: LessMixinParameterName<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub span: Span,
 }
@@ -916,7 +931,16 @@ pub struct LessMixinNamedArgument<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessMixinNamedParameter<'s> {
     pub name: LessMixinParameterName<'s>,
-    pub value: Option<ComponentValue<'s>>,
+    pub value: Option<LessMixinNamedParameterDefaultValue<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinNamedParameterDefaultValue<'s> {
+    pub colon_span: Span,
+    pub value: ComponentValue<'s>,
     pub span: Span,
 }
 
@@ -927,6 +951,16 @@ pub enum LessMixinParameter<'s> {
     Named(LessMixinNamedParameter<'s>),
     Unnamed(LessMixinUnnamedParameter<'s>),
     Variadic(LessMixinVariadicParameter<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LessMixinParameters<'s> {
+    pub params: Vec<LessMixinParameter<'s>>,
+    pub is_comma_separated: bool,
+    pub separator_spans: Vec<Span>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
@@ -1103,6 +1137,7 @@ pub struct LessVariableCall<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LessVariableDeclaration<'s> {
     pub name: LessVariable<'s>,
+    pub colon_span: Span,
     pub value: ComponentValue<'s>,
     pub span: Span,
 }
