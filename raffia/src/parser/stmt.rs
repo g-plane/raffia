@@ -444,7 +444,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::At(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     let unknown_sass_at_rule = self.parse::<UnknownSassAtRule>()?;
                     is_block_element = unknown_sass_at_rule.block.is_some();
-                    statements.push(Statement::UnknownSassAtRule(unknown_sass_at_rule));
+                    statements.push(Statement::UnknownSassAtRule(Box::new(unknown_sass_at_rule)));
                 }
                 Token::Percentage(..)
                     if self.state.in_keyframes_at_rule

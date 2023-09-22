@@ -8,7 +8,6 @@ use crate::{
     tokenizer::{Token, TokenWithSpan},
     Parse, Syntax,
 };
-use smallvec::{smallvec, SmallVec};
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
@@ -236,9 +235,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
                             _ => unreachable!(),
                         })
                 }
-                Token::Dot(..) | Token::Hash(..) => {
-                    input.parse().map(MediaQuery::LessNamespaceValue)
-                }
+                Token::Dot(..) | Token::Hash(..) => input.parse().map(|less_namespace_value| {
+                    MediaQuery::LessNamespaceValue(Box::new(less_namespace_value))
+                }),
                 _ => input.parse().map(MediaQuery::WithType),
             }
         } else {
@@ -253,7 +252,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryList<'s> {
         let first = input.parse::<MediaQuery>()?;
         let mut span = first.span().clone();
 
-        let mut queries: SmallVec<[MediaQuery; 1]> = smallvec![first];
+        let mut queries = vec![first];
         let mut comma_spans = vec![];
         while let Some((_, comma_span)) = eat!(input, Comma) {
             comma_spans.push(comma_span);

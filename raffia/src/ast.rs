@@ -33,7 +33,7 @@ pub enum AtRulePrelude<'s> {
     ColorProfile(ColorProfilePrelude<'s>),
     Container(ContainerPrelude<'s>),
     CounterStyle(InterpolableIdent<'s>),
-    CustomMedia(CustomMedia<'s>),
+    CustomMedia(Box<CustomMedia<'s>>),
     Document(DocumentPrelude<'s>),
     FontFeatureValues(FontFamilyName<'s>),
     FontPaletteValues(InterpolableIdent<'s>),
@@ -43,7 +43,7 @@ pub enum AtRulePrelude<'s> {
     LessImport(Box<LessImportPrelude<'s>>),
     LessPlugin(Box<LessPlugin<'s>>),
     Media(MediaQueryList<'s>),
-    Namespace(NamespacePrelude<'s>),
+    Namespace(Box<NamespacePrelude<'s>>),
     Nest(SelectorList<'s>),
     Page(PageSelectorList<'s>),
     PositionFallback(InterpolableIdent<'s>),
@@ -63,7 +63,7 @@ pub enum AtRulePrelude<'s> {
     Scope(Box<ScopePrelude<'s>>),
     ScrollTimeline(InterpolableIdent<'s>),
     Supports(SupportsCondition<'s>),
-    Unknown(UnknownAtRulePrelude<'s>),
+    Unknown(Box<UnknownAtRulePrelude<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
@@ -232,7 +232,7 @@ pub enum ComponentValue<'s> {
     LessJavaScriptSnippet(LessJavaScriptSnippet<'s>),
     LessList(LessList<'s>),
     LessMixinCall(LessMixinCall<'s>),
-    LessNamespaceValue(LessNamespaceValue<'s>),
+    LessNamespaceValue(Box<LessNamespaceValue<'s>>),
     LessNegativeValue(LessNegativeValue<'s>),
     LessParenthesizedOperation(LessParenthesizedOperation<'s>),
     LessPercentKeyword(LessPercentKeyword),
@@ -444,7 +444,7 @@ pub struct Function<'s> {
 #[cfg_attr(feature = "serialize", serde(untagged))]
 pub enum FunctionName<'s> {
     Ident(InterpolableIdent<'s>),
-    SassQualifiedName(SassQualifiedName<'s>),
+    SassQualifiedName(Box<SassQualifiedName<'s>>),
     LessListFunction(LessListFunction),
     LessFormatFunction(LessFormatFunction),
 }
@@ -1276,14 +1276,14 @@ pub enum MediaQuery<'s> {
     ConditionOnly(MediaCondition<'s>),
     WithType(MediaQueryWithType<'s>),
     LessVariable(LessVariable<'s>),
-    LessNamespaceValue(LessNamespaceValue<'s>),
+    LessNamespaceValue(Box<LessNamespaceValue<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct MediaQueryList<'s> {
-    pub queries: SmallVec<[MediaQuery<'s>; 1]>,
+    pub queries: Vec<MediaQuery<'s>>,
     pub comma_spans: Vec<Span>,
     pub span: Span,
 }
@@ -2147,7 +2147,7 @@ pub enum Statement<'s> {
     QualifiedRule(QualifiedRule<'s>),
     SassIfAtRule(SassIfAtRule<'s>),
     SassVariableDeclaration(SassVariableDeclaration<'s>),
-    UnknownSassAtRule(UnknownSassAtRule<'s>),
+    UnknownSassAtRule(Box<UnknownSassAtRule<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

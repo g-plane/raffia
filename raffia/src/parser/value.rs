@@ -135,7 +135,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                     end,
                                 };
                                 Ok(ComponentValue::Function(Function {
-                                    name: FunctionName::SassQualifiedName(name),
+                                    name: FunctionName::SassQualifiedName(Box::new(name)),
                                     args,
                                     span,
                                 }))
@@ -831,11 +831,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for FunctionName<'s> {
                             start: ident.span.start,
                             end: member.span.end,
                         };
-                        Ok(FunctionName::SassQualifiedName(SassQualifiedName {
-                            module: ident,
-                            member: SassModuleMemberName::Ident(member),
-                            span,
-                        }))
+                        Ok(FunctionName::SassQualifiedName(Box::new(
+                            SassQualifiedName {
+                                module: ident,
+                                member: SassModuleMemberName::Ident(member),
+                                span,
+                            },
+                        )))
                     }
                     _ => Ok(FunctionName::Ident(InterpolableIdent::Literal(ident))),
                 }

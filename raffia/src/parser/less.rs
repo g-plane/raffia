@@ -332,11 +332,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 start: mixin_call.span.start,
                 end: lookups.span.end,
             };
-            Ok(ComponentValue::LessNamespaceValue(LessNamespaceValue {
-                callee: LessNamespaceValueCallee::LessMixinCall(mixin_call),
-                lookups,
-                span,
-            }))
+            Ok(ComponentValue::LessNamespaceValue(Box::new(
+                LessNamespaceValue {
+                    callee: LessNamespaceValueCallee::LessMixinCall(mixin_call),
+                    lookups,
+                    span,
+                },
+            )))
         } else {
             Ok(ComponentValue::LessMixinCall(mixin_call))
         }
@@ -356,11 +358,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     start: variable.span.start,
                     end: lookups.span.end,
                 };
-                Ok(ComponentValue::LessNamespaceValue(LessNamespaceValue {
-                    callee: LessNamespaceValueCallee::LessVariable(variable),
-                    lookups,
-                    span,
-                }))
+                Ok(ComponentValue::LessNamespaceValue(Box::new(
+                    LessNamespaceValue {
+                        callee: LessNamespaceValueCallee::LessVariable(variable),
+                        lookups,
+                        span,
+                    },
+                )))
             }
             _ => Ok(ComponentValue::LessVariable(variable)),
         }

@@ -121,7 +121,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("namespace") {
             let namespace = input.parse::<NamespacePrelude>()?;
             let end = namespace.span.end;
-            (Some(AtRulePrelude::Namespace(namespace)), None, end)
+            (
+                Some(AtRulePrelude::Namespace(Box::new(namespace))),
+                None,
+                end,
+            )
         } else if at_rule_name.eq_ignore_ascii_case("color-profile") {
             let prelude = Some(AtRulePrelude::ColorProfile(input.parse()?));
             let block = input.parse::<SimpleBlock>()?;
@@ -150,7 +154,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else if at_rule_name.eq_ignore_ascii_case("custom-media") {
             let custom_media = input.parse::<CustomMedia>()?;
             let end = custom_media.span.end;
-            (Some(AtRulePrelude::CustomMedia(custom_media)), None, end)
+            (
+                Some(AtRulePrelude::CustomMedia(Box::new(custom_media))),
+                None,
+                end,
+            )
         } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
             // https://tabatkins.github.io/specs/css-anchor-position/#fallback-rule
             let prelude = Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?));
@@ -384,7 +392,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 _ => {
                     let (prelude, block, end) = input.parse_unknown_at_rule()?;
                     (
-                        prelude.map(AtRulePrelude::Unknown),
+                        prelude.map(|prelude| AtRulePrelude::Unknown(Box::new(prelude))),
                         block,
                         end.unwrap_or(at_keyword_span.end),
                     )
@@ -393,7 +401,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
         } else {
             let (prelude, block, end) = input.parse_unknown_at_rule()?;
             (
-                prelude.map(AtRulePrelude::Unknown),
+                prelude.map(|prelude| AtRulePrelude::Unknown(Box::new(prelude))),
                 block,
                 end.unwrap_or(at_keyword_span.end),
             )
