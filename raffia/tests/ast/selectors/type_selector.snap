@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -2127,9 +2126,885 @@ Stylesheet(
         end: 313,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 321,
+                          end: 322,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(Ident(
+                          type: "Ident",
+                          name: "a",
+                          raw: "a",
+                          span: Span(
+                            start: 315,
+                            end: 316,
+                          ),
+                        )),
+                        span: Span(
+                          start: 315,
+                          end: 321,
+                        ),
+                      )),
+                      span: Span(
+                        start: 315,
+                        end: 322,
+                      ),
+                    ),
+                    span: Span(
+                      start: 315,
+                      end: 322,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 315,
+                  end: 322,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 315,
+              end: 322,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 315,
+          end: 322,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 323,
+          end: 325,
+        ),
+      ),
+      span: Span(
+        start: 315,
+        end: 325,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 332,
+                          end: 333,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(Ident(
+                          type: "Ident",
+                          name: "a",
+                          raw: "a",
+                          span: Span(
+                            start: 326,
+                            end: 327,
+                          ),
+                        )),
+                        span: Span(
+                          start: 326,
+                          end: 328,
+                        ),
+                      )),
+                      span: Span(
+                        start: 326,
+                        end: 333,
+                      ),
+                    ),
+                    span: Span(
+                      start: 326,
+                      end: 333,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 326,
+                  end: 333,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 326,
+              end: 333,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 326,
+          end: 333,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 334,
+          end: 336,
+        ),
+      ),
+      span: Span(
+        start: 326,
+        end: 336,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 347,
+                          end: 348,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(Ident(
+                          type: "Ident",
+                          name: "a",
+                          raw: "a",
+                          span: Span(
+                            start: 337,
+                            end: 338,
+                          ),
+                        )),
+                        span: Span(
+                          start: 337,
+                          end: 343,
+                        ),
+                      )),
+                      span: Span(
+                        start: 337,
+                        end: 348,
+                      ),
+                    ),
+                    span: Span(
+                      start: 337,
+                      end: 348,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 337,
+                  end: 348,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 337,
+              end: 348,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 337,
+          end: 348,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 349,
+          end: 351,
+        ),
+      ),
+      span: Span(
+        start: 337,
+        end: 351,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 352,
+                          end: 353,
+                        ),
+                      )),
+                      span: Span(
+                        start: 352,
+                        end: 358,
+                      ),
+                    )),
+                    span: Span(
+                      start: 352,
+                      end: 359,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 352,
+                  end: 359,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 352,
+              end: 359,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 352,
+          end: 359,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 360,
+          end: 362,
+        ),
+      ),
+      span: Span(
+        start: 352,
+        end: 362,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 363,
+                          end: 364,
+                        ),
+                      )),
+                      span: Span(
+                        start: 363,
+                        end: 365,
+                      ),
+                    )),
+                    span: Span(
+                      start: 363,
+                      end: 370,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 363,
+                  end: 370,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 363,
+              end: 370,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 363,
+          end: 370,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 371,
+          end: 373,
+        ),
+      ),
+      span: Span(
+        start: 363,
+        end: 373,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 374,
+                          end: 375,
+                        ),
+                      )),
+                      span: Span(
+                        start: 374,
+                        end: 380,
+                      ),
+                    )),
+                    span: Span(
+                      start: 374,
+                      end: 385,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 374,
+                  end: 385,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 374,
+              end: 385,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 374,
+          end: 385,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 386,
+          end: 388,
+        ),
+      ),
+      span: Span(
+        start: 374,
+        end: 388,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 395,
+                          end: 396,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(NsPrefixUniversal(
+                          type: "NsPrefixUniversal",
+                          span: Span(
+                            start: 389,
+                            end: 390,
+                          ),
+                        )),
+                        span: Span(
+                          start: 389,
+                          end: 395,
+                        ),
+                      )),
+                      span: Span(
+                        start: 389,
+                        end: 396,
+                      ),
+                    ),
+                    span: Span(
+                      start: 389,
+                      end: 396,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 389,
+                  end: 396,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 389,
+              end: 396,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 389,
+          end: 396,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 397,
+          end: 399,
+        ),
+      ),
+      span: Span(
+        start: 389,
+        end: 399,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 406,
+                          end: 407,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(NsPrefixUniversal(
+                          type: "NsPrefixUniversal",
+                          span: Span(
+                            start: 400,
+                            end: 401,
+                          ),
+                        )),
+                        span: Span(
+                          start: 400,
+                          end: 402,
+                        ),
+                      )),
+                      span: Span(
+                        start: 400,
+                        end: 407,
+                      ),
+                    ),
+                    span: Span(
+                      start: 400,
+                      end: 407,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 400,
+                  end: 407,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 400,
+              end: 407,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 400,
+          end: 407,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 408,
+          end: 410,
+        ),
+      ),
+      span: Span(
+        start: 400,
+        end: 410,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "b",
+                        raw: "b",
+                        span: Span(
+                          start: 421,
+                          end: 422,
+                        ),
+                      ),
+                      prefix: Some(NsPrefix(
+                        type: "NsPrefix",
+                        kind: Some(NsPrefixUniversal(
+                          type: "NsPrefixUniversal",
+                          span: Span(
+                            start: 411,
+                            end: 412,
+                          ),
+                        )),
+                        span: Span(
+                          start: 411,
+                          end: 417,
+                        ),
+                      )),
+                      span: Span(
+                        start: 411,
+                        end: 422,
+                      ),
+                    ),
+                    span: Span(
+                      start: 411,
+                      end: 422,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 411,
+                  end: 422,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 411,
+              end: 422,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 411,
+          end: 422,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 423,
+          end: 425,
+        ),
+      ),
+      span: Span(
+        start: 411,
+        end: 425,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(NsPrefixUniversal(
+                        type: "NsPrefixUniversal",
+                        span: Span(
+                          start: 426,
+                          end: 427,
+                        ),
+                      )),
+                      span: Span(
+                        start: 426,
+                        end: 432,
+                      ),
+                    )),
+                    span: Span(
+                      start: 426,
+                      end: 433,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 426,
+                  end: 433,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 426,
+              end: 433,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 426,
+          end: 433,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 434,
+          end: 436,
+        ),
+      ),
+      span: Span(
+        start: 426,
+        end: 436,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(NsPrefixUniversal(
+                        type: "NsPrefixUniversal",
+                        span: Span(
+                          start: 437,
+                          end: 438,
+                        ),
+                      )),
+                      span: Span(
+                        start: 437,
+                        end: 439,
+                      ),
+                    )),
+                    span: Span(
+                      start: 437,
+                      end: 444,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 437,
+                  end: 444,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 437,
+              end: 444,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 437,
+          end: 444,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 445,
+          end: 447,
+        ),
+      ),
+      span: Span(
+        start: 437,
+        end: 447,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  UniversalSelector(
+                    type: "UniversalSelector",
+                    prefix: Some(NsPrefix(
+                      type: "NsPrefix",
+                      kind: Some(NsPrefixUniversal(
+                        type: "NsPrefixUniversal",
+                        span: Span(
+                          start: 448,
+                          end: 449,
+                        ),
+                      )),
+                      span: Span(
+                        start: 448,
+                        end: 454,
+                      ),
+                    )),
+                    span: Span(
+                      start: 448,
+                      end: 459,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 448,
+                  end: 459,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 448,
+              end: 459,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 448,
+          end: 459,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 460,
+          end: 462,
+        ),
+      ),
+      span: Span(
+        start: 448,
+        end: 462,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 314,
+    end: 463,
   ),
 )

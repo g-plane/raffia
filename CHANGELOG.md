@@ -10,6 +10,7 @@ _This changelog only relates to the `raffia` crate._
 - Changed some AST types with `Box` as wrapper.
 - Added token spans for some AST nodes.
 - Allowed comments after `:` or `::` in pseudo selectors.
+- Allowed comments in type selector.
 
 ## v0.5.1
 

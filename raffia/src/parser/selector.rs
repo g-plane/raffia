@@ -6,7 +6,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token, TokenWithSpan},
-    util::{assert_no_ws_or_comment, handle_escape, CowStr},
+    util::{self, assert_no_ws_or_comment, handle_escape, CowStr},
     Parse, Syntax,
 };
 use smallvec::SmallVec;
@@ -1413,8 +1413,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
             } if ident_or_asterisk
                 .as_ref()
                 .map(|t| match t {
-                    IdentOrAsterisk::Ident(ident) => ident.span().end == span.start,
-                    IdentOrAsterisk::Asterisk(asterisk_span) => asterisk_span.end == span.start,
+                    IdentOrAsterisk::Ident(ident) => {
+                        !util::has_ws(input.source, ident.span(), span)
+                    }
+                    IdentOrAsterisk::Asterisk(asterisk_span) => {
+                        !util::has_ws(input.source, asterisk_span, span)
+                    }
                 })
                 .unwrap_or(true) =>
             {
@@ -1452,7 +1456,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                     } => {
                         let name = input.parse::<InterpolableIdent>()?;
                         let name_span = name.span();
-                        assert_no_ws_or_comment(&prefix.span, name_span)?;
+                        input.assert_no_ws(&prefix.span, name_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: name_span.end,
@@ -1471,7 +1475,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                         ..
                     } => {
                         let asterisk_span = bump!(input).span;
-                        assert_no_ws_or_comment(&prefix.span, &asterisk_span)?;
+                        input.assert_no_ws(&prefix.span, &asterisk_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: asterisk_span.end,

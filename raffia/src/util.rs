@@ -79,3 +79,22 @@ pub(crate) fn assert_no_ws_or_comment(left: &Span, right: &Span) -> PResult<()> 
         })
     }
 }
+
+pub(crate) fn has_ws(
+    source: &str,
+    Span { end: start, .. }: &Span,
+    Span { start: end, .. }: &Span,
+) -> bool {
+    debug_assert!(start <= end);
+    if end == start {
+        false
+    } else {
+        let start = *start;
+        let end = *end;
+        match (source.as_bytes().get(start), source.as_bytes().get(end)) {
+            (Some(first), _) => first.is_ascii_whitespace(),
+            (_, Some(last)) => last.is_ascii_whitespace(),
+            _ => false,
+        }
+    }
+}

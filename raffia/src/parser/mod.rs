@@ -3,7 +3,7 @@ use crate::{
     config::Syntax,
     error::{Error, ErrorKind, PResult},
     tokenizer::{token::TokenWithSpan, Tokenizer},
-    ParserOptions, Span,
+    util, ParserOptions, Span,
 };
 pub use builder::ParserBuilder;
 
@@ -85,31 +85,17 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         result
     }
 
-    pub(crate) fn assert_no_ws(
-        &self,
-        Span { end: start, .. }: &Span,
-        Span { start: end, .. }: &Span,
-    ) -> PResult<()> {
-        debug_assert!(start <= end);
-        if end == start {
-            Ok(())
+    fn assert_no_ws(&self, start: &Span, end: &Span) -> PResult<()> {
+        if util::has_ws(self.source, start, end) {
+            Err(Error {
+                kind: ErrorKind::UnexpectedWhitespace,
+                span: Span {
+                    start: start.end,
+                    end: end.start,
+                },
+            })
         } else {
-            let start = *start;
-            let end = *end;
-            match (
-                self.source.as_bytes().get(start),
-                self.source.as_bytes().get(end),
-            ) {
-                (Some(first), _) if first.is_ascii_whitespace() => Err(Error {
-                    kind: ErrorKind::UnexpectedWhitespace,
-                    span: Span { start, end },
-                }),
-                (_, Some(last)) if last.is_ascii_whitespace() => Err(Error {
-                    kind: ErrorKind::UnexpectedWhitespace,
-                    span: Span { start, end },
-                }),
-                _ => Ok(()),
-            }
+            Ok(())
         }
     }
 }
