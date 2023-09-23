@@ -11,6 +11,7 @@ _This changelog only relates to the `raffia` crate._
 - Added token spans for some AST nodes.
 - Allowed comments after `:` or `::` in pseudo selectors.
 - Allowed comments in type selector.
+- Allowed comments in attribute selector name.
 
 ## v0.5.1
 

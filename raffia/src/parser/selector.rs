@@ -459,11 +459,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 let ident = input.parse::<InterpolableIdent>()?;
                 let ident_span = ident.span();
                 if let Some((_, bar_token_span)) = eat!(input, Bar) {
-                    util::assert_no_ws_or_comment(ident_span, &bar_token_span)?;
-
                     let name = input.parse::<InterpolableIdent>()?;
                     let name_span = name.span();
-                    util::assert_no_ws_or_comment(&bar_token_span, name_span)?;
 
                     let start = ident_span.start;
                     let end = name_span.end;
