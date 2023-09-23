@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `'('`, but found `[`
+  ┌─ invalid-1.css:1:11
+  │
+1 │ @supports [margin: 0] {
+  │           ^
+
+

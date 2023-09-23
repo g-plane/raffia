@@ -1,0 +1,43 @@
+@supports selector(&) { & div { font-size: 10px; } }
+@supports (user-select: none) or (-webkit-user-select: none) {
+  .unselectable {}
+}
+@supports (font-kerning: auto) {
+  section.test { background-color: green; }
+}
+@supports not selector(:focus-visible) {
+  #button:focus {}
+}
+@supports not (font-synthesis-style: none) {
+  .test {color: red;}
+}
+@supports (color: blue) and (color: rainbow) {
+  html { background-color: red }
+}
+@supports ( ( background-color: red ) or( background-color: green ) ) {
+  div { background-color: red; }
+}
+@supports (color: red) and (color: green) and (color: blue) {
+  html { background-color: green }
+}
+@supports (color: rainbow) or (color: iridescent) or (color: green) {
+  html { background-color: green }
+}
+@supports (color: green) or (color: green) and (color: green) {
+  html { background-color: red }
+}
+@supports (color: rainbow) or (color: green) {
+  html { background-color: green }
+}
+@supports ((yada: 2kg) or ((not (foo:bar)) and (((visibility:hidden))))) {
+  div { background-color:green; }
+}
+
+@supports not unknown() {}
+@supports (not (unknown())) {}
+@supports not unknown(more() stuff [ ]) {}
+@supports (not (unknown(more() stuff [ ]))) {}
+@supports unknown() {}
+@supports (unknown()) {}
+@supports unknown(with stuff) {}
+@supports (unknown(with stuff)) {}

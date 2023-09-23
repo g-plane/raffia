@@ -1,0 +1,3821 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1,
+          end: 9,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        NestingSelector(
+                          type: "NestingSelector",
+                          suffix: None,
+                          span: Span(
+                            start: 19,
+                            end: 20,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 19,
+                        end: 20,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 19,
+                    end: 20,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 19,
+                end: 20,
+              ),
+            ),
+            span: Span(
+              start: 19,
+              end: 20,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 19,
+          end: 20,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        NestingSelector(
+                          type: "NestingSelector",
+                          suffix: None,
+                          span: Span(
+                            start: 24,
+                            end: 25,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 24,
+                        end: 25,
+                      ),
+                    ),
+                    Combinator(
+                      type: "Combinator",
+                      kind: Descendant,
+                      span: Span(
+                        start: 25,
+                        end: 26,
+                      ),
+                    ),
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "div",
+                              raw: "div",
+                              span: Span(
+                                start: 26,
+                                end: 29,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 26,
+                              end: 29,
+                            ),
+                          ),
+                          span: Span(
+                            start: 26,
+                            end: 29,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 26,
+                        end: 29,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 24,
+                    end: 29,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 24,
+                end: 29,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "font-size",
+                    raw: "font-size",
+                    span: Span(
+                      start: 32,
+                      end: 41,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 41,
+                    end: 42,
+                  ),
+                  value: [
+                    Dimension(
+                      type: "Dimension",
+                      value: Number(
+                        type: "Number",
+                        value: 10.0,
+                        raw: "10",
+                        span: Span(
+                          start: 43,
+                          end: 45,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 45,
+                          end: 47,
+                        ),
+                      ),
+                      kind: Length,
+                      span: Span(
+                        start: 43,
+                        end: 47,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 32,
+                    end: 47,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 30,
+                end: 50,
+              ),
+            ),
+            span: Span(
+              start: 24,
+              end: 50,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 22,
+          end: 52,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 52,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 54,
+          end: 62,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "user-select",
+                  raw: "user-select",
+                  span: Span(
+                    start: 64,
+                    end: 75,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 75,
+                  end: 76,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "none",
+                    raw: "none",
+                    span: Span(
+                      start: 77,
+                      end: 81,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 64,
+                  end: 81,
+                ),
+              ),
+              span: Span(
+                start: 63,
+                end: 82,
+              ),
+            ),
+            span: Span(
+              start: 63,
+              end: 82,
+            ),
+          ),
+          SupportsOr(
+            type: "SupportsOr",
+            keyword: Ident(
+              type: "Ident",
+              name: "or",
+              raw: "or",
+              span: Span(
+                start: 83,
+                end: 85,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "-webkit-user-select",
+                    raw: "-webkit-user-select",
+                    span: Span(
+                      start: 87,
+                      end: 106,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 106,
+                    end: 107,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "none",
+                      raw: "none",
+                      span: Span(
+                        start: 108,
+                        end: 112,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 87,
+                    end: 112,
+                  ),
+                ),
+                span: Span(
+                  start: 86,
+                  end: 113,
+                ),
+              ),
+              span: Span(
+                start: 86,
+                end: 113,
+              ),
+            ),
+            span: Span(
+              start: 83,
+              end: 113,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 63,
+          end: 113,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "unselectable",
+                            raw: "unselectable",
+                            span: Span(
+                              start: 119,
+                              end: 131,
+                            ),
+                          ),
+                          span: Span(
+                            start: 118,
+                            end: 131,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 118,
+                        end: 131,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 118,
+                    end: 131,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 118,
+                end: 131,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 132,
+                end: 134,
+              ),
+            ),
+            span: Span(
+              start: 118,
+              end: 134,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 114,
+          end: 136,
+        ),
+      )),
+      span: Span(
+        start: 53,
+        end: 136,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 138,
+          end: 146,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "font-kerning",
+                  raw: "font-kerning",
+                  span: Span(
+                    start: 148,
+                    end: 160,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 160,
+                  end: 161,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "auto",
+                    raw: "auto",
+                    span: Span(
+                      start: 162,
+                      end: 166,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 148,
+                  end: 166,
+                ),
+              ),
+              span: Span(
+                start: 147,
+                end: 167,
+              ),
+            ),
+            span: Span(
+              start: 147,
+              end: 167,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 147,
+          end: 167,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "section",
+                              raw: "section",
+                              span: Span(
+                                start: 172,
+                                end: 179,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 172,
+                              end: 179,
+                            ),
+                          ),
+                          span: Span(
+                            start: 172,
+                            end: 179,
+                          ),
+                        ),
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "test",
+                            raw: "test",
+                            span: Span(
+                              start: 180,
+                              end: 184,
+                            ),
+                          ),
+                          span: Span(
+                            start: 179,
+                            end: 184,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 172,
+                        end: 184,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 172,
+                    end: 184,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 172,
+                end: 184,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 187,
+                      end: 203,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 203,
+                    end: 204,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 205,
+                        end: 210,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 187,
+                    end: 210,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 185,
+                end: 213,
+              ),
+            ),
+            span: Span(
+              start: 172,
+              end: 213,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 168,
+          end: 215,
+        ),
+      )),
+      span: Span(
+        start: 137,
+        end: 215,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 217,
+          end: 225,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsNot(
+            type: "SupportsNot",
+            keyword: Ident(
+              type: "Ident",
+              name: "not",
+              raw: "not",
+              span: Span(
+                start: 226,
+                end: 229,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SelectorList(
+                type: "SelectorList",
+                selectors: [
+                  ComplexSelector(
+                    type: "ComplexSelector",
+                    children: [
+                      CompoundSelector(
+                        type: "CompoundSelector",
+                        children: [
+                          PseudoClassSelector(
+                            type: "PseudoClassSelector",
+                            name: Ident(
+                              type: "Ident",
+                              name: "focus-visible",
+                              raw: "focus-visible",
+                              span: Span(
+                                start: 240,
+                                end: 253,
+                              ),
+                            ),
+                            arg: None,
+                            span: Span(
+                              start: 239,
+                              end: 253,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 239,
+                          end: 253,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 239,
+                      end: 253,
+                    ),
+                  ),
+                ],
+                commaSpans: [],
+                span: Span(
+                  start: 239,
+                  end: 253,
+                ),
+              ),
+              span: Span(
+                start: 239,
+                end: 253,
+              ),
+            ),
+            span: Span(
+              start: 226,
+              end: 253,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 226,
+          end: 253,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        IdSelector(
+                          type: "IdSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "button",
+                            raw: "button",
+                            span: Span(
+                              start: 260,
+                              end: 266,
+                            ),
+                          ),
+                          span: Span(
+                            start: 259,
+                            end: 266,
+                          ),
+                        ),
+                        PseudoClassSelector(
+                          type: "PseudoClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "focus",
+                            raw: "focus",
+                            span: Span(
+                              start: 267,
+                              end: 272,
+                            ),
+                          ),
+                          arg: None,
+                          span: Span(
+                            start: 266,
+                            end: 272,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 259,
+                        end: 272,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 259,
+                    end: 272,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 259,
+                end: 272,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 273,
+                end: 275,
+              ),
+            ),
+            span: Span(
+              start: 259,
+              end: 275,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 255,
+          end: 277,
+        ),
+      )),
+      span: Span(
+        start: 216,
+        end: 277,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 279,
+          end: 287,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsNot(
+            type: "SupportsNot",
+            keyword: Ident(
+              type: "Ident",
+              name: "not",
+              raw: "not",
+              span: Span(
+                start: 288,
+                end: 291,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "font-synthesis-style",
+                    raw: "font-synthesis-style",
+                    span: Span(
+                      start: 293,
+                      end: 313,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 313,
+                    end: 314,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "none",
+                      raw: "none",
+                      span: Span(
+                        start: 315,
+                        end: 319,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 293,
+                    end: 319,
+                  ),
+                ),
+                span: Span(
+                  start: 292,
+                  end: 320,
+                ),
+              ),
+              span: Span(
+                start: 292,
+                end: 320,
+              ),
+            ),
+            span: Span(
+              start: 288,
+              end: 320,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 288,
+          end: 320,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        ClassSelector(
+                          type: "ClassSelector",
+                          name: Ident(
+                            type: "Ident",
+                            name: "test",
+                            raw: "test",
+                            span: Span(
+                              start: 326,
+                              end: 330,
+                            ),
+                          ),
+                          span: Span(
+                            start: 325,
+                            end: 330,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 325,
+                        end: 330,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 325,
+                    end: 330,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 325,
+                end: 330,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 332,
+                      end: 337,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 337,
+                    end: 338,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 339,
+                        end: 342,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 332,
+                    end: 342,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 331,
+                end: 344,
+              ),
+            ),
+            span: Span(
+              start: 325,
+              end: 344,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 321,
+          end: 346,
+        ),
+      )),
+      span: Span(
+        start: 278,
+        end: 346,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 348,
+          end: 356,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "color",
+                  raw: "color",
+                  span: Span(
+                    start: 358,
+                    end: 363,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 363,
+                  end: 364,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "blue",
+                    raw: "blue",
+                    span: Span(
+                      start: 365,
+                      end: 369,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 358,
+                  end: 369,
+                ),
+              ),
+              span: Span(
+                start: 357,
+                end: 370,
+              ),
+            ),
+            span: Span(
+              start: 357,
+              end: 370,
+            ),
+          ),
+          SupportsAnd(
+            type: "SupportsAnd",
+            keyword: Ident(
+              type: "Ident",
+              name: "and",
+              raw: "and",
+              span: Span(
+                start: 371,
+                end: 374,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 376,
+                      end: 381,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 381,
+                    end: 382,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "rainbow",
+                      raw: "rainbow",
+                      span: Span(
+                        start: 383,
+                        end: 390,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 376,
+                    end: 390,
+                  ),
+                ),
+                span: Span(
+                  start: 375,
+                  end: 391,
+                ),
+              ),
+              span: Span(
+                start: 375,
+                end: 391,
+              ),
+            ),
+            span: Span(
+              start: 371,
+              end: 391,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 357,
+          end: 391,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "html",
+                              raw: "html",
+                              span: Span(
+                                start: 396,
+                                end: 400,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 396,
+                              end: 400,
+                            ),
+                          ),
+                          span: Span(
+                            start: 396,
+                            end: 400,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 396,
+                        end: 400,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 396,
+                    end: 400,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 396,
+                end: 400,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 403,
+                      end: 419,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 419,
+                    end: 420,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 421,
+                        end: 424,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 403,
+                    end: 424,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 401,
+                end: 426,
+              ),
+            ),
+            span: Span(
+              start: 396,
+              end: 426,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 392,
+          end: 428,
+        ),
+      )),
+      span: Span(
+        start: 347,
+        end: 428,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 430,
+          end: 438,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "background-color",
+                        raw: "background-color",
+                        span: Span(
+                          start: 443,
+                          end: 459,
+                        ),
+                      ),
+                      colonSpan: Span(
+                        start: 459,
+                        end: 460,
+                      ),
+                      value: [
+                        Ident(
+                          type: "Ident",
+                          name: "red",
+                          raw: "red",
+                          span: Span(
+                            start: 461,
+                            end: 464,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 443,
+                        end: 464,
+                      ),
+                    ),
+                    span: Span(
+                      start: 441,
+                      end: 466,
+                    ),
+                  ),
+                  span: Span(
+                    start: 441,
+                    end: 466,
+                  ),
+                ),
+                SupportsOr(
+                  type: "SupportsOr",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "or",
+                    raw: "or",
+                    span: Span(
+                      start: 467,
+                      end: 469,
+                    ),
+                  ),
+                  condition: SupportsInParens(
+                    type: "SupportsInParens",
+                    kind: SupportsDecl(
+                      type: "SupportsDecl",
+                      decl: Declaration(
+                        type: "Declaration",
+                        name: Ident(
+                          type: "Ident",
+                          name: "background-color",
+                          raw: "background-color",
+                          span: Span(
+                            start: 471,
+                            end: 487,
+                          ),
+                        ),
+                        colonSpan: Span(
+                          start: 487,
+                          end: 488,
+                        ),
+                        value: [
+                          Ident(
+                            type: "Ident",
+                            name: "green",
+                            raw: "green",
+                            span: Span(
+                              start: 489,
+                              end: 494,
+                            ),
+                          ),
+                        ],
+                        important: None,
+                        lessPropertyMerge: None,
+                        span: Span(
+                          start: 471,
+                          end: 494,
+                        ),
+                      ),
+                      span: Span(
+                        start: 469,
+                        end: 496,
+                      ),
+                    ),
+                    span: Span(
+                      start: 469,
+                      end: 496,
+                    ),
+                  ),
+                  span: Span(
+                    start: 467,
+                    end: 496,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 441,
+                end: 496,
+              ),
+            ),
+            span: Span(
+              start: 439,
+              end: 498,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 439,
+          end: 498,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "div",
+                              raw: "div",
+                              span: Span(
+                                start: 503,
+                                end: 506,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 503,
+                              end: 506,
+                            ),
+                          ),
+                          span: Span(
+                            start: 503,
+                            end: 506,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 503,
+                        end: 506,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 503,
+                    end: 506,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 503,
+                end: 506,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 509,
+                      end: 525,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 525,
+                    end: 526,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 527,
+                        end: 530,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 509,
+                    end: 530,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 507,
+                end: 533,
+              ),
+            ),
+            span: Span(
+              start: 503,
+              end: 533,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 499,
+          end: 535,
+        ),
+      )),
+      span: Span(
+        start: 429,
+        end: 535,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 537,
+          end: 545,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "color",
+                  raw: "color",
+                  span: Span(
+                    start: 547,
+                    end: 552,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 552,
+                  end: 553,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "red",
+                    raw: "red",
+                    span: Span(
+                      start: 554,
+                      end: 557,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 547,
+                  end: 557,
+                ),
+              ),
+              span: Span(
+                start: 546,
+                end: 558,
+              ),
+            ),
+            span: Span(
+              start: 546,
+              end: 558,
+            ),
+          ),
+          SupportsAnd(
+            type: "SupportsAnd",
+            keyword: Ident(
+              type: "Ident",
+              name: "and",
+              raw: "and",
+              span: Span(
+                start: 559,
+                end: 562,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 564,
+                      end: 569,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 569,
+                    end: 570,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 571,
+                        end: 576,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 564,
+                    end: 576,
+                  ),
+                ),
+                span: Span(
+                  start: 563,
+                  end: 577,
+                ),
+              ),
+              span: Span(
+                start: 563,
+                end: 577,
+              ),
+            ),
+            span: Span(
+              start: 559,
+              end: 577,
+            ),
+          ),
+          SupportsAnd(
+            type: "SupportsAnd",
+            keyword: Ident(
+              type: "Ident",
+              name: "and",
+              raw: "and",
+              span: Span(
+                start: 578,
+                end: 581,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 583,
+                      end: 588,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 588,
+                    end: 589,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "blue",
+                      raw: "blue",
+                      span: Span(
+                        start: 590,
+                        end: 594,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 583,
+                    end: 594,
+                  ),
+                ),
+                span: Span(
+                  start: 582,
+                  end: 595,
+                ),
+              ),
+              span: Span(
+                start: 582,
+                end: 595,
+              ),
+            ),
+            span: Span(
+              start: 578,
+              end: 595,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 546,
+          end: 595,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "html",
+                              raw: "html",
+                              span: Span(
+                                start: 600,
+                                end: 604,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 600,
+                              end: 604,
+                            ),
+                          ),
+                          span: Span(
+                            start: 600,
+                            end: 604,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 600,
+                        end: 604,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 600,
+                    end: 604,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 600,
+                end: 604,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 607,
+                      end: 623,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 623,
+                    end: 624,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 625,
+                        end: 630,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 607,
+                    end: 630,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 605,
+                end: 632,
+              ),
+            ),
+            span: Span(
+              start: 600,
+              end: 632,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 596,
+          end: 634,
+        ),
+      )),
+      span: Span(
+        start: 536,
+        end: 634,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 636,
+          end: 644,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "color",
+                  raw: "color",
+                  span: Span(
+                    start: 646,
+                    end: 651,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 651,
+                  end: 652,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "rainbow",
+                    raw: "rainbow",
+                    span: Span(
+                      start: 653,
+                      end: 660,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 646,
+                  end: 660,
+                ),
+              ),
+              span: Span(
+                start: 645,
+                end: 661,
+              ),
+            ),
+            span: Span(
+              start: 645,
+              end: 661,
+            ),
+          ),
+          SupportsOr(
+            type: "SupportsOr",
+            keyword: Ident(
+              type: "Ident",
+              name: "or",
+              raw: "or",
+              span: Span(
+                start: 662,
+                end: 664,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 666,
+                      end: 671,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 671,
+                    end: 672,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "iridescent",
+                      raw: "iridescent",
+                      span: Span(
+                        start: 673,
+                        end: 683,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 666,
+                    end: 683,
+                  ),
+                ),
+                span: Span(
+                  start: 665,
+                  end: 684,
+                ),
+              ),
+              span: Span(
+                start: 665,
+                end: 684,
+              ),
+            ),
+            span: Span(
+              start: 662,
+              end: 684,
+            ),
+          ),
+          SupportsOr(
+            type: "SupportsOr",
+            keyword: Ident(
+              type: "Ident",
+              name: "or",
+              raw: "or",
+              span: Span(
+                start: 685,
+                end: 687,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 689,
+                      end: 694,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 694,
+                    end: 695,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 696,
+                        end: 701,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 689,
+                    end: 701,
+                  ),
+                ),
+                span: Span(
+                  start: 688,
+                  end: 702,
+                ),
+              ),
+              span: Span(
+                start: 688,
+                end: 702,
+              ),
+            ),
+            span: Span(
+              start: 685,
+              end: 702,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 645,
+          end: 702,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "html",
+                              raw: "html",
+                              span: Span(
+                                start: 707,
+                                end: 711,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 707,
+                              end: 711,
+                            ),
+                          ),
+                          span: Span(
+                            start: 707,
+                            end: 711,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 707,
+                        end: 711,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 707,
+                    end: 711,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 707,
+                end: 711,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 714,
+                      end: 730,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 730,
+                    end: 731,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 732,
+                        end: 737,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 714,
+                    end: 737,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 712,
+                end: 739,
+              ),
+            ),
+            span: Span(
+              start: 707,
+              end: 739,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 703,
+          end: 741,
+        ),
+      )),
+      span: Span(
+        start: 635,
+        end: 741,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 743,
+          end: 751,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "color",
+                  raw: "color",
+                  span: Span(
+                    start: 753,
+                    end: 758,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 758,
+                  end: 759,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "green",
+                    raw: "green",
+                    span: Span(
+                      start: 760,
+                      end: 765,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 753,
+                  end: 765,
+                ),
+              ),
+              span: Span(
+                start: 752,
+                end: 766,
+              ),
+            ),
+            span: Span(
+              start: 752,
+              end: 766,
+            ),
+          ),
+          SupportsOr(
+            type: "SupportsOr",
+            keyword: Ident(
+              type: "Ident",
+              name: "or",
+              raw: "or",
+              span: Span(
+                start: 767,
+                end: 769,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 771,
+                      end: 776,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 776,
+                    end: 777,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 778,
+                        end: 783,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 771,
+                    end: 783,
+                  ),
+                ),
+                span: Span(
+                  start: 770,
+                  end: 784,
+                ),
+              ),
+              span: Span(
+                start: 770,
+                end: 784,
+              ),
+            ),
+            span: Span(
+              start: 767,
+              end: 784,
+            ),
+          ),
+          SupportsAnd(
+            type: "SupportsAnd",
+            keyword: Ident(
+              type: "Ident",
+              name: "and",
+              raw: "and",
+              span: Span(
+                start: 785,
+                end: 788,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 790,
+                      end: 795,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 795,
+                    end: 796,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 797,
+                        end: 802,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 790,
+                    end: 802,
+                  ),
+                ),
+                span: Span(
+                  start: 789,
+                  end: 803,
+                ),
+              ),
+              span: Span(
+                start: 789,
+                end: 803,
+              ),
+            ),
+            span: Span(
+              start: 785,
+              end: 803,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 752,
+          end: 803,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "html",
+                              raw: "html",
+                              span: Span(
+                                start: 808,
+                                end: 812,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 808,
+                              end: 812,
+                            ),
+                          ),
+                          span: Span(
+                            start: 808,
+                            end: 812,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 808,
+                        end: 812,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 808,
+                    end: 812,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 808,
+                end: 812,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 815,
+                      end: 831,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 831,
+                    end: 832,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "red",
+                      raw: "red",
+                      span: Span(
+                        start: 833,
+                        end: 836,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 815,
+                    end: 836,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 813,
+                end: 838,
+              ),
+            ),
+            span: Span(
+              start: 808,
+              end: 838,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 804,
+          end: 840,
+        ),
+      )),
+      span: Span(
+        start: 742,
+        end: 840,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 842,
+          end: 850,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsDecl(
+              type: "SupportsDecl",
+              decl: Declaration(
+                type: "Declaration",
+                name: Ident(
+                  type: "Ident",
+                  name: "color",
+                  raw: "color",
+                  span: Span(
+                    start: 852,
+                    end: 857,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 857,
+                  end: 858,
+                ),
+                value: [
+                  Ident(
+                    type: "Ident",
+                    name: "rainbow",
+                    raw: "rainbow",
+                    span: Span(
+                      start: 859,
+                      end: 866,
+                    ),
+                  ),
+                ],
+                important: None,
+                lessPropertyMerge: None,
+                span: Span(
+                  start: 852,
+                  end: 866,
+                ),
+              ),
+              span: Span(
+                start: 851,
+                end: 867,
+              ),
+            ),
+            span: Span(
+              start: 851,
+              end: 867,
+            ),
+          ),
+          SupportsOr(
+            type: "SupportsOr",
+            keyword: Ident(
+              type: "Ident",
+              name: "or",
+              raw: "or",
+              span: Span(
+                start: 868,
+                end: 870,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: SupportsDecl(
+                type: "SupportsDecl",
+                decl: Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "color",
+                    raw: "color",
+                    span: Span(
+                      start: 872,
+                      end: 877,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 877,
+                    end: 878,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 879,
+                        end: 884,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 872,
+                    end: 884,
+                  ),
+                ),
+                span: Span(
+                  start: 871,
+                  end: 885,
+                ),
+              ),
+              span: Span(
+                start: 871,
+                end: 885,
+              ),
+            ),
+            span: Span(
+              start: 868,
+              end: 885,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 851,
+          end: 885,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "html",
+                              raw: "html",
+                              span: Span(
+                                start: 890,
+                                end: 894,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 890,
+                              end: 894,
+                            ),
+                          ),
+                          span: Span(
+                            start: 890,
+                            end: 894,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 890,
+                        end: 894,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 890,
+                    end: 894,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 890,
+                end: 894,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 897,
+                      end: 913,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 913,
+                    end: 914,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 915,
+                        end: 920,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 897,
+                    end: 920,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 895,
+                end: 922,
+              ),
+            ),
+            span: Span(
+              start: 890,
+              end: 922,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 886,
+          end: 924,
+        ),
+      )),
+      span: Span(
+        start: 841,
+        end: 924,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 926,
+          end: 934,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: SupportsDecl(
+                    type: "SupportsDecl",
+                    decl: Declaration(
+                      type: "Declaration",
+                      name: Ident(
+                        type: "Ident",
+                        name: "yada",
+                        raw: "yada",
+                        span: Span(
+                          start: 937,
+                          end: 941,
+                        ),
+                      ),
+                      colonSpan: Span(
+                        start: 941,
+                        end: 942,
+                      ),
+                      value: [
+                        Dimension(
+                          type: "Dimension",
+                          value: Number(
+                            type: "Number",
+                            value: 2.0,
+                            raw: "2",
+                            span: Span(
+                              start: 943,
+                              end: 944,
+                            ),
+                          ),
+                          unit: Ident(
+                            type: "Ident",
+                            name: "kg",
+                            raw: "kg",
+                            span: Span(
+                              start: 944,
+                              end: 946,
+                            ),
+                          ),
+                          kind: Unknown,
+                          span: Span(
+                            start: 943,
+                            end: 946,
+                          ),
+                        ),
+                      ],
+                      important: None,
+                      lessPropertyMerge: None,
+                      span: Span(
+                        start: 937,
+                        end: 946,
+                      ),
+                    ),
+                    span: Span(
+                      start: 936,
+                      end: 947,
+                    ),
+                  ),
+                  span: Span(
+                    start: 936,
+                    end: 947,
+                  ),
+                ),
+                SupportsOr(
+                  type: "SupportsOr",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "or",
+                    raw: "or",
+                    span: Span(
+                      start: 948,
+                      end: 950,
+                    ),
+                  ),
+                  condition: SupportsInParens(
+                    type: "SupportsInParens",
+                    kind: SupportsCondition(
+                      type: "SupportsCondition",
+                      conditions: [
+                        SupportsInParens(
+                          type: "SupportsInParens",
+                          kind: SupportsCondition(
+                            type: "SupportsCondition",
+                            conditions: [
+                              SupportsNot(
+                                type: "SupportsNot",
+                                keyword: Ident(
+                                  type: "Ident",
+                                  name: "not",
+                                  raw: "not",
+                                  span: Span(
+                                    start: 953,
+                                    end: 956,
+                                  ),
+                                ),
+                                condition: SupportsInParens(
+                                  type: "SupportsInParens",
+                                  kind: SupportsDecl(
+                                    type: "SupportsDecl",
+                                    decl: Declaration(
+                                      type: "Declaration",
+                                      name: Ident(
+                                        type: "Ident",
+                                        name: "foo",
+                                        raw: "foo",
+                                        span: Span(
+                                          start: 958,
+                                          end: 961,
+                                        ),
+                                      ),
+                                      colonSpan: Span(
+                                        start: 961,
+                                        end: 962,
+                                      ),
+                                      value: [
+                                        Ident(
+                                          type: "Ident",
+                                          name: "bar",
+                                          raw: "bar",
+                                          span: Span(
+                                            start: 962,
+                                            end: 965,
+                                          ),
+                                        ),
+                                      ],
+                                      important: None,
+                                      lessPropertyMerge: None,
+                                      span: Span(
+                                        start: 958,
+                                        end: 965,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 957,
+                                      end: 966,
+                                    ),
+                                  ),
+                                  span: Span(
+                                    start: 957,
+                                    end: 966,
+                                  ),
+                                ),
+                                span: Span(
+                                  start: 953,
+                                  end: 966,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 953,
+                              end: 966,
+                            ),
+                          ),
+                          span: Span(
+                            start: 952,
+                            end: 967,
+                          ),
+                        ),
+                        SupportsAnd(
+                          type: "SupportsAnd",
+                          keyword: Ident(
+                            type: "Ident",
+                            name: "and",
+                            raw: "and",
+                            span: Span(
+                              start: 968,
+                              end: 971,
+                            ),
+                          ),
+                          condition: SupportsInParens(
+                            type: "SupportsInParens",
+                            kind: SupportsCondition(
+                              type: "SupportsCondition",
+                              conditions: [
+                                SupportsInParens(
+                                  type: "SupportsInParens",
+                                  kind: SupportsCondition(
+                                    type: "SupportsCondition",
+                                    conditions: [
+                                      SupportsInParens(
+                                        type: "SupportsInParens",
+                                        kind: SupportsDecl(
+                                          type: "SupportsDecl",
+                                          decl: Declaration(
+                                            type: "Declaration",
+                                            name: Ident(
+                                              type: "Ident",
+                                              name: "visibility",
+                                              raw: "visibility",
+                                              span: Span(
+                                                start: 975,
+                                                end: 985,
+                                              ),
+                                            ),
+                                            colonSpan: Span(
+                                              start: 985,
+                                              end: 986,
+                                            ),
+                                            value: [
+                                              Ident(
+                                                type: "Ident",
+                                                name: "hidden",
+                                                raw: "hidden",
+                                                span: Span(
+                                                  start: 986,
+                                                  end: 992,
+                                                ),
+                                              ),
+                                            ],
+                                            important: None,
+                                            lessPropertyMerge: None,
+                                            span: Span(
+                                              start: 975,
+                                              end: 992,
+                                            ),
+                                          ),
+                                          span: Span(
+                                            start: 974,
+                                            end: 993,
+                                          ),
+                                        ),
+                                        span: Span(
+                                          start: 974,
+                                          end: 993,
+                                        ),
+                                      ),
+                                    ],
+                                    span: Span(
+                                      start: 974,
+                                      end: 993,
+                                    ),
+                                  ),
+                                  span: Span(
+                                    start: 973,
+                                    end: 994,
+                                  ),
+                                ),
+                              ],
+                              span: Span(
+                                start: 973,
+                                end: 994,
+                              ),
+                            ),
+                            span: Span(
+                              start: 972,
+                              end: 995,
+                            ),
+                          ),
+                          span: Span(
+                            start: 968,
+                            end: 995,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 952,
+                        end: 995,
+                      ),
+                    ),
+                    span: Span(
+                      start: 951,
+                      end: 996,
+                    ),
+                  ),
+                  span: Span(
+                    start: 948,
+                    end: 996,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 936,
+                end: 996,
+              ),
+            ),
+            span: Span(
+              start: 935,
+              end: 997,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 935,
+          end: 997,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "div",
+                              raw: "div",
+                              span: Span(
+                                start: 1002,
+                                end: 1005,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 1002,
+                              end: 1005,
+                            ),
+                          ),
+                          span: Span(
+                            start: 1002,
+                            end: 1005,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1002,
+                        end: 1005,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 1002,
+                    end: 1005,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 1002,
+                end: 1005,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [
+                Declaration(
+                  type: "Declaration",
+                  name: Ident(
+                    type: "Ident",
+                    name: "background-color",
+                    raw: "background-color",
+                    span: Span(
+                      start: 1008,
+                      end: 1024,
+                    ),
+                  ),
+                  colonSpan: Span(
+                    start: 1024,
+                    end: 1025,
+                  ),
+                  value: [
+                    Ident(
+                      type: "Ident",
+                      name: "green",
+                      raw: "green",
+                      span: Span(
+                        start: 1025,
+                        end: 1030,
+                      ),
+                    ),
+                  ],
+                  important: None,
+                  lessPropertyMerge: None,
+                  span: Span(
+                    start: 1008,
+                    end: 1030,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1006,
+                end: 1033,
+              ),
+            ),
+            span: Span(
+              start: 1002,
+              end: 1033,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 998,
+          end: 1035,
+        ),
+      )),
+      span: Span(
+        start: 925,
+        end: 1035,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1038,
+          end: 1046,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsNot(
+            type: "SupportsNot",
+            keyword: Ident(
+              type: "Ident",
+              name: "not",
+              raw: "not",
+              span: Span(
+                start: 1047,
+                end: 1050,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "unknown",
+                  raw: "unknown",
+                  span: Span(
+                    start: 1051,
+                    end: 1058,
+                  ),
+                ),
+                args: [],
+                span: Span(
+                  start: 1051,
+                  end: 1060,
+                ),
+              ),
+              span: Span(
+                start: 1051,
+                end: 1060,
+              ),
+            ),
+            span: Span(
+              start: 1047,
+              end: 1060,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1047,
+          end: 1060,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1061,
+          end: 1063,
+        ),
+      )),
+      span: Span(
+        start: 1037,
+        end: 1063,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1065,
+          end: 1073,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsNot(
+                  type: "SupportsNot",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "not",
+                    raw: "not",
+                    span: Span(
+                      start: 1075,
+                      end: 1078,
+                    ),
+                  ),
+                  condition: SupportsInParens(
+                    type: "SupportsInParens",
+                    kind: SupportsCondition(
+                      type: "SupportsCondition",
+                      conditions: [
+                        SupportsInParens(
+                          type: "SupportsInParens",
+                          kind: Function(
+                            type: "Function",
+                            name: Ident(
+                              type: "Ident",
+                              name: "unknown",
+                              raw: "unknown",
+                              span: Span(
+                                start: 1080,
+                                end: 1087,
+                              ),
+                            ),
+                            args: [],
+                            span: Span(
+                              start: 1080,
+                              end: 1089,
+                            ),
+                          ),
+                          span: Span(
+                            start: 1080,
+                            end: 1089,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1080,
+                        end: 1089,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1079,
+                      end: 1090,
+                    ),
+                  ),
+                  span: Span(
+                    start: 1075,
+                    end: 1090,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1075,
+                end: 1090,
+              ),
+            ),
+            span: Span(
+              start: 1074,
+              end: 1091,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1074,
+          end: 1091,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1092,
+          end: 1094,
+        ),
+      )),
+      span: Span(
+        start: 1064,
+        end: 1094,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1096,
+          end: 1104,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsNot(
+            type: "SupportsNot",
+            keyword: Ident(
+              type: "Ident",
+              name: "not",
+              raw: "not",
+              span: Span(
+                start: 1105,
+                end: 1108,
+              ),
+            ),
+            condition: SupportsInParens(
+              type: "SupportsInParens",
+              kind: Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "unknown",
+                  raw: "unknown",
+                  span: Span(
+                    start: 1109,
+                    end: 1116,
+                  ),
+                ),
+                args: [
+                  Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "more",
+                      raw: "more",
+                      span: Span(
+                        start: 1117,
+                        end: 1121,
+                      ),
+                    ),
+                    args: [],
+                    span: Span(
+                      start: 1117,
+                      end: 1123,
+                    ),
+                  ),
+                  Ident(
+                    type: "Ident",
+                    name: "stuff",
+                    raw: "stuff",
+                    span: Span(
+                      start: 1124,
+                      end: 1129,
+                    ),
+                  ),
+                  BracketBlock(
+                    type: "BracketBlock",
+                    value: [],
+                    span: Span(
+                      start: 1130,
+                      end: 1133,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1109,
+                  end: 1134,
+                ),
+              ),
+              span: Span(
+                start: 1109,
+                end: 1134,
+              ),
+            ),
+            span: Span(
+              start: 1105,
+              end: 1134,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1105,
+          end: 1134,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1135,
+          end: 1137,
+        ),
+      )),
+      span: Span(
+        start: 1095,
+        end: 1137,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1139,
+          end: 1147,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsNot(
+                  type: "SupportsNot",
+                  keyword: Ident(
+                    type: "Ident",
+                    name: "not",
+                    raw: "not",
+                    span: Span(
+                      start: 1149,
+                      end: 1152,
+                    ),
+                  ),
+                  condition: SupportsInParens(
+                    type: "SupportsInParens",
+                    kind: SupportsCondition(
+                      type: "SupportsCondition",
+                      conditions: [
+                        SupportsInParens(
+                          type: "SupportsInParens",
+                          kind: Function(
+                            type: "Function",
+                            name: Ident(
+                              type: "Ident",
+                              name: "unknown",
+                              raw: "unknown",
+                              span: Span(
+                                start: 1154,
+                                end: 1161,
+                              ),
+                            ),
+                            args: [
+                              Function(
+                                type: "Function",
+                                name: Ident(
+                                  type: "Ident",
+                                  name: "more",
+                                  raw: "more",
+                                  span: Span(
+                                    start: 1162,
+                                    end: 1166,
+                                  ),
+                                ),
+                                args: [],
+                                span: Span(
+                                  start: 1162,
+                                  end: 1168,
+                                ),
+                              ),
+                              Ident(
+                                type: "Ident",
+                                name: "stuff",
+                                raw: "stuff",
+                                span: Span(
+                                  start: 1169,
+                                  end: 1174,
+                                ),
+                              ),
+                              BracketBlock(
+                                type: "BracketBlock",
+                                value: [],
+                                span: Span(
+                                  start: 1175,
+                                  end: 1178,
+                                ),
+                              ),
+                            ],
+                            span: Span(
+                              start: 1154,
+                              end: 1179,
+                            ),
+                          ),
+                          span: Span(
+                            start: 1154,
+                            end: 1179,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 1154,
+                        end: 1179,
+                      ),
+                    ),
+                    span: Span(
+                      start: 1153,
+                      end: 1180,
+                    ),
+                  ),
+                  span: Span(
+                    start: 1149,
+                    end: 1180,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1149,
+                end: 1180,
+              ),
+            ),
+            span: Span(
+              start: 1148,
+              end: 1181,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1148,
+          end: 1181,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1182,
+          end: 1184,
+        ),
+      )),
+      span: Span(
+        start: 1138,
+        end: 1184,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1186,
+          end: 1194,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: Function(
+              type: "Function",
+              name: Ident(
+                type: "Ident",
+                name: "unknown",
+                raw: "unknown",
+                span: Span(
+                  start: 1195,
+                  end: 1202,
+                ),
+              ),
+              args: [],
+              span: Span(
+                start: 1195,
+                end: 1204,
+              ),
+            ),
+            span: Span(
+              start: 1195,
+              end: 1204,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1195,
+          end: 1204,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1205,
+          end: 1207,
+        ),
+      )),
+      span: Span(
+        start: 1185,
+        end: 1207,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1209,
+          end: 1217,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1219,
+                        end: 1226,
+                      ),
+                    ),
+                    args: [],
+                    span: Span(
+                      start: 1219,
+                      end: 1228,
+                    ),
+                  ),
+                  span: Span(
+                    start: 1219,
+                    end: 1228,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1219,
+                end: 1228,
+              ),
+            ),
+            span: Span(
+              start: 1218,
+              end: 1229,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1218,
+          end: 1229,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1230,
+          end: 1232,
+        ),
+      )),
+      span: Span(
+        start: 1208,
+        end: 1232,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1234,
+          end: 1242,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: Function(
+              type: "Function",
+              name: Ident(
+                type: "Ident",
+                name: "unknown",
+                raw: "unknown",
+                span: Span(
+                  start: 1243,
+                  end: 1250,
+                ),
+              ),
+              args: [
+                Ident(
+                  type: "Ident",
+                  name: "with",
+                  raw: "with",
+                  span: Span(
+                    start: 1251,
+                    end: 1255,
+                  ),
+                ),
+                Ident(
+                  type: "Ident",
+                  name: "stuff",
+                  raw: "stuff",
+                  span: Span(
+                    start: 1256,
+                    end: 1261,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1243,
+                end: 1262,
+              ),
+            ),
+            span: Span(
+              start: 1243,
+              end: 1262,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1243,
+          end: 1262,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1263,
+          end: 1265,
+        ),
+      )),
+      span: Span(
+        start: 1233,
+        end: 1265,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "supports",
+        raw: "supports",
+        span: Span(
+          start: 1267,
+          end: 1275,
+        ),
+      ),
+      prelude: Some(SupportsCondition(
+        type: "SupportsCondition",
+        conditions: [
+          SupportsInParens(
+            type: "SupportsInParens",
+            kind: SupportsCondition(
+              type: "SupportsCondition",
+              conditions: [
+                SupportsInParens(
+                  type: "SupportsInParens",
+                  kind: Function(
+                    type: "Function",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1277,
+                        end: 1284,
+                      ),
+                    ),
+                    args: [
+                      Ident(
+                        type: "Ident",
+                        name: "with",
+                        raw: "with",
+                        span: Span(
+                          start: 1285,
+                          end: 1289,
+                        ),
+                      ),
+                      Ident(
+                        type: "Ident",
+                        name: "stuff",
+                        raw: "stuff",
+                        span: Span(
+                          start: 1290,
+                          end: 1295,
+                        ),
+                      ),
+                    ],
+                    span: Span(
+                      start: 1277,
+                      end: 1296,
+                    ),
+                  ),
+                  span: Span(
+                    start: 1277,
+                    end: 1296,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 1277,
+                end: 1296,
+              ),
+            ),
+            span: Span(
+              start: 1276,
+              end: 1297,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 1276,
+          end: 1297,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1298,
+          end: 1300,
+        ),
+      )),
+      span: Span(
+        start: 1266,
+        end: 1300,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 1301,
+  ),
+)
