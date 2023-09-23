@@ -21,6 +21,13 @@ const PRECEDENCE_EQUALITY: u8 = 3;
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
 
+type SassParams<'s> = (
+    Vec<SassParameter<'s>>,
+    Option<SassArbitraryParameter<'s>>,
+    Vec<Span>, // comma spans
+    usize,     // end pos
+);
+
 impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     pub(super) fn parse_maybe_sass_list(
         &mut self,
@@ -634,14 +641,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     /// This method will consume `)` token.
-    fn parse_sass_params(
-        &mut self,
-    ) -> PResult<(
-        Vec<SassParameter<'s>>,
-        Option<SassArbitraryParameter<'s>>,
-        Vec<Span>,
-        usize,
-    )> {
+    fn parse_sass_params(&mut self) -> PResult<SassParams<'s>> {
         let mut parameters = vec![];
         let mut arbitrary_parameter = None;
         let mut comma_spans = vec![];
