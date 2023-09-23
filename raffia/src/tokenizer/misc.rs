@@ -1,16 +1,14 @@
 use super::{token::Ident, TokenWithSpan};
-use crate::{
-    util::{handle_escape, CowStr},
-    SpanIgnoredEq,
-};
+use crate::{util, SpanIgnoredEq};
+use std::borrow::Cow;
 
 impl<'s> Ident<'s> {
     #[inline]
-    pub fn name(&self) -> CowStr<'s> {
+    pub fn name(&self) -> Cow<'s, str> {
         if self.escaped {
-            handle_escape(self.raw)
+            util::handle_escape(self.raw)
         } else {
-            CowStr::from(self.raw)
+            Cow::from(self.raw)
         }
     }
 }

@@ -4,8 +4,6 @@ use crate::{
 };
 use std::borrow::Cow;
 
-pub type CowStr<'s> = Cow<'s, str>;
-
 pub fn is_css_wide_keyword(s: &str) -> bool {
     s.eq_ignore_ascii_case("initial")
         || s.eq_ignore_ascii_case("inherit")
@@ -28,7 +26,7 @@ pub(crate) enum ListSeparatorKind {
     Space,
 }
 
-pub fn handle_escape(s: &str) -> CowStr {
+pub fn handle_escape(s: &str) -> Cow<'_, str> {
     let mut escaped = String::with_capacity(s.len());
     let mut chars = s.char_indices().peekable();
     while let Some((_, c)) = chars.next() {
@@ -62,7 +60,7 @@ pub fn handle_escape(s: &str) -> CowStr {
             escaped.push(c);
         }
     }
-    CowStr::from(escaped)
+    Cow::from(escaped)
 }
 
 pub(crate) fn assert_no_ws_or_comment(left: &Span, right: &Span) -> PResult<()> {

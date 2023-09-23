@@ -5,9 +5,9 @@ use crate::{
     },
     error::{Error, ErrorKind, PResult},
     tokenizer::token,
-    util::{handle_escape, CowStr},
-    Span,
+    util, Span,
 };
+use std::borrow::Cow;
 
 impl<'s> TryFrom<(token::Dimension<'s>, Span)> for Dimension<'s> {
     type Error = Error;
@@ -149,9 +149,9 @@ impl<'s> From<(token::StrTemplate<'s>, Span)> for InterpolableStrStaticPart<'s> 
             token.raw
         };
         let value = if token.escaped {
-            handle_escape(raw_without_quotes)
+            util::handle_escape(raw_without_quotes)
         } else {
-            CowStr::from(raw_without_quotes)
+            Cow::from(raw_without_quotes)
         };
         Self {
             value,
@@ -164,9 +164,9 @@ impl<'s> From<(token::StrTemplate<'s>, Span)> for InterpolableStrStaticPart<'s> 
 impl<'s> From<(token::UrlTemplate<'s>, Span)> for InterpolableUrlStaticPart<'s> {
     fn from((token, span): (token::UrlTemplate<'s>, Span)) -> Self {
         let value = if token.escaped {
-            handle_escape(token.raw)
+            util::handle_escape(token.raw)
         } else {
-            CowStr::from(token.raw)
+            Cow::from(token.raw)
         };
         Self {
             value,
@@ -180,9 +180,9 @@ impl<'s> From<(token::Str<'s>, Span)> for Str<'s> {
     fn from((str, span): (token::Str<'s>, Span)) -> Self {
         let raw_without_quotes = unsafe { str.raw.get_unchecked(1..str.raw.len() - 1) };
         let value = if str.escaped {
-            handle_escape(raw_without_quotes)
+            util::handle_escape(raw_without_quotes)
         } else {
-            CowStr::from(raw_without_quotes)
+            Cow::from(raw_without_quotes)
         };
         Self {
             value,

@@ -6,10 +6,10 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{token, Token, TokenWithSpan},
-    util::{self, assert_no_ws_or_comment, handle_escape, CowStr},
-    Parse, Syntax,
+    util, Parse, Syntax,
 };
 use smallvec::SmallVec;
+use std::borrow::Cow;
 
 // https://www.w3.org/TR/css-syntax-3/#the-anb-type
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AnPlusB {
@@ -459,11 +459,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AttributeSelector<'s> {
                 let ident = input.parse::<InterpolableIdent>()?;
                 let ident_span = ident.span();
                 if let Some((_, bar_token_span)) = eat!(input, Bar) {
-                    assert_no_ws_or_comment(ident_span, &bar_token_span)?;
+                    util::assert_no_ws_or_comment(ident_span, &bar_token_span)?;
 
                     let name = input.parse::<InterpolableIdent>()?;
                     let name_span = name.span();
-                    assert_no_ws_or_comment(&bar_token_span, name_span)?;
+                    util::assert_no_ws_or_comment(&bar_token_span, name_span)?;
 
                     let start = ident_span.start;
                     let end = name_span.end;
@@ -674,7 +674,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ClassSelector<'s> {
         } else {
             let ident = input.parse::<InterpolableIdent>()?;
             let ident_span = ident.span();
-            assert_no_ws_or_comment(&dot_span, ident_span)?;
+            util::assert_no_ws_or_comment(&dot_span, ident_span)?;
             end = ident_span.end;
             ident
         };
@@ -860,9 +860,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for IdSelector<'s> {
                     });
                 }
                 let value = if token.escaped {
-                    handle_escape(raw)
+                    util::handle_escape(raw)
                 } else {
-                    CowStr::from(raw)
+                    Cow::from(raw)
                 };
                 let first = Ident {
                     name: value,

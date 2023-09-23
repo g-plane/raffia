@@ -6,9 +6,9 @@ use crate::{
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util::{self, CowStr},
-    Parse, Syntax,
+    util, Parse, Syntax,
 };
+use std::borrow::Cow;
 
 const PRECEDENCE_MULTIPLY: u8 = 2;
 const PRECEDENCE_PLUS: u8 = 1;
@@ -867,7 +867,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for HexColor<'s> {
         let value = if token.escaped {
             util::handle_escape(raw)
         } else {
-            CowStr::from(raw)
+            Cow::from(raw)
         };
         Ok(HexColor { value, raw, span })
     }
@@ -1090,7 +1090,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for UrlRaw<'s> {
                 let value = if url.escaped {
                     util::handle_escape(url.raw)
                 } else {
-                    CowStr::from(url.raw)
+                    Cow::from(url.raw)
                 };
                 Ok(UrlRaw {
                     value,

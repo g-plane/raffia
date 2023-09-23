@@ -13,7 +13,7 @@ use crate::{
     tokenizer::{Token, TokenWithSpan},
     util, Parse,
 };
-use std::mem;
+use std::{borrow::Cow, mem};
 
 const PRECEDENCE_AND: u8 = 2;
 const PRECEDENCE_OR: u8 = 1;
@@ -1580,7 +1580,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessMixinName<'s> {
                 let name = if hash.escaped {
                     util::handle_escape(raw)
                 } else {
-                    util::CowStr::from(raw)
+                    Cow::from(raw)
                 };
                 let name_span = Span {
                     start: span.start + 1,
