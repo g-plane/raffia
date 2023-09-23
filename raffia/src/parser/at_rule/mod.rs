@@ -450,42 +450,49 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_unknown_at_rule_prelude(&mut self) -> PResult<Option<UnknownAtRulePrelude<'s>>> {
-        if let Ok(value) = self.try_parse(|parser| {
-            match parser.syntax {
-                Syntax::Css => parser.parse(),
-                Syntax::Scss | Syntax::Sass => {
-                    parser.parse_maybe_sass_list(/* allow_comma */ true)
+        if let Ok(prelude) = self.try_parse(|parser| {
+            let mut tokens = vec![];
+            loop {
+                match &peek!(parser).token {
+                    Token::LBrace(..)
+                    | Token::Semicolon(..)
+                    | Token::Indent(..)
+                    | Token::Dedent(..)
+                    | Token::Linebreak(..)
+                    | Token::Eof(..) => break,
+                    Token::StrTemplate(..) | Token::HashLBrace(..) => {
+                        return Err(Error {
+                            kind: ErrorKind::TryParseError,
+                            span: bump!(parser).span,
+                        });
+                    }
+                    _ => tokens.push(bump!(parser)),
                 }
-                Syntax::Less => parser.parse_maybe_less_list(/* allow_comma */ true),
+            }
+            if let Some((first, last)) = tokens.first().zip(tokens.last()) {
+                let span = Span {
+                    start: first.span().start,
+                    end: last.span().end,
+                };
+                Ok(Some(UnknownAtRulePrelude::TokenSeq(TokenSeq {
+                    tokens,
+                    span,
+                })))
+            } else {
+                Ok(None)
             }
         }) {
-            return Ok(Some(UnknownAtRulePrelude::ComponentValue(value)));
+            return Ok(prelude);
         }
 
-        let mut tokens = vec![];
-        loop {
-            match &peek!(self).token {
-                Token::LBrace(..)
-                | Token::Semicolon(..)
-                | Token::Indent(..)
-                | Token::Dedent(..)
-                | Token::Linebreak(..)
-                | Token::Eof(..) => break,
-                _ => tokens.push(bump!(self)),
-            }
-        }
-
-        if let Some((first, last)) = tokens.first().zip(tokens.last()) {
-            let span = Span {
-                start: first.span().start,
-                end: last.span().end,
-            };
-            Ok(Some(UnknownAtRulePrelude::TokenSeq(TokenSeq {
-                tokens,
-                span,
-            })))
-        } else {
-            Ok(None)
-        }
+        Ok(Some(UnknownAtRulePrelude::ComponentValue(
+            match self.syntax {
+                Syntax::Css => self.parse()?,
+                Syntax::Scss | Syntax::Sass => {
+                    self.parse_maybe_sass_list(/* allow_comma */ true)?
+                }
+                Syntax::Less => self.parse_maybe_less_list(/* allow_comma */ true)?,
+            },
+        )))
     }
 }

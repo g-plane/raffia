@@ -15,29 +15,34 @@ Stylesheet(
           end: 6,
         ),
       ),
-      prelude: Some(LessList(
-        type: "LessList",
-        elements: [
-          Ident(
-            type: "Ident",
-            name: "a",
-            raw: "a",
+      prelude: Some(TokenSeq(
+        type: "TokenSeq",
+        tokens: [
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Ident(Ident(
+              kind: "Ident",
+              escaped: false,
+              raw: "a",
+            )),
             span: Span(
               start: 7,
               end: 8,
             ),
           ),
-          Ident(
-            type: "Ident",
-            name: "b",
-            raw: "b",
+          TokenWithSpan(
+            type: "TokenWithSpan",
+            token: Ident(Ident(
+              kind: "Ident",
+              escaped: false,
+              raw: "b",
+            )),
             span: Span(
               start: 9,
               end: 10,
             ),
           ),
         ],
-        commaSpans: None,
         span: Span(
           start: 7,
           end: 10,

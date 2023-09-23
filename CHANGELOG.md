@@ -13,6 +13,7 @@ _This changelog only relates to the `raffia` crate._
 - Allowed comments in type selector.
 - Allowed comments in attribute selector name.
 - Fixed custom properties in some cases.
+- Fixed unknown at-rule prelude.
 
 ## v0.5.1
 
