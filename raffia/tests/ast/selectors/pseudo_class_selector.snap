@@ -28908,9 +28908,69 @@ Stylesheet(
         end: 5432,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 5439,
+                        end: 5444,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 5434,
+                      end: 5444,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 5434,
+                  end: 5444,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 5434,
+              end: 5444,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 5434,
+          end: 5444,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 5445,
+          end: 5447,
+        ),
+      ),
+      span: Span(
+        start: 5434,
+        end: 5447,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 5433,
+    end: 5448,
   ),
 )

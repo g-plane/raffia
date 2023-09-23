@@ -9,6 +9,7 @@ _This changelog only relates to the `raffia` crate._
 - Added UTF-8 BOM support.
 - Changed some AST types with `Box` as wrapper.
 - Added token spans for some AST nodes.
+- Allowed comments after `:` or `::` in pseudo selectors.
 
 ## v0.5.1
 

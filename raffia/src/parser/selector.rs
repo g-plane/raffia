@@ -1074,7 +1074,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
         let (_, colon_span) = expect!(input, Colon);
         let name = input.parse::<InterpolableIdent>()?;
         let name_span = name.span();
-        assert_no_ws_or_comment(&colon_span, name_span)?;
+        input.assert_no_ws(&colon_span, name_span)?;
 
         let mut end = name_span.end;
 
@@ -1198,14 +1198,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
         let (_, colon_colon_span) = expect!(input, ColonColon);
         let mut end;
         let name = if input.syntax == Syntax::Css {
-            let (ident, ident_span) = expect_without_ws_or_comments!(input, Ident);
+            let (ident, ident_span) = expect!(input, Ident);
             end = ident_span.end;
+            input.assert_no_ws(&colon_colon_span, &ident_span)?;
             InterpolableIdent::Literal((ident, ident_span).into())
         } else {
             let name = input.parse::<InterpolableIdent>()?;
             let name_span = name.span();
             end = name_span.end;
-            assert_no_ws_or_comment(&colon_colon_span, name_span)?;
+            input.assert_no_ws(&colon_colon_span, name_span)?;
             name
         };
 

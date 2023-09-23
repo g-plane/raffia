@@ -1,7 +1,7 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: unexpected whitespace or comments
+error: unexpected whitespace
   ┌─ invalid-block.css:1:7
   │
 1 │ color: green;

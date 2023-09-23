@@ -222,3 +222,5 @@ h1:-webkit-any(.h1class, #bar) {}
 :global(a) {}
 :global(a.active) {}
 :global(div > a, div + button) {}
+
+:/**/hover {}
