@@ -1,9 +1,9 @@
 use self::state::ParserState;
 use crate::{
     config::Syntax,
-    error::{Error, ErrorKind, PResult},
+    error::{Error, PResult},
     tokenizer::{token::TokenWithSpan, Tokenizer},
-    util, ParserOptions, Span,
+    ParserOptions,
 };
 pub use builder::ParserBuilder;
 
@@ -83,19 +83,5 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             self.cached_token = cached_token;
         }
         result
-    }
-
-    fn assert_no_ws(&self, start: &Span, end: &Span) -> PResult<()> {
-        if util::has_ws(self.source, start, end) {
-            Err(Error {
-                kind: ErrorKind::UnexpectedWhitespace,
-                span: Span {
-                    start: start.end,
-                    end: end.start,
-                },
-            })
-        } else {
-            Ok(())
-        }
     }
 }

@@ -1074,7 +1074,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
         let (_, colon_span) = expect!(input, Colon);
         let name = input.parse::<InterpolableIdent>()?;
         let name_span = name.span();
-        input.assert_no_ws(&colon_span, name_span)?;
+        util::assert_no_ws(input.source, &colon_span, name_span)?;
 
         let mut end = name_span.end;
 
@@ -1200,13 +1200,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
         let name = if input.syntax == Syntax::Css {
             let (ident, ident_span) = expect!(input, Ident);
             end = ident_span.end;
-            input.assert_no_ws(&colon_colon_span, &ident_span)?;
+            util::assert_no_ws(input.source, &colon_colon_span, &ident_span)?;
             InterpolableIdent::Literal((ident, ident_span).into())
         } else {
             let name = input.parse::<InterpolableIdent>()?;
             let name_span = name.span();
             end = name_span.end;
-            input.assert_no_ws(&colon_colon_span, name_span)?;
+            util::assert_no_ws(input.source, &colon_colon_span, name_span)?;
             name
         };
 
@@ -1456,7 +1456,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                     } => {
                         let name = input.parse::<InterpolableIdent>()?;
                         let name_span = name.span();
-                        input.assert_no_ws(&prefix.span, name_span)?;
+                        util::assert_no_ws(input.source, &prefix.span, name_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: name_span.end,
@@ -1475,7 +1475,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                         ..
                     } => {
                         let asterisk_span = bump!(input).span;
-                        input.assert_no_ws(&prefix.span, &asterisk_span)?;
+                        util::assert_no_ws(input.source, &prefix.span, &asterisk_span)?;
                         let span = Span {
                             start: prefix.span.start,
                             end: asterisk_span.end,
