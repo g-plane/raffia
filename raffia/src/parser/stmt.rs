@@ -55,10 +55,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     let mut pairs = Vec::with_capacity(1);
                     loop {
                         match &peek!(parser).token {
-                            Token::Semicolon(..)
-                            | Token::Dedent(..)
-                            | Token::Linebreak(..)
-                            | Token::Eof(..) => break,
+                            Token::Dedent(..) | Token::Linebreak(..) | Token::Eof(..) => break,
+                            Token::Semicolon(..) => {
+                                if pairs.is_empty() {
+                                    break;
+                                }
+                            }
                             Token::LParen(..) => {
                                 pairs.push(PairedToken::Paren);
                             }

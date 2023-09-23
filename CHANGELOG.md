@@ -12,6 +12,7 @@ _This changelog only relates to the `raffia` crate._
 - Allowed comments after `:` or `::` in pseudo selectors.
 - Allowed comments in type selector.
 - Allowed comments in attribute selector name.
+- Fixed custom properties in some cases.
 
 ## v0.5.1
 
