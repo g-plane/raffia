@@ -40,7 +40,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         } else if let Token::Exclamation(..) = peek!(self).token {
             self.parse().map(ComponentValue::ImportantAnnotation)?
         } else {
-            self.parse_sass_bin_expr()?
+            self.parse_sass_bin_expr(/* allow_comparison */ true)?
         };
 
         let mut elements = vec![];
@@ -97,7 +97,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     let item = if separator == ListSeparatorKind::Comma {
                         self.parse_maybe_sass_list(false)?
                     } else {
-                        self.parse_sass_bin_expr()?
+                        self.parse_sass_bin_expr(/* allow_comparison */ true)?
                     };
                     end = item.span().end;
                     elements.push(item);
@@ -125,16 +125,23 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         }
     }
 
-    pub(super) fn parse_sass_bin_expr(&mut self) -> PResult<ComponentValue<'s>> {
+    pub(super) fn parse_sass_bin_expr(
+        &mut self,
+        allow_comparison: bool,
+    ) -> PResult<ComponentValue<'s>> {
         debug_assert!(matches!(self.syntax, Syntax::Scss | Syntax::Sass));
-        self.parse_sass_bin_expr_recursively(0)
+        self.parse_sass_bin_expr_recursively(0, allow_comparison)
     }
 
-    fn parse_sass_bin_expr_recursively(&mut self, precedence: u8) -> PResult<ComponentValue<'s>> {
+    fn parse_sass_bin_expr_recursively(
+        &mut self,
+        precedence: u8,
+        allow_comparison: bool,
+    ) -> PResult<ComponentValue<'s>> {
         let mut left = if precedence >= PRECEDENCE_MULTIPLY {
             self.parse_sass_unary_expression()?
         } else {
-            self.parse_sass_bin_expr_recursively(precedence + 1)?
+            self.parse_sass_bin_expr_recursively(precedence + 1, allow_comparison)?
         };
 
         // delimiter can't be calculated
@@ -195,31 +202,39 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 TokenWithSpan {
                     token: Token::GreaterThan(..),
                     ..
-                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
-                    kind: SassBinaryOperatorKind::GreaterThan,
-                    span: bump!(self).span,
-                },
+                } if allow_comparison && precedence == PRECEDENCE_RELATIONAL => {
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::GreaterThan,
+                        span: bump!(self).span,
+                    }
+                }
                 TokenWithSpan {
                     token: Token::GreaterThanEqual(..),
                     ..
-                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
-                    kind: SassBinaryOperatorKind::GreaterThanOrEqual,
-                    span: bump!(self).span,
-                },
+                } if allow_comparison && precedence == PRECEDENCE_RELATIONAL => {
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::GreaterThanOrEqual,
+                        span: bump!(self).span,
+                    }
+                }
                 TokenWithSpan {
                     token: Token::LessThan(..),
                     ..
-                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
-                    kind: SassBinaryOperatorKind::LessThan,
-                    span: bump!(self).span,
-                },
+                } if allow_comparison && precedence == PRECEDENCE_RELATIONAL => {
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::LessThan,
+                        span: bump!(self).span,
+                    }
+                }
                 TokenWithSpan {
                     token: Token::LessThanEqual(..),
                     ..
-                } if precedence == PRECEDENCE_RELATIONAL => SassBinaryOperator {
-                    kind: SassBinaryOperatorKind::LessThanOrEqual,
-                    span: bump!(self).span,
-                },
+                } if allow_comparison && precedence == PRECEDENCE_RELATIONAL => {
+                    SassBinaryOperator {
+                        kind: SassBinaryOperatorKind::LessThanOrEqual,
+                        span: bump!(self).span,
+                    }
+                }
                 TokenWithSpan {
                     token: Token::EqualEqual(..),
                     ..
@@ -347,7 +362,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => break,
             };
 
-            let right = self.parse_sass_bin_expr_recursively(precedence + 1)?;
+            let right = self.parse_sass_bin_expr_recursively(precedence + 1, allow_comparison)?;
             // delimiter can't be calculated
             if let ComponentValue::Delimiter(Delimiter { span, .. }) = right {
                 return Err(Error {

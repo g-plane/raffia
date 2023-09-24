@@ -1,3 +1,6 @@
 @media (max-width: $area-width + 32px) {}
 
 @media ($breakpoint) {}
+
+@media screen and (width >= 768px) {}
+@media screen and (width >= "#{a < b}") {}

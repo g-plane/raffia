@@ -449,7 +449,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     }
 
     fn parse_media_feature_value(&mut self) -> PResult<ComponentValue<'s>> {
-        match self.parse()? {
+        let value = match self.syntax {
+            Syntax::Css => self.parse_component_value_atom()?,
+            Syntax::Scss | Syntax::Sass => {
+                self.parse_sass_bin_expr(/* allow_comparison */ false)?
+            }
+            Syntax::Less => self.parse_less_operation(/* allow_mixin_call */ true)?,
+        };
+        match value {
             ComponentValue::Number(number)
                 if number.value >= 0.0 && matches!(peek!(self).token, Token::Solidus(..)) =>
             {
