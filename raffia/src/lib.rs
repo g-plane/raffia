@@ -71,6 +71,32 @@
 //! assert!(matches!(declaration.value[0], ComponentValue::Function(..)));
 //! ```
 //!
+//! #### `tolerate_semicolon_in_sass`
+//!
+//! For Sass (not SCSS), semicolons for every statements are syntax errors.
+//! By default, parser will raise a syntax error and return `Err` when
+//! encountered this.
+//! Enabling this option can turn such syntax errors into recoverable errors,
+//! so they won't prevent parsing the rest of code.
+//!
+//! ```rust
+//! use raffia::{ast::*, ParserBuilder, ParserOptions, Syntax};
+//!
+//! let options = ParserOptions {
+//!     tolerate_semicolon_in_sass: true,
+//!     ..Default::default()
+//! };
+//! let builder = ParserBuilder::new("
+//! button
+//!   width: 12px;
+//!   height: 12px;
+//! ").syntax(Syntax::Sass).options(options);
+//! let mut parser = builder.build();
+//!
+//! assert!(parser.parse::<Stylesheet>().is_ok());
+//! assert_eq!(parser.recoverable_errors().len(), 2);
+//! ```
+//!
 //! ### Parse Partial Structure
 //!
 //! Sometimes you don't want to parse a full stylesheet.

@@ -24,4 +24,8 @@ pub struct ParserOptions {
     /// It will fallback to parse as tokens if there're syntax errors
     /// when parsing as values.
     pub try_parsing_value_in_custom_property: bool,
+
+    /// If enabled, trailing semicolon of each statement will be treated
+    /// as recoverable errors, instead of raising a syntax error.
+    pub tolerate_semicolon_in_sass: bool,
 }

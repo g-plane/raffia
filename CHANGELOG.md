@@ -14,6 +14,7 @@ _This changelog only relates to the `raffia` crate._
 - Allowed comments in attribute selector name.
 - Fixed custom properties in some cases.
 - Fixed unknown at-rule prelude.
+- Added support for enabling an option to tolerate semicolons in Sass.
 
 ## v0.5.1
 

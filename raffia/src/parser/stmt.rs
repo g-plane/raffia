@@ -480,6 +480,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     if self.syntax == Syntax::Sass {
                         if is_block_element {
                             eat!(self, Linebreak);
+                        } else if self.options.tolerate_semicolon_in_sass {
+                            if let Some((_, span)) = eat!(self, Semicolon) {
+                                self.recoverable_errors.push(Error {
+                                    kind: ErrorKind::UnexpectedSemicolonInSass,
+                                    span,
+                                });
+                            }
                         } else {
                             expect!(self, Linebreak);
                         }
