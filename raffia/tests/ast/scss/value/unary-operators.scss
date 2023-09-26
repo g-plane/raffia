@@ -10,3 +10,9 @@ div {
   i: + hello;
   j: type-of(+ hello);
 }
+
+div {
+  prop1: ++1;
+  prop2: ++(1);
+  prop3: not not a;
+}

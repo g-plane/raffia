@@ -625,9 +625,258 @@ Stylesheet(
         end: 149,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 151,
+                          end: 154,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 151,
+                        end: 154,
+                      ),
+                    ),
+                    span: Span(
+                      start: 151,
+                      end: 154,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 151,
+                  end: 154,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 151,
+              end: 154,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 151,
+          end: 154,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop1",
+              raw: "prop1",
+              span: Span(
+                start: 159,
+                end: 164,
+              ),
+            ),
+            colonSpan: Span(
+              start: 164,
+              end: 165,
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 166,
+                    end: 167,
+                  ),
+                ),
+                expr: Number(
+                  type: "Number",
+                  value: 1.0,
+                  raw: "+1",
+                  span: Span(
+                    start: 167,
+                    end: 169,
+                  ),
+                ),
+                span: Span(
+                  start: 166,
+                  end: 169,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 159,
+              end: 169,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop2",
+              raw: "prop2",
+              span: Span(
+                start: 173,
+                end: 178,
+              ),
+            ),
+            colonSpan: Span(
+              start: 178,
+              end: 179,
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Plus,
+                  span: Span(
+                    start: 180,
+                    end: 181,
+                  ),
+                ),
+                expr: SassUnaryExpression(
+                  type: "SassUnaryExpression",
+                  op: SassUnaryOperator(
+                    type: "SassUnaryOperator",
+                    kind: Plus,
+                    span: Span(
+                      start: 181,
+                      end: 182,
+                    ),
+                  ),
+                  expr: SassParenthesizedExpression(
+                    type: "SassParenthesizedExpression",
+                    expr: Number(
+                      type: "Number",
+                      value: 1.0,
+                      raw: "1",
+                      span: Span(
+                        start: 183,
+                        end: 184,
+                      ),
+                    ),
+                    span: Span(
+                      start: 182,
+                      end: 185,
+                    ),
+                  ),
+                  span: Span(
+                    start: 181,
+                    end: 185,
+                  ),
+                ),
+                span: Span(
+                  start: 180,
+                  end: 185,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 173,
+              end: 185,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop3",
+              raw: "prop3",
+              span: Span(
+                start: 189,
+                end: 194,
+              ),
+            ),
+            colonSpan: Span(
+              start: 194,
+              end: 195,
+            ),
+            value: [
+              SassUnaryExpression(
+                type: "SassUnaryExpression",
+                op: SassUnaryOperator(
+                  type: "SassUnaryOperator",
+                  kind: Not,
+                  span: Span(
+                    start: 196,
+                    end: 199,
+                  ),
+                ),
+                expr: SassUnaryExpression(
+                  type: "SassUnaryExpression",
+                  op: SassUnaryOperator(
+                    type: "SassUnaryOperator",
+                    kind: Not,
+                    span: Span(
+                      start: 200,
+                      end: 203,
+                    ),
+                  ),
+                  expr: Ident(
+                    type: "Ident",
+                    name: "a",
+                    raw: "a",
+                    span: Span(
+                      start: 204,
+                      end: 205,
+                    ),
+                  ),
+                  span: Span(
+                    start: 200,
+                    end: 205,
+                  ),
+                ),
+                span: Span(
+                  start: 196,
+                  end: 205,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 189,
+              end: 205,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 155,
+          end: 208,
+        ),
+      ),
+      span: Span(
+        start: 151,
+        end: 208,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 150,
+    end: 209,
   ),
 )

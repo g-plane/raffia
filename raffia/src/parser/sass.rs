@@ -788,7 +788,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             _ => return self.parse_component_value_atom(),
         };
 
-        let expr = self.parse_component_value_atom()?;
+        let expr = self.parse_sass_unary_expression()?;
         let span = Span {
             start: op.span.start,
             end: expr.span().end,
