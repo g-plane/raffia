@@ -49,3 +49,6 @@
     @include prefixed(transform, translateY(-8px));
   }
 }
+
+@include bar($args    ...);
+@include bar($args/**/...);

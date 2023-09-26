@@ -17,6 +17,7 @@ _This changelog only relates to the `raffia` crate._
 - Added support for enabling an option to tolerate semicolons in Sass.
 - Fixed media query comparison in Sass.
 - Fixed parsing nested Sass unary expression.
+- Fixed parsing Sass arbitrary argument with comments or whitespaces.
 
 ## v0.5.1
 

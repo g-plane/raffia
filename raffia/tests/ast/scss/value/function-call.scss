@@ -13,4 +13,8 @@
   full: #{foo}(arg);
   background: color.lighten(#036, 60%);
   width: max($numbers...);
+  width: max($numbers    ...);
+  width: max($numbers/**/...);
+  prop: fn(value    ...);
+  prop: fn(value/**/...);
 }

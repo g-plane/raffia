@@ -3156,9 +3156,143 @@ Stylesheet(
         end: 1139,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "include",
+        raw: "include",
+        span: Span(
+          start: 1142,
+          end: 1149,
+        ),
+      ),
+      prelude: Some(SassInclude(
+        type: "SassInclude",
+        name: Ident(
+          type: "Ident",
+          name: "bar",
+          raw: "bar",
+          span: Span(
+            start: 1150,
+            end: 1153,
+          ),
+        ),
+        arguments: Some(SassIncludeArgs(
+          type: "SassIncludeArgs",
+          args: [
+            SassArbitraryArgument(
+              type: "SassArbitraryArgument",
+              value: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "args",
+                  raw: "args",
+                  span: Span(
+                    start: 1155,
+                    end: 1159,
+                  ),
+                ),
+                span: Span(
+                  start: 1154,
+                  end: 1159,
+                ),
+              ),
+              span: Span(
+                start: 1154,
+                end: 1166,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 1153,
+            end: 1167,
+          ),
+        )),
+        contentBlockParams: None,
+        span: Span(
+          start: 1150,
+          end: 1167,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 1141,
+        end: 1167,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "include",
+        raw: "include",
+        span: Span(
+          start: 1170,
+          end: 1177,
+        ),
+      ),
+      prelude: Some(SassInclude(
+        type: "SassInclude",
+        name: Ident(
+          type: "Ident",
+          name: "bar",
+          raw: "bar",
+          span: Span(
+            start: 1178,
+            end: 1181,
+          ),
+        ),
+        arguments: Some(SassIncludeArgs(
+          type: "SassIncludeArgs",
+          args: [
+            SassArbitraryArgument(
+              type: "SassArbitraryArgument",
+              value: SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "args",
+                  raw: "args",
+                  span: Span(
+                    start: 1183,
+                    end: 1187,
+                  ),
+                ),
+                span: Span(
+                  start: 1182,
+                  end: 1187,
+                ),
+              ),
+              span: Span(
+                start: 1182,
+                end: 1194,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 1181,
+            end: 1195,
+          ),
+        )),
+        contentBlockParams: None,
+        span: Span(
+          start: 1178,
+          end: 1195,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 1169,
+        end: 1195,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 1140,
+    end: 1197,
   ),
 )

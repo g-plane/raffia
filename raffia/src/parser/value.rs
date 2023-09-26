@@ -337,13 +337,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                             }
                             TokenWithSpan {
                                 token: Token::DotDotDot(..),
-                                span,
+                                ..
                             } if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
-                                && values.len() == 1
-                                && values
-                                    .first()
-                                    .map(|value| value.span().end == span.start)
-                                    .unwrap_or_default() =>
+                                && values.len() == 1 =>
                             {
                                 let TokenWithSpan {
                                     span: Span { end, .. },
@@ -422,7 +418,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     let value = self.parse::<ComponentValue>()?;
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
                         if let Some((_, mut span)) = eat!(self, DotDotDot) {
-                            util::assert_no_ws_or_comment(value.span(), &span)?;
                             span.start = value.span().start;
                             values.push(ComponentValue::SassArbitraryArgument(
                                 SassArbitraryArgument {

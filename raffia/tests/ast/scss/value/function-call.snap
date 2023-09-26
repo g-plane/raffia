@@ -1071,20 +1071,266 @@ Stylesheet(
               end: 424,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 428,
+                end: 433,
+              ),
+            ),
+            colonSpan: Span(
+              start: 433,
+              end: 434,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "max",
+                  raw: "max",
+                  span: Span(
+                    start: 435,
+                    end: 438,
+                  ),
+                ),
+                args: [
+                  SassArbitraryArgument(
+                    type: "SassArbitraryArgument",
+                    value: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "numbers",
+                        raw: "numbers",
+                        span: Span(
+                          start: 440,
+                          end: 447,
+                        ),
+                      ),
+                      span: Span(
+                        start: 439,
+                        end: 447,
+                      ),
+                    ),
+                    span: Span(
+                      start: 439,
+                      end: 454,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 435,
+                  end: 455,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 428,
+              end: 455,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "width",
+              raw: "width",
+              span: Span(
+                start: 459,
+                end: 464,
+              ),
+            ),
+            colonSpan: Span(
+              start: 464,
+              end: 465,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "max",
+                  raw: "max",
+                  span: Span(
+                    start: 466,
+                    end: 469,
+                  ),
+                ),
+                args: [
+                  SassArbitraryArgument(
+                    type: "SassArbitraryArgument",
+                    value: SassVariable(
+                      type: "SassVariable",
+                      name: Ident(
+                        type: "Ident",
+                        name: "numbers",
+                        raw: "numbers",
+                        span: Span(
+                          start: 471,
+                          end: 478,
+                        ),
+                      ),
+                      span: Span(
+                        start: 470,
+                        end: 478,
+                      ),
+                    ),
+                    span: Span(
+                      start: 470,
+                      end: 485,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 466,
+                  end: 486,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 459,
+              end: 486,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 490,
+                end: 494,
+              ),
+            ),
+            colonSpan: Span(
+              start: 494,
+              end: 495,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "fn",
+                  raw: "fn",
+                  span: Span(
+                    start: 496,
+                    end: 498,
+                  ),
+                ),
+                args: [
+                  SassArbitraryArgument(
+                    type: "SassArbitraryArgument",
+                    value: Ident(
+                      type: "Ident",
+                      name: "value",
+                      raw: "value",
+                      span: Span(
+                        start: 499,
+                        end: 504,
+                      ),
+                    ),
+                    span: Span(
+                      start: 499,
+                      end: 511,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 496,
+                  end: 512,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 490,
+              end: 512,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 516,
+                end: 520,
+              ),
+            ),
+            colonSpan: Span(
+              start: 520,
+              end: 521,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "fn",
+                  raw: "fn",
+                  span: Span(
+                    start: 522,
+                    end: 524,
+                  ),
+                ),
+                args: [
+                  SassArbitraryArgument(
+                    type: "SassArbitraryArgument",
+                    value: Ident(
+                      type: "Ident",
+                      name: "value",
+                      raw: "value",
+                      span: Span(
+                        start: 525,
+                        end: 530,
+                      ),
+                    ),
+                    span: Span(
+                      start: 525,
+                      end: 537,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 522,
+                  end: 538,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 516,
+              end: 538,
+            ),
+          ),
         ],
         span: Span(
           start: 256,
-          end: 427,
+          end: 541,
         ),
       ),
       span: Span(
         start: 241,
-        end: 427,
+        end: 541,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 428,
+    end: 542,
   ),
 )
