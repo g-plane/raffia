@@ -787,7 +787,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
                         | Token::Ampersand(..)
                         | Token::AtLBraceVar(..),
                     span,
-                } if end == span.start => {
+                } if !util::has_ws(input.source, end, span.start) => {
                     let child = input.parse::<SimpleSelector>()?;
                     end = child.span().end;
                     children.push(child);
@@ -795,7 +795,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CompoundSelector<'s> {
                 TokenWithSpan {
                     token: Token::Percent(..),
                     span,
-                } if matches!(input.syntax, Syntax::Scss | Syntax::Sass) && end == span.start => {
+                } if matches!(input.syntax, Syntax::Scss | Syntax::Sass)
+                    && !util::has_ws(input.source, end, span.start) =>
+                {
                     let child = input.parse::<SimpleSelector>()?;
                     end = child.span().end;
                     children.push(child);
@@ -1411,10 +1413,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for TypeSelector<'s> {
                 .as_ref()
                 .map(|t| match t {
                     IdentOrAsterisk::Ident(ident) => {
-                        !util::has_ws(input.source, ident.span(), span)
+                        !util::has_ws(input.source, ident.span().end, span.start)
                     }
                     IdentOrAsterisk::Asterisk(asterisk_span) => {
-                        !util::has_ws(input.source, asterisk_span, span)
+                        !util::has_ws(input.source, asterisk_span.end, span.start)
                     }
                 })
                 .unwrap_or(true) =>

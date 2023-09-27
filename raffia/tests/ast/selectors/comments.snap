@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -472,23 +471,6 @@ Stylesheet(
                       end: 69,
                     ),
                   ),
-                ],
-                span: Span(
-                  start: 68,
-                  end: 69,
-                ),
-              ),
-              Combinator(
-                type: "Combinator",
-                kind: Descendant,
-                span: Span(
-                  start: 69,
-                  end: 78,
-                ),
-              ),
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
                   TagNameSelector(
                     type: "TagNameSelector",
                     name: WqName(
@@ -515,7 +497,7 @@ Stylesheet(
                   ),
                 ],
                 span: Span(
-                  start: 78,
+                  start: 68,
                   end: 79,
                 ),
               ),
@@ -580,23 +562,6 @@ Stylesheet(
                       end: 84,
                     ),
                   ),
-                ],
-                span: Span(
-                  start: 83,
-                  end: 84,
-                ),
-              ),
-              Combinator(
-                type: "Combinator",
-                kind: Descendant,
-                span: Span(
-                  start: 84,
-                  end: 94,
-                ),
-              ),
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
                   TagNameSelector(
                     type: "TagNameSelector",
                     name: WqName(
@@ -623,7 +588,7 @@ Stylesheet(
                   ),
                 ],
                 span: Span(
-                  start: 94,
+                  start: 83,
                   end: 95,
                 ),
               ),

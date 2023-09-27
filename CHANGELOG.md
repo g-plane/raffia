@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Allowed comments in compound selector.
+
 ## v0.6.0
 
 - Allowed parsing custom property value as normal declaration value.

@@ -79,7 +79,7 @@ pub(crate) fn assert_no_ws_or_comment(left: &Span, right: &Span) -> PResult<()> 
 }
 
 pub(crate) fn assert_no_ws(source: &str, start: &Span, end: &Span) -> PResult<()> {
-    if has_ws(source, start, end) {
+    if has_ws(source, start.end, end.start) {
         Err(Error {
             kind: ErrorKind::UnexpectedWhitespace,
             span: Span {
@@ -92,18 +92,13 @@ pub(crate) fn assert_no_ws(source: &str, start: &Span, end: &Span) -> PResult<()
     }
 }
 
-pub(crate) fn has_ws(
-    source: &str,
-    Span { end: start, .. }: &Span,
-    Span { start: end, .. }: &Span,
-) -> bool {
+pub(crate) fn has_ws(source: &str, start: usize, end: usize) -> bool {
     debug_assert!(start <= end);
     if end == start {
         false
     } else {
-        let start = *start;
-        let end = *end;
-        match (source.as_bytes().get(start), source.as_bytes().get(end)) {
+        match (source.as_bytes().get(start), source.as_bytes().get(end - 1)) {
+            (Some(first), Some(last)) => first.is_ascii_whitespace() || last.is_ascii_whitespace(),
             (Some(first), _) => first.is_ascii_whitespace(),
             (_, Some(last)) => last.is_ascii_whitespace(),
             _ => false,

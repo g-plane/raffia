@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -1438,9 +1437,93 @@ Stylesheet(
         end: 275,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "div",
+                        raw: "div",
+                        span: Span(
+                          start: 276,
+                          end: 279,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 276,
+                        end: 279,
+                      ),
+                    ),
+                    span: Span(
+                      start: 276,
+                      end: 279,
+                    ),
+                  ),
+                  PseudoClassSelector(
+                    type: "PseudoClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "hover",
+                      raw: "hover",
+                      span: Span(
+                        start: 284,
+                        end: 289,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 283,
+                      end: 289,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 276,
+                  end: 289,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 276,
+              end: 289,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 276,
+          end: 289,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 290,
+          end: 292,
+        ),
+      ),
+      span: Span(
+        start: 276,
+        end: 292,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 276,
+    end: 293,
   ),
 )
