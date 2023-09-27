@@ -1,3 +1,4 @@
 a {
   prop: element(#abc) alpha(opacity=75);
+  prop: blackness(- 20%) json({ "a": 1 });
 }

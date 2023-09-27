@@ -415,7 +415,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     values.push(self.parse().map(ComponentValue::LessDetachedRuleset)?);
                 }
                 _ => {
-                    let value = self.parse::<ComponentValue>()?;
+                    let value = if let Ok(value) = self.try_parse(ComponentValue::parse) {
+                        value
+                    } else {
+                        values.push(ComponentValue::TokenWithSpan(bump!(self)));
+                        continue;
+                    };
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
                         if let Some((_, mut span)) = eat!(self, DotDotDot) {
                             span.start = value.span().start;

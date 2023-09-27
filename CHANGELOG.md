@@ -18,6 +18,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed media query comparison in Sass.
 - Fixed parsing nested Sass unary expression.
 - Fixed parsing Sass arbitrary argument with comments or whitespaces.
+- Allowed tokens in function call.
 
 ## v0.5.1
 

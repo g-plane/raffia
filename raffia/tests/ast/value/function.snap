@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -171,20 +170,154 @@ Stylesheet(
               end: 43,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 47,
+                end: 51,
+              ),
+            ),
+            colonSpan: Span(
+              start: 51,
+              end: 52,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "blackness",
+                  raw: "blackness",
+                  span: Span(
+                    start: 53,
+                    end: 62,
+                  ),
+                ),
+                args: [
+                  TokenWithSpan(
+                    type: "TokenWithSpan",
+                    token: Minus(Minus(
+                      kind: "Minus",
+                    )),
+                    span: Span(
+                      start: 63,
+                      end: 64,
+                    ),
+                  ),
+                  Percentage(
+                    type: "Percentage",
+                    value: Number(
+                      type: "Number",
+                      value: 20.0,
+                      raw: "20",
+                      span: Span(
+                        start: 65,
+                        end: 67,
+                      ),
+                    ),
+                    span: Span(
+                      start: 65,
+                      end: 68,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 53,
+                  end: 69,
+                ),
+              ),
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "json",
+                  raw: "json",
+                  span: Span(
+                    start: 70,
+                    end: 74,
+                  ),
+                ),
+                args: [
+                  TokenWithSpan(
+                    type: "TokenWithSpan",
+                    token: LBrace(LBrace(
+                      kind: "LBrace",
+                    )),
+                    span: Span(
+                      start: 75,
+                      end: 76,
+                    ),
+                  ),
+                  Str(
+                    type: "Str",
+                    value: "a",
+                    raw: "\"a\"",
+                    span: Span(
+                      start: 77,
+                      end: 80,
+                    ),
+                  ),
+                  TokenWithSpan(
+                    type: "TokenWithSpan",
+                    token: Colon(Colon(
+                      kind: "Colon",
+                    )),
+                    span: Span(
+                      start: 80,
+                      end: 81,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 1.0,
+                    raw: "1",
+                    span: Span(
+                      start: 82,
+                      end: 83,
+                    ),
+                  ),
+                  TokenWithSpan(
+                    type: "TokenWithSpan",
+                    token: RBrace(RBrace(
+                      kind: "RBrace",
+                    )),
+                    span: Span(
+                      start: 84,
+                      end: 85,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 70,
+                  end: 86,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 47,
+              end: 86,
+            ),
+          ),
         ],
         span: Span(
           start: 2,
-          end: 46,
+          end: 89,
         ),
       ),
       span: Span(
         start: 0,
-        end: 46,
+        end: 89,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 47,
+    end: 90,
   ),
 )

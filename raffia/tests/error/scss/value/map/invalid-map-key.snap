@@ -1,10 +1,10 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: expect token `)`, but found `:`
-  ┌─ invalid-map-key.scss:1:18
+error: expect token `;`, but found `...`
+  ┌─ invalid-map-key.scss:1:21
   │
 1 │ $id: inspect((a,b:c)...)
-  │                  ^
+  │                     ^^^
 
 
