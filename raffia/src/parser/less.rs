@@ -772,7 +772,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessConditions<'s> {
             } if ident.raw == "when" => span,
             TokenWithSpan { span, .. } => {
                 return Err(Error {
-                    kind: ErrorKind::ExpectLessKeyword("less"),
+                    kind: ErrorKind::ExpectLessKeyword("when"),
                     span,
                 });
             }
