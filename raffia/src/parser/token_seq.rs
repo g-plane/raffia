@@ -35,6 +35,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         break;
                     }
                 }
+                Token::Eof(..) => break,
                 _ => {}
             }
             tokens.push(bump!(self));

@@ -4,6 +4,7 @@ _This changelog only relates to the `raffia` crate._
 
 - Allowed comments in compound selector.
 - Fixed stripping UTF-8 BOM when creating parser with `ParserBuilder`.
+- Fixed possible infinite loop when parsing pseudo selector arguments.
 
 ## v0.6.0
 

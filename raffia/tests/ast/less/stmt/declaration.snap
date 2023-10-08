@@ -146,9 +146,119 @@ Stylesheet(
         end: 59,
       ),
     ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  ClassSelector(
+                    type: "ClassSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "b",
+                      raw: "b",
+                      span: Span(
+                        start: 62,
+                        end: 63,
+                      ),
+                    ),
+                    span: Span(
+                      start: 61,
+                      end: 63,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 61,
+                  end: 63,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 61,
+              end: 63,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 61,
+          end: 63,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "background",
+              raw: "background",
+              span: Span(
+                start: 66,
+                end: 76,
+              ),
+            ),
+            colonSpan: Span(
+              start: 76,
+              end: 77,
+            ),
+            value: [
+              Url(
+                type: "Url",
+                name: Ident(
+                  type: "Ident",
+                  name: "url",
+                  raw: "url",
+                  span: Span(
+                    start: 77,
+                    end: 80,
+                  ),
+                ),
+                value: Some(UrlRaw(
+                  type: "UrlRaw",
+                  value: "http://example.com",
+                  raw: "http://example.com",
+                  span: Span(
+                    start: 81,
+                    end: 99,
+                  ),
+                )),
+                modifiers: [],
+                span: Span(
+                  start: 77,
+                  end: 100,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 66,
+              end: 100,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 64,
+          end: 103,
+        ),
+      ),
+      span: Span(
+        start: 61,
+        end: 103,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 60,
+    end: 104,
   ),
 )
