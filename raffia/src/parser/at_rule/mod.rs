@@ -13,6 +13,7 @@ mod color_profile;
 mod container;
 mod counter_style;
 mod custom_media;
+mod custom_selector;
 mod document;
 mod font_feature_values;
 mod import;
@@ -156,6 +157,16 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let end = custom_media.span.end;
             (
                 Some(AtRulePrelude::CustomMedia(Box::new(custom_media))),
+                None,
+                end,
+            )
+        } else if at_rule_name.eq_ignore_ascii_case("custom-selector") {
+            let custom_selector_prelude = input.parse::<CustomSelectorPrelude>()?;
+            let end = custom_selector_prelude.span.end;
+            (
+                Some(AtRulePrelude::CustomSelector(Box::new(
+                    custom_selector_prelude,
+                ))),
                 None,
                 end,
             )

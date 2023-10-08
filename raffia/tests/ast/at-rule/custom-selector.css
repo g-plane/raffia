@@ -1,0 +1,6 @@
+@custom-selector :--foo .foo;
+@custom-selector :--bar .bar, .baz;
+@custom-selector $foo:--foo .foo;
+@custom-selector $bar:--bar() .bar, .baz;
+@custom-selector $bar:--bar($a, $b) .bar, .baz;
+@custom-selector :--baz($a, $b, $c) .baz;

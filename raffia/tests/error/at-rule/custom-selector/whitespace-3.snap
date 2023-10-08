@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unexpected whitespace or comments
+  ┌─ whitespace-3.css:1:22
+  │
+1 │ @custom-selector $foo :--foo .foo;
+  │                      ^
+
+

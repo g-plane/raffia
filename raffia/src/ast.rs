@@ -35,6 +35,7 @@ pub enum AtRulePrelude<'s> {
     Container(ContainerPrelude<'s>),
     CounterStyle(InterpolableIdent<'s>),
     CustomMedia(Box<CustomMedia<'s>>),
+    CustomSelector(Box<CustomSelectorPrelude<'s>>),
     Document(DocumentPrelude<'s>),
     FontFeatureValues(FontFamilyName<'s>),
     FontPaletteValues(InterpolableIdent<'s>),
@@ -354,6 +355,42 @@ pub enum CustomMediaValue<'s> {
     MediaQueryList(MediaQueryList<'s>),
     True(Ident<'s>),
     False(Ident<'s>),
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct CustomSelector<'s> {
+    pub prefix_arg: Option<CustomSelectorArg<'s>>,
+    pub name: Ident<'s>,
+    pub args: Option<CustomSelectorArgs<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct CustomSelectorArg<'s> {
+    pub name: Ident<'s>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct CustomSelectorArgs<'s> {
+    pub args: Vec<CustomSelectorArg<'s>>,
+    pub comma_spans: Vec<Span>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct CustomSelectorPrelude<'s> {
+    pub custom_selector: CustomSelector<'s>,
+    pub selector: SelectorList<'s>,
+    pub span: Span,
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

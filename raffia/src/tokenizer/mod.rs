@@ -136,11 +136,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 let (number, span) = self.scan_number()?;
                 self.scan_dimension_or_percentage(number, span)
             }
-            (Some((_, '$')), Some((_, c)))
-                if self.syntax != Syntax::Css && is_start_of_ident(c) =>
-            {
-                self.scan_dollar_var()
-            }
+            (Some((_, '$')), Some((_, c))) if is_start_of_ident(c) => self.scan_dollar_var(),
             (Some((_, '-')), Some((_, '#')))
                 if matches!(self.syntax, Syntax::Scss | Syntax::Sass)
                     && matches!(chars.peek(), Some((_, '{'))) =>

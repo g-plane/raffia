@@ -7,6 +7,7 @@ _This changelog only relates to the `raffia` crate._
 - Fixed possible infinite loop when parsing pseudo selector arguments.
 - Fixed line break in Sass interpolated URL.
 - Fixed line comments in Sass (indented syntax).
+- Added support of `@custom-selector` at-rule.
 
 ## v0.6.0
 

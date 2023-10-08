@@ -1,0 +1,810 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 1,
+          end: 16,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: None,
+          name: Ident(
+            type: "Ident",
+            name: "--foo",
+            raw: "--foo",
+            span: Span(
+              start: 18,
+              end: 23,
+            ),
+          ),
+          args: None,
+          span: Span(
+            start: 18,
+            end: 23,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 25,
+                          end: 28,
+                        ),
+                      ),
+                      span: Span(
+                        start: 24,
+                        end: 28,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 24,
+                    end: 28,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 24,
+                end: 28,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 24,
+            end: 28,
+          ),
+        ),
+        span: Span(
+          start: 18,
+          end: 28,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 0,
+        end: 28,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 31,
+          end: 46,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: None,
+          name: Ident(
+            type: "Ident",
+            name: "--bar",
+            raw: "--bar",
+            span: Span(
+              start: 48,
+              end: 53,
+            ),
+          ),
+          args: None,
+          span: Span(
+            start: 48,
+            end: 53,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bar",
+                        raw: "bar",
+                        span: Span(
+                          start: 55,
+                          end: 58,
+                        ),
+                      ),
+                      span: Span(
+                        start: 54,
+                        end: 58,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 54,
+                    end: 58,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 54,
+                end: 58,
+              ),
+            ),
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "baz",
+                        raw: "baz",
+                        span: Span(
+                          start: 61,
+                          end: 64,
+                        ),
+                      ),
+                      span: Span(
+                        start: 60,
+                        end: 64,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 60,
+                    end: 64,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 60,
+                end: 64,
+              ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 58,
+              end: 59,
+            ),
+          ],
+          span: Span(
+            start: 54,
+            end: 64,
+          ),
+        ),
+        span: Span(
+          start: 48,
+          end: 64,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 30,
+        end: 64,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 67,
+          end: 82,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: Some(CustomSelectorArg(
+            type: "CustomSelectorArg",
+            name: Ident(
+              type: "Ident",
+              name: "foo",
+              raw: "foo",
+              span: Span(
+                start: 84,
+                end: 87,
+              ),
+            ),
+            span: Span(
+              start: 83,
+              end: 87,
+            ),
+          )),
+          name: Ident(
+            type: "Ident",
+            name: "--foo",
+            raw: "--foo",
+            span: Span(
+              start: 88,
+              end: 93,
+            ),
+          ),
+          args: None,
+          span: Span(
+            start: 83,
+            end: 93,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "foo",
+                        raw: "foo",
+                        span: Span(
+                          start: 95,
+                          end: 98,
+                        ),
+                      ),
+                      span: Span(
+                        start: 94,
+                        end: 98,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 94,
+                    end: 98,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 94,
+                end: 98,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 94,
+            end: 98,
+          ),
+        ),
+        span: Span(
+          start: 83,
+          end: 98,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 66,
+        end: 98,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 101,
+          end: 116,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: Some(CustomSelectorArg(
+            type: "CustomSelectorArg",
+            name: Ident(
+              type: "Ident",
+              name: "bar",
+              raw: "bar",
+              span: Span(
+                start: 118,
+                end: 121,
+              ),
+            ),
+            span: Span(
+              start: 117,
+              end: 121,
+            ),
+          )),
+          name: Ident(
+            type: "Ident",
+            name: "--bar",
+            raw: "--bar",
+            span: Span(
+              start: 122,
+              end: 127,
+            ),
+          ),
+          args: Some(CustomSelectorArgs(
+            type: "CustomSelectorArgs",
+            args: [],
+            commaSpans: [],
+            span: Span(
+              start: 127,
+              end: 129,
+            ),
+          )),
+          span: Span(
+            start: 117,
+            end: 129,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bar",
+                        raw: "bar",
+                        span: Span(
+                          start: 131,
+                          end: 134,
+                        ),
+                      ),
+                      span: Span(
+                        start: 130,
+                        end: 134,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 130,
+                    end: 134,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 130,
+                end: 134,
+              ),
+            ),
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "baz",
+                        raw: "baz",
+                        span: Span(
+                          start: 137,
+                          end: 140,
+                        ),
+                      ),
+                      span: Span(
+                        start: 136,
+                        end: 140,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 136,
+                    end: 140,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 136,
+                end: 140,
+              ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 134,
+              end: 135,
+            ),
+          ],
+          span: Span(
+            start: 130,
+            end: 140,
+          ),
+        ),
+        span: Span(
+          start: 117,
+          end: 140,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 100,
+        end: 140,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 143,
+          end: 158,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: Some(CustomSelectorArg(
+            type: "CustomSelectorArg",
+            name: Ident(
+              type: "Ident",
+              name: "bar",
+              raw: "bar",
+              span: Span(
+                start: 160,
+                end: 163,
+              ),
+            ),
+            span: Span(
+              start: 159,
+              end: 163,
+            ),
+          )),
+          name: Ident(
+            type: "Ident",
+            name: "--bar",
+            raw: "--bar",
+            span: Span(
+              start: 164,
+              end: 169,
+            ),
+          ),
+          args: Some(CustomSelectorArgs(
+            type: "CustomSelectorArgs",
+            args: [
+              CustomSelectorArg(
+                type: "CustomSelectorArg",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 171,
+                    end: 172,
+                  ),
+                ),
+                span: Span(
+                  start: 170,
+                  end: 172,
+                ),
+              ),
+              CustomSelectorArg(
+                type: "CustomSelectorArg",
+                name: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 175,
+                    end: 176,
+                  ),
+                ),
+                span: Span(
+                  start: 174,
+                  end: 176,
+                ),
+              ),
+            ],
+            commaSpans: [
+              Span(
+                start: 172,
+                end: 173,
+              ),
+            ],
+            span: Span(
+              start: 169,
+              end: 177,
+            ),
+          )),
+          span: Span(
+            start: 159,
+            end: 177,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "bar",
+                        raw: "bar",
+                        span: Span(
+                          start: 179,
+                          end: 182,
+                        ),
+                      ),
+                      span: Span(
+                        start: 178,
+                        end: 182,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 178,
+                    end: 182,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 178,
+                end: 182,
+              ),
+            ),
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "baz",
+                        raw: "baz",
+                        span: Span(
+                          start: 185,
+                          end: 188,
+                        ),
+                      ),
+                      span: Span(
+                        start: 184,
+                        end: 188,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 184,
+                    end: 188,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 184,
+                end: 188,
+              ),
+            ),
+          ],
+          commaSpans: [
+            Span(
+              start: 182,
+              end: 183,
+            ),
+          ],
+          span: Span(
+            start: 178,
+            end: 188,
+          ),
+        ),
+        span: Span(
+          start: 159,
+          end: 188,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 142,
+        end: 188,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "custom-selector",
+        raw: "custom-selector",
+        span: Span(
+          start: 191,
+          end: 206,
+        ),
+      ),
+      prelude: Some(CustomSelectorPrelude(
+        type: "CustomSelectorPrelude",
+        customSelector: CustomSelector(
+          type: "CustomSelector",
+          prefixArg: None,
+          name: Ident(
+            type: "Ident",
+            name: "--baz",
+            raw: "--baz",
+            span: Span(
+              start: 208,
+              end: 213,
+            ),
+          ),
+          args: Some(CustomSelectorArgs(
+            type: "CustomSelectorArgs",
+            args: [
+              CustomSelectorArg(
+                type: "CustomSelectorArg",
+                name: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 215,
+                    end: 216,
+                  ),
+                ),
+                span: Span(
+                  start: 214,
+                  end: 216,
+                ),
+              ),
+              CustomSelectorArg(
+                type: "CustomSelectorArg",
+                name: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 219,
+                    end: 220,
+                  ),
+                ),
+                span: Span(
+                  start: 218,
+                  end: 220,
+                ),
+              ),
+              CustomSelectorArg(
+                type: "CustomSelectorArg",
+                name: Ident(
+                  type: "Ident",
+                  name: "c",
+                  raw: "c",
+                  span: Span(
+                    start: 223,
+                    end: 224,
+                  ),
+                ),
+                span: Span(
+                  start: 222,
+                  end: 224,
+                ),
+              ),
+            ],
+            commaSpans: [
+              Span(
+                start: 216,
+                end: 217,
+              ),
+              Span(
+                start: 220,
+                end: 221,
+              ),
+            ],
+            span: Span(
+              start: 213,
+              end: 225,
+            ),
+          )),
+          span: Span(
+            start: 208,
+            end: 225,
+          ),
+        ),
+        selector: SelectorList(
+          type: "SelectorList",
+          selectors: [
+            ComplexSelector(
+              type: "ComplexSelector",
+              children: [
+                CompoundSelector(
+                  type: "CompoundSelector",
+                  children: [
+                    ClassSelector(
+                      type: "ClassSelector",
+                      name: Ident(
+                        type: "Ident",
+                        name: "baz",
+                        raw: "baz",
+                        span: Span(
+                          start: 227,
+                          end: 230,
+                        ),
+                      ),
+                      span: Span(
+                        start: 226,
+                        end: 230,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 226,
+                    end: 230,
+                  ),
+                ),
+              ],
+              span: Span(
+                start: 226,
+                end: 230,
+              ),
+            ),
+          ],
+          commaSpans: [],
+          span: Span(
+            start: 226,
+            end: 230,
+          ),
+        ),
+        span: Span(
+          start: 208,
+          end: 230,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 190,
+        end: 230,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 232,
+  ),
+)

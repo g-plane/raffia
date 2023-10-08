@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+---
+error: unknown token
+  ┌─ whitespace-2.css:1:18
+  │
+1 │ @custom-selector $ foo:--foo .foo;
+  │                  ^
+
+
