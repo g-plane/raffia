@@ -1,0 +1,89 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "function",
+        raw: "function",
+        span: Span(
+          start: 1,
+          end: 9,
+        ),
+      ),
+      prelude: Some(SassFunction(
+        type: "SassFunction",
+        name: Ident(
+          type: "Ident",
+          name: "f",
+          raw: "f",
+          span: Span(
+            start: 10,
+            end: 11,
+          ),
+        ),
+        parameters: SassParameters(
+          type: "SassParameters",
+          params: [],
+          arbitraryParam: None,
+          commaSpans: [],
+          span: Span(
+            start: 11,
+            end: 13,
+          ),
+        ),
+        span: Span(
+          start: 10,
+          end: 13,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          AtRule(
+            type: "AtRule",
+            name: Ident(
+              type: "Ident",
+              name: "return",
+              raw: "return",
+              span: Span(
+                start: 20,
+                end: 26,
+              ),
+            ),
+            prelude: Some(Ident(
+              type: "Ident",
+              name: "x",
+              raw: "x",
+              span: Span(
+                start: 27,
+                end: 28,
+              ),
+            )),
+            block: None,
+            span: Span(
+              start: 19,
+              end: 28,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 19,
+          end: 29,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 29,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 29,
+  ),
+)

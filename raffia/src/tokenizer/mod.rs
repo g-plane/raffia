@@ -295,18 +295,27 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
         let end;
         loop {
-            match self.state.chars.next() {
+            match self.state.chars.peek() {
                 Some((_, '\r')) => {
-                    if let Some((i, '\n')) = self.state.chars.next() {
+                    self.state.chars.next();
+                    if let Some((i, '\n')) = self.state.chars.peek() {
                         end = i - 1;
+                        if self.syntax != Syntax::Sass {
+                            self.state.chars.next();
+                        }
                         break;
                     }
                 }
                 Some((i, '\n')) => {
-                    end = i;
+                    end = *i;
+                    if self.syntax != Syntax::Sass {
+                        self.state.chars.next();
+                    }
                     break;
                 }
-                Some(..) => {}
+                Some(..) => {
+                    self.state.chars.next();
+                }
                 None => {
                     end = self.source.len();
                     break;
