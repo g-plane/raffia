@@ -1314,9 +1314,107 @@ Stylesheet(
         end: 1778,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "import",
+        raw: "import",
+        span: Span(
+          start: 1781,
+          end: 1787,
+        ),
+      ),
+      prelude: Some(ImportPrelude(
+        type: "ImportPrelude",
+        href: Url(
+          type: "Url",
+          name: Ident(
+            type: "Ident",
+            name: "url",
+            raw: "url",
+            span: Span(
+              start: 1788,
+              end: 1791,
+            ),
+          ),
+          value: Some(SassInterpolatedUrl(
+            type: "SassInterpolatedUrl",
+            elements: [
+              InterpolableUrlStaticPart(
+                type: "InterpolableUrlStaticPart",
+                value: "//fonts.googleapis.com/css?family=",
+                raw: "//fonts.googleapis.com/css?family=",
+                span: Span(
+                  start: 1792,
+                  end: 1826,
+                ),
+              ),
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "get-font-family",
+                  raw: "get-font-family",
+                  span: Span(
+                    start: 1828,
+                    end: 1843,
+                  ),
+                ),
+                args: [
+                  Str(
+                    type: "Str",
+                    value: "Roboto",
+                    raw: "\"Roboto\"",
+                    span: Span(
+                      start: 1847,
+                      end: 1855,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1828,
+                  end: 1856,
+                ),
+              ),
+              InterpolableUrlStaticPart(
+                type: "InterpolableUrlStaticPart",
+                value: ":100,300,500,700,900&display=swap",
+                raw: ":100,300,500,700,900&display=swap",
+                span: Span(
+                  start: 1857,
+                  end: 1890,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1792,
+              end: 1890,
+            ),
+          )),
+          modifiers: [],
+          span: Span(
+            start: 1788,
+            end: 1891,
+          ),
+        ),
+        layer: None,
+        supports: None,
+        media: None,
+        span: Span(
+          start: 1788,
+          end: 1891,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 1780,
+        end: 1891,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 1779,
+    end: 1893,
   ),
 )

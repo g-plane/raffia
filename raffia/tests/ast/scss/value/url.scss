@@ -17,3 +17,6 @@ div {
   expr2: url(1 + 2);
   expr3: url(a#{b}"c");
 }
+
+@import url(//fonts.googleapis.com/css?family=#{get-font-family(
+  "Roboto")}:100,300,500,700,900&display=swap);

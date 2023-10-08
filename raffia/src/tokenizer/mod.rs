@@ -1476,6 +1476,11 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             _ => false,
         }
     }
+
+    pub(crate) fn is_start_of_url_string(&mut self) -> bool {
+        self.skip_ws();
+        matches!(self.state.chars.peek(), Some((_, '"' | '\'')))
+    }
 }
 
 #[inline]

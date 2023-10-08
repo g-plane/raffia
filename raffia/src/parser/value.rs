@@ -993,7 +993,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Url<'s> {
             }
         }
 
-        if let Ok(value) = input.try_parse(InterpolableStr::parse) {
+        if input.tokenizer.is_start_of_url_string() {
+            let value = input.parse()?;
             let modifiers = match &peek!(input).token {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     let mut modifiers = Vec::with_capacity(1);
