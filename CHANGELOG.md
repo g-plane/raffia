@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Fixed parsing `@layer` at-rule.
+
 ## v0.7.0
 
 - Allowed comments in compound selector.

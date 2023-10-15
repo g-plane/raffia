@@ -1,13 +1,37 @@
 use super::Parser;
 use crate::{
     ast::*,
-    bump,
+    bump, eat,
     error::{Error, PResult},
     peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
     util, Parse,
 };
+
+// https://drafts.csswg.org/css-cascade-5/#layering
+impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerNames<'s> {
+    fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
+        let first = input.parse::<LayerName>()?;
+        let mut span = first.span.clone();
+
+        let mut names = vec![first];
+        let mut comma_spans = vec![];
+        while let Some((_, comma_span)) = eat!(input, Comma) {
+            comma_spans.push(comma_span);
+            names.push(input.parse()?);
+        }
+
+        if let Some(last) = names.last() {
+            span.end = last.span.end;
+        }
+        Ok(LayerNames {
+            names,
+            comma_spans,
+            span,
+        })
+    }
+}
 
 // https://drafts.csswg.org/css-cascade-5/#layer-names
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LayerName<'s> {

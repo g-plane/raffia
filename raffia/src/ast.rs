@@ -41,7 +41,7 @@ pub enum AtRulePrelude<'s> {
     FontPaletteValues(InterpolableIdent<'s>),
     Import(Box<ImportPrelude<'s>>),
     Keyframes(KeyframesName<'s>),
-    Layer(LayerName<'s>),
+    Layer(LayerNames<'s>),
     LessImport(Box<LessImportPrelude<'s>>),
     LessPlugin(Box<LessPlugin<'s>>),
     Media(MediaQueryList<'s>),
@@ -659,6 +659,15 @@ pub struct LanguageRangeList<'s> {
 #[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
 pub struct LayerName<'s> {
     pub idents: Vec<InterpolableIdent<'s>>,
+    pub span: Span,
+}
+
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct LayerNames<'s> {
+    pub names: Vec<LayerName<'s>>,
+    pub comma_spans: Vec<Span>,
     pub span: Span,
 }
 

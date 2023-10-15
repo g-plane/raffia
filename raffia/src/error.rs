@@ -95,6 +95,7 @@ pub enum ErrorKind {
     LessGuardOnMultipleComplexSelectors,
     UnexpectedLessMixinCall,
     UnexpectedSemicolonInSass,
+    UnexpectedSimpleBlock,
 }
 
 impl Display for ErrorKind {
@@ -213,6 +214,7 @@ impl Display for ErrorKind {
             ),
             Self::UnexpectedLessMixinCall => write!(f, "Less mixin call is disallowed"),
             Self::UnexpectedSemicolonInSass => write!(f, "semicolon in Sass is disallowed"),
+            Self::UnexpectedSimpleBlock => write!(f, "simple block is disallowed"),
         }
     }
 }

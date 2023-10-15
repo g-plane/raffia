@@ -1,3 +1,8 @@
+@layer;
+@layer {}
 @layer foo {}
 @layer {}
 @layer A.A {}
+@layer A;
+@layer module, state;
+@layer A.module, B.state;

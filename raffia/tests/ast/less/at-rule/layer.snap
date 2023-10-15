@@ -15,34 +15,43 @@ Stylesheet(
           end: 6,
         ),
       ),
-      prelude: Some(LayerName(
-        type: "LayerName",
-        idents: [
-          LessInterpolatedIdent(
-            type: "LessInterpolatedIdent",
-            elements: [
-              LessVariableInterpolation(
-                type: "LessVariableInterpolation",
-                name: Ident(
-                  type: "Ident",
-                  name: "utili",
-                  raw: "utili",
-                  span: Span(
-                    start: 9,
-                    end: 14,
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              LessInterpolatedIdent(
+                type: "LessInterpolatedIdent",
+                elements: [
+                  LessVariableInterpolation(
+                    type: "LessVariableInterpolation",
+                    name: Ident(
+                      type: "Ident",
+                      name: "utili",
+                      raw: "utili",
+                      span: Span(
+                        start: 9,
+                        end: 14,
+                      ),
+                    ),
+                    span: Span(
+                      start: 7,
+                      end: 15,
+                    ),
                   ),
-                ),
+                  InterpolableIdentStaticPart(
+                    type: "InterpolableIdentStaticPart",
+                    value: "ties",
+                    raw: "ties",
+                    span: Span(
+                      start: 15,
+                      end: 19,
+                    ),
+                  ),
+                ],
                 span: Span(
                   start: 7,
-                  end: 15,
-                ),
-              ),
-              InterpolableIdentStaticPart(
-                type: "InterpolableIdentStaticPart",
-                value: "ties",
-                raw: "ties",
-                span: Span(
-                  start: 15,
                   end: 19,
                 ),
               ),
@@ -53,6 +62,7 @@ Stylesheet(
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
           start: 7,
           end: 19,

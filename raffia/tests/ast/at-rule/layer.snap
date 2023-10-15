@@ -15,35 +15,11 @@ Stylesheet(
           end: 6,
         ),
       ),
-      prelude: Some(LayerName(
-        type: "LayerName",
-        idents: [
-          Ident(
-            type: "Ident",
-            name: "foo",
-            raw: "foo",
-            span: Span(
-              start: 7,
-              end: 10,
-            ),
-          ),
-        ],
-        span: Span(
-          start: 7,
-          end: 10,
-        ),
-      )),
-      block: Some(SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 11,
-          end: 13,
-        ),
-      )),
+      prelude: None,
+      block: None,
       span: Span(
         start: 0,
-        end: 13,
+        end: 6,
       ),
     ),
     AtRule(
@@ -53,8 +29,8 @@ Stylesheet(
         name: "layer",
         raw: "layer",
         span: Span(
-          start: 15,
-          end: 20,
+          start: 9,
+          end: 14,
         ),
       ),
       prelude: None,
@@ -62,13 +38,13 @@ Stylesheet(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 21,
-          end: 23,
+          start: 15,
+          end: 17,
         ),
       )),
       span: Span(
-        start: 14,
-        end: 23,
+        start: 8,
+        end: 17,
       ),
     ),
     AtRule(
@@ -78,53 +54,339 @@ Stylesheet(
         name: "layer",
         raw: "layer",
         span: Span(
-          start: 25,
-          end: 30,
+          start: 19,
+          end: 24,
         ),
       ),
-      prelude: Some(LayerName(
-        type: "LayerName",
-        idents: [
-          Ident(
-            type: "Ident",
-            name: "A",
-            raw: "A",
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "foo",
+                raw: "foo",
+                span: Span(
+                  start: 25,
+                  end: 28,
+                ),
+              ),
+            ],
             span: Span(
-              start: 31,
-              end: 32,
-            ),
-          ),
-          Ident(
-            type: "Ident",
-            name: "A",
-            raw: "A",
-            span: Span(
-              start: 33,
-              end: 34,
+              start: 25,
+              end: 28,
             ),
           ),
         ],
+        commaSpans: [],
         span: Span(
-          start: 31,
-          end: 34,
+          start: 25,
+          end: 28,
         ),
       )),
       block: Some(SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 35,
-          end: 37,
+          start: 29,
+          end: 31,
         ),
       )),
       span: Span(
-        start: 24,
-        end: 37,
+        start: 18,
+        end: 31,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "layer",
+        raw: "layer",
+        span: Span(
+          start: 33,
+          end: 38,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 39,
+          end: 41,
+        ),
+      )),
+      span: Span(
+        start: 32,
+        end: 41,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "layer",
+        raw: "layer",
+        span: Span(
+          start: 43,
+          end: 48,
+        ),
+      ),
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "A",
+                raw: "A",
+                span: Span(
+                  start: 49,
+                  end: 50,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "A",
+                raw: "A",
+                span: Span(
+                  start: 51,
+                  end: 52,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 49,
+              end: 52,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 49,
+          end: 52,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 53,
+          end: 55,
+        ),
+      )),
+      span: Span(
+        start: 42,
+        end: 55,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "layer",
+        raw: "layer",
+        span: Span(
+          start: 57,
+          end: 62,
+        ),
+      ),
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "A",
+                raw: "A",
+                span: Span(
+                  start: 63,
+                  end: 64,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 63,
+              end: 64,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 63,
+          end: 64,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 56,
+        end: 64,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "layer",
+        raw: "layer",
+        span: Span(
+          start: 67,
+          end: 72,
+        ),
+      ),
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "module",
+                raw: "module",
+                span: Span(
+                  start: 73,
+                  end: 79,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 73,
+              end: 79,
+            ),
+          ),
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "state",
+                raw: "state",
+                span: Span(
+                  start: 81,
+                  end: 86,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 81,
+              end: 86,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 79,
+            end: 80,
+          ),
+        ],
+        span: Span(
+          start: 73,
+          end: 86,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 66,
+        end: 86,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "layer",
+        raw: "layer",
+        span: Span(
+          start: 89,
+          end: 94,
+        ),
+      ),
+      prelude: Some(LayerNames(
+        type: "LayerNames",
+        names: [
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "A",
+                raw: "A",
+                span: Span(
+                  start: 95,
+                  end: 96,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "module",
+                raw: "module",
+                span: Span(
+                  start: 97,
+                  end: 103,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 95,
+              end: 103,
+            ),
+          ),
+          LayerName(
+            type: "LayerName",
+            idents: [
+              Ident(
+                type: "Ident",
+                name: "B",
+                raw: "B",
+                span: Span(
+                  start: 105,
+                  end: 106,
+                ),
+              ),
+              Ident(
+                type: "Ident",
+                name: "state",
+                raw: "state",
+                span: Span(
+                  start: 107,
+                  end: 112,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 105,
+              end: 112,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 103,
+            end: 104,
+          ),
+        ],
+        span: Span(
+          start: 95,
+          end: 112,
+        ),
+      )),
+      block: None,
+      span: Span(
+        start: 88,
+        end: 112,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 38,
+    end: 114,
   ),
 )

@@ -1,0 +1,10 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: simple block is disallowed
+  ┌─ layer.css:1:22
+  │
+1 │ @layer module, state {}
+  │                      ^^
+
+

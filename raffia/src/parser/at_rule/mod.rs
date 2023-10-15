@@ -95,13 +95,30 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             let end = block.span.end;
             (prelude, Some(block), end)
         } else if at_rule_name.eq_ignore_ascii_case("layer") {
-            let prelude = input
-                .try_parse(LayerName::parse)
-                .map(AtRulePrelude::Layer)
-                .ok();
-            let block = input.parse::<SimpleBlock>()?;
-            let end = block.span.end;
-            (prelude, Some(block), end)
+            let prelude = input.try_parse(LayerNames::parse).ok();
+            let block = if matches!(peek!(input).token, Token::LBrace(..) | Token::Indent(..)) {
+                Some(input.parse::<SimpleBlock>()?)
+            } else {
+                None
+            };
+            if let Some(block) = &block {
+                if prelude
+                    .as_ref()
+                    .map(|prelude| prelude.names.len() > 1)
+                    .unwrap_or_default()
+                {
+                    input.recoverable_errors.push(Error {
+                        kind: ErrorKind::UnexpectedSimpleBlock,
+                        span: block.span.clone(),
+                    });
+                }
+            }
+            let end = block
+                .as_ref()
+                .map(|block| block.span.end)
+                .or_else(|| prelude.as_ref().map(|prelude| prelude.span.end))
+                .unwrap_or(at_keyword_span.end);
+            (prelude.map(AtRulePrelude::Layer), block, end)
         } else if at_rule_name.eq_ignore_ascii_case("container") {
             let prelude = Some(AtRulePrelude::Container(input.parse()?));
             let block = input.parse::<SimpleBlock>()?;
