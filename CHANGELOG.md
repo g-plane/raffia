@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.7.1
+
 - Fixed parsing `@layer` at-rule.
 
 ## v0.7.0
