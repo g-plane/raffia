@@ -436,17 +436,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             }
         }
         if !is_start_with_dot {
-            if let Some((_, '.')) = self.state.chars.peek() {
-                // bump '.'
-                self.state.chars.next();
-                while let Some((i, c)) = self.state.chars.peek() {
-                    if c.is_ascii_digit() {
-                        self.state.chars.next();
-                    } else {
-                        end = *i;
-                        break;
+            let chars = self.state.chars.clone();
+            match self.state.chars.peek() {
+                // next token can be a `DotDotDot` token
+                Some((_, '.')) if !matches!(chars.clone().nth(1), Some((_, '.'))) => {
+                    // bump '.'
+                    self.state.chars.next();
+                    while let Some((i, c)) = self.state.chars.peek() {
+                        if c.is_ascii_digit() {
+                            self.state.chars.next();
+                        } else {
+                            end = *i;
+                            break;
+                        }
                     }
                 }
+                _ => {}
             }
         }
 
