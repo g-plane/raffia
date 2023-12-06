@@ -37,7 +37,7 @@ First, you need to setup Rust and clone this repository. You also need to instal
 
 Then, copy some CSS files to `bench_data` directory. You need to create that directory by yourself.
 
-Now you can run benchmark by running `cargo +nightly criterion`.
+Now you can run benchmark by running `cargo criterion`.
 
 ## ✨ Credit
 
