@@ -15,4 +15,4 @@ crate-type = ["rlib", "cdylib"]
 serde = "1.0"
 serde-wasm-bindgen = "0.4"
 raffia = { path = "../raffia", features = ["config_serde", "serialize"] }
-wasm-bindgen = "=0.2.81"
+wasm-bindgen = "0.2"
