@@ -6,24 +6,18 @@ fn parse_with_raffia(code: &str) -> raffia::ast::Stylesheet {
     parser.parse().unwrap()
 }
 
-fn parse_with_lightningcss<'a>(
-    code: &'a str,
-    filename: &str,
-) -> lightningcss::stylesheet::StyleSheet<'a, 'a> {
-    lightningcss::stylesheet::StyleSheet::parse(
-        code,
-        lightningcss::stylesheet::ParserOptions {
-            filename: filename.into(),
-            nesting: true,
-            custom_media: true,
-            ..Default::default()
-        },
-    )
-    .unwrap()
+fn parse_with_lightningcss<'a>(code: &'a str) -> lightningcss::stylesheet::StyleSheet<'a, 'a> {
+    lightningcss::stylesheet::StyleSheet::parse(code, Default::default()).unwrap()
 }
 
 fn parse_with_swc(source_file: &swc_common::SourceFile) -> swc_css_ast::Stylesheet {
-    swc_css_parser::parse_file(source_file, Default::default(), &mut Default::default()).unwrap()
+    swc_css_parser::parse_file(
+        source_file,
+        None,
+        Default::default(),
+        &mut Default::default(),
+    )
+    .unwrap()
 }
 
 fn create_swc_source_file(code: &str, filename: &str) -> swc_common::SourceFile {
@@ -66,7 +60,7 @@ fn bench_parsers(c: &mut Criterion) {
                 b.iter(|| parse_with_raffia(code))
             });
             group.bench_with_input(BenchmarkId::new("LightningCSS", name), &code, |b, code| {
-                b.iter(|| parse_with_lightningcss(code, &name))
+                b.iter(|| parse_with_lightningcss(code))
             });
             group.bench_with_input(
                 BenchmarkId::new("SWC", name),

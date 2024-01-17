@@ -5,21 +5,18 @@ fn parse_with_raffia(code: &str) -> raffia::ast::Stylesheet {
     parser.parse().unwrap()
 }
 
-fn parse_with_lightningcss(code: &str) -> lightningcss::stylesheet::StyleSheet {
-    lightningcss::stylesheet::StyleSheet::parse(
-        code,
-        lightningcss::stylesheet::ParserOptions {
-            filename: "test.css".into(),
-            nesting: true,
-            custom_media: true,
-            ..Default::default()
-        },
-    )
-    .unwrap()
+fn parse_with_lightningcss<'a>(code: &'a str) -> lightningcss::stylesheet::StyleSheet<'a, 'a> {
+    lightningcss::stylesheet::StyleSheet::parse(code, Default::default()).unwrap()
 }
 
 fn parse_with_swc(source_file: &swc_common::SourceFile) -> swc_css_ast::Stylesheet {
-    swc_css_parser::parse_file(source_file, Default::default(), &mut Default::default()).unwrap()
+    swc_css_parser::parse_file(
+        source_file,
+        None,
+        Default::default(),
+        &mut Default::default(),
+    )
+    .unwrap()
 }
 
 fn create_swc_source_file(code: &str) -> swc_common::SourceFile {
