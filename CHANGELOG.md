@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.7.3
+
 - Fixed leading combinator in nested qualified rule.
 
 ## v0.7.2
