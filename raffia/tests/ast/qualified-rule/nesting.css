@@ -2,4 +2,9 @@ div {
   img {
     border: 0px;
   }
+
+  > img {}
+  + img {}
+  ~ img {}
+  || img {}
 }

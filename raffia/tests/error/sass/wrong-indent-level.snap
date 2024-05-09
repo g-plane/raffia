@@ -1,10 +1,10 @@
 ---
 source: raffia/tests/error.rs
 ---
-error: simple selector is expected
-  ┌─ wrong-indent-level.sass:3:2
+error: unexpected whitespace
+  ┌─ wrong-indent-level.sass:3:4
   │
 3 │  d: e
-  │  ^
+  │    ^
 
 

@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Fixed leading combinator in nested qualified rule.
+
 ## v0.7.2
 
 - Fixed Sass arbitrary argument following a number which ends with `.`.

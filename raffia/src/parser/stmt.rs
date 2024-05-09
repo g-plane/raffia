@@ -424,16 +424,12 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::DollarVar(..) if matches!(self.syntax, Syntax::Scss | Syntax::Sass) => {
                     statements.push(Statement::SassVariableDeclaration(self.parse()?));
                 }
-                Token::GreaterThan(..) | Token::Plus(..) | Token::Tilde(..) | Token::BarBar(..)
-                    if matches!(self.syntax, Syntax::Scss | Syntax::Sass) =>
-                {
-                    statements.push(Statement::QualifiedRule(self.parse()?));
-                    is_block_element = true;
-                }
-                Token::GreaterThan(..) | Token::Plus(..) | Token::Tilde(..) | Token::BarBar(..)
-                    if self.syntax == Syntax::Less =>
-                {
-                    statements.push(self.parse_less_qualified_rule()?);
+                Token::GreaterThan(..) | Token::Plus(..) | Token::Tilde(..) | Token::BarBar(..) => {
+                    if self.syntax == Syntax::Less {
+                        statements.push(self.parse_less_qualified_rule()?);
+                    } else {
+                        statements.push(Statement::QualifiedRule(self.parse()?));
+                    }
                     is_block_element = true;
                 }
                 Token::DollarLBraceVar(..) if self.syntax == Syntax::Less => {

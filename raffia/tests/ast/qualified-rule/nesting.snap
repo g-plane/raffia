@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -180,20 +179,320 @@ Stylesheet(
               end: 34,
             ),
           ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    Combinator(
+                      type: "Combinator",
+                      kind: Child,
+                      span: Span(
+                        start: 38,
+                        end: 39,
+                      ),
+                    ),
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "img",
+                              raw: "img",
+                              span: Span(
+                                start: 40,
+                                end: 43,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 40,
+                              end: 43,
+                            ),
+                          ),
+                          span: Span(
+                            start: 40,
+                            end: 43,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 40,
+                        end: 43,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 38,
+                    end: 43,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 38,
+                end: 43,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 44,
+                end: 46,
+              ),
+            ),
+            span: Span(
+              start: 38,
+              end: 46,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    Combinator(
+                      type: "Combinator",
+                      kind: NextSibling,
+                      span: Span(
+                        start: 49,
+                        end: 50,
+                      ),
+                    ),
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "img",
+                              raw: "img",
+                              span: Span(
+                                start: 51,
+                                end: 54,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 51,
+                              end: 54,
+                            ),
+                          ),
+                          span: Span(
+                            start: 51,
+                            end: 54,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 51,
+                        end: 54,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 49,
+                    end: 54,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 49,
+                end: 54,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 55,
+                end: 57,
+              ),
+            ),
+            span: Span(
+              start: 49,
+              end: 57,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    Combinator(
+                      type: "Combinator",
+                      kind: LaterSibling,
+                      span: Span(
+                        start: 60,
+                        end: 61,
+                      ),
+                    ),
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "img",
+                              raw: "img",
+                              span: Span(
+                                start: 62,
+                                end: 65,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 62,
+                              end: 65,
+                            ),
+                          ),
+                          span: Span(
+                            start: 62,
+                            end: 65,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 62,
+                        end: 65,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 60,
+                    end: 65,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 60,
+                end: 65,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 66,
+                end: 68,
+              ),
+            ),
+            span: Span(
+              start: 60,
+              end: 68,
+            ),
+          ),
+          QualifiedRule(
+            type: "QualifiedRule",
+            selector: SelectorList(
+              type: "SelectorList",
+              selectors: [
+                ComplexSelector(
+                  type: "ComplexSelector",
+                  children: [
+                    Combinator(
+                      type: "Combinator",
+                      kind: Column,
+                      span: Span(
+                        start: 71,
+                        end: 73,
+                      ),
+                    ),
+                    CompoundSelector(
+                      type: "CompoundSelector",
+                      children: [
+                        TagNameSelector(
+                          type: "TagNameSelector",
+                          name: WqName(
+                            type: "WqName",
+                            name: Ident(
+                              type: "Ident",
+                              name: "img",
+                              raw: "img",
+                              span: Span(
+                                start: 74,
+                                end: 77,
+                              ),
+                            ),
+                            prefix: None,
+                            span: Span(
+                              start: 74,
+                              end: 77,
+                            ),
+                          ),
+                          span: Span(
+                            start: 74,
+                            end: 77,
+                          ),
+                        ),
+                      ],
+                      span: Span(
+                        start: 74,
+                        end: 77,
+                      ),
+                    ),
+                  ],
+                  span: Span(
+                    start: 71,
+                    end: 77,
+                  ),
+                ),
+              ],
+              commaSpans: [],
+              span: Span(
+                start: 71,
+                end: 77,
+              ),
+            ),
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 78,
+                end: 80,
+              ),
+            ),
+            span: Span(
+              start: 71,
+              end: 80,
+            ),
+          ),
         ],
         span: Span(
           start: 4,
-          end: 36,
+          end: 82,
         ),
       ),
       span: Span(
         start: 0,
-        end: 36,
+        end: 82,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 37,
+    end: 83,
   ),
 )

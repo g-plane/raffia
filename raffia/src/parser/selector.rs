@@ -687,76 +687,62 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ComplexSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let mut children = SmallVec::with_capacity(3);
 
-        if input.syntax == Syntax::Css {
-            let first = input.parse::<CompoundSelector>()?;
-            let start = first.span.start;
-            let mut end = first.span.end;
+        let (span, first, mut is_previous_combinator) = if let Token::GreaterThan(..)
+        | Token::Plus(..)
+        | Token::Tilde(..)
+        | Token::BarBar(..) = peek!(input).token
+        {
+            let end = input.tokenizer.current_offset();
+            if let Some(combinator) = input.parse_combinator(end)? {
+                (
+                    combinator.span.clone(),
+                    ComplexSelectorChild::Combinator(combinator),
+                    true,
+                )
+            } else {
+                return Err(Error {
+                    kind: ErrorKind::ExpectSimpleSelector,
+                    span: bump!(input).span,
+                });
+            }
+        } else {
+            let compound_selector = input.parse::<CompoundSelector>()?;
+            (
+                compound_selector.span.clone(),
+                ComplexSelectorChild::CompoundSelector(compound_selector),
+                false,
+            )
+        };
+        let Span { start, mut end } = span;
 
-            children.push(ComplexSelectorChild::CompoundSelector(first));
-            while let Some(combinator) = input.parse_combinator(end)? {
-                children.push(ComplexSelectorChild::Combinator(combinator));
+        children.push(first);
+        let is_less = input.syntax == Syntax::Less;
+        while !matches!(
+            peek!(input).token,
+            Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
+        ) {
+            if is_previous_combinator {
                 let compound_selector = input.parse::<CompoundSelector>()?;
                 end = compound_selector.span.end;
                 children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
-            }
-
-            Ok(ComplexSelector {
-                children,
-                span: Span { start, end },
-            })
-        } else {
-            let (span, first, mut is_previous_combinator) =
-                if let Ok(compound_selector) = input.try_parse(CompoundSelector::parse) {
-                    (
-                        compound_selector.span.clone(),
-                        ComplexSelectorChild::CompoundSelector(compound_selector),
-                        false,
-                    )
-                } else {
-                    let end = input.tokenizer.current_offset();
-                    let Some(combinator) = input.parse_combinator(end)? else {
-                        return Err(Error {
-                            kind: ErrorKind::ExpectSimpleSelector,
-                            span: bump!(input).span,
-                        });
-                    };
-                    (
-                        combinator.span.clone(),
-                        ComplexSelectorChild::Combinator(combinator),
-                        true,
-                    )
-                };
-            let Span { start, mut end } = span;
-
-            children.push(first);
-            let is_less = input.syntax == Syntax::Less;
-            while !matches!(
-                peek!(input).token,
-                Token::LBrace(..) | Token::Indent(..) | Token::Linebreak(..)
-            ) {
-                if is_previous_combinator {
-                    let compound_selector = input.parse::<CompoundSelector>()?;
-                    end = compound_selector.span.end;
-                    children.push(ComplexSelectorChild::CompoundSelector(compound_selector));
-                } else if let Some(combinator) = input.parse_combinator(end)? {
-                    if is_less && combinator.kind == CombinatorKind::Descendant {
-                        match &peek!(input).token {
-                            Token::Ident(ident) if ident.raw == "when" => break,
-                            _ => {}
-                        }
+            } else if let Some(combinator) = input.parse_combinator(end)? {
+                if is_less && combinator.kind == CombinatorKind::Descendant {
+                    match &peek!(input).token {
+                        Token::Ident(ident) if ident.raw == "when" => break,
+                        _ => {}
                     }
-                    children.push(ComplexSelectorChild::Combinator(combinator));
-                } else {
-                    break;
                 }
-                is_previous_combinator = !is_previous_combinator;
+                children.push(ComplexSelectorChild::Combinator(combinator));
+            } else {
+                break;
             }
-
-            Ok(ComplexSelector {
-                children,
-                span: Span { start, end },
-            })
+            is_previous_combinator = !is_previous_combinator;
         }
+
+        Ok(ComplexSelector {
+            children,
+            span: Span { start, end },
+        })
     }
 }
 
