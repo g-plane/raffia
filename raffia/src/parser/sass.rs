@@ -386,13 +386,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         Ok(left)
     }
 
-    fn parse_sass_flags(&mut self) -> PResult<(Vec<SassFlag<'s>>, usize)> {
+    fn parse_sass_flags(&mut self) -> PResult<(Vec<SassFlag<'s>>, Option<usize>)> {
         let mut flags: Vec<SassFlag<'s>> = Vec::with_capacity(1);
-        let mut end = self.tokenizer.current_offset();
+        let mut end = None;
         while let Some((_, exclamation_span)) = eat!(self, Exclamation) {
             let keyword = self.parse::<Ident>()?;
-            util::assert_no_ws_or_comment(&exclamation_span, &keyword.span)?;
-            end = keyword.span.end;
+            let keyword_span = keyword.span.clone();
+            util::assert_no_ws_or_comment(&exclamation_span, &keyword_span)?;
+            end = Some(keyword_span.end);
 
             match &*keyword.name {
                 "default" => {
@@ -427,7 +428,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 keyword,
                 span: Span {
                     start: exclamation_span.start,
-                    end,
+                    end: keyword_span.end,
                 },
             });
         }
@@ -636,7 +637,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         let value = self.parse_maybe_sass_list(/* allow_comma */ false)?;
 
         let (flags, end) = if allow_overridable {
-            self.parse_sass_flags()?
+            self.parse_sass_flags()
+                .map(|(flags, end)| (flags, end.unwrap_or_else(|| value.span().end)))?
         } else {
             (vec![], value.span().end)
         };
@@ -1669,7 +1671,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassVariableDeclaration<'s> {
                 .as_ref()
                 .map(|namespace| namespace.span.start)
                 .unwrap_or(name.span.start),
-            end,
+            end: end.unwrap_or_else(|| value.span().end),
         };
 
         if namespace.is_some() && flags.iter().any(|flag| flag.keyword.name == "global") {

@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Fixed span when parsing Sass flags.
+
 ## v0.7.3
 
 - Fixed leading combinator in nested qualified rule.
