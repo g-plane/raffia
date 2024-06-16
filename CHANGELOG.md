@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.7.4
+
 - Fixed span when parsing Sass flags.
 
 ## v0.7.3
