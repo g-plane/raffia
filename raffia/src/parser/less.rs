@@ -640,7 +640,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
     ) -> PResult<ComponentValue<'s>> {
         debug_assert_eq!(self.syntax, Syntax::Less);
 
-        match self.try_parse(|parser| {
+        let attempt = self.try_parse(|parser| {
             let hex_color = parser.parse::<HexColor>()?;
             match peek!(parser) {
                 TokenWithSpan {
@@ -659,7 +659,8 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }),
                 _ => Ok(hex_color),
             }
-        }) {
+        });
+        match attempt {
             Err(Error {
                 kind: ErrorKind::TryParseError,
                 ..
