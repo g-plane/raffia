@@ -12,9 +12,9 @@ raffia = { path = "../raffia" }
 [dev-dependencies]
 criterion = "0.5"
 lightningcss = "1.0.0-alpha.57"
-swc_common = "0.33.26"
-swc_css_ast = "0.140.23"
-swc_css_parser = "0.150.33"
+swc_common = "0.34.0"
+swc_css_ast = "0.141.0"
+swc_css_parser = "0.151.0"
 
 [[bench]]
 name = "parse_selector"
