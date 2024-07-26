@@ -1535,10 +1535,20 @@ pub struct PseudoElementSelector<'s> {
     pub span: Span,
 }
 
+#[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "type", rename_all = "camelCase"))]
+pub struct PseudoElementSelectorArg<'s> {
+    pub kind: PseudoElementSelectorArgKind<'s>,
+    pub l_paren: Span,
+    pub r_paren: Span,
+    pub span: Span,
+}
+
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq, EnumAsIs)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(untagged))]
-pub enum PseudoElementSelectorArg<'s> {
+pub enum PseudoElementSelectorArgKind<'s> {
     CompoundSelector(CompoundSelector<'s>),
     Ident(InterpolableIdent<'s>),
     TokenSeq(TokenSeq<'s>),

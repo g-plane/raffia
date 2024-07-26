@@ -3,6 +3,7 @@ _This changelog only relates to the `raffia` crate._
 ## Unreleased
 
 - Added paren spans of pseudo class selector.
+- Added paren spans of pseudo element selector.
 
 ## v0.7.4
 

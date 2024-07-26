@@ -1213,14 +1213,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
         let arg = match peek!(input) {
             TokenWithSpan {
                 token: Token::LParen(..),
-                span,
-            } if span.start == end => {
+                span: l_paren,
+            } if l_paren.start == end => {
+                let l_paren = l_paren.clone();
                 bump!(input);
-                let arg = match &name {
+                let kind = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("part") =>
                     {
-                        input.parse().map(PseudoElementSelectorArg::Ident)?
+                        input.parse().map(PseudoElementSelectorArgKind::Ident)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("cue")
@@ -1229,15 +1230,25 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                     {
                         input
                             .parse()
-                            .map(PseudoElementSelectorArg::CompoundSelector)?
+                            .map(PseudoElementSelectorArgKind::CompoundSelector)?
                     }
                     _ => input
                         .parse_tokens_in_parens()
-                        .map(PseudoElementSelectorArg::TokenSeq)?,
+                        .map(PseudoElementSelectorArgKind::TokenSeq)?,
                 };
 
-                end = expect!(input, RParen).1.end;
-                Some(arg)
+                let r_paren = expect!(input, RParen).1;
+                end = r_paren.end;
+                let span = Span {
+                    start: l_paren.start,
+                    end: r_paren.end,
+                };
+                Some(PseudoElementSelectorArg {
+                    kind,
+                    l_paren,
+                    r_paren,
+                    span,
+                })
             }
             _ => None,
         };
