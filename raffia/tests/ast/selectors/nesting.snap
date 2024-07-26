@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -2474,95 +2473,110 @@ Stylesheet(
                               end: 627,
                             ),
                           ),
-                          arg: Some(SelectorList(
-                            type: "SelectorList",
-                            selectors: [
-                              ComplexSelector(
-                                type: "ComplexSelector",
-                                children: [
-                                  CompoundSelector(
-                                    type: "CompoundSelector",
-                                    children: [
-                                      ClassSelector(
-                                        type: "ClassSelector",
-                                        name: Ident(
-                                          type: "Ident",
-                                          name: "bar",
-                                          raw: "bar",
+                          arg: Some(PseudoClassSelectorArg(
+                            type: "PseudoClassSelectorArg",
+                            kind: SelectorList(
+                              type: "SelectorList",
+                              selectors: [
+                                ComplexSelector(
+                                  type: "ComplexSelector",
+                                  children: [
+                                    CompoundSelector(
+                                      type: "CompoundSelector",
+                                      children: [
+                                        ClassSelector(
+                                          type: "ClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "bar",
+                                            raw: "bar",
+                                            span: Span(
+                                              start: 629,
+                                              end: 632,
+                                            ),
+                                          ),
                                           span: Span(
-                                            start: 629,
+                                            start: 628,
                                             end: 632,
                                           ),
                                         ),
-                                        span: Span(
-                                          start: 628,
-                                          end: 632,
-                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 628,
+                                        end: 632,
                                       ),
-                                    ],
-                                    span: Span(
-                                      start: 628,
-                                      end: 632,
                                     ),
+                                  ],
+                                  span: Span(
+                                    start: 628,
+                                    end: 632,
                                   ),
-                                ],
-                                span: Span(
-                                  start: 628,
-                                  end: 632,
                                 ),
-                              ),
-                              ComplexSelector(
-                                type: "ComplexSelector",
-                                children: [
-                                  CompoundSelector(
-                                    type: "CompoundSelector",
-                                    children: [
-                                      NestingSelector(
-                                        type: "NestingSelector",
-                                        suffix: None,
-                                        span: Span(
-                                          start: 634,
-                                          end: 635,
-                                        ),
-                                      ),
-                                      ClassSelector(
-                                        type: "ClassSelector",
-                                        name: Ident(
-                                          type: "Ident",
-                                          name: "baz",
-                                          raw: "baz",
+                                ComplexSelector(
+                                  type: "ComplexSelector",
+                                  children: [
+                                    CompoundSelector(
+                                      type: "CompoundSelector",
+                                      children: [
+                                        NestingSelector(
+                                          type: "NestingSelector",
+                                          suffix: None,
                                           span: Span(
-                                            start: 636,
+                                            start: 634,
+                                            end: 635,
+                                          ),
+                                        ),
+                                        ClassSelector(
+                                          type: "ClassSelector",
+                                          name: Ident(
+                                            type: "Ident",
+                                            name: "baz",
+                                            raw: "baz",
+                                            span: Span(
+                                              start: 636,
+                                              end: 639,
+                                            ),
+                                          ),
+                                          span: Span(
+                                            start: 635,
                                             end: 639,
                                           ),
                                         ),
-                                        span: Span(
-                                          start: 635,
-                                          end: 639,
-                                        ),
+                                      ],
+                                      span: Span(
+                                        start: 634,
+                                        end: 639,
                                       ),
-                                    ],
-                                    span: Span(
-                                      start: 634,
-                                      end: 639,
                                     ),
+                                  ],
+                                  span: Span(
+                                    start: 634,
+                                    end: 639,
                                   ),
-                                ],
-                                span: Span(
-                                  start: 634,
-                                  end: 639,
                                 ),
+                              ],
+                              commaSpans: [
+                                Span(
+                                  start: 632,
+                                  end: 633,
+                                ),
+                              ],
+                              span: Span(
+                                start: 628,
+                                end: 639,
                               ),
-                            ],
-                            commaSpans: [
-                              Span(
-                                start: 632,
-                                end: 633,
-                              ),
-                            ],
+                            ),
+                            lParen: Span(
+                              start: 627,
+                              end: 628,
+                            ),
+                            rParen: Span(
+                              start: 639,
+                              end: 640,
+                            ),
                             span: Span(
-                              start: 628,
-                              end: 639,
+                              start: 627,
+                              end: 640,
                             ),
                           )),
                           span: Span(

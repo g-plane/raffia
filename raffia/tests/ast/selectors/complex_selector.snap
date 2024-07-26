@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -10114,56 +10113,71 @@ Stylesheet(
                         end: 1503,
                       ),
                     ),
-                    arg: Some(SelectorList(
-                      type: "SelectorList",
-                      selectors: [
-                        ComplexSelector(
-                          type: "ComplexSelector",
-                          children: [
-                            CompoundSelector(
-                              type: "CompoundSelector",
-                              children: [
-                                UniversalSelector(
-                                  type: "UniversalSelector",
-                                  prefix: None,
-                                  span: Span(
-                                    start: 1504,
-                                    end: 1505,
-                                  ),
-                                ),
-                                ClassSelector(
-                                  type: "ClassSelector",
-                                  name: Ident(
-                                    type: "Ident",
-                                    name: "green",
-                                    raw: "green",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: SelectorList(
+                        type: "SelectorList",
+                        selectors: [
+                          ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  UniversalSelector(
+                                    type: "UniversalSelector",
+                                    prefix: None,
                                     span: Span(
-                                      start: 1506,
+                                      start: 1504,
+                                      end: 1505,
+                                    ),
+                                  ),
+                                  ClassSelector(
+                                    type: "ClassSelector",
+                                    name: Ident(
+                                      type: "Ident",
+                                      name: "green",
+                                      raw: "green",
+                                      span: Span(
+                                        start: 1506,
+                                        end: 1511,
+                                      ),
+                                    ),
+                                    span: Span(
+                                      start: 1505,
                                       end: 1511,
                                     ),
                                   ),
-                                  span: Span(
-                                    start: 1505,
-                                    end: 1511,
-                                  ),
+                                ],
+                                span: Span(
+                                  start: 1504,
+                                  end: 1511,
                                 ),
-                              ],
-                              span: Span(
-                                start: 1504,
-                                end: 1511,
                               ),
+                            ],
+                            span: Span(
+                              start: 1504,
+                              end: 1511,
                             ),
-                          ],
-                          span: Span(
-                            start: 1504,
-                            end: 1511,
                           ),
+                        ],
+                        commaSpans: [],
+                        span: Span(
+                          start: 1504,
+                          end: 1511,
                         ),
-                      ],
-                      commaSpans: [],
+                      ),
+                      lParen: Span(
+                        start: 1503,
+                        end: 1504,
+                      ),
+                      rParen: Span(
+                        start: 1511,
+                        end: 1512,
+                      ),
                       span: Span(
-                        start: 1504,
-                        end: 1511,
+                        start: 1503,
+                        end: 1512,
                       ),
                     )),
                     span: Span(

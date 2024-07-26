@@ -3555,74 +3555,89 @@ Stylesheet(
                         end: 794,
                       ),
                     ),
-                    arg: Some(SelectorList(
-                      type: "SelectorList",
-                      selectors: [
-                        ComplexSelector(
-                          type: "ComplexSelector",
-                          children: [
-                            CompoundSelector(
-                              type: "CompoundSelector",
-                              children: [
-                                AttributeSelector(
-                                  type: "AttributeSelector",
-                                  name: WqName(
-                                    type: "WqName",
-                                    name: Ident(
-                                      type: "Ident",
-                                      name: "foo",
-                                      raw: "foo",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: SelectorList(
+                        type: "SelectorList",
+                        selectors: [
+                          ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  AttributeSelector(
+                                    type: "AttributeSelector",
+                                    name: WqName(
+                                      type: "WqName",
+                                      name: Ident(
+                                        type: "Ident",
+                                        name: "foo",
+                                        raw: "foo",
+                                        span: Span(
+                                          start: 796,
+                                          end: 799,
+                                        ),
+                                      ),
+                                      prefix: None,
                                       span: Span(
                                         start: 796,
                                         end: 799,
                                       ),
                                     ),
-                                    prefix: None,
+                                    matcher: Some(AttributeSelectorMatcher(
+                                      type: "AttributeSelectorMatcher",
+                                      kind: Exact,
+                                      span: Span(
+                                        start: 799,
+                                        end: 800,
+                                      ),
+                                    )),
+                                    value: Some(Str(
+                                      type: "Str",
+                                      value: ")",
+                                      raw: "\")\"",
+                                      span: Span(
+                                        start: 800,
+                                        end: 803,
+                                      ),
+                                    )),
+                                    modifier: None,
                                     span: Span(
-                                      start: 796,
-                                      end: 799,
+                                      start: 795,
+                                      end: 804,
                                     ),
                                   ),
-                                  matcher: Some(AttributeSelectorMatcher(
-                                    type: "AttributeSelectorMatcher",
-                                    kind: Exact,
-                                    span: Span(
-                                      start: 799,
-                                      end: 800,
-                                    ),
-                                  )),
-                                  value: Some(Str(
-                                    type: "Str",
-                                    value: ")",
-                                    raw: "\")\"",
-                                    span: Span(
-                                      start: 800,
-                                      end: 803,
-                                    ),
-                                  )),
-                                  modifier: None,
-                                  span: Span(
-                                    start: 795,
-                                    end: 804,
-                                  ),
+                                ],
+                                span: Span(
+                                  start: 795,
+                                  end: 804,
                                 ),
-                              ],
-                              span: Span(
-                                start: 795,
-                                end: 804,
                               ),
+                            ],
+                            span: Span(
+                              start: 795,
+                              end: 804,
                             ),
-                          ],
-                          span: Span(
-                            start: 795,
-                            end: 804,
                           ),
+                        ],
+                        commaSpans: [],
+                        span: Span(
+                          start: 795,
+                          end: 804,
                         ),
-                      ],
-                      commaSpans: [],
+                      ),
+                      lParen: Span(
+                        start: 794,
+                        end: 795,
+                      ),
+                      rParen: Span(
+                        start: 804,
+                        end: 805,
+                      ),
                       span: Span(
-                        start: 795,
-                        end: 804,
+                        start: 794,
+                        end: 805,
                       ),
                     )),
                     span: Span(
@@ -3684,56 +3699,71 @@ Stylesheet(
                         end: 813,
                       ),
                     ),
-                    arg: Some(SelectorList(
-                      type: "SelectorList",
-                      selectors: [
-                        ComplexSelector(
-                          type: "ComplexSelector",
-                          children: [
-                            CompoundSelector(
-                              type: "CompoundSelector",
-                              children: [
-                                TagNameSelector(
-                                  type: "TagNameSelector",
-                                  name: WqName(
-                                    type: "WqName",
-                                    name: Ident(
-                                      type: "Ident",
-                                      name: "div",
-                                      raw: "div",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: SelectorList(
+                        type: "SelectorList",
+                        selectors: [
+                          ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  TagNameSelector(
+                                    type: "TagNameSelector",
+                                    name: WqName(
+                                      type: "WqName",
+                                      name: Ident(
+                                        type: "Ident",
+                                        name: "div",
+                                        raw: "div",
+                                        span: Span(
+                                          start: 814,
+                                          end: 817,
+                                        ),
+                                      ),
+                                      prefix: None,
                                       span: Span(
                                         start: 814,
                                         end: 817,
                                       ),
                                     ),
-                                    prefix: None,
                                     span: Span(
                                       start: 814,
                                       end: 817,
                                     ),
                                   ),
-                                  span: Span(
-                                    start: 814,
-                                    end: 817,
-                                  ),
+                                ],
+                                span: Span(
+                                  start: 814,
+                                  end: 817,
                                 ),
-                              ],
-                              span: Span(
-                                start: 814,
-                                end: 817,
                               ),
+                            ],
+                            span: Span(
+                              start: 814,
+                              end: 817,
                             ),
-                          ],
-                          span: Span(
-                            start: 814,
-                            end: 817,
                           ),
+                        ],
+                        commaSpans: [],
+                        span: Span(
+                          start: 814,
+                          end: 817,
                         ),
-                      ],
-                      commaSpans: [],
+                      ),
+                      lParen: Span(
+                        start: 813,
+                        end: 814,
+                      ),
+                      rParen: Span(
+                        start: 822,
+                        end: 823,
+                      ),
                       span: Span(
-                        start: 814,
-                        end: 817,
+                        start: 813,
+                        end: 823,
                       ),
                     )),
                     span: Span(

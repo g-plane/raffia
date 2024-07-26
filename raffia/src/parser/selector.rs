@@ -1066,22 +1066,23 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
         let arg = match peek!(input) {
             TokenWithSpan {
                 token: Token::LParen(..),
-                span,
-            } if span.start == end => {
+                span: l_paren,
+            } if l_paren.start == end => {
+                let l_paren = l_paren.clone();
                 bump!(input);
-                let arg = match &name {
+                let kind = match &name {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("nth-child")
                             || name.eq_ignore_ascii_case("nth-last-child") =>
                     {
                         if input.syntax == Syntax::Css {
-                            input.parse().map(PseudoClassSelectorArg::Nth)?
+                            input.parse().map(PseudoClassSelectorArgKind::Nth)?
                         } else if let Ok(nth) = input.try_parse(Nth::parse) {
-                            PseudoClassSelectorArg::Nth(nth)
+                            PseudoClassSelectorArgKind::Nth(nth)
                         } else {
                             input
                                 .parse_tokens_in_parens()
-                                .map(PseudoClassSelectorArg::TokenSeq)?
+                                .map(PseudoClassSelectorArgKind::TokenSeq)?
                         }
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
@@ -1097,7 +1098,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                         } else {
                             break 'pseudo_arg input
                                 .parse_tokens_in_parens()
-                                .map(PseudoClassSelectorArg::TokenSeq)?;
+                                .map(PseudoClassSelectorArgKind::TokenSeq)?;
                         };
                         if let Some(NthMatcher { span, .. }) = &nth.matcher {
                             input.recoverable_errors.push(Error {
@@ -1105,7 +1106,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                                 span: span.clone(),
                             });
                         }
-                        PseudoClassSelectorArg::Nth(nth)
+                        PseudoClassSelectorArgKind::Nth(nth)
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("not")
@@ -1114,26 +1115,28 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                             || name.eq_ignore_ascii_case("matches")
                             || name.eq_ignore_ascii_case("global") =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::SelectorList)?
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArgKind::SelectorList)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("has") =>
                     {
                         input
                             .parse()
-                            .map(PseudoClassSelectorArg::RelativeSelectorList)?
+                            .map(PseudoClassSelectorArgKind::RelativeSelectorList)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("dir") =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::Ident)?
+                        input.parse().map(PseudoClassSelectorArgKind::Ident)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("lang") =>
                     {
                         input
                             .parse()
-                            .map(PseudoClassSelectorArg::LanguageRangeList)?
+                            .map(PseudoClassSelectorArgKind::LanguageRangeList)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("-moz-any")
@@ -1144,7 +1147,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                     {
                         input
                             .parse()
-                            .map(PseudoClassSelectorArg::CompoundSelectorList)?
+                            .map(PseudoClassSelectorArgKind::CompoundSelectorList)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("host")
@@ -1152,20 +1155,32 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoClassSelector<'s> {
                     {
                         input
                             .parse()
-                            .map(PseudoClassSelectorArg::CompoundSelector)?
+                            .map(PseudoClassSelectorArgKind::CompoundSelector)?
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if input.syntax == Syntax::Less && name == "extend" =>
                     {
-                        input.parse().map(PseudoClassSelectorArg::LessExtendList)?
+                        input
+                            .parse()
+                            .map(PseudoClassSelectorArgKind::LessExtendList)?
                     }
                     _ => input
                         .parse_tokens_in_parens()
-                        .map(PseudoClassSelectorArg::TokenSeq)?,
+                        .map(PseudoClassSelectorArgKind::TokenSeq)?,
                 };
 
-                end = expect!(input, RParen).1.end;
-                Some(arg)
+                let r_paren = expect!(input, RParen).1;
+                end = r_paren.end;
+                let span = Span {
+                    start: l_paren.start,
+                    end: r_paren.end,
+                };
+                Some(PseudoClassSelectorArg {
+                    kind,
+                    l_paren,
+                    r_paren,
+                    span,
+                })
             }
             _ => None,
         };

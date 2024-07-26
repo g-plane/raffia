@@ -1776,48 +1776,63 @@ Stylesheet(
                         end: 431,
                       ),
                     ),
-                    arg: Some(TokenSeq(
-                      type: "TokenSeq",
-                      tokens: [
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: HashLBrace(HashLBrace(
-                            kind: "HashLBrace",
-                          )),
-                          span: Span(
-                            start: 432,
-                            end: 434,
-                          ),
-                        ),
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: DollarVar(DollarVar(
-                            kind: "DollarVar",
-                            ident: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "table-striped-order",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: HashLBrace(HashLBrace(
+                              kind: "HashLBrace",
+                            )),
+                            span: Span(
+                              start: 432,
+                              end: 434,
                             ),
-                          )),
-                          span: Span(
-                            start: 434,
-                            end: 454,
                           ),
-                        ),
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: RBrace(RBrace(
-                            kind: "RBrace",
-                          )),
-                          span: Span(
-                            start: 454,
-                            end: 455,
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: DollarVar(DollarVar(
+                              kind: "DollarVar",
+                              ident: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "table-striped-order",
+                              ),
+                            )),
+                            span: Span(
+                              start: 434,
+                              end: 454,
+                            ),
                           ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 454,
+                              end: 455,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 432,
+                          end: 455,
                         ),
-                      ],
+                      ),
+                      lParen: Span(
+                        start: 431,
+                        end: 432,
+                      ),
+                      rParen: Span(
+                        start: 455,
+                        end: 456,
+                      ),
                       span: Span(
-                        start: 432,
-                        end: 455,
+                        start: 431,
+                        end: 456,
                       ),
                     )),
                     span: Span(
@@ -1903,48 +1918,63 @@ Stylesheet(
                         end: 474,
                       ),
                     ),
-                    arg: Some(TokenSeq(
-                      type: "TokenSeq",
-                      tokens: [
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: HashLBrace(HashLBrace(
-                            kind: "HashLBrace",
-                          )),
-                          span: Span(
-                            start: 475,
-                            end: 477,
-                          ),
-                        ),
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: DollarVar(DollarVar(
-                            kind: "DollarVar",
-                            ident: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "table-striped-order",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: HashLBrace(HashLBrace(
+                              kind: "HashLBrace",
+                            )),
+                            span: Span(
+                              start: 475,
+                              end: 477,
                             ),
-                          )),
-                          span: Span(
-                            start: 477,
-                            end: 497,
                           ),
-                        ),
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: RBrace(RBrace(
-                            kind: "RBrace",
-                          )),
-                          span: Span(
-                            start: 497,
-                            end: 498,
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: DollarVar(DollarVar(
+                              kind: "DollarVar",
+                              ident: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "table-striped-order",
+                              ),
+                            )),
+                            span: Span(
+                              start: 477,
+                              end: 497,
+                            ),
                           ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 497,
+                              end: 498,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 475,
+                          end: 498,
                         ),
-                      ],
+                      ),
+                      lParen: Span(
+                        start: 474,
+                        end: 475,
+                      ),
+                      rParen: Span(
+                        start: 498,
+                        end: 499,
+                      ),
                       span: Span(
-                        start: 475,
-                        end: 498,
+                        start: 474,
+                        end: 499,
                       ),
                     )),
                     span: Span(

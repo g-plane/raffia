@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Added paren spans of pseudo class selector.
+
 ## v0.7.4
 
 - Fixed span when parsing Sass flags.

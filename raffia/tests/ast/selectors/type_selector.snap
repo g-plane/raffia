@@ -1684,40 +1684,55 @@ Stylesheet(
                         end: 232,
                       ),
                     ),
-                    arg: Some(SelectorList(
-                      type: "SelectorList",
-                      selectors: [
-                        ComplexSelector(
-                          type: "ComplexSelector",
-                          children: [
-                            CompoundSelector(
-                              type: "CompoundSelector",
-                              children: [
-                                UniversalSelector(
-                                  type: "UniversalSelector",
-                                  prefix: None,
-                                  span: Span(
-                                    start: 233,
-                                    end: 234,
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: SelectorList(
+                        type: "SelectorList",
+                        selectors: [
+                          ComplexSelector(
+                            type: "ComplexSelector",
+                            children: [
+                              CompoundSelector(
+                                type: "CompoundSelector",
+                                children: [
+                                  UniversalSelector(
+                                    type: "UniversalSelector",
+                                    prefix: None,
+                                    span: Span(
+                                      start: 233,
+                                      end: 234,
+                                    ),
                                   ),
+                                ],
+                                span: Span(
+                                  start: 233,
+                                  end: 234,
                                 ),
-                              ],
-                              span: Span(
-                                start: 233,
-                                end: 234,
                               ),
+                            ],
+                            span: Span(
+                              start: 233,
+                              end: 234,
                             ),
-                          ],
-                          span: Span(
-                            start: 233,
-                            end: 234,
                           ),
+                        ],
+                        commaSpans: [],
+                        span: Span(
+                          start: 233,
+                          end: 234,
                         ),
-                      ],
-                      commaSpans: [],
+                      ),
+                      lParen: Span(
+                        start: 232,
+                        end: 233,
+                      ),
+                      rParen: Span(
+                        start: 234,
+                        end: 235,
+                      ),
                       span: Span(
-                        start: 233,
-                        end: 234,
+                        start: 232,
+                        end: 235,
                       ),
                     )),
                     span: Span(

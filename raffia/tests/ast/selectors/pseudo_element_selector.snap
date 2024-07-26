@@ -2207,23 +2207,38 @@ Stylesheet(
                               end: 527,
                             ),
                           ),
-                          arg: Some(LanguageRangeList(
-                            type: "LanguageRangeList",
-                            ranges: [
-                              Ident(
-                                type: "Ident",
-                                name: "en",
-                                raw: "en",
-                                span: Span(
-                                  start: 528,
-                                  end: 530,
+                          arg: Some(PseudoClassSelectorArg(
+                            type: "PseudoClassSelectorArg",
+                            kind: LanguageRangeList(
+                              type: "LanguageRangeList",
+                              ranges: [
+                                Ident(
+                                  type: "Ident",
+                                  name: "en",
+                                  raw: "en",
+                                  span: Span(
+                                    start: 528,
+                                    end: 530,
+                                  ),
                                 ),
+                              ],
+                              commaSpans: [],
+                              span: Span(
+                                start: 528,
+                                end: 530,
                               ),
-                            ],
-                            commaSpans: [],
+                            ),
+                            lParen: Span(
+                              start: 527,
+                              end: 528,
+                            ),
+                            rParen: Span(
+                              start: 530,
+                              end: 531,
+                            ),
                             span: Span(
-                              start: 528,
-                              end: 530,
+                              start: 527,
+                              end: 531,
                             ),
                           )),
                           span: Span(

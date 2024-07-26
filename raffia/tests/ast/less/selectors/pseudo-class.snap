@@ -26,28 +26,43 @@ Stylesheet(
                         end: 10,
                       ),
                     ),
-                    arg: Some(TokenSeq(
-                      type: "TokenSeq",
-                      tokens: [
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: AtLBraceVar(AtLBraceVar(
-                            kind: "AtLBraceVar",
-                            ident: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "i",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: AtLBraceVar(AtLBraceVar(
+                              kind: "AtLBraceVar",
+                              ident: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "i",
+                              ),
+                            )),
+                            span: Span(
+                              start: 11,
+                              end: 15,
                             ),
-                          )),
-                          span: Span(
-                            start: 11,
-                            end: 15,
                           ),
+                        ],
+                        span: Span(
+                          start: 11,
+                          end: 15,
                         ),
-                      ],
+                      ),
+                      lParen: Span(
+                        start: 10,
+                        end: 11,
+                      ),
+                      rParen: Span(
+                        start: 15,
+                        end: 16,
+                      ),
                       span: Span(
-                        start: 11,
-                        end: 15,
+                        start: 10,
+                        end: 16,
                       ),
                     )),
                     span: Span(
@@ -109,28 +124,43 @@ Stylesheet(
                         end: 32,
                       ),
                     ),
-                    arg: Some(TokenSeq(
-                      type: "TokenSeq",
-                      tokens: [
-                        TokenWithSpan(
-                          type: "TokenWithSpan",
-                          token: AtLBraceVar(AtLBraceVar(
-                            kind: "AtLBraceVar",
-                            ident: Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "i",
+                    arg: Some(PseudoClassSelectorArg(
+                      type: "PseudoClassSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: AtLBraceVar(AtLBraceVar(
+                              kind: "AtLBraceVar",
+                              ident: Ident(
+                                kind: "Ident",
+                                escaped: false,
+                                raw: "i",
+                              ),
+                            )),
+                            span: Span(
+                              start: 33,
+                              end: 37,
                             ),
-                          )),
-                          span: Span(
-                            start: 33,
-                            end: 37,
                           ),
+                        ],
+                        span: Span(
+                          start: 33,
+                          end: 37,
                         ),
-                      ],
+                      ),
+                      lParen: Span(
+                        start: 32,
+                        end: 33,
+                      ),
+                      rParen: Span(
+                        start: 37,
+                        end: 38,
+                      ),
                       span: Span(
-                        start: 33,
-                        end: 37,
+                        start: 32,
+                        end: 38,
                       ),
                     )),
                     span: Span(

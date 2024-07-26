@@ -910,7 +910,11 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtendRule<'s> {
                 span,
             });
         };
-        let Some(PseudoClassSelectorArg::LessExtendList(extend)) = pseudo_class_selector.arg else {
+        let Some(PseudoClassSelectorArg {
+            kind: PseudoClassSelectorArgKind::LessExtendList(extend),
+            ..
+        }) = pseudo_class_selector.arg
+        else {
             return Err(Error {
                 kind: ErrorKind::ExpectLessExtendRule,
                 span,
