@@ -187,9 +187,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
                 None,
                 end,
             )
-        } else if at_rule_name.eq_ignore_ascii_case("position-fallback") {
-            // https://tabatkins.github.io/specs/css-anchor-position/#fallback-rule
-            let prelude = Some(AtRulePrelude::PositionFallback(input.parse_dashed_ident()?));
+        } else if at_rule_name.eq_ignore_ascii_case("position-try") {
+            // https://drafts.csswg.org/css-anchor-position-1/#fallback-rule
+            let prelude = Some(AtRulePrelude::PositionTry(input.parse_dashed_ident()?));
             let block = input.parse::<SimpleBlock>()?;
             let end = block.span.end;
             (prelude, Some(block), end)

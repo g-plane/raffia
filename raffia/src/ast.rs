@@ -48,7 +48,7 @@ pub enum AtRulePrelude<'s> {
     Namespace(Box<NamespacePrelude<'s>>),
     Nest(SelectorList<'s>),
     Page(PageSelectorList<'s>),
-    PositionFallback(InterpolableIdent<'s>),
+    PositionTry(InterpolableIdent<'s>),
     Property(InterpolableIdent<'s>),
     SassAtRoot(SassAtRoot<'s>),
     SassContent(SassContent<'s>),
