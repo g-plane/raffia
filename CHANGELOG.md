@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.8.0
+
 - Added paren spans of pseudo class selector.
 - Added paren spans of pseudo element selector.
 - Added support of `@position-try` at-rule.
