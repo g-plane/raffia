@@ -200,7 +200,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 _ => break,
             };
 
-            // multiple conditions in Less is right-associated
+            // multiple conditions in Less are right-associated
             let right = self.parse_less_condition_recursively(needs_parens, precedence)?;
 
             let span = Span {
