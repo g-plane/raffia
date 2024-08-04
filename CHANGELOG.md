@@ -2,6 +2,10 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.8.1
+
+- Fixed `serde` crate was introduced unexpectedly if `serialize` feature is disabled.
+
 ## v0.8.0
 
 - Added paren spans of pseudo class selector.
