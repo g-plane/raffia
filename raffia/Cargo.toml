@@ -11,7 +11,7 @@ exclude = ["/tests"]
 [dependencies]
 raffia_macro = { path = "../raffia_macro", version = "0.1" }
 serde = { version = "1.0", features = ["derive"], optional = true }
-smallvec = { version = "1.13", features = ["const_generics", "serde"] }
+smallvec = { version = "1.13", features = ["const_generics"] }
 
 [dev-dependencies]
 codespan-reporting = "0.11"
@@ -20,4 +20,4 @@ serde_json = "1.0"
 
 [features]
 config_serde = ["serde"]
-serialize = ["serde"]
+serialize = ["serde", "smallvec/serde"]
