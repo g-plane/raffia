@@ -366,14 +366,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("element") => {
                     vec![self.parse().map(ComponentValue::IdSelector)?]
                 }
-                // for IE-specific function `alpha`
-                InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("alpha") => {
-                    self.parse_tokens_in_parens()?
-                        .tokens
-                        .into_iter()
-                        .map(ComponentValue::TokenWithSpan)
-                        .collect()
-                }
                 InterpolableIdent::Literal(Ident {
                     raw: "boolean" | "if",
                     ..

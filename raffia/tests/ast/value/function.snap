@@ -123,13 +123,10 @@ Stylesheet(
                   ),
                 ),
                 args: [
-                  TokenWithSpan(
-                    type: "TokenWithSpan",
-                    token: Ident(Ident(
-                      kind: "Ident",
-                      escaped: false,
-                      raw: "opacity",
-                    )),
+                  Ident(
+                    type: "Ident",
+                    name: "opacity",
+                    raw: "opacity",
                     span: Span(
                       start: 32,
                       end: 39,
@@ -145,12 +142,10 @@ Stylesheet(
                       end: 40,
                     ),
                   ),
-                  TokenWithSpan(
-                    type: "TokenWithSpan",
-                    token: Number(Number(
-                      kind: "Number",
-                      raw: "75",
-                    )),
+                  Number(
+                    type: "Number",
+                    value: 75.0,
+                    raw: "75",
                     span: Span(
                       start: 40,
                       end: 42,
@@ -190,11 +185,11 @@ Stylesheet(
                 type: "Function",
                 name: Ident(
                   type: "Ident",
-                  name: "blackness",
-                  raw: "blackness",
+                  name: "alpha",
+                  raw: "alpha",
                   span: Span(
                     start: 53,
-                    end: 62,
+                    end: 58,
                   ),
                 ),
                 args: [
@@ -204,8 +199,69 @@ Stylesheet(
                       kind: "Minus",
                     )),
                     span: Span(
-                      start: 63,
-                      end: 64,
+                      start: 59,
+                      end: 60,
+                    ),
+                  ),
+                  Number(
+                    type: "Number",
+                    value: 0.75,
+                    raw: "0.75",
+                    span: Span(
+                      start: 61,
+                      end: 65,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 53,
+                  end: 66,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 47,
+              end: 66,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "prop",
+              raw: "prop",
+              span: Span(
+                start: 70,
+                end: 74,
+              ),
+            ),
+            colonSpan: Span(
+              start: 74,
+              end: 75,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "blackness",
+                  raw: "blackness",
+                  span: Span(
+                    start: 76,
+                    end: 85,
+                  ),
+                ),
+                args: [
+                  TokenWithSpan(
+                    type: "TokenWithSpan",
+                    token: Minus(Minus(
+                      kind: "Minus",
+                    )),
+                    span: Span(
+                      start: 86,
+                      end: 87,
                     ),
                   ),
                   Percentage(
@@ -215,19 +271,19 @@ Stylesheet(
                       value: 20.0,
                       raw: "20",
                       span: Span(
-                        start: 65,
-                        end: 67,
+                        start: 88,
+                        end: 90,
                       ),
                     ),
                     span: Span(
-                      start: 65,
-                      end: 68,
+                      start: 88,
+                      end: 91,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 53,
-                  end: 69,
+                  start: 76,
+                  end: 92,
                 ),
               ),
               Function(
@@ -237,8 +293,8 @@ Stylesheet(
                   name: "json",
                   raw: "json",
                   span: Span(
-                    start: 70,
-                    end: 74,
+                    start: 93,
+                    end: 97,
                   ),
                 ),
                 args: [
@@ -248,8 +304,8 @@ Stylesheet(
                       kind: "LBrace",
                     )),
                     span: Span(
-                      start: 75,
-                      end: 76,
+                      start: 98,
+                      end: 99,
                     ),
                   ),
                   Str(
@@ -257,8 +313,8 @@ Stylesheet(
                     value: "a",
                     raw: "\"a\"",
                     span: Span(
-                      start: 77,
-                      end: 80,
+                      start: 100,
+                      end: 103,
                     ),
                   ),
                   TokenWithSpan(
@@ -267,8 +323,8 @@ Stylesheet(
                       kind: "Colon",
                     )),
                     span: Span(
-                      start: 80,
-                      end: 81,
+                      start: 103,
+                      end: 104,
                     ),
                   ),
                   Number(
@@ -276,8 +332,8 @@ Stylesheet(
                     value: 1.0,
                     raw: "1",
                     span: Span(
-                      start: 82,
-                      end: 83,
+                      start: 105,
+                      end: 106,
                     ),
                   ),
                   TokenWithSpan(
@@ -286,38 +342,38 @@ Stylesheet(
                       kind: "RBrace",
                     )),
                     span: Span(
-                      start: 84,
-                      end: 85,
+                      start: 107,
+                      end: 108,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 70,
-                  end: 86,
+                  start: 93,
+                  end: 109,
                 ),
               ),
             ],
             important: None,
             lessPropertyMerge: None,
             span: Span(
-              start: 47,
-              end: 86,
+              start: 70,
+              end: 109,
             ),
           ),
         ],
         span: Span(
           start: 2,
-          end: 89,
+          end: 112,
         ),
       ),
       span: Span(
         start: 0,
-        end: 89,
+        end: 112,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 90,
+    end: 113,
   ),
 )

@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Removed special logic of parsing IE-specific `alpha` function, making its arguments more accessible.
+
 ## v0.8.1
 
 - Fixed `serde` crate was introduced unexpectedly if `serialize` feature is disabled.
