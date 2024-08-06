@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.8.2
+
 - Removed special logic of parsing IE-specific `alpha` function, making its arguments more accessible.
 
 ## v0.8.1
