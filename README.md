@@ -23,12 +23,6 @@ You can find more examples in the [examples](https://github.com/g-plane/raffia/b
 
 For detailed usage, check out [docs.rs](https://docs.rs/raffia).
 
-## 🏗️ Current Status
-
-- CSS: Almost completed.
-- SCSS/Sass: Almost completed.
-- Less: Almost completed.
-
 ## ⌛ Benchmark
 
 You can compare performance with other parsers in benchmark.
