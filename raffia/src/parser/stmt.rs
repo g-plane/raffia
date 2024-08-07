@@ -270,17 +270,34 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::Ident(..) | Token::HashLBrace(..) | Token::AtLBraceVar(..) => {
                     match self.syntax {
                         Syntax::Css => {
-                            if is_top_level {
-                                statements.push(Statement::QualifiedRule(self.parse()?));
-                                is_block_element = true;
-                            } else if self.state.in_keyframes_at_rule {
+                            if self.state.in_keyframes_at_rule {
                                 statements.push(Statement::KeyframeBlock(self.parse()?));
                                 is_block_element = true;
-                            } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
-                                statements.push(Statement::QualifiedRule(rule));
-                                is_block_element = true;
                             } else {
-                                statements.push(Statement::Declaration(self.parse()?));
+                                match self.try_parse(QualifiedRule::parse) {
+                                    Ok(rule) => {
+                                        statements.push(Statement::QualifiedRule(rule));
+                                        is_block_element = true;
+                                    }
+                                    Err(error_rule) => match self.parse::<Declaration>() {
+                                        Ok(decl) => {
+                                            if is_top_level {
+                                                self.recoverable_errors.push(Error {
+                                                    kind: ErrorKind::TopLevelDeclaration,
+                                                    span: decl.span.clone(),
+                                                });
+                                            }
+                                            statements.push(Statement::Declaration(decl));
+                                        }
+                                        Err(error_decl) => {
+                                            if is_top_level {
+                                                return Err(error_rule);
+                                            } else {
+                                                return Err(error_decl);
+                                            }
+                                        }
+                                    },
+                                }
                             }
                         }
                         Syntax::Scss | Syntax::Sass => {
@@ -288,22 +305,38 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 self.try_parse(SassVariableDeclaration::parse)
                             {
                                 statements.push(Statement::SassVariableDeclaration(sass_var_decl));
-                            } else if is_top_level {
-                                statements.push(Statement::QualifiedRule(self.parse()?));
-                                is_block_element = true;
                             } else if self.state.in_keyframes_at_rule {
                                 statements.push(Statement::KeyframeBlock(self.parse()?));
                                 is_block_element = true;
-                            } else if let Ok(rule) = self.try_parse(QualifiedRule::parse) {
-                                statements.push(Statement::QualifiedRule(rule));
-                                is_block_element = true;
                             } else {
-                                let decl = self.parse::<Declaration>()?;
-                                is_block_element = matches!(
-                                    decl.value.last(),
-                                    Some(ComponentValue::SassNestingDeclaration(..))
-                                );
-                                statements.push(Statement::Declaration(decl));
+                                match self.try_parse(QualifiedRule::parse) {
+                                    Ok(rule) => {
+                                        statements.push(Statement::QualifiedRule(rule));
+                                        is_block_element = true;
+                                    }
+                                    Err(error_rule) => match self.parse::<Declaration>() {
+                                        Ok(decl) => {
+                                            is_block_element = matches!(
+                                                decl.value.last(),
+                                                Some(ComponentValue::SassNestingDeclaration(..))
+                                            );
+                                            if is_top_level {
+                                                self.recoverable_errors.push(Error {
+                                                    kind: ErrorKind::TopLevelDeclaration,
+                                                    span: decl.span.clone(),
+                                                });
+                                            }
+                                            statements.push(Statement::Declaration(decl));
+                                        }
+                                        Err(error_decl) => {
+                                            if is_top_level {
+                                                return Err(error_rule);
+                                            } else {
+                                                return Err(error_decl);
+                                            }
+                                        }
+                                    },
+                                }
                             }
                         }
                         Syntax::Less => {

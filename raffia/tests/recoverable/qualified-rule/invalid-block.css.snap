@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: declaration at top level is disallowed
+  ┌─ invalid-block.css:1:1
+  │
+1 │ color: green;
+  │ ^^^^^^^^^^^^

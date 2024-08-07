@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+- Changed: treat top level declarations as recoverable errors.
+
 ## v0.8.2
 
 - Removed special logic of parsing IE-specific `alpha` function, making its arguments more accessible.
