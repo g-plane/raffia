@@ -238,10 +238,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQuery<'s> {
                 Token::Dot(..) | Token::Hash(..) => input.parse().map(|less_namespace_value| {
                     MediaQuery::LessNamespaceValue(Box::new(less_namespace_value))
                 }),
-                _ => input.parse().map(MediaQuery::WithType),
+                _ => input.parse_media_query_with_type_or_function(),
             }
         } else {
-            input.parse().map(MediaQuery::WithType)
+            input.parse_media_query_with_type_or_function()
         }
     }
 }
@@ -463,6 +463,37 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 self.parse_ratio(number).map(ComponentValue::Ratio)
             }
             value => Ok(value),
+        }
+    }
+
+    fn parse_media_query_with_type_or_function(&mut self) -> PResult<MediaQuery<'s>> {
+        let media_query_with_type = self.parse::<MediaQueryWithType>()?;
+        match (media_query_with_type, peek!(self)) {
+            (
+                MediaQueryWithType {
+                    modifier: None,
+                    media_type: name,
+                    condition: None,
+                    span: mq_span,
+                },
+                TokenWithSpan {
+                    token: crate::token::Token::LParen(..),
+                    span: lparen_span,
+                },
+            ) if mq_span.end == lparen_span.start => {
+                bump!(self);
+                let args = self.parse_function_args()?;
+                let (_, Span { end, .. }) = expect!(self, RParen);
+                Ok(MediaQuery::Function(Function {
+                    name: FunctionName::Ident(name),
+                    args,
+                    span: Span {
+                        start: mq_span.start,
+                        end,
+                    },
+                }))
+            }
+            (media_query_with_type, _) => Ok(MediaQuery::WithType(media_query_with_type)),
         }
     }
 }

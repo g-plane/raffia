@@ -192,3 +192,6 @@
 @media (min-width: calc(1em)) {}
 @media (min-width: calc(1px * 2 + 1rem)) {}
 @media (min-width: calc(1 * (2px + 1rem))) {}
+
+/* non-standard syntax, but for Tailwind CSS */
+@media screen(md) {}

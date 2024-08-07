@@ -3,6 +3,7 @@ _This changelog only relates to the `raffia` crate._
 ## Unreleased
 
 - Changed: treat top level declarations as recoverable errors.
+- Added support of non-standard Tailwind CSS `@media screen()` syntax.
 
 ## v0.8.2
 

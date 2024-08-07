@@ -1358,6 +1358,7 @@ pub struct MediaOr<'s> {
 pub enum MediaQuery<'s> {
     ConditionOnly(MediaCondition<'s>),
     WithType(MediaQueryWithType<'s>),
+    Function(Function<'s>),
     LessVariable(LessVariable<'s>),
     LessNamespaceValue(Box<LessNamespaceValue<'s>>),
 }

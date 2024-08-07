@@ -31991,9 +31991,70 @@ Stylesheet(
         end: 8844,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "media",
+        raw: "media",
+        span: Span(
+          start: 8895,
+          end: 8900,
+        ),
+      ),
+      prelude: Some(MediaQueryList(
+        type: "MediaQueryList",
+        queries: [
+          Function(
+            type: "Function",
+            name: Ident(
+              type: "Ident",
+              name: "screen",
+              raw: "screen",
+              span: Span(
+                start: 8901,
+                end: 8907,
+              ),
+            ),
+            args: [
+              Ident(
+                type: "Ident",
+                name: "md",
+                raw: "md",
+                span: Span(
+                  start: 8908,
+                  end: 8910,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 8901,
+              end: 8911,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 8901,
+          end: 8911,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 8912,
+          end: 8914,
+        ),
+      )),
+      span: Span(
+        start: 8894,
+        end: 8914,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 8845,
+    end: 8915,
   ),
 )
