@@ -1,0 +1,14 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: declaration at top level is disallowed
+  ┌─ top-level.css:1:1
+  │
+1 │ color : red;
+  │ ^^^^^^^^^^^
+
+error: declaration at top level is disallowed
+  ┌─ top-level.css:2:1
+  │
+2 │ display    :inline
+  │ ^^^^^^^^^^^^^^^^^^

@@ -1,0 +1,78 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    Declaration(
+      type: "Declaration",
+      name: Ident(
+        type: "Ident",
+        name: "color",
+        raw: "color",
+        span: Span(
+          start: 0,
+          end: 5,
+        ),
+      ),
+      colonSpan: Span(
+        start: 6,
+        end: 7,
+      ),
+      value: [
+        Ident(
+          type: "Ident",
+          name: "red",
+          raw: "red",
+          span: Span(
+            start: 8,
+            end: 11,
+          ),
+        ),
+      ],
+      important: None,
+      lessPropertyMerge: None,
+      span: Span(
+        start: 0,
+        end: 11,
+      ),
+    ),
+    Declaration(
+      type: "Declaration",
+      name: Ident(
+        type: "Ident",
+        name: "display",
+        raw: "display",
+        span: Span(
+          start: 13,
+          end: 20,
+        ),
+      ),
+      colonSpan: Span(
+        start: 24,
+        end: 25,
+      ),
+      value: [
+        Ident(
+          type: "Ident",
+          name: "inline",
+          raw: "inline",
+          span: Span(
+            start: 25,
+            end: 31,
+          ),
+        ),
+      ],
+      important: None,
+      lessPropertyMerge: None,
+      span: Span(
+        start: 13,
+        end: 31,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 32,
+  ),
+)
