@@ -1,0 +1,73 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "keyframes",
+        raw: "keyframes",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: Some(Ident(
+        type: "Ident",
+        name: "kf",
+        raw: "kf",
+        span: Span(
+          start: 11,
+          end: 13,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          KeyframeBlock(
+            type: "KeyframeBlock",
+            selectors: [
+              Ident(
+                type: "Ident",
+                name: "form",
+                raw: "form",
+                span: Span(
+                  start: 18,
+                  end: 22,
+                ),
+              ),
+            ],
+            commaSpans: [],
+            block: SimpleBlock(
+              type: "SimpleBlock",
+              statements: [],
+              span: Span(
+                start: 23,
+                end: 25,
+              ),
+            ),
+            span: Span(
+              start: 18,
+              end: 25,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 14,
+          end: 27,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 27,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 28,
+  ),
+)

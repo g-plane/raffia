@@ -1,0 +1,302 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "font-face",
+        raw: "font-face",
+        span: Span(
+          start: 1,
+          end: 10,
+        ),
+      ),
+      prelude: None,
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "font-family",
+              raw: "font-family",
+              span: Span(
+                start: 15,
+                end: 26,
+              ),
+            ),
+            colonSpan: Span(
+              start: 26,
+              end: 27,
+            ),
+            value: [
+              Str(
+                type: "Str",
+                value: "Ampersand",
+                raw: "\'Ampersand\'",
+                span: Span(
+                  start: 28,
+                  end: 39,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 15,
+              end: 39,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "src",
+              raw: "src",
+              span: Span(
+                start: 43,
+                end: 46,
+              ),
+            ),
+            colonSpan: Span(
+              start: 46,
+              end: 47,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "local",
+                  raw: "local",
+                  span: Span(
+                    start: 48,
+                    end: 53,
+                  ),
+                ),
+                args: [
+                  Str(
+                    type: "Str",
+                    value: "Times New Roman",
+                    raw: "\'Times New Roman\'",
+                    span: Span(
+                      start: 54,
+                      end: 71,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 48,
+                  end: 72,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 43,
+              end: 72,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 76,
+                end: 89,
+              ),
+            ),
+            colonSpan: Span(
+              start: 89,
+              end: 90,
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 0,
+                startRaw: "??????",
+                end: 16777215,
+                endRaw: None,
+                span: Span(
+                  start: 91,
+                  end: 99,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 76,
+              end: 99,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 103,
+                end: 116,
+              ),
+            ),
+            colonSpan: Span(
+              start: 116,
+              end: 117,
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1237266,
+                startRaw: "12e112",
+                end: 1237266,
+                endRaw: None,
+                span: Span(
+                  start: 118,
+                  end: 126,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 103,
+              end: 126,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 130,
+                end: 143,
+              ),
+            ),
+            colonSpan: Span(
+              start: 143,
+              end: 144,
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973985,
+                startRaw: "1e1ee1",
+                end: 1973985,
+                endRaw: None,
+                span: Span(
+                  start: 145,
+                  end: 153,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 130,
+              end: 153,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 157,
+                end: 170,
+              ),
+            ),
+            colonSpan: Span(
+              start: 170,
+              end: 171,
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973985,
+                startRaw: "1e1ee1",
+                end: 16777215,
+                endRaw: Some("FFFFFF"),
+                span: Span(
+                  start: 172,
+                  end: 187,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 157,
+              end: 187,
+            ),
+          ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "unicode-range",
+              raw: "unicode-range",
+              span: Span(
+                start: 191,
+                end: 204,
+              ),
+            ),
+            colonSpan: Span(
+              start: 204,
+              end: 205,
+            ),
+            value: [
+              UnicodeRange(
+                type: "UnicodeRange",
+                prefix: 'U',
+                start: 1973984,
+                startRaw: "1e1ee?",
+                end: 1973999,
+                endRaw: None,
+                span: Span(
+                  start: 206,
+                  end: 214,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 191,
+              end: 214,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 11,
+          end: 217,
+        ),
+      )),
+      span: Span(
+        start: 0,
+        end: 217,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 218,
+  ),
+)

@@ -1,0 +1,384 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "2b",
+                      raw: "2b",
+                      span: Span(
+                        start: 1,
+                        end: 3,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 3,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 3,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 3,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 0,
+          end: 3,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 8,
+                end: 13,
+              ),
+            ),
+            colonSpan: Span(
+              start: 13,
+              end: 14,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 15,
+                  end: 18,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 8,
+              end: 18,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 4,
+          end: 21,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 21,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "2",
+                      raw: "2",
+                      span: Span(
+                        start: 23,
+                        end: 24,
+                      ),
+                    ),
+                    span: Span(
+                      start: 22,
+                      end: 24,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 22,
+                  end: 24,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 22,
+              end: 24,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 22,
+          end: 24,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 29,
+                end: 34,
+              ),
+            ),
+            colonSpan: Span(
+              start: 34,
+              end: 35,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 36,
+                  end: 39,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 29,
+              end: 39,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 25,
+          end: 42,
+        ),
+      ),
+      span: Span(
+        start: 22,
+        end: 42,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "-2b",
+                      raw: "-2b",
+                      span: Span(
+                        start: 44,
+                        end: 47,
+                      ),
+                    ),
+                    span: Span(
+                      start: 43,
+                      end: 47,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 43,
+                  end: 47,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 43,
+              end: 47,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 43,
+          end: 47,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 52,
+                end: 57,
+              ),
+            ),
+            colonSpan: Span(
+              start: 57,
+              end: 58,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 59,
+                  end: 62,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 52,
+              end: 62,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 48,
+          end: 65,
+        ),
+      ),
+      span: Span(
+        start: 43,
+        end: 65,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  IdSelector(
+                    type: "IdSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "-2",
+                      raw: "-2",
+                      span: Span(
+                        start: 67,
+                        end: 69,
+                      ),
+                    ),
+                    span: Span(
+                      start: 66,
+                      end: 69,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 66,
+                  end: 69,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 66,
+              end: 69,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 66,
+          end: 69,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 74,
+                end: 79,
+              ),
+            ),
+            colonSpan: Span(
+              start: 79,
+              end: 80,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 81,
+                  end: 84,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 74,
+              end: 84,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 70,
+          end: 87,
+        ),
+      ),
+      span: Span(
+        start: 66,
+        end: 87,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 88,
+  ),
+)

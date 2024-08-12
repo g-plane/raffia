@@ -3,7 +3,7 @@ use codespan_reporting::{
     files::SimpleFile,
     term::{self, termcolor::Buffer},
 };
-use insta::{assert_snapshot, glob, Settings};
+use insta::{assert_ron_snapshot, assert_snapshot, glob, Settings};
 use raffia::{ast::Stylesheet, Parser, Syntax};
 use std::fs;
 
@@ -25,8 +25,8 @@ fn recoverable_errors_snapshot() {
         let file = SimpleFile::new(file_name, &code);
         let config = term::Config::default();
 
-        let errors = match parser.parse::<Stylesheet>() {
-            Ok(..) => {
+        let (ast, errors) = match parser.parse::<Stylesheet>() {
+            Ok(ast) => {
                 let recoverable_errors = parser.recoverable_errors();
                 assert!(
                     !recoverable_errors.is_empty(),
@@ -45,7 +45,7 @@ fn recoverable_errors_snapshot() {
                     .for_each(|diagnostic| {
                         term::emit(&mut buffer, &config, &file, &diagnostic).unwrap();
                     });
-                String::from_utf8(buffer.into_inner()).unwrap()
+                (ast, String::from_utf8(buffer.into_inner()).unwrap())
             }
             Err(error) => {
                 let diagnostic = Diagnostic::error()
@@ -66,7 +66,8 @@ fn recoverable_errors_snapshot() {
         settings.remove_input_file();
         settings.remove_info();
         settings.bind(|| {
-            assert_snapshot!(file_name, errors);
+            assert_snapshot!(format!("{file_name}.error"), errors);
+            assert_ron_snapshot!(format!("{file_name}.ast"), ast);
         });
     });
 }

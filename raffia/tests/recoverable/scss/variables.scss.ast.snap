@@ -1,0 +1,531 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: Some(Ident(
+        type: "Ident",
+        name: "namespace",
+        raw: "namespace",
+        span: Span(
+          start: 0,
+          end: 9,
+        ),
+      )),
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "member",
+          raw: "member",
+          span: Span(
+            start: 11,
+            end: 17,
+          ),
+        ),
+        span: Span(
+          start: 10,
+          end: 17,
+        ),
+      ),
+      colonSpan: Span(
+        start: 17,
+        end: 18,
+      ),
+      value: Ident(
+        type: "Ident",
+        name: "value",
+        raw: "value",
+        span: Span(
+          start: 19,
+          end: 24,
+        ),
+      ),
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 26,
+              end: 32,
+            ),
+          ),
+          span: Span(
+            start: 25,
+            end: 32,
+          ),
+        ),
+      ],
+      span: Span(
+        start: 0,
+        end: 32,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "c",
+          raw: "c",
+          span: Span(
+            start: 36,
+            end: 37,
+          ),
+        ),
+        span: Span(
+          start: 35,
+          end: 37,
+        ),
+      ),
+      colonSpan: Span(
+        start: 37,
+        end: 38,
+      ),
+      value: Dimension(
+        type: "Dimension",
+        value: Number(
+          type: "Number",
+          value: 30.0,
+          raw: "30",
+          span: Span(
+            start: 39,
+            end: 41,
+          ),
+        ),
+        unit: Ident(
+          type: "Ident",
+          name: "px",
+          raw: "px",
+          span: Span(
+            start: 41,
+            end: 43,
+          ),
+        ),
+        kind: Length,
+        span: Span(
+          start: 39,
+          end: 43,
+        ),
+      ),
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 45,
+              end: 52,
+            ),
+          ),
+          span: Span(
+            start: 44,
+            end: 52,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 54,
+              end: 61,
+            ),
+          ),
+          span: Span(
+            start: 53,
+            end: 61,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 63,
+              end: 70,
+            ),
+          ),
+          span: Span(
+            start: 62,
+            end: 70,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 72,
+              end: 78,
+            ),
+          ),
+          span: Span(
+            start: 71,
+            end: 78,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 80,
+              end: 86,
+            ),
+          ),
+          span: Span(
+            start: 79,
+            end: 86,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 88,
+              end: 94,
+            ),
+          ),
+          span: Span(
+            start: 87,
+            end: 94,
+          ),
+        ),
+      ],
+      span: Span(
+        start: 35,
+        end: 94,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "d",
+          raw: "d",
+          span: Span(
+            start: 97,
+            end: 98,
+          ),
+        ),
+        span: Span(
+          start: 96,
+          end: 98,
+        ),
+      ),
+      colonSpan: Span(
+        start: 98,
+        end: 99,
+      ),
+      value: Dimension(
+        type: "Dimension",
+        value: Number(
+          type: "Number",
+          value: 40.0,
+          raw: "40",
+          span: Span(
+            start: 100,
+            end: 102,
+          ),
+        ),
+        unit: Ident(
+          type: "Ident",
+          name: "px",
+          raw: "px",
+          span: Span(
+            start: 102,
+            end: 104,
+          ),
+        ),
+        kind: Length,
+        span: Span(
+          start: 100,
+          end: 104,
+        ),
+      ),
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 106,
+              end: 112,
+            ),
+          ),
+          span: Span(
+            start: 105,
+            end: 112,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 114,
+              end: 120,
+            ),
+          ),
+          span: Span(
+            start: 113,
+            end: 120,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 122,
+              end: 128,
+            ),
+          ),
+          span: Span(
+            start: 121,
+            end: 128,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 130,
+              end: 137,
+            ),
+          ),
+          span: Span(
+            start: 129,
+            end: 137,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 139,
+              end: 146,
+            ),
+          ),
+          span: Span(
+            start: 138,
+            end: 146,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 148,
+              end: 155,
+            ),
+          ),
+          span: Span(
+            start: 147,
+            end: 155,
+          ),
+        ),
+      ],
+      span: Span(
+        start: 96,
+        end: 155,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "e",
+          raw: "e",
+          span: Span(
+            start: 158,
+            end: 159,
+          ),
+        ),
+        span: Span(
+          start: 157,
+          end: 159,
+        ),
+      ),
+      colonSpan: Span(
+        start: 159,
+        end: 160,
+      ),
+      value: Dimension(
+        type: "Dimension",
+        value: Number(
+          type: "Number",
+          value: 50.0,
+          raw: "50",
+          span: Span(
+            start: 161,
+            end: 163,
+          ),
+        ),
+        unit: Ident(
+          type: "Ident",
+          name: "px",
+          raw: "px",
+          span: Span(
+            start: 163,
+            end: 165,
+          ),
+        ),
+        kind: Length,
+        span: Span(
+          start: 161,
+          end: 165,
+        ),
+      ),
+      flags: [
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 167,
+              end: 173,
+            ),
+          ),
+          span: Span(
+            start: 166,
+            end: 173,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 175,
+              end: 182,
+            ),
+          ),
+          span: Span(
+            start: 174,
+            end: 182,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 184,
+              end: 190,
+            ),
+          ),
+          span: Span(
+            start: 183,
+            end: 190,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 192,
+              end: 199,
+            ),
+          ),
+          span: Span(
+            start: 191,
+            end: 199,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "global",
+            raw: "global",
+            span: Span(
+              start: 201,
+              end: 207,
+            ),
+          ),
+          span: Span(
+            start: 200,
+            end: 207,
+          ),
+        ),
+        SassFlag(
+          type: "SassFlag",
+          keyword: Ident(
+            type: "Ident",
+            name: "default",
+            raw: "default",
+            span: Span(
+              start: 209,
+              end: 216,
+            ),
+          ),
+          span: Span(
+            start: 208,
+            end: 216,
+          ),
+        ),
+      ],
+      span: Span(
+        start: 157,
+        end: 216,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 218,
+  ),
+)
