@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: declaration at top level is disallowed
+  ┌─ top-level-ident-escaped.css:1:1
+  │
+1 │ height: 1px\65
+  │ ^^^^^^^^^^^^^^

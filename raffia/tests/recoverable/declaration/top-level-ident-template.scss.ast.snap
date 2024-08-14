@@ -1,0 +1,89 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    Declaration(
+      type: "Declaration",
+      name: Ident(
+        type: "Ident",
+        name: "height",
+        raw: "height",
+        span: Span(
+          start: 0,
+          end: 6,
+        ),
+      ),
+      colonSpan: Span(
+        start: 6,
+        end: 7,
+      ),
+      value: [
+        Dimension(
+          type: "Dimension",
+          value: Number(
+            type: "Number",
+            value: 1.0,
+            raw: "1",
+            span: Span(
+              start: 8,
+              end: 9,
+            ),
+          ),
+          unit: Ident(
+            type: "Ident",
+            name: "p",
+            raw: "p",
+            span: Span(
+              start: 9,
+              end: 10,
+            ),
+          ),
+          kind: Unknown,
+          span: Span(
+            start: 8,
+            end: 10,
+          ),
+        ),
+        SassInterpolatedIdent(
+          type: "SassInterpolatedIdent",
+          elements: [
+            Str(
+              type: "Str",
+              value: "",
+              raw: "\'\'",
+              span: Span(
+                start: 12,
+                end: 14,
+              ),
+            ),
+            InterpolableIdentStaticPart(
+              type: "InterpolableIdentStaticPart",
+              value: "x",
+              raw: "x",
+              span: Span(
+                start: 15,
+                end: 16,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 10,
+            end: 16,
+          ),
+        ),
+      ],
+      important: None,
+      lessPropertyMerge: None,
+      span: Span(
+        start: 0,
+        end: 16,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 16,
+  ),
+)

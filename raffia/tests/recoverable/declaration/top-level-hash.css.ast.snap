@@ -1,0 +1,45 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    Declaration(
+      type: "Declaration",
+      name: Ident(
+        type: "Ident",
+        name: "color",
+        raw: "color",
+        span: Span(
+          start: 0,
+          end: 5,
+        ),
+      ),
+      colonSpan: Span(
+        start: 5,
+        end: 6,
+      ),
+      value: [
+        HexColor(
+          type: "HexColor",
+          value: "abc",
+          raw: "abc",
+          span: Span(
+            start: 7,
+            end: 11,
+          ),
+        ),
+      ],
+      important: None,
+      lessPropertyMerge: None,
+      span: Span(
+        start: 0,
+        end: 11,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 11,
+  ),
+)

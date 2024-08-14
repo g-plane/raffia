@@ -331,20 +331,18 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     pub(crate) fn scan_ident_sequence(&mut self) -> PResult<(Ident<'s>, Span)> {
         let start;
-        let mut end;
+        let end;
         let mut escaped = false;
         match self.state.chars.peek() {
             Some((i, c)) if c.is_ascii_alphabetic() || *c == '_' || !c.is_ascii() => {
                 start = *i;
-                end = start + c.len_utf8();
                 self.state.chars.next();
             }
             Some((i, '-')) => {
                 start = *i;
                 self.state.chars.next();
-                if let Some((i, c)) = self.state.chars.next() {
+                if let Some((_, c)) = self.state.chars.next() {
                     debug_assert!(is_start_of_ident(c));
-                    end = i + c.len_utf8();
                 } else {
                     return Err(self.build_eof_error());
                 }
@@ -352,20 +350,30 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             Some((i, '\\')) => {
                 escaped = true;
                 start = *i;
-                end = self.scan_escape(/* backslash_consumed */ false)?;
+                self.scan_escape(/* backslash_consumed */ false)?;
             }
             _ => unreachable!(),
         }
 
-        while let Some((i, c)) = self.state.chars.peek() {
-            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
-                self.state.chars.next();
-            } else if c == &'\\' {
-                escaped = true;
-                self.scan_escape(/* backslash_consumed */ false)?;
-            } else {
-                end = *i;
-                break;
+        loop {
+            match self.state.chars.peek() {
+                Some((_, c))
+                    if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() =>
+                {
+                    self.state.chars.next();
+                }
+                Some((_, '\\')) => {
+                    escaped = true;
+                    self.scan_escape(/* backslash_consumed */ false)?;
+                }
+                Some((i, _)) => {
+                    end = *i;
+                    break;
+                }
+                None => {
+                    end = self.source.len();
+                    break;
+                }
             }
         }
 
@@ -407,14 +415,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
 
     fn scan_number(&mut self) -> PResult<(Number<'s>, Span)> {
         let start;
-        let mut end = 0;
+        let mut end;
 
         let is_start_with_dot;
         match self.state.chars.next() {
             Some((i, c)) if c.is_ascii_digit() => {
                 start = i;
                 is_start_with_dot = false;
-                end = i + 1;
             }
             Some((i, '+' | '-')) => {
                 start = i;
@@ -427,12 +434,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             _ => unreachable!(),
         }
 
-        while let Some((i, c)) = self.state.chars.peek() {
-            if c.is_ascii_digit() {
-                self.state.chars.next();
-            } else {
-                end = *i;
-                break;
+        loop {
+            match self.state.chars.peek() {
+                Some((_, c)) if c.is_ascii_digit() => {
+                    self.state.chars.next();
+                }
+                Some((i, _)) => {
+                    end = *i;
+                    break;
+                }
+                None => {
+                    end = self.source.len();
+                    break;
+                }
             }
         }
         if !is_start_with_dot {
@@ -442,12 +456,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 Some((_, '.')) if !matches!(chars.clone().nth(1), Some((_, '.'))) => {
                     // bump '.'
                     self.state.chars.next();
-                    while let Some((i, c)) = self.state.chars.peek() {
-                        if c.is_ascii_digit() {
-                            self.state.chars.next();
-                        } else {
-                            end = *i;
-                            break;
+                    loop {
+                        match self.state.chars.peek() {
+                            Some((_, c)) if c.is_ascii_digit() => {
+                                self.state.chars.next();
+                            }
+                            Some((i, _)) => {
+                                end = *i;
+                                break;
+                            }
+                            None => {
+                                end = self.source.len();
+                                break;
+                            }
                         }
                     }
                 }
@@ -465,12 +486,19 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     self.state.chars.next();
                 }
 
-                while let Some((i, c)) = self.state.chars.clone().peek() {
-                    if c.is_ascii_digit() {
-                        self.state.chars.next();
-                    } else {
-                        end = *i;
-                        break;
+                loop {
+                    match self.state.chars.clone().peek() {
+                        Some((_, c)) if c.is_ascii_digit() => {
+                            self.state.chars.next();
+                        }
+                        Some((i, _)) => {
+                            end = *i;
+                            break;
+                        }
+                        None => {
+                            end = self.source.len();
+                            break;
+                        }
                     }
                 }
             }
@@ -719,24 +747,34 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let start = self.current_offset();
         let mut escaped = false;
 
-        while let Some((i, c)) = self.state.chars.peek() {
-            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
-                self.state.chars.next();
-            } else if c == &'\\' {
-                escaped = true;
-                self.scan_escape(/* backslash_consumed */ false)?;
-            } else {
-                let end = *i;
-                return if end > start {
-                    let raw = unsafe { self.source.get_unchecked(start..end) };
-                    Ok(Some((Ident { escaped, raw }, Span { start, end })))
-                } else {
-                    Ok(None)
-                };
+        let end;
+        loop {
+            match self.state.chars.peek() {
+                Some((_, c))
+                    if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() =>
+                {
+                    self.state.chars.next();
+                }
+                Some((_, '\\')) => {
+                    escaped = true;
+                    self.scan_escape(/* backslash_consumed */ false)?;
+                }
+                Some((i, _)) => {
+                    end = *i;
+                    break;
+                }
+                None => {
+                    end = self.source.len();
+                    break;
+                }
             }
         }
-
-        Ok(None)
+        if end > start {
+            let raw = unsafe { self.source.get_unchecked(start..end) };
+            Ok(Some((Ident { escaped, raw }, Span { start, end })))
+        } else {
+            Ok(None)
+        }
     }
 
     fn scan_sass_single_hyphen_as_ident(&mut self) -> PResult<TokenWithSpan<'s>> {
@@ -914,15 +952,13 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         let (start, c) = self.state.chars.next().unwrap();
         debug_assert_eq!(c, '#');
 
-        let mut end;
+        let end;
         let mut escaped = false;
         match self.state.chars.next() {
-            Some((i, c)) if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() => {
-                end = i + c.len_utf8();
-            }
+            Some((_, c)) if c.is_ascii_alphanumeric() || c == '-' || c == '_' || !c.is_ascii() => {}
             Some((_, '\\')) => {
                 escaped = true;
-                end = self.scan_escape(/* backslash_consumed */ true)?;
+                self.scan_escape(/* backslash_consumed */ true)?;
             }
             Some((i, _)) => {
                 return Err(Error {
@@ -937,15 +973,25 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                 return Err(self.build_eof_error());
             }
         }
-        while let Some((i, c)) = self.state.chars.peek() {
-            if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() {
-                self.state.chars.next();
-            } else if c == &'\\' {
-                escaped = true;
-                self.scan_escape(/* backslash_consumed */ false)?;
-            } else {
-                end = *i;
-                break;
+        loop {
+            match self.state.chars.peek() {
+                Some((_, c))
+                    if c.is_ascii_alphanumeric() || *c == '-' || *c == '_' || !c.is_ascii() =>
+                {
+                    self.state.chars.next();
+                }
+                Some((_, '\\')) => {
+                    escaped = true;
+                    self.scan_escape(/* backslash_consumed */ false)?;
+                }
+                Some((i, _)) => {
+                    end = *i;
+                    break;
+                }
+                None => {
+                    end = self.source.len();
+                    break;
+                }
             }
         }
 

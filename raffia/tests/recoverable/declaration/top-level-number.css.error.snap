@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: declaration at top level is disallowed
+  ┌─ top-level-number.css:1:1
+  │
+1 │ height: 1234
+  │ ^^^^^^^^^^^^
