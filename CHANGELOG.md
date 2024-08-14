@@ -2,6 +2,8 @@ _This changelog only relates to the `raffia` crate._
 
 ## Unreleased
 
+## v0.9.1
+
 - Fixed parsing top-level declarations without trailing whitespaces.
 
 ## v0.9.0
