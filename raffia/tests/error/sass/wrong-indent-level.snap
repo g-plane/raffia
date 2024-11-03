@@ -1,0 +1,10 @@
+---
+source: raffia/tests/error.rs
+assertion_line: 51
+snapshot_kind: text
+---
+error: inconsistent indentation at block level
+  ┌─ wrong-indent-level.sass:3:1
+  │
+3 │  d: e
+  │ ^

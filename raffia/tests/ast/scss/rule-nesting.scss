@@ -1,0 +1,15 @@
+a {
+    color: red;
+    b {
+        c {
+            d {
+                color: red;
+            }
+        }
+        color: red;
+    }
+    e {
+        color: red;
+    }
+    foo {}
+}
