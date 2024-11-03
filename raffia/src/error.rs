@@ -97,6 +97,7 @@ pub enum ErrorKind {
     UnexpectedSemicolonInSass,
     UnexpectedSimpleBlock,
     TopLevelDeclaration,
+    InconsistentIndentation
 }
 
 impl Display for ErrorKind {
@@ -217,6 +218,7 @@ impl Display for ErrorKind {
             Self::UnexpectedSemicolonInSass => write!(f, "semicolon in Sass is disallowed"),
             Self::UnexpectedSimpleBlock => write!(f, "simple block is disallowed"),
             Self::TopLevelDeclaration => write!(f, "declaration at top level is disallowed"),
+            Self::InconsistentIndentation => write!(f, "inconsistent indentation at block level")
         }
     }
 }

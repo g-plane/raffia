@@ -16,7 +16,12 @@ pub mod token;
 #[derive(Clone)]
 pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
-    indent_size: u16,
+    /// Indentation size per indentation level. SASS requires consistent indentation level for a block,
+    /// CSS/LESS/SCSS are completely insensible to the indentation
+    indent_stops: Vec<u16>,
+    /// Dedent doesn't consume anything unless it's the last one required by indentation level,
+    /// so we put em here
+    indent_stack: Vec<TokenWithSpan<'s>>
 }
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
@@ -38,14 +43,17 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             comments,
             state: TokenizerState {
                 chars: source.char_indices().peekable(),
-                indent_size: 0,
+                indent_stops: vec![0],
+                indent_stack: Vec::new()
             },
         }
     }
 
     #[inline]
     pub fn bump(&mut self) -> PResult<TokenWithSpan<'s>> {
-        if let Some(indent) = self.skip_ws_or_comment() {
+        self.skip_ws_comment_or_indent()?;
+
+        if let Some(indent) =  self.state.indent_stack.pop(){
             Ok(indent)
         } else {
             self.next()
@@ -164,30 +172,32 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn skip_ws_or_comment(&mut self) -> Option<TokenWithSpan<'s>> {
-        let mut indent = None;
-        loop {
-            match self.state.chars.peek() {
-                Some((_, c)) if c.is_ascii_whitespace() => {
-                    if self.syntax == Syntax::Sass {
-                        indent = self.scan_indent();
-                    } else {
-                        self.skip_ws();
-                    }
-                }
-                Some((_, '/')) => {
+    fn skip_ws_comment_or_indent(&mut self) -> PResult<()> {
+        while let Some((_, c)) = self.state.chars.peek() {
+            match c {
+                '/' => {
                     let mut chars = self.state.chars.clone();
                     chars.next();
-                    match chars.next() {
+                    match chars.peek() {
                         Some((_, '*')) => self.scan_block_comment(),
                         Some((_, '/')) if self.syntax != Syntax::Css => self.scan_line_comment(),
                         _ => break,
                     }
-                }
-                _ => break,
+                },
+                _ if c.is_ascii_whitespace() => {
+                    if self.syntax == Syntax::Sass {
+                        if let Some(indent) = self.scan_indent() {
+                            self.state.indent_stack.push(indent?);
+                        }
+                    } else {
+                        self.skip_ws();
+                    }
+                },
+                _ => break
             }
         }
-        indent
+
+        Ok(())
     }
 
     fn skip_ws(&mut self) {
@@ -200,52 +210,96 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         }
     }
 
-    fn scan_indent(&mut self) -> Option<TokenWithSpan<'s>> {
+    fn scan_indent(&mut self) -> Option<PResult<TokenWithSpan<'s>>> {
         debug_assert_eq!(self.syntax, Syntax::Sass);
         let mut start = None;
-        while let Some((i, c)) = self.state.chars.peek() {
+
+        // Shall not actually consume self.state.chars untill:
+        // - indent is met
+        // - EOF is met
+        // - Linebreak is met
+        // - indent/dedent start is None
+        // "consuming" is move source_mirror -> self.state.chars
+        let mut source_mirror = self.state.chars.clone();
+
+        while let Some((end, c)) = source_mirror.peek().copied() {
             if c.is_ascii_whitespace() {
-                let (i, c) = self.state.chars.next()?;
-                if c == '\n' || c == '\r' && matches!(self.state.chars.peek(), Some((_, '\n'))) {
+                let (i, c) = source_mirror.next()?;
+                if c == '\n' || c == '\r' && matches!(source_mirror.peek(), Some((_, '\n'))) {
                     start = Some(i + 1);
                 }
             } else {
-                return start.map(|start| {
-                    let end = *i;
+                return if let Some(start) = start {
                     let len = (end - start) as u16;
                     let span = Span { start, end };
-                    match len.cmp(&self.state.indent_size) {
-                        Ordering::Greater => {
-                            self.state.indent_size = len;
-                            TokenWithSpan {
-                                token: Token::Indent(Indent {}),
-                                span,
+
+                    if let Some(current_level) = self.state.indent_stops.last() {
+                        match len.cmp(current_level) {
+                            Ordering::Greater => {
+                                self.state.indent_stops.push(len);
+                                self.state.chars = source_mirror;
+                                Some(Ok(TokenWithSpan {
+                                    token: Token::Indent(Indent {}),
+                                    span,
+                                }))
+                            }
+                            Ordering::Equal => {
+                                self.state.chars = source_mirror;
+                                Some(Ok(TokenWithSpan {
+                                    token: Token::Linebreak(Linebreak {}),
+                                    span,
+                                }))
+                            }
+                            Ordering::Less => {
+                                let matching_level = self
+                                    .state
+                                    .indent_stops
+                                    .iter()
+                                    .enumerate()
+                                    .find(|(_, l)| **l == len);
+
+                                if matching_level.is_some() {
+                                    self.state
+                                        .indent_stops
+                                        .truncate(self.state.indent_stops.len() - 1);
+
+                                    Some(Ok(TokenWithSpan {
+                                        token: Token::Dedent(Dedent {}),
+                                        span,
+                                    }))
+                                } else {
+                                    self.state.chars = source_mirror;
+                                    Some(Err(Error {
+                                        kind: ErrorKind::InconsistentIndentation,
+                                        span,
+                                    }))
+                                }
                             }
                         }
-                        Ordering::Less => {
-                            self.state.indent_size = len;
-                            TokenWithSpan {
-                                token: Token::Dedent(Dedent {}),
-                                span,
-                            }
-                        }
-                        Ordering::Equal => TokenWithSpan {
-                            token: Token::Linebreak(Linebreak {}),
+                    } else {
+                        self.state.chars = source_mirror;
+                        self.state.indent_stops.push(len);
+                        Some(Ok(TokenWithSpan {
+                            token: Token::Indent(Indent {}),
                             span,
-                        },
+                        }))
                     }
-                });
+                } else {
+                    self.state.chars = source_mirror;
+                    None
+                };
             }
         }
 
+        self.state.chars = source_mirror;
         let offset = self.current_offset();
-        Some(TokenWithSpan {
+        Some(Ok(TokenWithSpan {
             token: Token::Eof(Eof {}),
             span: Span {
                 start: offset,
                 end: offset,
             },
-        })
+        }))
     }
 
     fn scan_block_comment(&mut self) {
