@@ -43,8 +43,14 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             comments,
             state: TokenizerState {
                 chars: source.char_indices().peekable(),
-                indent_stops: vec![0],
-                indent_stack: Vec::new()
+                indent_stops: match syntax {
+                    Syntax::Sass => vec![0; 8],
+                    _ => Vec::with_capacity(0)
+                },
+                indent_stack: match syntax {
+                    Syntax::Sass => Vec::with_capacity(8),
+                    _ => Vec::with_capacity(0)
+                }
             },
         }
     }
