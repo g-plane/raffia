@@ -3,3 +3,7 @@
 }
 
 @value colors: './colors.css';
+
+a {
+  @foo
+}

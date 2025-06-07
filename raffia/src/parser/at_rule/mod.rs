@@ -483,6 +483,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             loop {
                 match &peek!(parser).token {
                     Token::LBrace(..)
+                    | Token::RBrace(..)
                     | Token::Semicolon(..)
                     | Token::Indent(..)
                     | Token::Dedent(..)
