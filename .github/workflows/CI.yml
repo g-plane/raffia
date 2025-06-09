@@ -49,6 +49,6 @@ jobs:
       - name: Deploy Production
         run: |
           npm i --location=global netlify-cli
-          netlify deploy --site=raffia --dir=wasm/pkg --prod
+          netlify deploy --site=3c60cb99-3e5c-4e0e-9f69-d1952439e0b5 --dir=wasm/pkg --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
