@@ -1,6 +1,8 @@
 _This changelog only relates to the `raffia` crate._
 
-## Unreleased
+## v0.9.2
+
+- Allow missing semicolon for last unknown at-rule.
 
 ## v0.9.1
 
