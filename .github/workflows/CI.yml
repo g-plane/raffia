@@ -47,6 +47,8 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
       - run: wasm-pack build --target web --no-typescript wasm
       - name: Deploy Production
-        run: netlify deploy --site=raffia --dir=wasm/pkg --prod
+        run: |
+          npm i --location=global netlify-cli
+          netlify deploy --site=raffia --dir=wasm/pkg --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
