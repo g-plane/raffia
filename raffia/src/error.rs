@@ -114,8 +114,7 @@ impl Display for ErrorKind {
                         .join(", ");
                     write!(
                         f,
-                        "expect one of {} or `{last}`, but found `{actual}`",
-                        joined
+                        "expect one of {joined} or `{last}`, but found `{actual}`",
                     )
                 } else {
                     panic!("the number of expected tokens must be at least 2")
