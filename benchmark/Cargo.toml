@@ -11,18 +11,6 @@ raffia = { path = "../raffia" }
 
 [dev-dependencies]
 criterion = "0.5"
-lightningcss = "1.0.0-alpha.57"
-swc_common = "0.36.2"
-swc_css_ast = "0.143.0"
-swc_css_parser = "0.153.1"
-
-[[bench]]
-name = "parse_selector"
-harness = false
-
-[[bench]]
-name = "parse_stylesheet"
-harness = false
 
 [[bench]]
 name = "self"
