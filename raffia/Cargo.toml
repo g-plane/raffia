@@ -11,11 +11,11 @@ exclude = ["/tests"]
 [dependencies]
 raffia_macro = { path = "../raffia_macro", version = "0.1" }
 serde = { version = "1.0", features = ["derive"], optional = true }
-smallvec = { version = "1.13", features = ["const_generics"] }
+smallvec = { version = "1.15", features = ["const_generics"] }
 
 [dev-dependencies]
-codespan-reporting = "0.11"
-insta = { version = "1.39", features = ["glob", "ron"] }
+codespan-reporting = "0.12"
+insta = { version = "1.43", features = ["glob", "ron"] }
 serde_json = "1.0"
 
 [features]
