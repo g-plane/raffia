@@ -1587,6 +1587,7 @@ pub enum QueryInParensKind<'s> {
     ContainerCondition(ContainerCondition<'s>),
     SizeFeature(Box<MediaFeature<'s>>),
     StyleQuery(StyleQuery<'s>),
+    ScrollState(Box<MediaFeature<'s>>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq, SpanIgnoredEq)]

@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -34925,9 +34924,183 @@ Stylesheet(
         end: 9737,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9740,
+          end: 9749,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "my-container",
+          raw: "my-container",
+          span: Span(
+            start: 9750,
+            end: 9762,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            QueryInParens(
+              type: "QueryInParens",
+              kind: MediaFeaturePlain(
+                type: "MediaFeaturePlain",
+                name: Ident(
+                  type: "Ident",
+                  name: "scrollable",
+                  raw: "scrollable",
+                  span: Span(
+                    start: 9776,
+                    end: 9786,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 9786,
+                  end: 9787,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "top",
+                  raw: "top",
+                  span: Span(
+                    start: 9788,
+                    end: 9791,
+                  ),
+                ),
+                span: Span(
+                  start: 9776,
+                  end: 9791,
+                ),
+              ),
+              span: Span(
+                start: 9763,
+                end: 9792,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9763,
+            end: 9792,
+          ),
+        ),
+        span: Span(
+          start: 9750,
+          end: 9792,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9793,
+          end: 9795,
+        ),
+      )),
+      span: Span(
+        start: 9739,
+        end: 9795,
+      ),
+    ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9797,
+          end: 9806,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: Some(Ident(
+          type: "Ident",
+          name: "my-container",
+          raw: "my-container",
+          span: Span(
+            start: 9807,
+            end: 9819,
+          ),
+        )),
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            QueryInParens(
+              type: "QueryInParens",
+              kind: MediaFeatureRange(
+                type: "MediaFeatureRange",
+                left: Ident(
+                  type: "Ident",
+                  name: "a",
+                  raw: "a",
+                  span: Span(
+                    start: 9833,
+                    end: 9834,
+                  ),
+                ),
+                comparison: MediaFeatureComparison(
+                  type: "MediaFeatureComparison",
+                  kind: GreaterThan,
+                  span: Span(
+                    start: 9835,
+                    end: 9836,
+                  ),
+                ),
+                right: Ident(
+                  type: "Ident",
+                  name: "b",
+                  raw: "b",
+                  span: Span(
+                    start: 9837,
+                    end: 9838,
+                  ),
+                ),
+                span: Span(
+                  start: 9833,
+                  end: 9838,
+                ),
+              ),
+              span: Span(
+                start: 9820,
+                end: 9839,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9820,
+            end: 9839,
+          ),
+        ),
+        span: Span(
+          start: 9807,
+          end: 9839,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9840,
+          end: 9842,
+        ),
+      )),
+      span: Span(
+        start: 9796,
+        end: 9842,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 9738,
+    end: 9843,
   ),
 )

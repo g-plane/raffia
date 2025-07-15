@@ -139,22 +139,38 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
             })
         } else {
             let (style_keyword, ident_span) = expect!(input, Ident);
-            if !style_keyword.name().eq_ignore_ascii_case("style") {
-                return Err(Error {
+            let keyword = style_keyword.name();
+            if keyword.eq_ignore_ascii_case("style") {
+                expect_without_ws_or_comments!(input, LParen);
+                let kind = input.parse().map(QueryInParensKind::StyleQuery)?;
+                let (_, Span { end, .. }) = expect!(input, RParen);
+                Ok(QueryInParens {
+                    kind,
+                    span: Span {
+                        start: ident_span.start,
+                        end,
+                    },
+                })
+            } else if keyword.eq_ignore_ascii_case("scroll-state") {
+                // https://drafts.csswg.org/css-conditional-5/#scroll-state-container
+                expect_without_ws_or_comments!(input, LParen);
+                let kind = input
+                    .parse()
+                    .map(|media| QueryInParensKind::ScrollState(Box::new(media)))?;
+                let (_, Span { end, .. }) = expect!(input, RParen);
+                Ok(QueryInParens {
+                    kind,
+                    span: Span {
+                        start: ident_span.start,
+                        end,
+                    },
+                })
+            } else {
+                Err(Error {
                     kind: ErrorKind::ExpectStyleQuery,
                     span: ident_span,
-                });
+                })
             }
-            expect_without_ws_or_comments!(input, LParen);
-            let kind = input.parse().map(QueryInParensKind::StyleQuery)?;
-            let (_, Span { end, .. }) = expect!(input, RParen);
-            Ok(QueryInParens {
-                kind,
-                span: Span {
-                    start: ident_span.start,
-                    end,
-                },
-            })
         }
     }
 }
