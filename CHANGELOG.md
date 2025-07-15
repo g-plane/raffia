@@ -1,5 +1,9 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.10.0
+
+- Added support of `scroll-state` in `@container` at-rule.
+
 ## v0.9.2
 
 - Allow missing semicolon for last unknown at-rule.
