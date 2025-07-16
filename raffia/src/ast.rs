@@ -99,6 +99,7 @@ pub struct AttributeSelectorMatcher {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum AttributeSelectorMatcherKind {
     /// `=`
     Exact,
@@ -166,6 +167,7 @@ pub struct CalcOperator {
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum CalcOperatorKind {
     Plus,
     Minus,
@@ -203,6 +205,7 @@ pub struct Combinator {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum CombinatorKind {
     /// ` `
     Descendant,
@@ -459,6 +462,7 @@ pub struct Delimiter {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum DelimiterKind {
     Comma,
     Solidus,
@@ -478,6 +482,7 @@ pub struct Dimension<'s> {
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum DimensionKind {
     Length,
     Angle,
@@ -775,6 +780,7 @@ pub struct LessBinaryConditionOperator {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum LessBinaryConditionOperatorKind {
     GreaterThan,
     GreaterThanOrEqual,
@@ -1222,6 +1228,7 @@ pub struct LessOperationOperator {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum LessOperationOperatorKind {
     Multiply,
     Division,
@@ -1295,6 +1302,7 @@ pub struct LessPropertyMerge {
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum LessPropertyMergeKind {
     Comma,
     Space,
@@ -1420,6 +1428,7 @@ pub struct MediaFeatureComparison {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum MediaFeatureComparisonKind {
     LessThan,
     LessThanOrEqual,
@@ -1883,6 +1892,7 @@ pub struct SassAtRootQueryModifier {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum SassAtRootQueryModifierKind {
     With,
     Without,
@@ -1920,6 +1930,7 @@ pub struct SassBinaryOperator {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum SassBinaryOperatorKind {
     Multiply,
     Division,
@@ -2011,6 +2022,7 @@ pub struct SassForBoundary {
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum SassForBoundaryKind {
     Inclusive,
     Exclusive,
@@ -2070,6 +2082,7 @@ pub struct SassForwardVisibilityModifier {
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum SassForwardVisibilityModifierKind {
     Hide,
     Show,
@@ -2370,6 +2383,7 @@ pub struct SassUnaryOperator {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub enum SassUnaryOperatorKind {
     Plus,
     Minus,
