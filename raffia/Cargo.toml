@@ -21,3 +21,5 @@ serde_json = "1.0"
 [features]
 config_serde = ["serde"]
 serialize = ["serde", "smallvec/serde"]
+span_ignored_eq = []
+variant_helpers = []
