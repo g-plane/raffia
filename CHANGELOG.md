@@ -1,5 +1,9 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.11.0
+
+- Moved some derives behind feature flags.
+
 ## v0.10.0
 
 - Added support of `scroll-state` in `@container` at-rule.
