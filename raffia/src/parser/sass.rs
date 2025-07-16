@@ -145,7 +145,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         // delimiter can't be calculated
-        if left.is_delimiter() {
+        if matches!(left, ComponentValue::Delimiter(..)) {
             return Ok(left);
         }
 

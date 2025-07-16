@@ -359,11 +359,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 is_block_element = true;
                             } else {
                                 let fn_call = self.parse::<Function>()?;
-                                is_block_element = fn_call
-                                    .args
-                                    .last()
-                                    .map(ComponentValue::is_less_detached_ruleset)
-                                    .unwrap_or_default();
+                                is_block_element = matches!(
+                                    fn_call.args.last(),
+                                    Some(ComponentValue::LessDetachedRuleset(..))
+                                );
                                 statements.push(Statement::LessFunctionCall(fn_call));
                             }
                         }
@@ -436,8 +435,10 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                         if let Ok(less_variable_declaration) =
                             self.try_parse(LessVariableDeclaration::parse)
                         {
-                            is_block_element =
-                                less_variable_declaration.value.is_less_detached_ruleset();
+                            is_block_element = matches!(
+                                less_variable_declaration.value,
+                                ComponentValue::LessDetachedRuleset(..)
+                            );
                             statements.push(Statement::LessVariableDeclaration(
                                 less_variable_declaration,
                             ));
