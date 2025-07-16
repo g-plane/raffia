@@ -104,8 +104,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             if let Some(block) = &block {
                 if prelude
                     .as_ref()
-                    .map(|prelude| prelude.names.len() > 1)
-                    .unwrap_or_default()
+                    .is_some_and(|prelude| prelude.names.len() > 1)
                 {
                     input.recoverable_errors.push(Error {
                         kind: ErrorKind::UnexpectedSimpleBlock,

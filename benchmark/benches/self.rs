@@ -22,12 +22,7 @@ fn bench_parser(c: &mut Criterion) {
                     _ => None,
                 })
         })
-        .filter(|(entry, ..)| {
-            entry
-                .file_type()
-                .map(|file_type| file_type.is_file())
-                .unwrap_or_default()
-        })
+        .filter(|(entry, ..)| entry.file_type().is_ok_and(|file_type| file_type.is_file()))
         .for_each(|(entry, syntax)| {
             let path = &entry.path();
             let name = entry.file_name();
