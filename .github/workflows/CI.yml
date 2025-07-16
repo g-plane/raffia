@@ -15,17 +15,20 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.toml') }}
+          fetch-depth: 2
       - run: cargo test --all-features
+      - name: Publish crates
+        run: |
+          if ! git show --exit-code -G^version raffia_macro/Cargo.toml; then
+            cargo publish -p raffia_macro
+          fi
+          if ! git show --exit-code -G^version raffia/Cargo.toml; then
+            cargo publish -p raffia
+          fi
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
 
   playground:
     name: playground
