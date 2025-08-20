@@ -216,10 +216,6 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleBlock<'s> {
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Stylesheet<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
-        if input.syntax == Syntax::Sass {
-            eat!(input, Linebreak);
-        }
-
         let statements = input.parse_statements(/* is_top_level */ true)?;
         expect!(input, Eof);
         Ok(Stylesheet {

@@ -32,12 +32,16 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
         syntax: Syntax,
         comments: Option<&'cmt mut Vec<Comment<'s>>>,
     ) -> Self {
+        let mut chars = source.char_indices().peekable();
+        if syntax == Syntax::Sass {
+            while chars.next_if(|(_, c)| matches!(c, '\n' | '\r')).is_some() {}
+        }
         Self {
             source,
             syntax,
             comments,
             state: TokenizerState {
-                chars: source.char_indices().peekable(),
+                chars,
                 indent_size: 0,
             },
         }

@@ -1,0 +1,113 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "h1",
+                        raw: "h1",
+                        span: Span(
+                          start: 3,
+                          end: 5,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 3,
+                        end: 5,
+                      ),
+                    ),
+                    span: Span(
+                      start: 3,
+                      end: 5,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 3,
+                  end: 5,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 3,
+              end: 5,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 3,
+          end: 5,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "color",
+              raw: "color",
+              span: Span(
+                start: 10,
+                end: 15,
+              ),
+            ),
+            colonSpan: Span(
+              start: 15,
+              end: 16,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "red",
+                raw: "red",
+                span: Span(
+                  start: 17,
+                  end: 20,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 10,
+              end: 20,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 10,
+          end: 21,
+        ),
+      ),
+      span: Span(
+        start: 3,
+        end: 21,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 21,
+  ),
+)
