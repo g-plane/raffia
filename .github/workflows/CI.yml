@@ -33,7 +33,7 @@ jobs:
             cargo publish -p raffia
           fi
         env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.cratesio-auth.outputs.token }}
+          CARGO_REGISTRY_TOKEN: ${{ steps.cratesio-auth.outputs.token }}
 
   playground:
     name: playground

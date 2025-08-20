@@ -1,5 +1,9 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.11.1
+
+- Fixed leading empty lines in Sass.
+
 ## v0.11.0
 
 - Moved some derives behind feature flags.
