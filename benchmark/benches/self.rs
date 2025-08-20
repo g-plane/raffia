@@ -1,6 +1,6 @@
-use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
+use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
 use raffia::{ast::Stylesheet, Parser, Syntax};
-use std::{fs, time::Duration};
+use std::{fs, hint::black_box, time::Duration};
 
 fn bench_parser(c: &mut Criterion) {
     let mut group = c.benchmark_group("self");
