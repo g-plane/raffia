@@ -10,7 +10,7 @@ publish = false
 raffia = { path = "../raffia" }
 
 [dev-dependencies]
-criterion = "0.5"
+criterion = "0.7"
 
 [[bench]]
 name = "self"
