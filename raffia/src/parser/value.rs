@@ -406,6 +406,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 Token::LBrace(..) if self.syntax == Syntax::Less => {
                     values.push(self.parse().map(ComponentValue::LessDetachedRuleset)?);
                 }
+                Token::Indent(..) | Token::Dedent(..) | Token::Linebreak(..) => {
+                    bump!(self);
+                }
                 _ => {
                     let value = if let Ok(value) = self.try_parse(ComponentValue::parse) {
                         value
