@@ -450,17 +450,170 @@ Stylesheet(
         ],
         span: Span(
           start: 130,
-          end: 151,
+          end: 152,
         ),
       ),
       span: Span(
         start: 119,
-        end: 151,
+        end: 152,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "gradient-light",
+          raw: "gradient-light",
+          span: Span(
+            start: 153,
+            end: 167,
+          ),
+        ),
+        span: Span(
+          start: 152,
+          end: 167,
+        ),
+      ),
+      colonSpan: Span(
+        start: 167,
+        end: 168,
+      ),
+      value: Function(
+        type: "Function",
+        name: Ident(
+          type: "Ident",
+          name: "linear-gradient",
+          raw: "linear-gradient",
+          span: Span(
+            start: 169,
+            end: 184,
+          ),
+        ),
+        args: [
+          Dimension(
+            type: "Dimension",
+            value: Number(
+              type: "Number",
+              value: 135.0,
+              raw: "135",
+              span: Span(
+                start: 187,
+                end: 190,
+              ),
+            ),
+            unit: Ident(
+              type: "Ident",
+              name: "deg",
+              raw: "deg",
+              span: Span(
+                start: 190,
+                end: 193,
+              ),
+            ),
+            kind: Angle,
+            span: Span(
+              start: 187,
+              end: 193,
+            ),
+          ),
+          Delimiter(
+            type: "Delimiter",
+            kind: Comma,
+            span: Span(
+              start: 193,
+              end: 194,
+            ),
+          ),
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "col-primary-light",
+              raw: "col-primary-light",
+              span: Span(
+                start: 197,
+                end: 214,
+              ),
+            ),
+            span: Span(
+              start: 196,
+              end: 214,
+            ),
+          ),
+          Percentage(
+            type: "Percentage",
+            value: Number(
+              type: "Number",
+              value: 0.0,
+              raw: "0",
+              span: Span(
+                start: 215,
+                end: 216,
+              ),
+            ),
+            span: Span(
+              start: 215,
+              end: 217,
+            ),
+          ),
+          Delimiter(
+            type: "Delimiter",
+            kind: Comma,
+            span: Span(
+              start: 217,
+              end: 218,
+            ),
+          ),
+          SassVariable(
+            type: "SassVariable",
+            name: Ident(
+              type: "Ident",
+              name: "col-primary",
+              raw: "col-primary",
+              span: Span(
+                start: 221,
+                end: 232,
+              ),
+            ),
+            span: Span(
+              start: 220,
+              end: 232,
+            ),
+          ),
+          Percentage(
+            type: "Percentage",
+            value: Number(
+              type: "Number",
+              value: 100.0,
+              raw: "100",
+              span: Span(
+                start: 233,
+                end: 236,
+              ),
+            ),
+            span: Span(
+              start: 233,
+              end: 237,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 169,
+          end: 239,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 152,
+        end: 239,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 151,
+    end: 240,
   ),
 )
