@@ -1,0 +1,118 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "theme-light",
+          raw: "theme-light",
+          span: Span(
+            start: 1,
+            end: 12,
+          ),
+        ),
+        span: Span(
+          start: 0,
+          end: 12,
+        ),
+      ),
+      colonSpan: Span(
+        start: 12,
+        end: 13,
+      ),
+      value: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-primary-bg",
+              raw: "col-primary-bg",
+              span: Span(
+                start: 17,
+                end: 31,
+              ),
+            ),
+            colonSpan: Span(
+              start: 31,
+              end: 32,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "F8FAFC",
+              raw: "F8FAFC",
+              span: Span(
+                start: 33,
+                end: 40,
+              ),
+            ),
+            span: Span(
+              start: 17,
+              end: 40,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-secondary-bg",
+              raw: "col-secondary-bg",
+              span: Span(
+                start: 43,
+                end: 59,
+              ),
+            ),
+            colonSpan: Span(
+              start: 59,
+              end: 60,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "E2E8F0",
+              raw: "E2E8F0",
+              span: Span(
+                start: 61,
+                end: 68,
+              ),
+            ),
+            span: Span(
+              start: 43,
+              end: 68,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 40,
+            end: 41,
+          ),
+          Span(
+            start: 68,
+            end: 69,
+          ),
+        ],
+        span: Span(
+          start: 14,
+          end: 71,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 0,
+        end: 71,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 72,
+  ),
+)

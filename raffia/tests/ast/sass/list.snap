@@ -1,0 +1,163 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "theme-light",
+          raw: "theme-light",
+          span: Span(
+            start: 1,
+            end: 12,
+          ),
+        ),
+        span: Span(
+          start: 0,
+          end: 12,
+        ),
+      ),
+      colonSpan: Span(
+        start: 12,
+        end: 13,
+      ),
+      value: SassParenthesizedExpression(
+        type: "SassParenthesizedExpression",
+        expr: SassList(
+          type: "SassList",
+          elements: [
+            Ident(
+              type: "Ident",
+              name: "col-primary-bg",
+              raw: "col-primary-bg",
+              span: Span(
+                start: 17,
+                end: 31,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "col-secondary-bg",
+              raw: "col-secondary-bg",
+              span: Span(
+                start: 34,
+                end: 50,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "col-text",
+              raw: "col-text",
+              span: Span(
+                start: 53,
+                end: 61,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "col-text",
+              raw: "col-text",
+              span: Span(
+                start: 64,
+                end: 72,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "col-card-bg",
+              raw: "col-card-bg",
+              span: Span(
+                start: 75,
+                end: 86,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "col-border",
+              raw: "col-border",
+              span: Span(
+                start: 89,
+                end: 99,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "shadow",
+              raw: "shadow",
+              span: Span(
+                start: 102,
+                end: 108,
+              ),
+            ),
+            Ident(
+              type: "Ident",
+              name: "shadow-light",
+              raw: "shadow-light",
+              span: Span(
+                start: 111,
+                end: 123,
+              ),
+            ),
+          ],
+          commaSpans: Some([
+            Span(
+              start: 31,
+              end: 32,
+            ),
+            Span(
+              start: 50,
+              end: 51,
+            ),
+            Span(
+              start: 61,
+              end: 62,
+            ),
+            Span(
+              start: 72,
+              end: 73,
+            ),
+            Span(
+              start: 86,
+              end: 87,
+            ),
+            Span(
+              start: 99,
+              end: 100,
+            ),
+            Span(
+              start: 108,
+              end: 109,
+            ),
+            Span(
+              start: 123,
+              end: 124,
+            ),
+          ]),
+          span: Span(
+            start: 17,
+            end: 124,
+          ),
+        ),
+        span: Span(
+          start: 14,
+          end: 126,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 0,
+        end: 126,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 127,
+  ),
+)

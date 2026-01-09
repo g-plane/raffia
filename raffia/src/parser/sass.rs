@@ -54,10 +54,15 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::RParen(..)
                 | Token::Semicolon(..)
                 | Token::Colon(..)
-                | Token::Dedent(..)
-                | Token::Linebreak(..)
                 | Token::DotDotDot(..)
                 | Token::Eof(..) => break,
+                Token::Indent(..) | Token::Dedent(..) | Token::Linebreak(..) => {
+                    if comma_spans.as_ref().is_none_or(|spans| spans.is_empty()) {
+                        break;
+                    } else {
+                        bump!(self);
+                    }
+                }
                 Token::Comma(..) => {
                     if !allow_comma {
                         break;
@@ -1425,10 +1430,18 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
 
         let mut items = vec![];
         let mut comma_spans = vec![];
-        while !matches!(&peek!(input).token, Token::RParen(..)) {
-            items.push(input.parse()?);
-            if !matches!(&peek!(input).token, Token::RParen(..)) {
-                comma_spans.push(expect!(input, Comma).1);
+        loop {
+            match peek!(input).token {
+                Token::RParen(..) => break,
+                Token::Indent(..) | Token::Dedent(..) | Token::Linebreak(..) => {
+                    bump!(input);
+                }
+                _ => {
+                    items.push(input.parse()?);
+                    if !matches!(&peek!(input).token, Token::RParen(..)) {
+                        comma_spans.push(expect!(input, Comma).1);
+                    }
+                }
             }
         }
         debug_assert!(items.len() - comma_spans.len() <= 1);
@@ -1509,6 +1522,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassNestingDeclaration<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let start = expect!(input, LParen).1.start;
+        eat!(input, Indent);
         let expr = Box::new(
             input
                 .with_state(ParserState {
