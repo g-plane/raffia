@@ -1,12 +1,13 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     bump, eat,
     error::{Error, PResult},
     peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util, Parse,
+    util,
 };
 
 // https://drafts.csswg.org/css-cascade-5/#layering

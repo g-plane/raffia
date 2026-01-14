@@ -571,7 +571,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         start: index,
                         end: index + 1,
                     },
-                })
+                });
             }
             None => return Err(self.build_eof_error()),
         };
@@ -683,7 +683,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                             start: i,
                             end: i + 1,
                         },
-                    })
+                    });
                 }
                 Some((_, '\\')) => {
                     escaped = true;
@@ -842,7 +842,7 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                                     start: i,
                                     end: i + c.len_utf8(),
                                 },
-                            })
+                            });
                         }
                         None => return Err(self.build_eof_error()),
                     }

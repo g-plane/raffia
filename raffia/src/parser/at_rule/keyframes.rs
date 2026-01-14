@@ -1,5 +1,6 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
@@ -7,7 +8,7 @@ use crate::{
     peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    util, Parse,
+    util,
 };
 
 // https://drafts.csswg.org/css-animations/#keyframes

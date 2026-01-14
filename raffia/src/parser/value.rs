@@ -1,12 +1,13 @@
-use super::{state::QualifiedRuleContext, Parser};
+use super::{Parser, state::QualifiedRuleContext};
 use crate::{
+    Parse, Syntax,
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util, Parse, Syntax,
+    util,
 };
 use std::borrow::Cow;
 

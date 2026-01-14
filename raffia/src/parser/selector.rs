@@ -1,12 +1,13 @@
 use super::Parser;
 use crate::{
+    Parse, Syntax,
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
-    tokenizer::{token, Token, TokenWithSpan},
-    util, Parse, Syntax,
+    tokenizer::{Token, TokenWithSpan, token},
+    util,
 };
 use smallvec::SmallVec;
 use std::borrow::Cow;

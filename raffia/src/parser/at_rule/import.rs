@@ -1,12 +1,12 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     bump,
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
 };
 
 // https://www.w3.org/TR/css-cascade-5/#at-import

@@ -1,8 +1,9 @@
 use super::{
-    state::{ParserState, QualifiedRuleContext, LESS_CTX_ALLOW_DIV, LESS_CTX_ALLOW_KEYFRAME_BLOCK},
     Parser,
+    state::{LESS_CTX_ALLOW_DIV, LESS_CTX_ALLOW_KEYFRAME_BLOCK, ParserState, QualifiedRuleContext},
 };
 use crate::{
+    Parse,
     ast::*,
     bump,
     config::Syntax,
@@ -11,7 +12,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util, Parse,
+    util,
 };
 use std::{borrow::Cow, mem};
 
@@ -268,14 +269,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         let mut elements = self.parse_less_interpolated_ident_rest(&mut end)?;
-        if elements.is_empty() {
-            if let LessInterpolatedIdentElement::Static(ident) = first {
-                return Ok(InterpolableIdent::Literal(Ident {
-                    name: ident.value,
-                    raw: ident.raw,
-                    span: ident.span,
-                }));
-            }
+        if elements.is_empty()
+            && let LessInterpolatedIdentElement::Static(ident) = first
+        {
+            return Ok(InterpolableIdent::Literal(Ident {
+                name: ident.value,
+                raw: ident.raw,
+                span: ident.span,
+            }));
         }
 
         elements.insert(0, first);
@@ -392,13 +393,13 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     .map(ComponentValue::LessNegativeValue)?,
                 _ => {
                     let value = self.parse_component_value_atom()?;
-                    if let ComponentValue::LessMixinCall(mixin_call) = &value {
-                        if !allow_mixin_call {
-                            self.recoverable_errors.push(Error {
-                                kind: ErrorKind::UnexpectedLessMixinCall,
-                                span: mixin_call.span.clone(),
-                            });
-                        }
+                    if let ComponentValue::LessMixinCall(mixin_call) = &value
+                        && !allow_mixin_call
+                    {
+                        self.recoverable_errors.push(Error {
+                            kind: ErrorKind::UnexpectedLessMixinCall,
+                            span: mixin_call.span.clone(),
+                        });
                     }
                     value
                 }
@@ -829,26 +830,30 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for LessExtend<'s> {
         let span = selector.span.clone();
         let mut all = None;
 
-        if let [.., complex_child, ComplexSelectorChild::Combinator(Combinator {
-            kind: CombinatorKind::Descendant,
-            ..
-        }), ComplexSelectorChild::CompoundSelector(CompoundSelector { children, .. })] =
-            &selector.children[..]
-        {
-            if let [SimpleSelector::Type(TypeSelector::TagName(TagNameSelector {
-                name:
-                    WqName {
-                        name: InterpolableIdent::Literal(token_all @ Ident { raw: "all", .. }),
-                        prefix: None,
-                        ..
-                    },
+        if let [
+            ..,
+            complex_child,
+            ComplexSelectorChild::Combinator(Combinator {
+                kind: CombinatorKind::Descendant,
                 ..
-            }))] = &children[..]
-            {
-                all = Some(token_all.clone());
-                selector.span.end = complex_child.span().end;
-                selector.children.truncate(selector.children.len() - 2);
-            }
+            }),
+            ComplexSelectorChild::CompoundSelector(CompoundSelector { children, .. }),
+        ] = &selector.children[..]
+            && let [
+                SimpleSelector::Type(TypeSelector::TagName(TagNameSelector {
+                    name:
+                        WqName {
+                            name: InterpolableIdent::Literal(token_all @ Ident { raw: "all", .. }),
+                            prefix: None,
+                            ..
+                        },
+                    ..
+                })),
+            ] = &children[..]
+        {
+            all = Some(token_all.clone());
+            selector.span.end = complex_child.span().end;
+            selector.children.truncate(selector.children.len() - 2);
         }
 
         Ok(LessExtend {

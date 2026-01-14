@@ -1,5 +1,5 @@
 use super::Parser;
-use crate::{ast::*, error::PResult, peek, tokenizer::Token, Parse, Spanned};
+use crate::{Parse, Spanned, ast::*, error::PResult, peek, tokenizer::Token};
 
 // https://www.w3.org/TR/css-namespaces-3/#syntax
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for NamespacePrelude<'s> {

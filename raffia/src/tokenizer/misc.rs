@@ -1,5 +1,5 @@
-use super::{token::Ident, TokenWithSpan};
-use crate::{util, SpanIgnoredEq};
+use super::{TokenWithSpan, token::Ident};
+use crate::{SpanIgnoredEq, util};
 use std::borrow::Cow;
 
 impl<'s> Ident<'s> {

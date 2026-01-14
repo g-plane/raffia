@@ -1,12 +1,12 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     eat,
     error::{Error, ErrorKind, PResult},
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
 };
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerCondition<'s> {

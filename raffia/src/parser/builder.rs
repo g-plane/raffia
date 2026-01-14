@@ -1,7 +1,7 @@
 use super::Parser;
 use crate::{
-    tokenizer::{token::Comment, Tokenizer},
     ParserOptions, Syntax,
+    tokenizer::{Tokenizer, token::Comment},
 };
 
 /// Parser builder is for building a parser while allowing us

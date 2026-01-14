@@ -1,12 +1,12 @@
-use super::{state::ParserState, Parser};
+use super::{Parser, state::ParserState};
 use crate::{
+    Parse, Syntax,
     ast::*,
     bump,
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Parse, Syntax,
 };
 
 mod color_profile;
@@ -101,16 +101,15 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for AtRule<'s> {
             } else {
                 None
             };
-            if let Some(block) = &block {
-                if prelude
+            if let Some(block) = &block
+                && prelude
                     .as_ref()
                     .is_some_and(|prelude| prelude.names.len() > 1)
-                {
-                    input.recoverable_errors.push(Error {
-                        kind: ErrorKind::UnexpectedSimpleBlock,
-                        span: block.span.clone(),
-                    });
-                }
+            {
+                input.recoverable_errors.push(Error {
+                    kind: ErrorKind::UnexpectedSimpleBlock,
+                    span: block.span.clone(),
+                });
             }
             let end = block
                 .as_ref()

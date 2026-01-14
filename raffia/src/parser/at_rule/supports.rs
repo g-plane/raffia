@@ -1,11 +1,11 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse,
 };
 
 // https://drafts.csswg.org/css-conditional-3/#at-supports

@@ -1,8 +1,9 @@
 use super::{
-    state::{ParserState, SASS_CTX_ALLOW_DIV},
     Parser,
+    state::{ParserState, SASS_CTX_ALLOW_DIV},
 };
 use crate::{
+    Parse,
     ast::*,
     bump,
     config::Syntax,
@@ -11,7 +12,7 @@ use crate::{
     expect, expect_without_ws_or_comments, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util, Parse,
+    util,
 };
 
 const PRECEDENCE_MULTIPLY: u8 = 6;
@@ -475,14 +476,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         };
 
         let mut elements = self.parse_sass_interpolated_ident_rest(&mut end)?;
-        if elements.is_empty() {
-            if let SassInterpolatedIdentElement::Static(ident) = first {
-                return Ok(InterpolableIdent::Literal(Ident {
-                    name: ident.value,
-                    raw: ident.raw,
-                    span: ident.span,
-                }));
-            }
+        if elements.is_empty()
+            && let SassInterpolatedIdentElement::Static(ident) = first
+        {
+            return Ok(InterpolableIdent::Literal(Ident {
+                name: ident.value,
+                raw: ident.raw,
+                span: ident.span,
+            }));
         }
 
         elements.insert(0, first);
@@ -1592,7 +1593,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassUseNamespace<'s> {
                 return Err(Error {
                     kind: ErrorKind::ExpectSassKeyword("as"),
                     span: span.clone(),
-                })
+                });
             }
         };
         match bump!(input) {

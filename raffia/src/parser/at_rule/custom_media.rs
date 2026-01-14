@@ -1,11 +1,11 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     error::PResult,
     peek,
     pos::{Span, Spanned},
     tokenizer::Token,
-    Parse,
 };
 
 // https://www.w3.org/TR/mediaqueries-5/#custom-mq

@@ -1,6 +1,6 @@
 use crate::{
-    error::{Error, ErrorKind, PResult},
     Span,
+    error::{Error, ErrorKind, PResult},
 };
 use std::borrow::Cow;
 

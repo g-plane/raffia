@@ -6,7 +6,7 @@ use codespan_reporting::{
         termcolor::{ColorChoice, StandardStream},
     },
 };
-use raffia::{ast::Stylesheet, error::Error, Parser, Syntax};
+use raffia::{Parser, Syntax, ast::Stylesheet, error::Error};
 use std::{env, fs, path::Path};
 
 fn main() {

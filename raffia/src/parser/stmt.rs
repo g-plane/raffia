@@ -1,8 +1,9 @@
 use super::{
-    state::{ParserState, QualifiedRuleContext},
     Parser,
+    state::{ParserState, QualifiedRuleContext},
 };
 use crate::{
+    Parse, Syntax,
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
@@ -10,7 +11,6 @@ use crate::{
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
     util::PairedToken,
-    Parse, Syntax,
 };
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
@@ -45,10 +45,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                                 Token::Ident(ident) if ident.name().eq_ignore_ascii_case("progid")
                             ) =>
                 'value: {
-                    if parser.options.try_parsing_value_in_custom_property {
-                        if let Ok(values) = parser.try_parse(Parser::parse_declaration_value) {
-                            break 'value values;
-                        }
+                    if parser.options.try_parsing_value_in_custom_property
+                        && let Ok(values) = parser.try_parse(Parser::parse_declaration_value)
+                    {
+                        break 'value values;
                     }
 
                     let mut values = Vec::with_capacity(3);

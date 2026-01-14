@@ -1,11 +1,12 @@
 use crate::{
+    Span,
     ast::{
         Dimension, DimensionKind, Ident, InterpolableIdentStaticPart, InterpolableStrStaticPart,
         InterpolableUrlStaticPart, Number, Str,
     },
     error::{Error, ErrorKind, PResult},
     tokenizer::token,
-    util, Span,
+    util,
 };
 use std::borrow::Cow;
 

@@ -1,5 +1,5 @@
 use super::Parser;
-use crate::{ast::*, error::PResult, Parse};
+use crate::{Parse, ast::*, error::PResult};
 
 // https://www.w3.org/TR/css-color-5/#at-profile
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ColorProfilePrelude<'s> {

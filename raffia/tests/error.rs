@@ -3,8 +3,8 @@ use codespan_reporting::{
     files::SimpleFile,
     term,
 };
-use insta::{assert_snapshot, glob, Settings};
-use raffia::{ast::Stylesheet, Parser, Syntax};
+use insta::{Settings, assert_snapshot, glob};
+use raffia::{Parser, Syntax, ast::Stylesheet};
 use std::fs;
 
 #[test]

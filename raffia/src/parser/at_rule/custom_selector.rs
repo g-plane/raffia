@@ -1,5 +1,5 @@
 use super::Parser;
-use crate::{ast::*, error::PResult, expect, peek, pos::Span, tokenizer::Token, util, Parse};
+use crate::{Parse, ast::*, error::PResult, expect, peek, pos::Span, tokenizer::Token, util};
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for CustomSelector<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {

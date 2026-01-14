@@ -1,12 +1,12 @@
 use super::Parser;
 use crate::{
+    Parse, Syntax,
     ast::*,
     bump, eat,
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    Parse, Syntax,
 };
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaAnd<'s> {
@@ -286,18 +286,17 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for MediaQueryWithType<'s> {
             None
         };
         let media_type = input.parse::<InterpolableIdent>()?;
-        if let InterpolableIdent::Literal(Ident { name, span, .. }) = &media_type {
-            if name.eq_ignore_ascii_case("only")
+        if let InterpolableIdent::Literal(Ident { name, span, .. }) = &media_type
+            && (name.eq_ignore_ascii_case("only")
                 || name.eq_ignore_ascii_case("not")
                 || name.eq_ignore_ascii_case("and")
                 || name.eq_ignore_ascii_case("or")
-                || name.eq_ignore_ascii_case("layer")
-            {
-                input.recoverable_errors.push(Error {
-                    kind: ErrorKind::MediaTypeKeywordDisallowed(name.to_string()),
-                    span: span.clone(),
-                });
-            }
+                || name.eq_ignore_ascii_case("layer"))
+        {
+            input.recoverable_errors.push(Error {
+                kind: ErrorKind::MediaTypeKeywordDisallowed(name.to_string()),
+                span: span.clone(),
+            });
         }
         let condition = match &peek!(input).token {
             Token::Ident(ident) if ident.name().eq_ignore_ascii_case("and") => {

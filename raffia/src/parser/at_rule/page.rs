@@ -1,12 +1,13 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     eat,
     error::PResult,
     expect, peek,
     pos::{Span, Spanned},
     tokenizer::{Token, TokenWithSpan},
-    util, Parse,
+    util,
 };
 
 // https://www.w3.org/TR/css-page-3/#syntax-page-selector

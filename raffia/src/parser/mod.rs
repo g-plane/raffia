@@ -1,9 +1,9 @@
 use self::state::ParserState;
 use crate::{
+    ParserOptions,
     config::Syntax,
     error::{Error, PResult},
-    tokenizer::{token::TokenWithSpan, Tokenizer},
-    ParserOptions,
+    tokenizer::{Tokenizer, token::TokenWithSpan},
 };
 pub use builder::ParserBuilder;
 

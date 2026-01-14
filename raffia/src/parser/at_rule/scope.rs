@@ -1,12 +1,12 @@
 use super::Parser;
 use crate::{
+    Parse,
     ast::*,
     bump,
     error::{Error, ErrorKind, PResult},
     expect, peek,
     pos::Span,
     tokenizer::{Token, TokenWithSpan},
-    Parse,
 };
 
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ScopeEnd<'s> {
@@ -20,7 +20,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ScopeEnd<'s> {
                 return Err(Error {
                     kind: ErrorKind::ExpectScopeTo,
                     span,
-                })
+                });
             }
         };
 

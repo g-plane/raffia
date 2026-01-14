@@ -1,4 +1,4 @@
-use raffia::{ast::Stylesheet, Parser, Syntax};
+use raffia::{Parser, Syntax, ast::Stylesheet};
 use std::{env, fs, path::Path};
 
 fn main() {

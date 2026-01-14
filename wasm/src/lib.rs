@@ -1,4 +1,4 @@
-use raffia::{ast::Stylesheet, Parser};
+use raffia::{Parser, ast::Stylesheet};
 use serde::Serialize;
 use wasm_bindgen::prelude::*;
 

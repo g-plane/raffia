@@ -1,4 +1,4 @@
-use raffia::{ast::Stylesheet, ParserBuilder};
+use raffia::{ParserBuilder, ast::Stylesheet};
 
 fn main() {
     let mut comments = vec![];
