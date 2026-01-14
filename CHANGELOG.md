@@ -1,5 +1,10 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.11.2
+
+- Fixed mistake of handling whitespace token in Sass.
+- Fixed unwanted token in functions in Sass.
+
 ## v0.11.1
 
 - Fixed leading empty lines in Sass.
