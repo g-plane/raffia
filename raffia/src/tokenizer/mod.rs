@@ -16,7 +16,8 @@ pub mod token;
 #[derive(Clone)]
 pub(crate) struct TokenizerState<'s> {
     chars: Peekable<CharIndices<'s>>,
-    indent_size: u16,
+    current_indent: u16,
+    indents: Vec<u16>,
 }
 
 pub struct Tokenizer<'cmt, 's: 'cmt> {
@@ -42,7 +43,12 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
             comments,
             state: TokenizerState {
                 chars,
-                indent_size: 0,
+                current_indent: 0,
+                indents: if syntax == Syntax::Sass {
+                    vec![0]
+                } else {
+                    vec![]
+                },
             },
         }
     }
@@ -169,6 +175,22 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
     }
 
     fn skip_ws_or_comment(&mut self) -> Option<TokenWithSpan<'s>> {
+        // Sass can dedent more than one level at a time,
+        // so we need to produce a dedent token for each level.
+        if self.syntax == Syntax::Sass
+            && self
+                .state
+                .indents
+                .last()
+                .is_some_and(|last| *last > self.state.current_indent)
+            && let Some((i, _)) = self.state.chars.peek()
+        {
+            self.state.indents.pop();
+            return Some(TokenWithSpan {
+                token: Token::Dedent(Dedent {}),
+                span: Span { start: *i, end: *i },
+            });
+        }
         let mut indent = None;
         loop {
             match self.state.chars.peek() {
@@ -218,16 +240,17 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     let end = *i;
                     let len = (end - start) as u16;
                     let span = Span { start, end };
-                    match len.cmp(&self.state.indent_size) {
+                    self.state.current_indent = len;
+                    match len.cmp(&self.state.indents.last().copied().unwrap_or_default()) {
                         Ordering::Greater => {
-                            self.state.indent_size = len;
+                            self.state.indents.push(len);
                             TokenWithSpan {
                                 token: Token::Indent(Indent {}),
                                 span,
                             }
                         }
                         Ordering::Less => {
-                            self.state.indent_size = len;
+                            self.state.indents.pop();
                             TokenWithSpan {
                                 token: Token::Dedent(Dedent {}),
                                 span,

@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -144,115 +143,115 @@ Stylesheet(
               end: 18,
             ),
           ),
-          QualifiedRule(
-            type: "QualifiedRule",
-            selector: SelectorList(
-              type: "SelectorList",
-              selectors: [
-                ComplexSelector(
-                  type: "ComplexSelector",
-                  children: [
-                    CompoundSelector(
-                      type: "CompoundSelector",
-                      children: [
-                        TagNameSelector(
-                          type: "TagNameSelector",
-                          name: WqName(
-                            type: "WqName",
-                            name: Ident(
-                              type: "Ident",
-                              name: "x",
-                              raw: "x",
-                              span: Span(
-                                start: 18,
-                                end: 19,
-                              ),
-                            ),
-                            prefix: None,
-                            span: Span(
-                              start: 18,
-                              end: 19,
-                            ),
-                          ),
-                          span: Span(
-                            start: 18,
-                            end: 19,
-                          ),
+        ],
+        span: Span(
+          start: 3,
+          end: 18,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 18,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "x",
+                        raw: "x",
+                        span: Span(
+                          start: 18,
+                          end: 19,
                         ),
-                      ],
+                      ),
+                      prefix: None,
                       span: Span(
                         start: 18,
                         end: 19,
                       ),
                     ),
-                  ],
-                  span: Span(
-                    start: 18,
-                    end: 19,
-                  ),
-                ),
-              ],
-              commaSpans: [],
-              span: Span(
-                start: 18,
-                end: 19,
-              ),
-            ),
-            block: SimpleBlock(
-              type: "SimpleBlock",
-              statements: [
-                Declaration(
-                  type: "Declaration",
-                  name: Ident(
-                    type: "Ident",
-                    name: "y",
-                    raw: "y",
                     span: Span(
-                      start: 22,
-                      end: 23,
+                      start: 18,
+                      end: 19,
                     ),
                   ),
-                  colonSpan: Span(
-                    start: 23,
-                    end: 24,
-                  ),
-                  value: [
-                    Ident(
-                      type: "Ident",
-                      name: "z",
-                      raw: "z",
-                      span: Span(
-                        start: 25,
-                        end: 26,
-                      ),
-                    ),
-                  ],
-                  important: None,
-                  lessPropertyMerge: None,
-                  span: Span(
-                    start: 22,
-                    end: 26,
-                  ),
+                ],
+                span: Span(
+                  start: 18,
+                  end: 19,
                 ),
-              ],
-              span: Span(
-                start: 22,
-                end: 27,
               ),
-            ),
+            ],
             span: Span(
               start: 18,
-              end: 27,
+              end: 19,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 18,
+          end: 19,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "y",
+              raw: "y",
+              span: Span(
+                start: 22,
+                end: 23,
+              ),
+            ),
+            colonSpan: Span(
+              start: 23,
+              end: 24,
+            ),
+            value: [
+              Ident(
+                type: "Ident",
+                name: "z",
+                raw: "z",
+                span: Span(
+                  start: 25,
+                  end: 26,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 22,
+              end: 26,
             ),
           ),
         ],
         span: Span(
-          start: 3,
+          start: 22,
           end: 27,
         ),
       ),
       span: Span(
-        start: 0,
+        start: 18,
         end: 27,
       ),
     ),
