@@ -1,7 +1,7 @@
 use super::Parser;
 use crate::{
     ast::*,
-    bump, eat,
+    eat,
     error::{Error, ErrorKind, PResult},
     parser::state::ParserState,
     peek,
