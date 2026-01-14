@@ -14,8 +14,8 @@ serde = { version = "1.0", features = ["derive"], optional = true }
 smallvec = { version = "1.15", features = ["const_generics"] }
 
 [dev-dependencies]
-codespan-reporting = "0.12"
-insta = { version = "1.43", features = ["glob", "ron"] }
+codespan-reporting = "0.13"
+insta = { version = "1.46", features = ["glob", "ron"] }
 serde_json = "1.0"
 
 [features]

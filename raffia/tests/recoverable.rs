@@ -1,7 +1,7 @@
 use codespan_reporting::{
     diagnostic::{Diagnostic, Label},
     files::SimpleFile,
-    term::{self, termcolor::Buffer},
+    term,
 };
 use insta::{assert_ron_snapshot, assert_snapshot, glob, Settings};
 use raffia::{ast::Stylesheet, Parser, Syntax};
@@ -34,7 +34,7 @@ fn recoverable_errors_snapshot() {
                     path.display()
                 );
 
-                let mut buffer = Buffer::no_color();
+                let mut errors = String::new();
                 recoverable_errors
                     .iter()
                     .map(|error| {
@@ -43,17 +43,16 @@ fn recoverable_errors_snapshot() {
                             .with_labels(vec![Label::primary((), error.span.start..error.span.end)])
                     })
                     .for_each(|diagnostic| {
-                        term::emit(&mut buffer, &config, &file, &diagnostic).unwrap();
+                        term::emit_to_string(&mut errors, &config, &file, &diagnostic).unwrap();
                     });
-                (ast, String::from_utf8(buffer.into_inner()).unwrap())
+                (ast, errors)
             }
             Err(error) => {
                 let diagnostic = Diagnostic::error()
                     .with_message(error.kind.to_string())
                     .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
-                let mut buffer = Buffer::ansi();
-                term::emit(&mut buffer, &config, &file, &diagnostic).unwrap();
-                panic!("\n{}", String::from_utf8(buffer.into_inner()).unwrap());
+                let error = term::emit_into_string(&config, &file, &diagnostic).unwrap();
+                panic!("\n{error}");
             }
         };
 

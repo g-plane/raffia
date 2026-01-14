@@ -45,5 +45,5 @@ fn print_error(path: &Path, code: &str, error: &Error) {
         .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
     let writer = StandardStream::stderr(ColorChoice::Always);
     let config = term::Config::default();
-    term::emit(&mut writer.lock(), &config, &file, &diagnostic).unwrap();
+    term::emit_to_write_style(&mut writer.lock(), &config, &file, &diagnostic).unwrap();
 }

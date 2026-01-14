@@ -1,7 +1,7 @@
 use codespan_reporting::{
     diagnostic::{Diagnostic, Label},
     files::SimpleFile,
-    term::{self, termcolor::Buffer},
+    term,
 };
 use insta::{assert_snapshot, glob, Settings};
 use raffia::{ast::Stylesheet, Parser, Syntax};
@@ -31,10 +31,8 @@ fn error_snapshot() {
                 let diagnostic = Diagnostic::error()
                     .with_message(error.kind.to_string())
                     .with_labels(vec![Label::primary((), error.span.start..error.span.end)]);
-                let mut buffer = Buffer::no_color();
                 let config = term::Config::default();
-                term::emit(&mut buffer, &config, &file, &diagnostic).unwrap();
-                String::from_utf8(buffer.into_inner()).unwrap()
+                term::emit_into_string(&config, &file, &diagnostic).unwrap()
             }
         };
 
