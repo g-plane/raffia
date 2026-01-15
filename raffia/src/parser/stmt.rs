@@ -207,7 +207,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SimpleBlock<'s> {
                     token: Token::Dedent(..) | Token::Eof(..),
                     span,
                 } => {
-                    let end = span.start;
+                    let end = statements.last().map_or(span.start, |last| last.span().end);
                     Ok(SimpleBlock {
                         statements,
                         span: Span { start, end },
