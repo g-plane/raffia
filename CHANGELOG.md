@@ -1,5 +1,10 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.12.0
+
+- Added support of TailwindCSS `--color-*` like namespace syntax.
+- Fixed Sass indentation bug.
+
 ## v0.11.2
 
 - Fixed mistake of handling whitespace token in Sass.
