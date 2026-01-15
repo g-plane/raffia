@@ -1,5 +1,9 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.12.2
+
+- Fixed span of `SimpleBlock` in Sass.
+
 ## v0.12.1
 
 - Fixed unwanted token in maps in Sass.
