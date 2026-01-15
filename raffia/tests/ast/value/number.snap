@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -73,6 +72,7 @@ Stylesheet(
                 end: 9,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 9,
               end: 10,
@@ -174,6 +174,7 @@ Stylesheet(
                 end: 26,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 26,
               end: 27,
@@ -275,6 +276,7 @@ Stylesheet(
                 end: 44,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 44,
               end: 45,
@@ -376,6 +378,7 @@ Stylesheet(
                 end: 62,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 62,
               end: 63,
@@ -477,6 +480,7 @@ Stylesheet(
                 end: 79,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 79,
               end: 80,
@@ -578,6 +582,7 @@ Stylesheet(
                 end: 97,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 97,
               end: 98,
@@ -679,6 +684,7 @@ Stylesheet(
                 end: 115,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 115,
               end: 116,
@@ -780,6 +786,7 @@ Stylesheet(
                 end: 133,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 133,
               end: 134,
@@ -881,6 +888,7 @@ Stylesheet(
                 end: 152,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 152,
               end: 153,
@@ -982,6 +990,7 @@ Stylesheet(
                 end: 171,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 171,
               end: 172,
@@ -1083,6 +1092,7 @@ Stylesheet(
                 end: 189,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 189,
               end: 190,
@@ -1184,6 +1194,7 @@ Stylesheet(
                 end: 208,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 208,
               end: 209,
@@ -1285,6 +1296,7 @@ Stylesheet(
                 end: 227,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 227,
               end: 228,
@@ -1386,6 +1398,7 @@ Stylesheet(
                 end: 245,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 245,
               end: 246,
@@ -1487,6 +1500,7 @@ Stylesheet(
                 end: 264,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 264,
               end: 265,
@@ -1588,6 +1602,7 @@ Stylesheet(
                 end: 283,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 283,
               end: 284,
@@ -1689,6 +1704,7 @@ Stylesheet(
                 end: 301,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 301,
               end: 302,
@@ -1790,6 +1806,7 @@ Stylesheet(
                 end: 320,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 320,
               end: 321,

@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -102,6 +101,7 @@ Stylesheet(
                 end: 48,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 48,
               end: 49,
@@ -142,6 +142,7 @@ Stylesheet(
                 end: 77,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 77,
               end: 78,
@@ -377,6 +378,7 @@ Stylesheet(
                 end: 167,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 167,
               end: 168,
@@ -563,6 +565,7 @@ Stylesheet(
                 end: 228,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 228,
               end: 229,
@@ -760,6 +763,7 @@ Stylesheet(
                 end: 278,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 278,
               end: 279,
@@ -964,6 +968,7 @@ Stylesheet(
                 end: 324,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 324,
               end: 325,

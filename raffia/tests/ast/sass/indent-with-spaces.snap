@@ -72,6 +72,7 @@ Stylesheet(
                 end: 4,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 4,
               end: 5,
@@ -102,6 +103,7 @@ Stylesheet(
                           end: 13,
                         ),
                       ),
+                      nameSuffix: None,
                       colonSpan: Span(
                         start: 13,
                         end: 14,
@@ -222,6 +224,7 @@ Stylesheet(
                 end: 23,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 23,
               end: 24,

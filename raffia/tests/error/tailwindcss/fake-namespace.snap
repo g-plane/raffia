@@ -1,0 +1,8 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `:`, but found `*`
+  ┌─ fake-namespace.css:2:12
+  │
+2 │   --color- *: initial;
+  │            ^

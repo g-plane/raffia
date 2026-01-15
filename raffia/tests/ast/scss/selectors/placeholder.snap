@@ -64,6 +64,7 @@ Stylesheet(
                 end: 12,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 12,
               end: 13,
@@ -163,6 +164,7 @@ Stylesheet(
                       end: 38,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 38,
                     end: 39,
@@ -567,6 +569,7 @@ Stylesheet(
                 end: 126,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 126,
               end: 127,

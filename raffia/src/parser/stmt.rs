@@ -22,6 +22,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
             })
             .parse::<InterpolableIdent>()?;
 
+        // https://tailwindcss.com/docs/theme#overriding-the-default-theme
+        let name_suffix = if let TokenWithSpan {
+            token: Token::Asterisk(..),
+            span,
+        } = peek!(input)
+            && name.span().end == span.start
+        {
+            bump!(input);
+            Some('*')
+        } else {
+            None
+        };
+
         let less_property_merge = if input.syntax == Syntax::Less {
             input.parse()?
         } else {
@@ -116,6 +129,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
         };
         Ok(Declaration {
             name,
+            name_suffix,
             colon_span,
             value,
             important,

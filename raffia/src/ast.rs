@@ -444,6 +444,7 @@ pub struct CustomSelectorPrelude<'s> {
 #[cfg_attr(feature = "span_ignored_eq", derive(SpanIgnoredEq))]
 pub struct Declaration<'s> {
     pub name: InterpolableIdent<'s>,
+    pub name_suffix: Option<char>,
     pub colon_span: Span,
     pub value: Vec<ComponentValue<'s>>,
     pub important: Option<ImportantAnnotation<'s>>,

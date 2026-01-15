@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -43,6 +42,7 @@ Stylesheet(
                   end: 19,
                 ),
               ),
+              nameSuffix: None,
               colonSpan: Span(
                 start: 19,
                 end: 20,
@@ -76,6 +76,7 @@ Stylesheet(
                   end: 40,
                 ),
               ),
+              nameSuffix: None,
               colonSpan: Span(
                 start: 40,
                 end: 41,
@@ -168,6 +169,7 @@ Stylesheet(
                       end: 73,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 73,
                     end: 74,
@@ -201,6 +203,7 @@ Stylesheet(
                       end: 87,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 87,
                     end: 88,
@@ -241,6 +244,7 @@ Stylesheet(
                       end: 99,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 99,
                     end: 100,
@@ -371,6 +375,7 @@ Stylesheet(
                         end: 141,
                       ),
                     ),
+                    nameSuffix: None,
                     colonSpan: Span(
                       start: 141,
                       end: 142,
@@ -477,6 +482,7 @@ Stylesheet(
                       end: 173,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 173,
                     end: 174,
@@ -553,6 +559,7 @@ Stylesheet(
                                   end: 222,
                                 ),
                               ),
+                              nameSuffix: None,
                               colonSpan: Span(
                                 start: 222,
                                 end: 223,
@@ -784,6 +791,7 @@ Stylesheet(
                                   end: 323,
                                 ),
                               ),
+                              nameSuffix: None,
                               colonSpan: Span(
                                 start: 323,
                                 end: 324,
@@ -907,6 +915,7 @@ Stylesheet(
                       end: 371,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 371,
                     end: 372,
@@ -978,6 +987,7 @@ Stylesheet(
                         end: 392,
                       ),
                     ),
+                    nameSuffix: None,
                     colonSpan: Span(
                       start: 392,
                       end: 393,

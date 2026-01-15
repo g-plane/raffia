@@ -1,6 +1,5 @@
 ---
 source: raffia/tests/ast.rs
-assertion_line: 54
 ---
 Stylesheet(
   type: "Stylesheet",
@@ -65,6 +64,7 @@ Stylesheet(
                 end: 21,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 21,
               end: 22,
@@ -153,6 +153,7 @@ Stylesheet(
                 end: 63,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 63,
               end: 64,
@@ -217,6 +218,7 @@ Stylesheet(
                 end: 93,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 93,
               end: 94,
@@ -421,6 +423,7 @@ Stylesheet(
                 end: 132,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 132,
               end: 133,
@@ -575,6 +578,7 @@ Stylesheet(
                       end: 172,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 172,
                     end: 173,
@@ -714,6 +718,7 @@ Stylesheet(
                       end: 205,
                     ),
                   ),
+                  nameSuffix: None,
                   colonSpan: Span(
                     start: 205,
                     end: 206,
@@ -830,6 +835,7 @@ Stylesheet(
                 end: 238,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 238,
               end: 239,
@@ -942,6 +948,7 @@ Stylesheet(
                 end: 269,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 269,
               end: 270,
@@ -1030,6 +1037,7 @@ Stylesheet(
                 end: 296,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 296,
               end: 297,
@@ -1212,6 +1220,7 @@ Stylesheet(
                 end: 349,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 349,
               end: 350,
@@ -1290,6 +1299,7 @@ Stylesheet(
                 end: 369,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 369,
               end: 370,
@@ -1361,6 +1371,7 @@ Stylesheet(
                 end: 388,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 388,
               end: 389,
@@ -1509,6 +1520,7 @@ Stylesheet(
                 end: 430,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 430,
               end: 431,
@@ -1625,6 +1637,7 @@ Stylesheet(
                 end: 465,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 465,
               end: 466,
@@ -1755,6 +1768,7 @@ Stylesheet(
                 end: 498,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 498,
               end: 499,
@@ -1997,6 +2011,7 @@ Stylesheet(
                 end: 564,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 564,
               end: 565,
@@ -2051,6 +2066,7 @@ Stylesheet(
                 end: 586,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 586,
               end: 587,
@@ -2136,6 +2152,7 @@ Stylesheet(
                 end: 615,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 615,
               end: 616,
@@ -2221,6 +2238,7 @@ Stylesheet(
                 end: 644,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 644,
               end: 645,
@@ -2306,6 +2324,7 @@ Stylesheet(
                 end: 673,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 673,
               end: 674,
@@ -2398,6 +2417,7 @@ Stylesheet(
                 end: 699,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 699,
               end: 700,
@@ -2459,6 +2479,7 @@ Stylesheet(
                 end: 720,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 720,
               end: 721,
@@ -2635,6 +2656,7 @@ Stylesheet(
                 end: 760,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 760,
               end: 761,
@@ -2702,6 +2724,7 @@ Stylesheet(
                 end: 774,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 774,
               end: 775,
@@ -2776,6 +2799,7 @@ Stylesheet(
                 end: 789,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 789,
               end: 790,
@@ -2874,6 +2898,7 @@ Stylesheet(
                 end: 813,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 813,
               end: 814,
@@ -3010,6 +3035,7 @@ Stylesheet(
                 end: 844,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 844,
               end: 845,
@@ -3527,6 +3553,7 @@ Stylesheet(
                 end: 980,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 980,
               end: 981,
@@ -3629,6 +3656,7 @@ Stylesheet(
                 end: 1015,
               ),
             ),
+            nameSuffix: None,
             colonSpan: Span(
               start: 1015,
               end: 1016,
