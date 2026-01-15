@@ -1439,6 +1439,12 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassMap<'s> {
                 }
                 _ => {
                     items.push(input.parse()?);
+                    if matches!(
+                        peek!(input).token,
+                        Token::Indent(..) | Token::Dedent(..) | Token::Linebreak(..)
+                    ) {
+                        bump!(input);
+                    }
                     if !matches!(&peek!(input).token, Token::RParen(..)) {
                         comma_spans.push(expect!(input, Comma).1);
                     }

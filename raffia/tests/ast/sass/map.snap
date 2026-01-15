@@ -37,26 +37,94 @@ Stylesheet(
               name: "col-primary-bg",
               raw: "col-primary-bg",
               span: Span(
-                start: 17,
-                end: 31,
+                start: 18,
+                end: 32,
               ),
             ),
             colonSpan: Span(
-              start: 31,
-              end: 32,
+              start: 32,
+              end: 33,
             ),
             value: HexColor(
               type: "HexColor",
               value: "F8FAFC",
               raw: "F8FAFC",
               span: Span(
-                start: 33,
-                end: 40,
+                start: 34,
+                end: 41,
               ),
             ),
             span: Span(
-              start: 17,
-              end: 40,
+              start: 18,
+              end: 41,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 14,
+          end: 43,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 0,
+        end: 43,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "theme-light",
+          raw: "theme-light",
+          span: Span(
+            start: 45,
+            end: 56,
+          ),
+        ),
+        span: Span(
+          start: 44,
+          end: 56,
+        ),
+      ),
+      colonSpan: Span(
+        start: 56,
+        end: 57,
+      ),
+      value: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-primary-bg",
+              raw: "col-primary-bg",
+              span: Span(
+                start: 62,
+                end: 76,
+              ),
+            ),
+            colonSpan: Span(
+              start: 76,
+              end: 77,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "F8FAFC",
+              raw: "F8FAFC",
+              span: Span(
+                start: 78,
+                end: 85,
+              ),
+            ),
+            span: Span(
+              start: 62,
+              end: 85,
             ),
           ),
           SassMapItem(
@@ -66,53 +134,257 @@ Stylesheet(
               name: "col-secondary-bg",
               raw: "col-secondary-bg",
               span: Span(
-                start: 43,
-                end: 59,
+                start: 89,
+                end: 105,
               ),
             ),
             colonSpan: Span(
-              start: 59,
-              end: 60,
+              start: 105,
+              end: 106,
             ),
             value: HexColor(
               type: "HexColor",
               value: "E2E8F0",
               raw: "E2E8F0",
               span: Span(
-                start: 61,
-                end: 68,
+                start: 107,
+                end: 114,
               ),
             ),
             span: Span(
-              start: 43,
-              end: 68,
+              start: 89,
+              end: 114,
             ),
           ),
         ],
         commaSpans: [
           Span(
-            start: 40,
-            end: 41,
-          ),
-          Span(
-            start: 68,
-            end: 69,
+            start: 85,
+            end: 86,
           ),
         ],
         span: Span(
-          start: 14,
-          end: 71,
+          start: 58,
+          end: 116,
         ),
       ),
       flags: [],
       span: Span(
-        start: 0,
-        end: 71,
+        start: 44,
+        end: 116,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "theme-light",
+          raw: "theme-light",
+          span: Span(
+            start: 118,
+            end: 129,
+          ),
+        ),
+        span: Span(
+          start: 117,
+          end: 129,
+        ),
+      ),
+      colonSpan: Span(
+        start: 129,
+        end: 130,
+      ),
+      value: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-primary-bg",
+              raw: "col-primary-bg",
+              span: Span(
+                start: 135,
+                end: 149,
+              ),
+            ),
+            colonSpan: Span(
+              start: 149,
+              end: 150,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "F8FAFC",
+              raw: "F8FAFC",
+              span: Span(
+                start: 151,
+                end: 158,
+              ),
+            ),
+            span: Span(
+              start: 135,
+              end: 158,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-secondary-bg",
+              raw: "col-secondary-bg",
+              span: Span(
+                start: 161,
+                end: 177,
+              ),
+            ),
+            colonSpan: Span(
+              start: 177,
+              end: 178,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "E2E8F0",
+              raw: "E2E8F0",
+              span: Span(
+                start: 179,
+                end: 186,
+              ),
+            ),
+            span: Span(
+              start: 161,
+              end: 186,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 159,
+            end: 160,
+          ),
+        ],
+        span: Span(
+          start: 131,
+          end: 188,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 117,
+        end: 188,
+      ),
+    ),
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "theme-light",
+          raw: "theme-light",
+          span: Span(
+            start: 190,
+            end: 201,
+          ),
+        ),
+        span: Span(
+          start: 189,
+          end: 201,
+        ),
+      ),
+      colonSpan: Span(
+        start: 201,
+        end: 202,
+      ),
+      value: SassMap(
+        type: "SassMap",
+        items: [
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-primary-bg",
+              raw: "col-primary-bg",
+              span: Span(
+                start: 207,
+                end: 221,
+              ),
+            ),
+            colonSpan: Span(
+              start: 221,
+              end: 222,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "F8FAFC",
+              raw: "F8FAFC",
+              span: Span(
+                start: 223,
+                end: 230,
+              ),
+            ),
+            span: Span(
+              start: 207,
+              end: 230,
+            ),
+          ),
+          SassMapItem(
+            type: "SassMapItem",
+            key: Ident(
+              type: "Ident",
+              name: "col-secondary-bg",
+              raw: "col-secondary-bg",
+              span: Span(
+                start: 234,
+                end: 250,
+              ),
+            ),
+            colonSpan: Span(
+              start: 250,
+              end: 251,
+            ),
+            value: HexColor(
+              type: "HexColor",
+              value: "E2E8F0",
+              raw: "E2E8F0",
+              span: Span(
+                start: 252,
+                end: 259,
+              ),
+            ),
+            span: Span(
+              start: 234,
+              end: 259,
+            ),
+          ),
+        ],
+        commaSpans: [
+          Span(
+            start: 230,
+            end: 231,
+          ),
+          Span(
+            start: 259,
+            end: 260,
+          ),
+        ],
+        span: Span(
+          start: 203,
+          end: 262,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 189,
+        end: 262,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 72,
+    end: 263,
   ),
 )
