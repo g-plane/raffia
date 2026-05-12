@@ -69,10 +69,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for Declaration<'s> {
                     loop {
                         match &peek!(parser).token {
                             Token::Dedent(..) | Token::Linebreak(..) | Token::Eof(..) => break,
-                            Token::Semicolon(..) => {
-                                if pairs.is_empty() {
-                                    break;
-                                }
+                            Token::Semicolon(..) if pairs.is_empty() => {
+                                break;
                             }
                             Token::LParen(..) => {
                                 pairs.push(PairedToken::Paren);
