@@ -1,6 +1,6 @@
 use super::{
     Parser,
-    state::{ParserState, SASS_CTX_ALLOW_DIV},
+    state::{ParserState, SASS_CTX_ALLOW_DIV, SASS_CTX_IN_PARENS},
 };
 use crate::{
     Parse,
@@ -58,7 +58,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 | Token::DotDotDot(..)
                 | Token::Eof(..) => break,
                 Token::Indent(..) | Token::Dedent(..) | Token::Linebreak(..) => {
-                    if comma_spans.as_ref().is_none_or(|spans| spans.is_empty()) {
+                    if comma_spans.as_ref().is_none_or(|spans| spans.is_empty())
+                        || self.state.sass_ctx & SASS_CTX_IN_PARENS == 0
+                    {
                         break;
                     } else {
                         bump!(self);
@@ -1533,7 +1535,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for SassParenthesizedExpression<'s> {
         let expr = Box::new(
             input
                 .with_state(ParserState {
-                    sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV,
+                    sass_ctx: input.state.sass_ctx | SASS_CTX_ALLOW_DIV | SASS_CTX_IN_PARENS,
                     ..input.state.clone()
                 })
                 .parse_maybe_sass_list(/* allow_comma */ true)?,

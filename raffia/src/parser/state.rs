@@ -22,6 +22,7 @@ pub(super) enum QualifiedRuleContext {
 pub(super) const SASS_CTX_IN_FUNCTION: u8 = 1;
 pub(super) const SASS_CTX_ALLOW_DIV: u8 = 2;
 pub(super) const SASS_CTX_ALLOW_KEYFRAME_BLOCK: u8 = 4;
+pub(super) const SASS_CTX_IN_PARENS: u8 = 8;
 
 pub(super) const LESS_CTX_ALLOW_DIV: u8 = 1;
 pub(super) const LESS_CTX_ALLOW_KEYFRAME_BLOCK: u8 = 2;

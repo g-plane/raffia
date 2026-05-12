@@ -1,0 +1,183 @@
+---
+source: raffia/tests/ast.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    SassVariableDeclaration(
+      type: "SassVariableDeclaration",
+      namespace: None,
+      name: SassVariable(
+        type: "SassVariable",
+        name: Ident(
+          type: "Ident",
+          name: "font-stack",
+          raw: "font-stack",
+          span: Span(
+            start: 1,
+            end: 11,
+          ),
+        ),
+        span: Span(
+          start: 0,
+          end: 11,
+        ),
+      ),
+      colonSpan: Span(
+        start: 11,
+        end: 12,
+      ),
+      value: SassList(
+        type: "SassList",
+        elements: [
+          Ident(
+            type: "Ident",
+            name: "a",
+            raw: "a",
+            span: Span(
+              start: 13,
+              end: 14,
+            ),
+          ),
+          Ident(
+            type: "Ident",
+            name: "b",
+            raw: "b",
+            span: Span(
+              start: 16,
+              end: 17,
+            ),
+          ),
+        ],
+        commaSpans: Some([
+          Span(
+            start: 14,
+            end: 15,
+          ),
+        ]),
+        span: Span(
+          start: 13,
+          end: 17,
+        ),
+      ),
+      flags: [],
+      span: Span(
+        start: 0,
+        end: 17,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "body",
+                        raw: "body",
+                        span: Span(
+                          start: 19,
+                          end: 23,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 19,
+                        end: 23,
+                      ),
+                    ),
+                    span: Span(
+                      start: 19,
+                      end: 23,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 19,
+                  end: 23,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 19,
+              end: 23,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 19,
+          end: 23,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "font",
+              raw: "font",
+              span: Span(
+                start: 26,
+                end: 30,
+              ),
+            ),
+            nameSuffix: None,
+            colonSpan: Span(
+              start: 30,
+              end: 31,
+            ),
+            value: [
+              SassVariable(
+                type: "SassVariable",
+                name: Ident(
+                  type: "Ident",
+                  name: "font-stack",
+                  raw: "font-stack",
+                  span: Span(
+                    start: 33,
+                    end: 43,
+                  ),
+                ),
+                span: Span(
+                  start: 32,
+                  end: 43,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 26,
+              end: 43,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 26,
+          end: 43,
+        ),
+      ),
+      span: Span(
+        start: 19,
+        end: 43,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 44,
+  ),
+)
