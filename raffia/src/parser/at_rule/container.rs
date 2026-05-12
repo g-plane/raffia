@@ -328,7 +328,10 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for StyleQuery<'s> {
 impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerPrelude<'s> {
     fn parse(input: &mut Parser<'cmt, 's>) -> PResult<Self> {
         let name = input.try_parse(|parser| match parser.parse()? {
-            InterpolableIdent::Literal(ident) if ident.name.eq_ignore_ascii_case("not") => {
+            InterpolableIdent::Literal(ident)
+                if ident.name.eq_ignore_ascii_case("not")
+                    || ident.name.eq_ignore_ascii_case("scroll-state") =>
+            {
                 Err(Error {
                     kind: ErrorKind::TryParseError,
                     span: ident.span,

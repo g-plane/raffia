@@ -35192,9 +35192,86 @@ Stylesheet(
         end: 9842,
       ),
     ),
+    AtRule(
+      type: "AtRule",
+      name: Ident(
+        type: "Ident",
+        name: "container",
+        raw: "container",
+        span: Span(
+          start: 9844,
+          end: 9853,
+        ),
+      ),
+      prelude: Some(ContainerPrelude(
+        type: "ContainerPrelude",
+        name: None,
+        condition: ContainerCondition(
+          type: "ContainerCondition",
+          conditions: [
+            QueryInParens(
+              type: "QueryInParens",
+              kind: MediaFeaturePlain(
+                type: "MediaFeaturePlain",
+                name: Ident(
+                  type: "Ident",
+                  name: "scrollable",
+                  raw: "scrollable",
+                  span: Span(
+                    start: 9867,
+                    end: 9877,
+                  ),
+                ),
+                colonSpan: Span(
+                  start: 9877,
+                  end: 9878,
+                ),
+                value: Ident(
+                  type: "Ident",
+                  name: "top",
+                  raw: "top",
+                  span: Span(
+                    start: 9879,
+                    end: 9882,
+                  ),
+                ),
+                span: Span(
+                  start: 9867,
+                  end: 9882,
+                ),
+              ),
+              span: Span(
+                start: 9854,
+                end: 9883,
+              ),
+            ),
+          ],
+          span: Span(
+            start: 9854,
+            end: 9883,
+          ),
+        ),
+        span: Span(
+          start: 9854,
+          end: 9883,
+        ),
+      )),
+      block: Some(SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 9884,
+          end: 9886,
+        ),
+      )),
+      span: Span(
+        start: 9843,
+        end: 9886,
+      ),
+    ),
   ],
   span: Span(
     start: 0,
-    end: 9843,
+    end: 9887,
   ),
 )

@@ -134,3 +134,4 @@
 
 @container my-container scroll-state(scrollable: top) {}
 @container my-container scroll-state(a > b) {}
+@container scroll-state(scrollable: top) {}
