@@ -1,5 +1,10 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.12.3
+
+- Fixed recognizing anonymous `scroll-state` container queries.
+- Fixed termination of Sass list without parens.
+
 ## v0.12.2
 
 - Fixed span of `SimpleBlock` in Sass.
