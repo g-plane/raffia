@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 2
       - run: cargo test --all-features
-      - uses: rust-lang/crates-io-auth-action@v1
+      - uses: rust-lang/crates-io-auth-action@v1.0.4
         id: cratesio-auth
       - name: Publish crates
         if: ${{ github.event_name == 'push' }}
@@ -41,8 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Install wasm-pack
-        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+      - uses: taiki-e/install-action@v2
+        with:
+          tool: wasm-pack
       - run: wasm-pack build --target web --no-typescript wasm
       - name: Deploy Production
         run: |
