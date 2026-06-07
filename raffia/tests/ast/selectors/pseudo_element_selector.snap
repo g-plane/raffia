@@ -2748,12 +2748,14 @@ Stylesheet(
                     ),
                     arg: Some(PseudoElementSelectorArg(
                       type: "PseudoElementSelectorArg",
-                      kind: CompoundSelector(
-                        type: "CompoundSelector",
-                        children: [
-                          UniversalSelector(
-                            type: "UniversalSelector",
-                            prefix: None,
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Asterisk(Asterisk(
+                              kind: "Asterisk",
+                            )),
                             span: Span(
                               start: 635,
                               end: 636,
@@ -2839,28 +2841,16 @@ Stylesheet(
                     ),
                     arg: Some(PseudoElementSelectorArg(
                       type: "PseudoElementSelectorArg",
-                      kind: CompoundSelector(
-                        type: "CompoundSelector",
-                        children: [
-                          TagNameSelector(
-                            type: "TagNameSelector",
-                            name: WqName(
-                              type: "WqName",
-                              name: Ident(
-                                type: "Ident",
-                                name: "span",
-                                raw: "span",
-                                span: Span(
-                                  start: 651,
-                                  end: 655,
-                                ),
-                              ),
-                              prefix: None,
-                              span: Span(
-                                start: 651,
-                                end: 655,
-                              ),
-                            ),
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "span",
+                            )),
                             span: Span(
                               start: 651,
                               end: 655,
@@ -2946,28 +2936,16 @@ Stylesheet(
                     ),
                     arg: Some(PseudoElementSelectorArg(
                       type: "PseudoElementSelectorArg",
-                      kind: CompoundSelector(
-                        type: "CompoundSelector",
-                        children: [
-                          TagNameSelector(
-                            type: "TagNameSelector",
-                            name: WqName(
-                              type: "WqName",
-                              name: Ident(
-                                type: "Ident",
-                                name: "span",
-                                raw: "span",
-                                span: Span(
-                                  start: 673,
-                                  end: 677,
-                                ),
-                              ),
-                              prefix: None,
-                              span: Span(
-                                start: 673,
-                                end: 677,
-                              ),
-                            ),
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "span",
+                            )),
                             span: Span(
                               start: 673,
                               end: 677,
@@ -3044,49 +3022,102 @@ Stylesheet(
                     type: "PseudoElementSelector",
                     name: Ident(
                       type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
+                      name: "slotted",
+                      raw: "slotted",
                       span: Span(
-                        start: 688,
+                        start: 687,
+                        end: 694,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Asterisk(Asterisk(
+                              kind: "Asterisk",
+                            )),
+                            span: Span(
+                              start: 695,
+                              end: 696,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Plus(Plus(
+                              kind: "Plus",
+                            )),
+                            span: Span(
+                              start: 697,
+                              end: 698,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Asterisk(Asterisk(
+                              kind: "Asterisk",
+                            )),
+                            span: Span(
+                              start: 699,
+                              end: 700,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 695,
+                          end: 700,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 694,
                         end: 695,
                       ),
-                    ),
-                    arg: None,
+                      rParen: Span(
+                        start: 700,
+                        end: 701,
+                      ),
+                      span: Span(
+                        start: 694,
+                        end: 701,
+                      ),
+                    )),
                     span: Span(
-                      start: 686,
-                      end: 695,
+                      start: 685,
+                      end: 701,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 686,
-                  end: 695,
+                  start: 685,
+                  end: 701,
                 ),
               ),
             ],
             span: Span(
-              start: 686,
-              end: 695,
+              start: 685,
+              end: 701,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 686,
-          end: 695,
+          start: 685,
+          end: 701,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 696,
-          end: 698,
+          start: 702,
+          end: 704,
         ),
       ),
       span: Span(
-        start: 686,
-        end: 698,
+        start: 685,
+        end: 704,
       ),
     ),
     QualifiedRule(
@@ -3104,166 +3135,126 @@ Stylesheet(
                     type: "PseudoElementSelector",
                     name: Ident(
                       type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
+                      name: "slotted",
+                      raw: "slotted",
                       span: Span(
-                        start: 701,
-                        end: 708,
+                        start: 707,
+                        end: 714,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
                       type: "PseudoElementSelectorArg",
                       kind: TokenSeq(
                         type: "TokenSeq",
-                        tokens: [],
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dot(Dot(
+                              kind: "Dot",
+                            )),
+                            span: Span(
+                              start: 715,
+                              end: 716,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "a",
+                            )),
+                            span: Span(
+                              start: 716,
+                              end: 717,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Plus(Plus(
+                              kind: "Plus",
+                            )),
+                            span: Span(
+                              start: 718,
+                              end: 719,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dot(Dot(
+                              kind: "Dot",
+                            )),
+                            span: Span(
+                              start: 720,
+                              end: 721,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "b",
+                            )),
+                            span: Span(
+                              start: 721,
+                              end: 722,
+                            ),
+                          ),
+                        ],
                         span: Span(
-                          start: 709,
-                          end: 709,
+                          start: 715,
+                          end: 722,
                         ),
                       ),
                       lParen: Span(
-                        start: 708,
-                        end: 709,
+                        start: 714,
+                        end: 715,
                       ),
                       rParen: Span(
-                        start: 709,
-                        end: 710,
-                      ),
-                      span: Span(
-                        start: 708,
-                        end: 710,
-                      ),
-                    )),
-                    span: Span(
-                      start: 699,
-                      end: 710,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 699,
-                  end: 710,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 699,
-              end: 710,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 699,
-          end: 710,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 711,
-          end: 713,
-        ),
-      ),
-      span: Span(
-        start: 699,
-        end: 713,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 716,
+                        start: 722,
                         end: 723,
                       ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 724,
-                              end: 727,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 724,
-                          end: 727,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 723,
-                        end: 724,
-                      ),
-                      rParen: Span(
-                        start: 727,
-                        end: 728,
-                      ),
                       span: Span(
-                        start: 723,
-                        end: 728,
+                        start: 714,
+                        end: 723,
                       ),
                     )),
                     span: Span(
-                      start: 714,
-                      end: 728,
+                      start: 705,
+                      end: 723,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 714,
-                  end: 728,
+                  start: 705,
+                  end: 723,
                 ),
               ),
             ],
             span: Span(
-              start: 714,
-              end: 728,
+              start: 705,
+              end: 723,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 714,
-          end: 728,
+          start: 705,
+          end: 723,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 729,
-          end: 731,
+          start: 724,
+          end: 726,
         ),
       ),
       span: Span(
-        start: 714,
-        end: 731,
+        start: 705,
+        end: 726,
       ),
     ),
     QualifiedRule(
@@ -3281,11 +3272,11 @@ Stylesheet(
                     type: "PseudoElementSelector",
                     name: Ident(
                       type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
+                      name: "slotted",
+                      raw: "slotted",
                       span: Span(
-                        start: 734,
-                        end: 741,
+                        start: 729,
+                        end: 736,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -3295,14 +3286,12 @@ Stylesheet(
                         tokens: [
                           TokenWithSpan(
                             type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
+                            token: Dot(Dot(
+                              kind: "Dot",
                             )),
                             span: Span(
-                              start: 742,
-                              end: 745,
+                              start: 737,
+                              end: 738,
                             ),
                           ),
                           TokenWithSpan(
@@ -3310,106 +3299,11 @@ Stylesheet(
                             token: Ident(Ident(
                               kind: "Ident",
                               escaped: false,
-                              raw: "bar",
+                              raw: "a",
                             )),
                             span: Span(
-                              start: 746,
-                              end: 749,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 742,
-                          end: 749,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 741,
-                        end: 742,
-                      ),
-                      rParen: Span(
-                        start: 749,
-                        end: 750,
-                      ),
-                      span: Span(
-                        start: 741,
-                        end: 750,
-                      ),
-                    )),
-                    span: Span(
-                      start: 732,
-                      end: 750,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 732,
-                  end: 750,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 732,
-              end: 750,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 732,
-          end: 750,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 751,
-          end: 753,
-        ),
-      ),
-      span: Span(
-        start: 732,
-        end: 753,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 756,
-                        end: 763,
-                      ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 764,
-                              end: 767,
+                              start: 738,
+                              end: 739,
                             ),
                           ),
                           TokenWithSpan(
@@ -3418,8 +3312,18 @@ Stylesheet(
                               kind: "Comma",
                             )),
                             span: Span(
-                              start: 767,
-                              end: 768,
+                              start: 739,
+                              end: 740,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Dot(Dot(
+                              kind: "Dot",
+                            )),
+                            span: Span(
+                              start: 741,
+                              end: 742,
                             ),
                           ),
                           TokenWithSpan(
@@ -3427,67 +3331,180 @@ Stylesheet(
                             token: Ident(Ident(
                               kind: "Ident",
                               escaped: false,
-                              raw: "bar",
+                              raw: "b",
                             )),
                             span: Span(
-                              start: 769,
-                              end: 772,
+                              start: 742,
+                              end: 743,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 764,
-                          end: 772,
+                          start: 737,
+                          end: 743,
                         ),
                       ),
                       lParen: Span(
-                        start: 763,
-                        end: 764,
+                        start: 736,
+                        end: 737,
                       ),
                       rParen: Span(
-                        start: 772,
-                        end: 773,
+                        start: 743,
+                        end: 744,
                       ),
                       span: Span(
-                        start: 763,
-                        end: 773,
+                        start: 736,
+                        end: 744,
                       ),
                     )),
                     span: Span(
-                      start: 754,
-                      end: 773,
+                      start: 727,
+                      end: 744,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 754,
-                  end: 773,
+                  start: 727,
+                  end: 744,
                 ),
               ),
             ],
             span: Span(
-              start: 754,
-              end: 773,
+              start: 727,
+              end: 744,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 754,
-          end: 773,
+          start: 727,
+          end: 744,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 774,
-          end: 776,
+          start: 745,
+          end: 747,
         ),
       ),
       span: Span(
-        start: 754,
-        end: 776,
+        start: 727,
+        end: 747,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "slotted",
+                      raw: "slotted",
+                      span: Span(
+                        start: 750,
+                        end: 757,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Asterisk(Asterisk(
+                              kind: "Asterisk",
+                            )),
+                            span: Span(
+                              start: 758,
+                              end: 759,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Tilde(Tilde(
+                              kind: "Tilde",
+                            )),
+                            span: Span(
+                              start: 762,
+                              end: 763,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Asterisk(Asterisk(
+                              kind: "Asterisk",
+                            )),
+                            span: Span(
+                              start: 766,
+                              end: 767,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 758,
+                          end: 767,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 757,
+                        end: 758,
+                      ),
+                      rParen: Span(
+                        start: 767,
+                        end: 768,
+                      ),
+                      span: Span(
+                        start: 757,
+                        end: 768,
+                      ),
+                    )),
+                    span: Span(
+                      start: 748,
+                      end: 768,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 748,
+                  end: 768,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 748,
+              end: 768,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 748,
+          end: 768,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 769,
+          end: 771,
+        ),
+      ),
+      span: Span(
+        start: 748,
+        end: 771,
       ),
     ),
     QualifiedRule(
@@ -3508,8 +3525,469 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 779,
-                        end: 786,
+                        start: 775,
+                        end: 782,
+                      ),
+                    ),
+                    arg: None,
+                    span: Span(
+                      start: 773,
+                      end: 782,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 773,
+                  end: 782,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 773,
+              end: 782,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 773,
+          end: 782,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 783,
+          end: 785,
+        ),
+      ),
+      span: Span(
+        start: 773,
+        end: 785,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 788,
+                        end: 795,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [],
+                        span: Span(
+                          start: 796,
+                          end: 796,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 795,
+                        end: 796,
+                      ),
+                      rParen: Span(
+                        start: 796,
+                        end: 797,
+                      ),
+                      span: Span(
+                        start: 795,
+                        end: 797,
+                      ),
+                    )),
+                    span: Span(
+                      start: 786,
+                      end: 797,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 786,
+                  end: 797,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 786,
+              end: 797,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 786,
+          end: 797,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 798,
+          end: 800,
+        ),
+      ),
+      span: Span(
+        start: 786,
+        end: 800,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 803,
+                        end: 810,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 811,
+                              end: 814,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 811,
+                          end: 814,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 810,
+                        end: 811,
+                      ),
+                      rParen: Span(
+                        start: 814,
+                        end: 815,
+                      ),
+                      span: Span(
+                        start: 810,
+                        end: 815,
+                      ),
+                    )),
+                    span: Span(
+                      start: 801,
+                      end: 815,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 801,
+                  end: 815,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 801,
+              end: 815,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 801,
+          end: 815,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 816,
+          end: 818,
+        ),
+      ),
+      span: Span(
+        start: 801,
+        end: 818,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 821,
+                        end: 828,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 829,
+                              end: 832,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 833,
+                              end: 836,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 829,
+                          end: 836,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 828,
+                        end: 829,
+                      ),
+                      rParen: Span(
+                        start: 836,
+                        end: 837,
+                      ),
+                      span: Span(
+                        start: 828,
+                        end: 837,
+                      ),
+                    )),
+                    span: Span(
+                      start: 819,
+                      end: 837,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 819,
+                  end: 837,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 819,
+              end: 837,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 819,
+          end: 837,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 838,
+          end: 840,
+        ),
+      ),
+      span: Span(
+        start: 819,
+        end: 840,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 843,
+                        end: 850,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 851,
+                              end: 854,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Comma(Comma(
+                              kind: "Comma",
+                            )),
+                            span: Span(
+                              start: 854,
+                              end: 855,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 856,
+                              end: 859,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 851,
+                          end: 859,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 850,
+                        end: 851,
+                      ),
+                      rParen: Span(
+                        start: 859,
+                        end: 860,
+                      ),
+                      span: Span(
+                        start: 850,
+                        end: 860,
+                      ),
+                    )),
+                    span: Span(
+                      start: 841,
+                      end: 860,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 841,
+                  end: 860,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 841,
+              end: 860,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 841,
+          end: 860,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 861,
+          end: 863,
+        ),
+      ),
+      span: Span(
+        start: 841,
+        end: 863,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 866,
+                        end: 873,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -3523,8 +4001,8 @@ Stylesheet(
                               kind: "LBracket",
                             )),
                             span: Span(
-                              start: 787,
-                              end: 788,
+                              start: 874,
+                              end: 875,
                             ),
                           ),
                           TokenWithSpan(
@@ -3535,8 +4013,8 @@ Stylesheet(
                               raw: "foo",
                             )),
                             span: Span(
-                              start: 788,
-                              end: 791,
+                              start: 875,
+                              end: 878,
                             ),
                           ),
                           TokenWithSpan(
@@ -3545,64 +4023,64 @@ Stylesheet(
                               kind: "RBracket",
                             )),
                             span: Span(
-                              start: 791,
-                              end: 792,
+                              start: 878,
+                              end: 879,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 787,
-                          end: 792,
+                          start: 874,
+                          end: 879,
                         ),
                       ),
                       lParen: Span(
-                        start: 786,
-                        end: 787,
+                        start: 873,
+                        end: 874,
                       ),
                       rParen: Span(
-                        start: 792,
-                        end: 793,
+                        start: 879,
+                        end: 880,
                       ),
                       span: Span(
-                        start: 786,
-                        end: 793,
+                        start: 873,
+                        end: 880,
                       ),
                     )),
                     span: Span(
-                      start: 777,
-                      end: 793,
+                      start: 864,
+                      end: 880,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 777,
-                  end: 793,
+                  start: 864,
+                  end: 880,
                 ),
               ),
             ],
             span: Span(
-              start: 777,
-              end: 793,
+              start: 864,
+              end: 880,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 777,
-          end: 793,
+          start: 864,
+          end: 880,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 794,
-          end: 796,
+          start: 881,
+          end: 883,
         ),
       ),
       span: Span(
-        start: 777,
-        end: 796,
+        start: 864,
+        end: 883,
       ),
     ),
     QualifiedRule(
@@ -3623,8 +4101,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 799,
-                        end: 806,
+                        start: 886,
+                        end: 893,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -3638,8 +4116,8 @@ Stylesheet(
                               kind: "LParen",
                             )),
                             span: Span(
-                              start: 807,
-                              end: 808,
+                              start: 894,
+                              end: 895,
                             ),
                           ),
                           TokenWithSpan(
@@ -3650,8 +4128,8 @@ Stylesheet(
                               raw: "foo",
                             )),
                             span: Span(
-                              start: 808,
-                              end: 811,
+                              start: 895,
+                              end: 898,
                             ),
                           ),
                           TokenWithSpan(
@@ -3662,8 +4140,8 @@ Stylesheet(
                               raw: "bar",
                             )),
                             span: Span(
-                              start: 812,
-                              end: 815,
+                              start: 899,
+                              end: 902,
                             ),
                           ),
                           TokenWithSpan(
@@ -3672,64 +4150,64 @@ Stylesheet(
                               kind: "RParen",
                             )),
                             span: Span(
-                              start: 815,
-                              end: 816,
+                              start: 902,
+                              end: 903,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 807,
-                          end: 816,
+                          start: 894,
+                          end: 903,
                         ),
                       ),
                       lParen: Span(
-                        start: 806,
-                        end: 807,
+                        start: 893,
+                        end: 894,
                       ),
                       rParen: Span(
-                        start: 816,
-                        end: 817,
+                        start: 903,
+                        end: 904,
                       ),
                       span: Span(
-                        start: 806,
-                        end: 817,
+                        start: 893,
+                        end: 904,
                       ),
                     )),
                     span: Span(
-                      start: 797,
-                      end: 817,
+                      start: 884,
+                      end: 904,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 797,
-                  end: 817,
+                  start: 884,
+                  end: 904,
                 ),
               ),
             ],
             span: Span(
-              start: 797,
-              end: 817,
+              start: 884,
+              end: 904,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 797,
-          end: 817,
+          start: 884,
+          end: 904,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 818,
-          end: 820,
+          start: 905,
+          end: 907,
         ),
       ),
       span: Span(
-        start: 797,
-        end: 820,
+        start: 884,
+        end: 907,
       ),
     ),
     QualifiedRule(
@@ -3750,8 +4228,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 823,
-                        end: 830,
+                        start: 910,
+                        end: 917,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -3765,489 +4243,14 @@ Stylesheet(
                               kind: "LParen",
                             )),
                             span: Span(
-                              start: 831,
-                              end: 832,
+                              start: 918,
+                              end: 919,
                             ),
                           ),
                           TokenWithSpan(
                             type: "TokenWithSpan",
                             token: LParen(LParen(
                               kind: "LParen",
-                            )),
-                            span: Span(
-                              start: 832,
-                              end: 833,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 833,
-                              end: 836,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
-                            )),
-                            span: Span(
-                              start: 837,
-                              end: 840,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RParen(RParen(
-                              kind: "RParen",
-                            )),
-                            span: Span(
-                              start: 840,
-                              end: 841,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RParen(RParen(
-                              kind: "RParen",
-                            )),
-                            span: Span(
-                              start: 841,
-                              end: 842,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 831,
-                          end: 842,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 830,
-                        end: 831,
-                      ),
-                      rParen: Span(
-                        start: 842,
-                        end: 843,
-                      ),
-                      span: Span(
-                        start: 830,
-                        end: 843,
-                      ),
-                    )),
-                    span: Span(
-                      start: 821,
-                      end: 843,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 821,
-                  end: 843,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 821,
-              end: 843,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 821,
-          end: 843,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 844,
-          end: 846,
-        ),
-      ),
-      span: Span(
-        start: 821,
-        end: 846,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 849,
-                        end: 856,
-                      ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: LBrace(LBrace(
-                              kind: "LBrace",
-                            )),
-                            span: Span(
-                              start: 857,
-                              end: 858,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 858,
-                              end: 861,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Colon(Colon(
-                              kind: "Colon",
-                            )),
-                            span: Span(
-                              start: 861,
-                              end: 862,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
-                            )),
-                            span: Span(
-                              start: 863,
-                              end: 866,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RBrace(RBrace(
-                              kind: "RBrace",
-                            )),
-                            span: Span(
-                              start: 866,
-                              end: 867,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 857,
-                          end: 867,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 856,
-                        end: 857,
-                      ),
-                      rParen: Span(
-                        start: 867,
-                        end: 868,
-                      ),
-                      span: Span(
-                        start: 856,
-                        end: 868,
-                      ),
-                    )),
-                    span: Span(
-                      start: 847,
-                      end: 868,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 847,
-                  end: 868,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 847,
-              end: 868,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 847,
-          end: 868,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 869,
-          end: 871,
-        ),
-      ),
-      span: Span(
-        start: 847,
-        end: 871,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 874,
-                        end: 881,
-                      ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: LBrace(LBrace(
-                              kind: "LBrace",
-                            )),
-                            span: Span(
-                              start: 882,
-                              end: 883,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: LBrace(LBrace(
-                              kind: "LBrace",
-                            )),
-                            span: Span(
-                              start: 883,
-                              end: 884,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 884,
-                              end: 887,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Colon(Colon(
-                              kind: "Colon",
-                            )),
-                            span: Span(
-                              start: 887,
-                              end: 888,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
-                            )),
-                            span: Span(
-                              start: 889,
-                              end: 892,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RBrace(RBrace(
-                              kind: "RBrace",
-                            )),
-                            span: Span(
-                              start: 892,
-                              end: 893,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RBrace(RBrace(
-                              kind: "RBrace",
-                            )),
-                            span: Span(
-                              start: 893,
-                              end: 894,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 882,
-                          end: 894,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 881,
-                        end: 882,
-                      ),
-                      rParen: Span(
-                        start: 894,
-                        end: 895,
-                      ),
-                      span: Span(
-                        start: 881,
-                        end: 895,
-                      ),
-                    )),
-                    span: Span(
-                      start: 872,
-                      end: 895,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 872,
-                  end: 895,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 872,
-              end: 895,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 872,
-          end: 895,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 896,
-          end: 898,
-        ),
-      ),
-      span: Span(
-        start: 872,
-        end: 898,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 901,
-                        end: 908,
-                      ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: LBrace(LBrace(
-                              kind: "LBrace",
-                            )),
-                            span: Span(
-                              start: 909,
-                              end: 910,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "foo",
-                            )),
-                            span: Span(
-                              start: 910,
-                              end: 913,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Colon(Colon(
-                              kind: "Colon",
-                            )),
-                            span: Span(
-                              start: 913,
-                              end: 914,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Ident(Ident(
-                              kind: "Ident",
-                              escaped: false,
-                              raw: "bar",
-                            )),
-                            span: Span(
-                              start: 915,
-                              end: 918,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Exclamation(Exclamation(
-                              kind: "Exclamation",
                             )),
                             span: Span(
                               start: 919,
@@ -4259,77 +4262,99 @@ Stylesheet(
                             token: Ident(Ident(
                               kind: "Ident",
                               escaped: false,
-                              raw: "important",
+                              raw: "foo",
                             )),
                             span: Span(
                               start: 920,
+                              end: 923,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 924,
+                              end: 927,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RParen(RParen(
+                              kind: "RParen",
+                            )),
+                            span: Span(
+                              start: 927,
+                              end: 928,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RParen(RParen(
+                              kind: "RParen",
+                            )),
+                            span: Span(
+                              start: 928,
                               end: 929,
                             ),
                           ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: RBrace(RBrace(
-                              kind: "RBrace",
-                            )),
-                            span: Span(
-                              start: 929,
-                              end: 930,
-                            ),
-                          ),
                         ],
                         span: Span(
-                          start: 909,
-                          end: 930,
+                          start: 918,
+                          end: 929,
                         ),
                       ),
                       lParen: Span(
-                        start: 908,
-                        end: 909,
+                        start: 917,
+                        end: 918,
                       ),
                       rParen: Span(
-                        start: 930,
-                        end: 931,
+                        start: 929,
+                        end: 930,
                       ),
                       span: Span(
-                        start: 908,
-                        end: 931,
+                        start: 917,
+                        end: 930,
                       ),
                     )),
                     span: Span(
-                      start: 899,
-                      end: 931,
+                      start: 908,
+                      end: 930,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 899,
-                  end: 931,
+                  start: 908,
+                  end: 930,
                 ),
               ),
             ],
             span: Span(
-              start: 899,
-              end: 931,
+              start: 908,
+              end: 930,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 899,
-          end: 931,
+          start: 908,
+          end: 930,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 932,
-          end: 934,
+          start: 931,
+          end: 933,
         ),
       ),
       span: Span(
-        start: 899,
-        end: 934,
+        start: 908,
+        end: 933,
       ),
     ),
     QualifiedRule(
@@ -4350,8 +4375,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 937,
-                        end: 944,
+                        start: 936,
+                        end: 943,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -4361,119 +4386,12 @@ Stylesheet(
                         tokens: [
                           TokenWithSpan(
                             type: "TokenWithSpan",
-                            token: Str(Str(
-                              kind: "Str",
-                              raw: "\"string\"",
-                              escaped: false,
+                            token: LBrace(LBrace(
+                              kind: "LBrace",
                             )),
                             span: Span(
-                              start: 945,
-                              end: 953,
-                            ),
-                          ),
-                        ],
-                        span: Span(
-                          start: 945,
-                          end: 953,
-                        ),
-                      ),
-                      lParen: Span(
-                        start: 944,
-                        end: 945,
-                      ),
-                      rParen: Span(
-                        start: 953,
-                        end: 954,
-                      ),
-                      span: Span(
-                        start: 944,
-                        end: 954,
-                      ),
-                    )),
-                    span: Span(
-                      start: 935,
-                      end: 954,
-                    ),
-                  ),
-                ],
-                span: Span(
-                  start: 935,
-                  end: 954,
-                ),
-              ),
-            ],
-            span: Span(
-              start: 935,
-              end: 954,
-            ),
-          ),
-        ],
-        commaSpans: [],
-        span: Span(
-          start: 935,
-          end: 954,
-        ),
-      ),
-      block: SimpleBlock(
-        type: "SimpleBlock",
-        statements: [],
-        span: Span(
-          start: 955,
-          end: 957,
-        ),
-      ),
-      span: Span(
-        start: 935,
-        end: 957,
-      ),
-    ),
-    QualifiedRule(
-      type: "QualifiedRule",
-      selector: SelectorList(
-        type: "SelectorList",
-        selectors: [
-          ComplexSelector(
-            type: "ComplexSelector",
-            children: [
-              CompoundSelector(
-                type: "CompoundSelector",
-                children: [
-                  PseudoElementSelector(
-                    type: "PseudoElementSelector",
-                    name: Ident(
-                      type: "Ident",
-                      name: "unknown",
-                      raw: "unknown",
-                      span: Span(
-                        start: 960,
-                        end: 967,
-                      ),
-                    ),
-                    arg: Some(PseudoElementSelectorArg(
-                      type: "PseudoElementSelectorArg",
-                      kind: TokenSeq(
-                        type: "TokenSeq",
-                        tokens: [
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Str(Str(
-                              kind: "Str",
-                              raw: "\"string\"",
-                              escaped: false,
-                            )),
-                            span: Span(
-                              start: 968,
-                              end: 976,
-                            ),
-                          ),
-                          TokenWithSpan(
-                            type: "TokenWithSpan",
-                            token: Comma(Comma(
-                              kind: "Comma",
-                            )),
-                            span: Span(
-                              start: 976,
-                              end: 977,
+                              start: 944,
+                              end: 945,
                             ),
                           ),
                           TokenWithSpan(
@@ -4484,50 +4402,239 @@ Stylesheet(
                               raw: "foo",
                             )),
                             span: Span(
-                              start: 978,
+                              start: 945,
+                              end: 948,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Colon(Colon(
+                              kind: "Colon",
+                            )),
+                            span: Span(
+                              start: 948,
+                              end: 949,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 950,
+                              end: 953,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 953,
+                              end: 954,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 944,
+                          end: 954,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 943,
+                        end: 944,
+                      ),
+                      rParen: Span(
+                        start: 954,
+                        end: 955,
+                      ),
+                      span: Span(
+                        start: 943,
+                        end: 955,
+                      ),
+                    )),
+                    span: Span(
+                      start: 934,
+                      end: 955,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 934,
+                  end: 955,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 934,
+              end: 955,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 934,
+          end: 955,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 956,
+          end: 958,
+        ),
+      ),
+      span: Span(
+        start: 934,
+        end: 958,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 961,
+                        end: 968,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: LBrace(LBrace(
+                              kind: "LBrace",
+                            )),
+                            span: Span(
+                              start: 969,
+                              end: 970,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: LBrace(LBrace(
+                              kind: "LBrace",
+                            )),
+                            span: Span(
+                              start: 970,
+                              end: 971,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 971,
+                              end: 974,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Colon(Colon(
+                              kind: "Colon",
+                            )),
+                            span: Span(
+                              start: 974,
+                              end: 975,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 976,
+                              end: 979,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 979,
+                              end: 980,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 980,
                               end: 981,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 968,
+                          start: 969,
                           end: 981,
                         ),
                       ),
                       lParen: Span(
-                        start: 967,
-                        end: 968,
+                        start: 968,
+                        end: 969,
                       ),
                       rParen: Span(
                         start: 981,
                         end: 982,
                       ),
                       span: Span(
-                        start: 967,
+                        start: 968,
                         end: 982,
                       ),
                     )),
                     span: Span(
-                      start: 958,
+                      start: 959,
                       end: 982,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 958,
+                  start: 959,
                   end: 982,
                 ),
               ),
             ],
             span: Span(
-              start: 958,
+              start: 959,
               end: 982,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 958,
+          start: 959,
           end: 982,
         ),
       ),
@@ -4540,7 +4647,7 @@ Stylesheet(
         ),
       ),
       span: Span(
-        start: 958,
+        start: 959,
         end: 985,
       ),
     ),
@@ -4573,20 +4680,84 @@ Stylesheet(
                         tokens: [
                           TokenWithSpan(
                             type: "TokenWithSpan",
-                            token: Str(Str(
-                              kind: "Str",
-                              raw: "\'string\'",
-                              escaped: false,
+                            token: LBrace(LBrace(
+                              kind: "LBrace",
                             )),
                             span: Span(
                               start: 996,
-                              end: 1004,
+                              end: 997,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 997,
+                              end: 1000,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Colon(Colon(
+                              kind: "Colon",
+                            )),
+                            span: Span(
+                              start: 1000,
+                              end: 1001,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "bar",
+                            )),
+                            span: Span(
+                              start: 1002,
+                              end: 1005,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Exclamation(Exclamation(
+                              kind: "Exclamation",
+                            )),
+                            span: Span(
+                              start: 1006,
+                              end: 1007,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "important",
+                            )),
+                            span: Span(
+                              start: 1007,
+                              end: 1016,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: RBrace(RBrace(
+                              kind: "RBrace",
+                            )),
+                            span: Span(
+                              start: 1016,
+                              end: 1017,
                             ),
                           ),
                         ],
                         span: Span(
                           start: 996,
-                          end: 1004,
+                          end: 1017,
                         ),
                       ),
                       lParen: Span(
@@ -4594,49 +4765,49 @@ Stylesheet(
                         end: 996,
                       ),
                       rParen: Span(
-                        start: 1004,
-                        end: 1005,
+                        start: 1017,
+                        end: 1018,
                       ),
                       span: Span(
                         start: 995,
-                        end: 1005,
+                        end: 1018,
                       ),
                     )),
                     span: Span(
                       start: 986,
-                      end: 1005,
+                      end: 1018,
                     ),
                   ),
                 ],
                 span: Span(
                   start: 986,
-                  end: 1005,
+                  end: 1018,
                 ),
               ),
             ],
             span: Span(
               start: 986,
-              end: 1005,
+              end: 1018,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
           start: 986,
-          end: 1005,
+          end: 1018,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1006,
-          end: 1008,
+          start: 1019,
+          end: 1021,
         ),
       ),
       span: Span(
         start: 986,
-        end: 1008,
+        end: 1021,
       ),
     ),
     QualifiedRule(
@@ -4657,8 +4828,315 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 1011,
-                        end: 1018,
+                        start: 1024,
+                        end: 1031,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Str(Str(
+                              kind: "Str",
+                              raw: "\"string\"",
+                              escaped: false,
+                            )),
+                            span: Span(
+                              start: 1032,
+                              end: 1040,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 1032,
+                          end: 1040,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 1031,
+                        end: 1032,
+                      ),
+                      rParen: Span(
+                        start: 1040,
+                        end: 1041,
+                      ),
+                      span: Span(
+                        start: 1031,
+                        end: 1041,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1022,
+                      end: 1041,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1022,
+                  end: 1041,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1022,
+              end: 1041,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 1022,
+          end: 1041,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1042,
+          end: 1044,
+        ),
+      ),
+      span: Span(
+        start: 1022,
+        end: 1044,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1047,
+                        end: 1054,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Str(Str(
+                              kind: "Str",
+                              raw: "\"string\"",
+                              escaped: false,
+                            )),
+                            span: Span(
+                              start: 1055,
+                              end: 1063,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Comma(Comma(
+                              kind: "Comma",
+                            )),
+                            span: Span(
+                              start: 1063,
+                              end: 1064,
+                            ),
+                          ),
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Ident(Ident(
+                              kind: "Ident",
+                              escaped: false,
+                              raw: "foo",
+                            )),
+                            span: Span(
+                              start: 1065,
+                              end: 1068,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 1055,
+                          end: 1068,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 1054,
+                        end: 1055,
+                      ),
+                      rParen: Span(
+                        start: 1068,
+                        end: 1069,
+                      ),
+                      span: Span(
+                        start: 1054,
+                        end: 1069,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1045,
+                      end: 1069,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1045,
+                  end: 1069,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1045,
+              end: 1069,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 1045,
+          end: 1069,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1070,
+          end: 1072,
+        ),
+      ),
+      span: Span(
+        start: 1045,
+        end: 1072,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1075,
+                        end: 1082,
+                      ),
+                    ),
+                    arg: Some(PseudoElementSelectorArg(
+                      type: "PseudoElementSelectorArg",
+                      kind: TokenSeq(
+                        type: "TokenSeq",
+                        tokens: [
+                          TokenWithSpan(
+                            type: "TokenWithSpan",
+                            token: Str(Str(
+                              kind: "Str",
+                              raw: "\'string\'",
+                              escaped: false,
+                            )),
+                            span: Span(
+                              start: 1083,
+                              end: 1091,
+                            ),
+                          ),
+                        ],
+                        span: Span(
+                          start: 1083,
+                          end: 1091,
+                        ),
+                      ),
+                      lParen: Span(
+                        start: 1082,
+                        end: 1083,
+                      ),
+                      rParen: Span(
+                        start: 1091,
+                        end: 1092,
+                      ),
+                      span: Span(
+                        start: 1082,
+                        end: 1092,
+                      ),
+                    )),
+                    span: Span(
+                      start: 1073,
+                      end: 1092,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 1073,
+                  end: 1092,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 1073,
+              end: 1092,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 1073,
+          end: 1092,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [],
+        span: Span(
+          start: 1093,
+          end: 1095,
+        ),
+      ),
+      span: Span(
+        start: 1073,
+        end: 1095,
+      ),
+    ),
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  PseudoElementSelector(
+                    type: "PseudoElementSelector",
+                    name: Ident(
+                      type: "Ident",
+                      name: "unknown",
+                      raw: "unknown",
+                      span: Span(
+                        start: 1098,
+                        end: 1105,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -4674,8 +5152,8 @@ Stylesheet(
                               raw: "url",
                             )),
                             span: Span(
-                              start: 1019,
-                              end: 1022,
+                              start: 1106,
+                              end: 1109,
                             ),
                           ),
                           TokenWithSpan(
@@ -4684,8 +5162,8 @@ Stylesheet(
                               kind: "LParen",
                             )),
                             span: Span(
-                              start: 1022,
-                              end: 1023,
+                              start: 1109,
+                              end: 1110,
                             ),
                           ),
                           TokenWithSpan(
@@ -4696,8 +5174,8 @@ Stylesheet(
                               raw: "foo",
                             )),
                             span: Span(
-                              start: 1023,
-                              end: 1026,
+                              start: 1110,
+                              end: 1113,
                             ),
                           ),
                           TokenWithSpan(
@@ -4706,8 +5184,8 @@ Stylesheet(
                               kind: "Dot",
                             )),
                             span: Span(
-                              start: 1026,
-                              end: 1027,
+                              start: 1113,
+                              end: 1114,
                             ),
                           ),
                           TokenWithSpan(
@@ -4718,8 +5196,8 @@ Stylesheet(
                               raw: "png",
                             )),
                             span: Span(
-                              start: 1027,
-                              end: 1030,
+                              start: 1114,
+                              end: 1117,
                             ),
                           ),
                           TokenWithSpan(
@@ -4728,64 +5206,64 @@ Stylesheet(
                               kind: "RParen",
                             )),
                             span: Span(
-                              start: 1030,
-                              end: 1031,
+                              start: 1117,
+                              end: 1118,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 1019,
-                          end: 1031,
+                          start: 1106,
+                          end: 1118,
                         ),
                       ),
                       lParen: Span(
-                        start: 1018,
-                        end: 1019,
+                        start: 1105,
+                        end: 1106,
                       ),
                       rParen: Span(
-                        start: 1031,
-                        end: 1032,
+                        start: 1118,
+                        end: 1119,
                       ),
                       span: Span(
-                        start: 1018,
-                        end: 1032,
+                        start: 1105,
+                        end: 1119,
                       ),
                     )),
                     span: Span(
-                      start: 1009,
-                      end: 1032,
+                      start: 1096,
+                      end: 1119,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1009,
-                  end: 1032,
+                  start: 1096,
+                  end: 1119,
                 ),
               ),
             ],
             span: Span(
-              start: 1009,
-              end: 1032,
+              start: 1096,
+              end: 1119,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1009,
-          end: 1032,
+          start: 1096,
+          end: 1119,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1033,
-          end: 1035,
+          start: 1120,
+          end: 1122,
         ),
       ),
       span: Span(
-        start: 1009,
-        end: 1035,
+        start: 1096,
+        end: 1122,
       ),
     ),
     QualifiedRule(
@@ -4806,8 +5284,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 1038,
-                        end: 1045,
+                        start: 1125,
+                        end: 1132,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -4821,8 +5299,8 @@ Stylesheet(
                               kind: "LBrace",
                             )),
                             span: Span(
-                              start: 1046,
-                              end: 1047,
+                              start: 1133,
+                              end: 1134,
                             ),
                           ),
                           TokenWithSpan(
@@ -4831,8 +5309,8 @@ Stylesheet(
                               kind: "Exclamation",
                             )),
                             span: Span(
-                              start: 1047,
-                              end: 1048,
+                              start: 1134,
+                              end: 1135,
                             ),
                           ),
                           TokenWithSpan(
@@ -4841,64 +5319,64 @@ Stylesheet(
                               kind: "RBrace",
                             )),
                             span: Span(
-                              start: 1048,
-                              end: 1049,
+                              start: 1135,
+                              end: 1136,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 1046,
-                          end: 1049,
+                          start: 1133,
+                          end: 1136,
                         ),
                       ),
                       lParen: Span(
-                        start: 1045,
-                        end: 1046,
+                        start: 1132,
+                        end: 1133,
                       ),
                       rParen: Span(
-                        start: 1049,
-                        end: 1050,
+                        start: 1136,
+                        end: 1137,
                       ),
                       span: Span(
-                        start: 1045,
-                        end: 1050,
+                        start: 1132,
+                        end: 1137,
                       ),
                     )),
                     span: Span(
-                      start: 1036,
-                      end: 1050,
+                      start: 1123,
+                      end: 1137,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1036,
-                  end: 1050,
+                  start: 1123,
+                  end: 1137,
                 ),
               ),
             ],
             span: Span(
-              start: 1036,
-              end: 1050,
+              start: 1123,
+              end: 1137,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1036,
-          end: 1050,
+          start: 1123,
+          end: 1137,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1051,
-          end: 1053,
+          start: 1138,
+          end: 1140,
         ),
       ),
       span: Span(
-        start: 1036,
-        end: 1053,
+        start: 1123,
+        end: 1140,
       ),
     ),
     QualifiedRule(
@@ -4919,8 +5397,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 1056,
-                        end: 1063,
+                        start: 1143,
+                        end: 1150,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -4934,64 +5412,64 @@ Stylesheet(
                               kind: "Exclamation",
                             )),
                             span: Span(
-                              start: 1064,
-                              end: 1065,
+                              start: 1151,
+                              end: 1152,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 1064,
-                          end: 1065,
+                          start: 1151,
+                          end: 1152,
                         ),
                       ),
                       lParen: Span(
-                        start: 1063,
-                        end: 1064,
+                        start: 1150,
+                        end: 1151,
                       ),
                       rParen: Span(
-                        start: 1065,
-                        end: 1066,
+                        start: 1152,
+                        end: 1153,
                       ),
                       span: Span(
-                        start: 1063,
-                        end: 1066,
+                        start: 1150,
+                        end: 1153,
                       ),
                     )),
                     span: Span(
-                      start: 1054,
-                      end: 1066,
+                      start: 1141,
+                      end: 1153,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1054,
-                  end: 1066,
+                  start: 1141,
+                  end: 1153,
                 ),
               ),
             ],
             span: Span(
-              start: 1054,
-              end: 1066,
+              start: 1141,
+              end: 1153,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1054,
-          end: 1066,
+          start: 1141,
+          end: 1153,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1067,
-          end: 1069,
+          start: 1154,
+          end: 1156,
         ),
       ),
       span: Span(
-        start: 1054,
-        end: 1069,
+        start: 1141,
+        end: 1156,
       ),
     ),
     QualifiedRule(
@@ -5012,8 +5490,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 1072,
-                        end: 1079,
+                        start: 1159,
+                        end: 1166,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -5027,8 +5505,8 @@ Stylesheet(
                               kind: "LBrace",
                             )),
                             span: Span(
-                              start: 1080,
-                              end: 1081,
+                              start: 1167,
+                              end: 1168,
                             ),
                           ),
                           TokenWithSpan(
@@ -5037,8 +5515,8 @@ Stylesheet(
                               kind: "Semicolon",
                             )),
                             span: Span(
-                              start: 1081,
-                              end: 1082,
+                              start: 1168,
+                              end: 1169,
                             ),
                           ),
                           TokenWithSpan(
@@ -5047,64 +5525,64 @@ Stylesheet(
                               kind: "RBrace",
                             )),
                             span: Span(
-                              start: 1082,
-                              end: 1083,
+                              start: 1169,
+                              end: 1170,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 1080,
-                          end: 1083,
+                          start: 1167,
+                          end: 1170,
                         ),
                       ),
                       lParen: Span(
-                        start: 1079,
-                        end: 1080,
+                        start: 1166,
+                        end: 1167,
                       ),
                       rParen: Span(
-                        start: 1083,
-                        end: 1084,
+                        start: 1170,
+                        end: 1171,
                       ),
                       span: Span(
-                        start: 1079,
-                        end: 1084,
+                        start: 1166,
+                        end: 1171,
                       ),
                     )),
                     span: Span(
-                      start: 1070,
-                      end: 1084,
+                      start: 1157,
+                      end: 1171,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1070,
-                  end: 1084,
+                  start: 1157,
+                  end: 1171,
                 ),
               ),
             ],
             span: Span(
-              start: 1070,
-              end: 1084,
+              start: 1157,
+              end: 1171,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1070,
-          end: 1084,
+          start: 1157,
+          end: 1171,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1085,
-          end: 1087,
+          start: 1172,
+          end: 1174,
         ),
       ),
       span: Span(
-        start: 1070,
-        end: 1087,
+        start: 1157,
+        end: 1174,
       ),
     ),
     QualifiedRule(
@@ -5125,8 +5603,8 @@ Stylesheet(
                       name: "unknown",
                       raw: "unknown",
                       span: Span(
-                        start: 1090,
-                        end: 1097,
+                        start: 1177,
+                        end: 1184,
                       ),
                     ),
                     arg: Some(PseudoElementSelectorArg(
@@ -5140,64 +5618,64 @@ Stylesheet(
                               kind: "Semicolon",
                             )),
                             span: Span(
-                              start: 1098,
-                              end: 1099,
+                              start: 1185,
+                              end: 1186,
                             ),
                           ),
                         ],
                         span: Span(
-                          start: 1098,
-                          end: 1099,
+                          start: 1185,
+                          end: 1186,
                         ),
                       ),
                       lParen: Span(
-                        start: 1097,
-                        end: 1098,
+                        start: 1184,
+                        end: 1185,
                       ),
                       rParen: Span(
-                        start: 1099,
-                        end: 1100,
+                        start: 1186,
+                        end: 1187,
                       ),
                       span: Span(
-                        start: 1097,
-                        end: 1100,
+                        start: 1184,
+                        end: 1187,
                       ),
                     )),
                     span: Span(
-                      start: 1088,
-                      end: 1100,
+                      start: 1175,
+                      end: 1187,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1088,
-                  end: 1100,
+                  start: 1175,
+                  end: 1187,
                 ),
               ),
             ],
             span: Span(
-              start: 1088,
-              end: 1100,
+              start: 1175,
+              end: 1187,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1088,
-          end: 1100,
+          start: 1175,
+          end: 1187,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1101,
-          end: 1103,
+          start: 1188,
+          end: 1190,
         ),
       ),
       span: Span(
-        start: 1088,
-        end: 1103,
+        start: 1175,
+        end: 1190,
       ),
     ),
     QualifiedRule(
@@ -5218,51 +5696,51 @@ Stylesheet(
                       name: "before",
                       raw: "before",
                       span: Span(
-                        start: 1111,
-                        end: 1117,
+                        start: 1198,
+                        end: 1204,
                       ),
                     ),
                     arg: None,
                     span: Span(
-                      start: 1105,
-                      end: 1117,
+                      start: 1192,
+                      end: 1204,
                     ),
                   ),
                 ],
                 span: Span(
-                  start: 1105,
-                  end: 1117,
+                  start: 1192,
+                  end: 1204,
                 ),
               ),
             ],
             span: Span(
-              start: 1105,
-              end: 1117,
+              start: 1192,
+              end: 1204,
             ),
           ),
         ],
         commaSpans: [],
         span: Span(
-          start: 1105,
-          end: 1117,
+          start: 1192,
+          end: 1204,
         ),
       ),
       block: SimpleBlock(
         type: "SimpleBlock",
         statements: [],
         span: Span(
-          start: 1118,
-          end: 1120,
+          start: 1205,
+          end: 1207,
         ),
       ),
       span: Span(
-        start: 1105,
-        end: 1120,
+        start: 1192,
+        end: 1207,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 1121,
+    end: 1208,
   ),
 )

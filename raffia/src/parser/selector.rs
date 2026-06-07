@@ -1226,8 +1226,7 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                     }
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("cue")
-                            || name.eq_ignore_ascii_case("cue-region")
-                            || name.eq_ignore_ascii_case("slotted") =>
+                            || name.eq_ignore_ascii_case("cue-region") =>
                     {
                         input
                             .parse()
