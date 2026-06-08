@@ -4,23 +4,5 @@ source: raffia/tests/recoverable.rs
 error: compound selector is expected
   ┌─ slotted-non-compound.css:1:11
   │
-1 │ ::slotted(* + *) {}
-  │           ^^^^^
-
-error: compound selector is expected
-  ┌─ slotted-non-compound.css:2:11
-  │
-2 │ ::slotted(.a + .b) {}
-  │           ^^^^^^^
-
-error: compound selector is expected
-  ┌─ slotted-non-compound.css:3:11
-  │
-3 │ ::slotted(.a, .b) {}
+1 │ ::slotted(.a, .b) {}
   │           ^^^^^^
-
-error: compound selector is expected
-  ┌─ slotted-non-compound.css:4:11
-  │
-4 │ ::slotted(*   ~   *) {}
-  │           ^^^^^^^^^

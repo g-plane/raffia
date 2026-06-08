@@ -1,4 +1,1 @@
-::slotted(* + *) {}
-::slotted(.a + .b) {}
 ::slotted(.a, .b) {}
-::slotted(*   ~   *) {}

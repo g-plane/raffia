@@ -1235,19 +1235,13 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                     InterpolableIdent::Literal(Ident { name, .. })
                         if name.eq_ignore_ascii_case("slotted") =>
                     {
-                        // The spec only allows a single compound selector inside
-                        // `::slotted()`, but for the sake of tolerance we parse a
-                        // whole selector list and report a recoverable error when
-                        // it isn't a single compound selector.
                         let selector_list = input.parse::<SelectorList>()?;
-                        let is_single_compound_selector = matches!(
-                            &*selector_list.selectors,
-                            [ComplexSelector { children, .. }]
-                                if matches!(
-                                    &**children,
-                                    [ComplexSelectorChild::CompoundSelector(..)]
-                                )
-                        );
+                        let is_single_compound_selector = match &*selector_list.selectors {
+                            [ComplexSelector { children, .. }] => {
+                                matches!(&**children, [ComplexSelectorChild::CompoundSelector(..)])
+                            }
+                            _ => false,
+                        };
                         if !is_single_compound_selector {
                             input.recoverable_errors.push(Error {
                                 kind: ErrorKind::ExpectCompoundSelector,
