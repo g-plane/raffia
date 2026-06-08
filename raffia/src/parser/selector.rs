@@ -1237,7 +1237,9 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for PseudoElementSelector<'s> {
                     {
                         let selector_list = input.parse::<SelectorList>()?;
                         let is_single_compound_selector = match &*selector_list.selectors {
-                            [ComplexSelector { children, .. }] => children.len() == 1,
+                            [ComplexSelector { children, .. }] => {
+                                matches!(&**children, [ComplexSelectorChild::CompoundSelector(..)])
+                            }
                             _ => false,
                         };
                         if !is_single_compound_selector {
