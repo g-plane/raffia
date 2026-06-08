@@ -43,6 +43,7 @@ pub enum ErrorKind {
     ExpectWqName,
     ExpectAttributeSelectorMatcher,
     ExpectAttributeSelectorValue,
+    ExpectCompoundSelector,
     ExpectComponentValue,
     ExpectSassExpression,
     ExpectDedentOrEof,
@@ -141,6 +142,7 @@ impl Display for ErrorKind {
                 write!(f, "attribute selector matcher is expected")
             }
             Self::ExpectAttributeSelectorValue => write!(f, "attribute selector value is expected"),
+            Self::ExpectCompoundSelector => write!(f, "compound selector is expected"),
             Self::ExpectComponentValue => write!(f, "component value is expected"),
             Self::ExpectSassExpression => write!(f, "Sass expression is expected"),
             Self::ExpectDedentOrEof => write!(f, "dedentation or end of file is expected"),

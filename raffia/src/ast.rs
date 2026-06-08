@@ -1759,6 +1759,7 @@ pub struct PseudoElementSelectorArg<'s> {
 pub enum PseudoElementSelectorArgKind<'s> {
     CompoundSelector(CompoundSelector<'s>),
     Ident(InterpolableIdent<'s>),
+    SelectorList(SelectorList<'s>),
     TokenSeq(TokenSeq<'s>),
 }
 

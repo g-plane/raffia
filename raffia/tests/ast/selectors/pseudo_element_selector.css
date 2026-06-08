@@ -33,10 +33,7 @@ video::cue-region(   #scroll   ) {}
 ::slotted(*) {}
 ::slotted(span) {}
 ::slotted(   span   ) {}
-::slotted(* + *) {}
-::slotted(.a + .b) {}
-::slotted(.a, .b) {}
-::slotted(*   ~   *) {}
+::slotted(div.foo) {}
 
 ::unknown {}
 ::unknown() {}
