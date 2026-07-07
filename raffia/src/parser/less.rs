@@ -451,10 +451,26 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 TokenWithSpan {
                     token: Token::Minus(..),
                     ..
-                } if precedence == PRECEDENCE_PLUS => LessOperationOperator {
-                    kind: LessOperationOperatorKind::Minus,
-                    span: bump!(self).span,
-                },
+                } if precedence == PRECEDENCE_PLUS => {
+                    if let Ok(minus_token) = self.try_parse(|parser| {
+                        let minus_token = bump!(parser);
+                        if minus_token.span.end == peek!(parser).span.start {
+                            Err(Error {
+                                kind: ErrorKind::TryParseError,
+                                span: minus_token.span,
+                            })
+                        } else {
+                            Ok(minus_token)
+                        }
+                    }) {
+                        LessOperationOperator {
+                            kind: LessOperationOperatorKind::Minus,
+                            span: minus_token.span,
+                        }
+                    } else {
+                        break;
+                    }
+                }
                 TokenWithSpan {
                     token: Token::Number(token),
                     span,
