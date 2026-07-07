@@ -454,7 +454,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 } if precedence == PRECEDENCE_PLUS => {
                     if let Ok(minus_token) = self.try_parse(|parser| {
                         let minus_token = bump!(parser);
-                        if minus_token.span.end == peek!(parser).span.start {
+                        if left.span().end < minus_token.span.start
+                            && minus_token.span.end == peek!(parser).span.start
+                        {
                             Err(Error {
                                 kind: ErrorKind::TryParseError,
                                 span: minus_token.span,

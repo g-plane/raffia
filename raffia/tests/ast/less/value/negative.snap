@@ -674,20 +674,85 @@ Stylesheet(
               end: 265,
             ),
           ),
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "margin",
+              raw: "margin",
+              span: Span(
+                start: 269,
+                end: 275,
+              ),
+            ),
+            nameSuffix: None,
+            colonSpan: Span(
+              start: 275,
+              end: 276,
+            ),
+            value: [
+              LessBinaryOperation(
+                type: "LessBinaryOperation",
+                left: Number(
+                  type: "Number",
+                  value: 2.0,
+                  raw: "2",
+                  span: Span(
+                    start: 277,
+                    end: 278,
+                  ),
+                ),
+                op: LessOperationOperator(
+                  type: "LessOperationOperator",
+                  kind: Minus,
+                  span: Span(
+                    start: 278,
+                    end: 279,
+                  ),
+                ),
+                right: LessVariable(
+                  type: "LessVariable",
+                  name: Ident(
+                    type: "Ident",
+                    name: "card-spacing",
+                    raw: "card-spacing",
+                    span: Span(
+                      start: 280,
+                      end: 292,
+                    ),
+                  ),
+                  span: Span(
+                    start: 279,
+                    end: 292,
+                  ),
+                ),
+                span: Span(
+                  start: 277,
+                  end: 292,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 269,
+              end: 292,
+            ),
+          ),
         ],
         span: Span(
           start: 7,
-          end: 268,
+          end: 295,
         ),
       ),
       span: Span(
         start: 0,
-        end: 268,
+        end: 295,
       ),
     ),
   ],
   span: Span(
     start: 0,
-    end: 269,
+    end: 296,
   ),
 )
