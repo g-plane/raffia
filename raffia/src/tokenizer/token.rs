@@ -81,6 +81,7 @@ pub enum Token<'s> {
     StrTemplate(StrTemplate<'s>),
     Tilde(Tilde),
     TildeEqual(TildeEqual),
+    Unknown(Unknown),
     UrlRaw(UrlRaw<'s>),
     UrlTemplate(UrlTemplate<'s>),
 }
@@ -412,6 +413,13 @@ pub struct Tilde {}
 #[cfg_attr(feature = "serialize", derive(Serialize))]
 #[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
 pub struct TildeEqual {}
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serialize", derive(Serialize))]
+#[cfg_attr(feature = "serialize", serde(tag = "kind", rename_all = "camelCase"))]
+pub struct Unknown {
+    pub char: char,
+}
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serialize", derive(Serialize))]

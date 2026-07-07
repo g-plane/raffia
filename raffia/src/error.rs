@@ -25,7 +25,6 @@ pub enum ErrorKind {
         /* actual */ &'static str,
     ),
 
-    UnknownToken,
     InvalidNumber,
     InvalidEscape,
     InvalidHash,
@@ -121,7 +120,6 @@ impl Display for ErrorKind {
                 }
             }
 
-            Self::UnknownToken => write!(f, "unknown token"),
             Self::InvalidNumber => write!(f, "invalid number"),
             Self::InvalidEscape => write!(f, "invalid escape"),
             Self::InvalidHash => write!(f, "invalid hash token"),

@@ -480,6 +480,7 @@ impl Token<'_> {
             TildeEqual(..) => "~=",
             UrlRaw(..) => "<url>",
             UrlTemplate(..) => "<url template>",
+            Unknown(..) => "<unknown token>",
         }
     }
 }

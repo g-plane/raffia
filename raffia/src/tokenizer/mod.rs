@@ -1420,8 +1420,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                     })
                 }
-                _ => Err(Error {
-                    kind: ErrorKind::UnknownToken,
+                _ => Ok(TokenWithSpan {
+                    token: Token::Unknown(Unknown { char: '^' }),
                     span: Span {
                         start,
                         end: start + 1,
@@ -1439,8 +1439,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                         },
                     })
                 }
-                _ => Err(Error {
-                    kind: ErrorKind::UnknownToken,
+                _ => Ok(TokenWithSpan {
+                    token: Token::Unknown(Unknown { char: '$' }),
                     span: Span {
                         start,
                         end: start + 1,
@@ -1513,8 +1513,8 @@ impl<'cmt, 's: 'cmt> Tokenizer<'cmt, 's> {
                     end: i + 1,
                 },
             }),
-            Some((i, c)) => Err(Error {
-                kind: ErrorKind::UnknownToken,
+            Some((i, c)) => Ok(TokenWithSpan {
+                token: Token::Unknown(Unknown { char: c }),
                 span: Span {
                     start: i,
                     end: i + c.len_utf8(),

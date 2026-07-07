@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: component value is expected
+  ┌─ dollar-in-calc.scss:1:12
+  │
+1 │ a {b: calc($)}
+  │            ^
