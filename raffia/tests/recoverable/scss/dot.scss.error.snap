@@ -1,0 +1,20 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: component value is expected
+  ┌─ dot.scss:1:7
+  │
+1 │ a {a: .}
+  │       ^
+
+error: component value is expected
+  ┌─ dot.scss:2:8
+  │
+2 │ a {b: -.}
+  │        ^
+
+error: component value is expected
+  ┌─ dot.scss:3:8
+  │
+3 │ a {b: +.}
+  │        ^

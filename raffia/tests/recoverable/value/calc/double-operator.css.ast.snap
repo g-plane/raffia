@@ -1,0 +1,200 @@
+---
+source: raffia/tests/recoverable.rs
+---
+Stylesheet(
+  type: "Stylesheet",
+  statements: [
+    QualifiedRule(
+      type: "QualifiedRule",
+      selector: SelectorList(
+        type: "SelectorList",
+        selectors: [
+          ComplexSelector(
+            type: "ComplexSelector",
+            children: [
+              CompoundSelector(
+                type: "CompoundSelector",
+                children: [
+                  TagNameSelector(
+                    type: "TagNameSelector",
+                    name: WqName(
+                      type: "WqName",
+                      name: Ident(
+                        type: "Ident",
+                        name: "a",
+                        raw: "a",
+                        span: Span(
+                          start: 0,
+                          end: 1,
+                        ),
+                      ),
+                      prefix: None,
+                      span: Span(
+                        start: 0,
+                        end: 1,
+                      ),
+                    ),
+                    span: Span(
+                      start: 0,
+                      end: 1,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 0,
+                  end: 1,
+                ),
+              ),
+            ],
+            span: Span(
+              start: 0,
+              end: 1,
+            ),
+          ),
+        ],
+        commaSpans: [],
+        span: Span(
+          start: 0,
+          end: 1,
+        ),
+      ),
+      block: SimpleBlock(
+        type: "SimpleBlock",
+        statements: [
+          Declaration(
+            type: "Declaration",
+            name: Ident(
+              type: "Ident",
+              name: "b",
+              raw: "b",
+              span: Span(
+                start: 3,
+                end: 4,
+              ),
+            ),
+            nameSuffix: None,
+            colonSpan: Span(
+              start: 4,
+              end: 5,
+            ),
+            value: [
+              Function(
+                type: "Function",
+                name: Ident(
+                  type: "Ident",
+                  name: "calc",
+                  raw: "calc",
+                  span: Span(
+                    start: 6,
+                    end: 10,
+                  ),
+                ),
+                args: [
+                  Calc(
+                    type: "Calc",
+                    left: Dimension(
+                      type: "Dimension",
+                      value: Number(
+                        type: "Number",
+                        value: 1.0,
+                        raw: "1",
+                        span: Span(
+                          start: 11,
+                          end: 12,
+                        ),
+                      ),
+                      unit: Ident(
+                        type: "Ident",
+                        name: "px",
+                        raw: "px",
+                        span: Span(
+                          start: 12,
+                          end: 14,
+                        ),
+                      ),
+                      kind: Length,
+                      span: Span(
+                        start: 11,
+                        end: 14,
+                      ),
+                    ),
+                    op: CalcOperator(
+                      type: "CalcOperator",
+                      kind: Multiply,
+                      span: Span(
+                        start: 15,
+                        end: 16,
+                      ),
+                    ),
+                    right: TokenWithSpan(
+                      type: "TokenWithSpan",
+                      token: Asterisk(Asterisk(
+                        kind: "Asterisk",
+                      )),
+                      span: Span(
+                        start: 16,
+                        end: 17,
+                      ),
+                    ),
+                    span: Span(
+                      start: 11,
+                      end: 17,
+                    ),
+                  ),
+                  Dimension(
+                    type: "Dimension",
+                    value: Number(
+                      type: "Number",
+                      value: 2.0,
+                      raw: "2",
+                      span: Span(
+                        start: 18,
+                        end: 19,
+                      ),
+                    ),
+                    unit: Ident(
+                      type: "Ident",
+                      name: "px",
+                      raw: "px",
+                      span: Span(
+                        start: 19,
+                        end: 21,
+                      ),
+                    ),
+                    kind: Length,
+                    span: Span(
+                      start: 18,
+                      end: 21,
+                    ),
+                  ),
+                ],
+                span: Span(
+                  start: 6,
+                  end: 22,
+                ),
+              ),
+            ],
+            important: None,
+            lessPropertyMerge: None,
+            span: Span(
+              start: 3,
+              end: 22,
+            ),
+          ),
+        ],
+        span: Span(
+          start: 2,
+          end: 23,
+        ),
+      ),
+      span: Span(
+        start: 0,
+        end: 23,
+      ),
+    ),
+  ],
+  span: Span(
+    start: 0,
+    end: 24,
+  ),
+)

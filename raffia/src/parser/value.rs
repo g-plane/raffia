@@ -271,10 +271,20 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::BacktickCode(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessJavaScriptSnippet)
             }
-            _ => Err(Error {
-                kind: ErrorKind::ExpectComponentValue,
-                span: token_with_span.span.clone(),
-            }),
+            Token::Semicolon(..) | Token::RParen(..) | Token::LBrace(..) | Token::RBrace(..) => {
+                Err(Error {
+                    kind: ErrorKind::ExpectComponentValue,
+                    span: token_with_span.span.clone(),
+                })
+            }
+            _ => {
+                let token_with_span = bump!(self);
+                self.recoverable_errors.push(Error {
+                    kind: ErrorKind::ExpectComponentValue,
+                    span: token_with_span.span.clone(),
+                });
+                Ok(ComponentValue::TokenWithSpan(token_with_span))
+            }
         }
     }
 
@@ -412,6 +422,9 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                 }
                 _ => {
                     let value = if let Ok(value) = self.try_parse(ComponentValue::parse) {
+                        // arbitrary token is allowed in function args
+                        self.recoverable_errors
+                            .pop_if(|error| &error.span == value.span());
                         value
                     } else {
                         values.push(ComponentValue::TokenWithSpan(bump!(self)));

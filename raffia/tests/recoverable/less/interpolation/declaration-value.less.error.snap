@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: component value is expected
+  ┌─ declaration-value.less:2:12
+  │
+2 │   content: @{var};
+  │            ^^^^^^
