@@ -1,0 +1,8 @@
+---
+source: raffia/tests/error.rs
+---
+error: expect token `;`, but found `{`
+  ┌─ plus.less:1:6
+  │
+1 │ .foo {
+  │      ^
