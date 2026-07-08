@@ -1,7 +1,7 @@
 #[doc(hidden)]
 #[macro_export]
 macro_rules! bump {
-    ($parser:expr) => {{
+    ($parser:ident) => {{
         match $parser.cached_token.take() {
             Some(token_with_span) => token_with_span,
             None => {
@@ -15,7 +15,7 @@ macro_rules! bump {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! expect {
-    ($parser:expr, $variant:ident) => {{
+    ($parser:ident, $variant:ident) => {{
         use $crate::{
             bump,
             error::{Error, ErrorKind},
@@ -42,7 +42,7 @@ macro_rules! expect {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! expect_without_ws_or_comments {
-    ($parser:expr, Ident) => {{
+    ($parser:ident, Ident) => {{
         use $crate::{
             error::{Error, ErrorKind},
             tokenizer::TokenSymbol,
@@ -62,7 +62,7 @@ macro_rules! expect_without_ws_or_comments {
             });
         }
     }};
-    ($parser:expr, $variant:ident) => {{
+    ($parser:ident, $variant:ident) => {{
         use $crate::{
             error::{Error, ErrorKind},
             tokenizer::{Token, TokenSymbol, TokenWithSpan},
@@ -91,7 +91,7 @@ macro_rules! expect_without_ws_or_comments {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! eat {
-    ($parser:expr, $variant:ident) => {{
+    ($parser:ident, $variant:ident) => {{
         use $crate::{
             bump,
             tokenizer::{Token, TokenWithSpan},
@@ -113,7 +113,7 @@ macro_rules! eat {
 #[doc(hidden)]
 #[macro_export]
 macro_rules! peek {
-    ($parser:expr) => {{
+    ($parser:ident) => {{
         match &$parser.cached_token {
             Some(token_with_span) => token_with_span,
             None => {
