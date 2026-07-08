@@ -1,0 +1,8 @@
+---
+source: raffia/tests/recoverable.rs
+---
+error: component value is expected
+  ┌─ leading-plus.less:2:13
+  │
+2 │   margin: 2 +@spacing;
+  │             ^
