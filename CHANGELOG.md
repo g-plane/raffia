@@ -1,5 +1,12 @@
 _This changelog only relates to the `raffia` crate._
 
+## v0.13.0
+
+- Treat some invalid component values and tokens as recoverable errors.
+- Fixed parsing Less negative value.
+- Fixed parsing Less binary operation without whitespaces.
+- Fixed handling plus token in Less.
+
 ## v0.12.3
 
 - Fixed recognizing anonymous `scroll-state` container queries.
