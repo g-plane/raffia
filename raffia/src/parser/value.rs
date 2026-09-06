@@ -271,12 +271,14 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
             Token::BacktickCode(..) if self.syntax == Syntax::Less => {
                 self.parse().map(ComponentValue::LessJavaScriptSnippet)
             }
-            Token::Semicolon(..) | Token::RParen(..) | Token::LBrace(..) | Token::RBrace(..) => {
-                Err(Error {
-                    kind: ErrorKind::ExpectComponentValue,
-                    span: token_with_span.span.clone(),
-                })
-            }
+            Token::Semicolon(..)
+            | Token::RParen(..)
+            | Token::LBrace(..)
+            | Token::RBrace(..)
+            | Token::Eof(..) => Err(Error {
+                kind: ErrorKind::ExpectComponentValue,
+                span: token_with_span.span.clone(),
+            }),
             _ => {
                 let token_with_span = bump!(self);
                 self.recoverable_errors.push(Error {
