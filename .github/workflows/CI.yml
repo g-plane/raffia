@@ -23,6 +23,7 @@ jobs:
       - run: cargo test --all-features
       - uses: rust-lang/crates-io-auth-action@v1.0.4
         id: cratesio-auth
+        if: ${{ github.event_name == 'push' }}
       - name: Publish crates
         if: ${{ github.event_name == 'push' }}
         run: |
