@@ -165,6 +165,19 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for QueryInParens<'s> {
                         end,
                     },
                 })
+            } else if keyword.eq_ignore_ascii_case("anchored") {
+                // https://drafts.csswg.org/css-anchor-position-2/#container-rule-anchored
+                // https://github.com/web-platform-tests/wpt/blob/master/css/css-anchor-position/container-queries/at-container-anchored-parsing.html
+                expect_without_ws_or_comments!(input, LParen);
+                let kind = input.parse().map(QueryInParensKind::Anchored)?;
+                let (_, Span { end, .. }) = expect!(input, RParen);
+                Ok(QueryInParens {
+                    kind,
+                    span: Span {
+                        start: ident_span.start,
+                        end,
+                    },
+                })
             } else {
                 Err(Error {
                     kind: ErrorKind::ExpectStyleQuery,
@@ -330,7 +343,8 @@ impl<'cmt, 's: 'cmt> Parse<'cmt, 's> for ContainerPrelude<'s> {
         let name = input.try_parse(|parser| match parser.parse()? {
             InterpolableIdent::Literal(ident)
                 if ident.name.eq_ignore_ascii_case("not")
-                    || ident.name.eq_ignore_ascii_case("scroll-state") =>
+                    || ident.name.eq_ignore_ascii_case("scroll-state")
+                    || ident.name.eq_ignore_ascii_case("anchored") =>
             {
                 Err(Error {
                     kind: ErrorKind::TryParseError,
