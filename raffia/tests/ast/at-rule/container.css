@@ -135,3 +135,12 @@
 @container my-container scroll-state(scrollable: top) {}
 @container my-container scroll-state(a > b) {}
 @container scroll-state(scrollable: top) {}
+
+@container my-container anchored(fallback: --custom) {}
+@container anchored(fallback: top) {}
+@container anchored(fallback: none) {}
+@container anchored(fallback: --custom) {}
+@container anchored(fallback: flip-block flip-inline) {}
+@container anchored(fallback: flip-block --custom) {}
+@container anchored(not ((fallback: --foo) or (fallback: --bar flip-inline))) {}
+@container (anchored(fallback: inline-start block-end)) {}

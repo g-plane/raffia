@@ -1800,6 +1800,7 @@ pub enum QueryInParensKind<'s> {
     SizeFeature(Box<MediaFeature<'s>>),
     StyleQuery(StyleQuery<'s>),
     ScrollState(Box<MediaFeature<'s>>),
+    Anchored(StyleQuery<'s>),
 }
 
 #[derive(Clone, Debug, Spanned, PartialEq)]
