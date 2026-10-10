@@ -423,14 +423,18 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                     bump!(self);
                 }
                 _ => {
-                    let value = if let Ok(value) = self.try_parse(ComponentValue::parse) {
-                        // arbitrary token is allowed in function args
-                        self.recoverable_errors
-                            .pop_if(|error| &error.span == value.span());
-                        value
-                    } else {
-                        values.push(ComponentValue::TokenWithSpan(bump!(self)));
-                        continue;
+                    let value = match self.try_parse(ComponentValue::parse) {
+                        Ok(value) => {
+                            // arbitrary token is allowed in function args
+                            self.recoverable_errors
+                                .pop_if(|error| &error.span == value.span());
+                            value
+                        }
+                        Err(error) if self.is_at_eof(&error) => return Err(error),
+                        Err(_) => {
+                            values.push(ComponentValue::TokenWithSpan(bump!(self)));
+                            continue;
+                        }
                     };
                     if matches!(self.syntax, Syntax::Scss | Syntax::Sass) {
                         if let Some((_, mut span)) = eat!(self, DotDotDot) {
