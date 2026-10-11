@@ -430,7 +430,7 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
                                 .pop_if(|error| &error.span == value.span());
                             value
                         }
-                        Err(error) if self.is_at_eof(&error) => return Err(error),
+                        Err(error) if error.span.start == self.source.len() => return Err(error),
                         Err(_) => {
                             values.push(ComponentValue::TokenWithSpan(bump!(self)));
                             continue;

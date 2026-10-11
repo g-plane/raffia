@@ -58,9 +58,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         T::parse(self)
     }
 
-    fn is_at_eof(&self, error: &Error) -> bool {
-        error.span.start == self.source.len()
-    }
 
     /// Retrieve recoverable errors.
     #[inline]
