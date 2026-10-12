@@ -58,7 +58,6 @@ impl<'cmt, 's: 'cmt> Parser<'cmt, 's> {
         T::parse(self)
     }
 
-
     /// Retrieve recoverable errors.
     #[inline]
     pub fn recoverable_errors(&self) -> &[Error] {
